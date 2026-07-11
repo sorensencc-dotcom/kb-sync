@@ -12,6 +12,7 @@
     "kb:sync:all": "bash core/run-all.sh",
     "kb:sync:all:rollback": "bash core/run-all.sh --rollback",
     "kb:sync:setup-hook": "mkdir -p .git/hooks && cp scripts/notebooklm/post-commit-hook-example.sh .git/hooks/post-commit && chmod +x .git/hooks/post-commit",
+    "wiki:ingest": "bash modules/wiki/ingest-wiki.sh",
     "test:notebooklm": "npx tsx tests/notebooklm-sync-verification.ts",
     "test:core": "npx tsx tests/core-scripts-verification.ts",
     "test:obsidian": "npx tsx tests/obsidian-sync-verification.ts",
