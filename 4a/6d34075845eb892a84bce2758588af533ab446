@@ -1,0 +1,74 @@
+obsidian/vault/wiki/concepts/pack-based-knowledge-management.md
+  s_d05a08dc3db088::t_bcb68759d2218b 1-122
+obsidian/vault/wiki/concepts/semantic-ingest-workflow.md
+  s_d05a08dc3db088::t_92cf3c820fe5f5 1-131
+obsidian/vault/wiki/wiki/index.md
+  s_d05a08dc3db088::t_19a8c7da96d940 1-27
+obsidian/vault/wiki/obsidian/ingest-obsidian.sh.md
+  s_d05a08dc3db088::t_608140d48cc3e4 1-95
+obsidian/vault/wiki/concepts/raw-source-staging.md
+  s_d05a08dc3db088::t_e728fca2ae4235 1-119
+obsidian/vault/wiki/wiki/ingest-wiki.sh.md
+  s_d05a08dc3db088::t_593c86570dab7a 1-106
+obsidian/vault/wiki/obsidian/index.md
+  s_d05a08dc3db088::t_0a4bc4f6c805a1 1-27
+obsidian/vault/wiki/concepts/three-layer-vault-architecture.md
+  s_d05a08dc3db088::t_dc6375d8cfe618 1-117
+obsidian/vault/wiki/notebooklm/ingest-notebooklm.sh.md
+  s_d05a08dc3db088::t_582a45b1178cc2 1-96
+obsidian/vault/wiki/concepts/manifest-mode.md
+  s_d05a08dc3db088::t_e63f2b075c0857 1-118
+obsidian/vault/wiki/kb-sync/flatten.sh.md
+  s_d05a08dc3db088::t_8990a52a578404 1-84
+obsidian/vault/wiki/kb-sync/run-all.sh.md
+  s_d05a08dc3db088::t_55dc56d29315c2 1-99
+obsidian/vault/wiki/kb-sync/validate.sh.md
+  s_d05a08dc3db088::t_cb7e881dafd0d0 1-86
+obsidian/vault/wiki/kb-sync/chunk.sh.md
+  s_d05a08dc3db088::t_9d52f616800269 1-81
+obsidian/vault/wiki/kb-sync/rollback.sh.md
+  s_d05a08dc3db088::t_49a5001a6f1d9a 1-86
+obsidian/vault/wiki/notebooklm/kb-sync-nightly.sh.md
+  s_d05a08dc3db088::t_05e8deaec979ee 1-89
+obsidian/vault/wiki/kb-sync/index.md
+  s_d05a08dc3db088::t_1d404d765a85c6 1-29
+obsidian/vault/wiki/concepts/fail-soft-orchestration.md
+  s_d05a08dc3db088::t_504ef1794430df 1-118
+obsidian/vault/wiki/concepts/deterministic-sync-pipeline.md
+  s_d05a08dc3db088::t_efca8d527e995e 1-127
+obsidian/vault/wiki/notebooklm/index.md
+  s_d05a08dc3db088::t_3e3ca4376f02ab 1-29
+obsidian/vault/wiki/Index.md
+  s_d05a08dc3db088::t_5746a3657048b2 21-36,39-43,46-50,53,56-75,77
+  s_d05a08dc3db088::t_0c40df162fdb6a 37-38,44-45,51-52,54-55
+  s_d05a08dc3db088::t_74da155d6f92a6 18-20
+  s_d05a08dc3db088::t_264008b6c2b893 76
+  s_d05a08dc3db088::t_2d25ba41e69fbd 78-79
+  s_d05a08dc3db088::t_2cb2b375832bbb 1-17
+obsidian/vault/wiki/Log.md
+  s_d05a08dc3db088::t_14181d0dcee32a 24
+  s_d05a08dc3db088::t_7216c8a2c3b45f 11,19-23,25-53
+  s_d05a08dc3db088::t_8753c641888a17 8-10
+  s_d05a08dc3db088::t_1a0ab9749cd8a6 12-14,16-18
+  s_d05a08dc3db088::t_5c71c8d1bf2bcf 1-7,15
+obsidian/vault/wiki/notebooklm/register-kb-sync-task.ps1.md
+  s_d05a08dc3db088::t_c68ecc74717a0a 1-89
+obsidian/vault/wiki/concepts/karpathy-llm-wiki-pattern.md
+  s_d05a08dc3db088::t_d92f8560438ee3 1-127
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "4a6d34075845eb892a84bce2758588af533ab446",
+  "prompts": {},
+  "sessions": {
+    "s_d05a08dc3db088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9837535e-c768-4223-a214-59099185e3e1",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
