@@ -1,0 +1,30 @@
+# ==============================================================================
+# NotebookLM Sync Target Configuration
+# ==============================================================================
+
+# Repository root (relative to where script runs, or absolute)
+# "." = current working directory (typically repo root)
+repo_root: "."
+
+# Output directory for knowledge pack (relative to repo root or absolute)
+output_dir: "./.nlm_pack"
+
+# Knowledge pack filename (without extension, .txt is added)
+pack_filename: "repo_knowledge_pack"
+
+# Maximum words in a single source document (NotebookLM limit guidance)
+# Note: chunks are line-safe splits, not word-counted
+max_words: 200000
+
+# File extensions to include (leave empty to include all non-excluded files)
+# If specified, ONLY files matching these extensions pass through
+include_extensions:
+  - ".ts"
+  - ".js"
+  - ".py"
+  - ".md"
+  - ".json"
+  - ".yaml"
+  - ".yml"
+  - ".sh"
+  - ".ps1"

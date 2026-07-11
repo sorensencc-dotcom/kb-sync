@@ -1,0 +1,28 @@
+# ==============================================================================
+# Global Configuration for kb-sync Core Scripts
+# Shared by all sync targets (NotebookLM, Obsidian, etc.)
+# ==============================================================================
+
+# Size thresholds (in bytes)
+warning_bytes: 5000000  # 5MB — warn if pack approaches this
+hard_bytes: 8000000     # 8MB — require chunking if exceeded
+
+# Chunk size for line-safe splitting (split -C format: e.g., 4M, 100K)
+chunk_size: 4M
+
+# File exclusion patterns (glob format, matched against repo-relative paths)
+skip_patterns:
+  - package-lock.json
+  - yarn.lock
+  - pnpm-lock.yaml
+  - "*node_modules/*"
+  - "*dist/*"
+  - "*build/*"
+  - "*.png"
+  - "*.jpg"
+  - "*.jpeg"
+  - "*.gif"
+  - "*.pdf"
+  - "*.bin"
+  - "*playwright-report/*"
+  - "*coverage/*"

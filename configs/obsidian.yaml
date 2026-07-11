@@ -1,0 +1,36 @@
+# ==============================================================================
+# Obsidian Vault Sync Target Configuration
+# Implements Karpathy LLM-wiki pattern: staging-only script + human-curated wiki
+# ==============================================================================
+
+# Obsidian vault root directory (absolute path or relative to where script runs)
+# Override via OBSIDIAN_VAULT_ROOT environment variable
+vault_root: "c:\obsidian\RewriteLabs-KB"
+
+# File extensions to include in staging (staging script focuses on .md for v1)
+include_extensions:
+  - ".md"
+
+# Subdirectory inside vault_root for raw source staging (immutable, time-stamped)
+# Full path will be: vault_root/<staging_dir>/<repo-name>/<timestamp>/
+staging_dir: "_kb-sync-staging"
+
+# Subdirectory inside vault_root for LLM-maintained wiki (human-edited)
+# Full path will be: vault_root/<wiki_dir>/
+wiki_dir: "wiki"
+
+# Schema documentation filenames inside wiki_dir
+index_filename: "Index.md"
+log_filename: "Log.md"
+
+# Mapping rules: repo paths → wiki folders
+# Each rule maps a source prefix to a target folder within wiki_dir
+# Used as guidance during human-run ingest sessions; not enforced mechanically
+mapping_rules:
+  - prefix: "rewrite-mcp/"
+    folder: "CIC/Rewrite Labs"
+  - prefix: "torquequery/"
+    folder: "CIC/TorqueQuery"
+
+# Default wiki folder for unmapped sources
+default_folder: "Unsorted"
