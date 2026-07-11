@@ -37,8 +37,18 @@ if [ -f "$REPO_ROOT/.env" ]; then
     [[ -z "$line" ]] && continue
     # Trim carriage returns (\r) for Windows compatibility
     line="${line%$'\r'}"
-    # Export the variable
-    export "$line"
+    # Skip lines with no = (raw values with no key name)
+    [[ "$line" != *"="* ]] && continue
+    # Split key and value on the FIRST = only, so special chars in value are safe
+    env_key="${line%%=*}"
+    env_val="${line#*=}"
+    # Skip if key is empty or contains invalid chars (/, space, etc.)
+    [[ -z "$env_key" ]] && continue
+    [[ "$env_key" =~ [^a-zA-Z0-9_] ]] && continue
+    # Strip optional surrounding quotes from value
+    env_val="${env_val#\"}" ; env_val="${env_val%\"}"
+    env_val="${env_val#\'}" ; env_val="${env_val%\'}"
+    export "$env_key"="$env_val"
   done < "$REPO_ROOT/.env"
 fi
 
