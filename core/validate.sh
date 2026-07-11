@@ -84,15 +84,15 @@ log_info "Pack file size: $FILE_SIZE bytes"
 if [ "$FILE_SIZE" -gt "$HARD_LIMIT" ]; then
   log_warn "Pack file size ($FILE_SIZE bytes) exceeds hard limit ($HARD_LIMIT bytes)."
   log_warn "Chunking required before upload."
-  echo "HARD" >&2
+  echo "HARD"
   exit 0
 elif [ "$FILE_SIZE" -gt "$WARNING_LIMIT" ]; then
   log_warn "Pack file size ($FILE_SIZE bytes) approaches warning limit ($WARNING_LIMIT bytes)."
   log_warn "Upload may slow down. Chunking recommended."
-  echo "WARN" >&2
+  echo "WARN"
   exit 0
 else
   log_info "Pack file size within acceptable range."
-  echo "OK" >&2
+  echo "OK"
   exit 0
 fi
