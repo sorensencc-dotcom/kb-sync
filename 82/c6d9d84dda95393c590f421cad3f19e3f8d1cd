@@ -1,0 +1,20 @@
+modules/obsidian/ingest-wiki.sh
+  s_d05a08dc3db088::t_83f46598b5e54f 38
+  s_d05a08dc3db088::t_2a71bdc3d8330f 209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "82c6d9d84dda95393c590f421cad3f19e3f8d1cd",
+  "prompts": {},
+  "sessions": {
+    "s_d05a08dc3db088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9837535e-c768-4223-a214-59099185e3e1",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
