@@ -5,7 +5,10 @@ theme:
 
 nav:
   - Welcome: README.md
-  - NotebookLM Sync:
+  - Sync Targets:
+    - Obsidian: targets/obsidian.md
+    - NotebookLM: targets/notebooklm.md
+  - NotebookLM Sync (Archive):
     - Architecture: kb/notebooklm-sync/architecture.md
     - Pipeline: kb/notebooklm-sync/pipeline.md
     - Operator Rules: kb/notebooklm-sync/operator-rules.md
