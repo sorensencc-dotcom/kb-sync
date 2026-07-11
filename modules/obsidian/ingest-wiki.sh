@@ -35,7 +35,7 @@ get_config_value() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
-    return 0
+    return 1
   fi
   grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
     sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
@@ -206,7 +206,7 @@ EOF
 
   *)
     log_error "Unknown action: $ACTION"
-    log_error "Usage: $0 [staging_path] [validate|log-entry|prompt]"
+    log_error "Usage: $0 [action|validate|log-entry|prompt] [staging_path]"
     exit 1
     ;;
 esac
