@@ -4,7 +4,7 @@
 # Implements Karpathy LLM-wiki pattern: stages raw sources for human ingest
 # Human runs Claude Code session against staged output + docs/targets/obsidian.md
 # ==============================================================================
-set -euo pipefail
+set -uo pipefail
 
 # Unset git environment overrides
 unset GIT_DIR
@@ -120,7 +120,7 @@ log_info "Generating file manifest via core/flatten.sh..."
 log_info "========================================================================"
 
 TEMP_PACK_DIR=$(mktemp -d)
-trap "rm -rf $TEMP_PACK_DIR" EXIT
+# Cleanup deferred until after manifest is used (see cleanup trap at end of script)
 
 # Call core/flatten.sh --manifest to get newline-delimited file list
 if ! bash "$CORE_DIR/flatten.sh" \
@@ -155,7 +155,12 @@ mkdir -p "$STAGING_PATH"
 
 # Copy files from manifest, preserving relative directory structure
 FILE_COUNT=0
-while IFS= read -r file; do
+COPY_ERRORS=0
+
+# Read manifest into memory to avoid issues with temp directory cleanup
+mapfile -t MANIFEST_LINES < "$MANIFEST_FILE"
+
+for file in "${MANIFEST_LINES[@]}"; do
   [ -z "$file" ] && continue
 
   SOURCE_FILE="$REPO_ROOT/$file"
@@ -169,12 +174,24 @@ while IFS= read -r file; do
 
   # Create target directory
   TARGET_DIR=$(dirname "$TARGET_FILE")
-  mkdir -p "$TARGET_DIR"
+  if ! mkdir -p "$TARGET_DIR" 2>/dev/null; then
+    log_warn "Failed to create directory (skipping): $TARGET_DIR"
+    ((COPY_ERRORS++))
+    continue
+  fi
 
   # Copy file verbatim
-  cp "$SOURCE_FILE" "$TARGET_FILE"
+  if ! cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null; then
+    log_warn "Failed to copy file (skipping): $file"
+    ((COPY_ERRORS++))
+    continue
+  fi
   ((FILE_COUNT++))
-done < "$MANIFEST_FILE"
+done
+
+if [ "$COPY_ERRORS" -gt 0 ]; then
+  log_warn "Encountered $COPY_ERRORS copy errors during staging (files skipped)."
+fi
 
 log_info "Staged $FILE_COUNT files."
 
@@ -227,4 +244,8 @@ echo "Staging directory: $STAGING_PATH" >&2
 echo "Schema document: $REPO_ROOT/docs/targets/obsidian.md" >&2
 
 log_info "Ingest staging completed successfully."
+
+# Cleanup temporary directory (deferred from start)
+rm -rf "$TEMP_PACK_DIR"
+
 exit 0
