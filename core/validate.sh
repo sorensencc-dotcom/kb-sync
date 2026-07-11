@@ -19,13 +19,15 @@ log_warn() {
 }
 
 # Parse config value from simple key=value or key: value format
+# Strips inline comments (anything after #)
 get_config_value() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
     return 0
   fi
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | sed -E "s/^\s*${key}\s*[:=]\s*//; s/\s*$//" || true
+  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
+    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/\s*$//" || true
 }
 
 # --- ARGUMENT PARSING --------------------------------------------------------

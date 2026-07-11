@@ -6,6 +6,9 @@
   "scripts": {
     "kb:sync": "bash scripts/notebooklm/ingest-notebooklm.sh",
     "kb:sync:rollback": "bash scripts/notebooklm/ingest-notebooklm.sh --rollback",
+    "kb:sync:notebooklm": "bash modules/notebooklm/ingest-notebooklm.sh",
+    "kb:sync:notebooklm:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
+    "kb:sync:notebooklm:preview": "bash modules/notebooklm/ingest-notebooklm.sh",
     "kb:sync:setup-hook": "mkdir -p .git/hooks && cp scripts/notebooklm/post-commit-hook-example.sh .git/hooks/post-commit && chmod +x .git/hooks/post-commit",
     "test:notebooklm": "npx tsx tests/notebooklm-sync-verification.ts"
   },

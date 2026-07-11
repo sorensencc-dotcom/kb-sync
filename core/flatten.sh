@@ -24,7 +24,7 @@ log_warn() {
 }
 
 # Parse YAML-like config file for a specific key (simple key=value or key: value)
-# Returns empty if key not found
+# Returns empty if key not found. Strips inline comments.
 get_config_value() {
   local file="$1"
   local key="$2"
@@ -32,7 +32,8 @@ get_config_value() {
     return 0
   fi
   # Match "key:" or "key =" (with optional surrounding spaces), return value after it
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | sed -E "s/^\s*${key}\s*[:=]\s*//; s/\s*$//" || true
+  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
+    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/\s*$//" || true
 }
 
 # Parse array-like config value (comma-separated or YAML list items)
