@@ -32,7 +32,7 @@ log_warn() {
 # Format: target_name:script_path
 SYNC_TARGETS=(
   "notebooklm:modules/notebooklm/ingest-notebooklm.sh"
-  # "obsidian:modules/obsidian/ingest-obsidian.sh"  # Uncomment when ready (Phase 9)
+  "obsidian:modules/obsidian/ingest-obsidian.sh"
 )
 
 log_info "Multi-target sync orchestrator starting..."

@@ -8,6 +8,7 @@
     "kb:sync:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
     "kb:sync:notebooklm": "bash modules/notebooklm/ingest-notebooklm.sh",
     "kb:sync:notebooklm:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
+    "kb:sync:obsidian": "bash modules/obsidian/ingest-obsidian.sh",
     "kb:sync:all": "bash core/run-all.sh",
     "kb:sync:all:rollback": "bash core/run-all.sh --rollback",
     "kb:sync:setup-hook": "mkdir -p .git/hooks && cp scripts/notebooklm/post-commit-hook-example.sh .git/hooks/post-commit && chmod +x .git/hooks/post-commit",
