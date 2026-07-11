@@ -1,0 +1,32 @@
+tests/obsidian-sync-verification.ts
+  s_7355f494f0ea4c::t_4c8bc83368252e 1-237
+modules/obsidian/ingest-obsidian.sh
+  s_7355f494f0ea4c::t_e77f57d58e04db 159-163,190
+  s_7355f494f0ea4c::t_016716aad14957 158,177-181,184-188,191-194
+  s_7355f494f0ea4c::t_1863474044f572 7
+  s_7355f494f0ea4c::t_3e54de152823b1 123
+  s_7355f494f0ea4c::t_ca76bd963121af 247-250
+tests/core-scripts-verification.ts
+  s_7355f494f0ea4c::t_d7b4e6f9ae2a09 189
+  s_7355f494f0ea4c::t_2f67ffc1dfc9f1 1-135,137-154,156-188,190-292
+  s_7355f494f0ea4c::t_2da79c840c870b 155
+  s_7355f494f0ea4c::t_d8b2054076a90d 136
+package.json
+  s_7355f494f0ea4c::t_1b7ca490bee2b2 15-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "36e2f981ad8498b339b2711cab9769a634c4dff1",
+  "prompts": {},
+  "sessions": {
+    "s_7355f494f0ea4c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "27f29315-1a0b-48dd-a0ea-3b2cac2d625f",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
