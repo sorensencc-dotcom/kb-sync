@@ -1,0 +1,31 @@
+scripts/notebooklm/kb-sync-nightly.sh
+  s_7355f494f0ea4c::t_67064f9eea95a8 60-61,68
+  s_7355f494f0ea4c::t_8a47916845b28c 10
+  s_7355f494f0ea4c::t_10f330cadfb4e3 11
+package.json
+  s_7355f494f0ea4c::t_3788773c274b69 7-8
+scripts/notebooklm/post-commit-hook-example.sh
+  s_7355f494f0ea4c::t_c7f38ec918a373 9
+scripts/notebooklm/generate-kb-sync-artifact.js
+  s_7355f494f0ea4c::t_5d58ae98606e8c 1-429
+tests/notebooklm-sync-verification.ts
+  s_7355f494f0ea4c::t_c9f9c63a9a8f46 17
+scripts/notebooklm/generate-kb-sync-artifact.mjs
+  s_7355f494f0ea4c::t_f84fa1e8023669 1-401
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "f7614c025a6fd5de4e380b3db221abc86bf3281d",
+  "prompts": {},
+  "sessions": {
+    "s_7355f494f0ea4c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "27f29315-1a0b-48dd-a0ea-3b2cac2d625f",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": null
+    }
+  }
+}
