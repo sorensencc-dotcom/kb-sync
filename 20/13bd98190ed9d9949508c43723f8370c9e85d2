@@ -1,0 +1,21 @@
+CLAUDE.md
+  s_d05a08dc3db088::t_38242bef54f6fd 1-243
+docs/governance/skill-approval-rules.md
+  s_d05a08dc3db088::t_7d69c29343f17d 1-154
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "2013bd98190ed9d9949508c43723f8370c9e85d2",
+  "prompts": {},
+  "sessions": {
+    "s_d05a08dc3db088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9837535e-c768-4223-a214-59099185e3e1",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
