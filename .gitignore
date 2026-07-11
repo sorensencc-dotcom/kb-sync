@@ -1,0 +1,9 @@
+node_modules/
+.nlm_pack/
+.env
+.mock_cli_bin/
+dist/
+build/
+site/
+*.bak.txt
+*.log

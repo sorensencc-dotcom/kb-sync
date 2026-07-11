@@ -1,0 +1,13 @@
+site_name: CIC Knowledge Base
+site_description: Ingestion and synchronization pipeline documentation for NotebookLM.
+theme:
+  name: material
+
+nav:
+  - Welcome: README.md
+  - NotebookLM Sync:
+    - Architecture: kb/notebooklm-sync/architecture.md
+    - Pipeline: kb/notebooklm-sync/pipeline.md
+    - Operator Rules: kb/notebooklm-sync/operator-rules.md
+    - Error Boundaries: kb/notebooklm-sync/error-boundaries.md
+    - Authentication: kb/notebooklm-sync/authentication.md

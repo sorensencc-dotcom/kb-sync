@@ -1,0 +1,18 @@
+{
+  "name": "kb-sync",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CIC Knowledge Base Sync Pipeline",
+  "scripts": {
+    "kb:sync": "bash scripts/notebooklm/ingest-notebooklm.sh",
+    "kb:sync:rollback": "bash scripts/notebooklm/ingest-notebooklm.sh --rollback",
+    "kb:sync:setup-hook": "mkdir -p .git/hooks && cp scripts/notebooklm/post-commit-hook-example.sh .git/hooks/post-commit && chmod +x .git/hooks/post-commit",
+    "test:notebooklm": "npx tsx tests/notebooklm-sync-verification.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "js-yaml": "^4.1.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
