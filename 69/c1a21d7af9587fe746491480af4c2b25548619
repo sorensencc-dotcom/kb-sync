@@ -1,0 +1,19 @@
+scripts/notebooklm/ingest-notebooklm.sh
+  s_9b15af59cb7ec2::t_7d7135f76995bd 40-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "69c1a21d7af9587fe746491480af4c2b25548619",
+  "prompts": {},
+  "sessions": {
+    "s_9b15af59cb7ec2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9b15af59cb7ec2",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
