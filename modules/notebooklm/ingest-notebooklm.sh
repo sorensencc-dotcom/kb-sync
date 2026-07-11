@@ -32,13 +32,15 @@ log_warn() {
 }
 
 # Parse config value (simple key=value or key: value)
+# Strips surrounding quotes, inline comments
 get_config_value() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
     return 0
   fi
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | sed -E "s/^\s*${key}\s*[:=]\s*//; s/\s*$//" || true
+  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
+    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
 }
 
 # --- PRE-FLIGHT CHECKS -------------------------------------------------------
@@ -72,16 +74,21 @@ log_info "Core scripts and configs located."
 # --- LOAD MODULE CONFIG & ENVIRONMENT ----------------------------------------
 PACK_DIR=$(get_config_value "$MODULE_CONFIG" "output_dir")
 PACK_FILE=$(get_config_value "$MODULE_CONFIG" "pack_filename")
-INCLUDE_EXTENSIONS=$(get_config_value "$MODULE_CONFIG" "include_extensions" | tr '\n' ',' | sed 's/,$//')
+# Note: include_extensions is a multi-line YAML list; not currently parsed
+# Core scripts include all non-skip-pattern files by default
+INCLUDE_EXTENSIONS=""
 
 # Set defaults if config parsing failed
 : ${PACK_DIR:="./.nlm_pack"}
 : ${PACK_FILE:="repo_knowledge_pack"}
 
-# Make paths absolute
-if [[ ! "$PACK_DIR" = /* ]]; then
+# Make paths absolute (handle both Unix / and Windows \ separators)
+if [[ ! "$PACK_DIR" =~ ^[/A-Za-z]: ]]; then
+  # Relative path: prepend REPO_ROOT
   PACK_DIR="$REPO_ROOT/$PACK_DIR"
 fi
+# Convert backslashes to forward slashes for consistency in bash
+PACK_DIR="${PACK_DIR//\\//}"
 
 log_info "Pack directory: $PACK_DIR"
 log_info "Pack filename: $PACK_FILE"
@@ -167,7 +174,7 @@ if [ "$RUN_ROLLBACK" = true ]; then
   fi
 
   # Re-upload
-  log_info "Re-uploading $(<<<"${#UPLOAD_FILES[@]}"} files..."
+  log_info "Re-uploading ${#UPLOAD_FILES[@]} files..."
   UPLOAD_SUCCESS=true
   for file in "${UPLOAD_FILES[@]}"; do
     log_info "Uploading: $file"
