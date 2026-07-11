@@ -6,7 +6,7 @@
 set -e
 
 # Path to main sync script relative to repo root
-SYNC_SCRIPT="scripts/notebooklm/ingest-notebooklm.sh"
+SYNC_SCRIPT="modules/notebooklm/ingest-notebooklm.sh"
 LOG_FILE=".nlm_pack/sync-background.log"
 
 # Check if sync script exists

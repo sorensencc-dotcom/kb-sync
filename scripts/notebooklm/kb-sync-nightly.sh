@@ -7,8 +7,8 @@
 set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
-STAGE_1_SCRIPT="$REPO_ROOT/scripts/notebooklm/ingest-notebooklm.sh"
-STAGE_2_SCRIPT="$REPO_ROOT/scripts/notebooklm/generate-kb-sync-artifact.ts"
+STAGE_1_SCRIPT="$REPO_ROOT/modules/notebooklm/ingest-notebooklm.sh"
+STAGE_2_SCRIPT="$REPO_ROOT/scripts/notebooklm/generate-kb-sync-artifact.mjs"
 
 # Logging helpers
 log_info() {
@@ -57,15 +57,15 @@ log_info "STAGE 2: Generating interactive KB sync artifact"
 log_info "================================================================================"
 
 # Attempt Stage 2; failure does not fail the entire pipeline (nightly sync won't break)
-if command -v npx >/dev/null 2>&1; then
-  if npx tsx "$STAGE_2_SCRIPT"; then
+if command -v node >/dev/null 2>&1; then
+  if node "$STAGE_2_SCRIPT"; then
     log_info "Stage 2 completed successfully."
     log_info "Artifact output: $REPO_ROOT/_integration/kb-sync-interactive-report.html"
   else
     log_warn "Stage 2 failed, but Stage 1 succeeded. Sync is complete; artifact generation will retry next cycle."
   fi
 else
-  log_warn "npx/tsx not found. Stage 2 skipped. Install Node.js to enable artifact generation."
+  log_warn "node not found. Stage 2 skipped. Install Node.js to enable artifact generation."
 fi
 
 log_info ""

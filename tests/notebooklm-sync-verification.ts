@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
 const PYRAGIFY_CONFIG_PATH = path.join(REPO_ROOT, "pyragify.yaml");
 // Use relative path with forward slashes for compatibility with bash on Windows
-const SYNC_SCRIPT_PATH = "./scripts/notebooklm/ingest-notebooklm.sh";
+const SYNC_SCRIPT_PATH = "./modules/notebooklm/ingest-notebooklm.sh";
 
 console.log(`  Resolved REPO_ROOT: ${REPO_ROOT}`);
 console.log(`  Real path of REPO_ROOT: ${fs.realpathSync(REPO_ROOT)}`);
