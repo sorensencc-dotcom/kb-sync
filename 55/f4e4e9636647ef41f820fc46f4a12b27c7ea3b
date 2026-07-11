@@ -1,0 +1,23 @@
+docs/targets/obsidian.md
+  s_7355f494f0ea4c::t_480d14977a72bc 1-222
+mkdocs.yml
+  s_7355f494f0ea4c::t_90af27be314cc3 8-11
+docs/targets/notebooklm.md
+  s_7355f494f0ea4c::t_2e323ac08bf724 1-187
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "55f4e4e9636647ef41f820fc46f4a12b27c7ea3b",
+  "prompts": {},
+  "sessions": {
+    "s_7355f494f0ea4c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "27f29315-1a0b-48dd-a0ea-3b2cac2d625f",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
