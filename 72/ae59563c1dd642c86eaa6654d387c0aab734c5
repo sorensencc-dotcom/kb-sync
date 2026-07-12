@@ -1,0 +1,23 @@
+docs/governance/skill-approval-rules.md
+  s_48c2845743e4c7::t_b0d6be522fc7f6 26,28,30,32,42
+  s_48c2845743e4c7::t_305d05540eead7 79-84
+  s_48c2845743e4c7::t_9947010c95db95 43-45,76-78
+  s_48c2845743e4c7::t_66864182fc20fc 85-87
+  s_48c2845743e4c7::t_05bc95855bc0e3 46-75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "72ae59563c1dd642c86eaa6654d387c0aab734c5",
+  "prompts": {},
+  "sessions": {
+    "s_48c2845743e4c7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "146a440d-b5c6-4651-b2a2-05a61fdbb397",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
