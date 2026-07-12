@@ -23,13 +23,13 @@ Tier 1 sign-off required for:
 
 **Timeline**: 2–5 business days
 
-### Tier 0: Skills & Minor Features (Register in Toolforge)
+### Tier 0: Skills & Minor Features
 
-No Tier 1 approval required. Register to toolforge:
+No Tier 1 approval required for:
 
-- New skills (bash, TypeScript, python)
-- New orchestration scripts
+- New kb-sync modules (bash scripts in `modules/<domain>/`)
 - New npm scripts or CLI commands
+- New toolforge skills (if external distribution needed)
 - Documentation and guides
 - Observability/logging improvements
 - Bug fixes and patches
@@ -38,6 +38,52 @@ No Tier 1 approval required. Register to toolforge:
 **Validation**: Caveman review (code quality) + tests pass + docs complete
 
 **Timeline**: Immediate after validation passes
+
+**Clarification**: Not all kb-sync modules need toolforge registration (see sections below).
+
+---
+
+## KB-Sync Module vs Toolforge Skill
+
+### KB-Sync Module (Internal Tool)
+
+Located in `modules/<domain>/<name>.sh`:
+
+- Used by kb-sync project internally
+- Invoked via `npm run <script-name>` (defined in kb-sync/package.json)
+- No toolforge registration needed
+- Discoverable only within kb-sync project
+- Example: `modules/obsidian/ingest-wiki.sh` → `npm run wiki:ingest:obsidian:validate`
+
+**Path**: Development → Code Review → Tests → Documentation → kb-sync Commit (done)
+
+**No toolforge wrapper required** unless external systems need to consume it.
+
+### Toolforge Skill (Distributed)
+
+Registered in `manifest.json` (auto-installed to toolforge library):
+
+- Used by external projects/systems via toolforge library
+- Invoked by toolforge/Cowork platform
+- Requires skill.json + src/ + tests/ + docs/ + manifest entry
+- Discoverable in toolforge skill registry
+- Example: `kb-sync-nightly` → auto-distributed to toolforge library on merge
+
+**Path**: Development → Code Review → Tests → Documentation → kb-sync Commit → Toolforge Wrapper (TypeScript) → Toolforge Commit (registered)
+
+**Toolforge wrapper required** for external distribution.
+
+### Decision Tree
+
+**Is this skill for external consumption (other projects, Cowork, etc.)?**
+
+- YES → Toolforge skill (needs wrapper)
+- NO → KB-sync module only (no wrapper needed)
+
+**Is this skill critical for automation infrastructure?**
+
+- YES → Consider toolforge registration (e.g., kb-sync-nightly for observability)
+- NO → Keep as kb-sync module
 
 ---
 
