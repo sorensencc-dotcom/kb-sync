@@ -77,10 +77,32 @@ Create formal toolforge skill in `toolforge/skills/<skill-name>/`:
 - `skill.json` — metadata (inputs, outputs, permissions, error conditions)
 - `src/index.ts` — TypeScript implementation (wraps bash or standalone)
 - `tests/index.test.ts` — test suite
-- `SKILL.md` — specification (purpose, capabilities, I/O schema)
+- `SKILL.md` — specification with YAML frontmatter (see below)
 - `INTEGRATION_DIAGRAM.md` — workflow diagram
 - `README.md` — quick reference
 - `docs/README.md` — full usage guide
+
+**SKILL.md Format** (YAML frontmatter required):
+
+```markdown
+---
+name: skill-id
+description: One-line description of what skill does
+compatibility: |
+  - Node.js 18+
+  - TypeScript 5.0+
+  - Other requirements
+---
+
+# Skill Name Specification
+
+[Content...]
+```
+
+Frontmatter fields:
+- `name`: skill ID (must match toolforge/skills directory name)
+- `description`: one-line summary for skill registry
+- `compatibility`: list of runtime/environment requirements
 
 **Example structure**:
 
