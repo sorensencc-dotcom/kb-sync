@@ -2,7 +2,8 @@
 
 **Effective Date**: 2026-07-11  
 **Owner**: CIC Engineering  
-**Status**: Active
+**Status**: Active  
+**Last Revised**: 2026-07-11 (clarified toolforge structure)
 
 ---
 
@@ -22,86 +23,104 @@ Tier 1 sign-off required for:
 
 **Timeline**: 2–5 business days
 
-### Tier 0: Minor Features & Skills (Auto-Install)
+### Tier 0: Skills & Minor Features (Register in Toolforge)
 
-No Tier 1 approval required. Auto-install to toolforge library:
+No Tier 1 approval required. Register to toolforge:
 
-- New orchestration scripts/skills (bash, python)
+- New skills (bash, TypeScript, python)
+- New orchestration scripts
 - New npm scripts or CLI commands
 - Documentation and guides
 - Observability/logging improvements
 - Bug fixes and patches
 - Single-module enhancements
 
-**Validation**: Caveman review (code quality) + author testing
+**Validation**: Caveman review (code quality) + tests pass + docs complete
 
-**Timeline**: Immediate after code review
+**Timeline**: Immediate after validation passes
 
 ---
 
 ## Skill Installation Workflow
 
-### 1. Development
+### 1. Development (kb-sync Module)
 
-Developer writes skill script (e.g., `modules/<domain>/<skill-name>.sh`):
+Develop skill in kb-sync project:
+
+- Create `modules/<domain>/<skill-name>.sh` (bash orchestrator)
 - Follows module conventions (logging, error handling, config loading)
-- Includes inline help/usage
-- Tests locally: `bash modules/<domain>/<skill-name>.sh --help`
+- Includes help/usage
+- Test locally: `bash modules/<domain>/<skill-name>.sh --help`
 
-### 2. Code Review
+### 2. Code Review & Tests (kb-sync)
 
-**Caveman Review** (`/caveman:caveman-review`):
-- One-liner findings format
-- Terse, actionable comments
-- No praise or filler
-- Author fixes inline
+- **Caveman Review** (`/caveman:caveman-review`): one-liner findings, no blockers required
+- Test suite: if script complex, add tests
+- Integration tests: test against actual config/staging
 
-**Approval**: If no blockers (bugs/risks), code is ready.
+### 3. Documentation (kb-sync)
 
-### 3. Documentation
+- Create `docs/skills/<skill-name>.md` (usage guide)
+- Create `kb-sync/modules/<domain>/<skill-name>.md` (wiki entity for orchestration)
+- Ensure schema compliance per `docs/targets/obsidian.md`
 
-Create skill doc: `docs/skills/<skill-name>.md`
-- Purpose, inputs, outputs
-- Usage examples
-- Configuration
-- Troubleshooting
-- Related skills/workflows
+### 4. kb-sync Commit
 
-Commit: Feature branch → main
+Merge feature branch → main with full change log.
 
-### 4. npm Integration (Optional)
+### 5. Toolforge Skill Wrapper
 
-If skill runs via `npm run`, add to `package.json`:
-```json
-{
-  "scripts": {
-    "skill:name": "bash modules/domain/skill-name.sh"
-  }
-}
+Create formal toolforge skill in `toolforge/skills/<skill-name>/`:
+
+**Required files**:
+
+- `skill.json` — metadata (inputs, outputs, permissions, error conditions)
+- `src/index.ts` — TypeScript implementation (wraps bash or standalone)
+- `tests/index.test.ts` — test suite
+- `SKILL.md` — specification (purpose, capabilities, I/O schema)
+- `INTEGRATION_DIAGRAM.md` — workflow diagram
+- `README.md` — quick reference
+- `docs/README.md` — full usage guide
+
+**Example structure**:
+
+```bash
+toolforge/skills/obsidian-ingest-wiki/
+├── skill.json
+├── src/index.ts
+├── tests/index.test.ts
+├── SKILL.md
+├── INTEGRATION_DIAGRAM.md
+├── README.md
+└── docs/
+    └── README.md
 ```
 
-### 5. Validation & Testing
+### 6. Validation & Registration
 
-- ✓ Local test: runs without errors
-- ✓ Caveman review: no blockers
-- ✓ Docs complete: published to `docs/skills/`
-- ✓ npm script works (if applicable)
+- Run tests: `npm test`
+- Lint: `npm run lint` (if configured)
+- Verify skill.json syntax
+- Check manifest.json for entry (should auto-register on merge)
 
-### 6. Toolforge Auto-Install
+### 7. Toolforge Commit
 
-Automatic on merge to main:
-- Skill registered in toolforge library
-- npm scripts available to all agents
-- No manual deployment step
+Commit skill to `toolforge/skills/<name>/` → main
 
-**Notification**: Slack #cic-dev with skill name, docs link, and usage
+**Automatic on merge**:
 
-### 7. Agent Integration (Optional)
+- Skill discovered and registered in toolforge library
+- Available to Cowork (agent platform)
+- Documented in manifest.json
 
-If agents need to call skill directly:
-- Document in `docs/skills/<name>.md` under "Agent Integration"
-- Add MCP server entry if needed
-- Update agent integration guide
+### 8. Slack Notification
+
+Post to #cic-dev:
+
+- Skill name, version, status
+- kb-sync source reference
+- Toolforge registration link
+- Quick usage example
 
 ---
 
