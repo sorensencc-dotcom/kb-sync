@@ -27,6 +27,19 @@ function runTest(name: string, fn: () => void) {
   }
 }
 
+// Convert path to relative form (bash-friendly) with forward slashes
+function toBashPath(absolutePath: string): string {
+  const rel = path.relative(REPO_ROOT, absolutePath);
+  return rel.replace(/\\/g, '/');
+}
+
+// Convert Windows path to Git Bash mount path (/mnt/c/...) for environment variables
+function toMountPath(windowsPath: string): string {
+  return windowsPath
+    .replace(/^([A-Z]):\\/, (_, drive) => `/mnt/${drive.toLowerCase()}/`)
+    .replace(/\\/g, '/');
+}
+
 // Clean inherited GIT environment
 function getCleanEnv() {
   const env = { ...process.env };
@@ -102,7 +115,7 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
   try {
     // Run staging script with temp vault
     const env = getCleanEnv();
-    env.OBSIDIAN_VAULT_ROOT = tempVaultRoot;
+    env.OBSIDIAN_VAULT_ROOT = toMountPath(tempVaultRoot);
 
     const output = execSync(`bash modules/obsidian/ingest-obsidian.sh`, {
       cwd: REPO_ROOT,
@@ -167,7 +180,7 @@ runTest("Staging script prints operator prompt with staging path", () => {
 
   try {
     const env = getCleanEnv();
-    env.OBSIDIAN_VAULT_ROOT = tempVaultRoot;
+    env.OBSIDIAN_VAULT_ROOT = toMountPath(tempVaultRoot);
 
     const output = execSync(`bash modules/obsidian/ingest-obsidian.sh 2>&1`, {
       cwd: REPO_ROOT,

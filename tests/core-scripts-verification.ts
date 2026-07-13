@@ -27,6 +27,12 @@ function runTest(name: string, fn: () => void) {
   }
 }
 
+// Convert path to relative form (bash-friendly) with forward slashes
+function toBashPath(absolutePath: string): string {
+  const rel = path.relative(REPO_ROOT, absolutePath);
+  return rel.replace(/\\/g, '/');
+}
+
 // Clean inherited GIT environment
 function getCleanEnv() {
   const env = { ...process.env };
@@ -47,7 +53,7 @@ runTest("core/flatten.sh default mode produces concatenated pack", () => {
 
   try {
     const output = execSync(
-      `bash core/flatten.sh --output "${tempDir}" --pack-name "test_pack.txt" --global-config configs/global.yaml --repo-root "${REPO_ROOT}"`,
+      `bash core/flatten.sh --output "${toBashPath(tempDir)}" --pack-name "test_pack.txt" --global-config configs/global.yaml --repo-root "${toBashPath(REPO_ROOT)}"`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
@@ -86,7 +92,7 @@ runTest("core/flatten.sh --manifest mode produces newline-delimited file list", 
 
   try {
     const output = execSync(
-      `bash core/flatten.sh --output "${tempDir}" --pack-name "unused.txt" --global-config configs/global.yaml --repo-root "${REPO_ROOT}" --manifest`,
+      `bash core/flatten.sh --output "${toBashPath(tempDir)}" --pack-name "unused.txt" --global-config configs/global.yaml --repo-root "${toBashPath(REPO_ROOT)}" --manifest`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
@@ -133,7 +139,7 @@ runTest("core/validate.sh classifies pack size correctly", () => {
     fs.writeFileSync(smallFile, "A".repeat(3 * 1024 * 1024), "utf8");
 
     const output = execSync(
-      `bash core/validate.sh --file "${smallFile}" --global-config configs/global.yaml`,
+      `bash core/validate.sh --file "${toBashPath(smallFile)}" --global-config configs/global.yaml`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
@@ -152,7 +158,7 @@ runTest("core/validate.sh classifies pack size correctly", () => {
     fs.writeFileSync(largeFile, "B".repeat(9 * 1024 * 1024), "utf8");
 
     const output2 = execSync(
-      `bash core/validate.sh --file "${largeFile}" --global-config configs/global.yaml`,
+      `bash core/validate.sh --file "${toBashPath(largeFile)}" --global-config configs/global.yaml`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
@@ -186,7 +192,7 @@ runTest("core/chunk.sh splits oversized pack into line-safe chunks", () => {
     fs.writeFileSync(largeFile, content, "utf8");
 
     execSync(
-      `bash core/chunk.sh --file "${largeFile}" --output-dir "${tempDir}" --global-config configs/global.yaml`,
+      `bash core/chunk.sh --file "${toBashPath(largeFile)}" --output-dir "${toBashPath(tempDir)}" --global-config configs/global.yaml`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
@@ -233,7 +239,7 @@ runTest("core/rollback.sh creates and restores backups", () => {
 
     // Create backups
     execSync(
-      `bash core/rollback.sh create --dir "${tempDir}" "${file1}" "${file2}"`,
+      `bash core/rollback.sh create --dir "${toBashPath(tempDir)}" "${toBashPath(file1)}" "${toBashPath(file2)}"`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
@@ -256,7 +262,7 @@ runTest("core/rollback.sh creates and restores backups", () => {
 
     // Restore from backup
     execSync(
-      `bash core/rollback.sh restore --dir "${tempDir}"`,
+      `bash core/rollback.sh restore --dir "${toBashPath(tempDir)}"`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),

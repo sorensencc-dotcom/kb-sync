@@ -36,6 +36,12 @@ function runTest(name: string, fn: () => void) {
   }
 }
 
+// Convert path to relative form (bash-friendly) with forward slashes
+function toBashPath(absolutePath: string): string {
+  const rel = path.relative(REPO_ROOT, absolutePath);
+  return rel.replace(/\\/g, '/');
+}
+
 // Clean inherited GIT environment overrides to prevent sandbox issues (case-insensitive for Windows)
 function getCleanEnv() {
   const env = { ...process.env };
