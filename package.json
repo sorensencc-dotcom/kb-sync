@@ -16,6 +16,8 @@
     "kb:sync:setup-hook": "mkdir -p .git/hooks && cp scripts/notebooklm/post-commit-hook-example.sh .git/hooks/post-commit && chmod +x .git/hooks/post-commit",
     "wiki:ingest": "bash modules/wiki/ingest-wiki.sh",
     "wiki:validate-staging": "node modules/wiki/validate-staging-docs.mjs",
+    "wiki:validate-batch": "node modules/wiki/validate-staging-docs.mjs --batch",
+    "wiki:validate-report": "node modules/wiki/validate-staging-docs.mjs --batch --json=./.validation-report.json",
     "artifact:generate": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm",
     "artifact:generate:obsidian": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
     "artifact:generate:all": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm && bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",

@@ -388,6 +388,7 @@ function validateFile(file, registry, repoRootPath) {
 }
 
 function main() {
+  const startTime = Date.now();
   const root = repoRoot();
   const configFile = path.join(root, 'configs', 'obsidian.yaml');
   if (!fs.existsSync(configFile)) {
@@ -404,79 +405,140 @@ function main() {
   }
 
   const isDiffMode = process.argv.includes('--diff');
-  const argTarget = process.argv.slice(2).find(arg => arg !== '--diff' && !arg.startsWith('-'));
-  const targetDir = argTarget
-    ? path.resolve(argTarget)
-    : findLatestStaging(vaultRoot, stagingDir);
+  const isBatchMode = process.argv.includes('--batch');
+  const jsonOutput = process.argv.find(arg => arg.startsWith('--json='));
+  const argTarget = process.argv.slice(2).find(arg => arg !== '--diff' && arg !== '--batch' && !arg.startsWith('--') && !arg.includes('='));
 
-  if (!targetDir || !fs.existsSync(targetDir)) {
-    logError(argTarget
-      ? `Target not found: ${targetDir}`
-      : `No staging snapshots found under ${path.join(vaultRoot, stagingDir, 'kb-sync')}. Run: npm run kb:sync:obsidian`);
-    process.exit(1);
+  let targetDirs = [];
+  if (isBatchMode) {
+    const stagingBase = path.join(vaultRoot, stagingDir, 'kb-sync');
+    if (fs.existsSync(stagingBase)) {
+      targetDirs = fs.readdirSync(stagingBase, { withFileTypes: true })
+        .filter(d => d.isDirectory() && /^\d{8}-\d{6}$/.test(d.name))
+        .sort()
+        .reverse()
+        .slice(0, 5)
+        .map(d => path.join(stagingBase, d.name));
+    }
+    if (targetDirs.length === 0) {
+      logWarn('No staging directories found for batch mode');
+      process.exit(0);
+    }
+    logInfo(`Batch mode: validating ${targetDirs.length} staging snapshot(s)`);
+  } else {
+    const targetDir = argTarget
+      ? path.resolve(argTarget)
+      : findLatestStaging(vaultRoot, stagingDir);
+    targetDirs = [targetDir];
   }
 
-  if (!fs.statSync(targetDir).isDirectory()) {
-    logError(`Target is not a directory: ${targetDir}`);
+  if (targetDirs.some(d => !d || !fs.existsSync(d))) {
+    if (!isBatchMode) {
+      const targetDir = targetDirs[0];
+      logError(argTarget
+        ? `Target not found: ${targetDir}`
+        : `No staging snapshots found under ${path.join(vaultRoot, stagingDir, 'kb-sync')}. Run: npm run kb:sync:obsidian`);
+    }
     process.exit(1);
   }
-
-  logInfo(`Target: ${targetDir}`);
 
   const registry = buildWikiRegistry(path.join(vaultRoot, wikiDir));
   const totalPages = [...registry.values()].reduce((sum, arr) => sum + arr.length, 0);
   logInfo(`Wiki registry: ${totalPages} page(s), ${registry.size} unique name(s), loaded from ${path.join(vaultRoot, wikiDir)}`);
 
-  const ignorePatterns = loadIgnorePatterns(targetDir);
-  if (ignorePatterns.length > 0) {
-    logInfo(`Loaded ${ignorePatterns.length} ignore pattern(s) from .cicignore/.gitignore`);
-  }
-
-  let files = walkMarkdownFiles(targetDir, ignorePatterns);
-
-  if (isDiffMode) {
-    const changedFiles = getChangedFiles(targetDir);
-    if (changedFiles.size === 0) {
-      logInfo('No changed files detected (--diff mode).');
-      process.exit(0);
-    }
-    files = files.filter(f => changedFiles.has(path.relative(targetDir, f).replace(/\\/g, '/')));
-    logInfo(`Diff mode: validating ${files.length} changed file(s)`);
-  }
-
-  if (!files.length) {
-    logWarn('No markdown files found in target.');
-    process.exit(0);
-  }
-
+  const batchResults = [];
   let totalErrors = 0;
   let totalWarnings = 0;
-  const catalog = [];
+  let totalFiles = 0;
 
-  for (const file of files) {
-    const { errors, warnings, metadata } = validateFile(file, registry, root);
-    catalog.push(metadata);
-    if (!errors.length && !warnings.length) continue;
-    const rel = path.relative(targetDir, file);
-    console.log(`\n${rel}`);
-    for (const e of errors) {
-      console.log(`  ${COLOR.red}✗ ERROR${COLOR.reset} ${e}`);
-      totalErrors++;
+  for (const targetDir of targetDirs) {
+    if (!fs.statSync(targetDir).isDirectory()) {
+      logError(`Target is not a directory: ${targetDir}`);
+      continue;
     }
-    for (const w of warnings) {
-      console.log(`  ${COLOR.yellow}⚠ WARN${COLOR.reset}  ${w}`);
-      totalWarnings++;
+
+    logInfo(`Target: ${targetDir}`);
+
+    const ignorePatterns = loadIgnorePatterns(targetDir);
+    if (ignorePatterns.length > 0) {
+      logInfo(`Loaded ${ignorePatterns.length} ignore pattern(s) from .cicignore/.gitignore`);
     }
+
+    let files = walkMarkdownFiles(targetDir, ignorePatterns);
+
+    if (isDiffMode) {
+      const changedFiles = getChangedFiles(targetDir);
+      if (changedFiles.size === 0) {
+        logInfo('No changed files detected (--diff mode).');
+        continue;
+      }
+      files = files.filter(f => changedFiles.has(path.relative(targetDir, f).replace(/\\/g, '/')));
+      logInfo(`Diff mode: validating ${files.length} changed file(s)`);
+    }
+
+    if (!files.length) {
+      logWarn('No markdown files found in target.');
+      continue;
+    }
+
+    let dirErrors = 0;
+    let dirWarnings = 0;
+    const catalog = [];
+
+    for (const file of files) {
+      const { errors, warnings, metadata } = validateFile(file, registry, root);
+      catalog.push(metadata);
+      if (!errors.length && !warnings.length) continue;
+      const rel = path.relative(targetDir, file);
+      console.log(`\n${rel}`);
+      for (const e of errors) {
+        console.log(`  ${COLOR.red}✗ ERROR${COLOR.reset} ${e}`);
+        dirErrors++;
+        totalErrors++;
+      }
+      for (const w of warnings) {
+        console.log(`  ${COLOR.yellow}⚠ WARN${COLOR.reset}  ${w}`);
+        dirWarnings++;
+        totalWarnings++;
+      }
+    }
+
+    // Write metadata catalog
+    const catalogPath = path.join(targetDir, '.catalog.json');
+    fs.writeFileSync(catalogPath, JSON.stringify({ generated: new Date().toISOString(), files: catalog }, null, 2));
+    logInfo(`Metadata catalog written to ${catalogPath}`);
+
+    console.log('');
+    logInfo(`Scanned ${files.length} file(s): ${dirErrors} error(s), ${dirWarnings} warning(s).`);
+    totalFiles += files.length;
+
+    batchResults.push({
+      target: targetDir,
+      files: files.length,
+      errors: dirErrors,
+      warnings: dirWarnings
+    });
   }
 
-  // Write metadata catalog
-  const catalogPath = path.join(targetDir, '.catalog.json');
-  fs.writeFileSync(catalogPath, JSON.stringify({ generated: new Date().toISOString(), files: catalog }, null, 2));
-  logInfo(`Metadata catalog written to ${catalogPath}`);
+  // Write JSON report if requested
+  if (jsonOutput) {
+    const outputPath = jsonOutput.split('=')[1];
+    const report = {
+      timestamp: new Date().toISOString(),
+      mode: isBatchMode ? 'batch' : 'single',
+      duration: Date.now() - startTime,
+      summary: { files: totalFiles, errors: totalErrors, warnings: totalWarnings },
+      results: batchResults
+    };
+    fs.writeFileSync(outputPath, JSON.stringify(report, null, 2));
+    logInfo(`JSON report written to ${outputPath}`);
+  }
 
-  console.log('');
-  logInfo(`Scanned ${files.length} file(s): ${totalErrors} error(s), ${totalWarnings} warning(s).`);
+  if (isBatchMode) {
+    logInfo(`Batch complete: ${batchResults.length} snapshot(s), ${totalFiles} file(s), ${totalErrors} error(s), ${totalWarnings} warning(s)`);
+  }
 
+  logInfo(`Duration: ${Date.now() - startTime}ms`);
   process.exit(totalErrors > 0 ? 1 : 0);
 }
 
