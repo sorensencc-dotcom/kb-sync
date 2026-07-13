@@ -144,10 +144,9 @@ if [ "$OVERALL_SUCCESS" = true ]; then
   #       fi
   #     fi
   #   done
-
-    log_info ""
-    log_info "Artifacts output to: $REPO_ROOT/_integration/"
-  fi
+  #   log_info ""
+  #   log_info "Artifacts output to: $REPO_ROOT/_integration/"
+  # fi
 
   exit 0
 else
