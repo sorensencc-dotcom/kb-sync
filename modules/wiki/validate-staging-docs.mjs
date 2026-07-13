@@ -151,6 +151,7 @@ function buildWikiRegistry(wikiRoot) {
 }
 
 const WIKI_LINK_RE = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
+const ALIAS_LINK_RE = /\[\[([^\]|]+)\|([^\]]+)\]\]/g;
 const MD_LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
 const LEVENSHTEIN_THRESHOLD = 2; // Suggest matches within this distance
 const FRONTMATTER_SCHEMA = {
@@ -191,6 +192,35 @@ function findSuggestions(name, registry, maxDistance = LEVENSHTEIN_THRESHOLD) {
     }
   }
   return suggestions.sort((a, b) => a.distance - b.distance).slice(0, 3);
+}
+
+// Detect alias usage: [[page|alias]] and suggest disambiguation
+function detectAliasDisambiguation(content, registry) {
+  const suggestions = [];
+  for (const match of content.matchAll(ALIAS_LINK_RE)) {
+    const page = match[1].trim();
+    const alias = match[2].trim();
+    const pageLower = page.toLowerCase();
+    const aliasLower = alias.toLowerCase();
+
+    // Check if alias could resolve to a different page
+    const candidates = [];
+    for (const [regName, paths] of registry) {
+      if (regName === pageLower) continue;
+      if (levenshteinDistance(aliasLower, regName) <= LEVENSHTEIN_THRESHOLD) {
+        candidates.push(regName);
+      }
+    }
+
+    if (candidates.length > 0) {
+      suggestions.push({
+        alias: `[[${page}|${alias}]]`,
+        intended: page,
+        conflicts: candidates.slice(0, 2)
+      });
+    }
+  }
+  return suggestions;
 }
 
 // Extract frontmatter from markdown (YAML between --- delimiters)
@@ -234,12 +264,63 @@ function validateFrontmatter(frontmatter, schema) {
   return errors;
 }
 
+// Lint markdown for style issues
+function lintMarkdown(content) {
+  const issues = [];
+  const lines = content.split(/\r?\n/);
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Trailing whitespace
+    if (/\s+$/.test(line) && line.trim()) {
+      issues.push(`line ${i + 1}: trailing whitespace`);
+    }
+
+    // Double blank lines
+    if (i > 0 && line === '' && lines[i - 1] === '') {
+      issues.push(`line ${i + 1}: double blank line`);
+    }
+
+    // Heading hierarchy (don't jump levels: # -> ### is bad, # -> ## ok)
+    if (/^##+ /.test(line) && i > 0) {
+      const prevHeading = lines.slice(0, i).reverse().find(l => /^#+\s/.test(l));
+      if (prevHeading) {
+        const prevLevel = prevHeading.match(/^#+/)[0].length;
+        const currLevel = line.match(/^#+/)[0].length;
+        if (currLevel > prevLevel + 1) {
+          issues.push(`line ${i + 1}: heading jump from h${prevLevel} to h${currLevel}`);
+        }
+      }
+    }
+  }
+
+  return issues;
+}
+
 function safeDecode(target) {
   try {
     return decodeURIComponent(target);
   } catch {
     return target;
   }
+}
+
+function extractMetadata(file, content) {
+  const frontmatter = parseFrontmatter(content);
+  const lines = content.split(/\r?\n/);
+  const wordCount = content.split(/\s+/).length;
+  const headings = lines.filter(l => /^#+\s+\S/.test(l)).length;
+  const links = Array.from(content.matchAll(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g)).length;
+  return {
+    file,
+    title: frontmatter?.title || null,
+    description: frontmatter?.description || null,
+    tags: frontmatter?.tags || [],
+    author: frontmatter?.author || null,
+    date: frontmatter?.date || null,
+    stats: { lines: lines.length, words: wordCount, headings, links }
+  };
 }
 
 function validateFile(file, registry, repoRootPath) {
@@ -257,9 +338,19 @@ function validateFile(file, registry, repoRootPath) {
     warnings.push(`frontmatter: ${err}`);
   }
 
+  const lintIssues = lintMarkdown(content);
+  for (const issue of lintIssues) {
+    warnings.push(`lint: ${issue}`);
+  }
+
   const firstLines = content.split(/\r?\n/).slice(0, 10);
   if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
     warnings.push('missing top-level "# Heading"');
+  }
+
+  const aliasDisambigs = detectAliasDisambiguation(scanContent, registry);
+  for (const disambig of aliasDisambigs) {
+    warnings.push(`link alias ${disambig.alias} may conflict with: ${disambig.conflicts.join(', ')}`);
   }
 
   for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
@@ -292,7 +383,8 @@ function validateFile(file, registry, repoRootPath) {
     }
   }
 
-  return { errors, warnings };
+  const metadata = extractMetadata(file, content);
+  return { errors, warnings, metadata };
 }
 
 function main() {
@@ -359,9 +451,11 @@ function main() {
 
   let totalErrors = 0;
   let totalWarnings = 0;
+  const catalog = [];
 
   for (const file of files) {
-    const { errors, warnings } = validateFile(file, registry, root);
+    const { errors, warnings, metadata } = validateFile(file, registry, root);
+    catalog.push(metadata);
     if (!errors.length && !warnings.length) continue;
     const rel = path.relative(targetDir, file);
     console.log(`\n${rel}`);
@@ -374,6 +468,11 @@ function main() {
       totalWarnings++;
     }
   }
+
+  // Write metadata catalog
+  const catalogPath = path.join(targetDir, '.catalog.json');
+  fs.writeFileSync(catalogPath, JSON.stringify({ generated: new Date().toISOString(), files: catalog }, null, 2));
+  logInfo(`Metadata catalog written to ${catalogPath}`);
 
   console.log('');
   logInfo(`Scanned ${files.length} file(s): ${totalErrors} error(s), ${totalWarnings} warning(s).`);
