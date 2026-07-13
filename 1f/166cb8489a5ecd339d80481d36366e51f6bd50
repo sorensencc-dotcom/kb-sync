@@ -1,0 +1,19 @@
+core/run-all.sh
+  s_933ab133fa61e6::t_7e732dc5cc0c33 147-149
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "1f166cb8489a5ecd339d80481d36366e51f6bd50",
+  "prompts": {},
+  "sessions": {
+    "s_933ab133fa61e6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e9eac580-3a1b-46fc-a053-88cf95d95397",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
