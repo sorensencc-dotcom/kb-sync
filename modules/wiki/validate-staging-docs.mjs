@@ -18,6 +18,7 @@ const logError = (msg) => console.error(`${COLOR.red}[VALIDATE-STAGING] [ERROR]$
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SKIP_DIRS = new Set(['.git', 'node_modules']);
+const IGNORE_FILES = ['.cicignore', '.gitignore'];
 
 function repoRoot() {
   try {
@@ -25,6 +26,16 @@ function repoRoot() {
   } catch (err) {
     logError(`Not inside a git repository (or git not on PATH): ${err.message.trim()}`);
     process.exit(1);
+  }
+}
+
+// Get changed files relative to HEAD (for --diff mode)
+function getChangedFiles(targetDir) {
+  try {
+    const output = execSync('git diff --name-only HEAD', { cwd: targetDir, encoding: 'utf8' });
+    return new Set(output.split('\n').filter(f => f.trim()).map(f => f.replace(/\\/g, '/')));
+  } catch {
+    return new Set();
   }
 }
 
@@ -48,16 +59,76 @@ function findLatestStaging(vaultRoot, stagingDir) {
   return snapshots.length ? path.join(base, snapshots[snapshots.length - 1]) : null;
 }
 
-function walkMarkdownFiles(dir) {
+// Load patterns from .cicignore and .gitignore, returning regex objects
+function loadIgnorePatterns(dir) {
+  const patterns = [];
+  for (const ignoreFile of IGNORE_FILES) {
+    const filePath = path.join(dir, ignoreFile);
+    if (fs.existsSync(filePath)) {
+      const lines = fs.readFileSync(filePath, 'utf8').split('\n');
+      for (const line of lines) {
+        const trimmed = line.replace(/#.*$/, '').trim();
+        if (!trimmed) continue;
+        patterns.push(globToRegex(trimmed));
+      }
+    }
+  }
+  return patterns;
+}
+
+// Convert gitignore glob pattern to regex (basic: *, **, /)
+function globToRegex(pattern) {
+  let isNegation = pattern.startsWith('!');
+  if (isNegation) pattern = pattern.slice(1);
+
+  let regex = pattern
+    .replace(/[.+^${}()|[\]\\]/g, '\\$&')  // Escape special chars
+    .replace(/\*\*/g, '{{DOUBLESTAR}}')     // Temp marker
+    .replace(/\*/g, '[^/]*')                 // Single-level wildcard
+    .replace(/{{DOUBLESTAR}}/g, '.*');      // Multi-level wildcard
+
+  // Trailing slash matches dirs only
+  const dirsOnly = pattern.endsWith('/');
+  if (dirsOnly) regex = regex.slice(0, -2); // Remove escaped /
+
+  return { regex: new RegExp(`^${regex}$`), negation: isNegation, dirsOnly };
+}
+
+// Check if path (relative to root) is ignored
+function isIgnored(relPath, patterns) {
+  const parts = relPath.split(path.sep);
+  let ignored = false;
+
+  for (const pattern of patterns) {
+    if (pattern.dirsOnly && !relPath.endsWith(path.sep)) continue;
+
+    if (pattern.regex.test(relPath) || parts.some((p, i) => {
+      const subPath = parts.slice(0, i + 1).join('/');
+      return pattern.regex.test(subPath);
+    })) {
+      ignored = !pattern.negation;
+    }
+  }
+  return ignored;
+}
+
+function walkMarkdownFiles(dir, ignorePatterns = []) {
   const results = [];
   const stack = [dir];
   while (stack.length) {
     const current = stack.pop();
     for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const entryPath = path.join(current, entry.name);
+      const relPath = path.relative(dir, entryPath).replace(/\\/g, '/');
+
       if (entry.isDirectory()) {
-        if (!SKIP_DIRS.has(entry.name)) stack.push(path.join(current, entry.name));
+        if (!SKIP_DIRS.has(entry.name) && !isIgnored(relPath, ignorePatterns)) {
+          stack.push(entryPath);
+        }
       } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.md')) {
-        results.push(path.join(current, entry.name));
+        if (!isIgnored(relPath, ignorePatterns)) {
+          results.push(entryPath);
+        }
       }
     }
   }
@@ -82,6 +153,13 @@ function buildWikiRegistry(wikiRoot) {
 const WIKI_LINK_RE = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
 const MD_LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
 const LEVENSHTEIN_THRESHOLD = 2; // Suggest matches within this distance
+const FRONTMATTER_SCHEMA = {
+  title: { required: true, type: 'string' },
+  description: { required: false, type: 'string' },
+  tags: { required: false, type: 'array' },
+  author: { required: false, type: 'string' },
+  date: { required: false, type: 'string' }
+};
 
 // Levenshtein distance: measure similarity between two strings
 function levenshteinDistance(a, b) {
@@ -115,6 +193,47 @@ function findSuggestions(name, registry, maxDistance = LEVENSHTEIN_THRESHOLD) {
   return suggestions.sort((a, b) => a.distance - b.distance).slice(0, 3);
 }
 
+// Extract frontmatter from markdown (YAML between --- delimiters)
+function parseFrontmatter(content) {
+  const match = content.match(/^---\n([\s\S]*?)\n---\n/);
+  if (!match) return null;
+  const yaml = match[1];
+  const result = {};
+  for (const line of yaml.split('\n')) {
+    const [key, ...valueParts] = line.split(':');
+    if (!key.trim() || !valueParts.length) continue;
+    const value = valueParts.join(':').trim();
+    if (value.startsWith('[') && value.endsWith(']')) {
+      result[key.trim()] = value.slice(1, -1).split(',').map(v => v.trim());
+    } else if (value.toLowerCase() === 'true' || value.toLowerCase() === 'false') {
+      result[key.trim()] = value.toLowerCase() === 'true';
+    } else {
+      result[key.trim()] = value.replace(/^['"]|['"]$/g, '');
+    }
+  }
+  return Object.keys(result).length ? result : null;
+}
+
+// Validate frontmatter against schema
+function validateFrontmatter(frontmatter, schema) {
+  const errors = [];
+  if (!frontmatter && Object.values(schema).some(s => s.required)) {
+    errors.push('missing frontmatter (required fields not found)');
+    return errors;
+  }
+  for (const [key, rule] of Object.entries(schema)) {
+    if (rule.required && !frontmatter?.[key]) {
+      errors.push(`missing required field: ${key}`);
+    } else if (frontmatter?.[key]) {
+      const actual = Array.isArray(frontmatter[key]) ? 'array' : typeof frontmatter[key];
+      if (actual !== rule.type) {
+        errors.push(`field "${key}": expected ${rule.type}, got ${actual}`);
+      }
+    }
+  }
+  return errors;
+}
+
 function safeDecode(target) {
   try {
     return decodeURIComponent(target);
@@ -131,6 +250,12 @@ function validateFile(file, registry, repoRootPath) {
   // Illustrative [[Links]] and (paths) inside fenced code examples (common in
   // templates/lint-rules docs) aren't real references — don't scan them.
   const scanContent = content.replace(/```[\s\S]*?```/g, '');
+
+  const frontmatter = parseFrontmatter(content);
+  const fmErrors = validateFrontmatter(frontmatter, FRONTMATTER_SCHEMA);
+  for (const err of fmErrors) {
+    warnings.push(`frontmatter: ${err}`);
+  }
 
   const firstLines = content.split(/\r?\n/).slice(0, 10);
   if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
@@ -186,7 +311,8 @@ function main() {
     process.exit(1);
   }
 
-  const argTarget = process.argv[2];
+  const isDiffMode = process.argv.includes('--diff');
+  const argTarget = process.argv.slice(2).find(arg => arg !== '--diff' && !arg.startsWith('-'));
   const targetDir = argTarget
     ? path.resolve(argTarget)
     : findLatestStaging(vaultRoot, stagingDir);
@@ -209,7 +335,23 @@ function main() {
   const totalPages = [...registry.values()].reduce((sum, arr) => sum + arr.length, 0);
   logInfo(`Wiki registry: ${totalPages} page(s), ${registry.size} unique name(s), loaded from ${path.join(vaultRoot, wikiDir)}`);
 
-  const files = walkMarkdownFiles(targetDir);
+  const ignorePatterns = loadIgnorePatterns(targetDir);
+  if (ignorePatterns.length > 0) {
+    logInfo(`Loaded ${ignorePatterns.length} ignore pattern(s) from .cicignore/.gitignore`);
+  }
+
+  let files = walkMarkdownFiles(targetDir, ignorePatterns);
+
+  if (isDiffMode) {
+    const changedFiles = getChangedFiles(targetDir);
+    if (changedFiles.size === 0) {
+      logInfo('No changed files detected (--diff mode).');
+      process.exit(0);
+    }
+    files = files.filter(f => changedFiles.has(path.relative(targetDir, f).replace(/\\/g, '/')));
+    logInfo(`Diff mode: validating ${files.length} changed file(s)`);
+  }
+
   if (!files.length) {
     logWarn('No markdown files found in target.');
     process.exit(0);
