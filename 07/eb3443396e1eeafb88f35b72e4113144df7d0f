@@ -1,0 +1,23 @@
+tests/validate-staging-v12-features.ts
+  s_42f14c9fdf781d::t_0dc881cd48d19b 1-31,33,35-36,39,41-42,44-136,138,140-141,143-219
+  s_42f14c9fdf781d::t_18777dd1ec0436 137,139,142
+  s_42f14c9fdf781d::t_c3201949dfcb98 32,34,37-38,40,43
+package.json
+  s_42f14c9fdf781d::t_053f6c631f6750 25-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "07eb3443396e1eeafb88f35b72e4113144df7d0f",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
