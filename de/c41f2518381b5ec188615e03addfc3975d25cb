@@ -1,0 +1,21 @@
+modules/wiki/dashboard.html
+  s_42f14c9fdf781d::t_1c2cc934dda8eb 1-447
+package.json
+  s_42f14c9fdf781d::t_66ed258d88c77d 22-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "dec41f2518381b5ec188615e03addfc3975d25cb",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
