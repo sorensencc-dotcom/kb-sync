@@ -1,0 +1,26 @@
+package.json
+  s_aa7737a79f8c75::t_bc4c6517da9329 18
+modules/wiki/validate-staging-docs.mjs
+  s_aa7737a79f8c75::t_1c4a37f34e07aa 67-69,75-77
+  s_aa7737a79f8c75::t_7f283bb06b04bc 183
+  s_aa7737a79f8c75::t_5ece76f20afde8 23-28
+  s_aa7737a79f8c75::t_18d735ace04b8c 85-93,98-100,107,109-110,112-113,117,122-125
+  s_aa7737a79f8c75::t_5c5f7c301385b2 1-22,29-66,70-74,78-84,94-97,101-106,108,111,114-116,118-121,126-161,167-169,172-182,184-203
+  s_aa7737a79f8c75::t_0b424050f35620 162-166,170-171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "a29fef6d8a1df39551853a8e16c37a4d62a267fe",
+  "prompts": {},
+  "sessions": {
+    "s_aa7737a79f8c75": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7ff5e352-f85c-43ac-bb5b-ae0ab17e4000",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
