@@ -1,0 +1,24 @@
+# Webhook Configuration for Validation Reports
+# Set WEBHOOK_URL env var or pass --webhook=<url> to validator
+
+webhooks:
+  slack:
+    description: "Slack incoming webhook (hooks.slack.com)"
+    example: "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+    format: "Slack rich format (color, fields, timestamp)"
+
+  generic:
+    description: "Generic JSON endpoint (any HTTPS server)"
+    example: "https://your-api.example.com/webhooks/validation"
+    format: "JSON: { timestamp, mode, duration, summary, results }"
+
+usage:
+  env_var: "export WEBHOOK_URL=<url> && npm run wiki:validate-batch"
+  cli_flag: "node modules/wiki/validate-staging-docs.mjs --batch --webhook=<url>"
+  ci_cd: "See docs/ci-cd-integration.md for GitHub Actions / GitLab CI examples"
+
+security:
+  - Store webhook URLs in CI/CD secrets, not in version control
+  - Use HTTPS only
+  - Rotate URLs periodically
+  - Validate webhook responses in production

@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import https from 'node:https';
 
 const COLOR = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', reset: '\x1b[0m' };
 const logInfo = (msg) => console.error(`${COLOR.green}[VALIDATE-STAGING] [INFO]${COLOR.reset} ${msg}`);
@@ -264,6 +265,67 @@ function validateFrontmatter(frontmatter, schema) {
   return errors;
 }
 
+// Send webhook notification (Slack or generic JSON)
+function sendWebhook(webhookUrl, payload) {
+  return new Promise((resolve, reject) => {
+    try {
+      const url = new URL(webhookUrl);
+      const data = JSON.stringify(payload);
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(data)
+        }
+      };
+
+      const req = https.request(url, options, (res) => {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => {
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            resolve({ status: res.statusCode });
+          } else {
+            reject(new Error(`Webhook returned ${res.statusCode}: ${body}`));
+          }
+        });
+      });
+
+      req.on('error', reject);
+      req.write(data);
+      req.end();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+// Format Slack message from validation results
+function formatSlackMessage(summary, batchResults, durationMs) {
+  const status = summary.errors === 0 ? '✅' : '⚠️';
+  const fields = [
+    { title: 'Files', value: summary.files.toString(), short: true },
+    { title: 'Errors', value: summary.errors.toString(), short: true },
+    { title: 'Warnings', value: summary.warnings.toString(), short: true },
+    { title: 'Duration', value: `${durationMs}ms`, short: true },
+    { title: 'Snapshots', value: batchResults.length.toString(), short: true }
+  ];
+
+  return {
+    text: `${status} Validation Report`,
+    attachments: [
+      {
+        color: summary.errors > 0 ? 'danger' : 'good',
+        title: `${summary.files} files scanned`,
+        fields: fields,
+        footer: 'kb-sync validator',
+        ts: Math.floor(Date.now() / 1000)
+      }
+    ]
+  };
+}
+
 // Lint markdown for style issues
 function lintMarkdown(content) {
   const issues = [];
@@ -407,6 +469,7 @@ function main() {
   const isDiffMode = process.argv.includes('--diff');
   const isBatchMode = process.argv.includes('--batch');
   const jsonOutput = process.argv.find(arg => arg.startsWith('--json='));
+  const webhookUrl = process.argv.find(arg => arg.startsWith('--webhook='))?.split('=')[1] || process.env.WEBHOOK_URL;
   const argTarget = process.argv.slice(2).find(arg => arg !== '--diff' && arg !== '--batch' && !arg.startsWith('--') && !arg.includes('='));
 
   let targetDirs = [];
@@ -538,7 +601,28 @@ function main() {
     logInfo(`Batch complete: ${batchResults.length} snapshot(s), ${totalFiles} file(s), ${totalErrors} error(s), ${totalWarnings} warning(s)`);
   }
 
-  logInfo(`Duration: ${Date.now() - startTime}ms`);
+  const duration = Date.now() - startTime;
+  logInfo(`Duration: ${duration}ms`);
+
+  // Send webhook if configured
+  if (webhookUrl) {
+    const payload = {
+      timestamp: new Date().toISOString(),
+      mode: isBatchMode ? 'batch' : 'single',
+      duration,
+      summary: { files: totalFiles, errors: totalErrors, warnings: totalWarnings },
+      results: batchResults
+    };
+
+    // Check if Slack webhook URL
+    const isSlack = webhookUrl.includes('hooks.slack.com');
+    const webhookPayload = isSlack ? formatSlackMessage(payload.summary, batchResults, duration) : payload;
+
+    sendWebhook(webhookUrl, webhookPayload)
+      .then(() => logInfo(`Webhook sent to ${isSlack ? 'Slack' : 'endpoint'}`))
+      .catch(err => logError(`Webhook failed: ${err.message}`));
+  }
+
   process.exit(totalErrors > 0 ? 1 : 0);
 }
 

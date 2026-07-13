@@ -18,6 +18,7 @@
     "wiki:validate-staging": "node modules/wiki/validate-staging-docs.mjs",
     "wiki:validate-batch": "node modules/wiki/validate-staging-docs.mjs --batch",
     "wiki:validate-report": "node modules/wiki/validate-staging-docs.mjs --batch --json=./.validation-report.json",
+    "wiki:validate-notify": "node modules/wiki/validate-staging-docs.mjs --batch --json=./.validation-report.json",
     "artifact:generate": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm",
     "artifact:generate:obsidian": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
     "artifact:generate:all": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm && bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
