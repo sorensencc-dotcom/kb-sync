@@ -1,0 +1,26 @@
+modules/wiki/validate-staging-docs.mjs
+  s_42f14c9fdf781d::t_3f6e2c3509d8fa 13
+  s_42f14c9fdf781d::t_6fccfa52744d36 268-328
+  s_42f14c9fdf781d::t_c00e00b2988523 472
+  s_42f14c9fdf781d::t_ca9d757c53edb9 604-625
+package.json
+  s_42f14c9fdf781d::t_dbf3d8e60110b9 21
+configs/webhooks.yaml
+  s_42f14c9fdf781d::t_98a2a44173e1d6 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "1779c43decd127bb32a599eb0b651c4b676639c4",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
