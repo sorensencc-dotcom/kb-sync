@@ -1,0 +1,33 @@
+modules/wiki/validate-staging-docs.mjs
+  s_42f14c9fdf781d::t_bcd6886dd78545 21
+  s_42f14c9fdf781d::t_5b4dfbc3ba62dd 62-114
+  s_42f14c9fdf781d::t_dc1929dfa1fc2a 338-342
+  s_42f14c9fdf781d::t_c0457836021d31 343-354
+  s_42f14c9fdf781d::t_d94a535a34e009 156-162
+  s_42f14c9fdf781d::t_e82fb671f7b75e 254-259
+  s_42f14c9fdf781d::t_3ecb73ad417781 314
+  s_42f14c9fdf781d::t_072f17f0481d8d 32-41
+  s_42f14c9fdf781d::t_9cbe5687f10a48 196-236
+  s_42f14c9fdf781d::t_71962ebf8636c7 115,121-123,125-127,129-131
+  s_42f14c9fdf781d::t_e32329357ce831 315
+scripts/wiki-validate-precommit.sh
+  s_42f14c9fdf781d::t_2a46a0a17edc31 1-27
+package.json
+  s_42f14c9fdf781d::t_10482f1e1a9bad 25-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "1d6fb19841088c0942e9697a4d54bbed5713721b",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
