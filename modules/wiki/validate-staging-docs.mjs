@@ -81,6 +81,39 @@ function buildWikiRegistry(wikiRoot) {
 
 const WIKI_LINK_RE = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
 const MD_LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
+const LEVENSHTEIN_THRESHOLD = 2; // Suggest matches within this distance
+
+// Levenshtein distance: measure similarity between two strings
+function levenshteinDistance(a, b) {
+  const m = a.length;
+  const n = b.length;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (a[i - 1] === b[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+      }
+    }
+  }
+  return dp[m][n];
+}
+
+// Find closest matches in registry by Levenshtein distance
+function findSuggestions(name, registry, maxDistance = LEVENSHTEIN_THRESHOLD) {
+  const suggestions = [];
+  const nameLower = name.toLowerCase();
+  for (const [regName, paths] of registry) {
+    const dist = levenshteinDistance(nameLower, regName);
+    if (dist <= maxDistance) {
+      suggestions.push({ name: regName, paths, distance: dist });
+    }
+  }
+  return suggestions.sort((a, b) => a.distance - b.distance).slice(0, 3);
+}
 
 function safeDecode(target) {
   try {
@@ -108,7 +141,13 @@ function validateFile(file, registry, repoRootPath) {
     const name = match[1].trim();
     const hit = registry.get(name.toLowerCase());
     if (!hit) {
-      warnings.push(`unresolved wiki-link [[${name}]] (no matching page in wiki registry)`);
+      const suggestions = findSuggestions(name, registry);
+      let msg = `unresolved wiki-link [[${name}]] (no matching page in wiki registry)`;
+      if (suggestions.length > 0) {
+        const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
+        msg += `. Did you mean: ${suggStr}?`;
+      }
+      warnings.push(msg);
     } else if (hit.length > 1) {
       warnings.push(`ambiguous wiki-link [[${name}]] matches ${hit.length} pages: ${hit.join(', ')}`);
     }
