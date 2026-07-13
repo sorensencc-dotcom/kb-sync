@@ -117,6 +117,38 @@ log_info "Failed: ${#FAILED_TARGETS[@]}"
 
 if [ "$OVERALL_SUCCESS" = true ]; then
   log_info "All targets completed successfully."
+
+  # --- ARTIFACT GENERATION (POST-SYNC, OPTIONAL) ---
+  # TODO: Implement post-dispatch (2026-07-26+)
+  # Blocked: generate-report.mjs missing. Scaffolding committed; Node.js implementation pending.
+  #
+  # if [ "$RUN_ROLLBACK" = false ]; then
+  #   log_info ""
+  #   log_info "========================================================================"
+  #   log_info "Generating artifact reports..."
+  #   log_info "========================================================================"
+  #
+  #   # Run artifact generation for completed targets (fail-soft)
+  #   for target in "${COMPLETED_TARGETS[@]}"; do
+  #     if [ "$target" = "notebooklm" ]; then
+  #       if bash "$REPO_ROOT/modules/artifact-generator/generate.sh" "$REPO_ROOT/configs/artifact-generator.yaml" notebooklm; then
+  #         log_info "✓ Artifact generated for NotebookLM"
+  #       else
+  #         log_warn "✗ Artifact generation failed for NotebookLM (sync completed, artifact skipped)"
+  #       fi
+  #     elif [ "$target" = "obsidian" ]; then
+  #       if bash "$REPO_ROOT/modules/artifact-generator/generate.sh" "$REPO_ROOT/configs/artifact-generator.yaml" obsidian; then
+  #         log_info "✓ Artifact generated for Obsidian"
+  #       else
+  #         log_warn "✗ Artifact generation failed for Obsidian (sync completed, artifact skipped)"
+  #       fi
+  #     fi
+  #   done
+
+    log_info ""
+    log_info "Artifacts output to: $REPO_ROOT/_integration/"
+  fi
+
   exit 0
 else
   log_error "One or more targets failed. See details above."

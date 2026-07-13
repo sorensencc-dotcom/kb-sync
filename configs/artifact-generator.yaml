@@ -1,0 +1,26 @@
+# Artifact Generator Configuration
+# Controls interactive HTML report generation post-sync
+
+# Output location (relative to repo root)
+output_dir: _integration
+
+# Report filename
+report_filename: kb-sync-interactive-report.html
+
+# Enable URL extraction and analysis
+url_analysis_enabled: true
+
+# Maximum URLs to display in report
+max_urls_displayed: 100
+
+# Severity thresholds (reference count)
+severity:
+  high: 10    # >= 10 references
+  medium: 5   # >= 5 references
+  low: 1      # < 5 references
+
+# Optional: Link validation (future enhancement)
+link_validation:
+  enabled: false
+  timeout_seconds: 5
+  concurrent_checks: 10
