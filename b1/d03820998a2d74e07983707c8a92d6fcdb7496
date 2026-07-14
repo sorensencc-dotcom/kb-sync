@@ -1,0 +1,31 @@
+docs/modules/artifact-generator.md
+  s_bdfcd3eab2946a::t_e0b70213f56af4 91
+  s_bdfcd3eab2946a::t_577bf5b848a998 92-94
+modules/artifact-generator/generate-report.mjs
+  s_bdfcd3eab2946a::t_3c10cdd780f0ab 1-410
+modules/artifact-generator/README.md
+  s_bdfcd3eab2946a::t_f2b9ada06f275d 20,22-23
+  s_bdfcd3eab2946a::t_20cdbd99625740 19,21
+core/run-all.sh
+  s_bdfcd3eab2946a::t_d52559cada2a43 122-147
+docs/archive-cleanup.md
+  s_bdfcd3eab2946a::t_02bb313b77895f 169-171
+docs/github-actions-setup.md
+  s_bdfcd3eab2946a::t_614d15f656475a 117-119
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "b1d03820998a2d74e07983707c8a92d6fcdb7496",
+  "prompts": {},
+  "sessions": {
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
