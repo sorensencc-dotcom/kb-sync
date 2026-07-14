@@ -1,0 +1,23 @@
+modules/wiki/cleanup-staging-archives.mjs
+  s_42f14c9fdf781d::t_ee18f325fd956b 1-140
+package.json
+  s_42f14c9fdf781d::t_4865ac13e33abf 24-26
+docs/archive-cleanup.md
+  s_42f14c9fdf781d::t_49fba515ce3714 1-171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "c0cd6c7d2c45db9b6459d6f5222bf88fe91ce043",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
