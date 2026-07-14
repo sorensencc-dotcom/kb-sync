@@ -1,0 +1,21 @@
+docs/github-actions-setup.md
+  s_42f14c9fdf781d::t_de6de967477cd0 1-119
+.github/workflows/validate-staging.yml
+  s_42f14c9fdf781d::t_0982bc71a75af6 1-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "af3d771cdc68ed850562f1e2ba21bbbbe5827ef2",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
