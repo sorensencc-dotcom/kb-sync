@@ -1,0 +1,137 @@
+name: KB-Sync Staging Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'obsidian/vault/_kb-sync-staging/**'
+      - 'modules/wiki/validate-staging-docs.mjs'
+      - 'modules/wiki/schema.md'
+      - '.github/workflows/validate-staging.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'obsidian/vault/_kb-sync-staging/**'
+      - 'modules/wiki/validate-staging-docs.mjs'
+      - 'modules/wiki/schema.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run staging validation
+        id: validate
+        run: |
+          npm run wiki:validate-batch -- --json=.validation-report.json 2>&1 | tee validation.log
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Parse validation results
+        id: parse
+        run: |
+          if [ -f .validation-report.json ]; then
+            FILES=$(jq '.summary.files' .validation-report.json)
+            ERRORS=$(jq '.summary.errors' .validation-report.json)
+            WARNINGS=$(jq '.summary.warnings' .validation-report.json)
+            DURATION=$(jq '.duration' .validation-report.json)
+            echo "files=$FILES" >> $GITHUB_OUTPUT
+            echo "errors=$ERRORS" >> $GITHUB_OUTPUT
+            echo "warnings=$WARNINGS" >> $GITHUB_OUTPUT
+            echo "duration=$DURATION" >> $GITHUB_OUTPUT
+            echo "has_report=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_report=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && steps.parse.outputs.has_report == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const files = '${{ steps.parse.outputs.files }}';
+            const errors = '${{ steps.parse.outputs.errors }}';
+            const warnings = '${{ steps.parse.outputs.warnings }}';
+            const duration = '${{ steps.parse.outputs.duration }}';
+            const durationSec = (parseInt(duration) / 1000).toFixed(2);
+
+            const statusEmoji = errors > 0 ? '❌' : warnings > 0 ? '⚠️' : '✅';
+            const statusText = errors > 0 ? 'FAILED' : warnings > 0 ? 'WARNING' : 'PASSED';
+
+            const body = `## KB-Sync Staging Validation ${statusEmoji}
+
+| Metric | Value |
+|--------|-------|
+| Status | **${statusText}** |
+| Files | ${files} |
+| Errors | ${errors} |
+| Warnings | ${warnings} |
+| Duration | ${durationSec}s |
+
+${errors > 0 ? '\n⛔ Validation failed. See [detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.\n' : ''}`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+      - name: Set workflow status
+        if: steps.parse.outputs.has_report == 'true'
+        run: |
+          ERRORS=${{ steps.parse.outputs.errors }}
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ Validation failed with $ERRORS error(s)"
+            exit 1
+          fi
+          exit 0
+
+      - name: Upload validation report
+        if: always() && steps.parse.outputs.has_report == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report
+          path: .validation-report.json
+          retention-days: 30
+
+      - name: Send Slack notification
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          ERRORS=${{ steps.parse.outputs.errors }}
+          WARNINGS=${{ steps.parse.outputs.warnings }}
+          curl -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{
+              \"text\": \"KB-Sync Validation Failed\",
+              \"attachments\": [{
+                \"color\": \"danger\",
+                \"fields\": [
+                  {\"title\": \"Repository\", \"value\": \"${{ github.repository }}\"},
+                  {\"title\": \"Branch\", \"value\": \"${{ github.ref }}\"},
+                  {\"title\": \"Errors\", \"value\": \"$ERRORS\"},
+                  {\"title\": \"Warnings\", \"value\": \"$WARNINGS\"},
+                  {\"title\": \"Action\", \"value\": \"<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>\"}
+                ]
+              }]
+            }"
