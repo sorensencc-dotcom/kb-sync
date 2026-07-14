@@ -166,6 +166,6 @@ No snapshots are deleted unless explicitly running without `--dry-run`.
 
 ## Related
 
-- [Dashboard](modules/wiki/dashboard.html)
-- [Validation Script](modules/wiki/validate-staging-docs.mjs)
-- [GitHub Actions Setup](docs/github-actions-setup.md)
+- [Dashboard](../modules/wiki/dashboard.html)
+- [Validation Script](../modules/wiki/validate-staging-docs.mjs)
+- [GitHub Actions Setup](github-actions-setup.md)

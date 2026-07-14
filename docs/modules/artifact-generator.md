@@ -88,7 +88,10 @@ link_validation:
 ## Output
 
 ### File Location
-`_integration/kb-sync-interactive-report.html`
+
+Namespaced per source so NotebookLM and Obsidian reports coexist:
+`_integration/kb-sync-interactive-report-notebooklm.html`
+`_integration/kb-sync-interactive-report-obsidian.html`
 
 ### Features
 - **Self-contained**: No external dependencies (Chart.js loaded from CDN)

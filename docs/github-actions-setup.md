@@ -114,6 +114,6 @@ Per-snapshot breakdown:
 
 ## Related
 
-- [Validation Staging Docs](modules/wiki/validate-staging-docs.mjs)
-- [Webhook Configuration](configs/webhooks.yaml)
-- [Dashboard](modules/wiki/dashboard.html)
+- [Validation Staging Docs](../modules/wiki/validate-staging-docs.mjs)
+- [Webhook Configuration](../configs/webhooks.yaml)
+- [Dashboard](../modules/wiki/dashboard.html)

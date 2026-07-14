@@ -16,7 +16,11 @@ npm run kb:sync:all
 ```
 
 ## Output
-`_integration/kb-sync-interactive-report.html`
+
+Per source, so both coexist:
+
+- `_integration/kb-sync-interactive-report-notebooklm.html`
+- `_integration/kb-sync-interactive-report-obsidian.html`
 
 ## Files
 
