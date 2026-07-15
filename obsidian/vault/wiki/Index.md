@@ -28,8 +28,8 @@ Welcome to the unified knowledge base vault. This vault is synchronized with:
 
 ## Synthesized Wiki Index
 
-**Last Updated:** 2026-07-11 18:30 UTC  
-**Total Entities:** 13  
+**Last Updated:** 2026-07-14 21:35 UTC  
+**Total Entities:** 15  
 **Total Concepts:** 8
 
 ### Entities by Domain
@@ -41,6 +41,7 @@ Welcome to the unified knowledge base vault. This vault is synchronized with:
 - [[rollback.sh]] — Rollback mechanism; restores previous known-good pack backup
 - [[run-all.sh]] — Master orchestrator; executes all six pipeline phases in sequence
 - [[validate.sh]] — Pack integrity validation; confirms structure and completeness
+- [[artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
 
 #### notebooklm Integration
 
@@ -55,6 +56,10 @@ Welcome to the unified knowledge base vault. This vault is synchronized with:
 #### wiki Semantic Synthesis
 
 - [[ingest-wiki.sh]] — Wiki ingest orchestrator; coordinates eight-phase semantic synthesis workflow
+
+#### Governance & Policy
+
+- [[skill-approval-rules]] — Approval tiers (Tier 0 auto-install, Tier 1 review); skill development workflow
 
 ### Concepts
 
@@ -73,6 +78,7 @@ Welcome to the unified knowledge base vault. This vault is synchronized with:
 - **[[notebooklm/]]** — NotebookLM API integration
 - **[[obsidian/]]** — Obsidian vault staging and curation
 - **[[wiki/]]** — Wiki semantic synthesis system
+- **[[governance/]]** — Governance documents and approval policies
 
 ---
 

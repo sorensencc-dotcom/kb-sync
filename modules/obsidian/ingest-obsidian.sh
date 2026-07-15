@@ -79,8 +79,19 @@ if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
   OBSIDIAN_VAULT_ROOT=$(get_config_value "$MODULE_CONFIG" "vault_root")
 fi
 
-# Normalize Windows paths (C:\... → C:/...)
-OBSIDIAN_VAULT_ROOT="${OBSIDIAN_VAULT_ROOT//\\//}"
+# Convert Windows paths to WSL mount format (C:\... → /mnt/c/...)
+convert_to_wsl_path() {
+  local path="$1"
+  # Remove backslashes
+  path="${path//\\//}"
+  # Convert C:/ to /mnt/c/
+  path="${path//C:/\/mnt\/c}"
+  path="${path//D:/\/mnt\/d}"
+  path="${path//E:/\/mnt\/e}"
+  echo "$path"
+}
+
+OBSIDIAN_VAULT_ROOT=$(convert_to_wsl_path "$OBSIDIAN_VAULT_ROOT")
 
 # Fail-fast if vault root not set or doesn't exist
 if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
@@ -89,8 +100,9 @@ if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
 fi
 
 if [ ! -d "$OBSIDIAN_VAULT_ROOT" ]; then
-  log_error "Obsidian vault directory does not exist: $OBSIDIAN_VAULT_ROOT"
-  exit 1
+  log_warn "Obsidian vault directory does not exist: $OBSIDIAN_VAULT_ROOT"
+  log_warn "Obsidian sync requires vault to be configured. Skipping this sync target."
+  exit 0
 fi
 
 log_info "Obsidian vault root: $OBSIDIAN_VAULT_ROOT"

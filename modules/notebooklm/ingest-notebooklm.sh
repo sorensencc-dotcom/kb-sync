@@ -202,7 +202,8 @@ log_info "Starting normal sync pipeline..."
 
 # Clean old pack files
 mkdir -p "$PACK_DIR"
-rm -f "$PACK_DIR"/repo_knowledge_pack*
+# Clean via wrapper that handles immutable files
+"/sessions/brave-admiring-sagan/mnt/dev/kb-sync/modules/notebooklm/cleanup-pack-dir.sh" "$PACK_DIR"
 log_info "Cleaned old pack files."
 
 # Step 1: Flatten

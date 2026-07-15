@@ -9,6 +9,7 @@
 - [[flatten.sh]] — Repository flattening via pyragify; AST parsing and file extraction
 - [[chunk.sh]] — Pack chunking for oversized outputs (5MB+ warning, 8MB limit)
 - [[validate.sh]] — Pack integrity validation and structure verification
+- [[artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
 
 ## Concepts
 
