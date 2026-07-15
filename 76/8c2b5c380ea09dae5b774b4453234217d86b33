@@ -1,0 +1,23 @@
+modules/artifact-generator/generate-report.mjs
+  s_bdfcd3eab2946a::t_2ee49b0d51126d 38-40,62-63,65-68,81-92,98
+modules/wiki/validate-staging-docs.mjs
+  s_bdfcd3eab2946a::t_3bbb014bc9b3cd 517-520,522,524-536,539,576-582
+scripts/wiki-validate-precommit.sh
+  s_bdfcd3eab2946a::t_2b2dee0acdee57 2-4,6-8,17-25,28,35-40,42-43,46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "768c2b5c380ea09dae5b774b4453234217d86b33",
+  "prompts": {},
+  "sessions": {
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
