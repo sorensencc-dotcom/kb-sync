@@ -13,7 +13,7 @@
     "wiki:ingest:obsidian:prompt": "bash modules/obsidian/ingest-wiki.sh prompt",
     "kb:sync:all": "bash core/run-all.sh",
     "kb:sync:all:rollback": "bash core/run-all.sh --rollback",
-    "kb:sync:setup-hook": "mkdir -p .git/hooks && cp scripts/notebooklm/post-commit-hook-example.sh .git/hooks/post-commit && chmod +x .git/hooks/post-commit",
+    "kb:sync:setup-hook": "node -e \"const fs=require('fs');fs.mkdirSync('.git/hooks',{recursive:true});fs.copyFileSync('scripts/notebooklm/post-commit-hook-example.sh','.git/hooks/post-commit');try{fs.chmodSync('.git/hooks/post-commit',0o755)}catch{}console.log('post-commit hook installed')\"",
     "wiki:ingest": "bash modules/wiki/ingest-wiki.sh",
     "wiki:validate-staging": "node modules/wiki/validate-staging-docs.mjs",
     "wiki:validate-batch": "node modules/wiki/validate-staging-docs.mjs --batch",
