@@ -32,7 +32,7 @@
     "test:obsidian": "npx tsx tests/obsidian-sync-verification.ts",
     "test:v12-features": "npx tsx tests/validate-staging-v12-features.ts",
     "test:all": "npm run test:core && npm run test:obsidian && npm run test:notebooklm && npm run test:v12-features",
-    "wiki:setup-hook": "mkdir -p .git/hooks && cp scripts/wiki-validate-precommit.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
+    "wiki:setup-hook": "node -e \"const fs=require('fs');fs.mkdirSync('.git/hooks',{recursive:true});fs.copyFileSync('scripts/wiki-validate-precommit.sh','.git/hooks/pre-commit');try{fs.chmodSync('.git/hooks/pre-commit',0o755)}catch{}console.log('pre-commit hook installed')\""
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
