@@ -514,22 +514,29 @@ function main() {
   let totalWarnings = 0;
   let totalFiles = 0;
 
-  for (const targetDir of targetDirs) {
-    if (!fs.statSync(targetDir).isDirectory()) {
-      logError(`Target is not a directory: ${targetDir}`);
-      continue;
+  for (const target of targetDirs) {
+    const isFile = fs.statSync(target).isFile();
+    // For a file target, resolve relative paths against its parent dir.
+    const targetDir = isFile ? path.dirname(target) : target;
+
+    logInfo(`Target: ${target}`);
+
+    let files;
+    if (isFile) {
+      if (!/\.md$/i.test(target)) {
+        logError(`Target is not a markdown file: ${target}`);
+        continue;
+      }
+      files = [target];
+    } else {
+      const ignorePatterns = loadIgnorePatterns(targetDir);
+      if (ignorePatterns.length > 0) {
+        logInfo(`Loaded ${ignorePatterns.length} ignore pattern(s) from .cicignore/.gitignore`);
+      }
+      files = walkMarkdownFiles(targetDir, ignorePatterns);
     }
 
-    logInfo(`Target: ${targetDir}`);
-
-    const ignorePatterns = loadIgnorePatterns(targetDir);
-    if (ignorePatterns.length > 0) {
-      logInfo(`Loaded ${ignorePatterns.length} ignore pattern(s) from .cicignore/.gitignore`);
-    }
-
-    let files = walkMarkdownFiles(targetDir, ignorePatterns);
-
-    if (isDiffMode) {
+    if (isDiffMode && !isFile) {
       const changedFiles = getChangedFiles(targetDir);
       if (changedFiles.size === 0) {
         logInfo('No changed files detected (--diff mode).');
@@ -566,10 +573,13 @@ function main() {
       }
     }
 
-    // Write metadata catalog
-    const catalogPath = path.join(targetDir, '.catalog.json');
-    fs.writeFileSync(catalogPath, JSON.stringify({ generated: new Date().toISOString(), files: catalog }, null, 2));
-    logInfo(`Metadata catalog written to ${catalogPath}`);
+    // Write metadata catalog (dir targets only; a single-file target should
+    // not drop a .catalog.json into the file's directory).
+    if (!isFile) {
+      const catalogPath = path.join(targetDir, '.catalog.json');
+      fs.writeFileSync(catalogPath, JSON.stringify({ generated: new Date().toISOString(), files: catalog }, null, 2));
+      logInfo(`Metadata catalog written to ${catalogPath}`);
+    }
 
     console.log('');
     logInfo(`Scanned ${files.length} file(s): ${dirErrors} error(s), ${dirWarnings} warning(s).`);

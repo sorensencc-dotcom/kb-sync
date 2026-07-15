@@ -35,8 +35,9 @@ const DEFAULTS = {
 };
 
 const URL_RE = /https?:\/\/[^\s)"'\]<>`]+/g;
-// Trailing punctuation that is almost always sentence/markdown syntax, not URL.
-const TRAILING_PUNCT_RE = /[.,;:!?)\]}>'"]+$/;
+// Trailing sentence punctuation to strip. URL_RE already excludes ) ] < > " '
+// from the match, so those never trail here; this only handles . , ; : ! ? } .
+const TRAILING_PUNCT_RE = /[.,;:!?}]+$/;
 
 function repoRoot() {
   try {
@@ -58,8 +59,13 @@ function getScalar(content, key) {
 }
 
 // Parse a nested numeric value under a parent block, e.g. severity: -> high: 10.
+// The intervening lines must all be indented (part of the parent block), so a
+// child key in a *later* top-level block cannot be matched by mistake.
 function getNestedNumber(content, parent, child) {
-  const re = new RegExp(`^\\s*${parent}\\s*:\\s*$[\\s\\S]*?^\\s+${child}\\s*:\\s*(\\d+)`, 'm');
+  const re = new RegExp(
+    `^[ \\t]*${parent}[ \\t]*:[ \\t]*(?:#.*)?$(?:\\r?\\n[ \\t]+[^\\n]*)*?\\r?\\n[ \\t]+${child}[ \\t]*:[ \\t]*(\\d+)`,
+    'm',
+  );
   const match = content.match(re);
   return match ? Number(match[1]) : null;
 }
@@ -72,16 +78,24 @@ function loadConfig(configFile) {
   const content = fs.readFileSync(configFile, 'utf8');
   const num = (v, d) => (v == null || Number.isNaN(Number(v)) ? d : Number(v));
   const bool = (v, d) => (v == null ? d : /^(true|1|yes|on)$/i.test(v));
+
+  let high = getNestedNumber(content, 'severity', 'high') ?? DEFAULTS.severity.high;
+  let medium = getNestedNumber(content, 'severity', 'medium') ?? DEFAULTS.severity.medium;
+  let low = getNestedNumber(content, 'severity', 'low') ?? DEFAULTS.severity.low;
+  // severityOf assumes high >= medium >= low. Clamp misconfigured thresholds so
+  // an inverted config can't classify every URL as HIGH.
+  if (medium > high || low > medium) {
+    logWarn(`Severity thresholds not descending (high=${high}, medium=${medium}, low=${low}); clamping.`);
+    medium = Math.min(medium, high);
+    low = Math.min(low, medium);
+  }
+
   return {
     output_dir: getScalar(content, 'output_dir') || DEFAULTS.output_dir,
     report_filename: getScalar(content, 'report_filename') || DEFAULTS.report_filename,
     url_analysis_enabled: bool(getScalar(content, 'url_analysis_enabled'), DEFAULTS.url_analysis_enabled),
     max_urls_displayed: num(getScalar(content, 'max_urls_displayed'), DEFAULTS.max_urls_displayed),
-    severity: {
-      high: getNestedNumber(content, 'severity', 'high') ?? DEFAULTS.severity.high,
-      medium: getNestedNumber(content, 'severity', 'medium') ?? DEFAULTS.severity.medium,
-      low: getNestedNumber(content, 'severity', 'low') ?? DEFAULTS.severity.low,
-    },
+    severity: { high, medium, low },
   };
 }
 

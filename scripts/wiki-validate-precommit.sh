@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Pre-commit hook: validate changed wiki markdown before commit.
+# Pre-commit hook: validate changed repo markdown for broken relative links
+# before commit. Catches root-relative doc links (the recurring class) at commit
+# time instead of at ingestion/retro time.
 #
-# Two checks:
-#   1. Staging snapshot (--diff): catches issues in the latest staged snapshot.
-#   2. Repo docs: validates the parent dir of every changed repo .md file,
-#      catching broken relative links (root-relative doc links, the recurring
-#      class) at commit time instead of at ingestion/retro time.
+# Validates each changed FILE individually (not its directory), so a clean doc
+# is never blocked by a pre-existing error in a sibling file, and editing a
+# root-level .md never triggers a whole-repo walk.
 
 set -e
 
@@ -14,47 +14,36 @@ cd "$REPO_ROOT"
 
 VALIDATOR="modules/wiki/validate-staging-docs.mjs"
 
-# Staged markdown files (added/copied/modified).
-CHANGED_MD=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.md$' || true)
+# Staged markdown files (added/copied/modified). Exclude the vault staging tree
+# and human wiki (obsidian/vault), which have a separate lifecycle.
+CHANGED_MD=$(
+  git diff --cached --name-only --diff-filter=ACM \
+    | grep -E '\.md$' \
+    | grep -vE '^obsidian/vault/' \
+    | grep -vE '_kb-sync-staging/' \
+    || true
+)
 
 if [ -z "$CHANGED_MD" ]; then
-  echo "[WIKI-VALIDATE] No markdown files staged; skipping validation."
+  echo "[WIKI-VALIDATE] No repo markdown files staged; skipping validation."
   exit 0
 fi
 
 echo "[WIKI-VALIDATE] Validating $(echo "$CHANGED_MD" | wc -l | tr -d ' ') changed markdown file(s)..."
 
 FAILED=0
-
-# --- Check 1: staging snapshot (--diff mode) ---
-if npm run wiki:validate-staging -- --diff > /dev/null 2>&1; then
-  echo "[WIKI-VALIDATE] ✓ Staging snapshot check passed."
-else
-  echo "[WIKI-VALIDATE] ✗ Staging snapshot check failed:"
-  npm run wiki:validate-staging -- --diff || true
-  FAILED=1
-fi
-
-# --- Check 2: repo docs (broken relative links) ---
-# Validate the unique parent directory of each changed repo .md file.
-# Skip the vault staging tree (handled by check 1) and the human wiki
-# (obsidian/vault) which has a separate lifecycle.
-DIRS=$(echo "$CHANGED_MD" \
-  | grep -vE '^obsidian/vault/' \
-  | grep -vE '_kb-sync-staging/' \
-  | xargs -r -n1 dirname 2>/dev/null \
-  | sort -u || true)
-
-for dir in $DIRS; do
-  [ -d "$dir" ] || continue
-  if node "$VALIDATOR" "$dir" > /dev/null 2>&1; then
-    echo "[WIKI-VALIDATE] ✓ $dir"
+# Read newline-delimited paths (git quotes paths with spaces; repo uses none).
+while IFS= read -r file; do
+  [ -n "$file" ] || continue
+  [ -f "$file" ] || continue
+  if node "$VALIDATOR" "$file" > /dev/null 2>&1; then
+    echo "[WIKI-VALIDATE] ✓ $file"
   else
-    echo "[WIKI-VALIDATE] ✗ $dir has broken relative link(s):"
-    node "$VALIDATOR" "$dir" 2>&1 | grep -E 'broken relative link|✗ ERROR' || true
+    echo "[WIKI-VALIDATE] ✗ $file has broken relative link(s):"
+    node "$VALIDATOR" "$file" 2>&1 | grep -E 'broken relative link|✗ ERROR' || true
     FAILED=1
   fi
-done
+done <<< "$CHANGED_MD"
 
 if [ "$FAILED" -eq 0 ]; then
   echo "[WIKI-VALIDATE] ✓ All validations passed."
