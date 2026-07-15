@@ -1,0 +1,19 @@
+docs/archive-cleanup.md
+  s_bdfcd3eab2946a::t_01129771a00c65 172-173
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "38a3acfefaadcd7ba0f749c85a2d3a01ebecba4b",
+  "prompts": {},
+  "sessions": {
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
