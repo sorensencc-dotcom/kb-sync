@@ -79,15 +79,20 @@ if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
   OBSIDIAN_VAULT_ROOT=$(get_config_value "$MODULE_CONFIG" "vault_root")
 fi
 
-# Convert Windows paths to WSL mount format (C:\... → /mnt/c/...)
+# Convert Windows paths to WSL mount format (C:\... → /mnt/c/...) only if running in WSL
 convert_to_wsl_path() {
   local path="$1"
   # Remove backslashes
   path="${path//\\//}"
-  # Convert C:/ to /mnt/c/
-  path="${path//C:/\/mnt\/c}"
-  path="${path//D:/\/mnt\/d}"
-  path="${path//E:/\/mnt\/e}"
+  # Convert to /mnt/<drive>/ only if running under WSL
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    if [[ "$path" =~ ^([A-Za-z]):/(.*) ]]; then
+      local drive="${BASH_REMATCH[1]}"
+      local rest="${BASH_REMATCH[2]}"
+      drive=$(echo "$drive" | tr '[:upper:]' '[:lower:]')
+      path="/mnt/${drive}/${rest}"
+    fi
+  fi
   echo "$path"
 }
 
