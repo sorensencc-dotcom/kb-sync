@@ -1,0 +1,19 @@
+package.json
+  s_bdfcd3eab2946a::t_d9e3370fc6dc16 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "7026b9e79db9f965ec27c8d55ea33b5947ceee0b",
+  "prompts": {},
+  "sessions": {
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
