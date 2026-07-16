@@ -76,17 +76,20 @@ jobs:
             const statusEmoji = errors > 0 ? '❌' : warnings > 0 ? '⚠️' : '✅';
             const statusText = errors > 0 ? 'FAILED' : warnings > 0 ? 'WARNING' : 'PASSED';
 
-            const body = `## KB-Sync Staging Validation ${statusEmoji}
-
-| Metric | Value |
-|--------|-------|
-| Status | **${statusText}** |
-| Files | ${files} |
-| Errors | ${errors} |
-| Warnings | ${warnings} |
-| Duration | ${durationSec}s |
-
-${errors > 0 ? '\n⛔ Validation failed. See [detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.\n' : ''}`;
+            const footer = errors > 0 ? '\n⛔ Validation failed. See [detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.\n' : '';
+            const body = [
+              `## KB-Sync Staging Validation ${statusEmoji}`,
+              '',
+              '| Metric | Value |',
+              '|--------|-------|',
+              `| Status | **${statusText}** |`,
+              `| Files | ${files} |`,
+              `| Errors | ${errors} |`,
+              `| Warnings | ${warnings} |`,
+              `| Duration | ${durationSec}s |`,
+              '',
+              footer
+            ].join('\n');
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
