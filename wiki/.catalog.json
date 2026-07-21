@@ -1,0 +1,33 @@
+{
+  "generated": "2026-07-14T22:14:38.254Z",
+  "files": [
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\Index.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 46,
+        "words": 163,
+        "headings": 6,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\Log.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 27,
+        "words": 95,
+        "headings": 3,
+        "links": 1
+      }
+    }
+  ]
+}
