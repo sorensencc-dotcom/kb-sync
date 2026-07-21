@@ -1,0 +1,105 @@
+docs/operations/kb-sync-nightly-reports/2026-07-15-21-34.md
+  s_576e5ab9584cc4::t_9d2486d495d1b5 1-139
+obsidian/vault/wiki/.catalog.json
+  s_bdfcd3eab2946a::t_da73b34d53cc1d 1-341
+obsidian/vault/wiki/kb-sync/wiki-lint-rules.md
+  s_5759a4a6e849a6::t_fd31db728ac75c 1-45
+obsidian/vault/wiki/kb-sync/wiki-operator-workflow.md
+  s_5759a4a6e849a6::t_31ebb9cf2c2cf2 1-49
+obsidian/vault/wiki/kb-sync/wiki-schema.md
+  s_5759a4a6e849a6::t_22872745d2a269 1-44
+obsidian/vault/wiki/kb-sync/wiki-update-rules.md
+  s_5759a4a6e849a6::t_a8f3ce8c8f3f30 1-50
+CLAUDE.md
+  s_9868dd8a6fdac9::t_c0f3d01b492367 17
+docs/archive-cleanup.md
+  s_bdfcd3eab2946a::t_4696b5917db664 1-6
+docs/github-actions-setup.md
+  s_bdfcd3eab2946a::t_448e0b52a12759 1-6
+docs/governance/skill-approval-rules.md
+  s_48c2845743e4c7::t_57081a73f51440 1-6
+docs/modules/artifact-generator.md
+  s_bdfcd3eab2946a::t_230812750fa573 1-6
+docs/skills/obsidian-ingest-wiki.md
+  s_d05a08dc3db088::t_8624d61a441095 1-6
+docs/targets/notebooklm.md
+  s_7355f494f0ea4c::t_8a6285510bef5d 1-6
+docs/targets/obsidian.md
+  s_7355f494f0ea4c::t_f42f0909e0737f 1-6
+modules/artifact-generator/generate-report.mjs
+  s_bdfcd3eab2946a::t_6ac339767cf78a 136-146,160
+modules/wiki/cleanup-staging-archives.mjs
+  s_42f14c9fdf781d::t_0b53319056617b 3,11-44,97
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "40f725143f59405b5b4b9d8229e7662f6abb9899",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_48c2845743e4c7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "146a440d-b5c6-4651-b2a2-05a61fdbb397",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_5759a4a6e849a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3907d804-0ddd-450b-80cf-b027b66fd331",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_576e5ab9584cc4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "de2ca311-9be7-4aba-9bcb-4e4a5a671e02",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_7355f494f0ea4c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "27f29315-1a0b-48dd-a0ea-3b2cac2d625f",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_9868dd8a6fdac9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-aeddc748e21f23a3f",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_d05a08dc3db088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9837535e-c768-4223-a214-59099185e3e1",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
