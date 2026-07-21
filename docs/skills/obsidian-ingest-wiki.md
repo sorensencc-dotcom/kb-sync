@@ -1,3 +1,9 @@
+---
+title: "obsidian ingest wiki"
+category: "wiki"
+status: "active"
+---
+
 # Skill: obsidian:ingest-wiki
 
 **Purpose**: Validate staged Obsidian raw sources and generate a Claude Code prompt for 8-phase wiki semantic synthesis.

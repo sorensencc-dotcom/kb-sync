@@ -1,5 +1,7 @@
 node_modules/
 .nlm_pack/
+.nlm_pack.backup.*/
+_integration/
 .env
 .mock_cli_bin/
 dist/
@@ -7,3 +9,9 @@ build/
 site/
 *.bak.txt
 *.log
+.test_*
+C*
+.validation-report.json
+obsidian/vault/_kb-sync-staging/
+obsidian/vault/.obsidian/
+modules/notebooklm/ingest-notebooklm.sh.bak

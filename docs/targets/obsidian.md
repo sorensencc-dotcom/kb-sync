@@ -1,3 +1,9 @@
+---
+title: "obsidian"
+category: "wiki"
+status: "active"
+---
+
 # Obsidian Vault Sync: Wiki Schema & Ingest Workflows
 
 This document defines the Karpathy LLM-wiki pattern implementation for syncing external repositories into your Obsidian vault as a curated, LLM-maintained knowledge base.

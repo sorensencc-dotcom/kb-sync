@@ -1,3 +1,9 @@
+---
+title: "artifact generator"
+category: "wiki"
+status: "active"
+---
+
 # Artifact Generator Module
 
 Generates interactive HTML reports from knowledge pack analysis. Runs post-sync to provide operator visibility into URL references, content structure, and link health.

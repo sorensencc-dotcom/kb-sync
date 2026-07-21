@@ -48,6 +48,38 @@ Audit trail of kb-sync operations and manual synthesis events.
 
 **Lint Status:** All structural checks PASS; no violations blocking commit
 
+---
+
+### 2026-07-17 21:34 UTC — Wiki Semantic Synthesis (Nightly Automation)
+
+**Source:** Raw sources from staging directory `_kb-sync-staging/kb-sync/20260717-213411/`
+
+**Staging Summary:**
+- Repository root: `/sessions/stoic-eager-einstein/mnt/kb-sync`
+- Total files staged: 88
+- Manifest file: `FILES.manifest.txt`
+- Timestamp: 2026-07-17 21:34:11 UTC
+
+**Changes:**
+
+Created 4 new entities documenting wiki module architecture and workflow:
+- [[Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
+- [[Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
+- [[Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki
+- [[Wiki Update Rules]] — Rules for creating, updating, and removing wiki entity/concept pages
+
+Updated kb-sync Index.md:
+- Added 4 new entity references to wiki module documentation
+- Updated "Last Updated" timestamp to 2026-07-17
+
+**Operator:** Automated nightly sync (scheduled task)
+
+**Workflow Phase:** Partial (Ingest, Update, Log — human review pending for Cross-Ref and Lint)
+
+**Lint Status:** 4 new pages created from schema templates; bidirectional links pending operator cross-ref phase
+
+**Next Steps:** Operator to run cross-ref phase to establish bidirectional links between wiki module pages and existing concepts
+
 **Next:** Phase 8 (Commit) ready
 
 ---
@@ -167,3 +199,82 @@ violations; all cross-references valid; no orphaned pages
 **Next:** Phase 8 (Commit) ready — wiki is synchronized and ready for git commit
 
 ---
+
+### 2026-07-15 21:34 UTC — Wiki Semantic Synthesis (Nightly Automation)
+
+**Source:** Raw sources from staging directory `_kb-sync-staging/kb-sync/20260715-213420/`
+
+**Status:** Staging & Validation Complete
+
+- **Staging Path:** `vault/_kb-sync-staging/kb-sync/20260715-213420/`
+- **Files Staged:** 88 files (manifest verified)
+- **Timestamp:** 2026-07-15 21:34:20 UTC
+
+**Analysis:**
+
+New staging includes 3 additional files compared to previous snapshot (85 files on 2026-07-14):
+- Total files: 88 (↑ 3 files)
+- New documentation or configuration updates detected
+
+**Entities Status:** All 15 entities remain current from previous synthesis:
+  - kb-sync core: ✓ run-all.sh, flatten.sh, chunk.sh, validate.sh, rollback.sh, artifact-generator.sh
+  - notebooklm: ✓ ingest-notebooklm.sh, kb-sync-nightly.sh, register-kb-sync-task.ps1
+  - obsidian: ✓ ingest-obsidian.sh
+  - wiki: ✓ ingest-wiki.sh
+  - governance: ✓ skill-approval-rules
+
+**Concepts Status:** All 8 concepts remain current and well-linked
+
+**Workflow Phases Status:**
+
+- Phase 1 (Ingest Staging): ✓ Complete — 88 files staged with manifest
+- Phase 2 (Generate Prompt): ✓ Complete — Ingest prompt generated for wiki synthesis
+- Phases 3–7 (Update, Cross-Ref, Lint, Log, Review): ⏸ Pending — Requires human-in-loop synthesis
+  - **Note:** Automated scheduling cannot execute interactive wiki synthesis
+  - **Next Step:** Requires Claude Code session to:
+    - Read staged sources from `_kb-sync-staging/kb-sync/20260715-213420/`
+    - Identify new/changed entities and concepts
+    - Create/update wiki pages per schema (docs/targets/obsidian.md)
+    - Establish cross-references
+    - Update Index.md and this Log
+
+**Lint Status:** Staging validation PASS; manifest verified; all 88 files present
+
+**Operator:** Automated nightly task (obsidian-kb-sync-nightly)
+
+**Next:** Await Claude Code session for phases 3–8 (human-in-loop synthesis + commit)
+
+---
+
+## 2026-07-16 21:35:04 — Nightly Obsidian KB-Sync Run
+
+**Status:** ✅ Staging Complete
+
+**Staging Details:**
+- **Staging Path:** `/sessions/beautiful-sleepy-brown/mnt/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260716-213504`
+- **Files Staged:** 88
+- **Timestamp:** 2026-07-16T21:35:04Z
+- **Trigger:** Scheduled automated task (obsidian-kb-sync-nightly)
+
+**Staged Artifacts:**
+- Configuration files (4): global.yaml, obsidian.yaml, notebooklm.yaml, artifact-generator.yaml
+- Core orchestration (5): run-all.sh, flatten.sh, chunk.sh, validate.sh, rollback.sh
+- Module scripts (12): ingest-obsidian.sh, ingest-wiki.sh, ingest-notebooklm.sh, and others
+- Documentation (23): targets/obsidian.md, governance/skill-approval-rules.md, and others
+- Source code (44): TypeScript, JavaScript, bash implementations
+
+**Manifest Status:**
+- ✅ Immutable staging directory created
+- ✅ FILES.manifest.txt generated (88 entries)
+- ✅ STAGING_REPORT.md created
+- ✅ All files readable
+
+**Synthesis Status:**
+- ⏳ Pending: 8-phase wiki ingest workflow
+- Awaiting: Manual synthesis or Claude Code ingest-wiki skill invocation
+
+**Notes:**
+- Obsidian vault initialized on first run (created wiki/ and _kb-sync-staging directories)
+- Wiki structure already contains prior entity pages (concepts/, kb-sync/, notebooklm/, obsidian/)
+- Ready for synthesis phase (phases 1–8 from operator-workflow.md)
+

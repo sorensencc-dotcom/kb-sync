@@ -1,7 +1,7 @@
 # kb-sync Core Module
 
 **Category:** Infrastructure & System Orchestration  
-**Last Updated:** 2026-07-11
+**Last Updated:** 2026-07-17
 
 ## Entities
 
@@ -10,6 +10,10 @@
 - [[chunk.sh]] — Pack chunking for oversized outputs (5MB+ warning, 8MB limit)
 - [[validate.sh]] — Pack integrity validation and structure verification
 - [[artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
+- [[Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
+- [[Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
+- [[Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki
+- [[Wiki Update Rules]] — Rules for creating, updating, and removing wiki entity/concept pages
 
 ## Concepts
 

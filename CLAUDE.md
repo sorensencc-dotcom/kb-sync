@@ -14,7 +14,7 @@
 - `modules/wiki/` — Wiki synthesis: schema, lint-rules, update-rules, templates
 - `modules/artifact-generator/` — Artifact generation from packs
 - `configs/` — YAML: global.yaml, notebooklm.yaml, obsidian.yaml, artifact-generator.yaml
-- `obsidian/vault/` — Local Obsidian vault root
+- `C:\dev` (or `process.env.OBSIDIAN_VAULT_ROOT`) — Obsidian vault root (`_kb-sync-staging/`, `wiki/`)
 - `docs/` — Governance, target specs, skill docs
 - `tests/` — Verification tests (custom TypeScript, no Jest)
 - `.nlm_pack/` — Output: consolidated KB (generated)

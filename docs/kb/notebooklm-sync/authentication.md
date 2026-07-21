@@ -1,3 +1,9 @@
+---
+title: "authentication"
+category: "wiki"
+status: "active"
+---
+
 # NotebookLM Sync Pipeline: Authentication
 
 This document details the configuration and security guidelines for authenticating the sync pipeline with Google NotebookLM.

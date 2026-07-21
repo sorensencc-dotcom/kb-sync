@@ -1,3 +1,9 @@
+---
+title: "skill approval rules"
+category: "wiki"
+status: "active"
+---
+
 # Skill Approval & Installation Rules
 
 **Effective Date**: 2026-07-11  

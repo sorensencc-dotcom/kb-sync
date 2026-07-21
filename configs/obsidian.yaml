@@ -5,7 +5,7 @@
 
 # Obsidian vault root directory (absolute path or relative to where script runs)
 # Override via OBSIDIAN_VAULT_ROOT environment variable
-vault_root: "C:\dev\kb-sync\obsidian\vault"
+vault_root: "C:\dev"
 
 # File extensions to include in staging (staging script focuses on .md for v1)
 include_extensions:
@@ -31,6 +31,8 @@ mapping_rules:
     folder: "CIC/Rewrite Labs"
   - prefix: "torquequery/"
     folder: "CIC/TorqueQuery"
+  - prefix: "Reports/roadmap-sync/"
+    folder: "Operations/Roadmap Sync"
 
 # Default wiki folder for unmapped sources
 default_folder: "Unsorted"

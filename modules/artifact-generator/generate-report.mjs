@@ -133,6 +133,17 @@ function collectNotebookLM(root) {
   return docs;
 }
 
+function convertToWslPath(p) {
+  if (!p || process.platform === 'win32') return p;
+  const m = p.match(/^([A-Za-z]):[/\\]?(.*)/);
+  if (m) {
+    const drive = m[1].toLowerCase();
+    const rest = m[2].replace(/\\/g, '/');
+    return `/mnt/${drive}${rest ? '/' + rest : ''}`;
+  }
+  return p;
+}
+
 function collectObsidian(root) {
   const configFile = path.join(root, 'configs', 'obsidian.yaml');
   let vaultRoot = process.env.OBSIDIAN_VAULT_ROOT;
@@ -146,6 +157,7 @@ function collectObsidian(root) {
     logError('OBSIDIAN_VAULT_ROOT not set and vault_root missing from configs/obsidian.yaml.');
     process.exit(1);
   }
+  vaultRoot = convertToWslPath(vaultRoot);
   const base = path.join(vaultRoot, stagingDir, 'kb-sync');
   if (!fs.existsSync(base)) {
     logError(`Staging directory not found: ${base}`);

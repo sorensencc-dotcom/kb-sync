@@ -1,3 +1,9 @@
+---
+title: "operator rules"
+category: "wiki"
+status: "active"
+---
+
 # NotebookLM Sync Pipeline: Operator Rules
 
 This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchronization loop.

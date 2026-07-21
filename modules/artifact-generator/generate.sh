@@ -56,9 +56,41 @@ if [ -n "${OBSIDIAN_VAULT_ROOT:-}" ]; then
   log_info "Converted OBSIDIAN_VAULT_ROOT to WSL path: $OBSIDIAN_VAULT_ROOT"
 fi
 
-# Run generator
+# Format path for Node execution (converts /mnt/c/... or /c/... to C:/... if node is a Windows binary)
+format_path_for_node() {
+  local path="$1"
+  local node_bin="$2"
+  local resolved
+  resolved="$(command -v "$node_bin" 2>/dev/null || echo "$node_bin")"
+
+  if [[ "$resolved" == *.exe ]] || file "$resolved" 2>/dev/null | grep -qi "PE32"; then
+    if [[ "$path" =~ ^/mnt/([a-zA-Z])/(.*) ]]; then
+      path="${BASH_REMATCH[1]}:/${BASH_REMATCH[2]}"
+    elif [[ "$path" =~ ^/([a-zA-Z])/(.*) ]]; then
+      path="${BASH_REMATCH[1]}:/${BASH_REMATCH[2]}"
+    fi
+  fi
+  echo "$path"
+}
+
+# Locate Node.js executable
+NODE_CMD=""
 if command -v node >/dev/null 2>&1; then
-  if node "$GENERATOR_SCRIPT" --source "$SOURCE" --config-file "$CONFIG_FILE"; then
+  NODE_CMD="node"
+elif command -v node.exe >/dev/null 2>&1; then
+  NODE_CMD="node.exe"
+elif [ -f "/mnt/c/Program Files/nodejs/node.exe" ]; then
+  NODE_CMD="/mnt/c/Program Files/nodejs/node.exe"
+elif [ -f "/c/Program Files/nodejs/node.exe" ]; then
+  NODE_CMD="/c/Program Files/nodejs/node.exe"
+fi
+
+# Run generator
+if [ -n "$NODE_CMD" ]; then
+  NODE_SCRIPT="$(format_path_for_node "$GENERATOR_SCRIPT" "$NODE_CMD")"
+  NODE_CONFIG="$(format_path_for_node "$CONFIG_FILE" "$NODE_CMD")"
+
+  if "$NODE_CMD" "$NODE_SCRIPT" --source "$SOURCE" --config-file "$NODE_CONFIG"; then
     log_info "Artifact generation completed successfully."
     exit 0
   else

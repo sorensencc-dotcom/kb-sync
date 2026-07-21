@@ -1,3 +1,9 @@
+---
+title: "pipeline"
+category: "wiki"
+status: "active"
+---
+
 # NotebookLM Sync Pipeline: Ingestion Loop
 
 This document outlines the sequential, deterministic steps performed during the sync execution pipeline.

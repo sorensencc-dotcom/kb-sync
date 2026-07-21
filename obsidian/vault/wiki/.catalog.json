@@ -1,0 +1,341 @@
+{
+  "generated": "2026-07-14T22:14:37.385Z",
+  "files": [
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\Index.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 80,
+        "words": 446,
+        "headings": 12,
+        "links": 23
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\Log.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 99,
+        "words": 442,
+        "headings": 6,
+        "links": 18
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\wiki\\index.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 28,
+        "words": 167,
+        "headings": 5,
+        "links": 8
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\wiki\\ingest-wiki.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 107,
+        "words": 512,
+        "headings": 17,
+        "links": 9
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\obsidian\\index.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 28,
+        "words": 158,
+        "headings": 5,
+        "links": 8
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\obsidian\\ingest-obsidian.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 96,
+        "words": 462,
+        "headings": 17,
+        "links": 11
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\notebooklm\\index.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 30,
+        "words": 168,
+        "headings": 5,
+        "links": 10
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\notebooklm\\ingest-notebooklm.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 97,
+        "words": 453,
+        "headings": 17,
+        "links": 14
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\notebooklm\\kb-sync-nightly.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 90,
+        "words": 367,
+        "headings": 17,
+        "links": 6
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\notebooklm\\register-kb-sync-task.ps1.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 90,
+        "words": 373,
+        "headings": 17,
+        "links": 4
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\kb-sync\\chunk.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 82,
+        "words": 334,
+        "headings": 17,
+        "links": 7
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\kb-sync\\flatten.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 85,
+        "words": 360,
+        "headings": 17,
+        "links": 8
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\kb-sync\\index.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 30,
+        "words": 159,
+        "headings": 5,
+        "links": 10
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\kb-sync\\rollback.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 87,
+        "words": 365,
+        "headings": 17,
+        "links": 5
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\kb-sync\\run-all.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 100,
+        "words": 471,
+        "headings": 17,
+        "links": 15
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\kb-sync\\validate.sh.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 87,
+        "words": 330,
+        "headings": 17,
+        "links": 8
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\deterministic-sync-pipeline.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 128,
+        "words": 676,
+        "headings": 14,
+        "links": 22
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\fail-soft-orchestration.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 119,
+        "words": 578,
+        "headings": 14,
+        "links": 15
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\karpathy-llm-wiki-pattern.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 128,
+        "words": 745,
+        "headings": 14,
+        "links": 17
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\manifest-mode.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 119,
+        "words": 590,
+        "headings": 14,
+        "links": 15
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\pack-based-knowledge-management.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 123,
+        "words": 599,
+        "headings": 14,
+        "links": 14
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\raw-source-staging.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 120,
+        "words": 600,
+        "headings": 14,
+        "links": 12
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\semantic-ingest-workflow.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 132,
+        "words": 754,
+        "headings": 14,
+        "links": 13
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\concepts\\three-layer-vault-architecture.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 118,
+        "words": 697,
+        "headings": 14,
+        "links": 14
+      }
+    }
+  ]
+}

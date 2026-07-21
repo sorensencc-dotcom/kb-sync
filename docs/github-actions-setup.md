@@ -1,3 +1,9 @@
+---
+title: "github actions setup"
+category: "wiki"
+status: "active"
+---
+
 # GitHub Actions: Staging Validator Integration
 
 Automated KB-Sync staging validation on every push/PR to `main` branch.

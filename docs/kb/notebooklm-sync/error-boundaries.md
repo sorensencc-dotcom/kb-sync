@@ -1,3 +1,9 @@
+---
+title: "error boundaries"
+category: "wiki"
+status: "active"
+---
+
 # NotebookLM Sync Pipeline: Error Boundaries
 
 This document defines handling rules and troubleshooting guides for potential failures in the synchronization loop.

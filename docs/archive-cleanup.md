@@ -1,3 +1,9 @@
+---
+title: "archive cleanup"
+category: "wiki"
+status: "active"
+---
+
 # Archive Cleanup: Staging Snapshots
 
 Automated cleanup of old staging validation snapshots to manage disk space.

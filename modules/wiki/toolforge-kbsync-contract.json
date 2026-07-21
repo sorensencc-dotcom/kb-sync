@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ToolforgeKbSyncContract",
+  "description": "Shared data contract to prevent interface drift between toolforge daemons and kb-sync validation modules.",
+  "type": "object",
+  "required": [
+    "manifestVersion",
+    "generatedAt",
+    "sourceRepository",
+    "payload"
+  ],
+  "properties": {
+    "manifestVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the integration contract."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp of when the daemon compiled this payload."
+    },
+    "sourceRepository": {
+      "type": "string",
+      "enum": ["toolforge", "kb-sync", "rewrite-docs"],
+      "description": "The repository originating this run payload."
+    },
+    "payload": {
+      "type": "object",
+      "required": ["stagingNotes", "semanticSynthesis", "validationConfig"],
+      "properties": {
+        "stagingNotes": {
+          "type": "array",
+          "description": "Collection of documentation markdown notes processed for ingestion.",
+          "items": {
+            "type": "object",
+            "required": ["relativeVaultPath", "fileBaseName", "frontmatter", "outboundWikiLinks"],
+            "properties": {
+              "relativeVaultPath": {
+                "type": "string",
+                "description": "The absolute path of the note relative to the vault root (e.g. 'kb-sync/daemons/manifest.md')."
+              },
+              "fileBaseName": {
+                "type": "string",
+                "description": "The exact title-case file base name to check for name collisions."
+              },
+              "frontmatter": {
+                "type": "object",
+                "required": ["title", "category", "status"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "category": { "type": "string" },
+                  "status": { 
+                    "type": "string",
+                    "enum": ["active", "beta", "archived", "draft"]
+                  },
+                  "version": { "type": "string" }
+                },
+                "additionalProperties": true
+              },
+              "outboundWikiLinks": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Extracted targets of outbound double-bracket wiki-links (e.g., ['Index', 'kb-sync/Structure'])."
+              }
+            }
+          }
+        },
+        "semanticSynthesis": {
+          "type": "object",
+          "description": "Metadata generated during the Phase 12 semantic synthesis layer.",
+          "required": ["extractedCategories", "relationshipMap"],
+          "properties": {
+            "extractedCategories": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "relationshipMap": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "A map of note paths to their linked notes/entities."
+              }
+            }
+          }
+        },
+        "validationConfig": {
+          "type": "object",
+          "required": ["enforceAbsoluteVaultLinks", "excludeCodeFences", "detectDuplicateBasenames"],
+          "properties": {
+            "enforceAbsoluteVaultLinks": {
+              "type": "boolean",
+              "description": "If true, mandates links start with the target repository folder (e.g., [[kb-sync/Link]])."
+            },
+            "excludeCodeFences": {
+              "type": "boolean",
+              "description": "If true, ignores bracket links found inside markdown code blocks."
+            },
+            "detectDuplicateBasenames": {
+              "type": "boolean",
+              "description": "Enables strict baseline check to prevent overlapping filenames across repos."
+            }
+          }
+        }
+      }
+    }
+  }
+}

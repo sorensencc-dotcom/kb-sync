@@ -1,3 +1,9 @@
+---
+title: "notebooklm"
+category: "wiki"
+status: "active"
+---
+
 # NotebookLM Target: Sync & Authentication
 
 This document details target-specific mechanics for syncing to Google NotebookLM.

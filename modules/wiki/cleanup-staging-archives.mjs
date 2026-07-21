@@ -1,13 +1,46 @@
 #!/usr/bin/env node
 
-import { promises as fs } from 'node:fs';
+import { promises as fs, existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const CONFIG = {
   retention_days: 7,
   keep_min_snapshots: 5,
-  staging_root: 'obsidian/vault/_kb-sync-staging/kb-sync'
 };
+
+function getStagingRoot() {
+  let vaultRoot = process.env.OBSIDIAN_VAULT_ROOT || 'C:\\dev';
+  let stagingDir = '_kb-sync-staging';
+  try {
+    const yamlPath = join(process.cwd(), 'configs', 'obsidian.yaml');
+    if (existsSync(yamlPath)) {
+      const content = readFileSync(yamlPath, 'utf8');
+      const rootMatch = content.match(/^\s*vault_root\s*[:=]\s*(.*)$/m);
+      if (rootMatch && rootMatch[1]) {
+        const val = rootMatch[1].replace(/#.*$/, '').trim().replace(/^['"]|['"]$/g, '');
+        if (val) vaultRoot = process.env.OBSIDIAN_VAULT_ROOT || val;
+      }
+      const dirMatch = content.match(/^\s*staging_dir\s*[:=]\s*(.*)$/m);
+      if (dirMatch && dirMatch[1]) {
+        const val = dirMatch[1].replace(/#.*$/, '').trim().replace(/^['"]|['"]$/g, '');
+        if (val) stagingDir = val;
+      }
+    }
+  } catch {}
+
+  if (process.platform !== 'win32') {
+    const m = vaultRoot.match(/^([A-Za-z]):[/\\]?(.*)/);
+    if (m) {
+      const drive = m[1].toLowerCase();
+      const rest = m[2].replace(/\\/g, '/');
+      vaultRoot = `/mnt/${drive}${rest ? '/' + rest : ''}`;
+    }
+  }
+
+  const full = join(vaultRoot, stagingDir, 'kb-sync');
+  if (existsSync(full)) return full;
+  return join(process.cwd(), 'obsidian', 'vault', '_kb-sync-staging', 'kb-sync');
+}
 
 async function getSnapshotDirs(stagingRoot) {
   try {
@@ -61,7 +94,7 @@ async function main() {
   const verbose = process.argv.includes('--verbose');
   const quiet = process.argv.includes('--quiet');
 
-  const stagingRoot = process.env.STAGING_ROOT || CONFIG.staging_root;
+  const stagingRoot = process.env.STAGING_ROOT || getStagingRoot();
 
   if (!quiet) {
     console.log(`[CLEANUP] Archive cleanup starting`);

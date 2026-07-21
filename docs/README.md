@@ -1,3 +1,9 @@
+---
+title: "README"
+category: "wiki"
+status: "active"
+---
+
 # CIC Knowledge Base
 
 Welcome to the CIC Knowledge Base repository. This repository stores all documentation, scripts, configurations, and integration test runners for the NotebookLM Synchronization Pipeline.

@@ -1,3 +1,9 @@
+---
+title: "architecture"
+category: "wiki"
+status: "active"
+---
+
 # NotebookLM Sync Pipeline: Architecture
 
 This document describes the architectural layout and component flow for the deterministic synchronization loop between the Rewrite Labs / CIC monorepo and Google NotebookLM.
