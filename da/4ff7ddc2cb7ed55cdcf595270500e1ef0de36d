@@ -1,0 +1,109 @@
+obsidian/vault/wiki/kb-sync/wiki-lint-rules.md
+  s_5759a4a6e849a6::t_b8dd525f4e6e38 1-6,28-29,34-35
+obsidian/vault/wiki/kb-sync/wiki-operator-workflow.md
+  s_5759a4a6e849a6::t_14ac19bdc9e5ca 1-6,28,30,34-35
+obsidian/vault/wiki/kb-sync/wiki-schema.md
+  s_5759a4a6e849a6::t_fe697a2032c0fd 1-6,33-34
+obsidian/vault/wiki/kb-sync/wiki-update-rules.md
+  s_5759a4a6e849a6::t_683fc13ccbc494 1-6,28-29,34-35,51
+core/flatten.sh
+  s_7355f494f0ea4c::t_4ca3a501985d2f 145
+obsidian/vault/wiki/concepts/deterministic-sync-pipeline.md
+  s_d05a08dc3db088::t_0167866ae82671 1-6,43-45,51,53-57,64,79-83,87-88,92-93,131-133
+obsidian/vault/wiki/concepts/fail-soft-orchestration.md
+  s_d05a08dc3db088::t_db8487dea699d6 1-6,41-42,48-51,57,77-80,84,88,123-124
+obsidian/vault/wiki/concepts/karpathy-llm-wiki-pattern.md
+  s_d05a08dc3db088::t_e58c3693127aa6 1-6,42-44,50,57,63,76-78,82-83,87-89,131-133
+obsidian/vault/wiki/concepts/manifest-mode.md
+  s_d05a08dc3db088::t_db6ac21fc11c12 1-6,18,39-41,48,56,60,77,81-82,86-87,108,123-124
+obsidian/vault/wiki/concepts/pack-based-knowledge-management.md
+  s_d05a08dc3db088::t_218cc8dd54c1f8 1-6,41-42,48,54,60,72-75,79,83-84,127-128
+obsidian/vault/wiki/concepts/raw-source-staging.md
+  s_d05a08dc3db088::t_db444834ac1431 1-6,42-44,50,68,76,80,84-85,123-125
+obsidian/vault/wiki/concepts/semantic-ingest-workflow.md
+  s_d05a08dc3db088::t_39f08f870e6155 1-6,43-44,54,63,85-86,90-91,95-96,135-137
+obsidian/vault/wiki/concepts/three-layer-vault-architecture.md
+  s_d05a08dc3db088::t_b9b3b4e0e18b26 1-6,40-42,48,54,72-73,77,81-82,103,121-123
+obsidian/vault/wiki/kb-sync/chunk.sh.md
+  s_d05a08dc3db088::t_689e4c013b1504 1-6,54,60,63,71-73
+obsidian/vault/wiki/kb-sync/flatten.sh.md
+  s_d05a08dc3db088::t_6397c4044bcf8d 1-6,32,56,63,66,74-76
+obsidian/vault/wiki/kb-sync/rollback.sh.md
+  s_d05a08dc3db088::t_7f90a168781074 1-6,46,63,74-76
+obsidian/vault/wiki/kb-sync/run-all.sh.md
+  s_d05a08dc3db088::t_29bc9704f7244e 1-6,66-69,74-76,79,87-89
+obsidian/vault/wiki/kb-sync/validate.sh.md
+  s_d05a08dc3db088::t_43f4a264c1df66 1-6,53,59,62,70-72
+obsidian/vault/wiki/notebooklm/index.md
+  s_d05a08dc3db088::t_4ac12d9425ffe2 1-6,14-17,21-23,33-35
+obsidian/vault/wiki/notebooklm/ingest-notebooklm.sh.md
+  s_d05a08dc3db088::t_b01a817616dfbc 1-6,37,57,65,68-70,73,81-83,100
+obsidian/vault/wiki/notebooklm/kb-sync-nightly.sh.md
+  s_d05a08dc3db088::t_2ef5c7e96be242 1-6,61,65,77-79
+obsidian/vault/wiki/notebooklm/register-kb-sync-task.ps1.md
+  s_d05a08dc3db088::t_5bdd84ff89cd87 1-6,63,75-77
+obsidian/vault/wiki/obsidian/index.md
+  s_d05a08dc3db088::t_53fe9be005c0a1 1-6,14-15,19-21,31-33
+obsidian/vault/wiki/obsidian/ingest-obsidian.sh.md
+  s_d05a08dc3db088::t_727dad3c9a4c06 1-6,60,67-69,72,80-82,99
+obsidian/vault/wiki/wiki/index.md
+  s_d05a08dc3db088::t_5a17b37784439f 1-6,14-15,19-21,31-33
+obsidian/vault/wiki/wiki/ingest-wiki.sh.md
+  s_d05a08dc3db088::t_076045b071942e 1-6,69-71,74,83-85
+scripts/wiki-validate-precommit.sh
+  s_bdfcd3eab2946a::t_a1be001c4b7d3e 2-3,11,13,23-28,31-49,51,53-68,71
+tests/notebooklm-sync-verification.ts
+  s_42f14c9fdf781d::t_2ea79d166fc52d 240,314
+tests/obsidian-sync-verification.ts
+  s_42f14c9fdf781d::t_1ad36598dc4f03 38-43,120-121,123,181-182
+tests/validate-staging-v12-features.ts
+  s_42f14c9fdf781d::t_d370423c5d3a85 30-40,43,45-48,51,54,78,80-81,96,112,129,165,181
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "da4ff7ddc2cb7ed55cdcf595270500e1ef0de36d",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_5759a4a6e849a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3907d804-0ddd-450b-80cf-b027b66fd331",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_7355f494f0ea4c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "27f29315-1a0b-48dd-a0ea-3b2cac2d625f",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_d05a08dc3db088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9837535e-c768-4223-a214-59099185e3e1",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
