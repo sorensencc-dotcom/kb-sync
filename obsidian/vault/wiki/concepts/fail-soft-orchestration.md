@@ -1,3 +1,9 @@
+---
+title: "Fail-Soft Orchestration"
+category: "wiki"
+status: "active"
+---
+
 # Fail-Soft Orchestration
 
 **Type:** Pattern  
@@ -32,23 +38,23 @@ Fail-soft also supports graceful degradation: the system continues to function i
 
 ## Related Concepts
 
-- [[Deterministic Sync Pipeline]] — coordinates multiple phases with fail-soft logic
-- [[Pack-Based Knowledge Management]] — single pack is consumed by multiple targets
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — coordinates multiple phases with fail-soft logic
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — single pack is consumed by multiple targets
 
 ---
 
 ## Examples
 
-**Example 1: [[run-all.sh]] uses fail-soft orchestration**
-- Invokes [[ingest-notebooklm.sh]] for NotebookLM target
-- Invokes [[ingest-obsidian.sh]] for Obsidian target
-- Invokes [[ingest-wiki.sh]] for wiki target
+**Example 1: [[kb-sync/kb-sync/run-all.sh|run-all.sh]] uses fail-soft orchestration**
+- Invokes [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]] for NotebookLM target
+- Invokes [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] for Obsidian target
+- Invokes [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] for wiki target
 - If NotebookLM API fails, Obsidian and wiki targets still proceed
 - Final report shows: "NotebookLM ✗, Obsidian ✓, Wiki ✓"
 - Result: developers have access to 2/3 knowledge systems despite API failure
 
 **Example 2: Graceful degradation in CI/CD**
-- Nightly CI run executes [[kb-sync-nightly.sh]]
+- Nightly CI run executes [[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]]
 - NotebookLM upload fails (service maintenance)
 - Obsidian and wiki staging succeed
 - CI reports partial success (warning, not error)
@@ -68,18 +74,18 @@ Fail-soft also supports graceful degradation: the system continues to function i
 
 ### Entities That Use This Concept
 
-- [[run-all.sh]] — coordinates multiple targets with fail-soft logic
-- [[ingest-notebooklm.sh]] — one target in orchestration
-- [[ingest-obsidian.sh]] — one target in orchestration
-- [[ingest-wiki.sh]] — one target in orchestration
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — coordinates multiple targets with fail-soft logic
+- [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]] — one target in orchestration
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] — one target in orchestration
+- [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] — one target in orchestration
 
 ### Concepts This Concept Depends On
 
-- [[Deterministic Sync Pipeline]] — orchestration framework
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — orchestration framework
 
 ### Backlinks From
 
-- [[Deterministic Sync Pipeline]]
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
 
 ---
 
@@ -114,5 +120,5 @@ Early kb-sync implementations used strict orchestration: if any target failed, t
 
 ## Related Pages
 
-- See [[Deterministic Sync Pipeline]] for orchestration model
-- See [[rollback.sh]] for recovery strategy
+- See [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] for orchestration model
+- See [[kb-sync/kb-sync/rollback.sh|rollback.sh]] for recovery strategy

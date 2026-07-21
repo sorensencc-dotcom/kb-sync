@@ -1,3 +1,9 @@
+---
+title: "Three-Layer Vault Architecture"
+category: "wiki"
+status: "active"
+---
+
 # Three-Layer Vault Architecture
 
 **Type:** Architecture  
@@ -31,21 +37,21 @@ Trade-off: requires manual ingest sessions (not automated), but gains human revi
 
 ## Related Concepts
 
-- [[Karpathy LLM-Wiki Pattern]] — design pattern implemented by this architecture
-- [[Raw Source Staging]] — Layer 1 implementation (immutable staging)
-- [[Semantic Ingest Workflow]] — Layer 2 workflow (wiki synthesis)
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — design pattern implemented by this architecture
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — Layer 1 implementation (immutable staging)
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Layer 2 workflow (wiki synthesis)
 
 ---
 
 ## Examples
 
-**Example 1: [[ingest-obsidian.sh]] implements Layer 1**
+**Example 1: [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] implements Layer 1**
 - Script stages external repo sources into `_kb-sync-staging/kb-sync/20260711-174821/`
 - Directory preserved, files copied, manifest generated
 - Timestamps enable historical versioning (previous staging remains intact)
 - Result: raw sources are never edited, always auditable
 
-**Example 2: [[ingest-wiki.sh]] manages Layer 2 synthesis**
+**Example 2: [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] manages Layer 2 synthesis**
 - Operator runs 8-phase workflow to read staged sources and create entity/concept pages
 - Schema docs guide structure and naming conventions
 - Log.md records session metadata (timestamp, operator, changes made)
@@ -63,17 +69,17 @@ Trade-off: requires manual ingest sessions (not automated), but gains human revi
 
 ### Entities That Use This Concept
 
-- [[ingest-obsidian.sh]] — implements Layer 1 (raw sources)
-- [[ingest-wiki.sh]] — orchestrates Layer 2 (wiki synthesis)
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] — implements Layer 1 (raw sources)
+- [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] — orchestrates Layer 2 (wiki synthesis)
 
 ### Concepts This Concept Depends On
 
-- [[Karpathy LLM-Wiki Pattern]] — design pattern
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — design pattern
 
 ### Backlinks From
 
-- [[Raw Source Staging]]
-- [[Semantic Ingest Workflow]]
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]]
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
 
 ---
 
@@ -94,7 +100,7 @@ Trade-off: requires manual ingest sessions (not automated), but gains human revi
 - Schema layer: stable reference, never auto-modified during ingest sessions
 
 **Decision Gates:**
-- Phase 2 (Lint) of [[Semantic Ingest Workflow]] blocks Phase 3 until no structural violations exist
+- Phase 2 (Lint) of [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] blocks Phase 3 until no structural violations exist
 - Phase 7 (Review) requires operator approval before Phase 8 (Commit)
 
 **Exceptions:**
@@ -112,6 +118,6 @@ The architecture also enables transparent LLM synthesis: because raw sources are
 
 ## Related Pages
 
-- See [[Karpathy LLM-Wiki Pattern]] for the foundational design
-- See [[Semantic Ingest Workflow]] for the Layer 2 8-phase workflow
-- See [[Raw Source Staging]] for Layer 1 implementation
+- See [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] for the foundational design
+- See [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] for the Layer 2 8-phase workflow
+- See [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] for Layer 1 implementation

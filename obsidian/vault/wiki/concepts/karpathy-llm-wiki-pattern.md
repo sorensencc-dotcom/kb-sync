@@ -1,3 +1,9 @@
+---
+title: "Karpathy LLM-Wiki Pattern"
+category: "wiki"
+status: "active"
+---
+
 # Karpathy LLM-Wiki Pattern
 
 **Type:** Design Pattern  
@@ -33,28 +39,28 @@ The pattern also decouples knowledge maintenance from source code evolution: whe
 
 ## Related Concepts
 
-- [[Three-Layer Vault Architecture]] — implementation of this pattern
-- [[Semantic Ingest Workflow]] — 8-phase synthesis workflow
-- [[Raw Source Staging]] — data layer providing audit trail
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — implementation of this pattern
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — 8-phase synthesis workflow
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — data layer providing audit trail
 
 ---
 
 ## Examples
 
-**Example 1: [[ingest-wiki.sh]] implements this pattern**
+**Example 1: [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] implements this pattern**
 - Operator runs Claude Code session to read staged sources
 - Identifies new entities (functions, modules, scripts) and concepts (patterns, principles)
 - Creates pages from templates, establishing links and cross-references
 - All changes logged to Log.md with timestamp and metadata
 - Result: knowledge base remains synchronized with source code without drift
 
-**Example 2: [[Three-Layer Vault Architecture]] enables the pattern**
+**Example 2: [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] enables the pattern**
 - Raw sources are immutable (Layer 1), so old wiki citations remain valid
 - Wiki pages are explicitly synthesized (Layer 2), not auto-generated
 - Schema is stable reference (Layer 3), enabling reusable templates and conventions
 - Result: human oversight at every stage
 
-**Example 3: [[Deterministic Sync Pipeline]] supports the pattern**
+**Example 3: [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] supports the pattern**
 - Flatten stage extracts current source code (Layer 1)
 - Pack consolidates into single knowledge source (audit trail)
 - Wiki synthesis reads pack and creates entities/concepts
@@ -67,20 +73,20 @@ The pattern also decouples knowledge maintenance from source code evolution: whe
 
 ### Entities That Use This Concept
 
-- [[ingest-wiki.sh]] — primary orchestrator
-- [[ingest-obsidian.sh]] — raw sources layer
-- [[run-all.sh]] — coordinates all targets
+- [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] — primary orchestrator
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] — raw sources layer
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — coordinates all targets
 
 ### Concepts This Concept Depends On
 
-- [[Three-Layer Vault Architecture]] — structural foundation
-- [[Pack-Based Knowledge Management]] — data representation
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — structural foundation
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — data representation
 
 ### Backlinks From
 
-- [[Three-Layer Vault Architecture]]
-- [[Semantic Ingest Workflow]]
-- [[wiki module]]
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]]
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
+- [[kb-sync/wiki/index|wiki module]]
 
 ---
 
@@ -122,6 +128,6 @@ Early kb-sync implementations lacked auditability (no Log.md); the Karpathy patt
 
 ## Related Pages
 
-- See [[Three-Layer Vault Architecture]] for the structural foundation
-- See [[Semantic Ingest Workflow]] for the 8-phase workflow that implements this pattern
-- See [[Log.md]] for audit trail examples
+- See [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] for the structural foundation
+- See [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] for the 8-phase workflow that implements this pattern
+- See [[kb-sync/Log|Log.md]] for audit trail examples

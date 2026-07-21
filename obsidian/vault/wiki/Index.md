@@ -1,3 +1,9 @@
+---
+title: "CIC Knowledge Base — Index"
+category: "wiki"
+status: "active"
+---
+
 # CIC Knowledge Base — Index
 
 Welcome to the unified knowledge base vault. This vault is synchronized with:
@@ -22,7 +28,7 @@ Welcome to the unified knowledge base vault. This vault is synchronized with:
   - 13 entities created (5 kb-sync core, 3 notebooklm, 1 obsidian, 1 wiki)
   - 8 concepts created (architecture, patterns, workflow)
   - 34+ cross-references established
-  - See [[wiki/Log.md]] for details
+  - See [[kb-sync/Log|Log.md]] for details
 
 ---
 
@@ -36,49 +42,49 @@ Welcome to the unified knowledge base vault. This vault is synchronized with:
 
 #### kb-sync Core Module
 
-- [[chunk.sh]] — Pack size management; chunks oversized knowledge packs for upload
-- [[flatten.sh]] — Repository extraction via pyragify with AST parsing and exclusions
-- [[rollback.sh]] — Rollback mechanism; restores previous known-good pack backup
-- [[run-all.sh]] — Master orchestrator; executes all six pipeline phases in sequence
-- [[validate.sh]] — Pack integrity validation; confirms structure and completeness
-- [[artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
+- [[kb-sync/kb-sync/chunk.sh|chunk.sh]] — Pack size management; chunks oversized knowledge packs for upload
+- [[kb-sync/kb-sync/flatten.sh|flatten.sh]] — Repository extraction via pyragify with AST parsing and exclusions
+- [[kb-sync/kb-sync/rollback.sh|rollback.sh]] — Rollback mechanism; restores previous known-good pack backup
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — Master orchestrator; executes all six pipeline phases in sequence
+- [[kb-sync/kb-sync/validate.sh|validate.sh]] — Pack integrity validation; confirms structure and completeness
+- [[kb-sync/kb-sync/artifact-generator.sh|artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
 
 #### notebooklm Integration
 
-- [[ingest-notebooklm.sh]] — NotebookLM sync orchestration; purges old sources and uploads fresh pack
-- [[kb-sync-nightly.sh]] — Nightly scheduled sync task runner for CI/CD automation
-- [[register-kb-sync-task.ps1]] — Windows Task Scheduler registration for automated nightly runs
+- [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]] — NotebookLM sync orchestration; purges old sources and uploads fresh pack
+- [[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]] — Nightly scheduled sync task runner for CI/CD automation
+- [[kb-sync/notebooklm/register-kb-sync-task.ps1|register-kb-sync-task.ps1]] — Windows Task Scheduler registration for automated nightly runs
 
 #### obsidian Vault Integration
 
-- [[ingest-obsidian.sh]] — Obsidian vault staging; creates timestamped immutable snapshots with manifest
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] — Obsidian vault staging; creates timestamped immutable snapshots with manifest
 
 #### wiki Semantic Synthesis
 
-- [[ingest-wiki.sh]] — Wiki ingest orchestrator; coordinates eight-phase semantic synthesis workflow
+- [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] — Wiki ingest orchestrator; coordinates eight-phase semantic synthesis workflow
 
 #### Governance & Policy
 
-- [[skill-approval-rules]] — Approval tiers (Tier 0 auto-install, Tier 1 review); skill development workflow
+- [[kb-sync/governance/skill-approval-rules|skill-approval-rules]] — Approval tiers (Tier 0 auto-install, Tier 1 review); skill development workflow
 
 ### Concepts
 
-- [[Deterministic Sync Pipeline]] — Six-phase sequential execution model (Trigger → Flatten → Pack → Purge → Upload → Verify)
-- [[Fail-Soft Orchestration]] — Multi-target execution strategy; continues despite individual target failures
-- [[Karpathy LLM-Wiki Pattern]] — LLM-synthesized wiki with human review and full audit trail
-- [[Manifest Mode]] — Safe ingest strategy using file manifest for staged data verification
-- [[Pack-Based Knowledge Management]] — Consolidated knowledge pack as single source of truth
-- [[Raw Source Staging]] — Timestamped immutable repository snapshots for auditability
-- [[Semantic Ingest Workflow]] — Eight-phase workflow (Ingest → Lint → Update → Cross-Ref → Lint → Log → Review → Commit)
-- [[Three-Layer Vault Architecture]] — Separation of raw sources (immutable), wiki (LLM-maintained), and schema (reference)
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Six-phase sequential execution model (Trigger → Flatten → Pack → Purge → Upload → Verify)
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — Multi-target execution strategy; continues despite individual target failures
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — LLM-synthesized wiki with human review and full audit trail
+- [[kb-sync/concepts/manifest-mode|Manifest Mode]] — Safe ingest strategy using file manifest for staged data verification
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — Consolidated knowledge pack as single source of truth
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — Timestamped immutable repository snapshots for auditability
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Eight-phase workflow (Ingest → Lint → Update → Cross-Ref → Lint → Log → Review → Commit)
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Separation of raw sources (immutable), wiki (LLM-maintained), and schema (reference)
 
 ### Domain Folders
 
-- **[[kb-sync/]]** — Core orchestration scripts and modules
-- **[[notebooklm/]]** — NotebookLM API integration
-- **[[obsidian/]]** — Obsidian vault staging and curation
-- **[[wiki/]]** — Wiki semantic synthesis system
-- **[[governance/]]** — Governance documents and approval policies
+- **`kb-sync/`** — Core orchestration scripts and modules
+- **`notebooklm/`** — NotebookLM API integration
+- **`obsidian/`** — Obsidian vault staging and curation
+- **`wiki/`** — Wiki semantic synthesis system
+- **`governance/`** — Governance documents and approval policies
 
 ---
 

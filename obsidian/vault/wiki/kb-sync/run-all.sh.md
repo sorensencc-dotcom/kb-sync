@@ -1,3 +1,9 @@
+---
+title: "run-all.sh"
+category: "utilities"
+status: "active"
+---
+
 # run-all.sh
 
 **Type:** Script  
@@ -57,20 +63,20 @@ The script coordinates flattening the repository using pyragify, consolidating o
 - Optional git post-commit hook
 
 ### Calls / Depends On
-- [[flatten.sh]] — repository flattening via pyragify
-- [[chunk.sh]] — pack size management
-- [[validate.sh]] — output validation
-- [[rollback.sh]] — restore mechanism
+- [[kb-sync/kb-sync/flatten.sh|flatten.sh]] — repository flattening via pyragify
+- [[kb-sync/kb-sync/chunk.sh|chunk.sh]] — pack size management
+- [[kb-sync/kb-sync/validate.sh|validate.sh]] — output validation
+- [[kb-sync/kb-sync/rollback.sh|rollback.sh]] — restore mechanism
 - `pyragify` (external CLI)
 - `notebooklm-mcp` (external MCP client)
 
 ### Related Concepts
-- [[Deterministic Sync Pipeline]] — sequential 6-phase execution model
-- [[Pack-Based Knowledge Management]] — consolidated knowledge representation
-- [[Fail-Soft Orchestration]] — continues despite individual stage failures
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — sequential 6-phase execution model
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — consolidated knowledge representation
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — continues despite individual stage failures
 
 ### Participates In Workflows
-- [[Deterministic Sync Pipeline]]
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
 
 ---
 
@@ -78,9 +84,9 @@ The script coordinates flattening the repository using pyragify, consolidating o
 
 ### Bidirectional Links
 
-- Related entities: [[flatten.sh]], [[chunk.sh]], [[validate.sh]], [[rollback.sh]]
-- Related concepts: [[Deterministic Sync Pipeline]], [[Pack-Based Knowledge Management]]
-- Backlinks from: [[kb-sync Core Module]]
+- Related entities: [[kb-sync/kb-sync/flatten.sh|flatten.sh]], [[kb-sync/kb-sync/chunk.sh|chunk.sh]], [[kb-sync/kb-sync/validate.sh|validate.sh]], [[kb-sync/kb-sync/rollback.sh|rollback.sh]]
+- Related concepts: [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]], [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- Backlinks from: [[kb-sync/kb-sync/index|kb-sync Core Module]]
 
 ---
 

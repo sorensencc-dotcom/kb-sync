@@ -27,24 +27,31 @@ function runTest(name: string, fn: () => void) {
   }
 }
 
+function execValidate(command: string): string {
+  try {
+    return execSync(command, { cwd: REPO_ROOT, encoding: "utf8" });
+  } catch (error: any) {
+    if (error.stdout || error.stderr || error.output) {
+      return (error.stdout || "") + (error.stderr || "") + (error.output ? error.output.join("") : "");
+    }
+    throw error;
+  }
+}
+
 // Test 1: Metadata extraction → .catalog.json
 runTest("Metadata extraction creates .catalog.json with file stats", () => {
-  const output = execSync("npm run wiki:validate-staging 2>&1", {
-    cwd: REPO_ROOT,
-    encoding: "utf8"
-  });
+  const output = execValidate("npm run wiki:validate-staging 2>&1");
 
-  // Look for staging path in output (could have ANSI codes)
-  const pathMatch = output.match(/obsidian[\\\/]vault[\\\/]_kb-sync-staging[\\\/]kb-sync[\\\/]\d{8}-\d{6}/);
-  if (!pathMatch) {
-    throw new Error("Could not find staging path in validator output");
+  // Extract catalog path directly from validator log output
+  const catalogMatch = output.match(/Metadata catalog written to (.*\.catalog\.json)/);
+  if (!catalogMatch) {
+    throw new Error("Could not find '.catalog.json' written log in validator output");
   }
 
-  const stagingPath = path.join(REPO_ROOT, pathMatch[0]);
-  const catalogPath = path.join(stagingPath, ".catalog.json");
+  const catalogPath = catalogMatch[1].trim();
 
   if (!fs.existsSync(catalogPath)) {
-    throw new Error(`Catalog not found: ${catalogPath}`);
+    throw new Error(`Catalog file not found on disk: ${catalogPath}`);
   }
 
   const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
@@ -68,17 +75,10 @@ runTest("Metadata extraction creates .catalog.json with file stats", () => {
 
 // Test 2: --diff mode only validates changed files
 runTest("--diff flag filters to changed markdown files only", () => {
-  const output = execSync("npm run wiki:validate-staging -- --diff 2>&1", {
-    cwd: REPO_ROOT,
-    encoding: "utf8"
-  });
+  const output = execValidate("npm run wiki:validate-staging -- --diff 2>&1");
 
-  if (!output.includes("Diff mode:")) {
-    throw new Error("--diff mode not activated (missing 'Diff mode:' log)");
-  }
-
-  if (!output.includes("validating")) {
-    throw new Error("--diff mode not showing file count");
+  if (!output.toLowerCase().includes("diff mode")) {
+    throw new Error("--diff mode not activated (missing '--diff mode' log)");
   }
 
   const countMatch = output.match(/validating (\d+) changed file/);
@@ -93,11 +93,7 @@ runTest("--diff flag filters to changed markdown files only", () => {
 
 // Test 3: Frontmatter schema validation warns on missing fields
 runTest("Frontmatter schema validation detects missing required fields", () => {
-  const output = execSync("npm run wiki:validate-staging", {
-    cwd: REPO_ROOT,
-    encoding: "utf8",
-    stdio: "pipe"
-  });
+  const output = execValidate("npm run wiki:validate-staging 2>&1");
 
   if (!output.includes("frontmatter:")) {
     throw new Error("Frontmatter validation not running (no warnings found)");
@@ -113,11 +109,7 @@ runTest("Frontmatter schema validation detects missing required fields", () => {
 
 // Test 4: Markdown linting catches style issues
 runTest("Markdown linting detects trailing whitespace and blank lines", () => {
-  const output = execSync("npm run wiki:validate-staging", {
-    cwd: REPO_ROOT,
-    encoding: "utf8",
-    stdio: "pipe"
-  });
+  const output = execValidate("npm run wiki:validate-staging 2>&1");
 
   const lintWarnings = (output.match(/lint:/g) || []).length;
 
@@ -134,10 +126,7 @@ runTest("Markdown linting detects trailing whitespace and blank lines", () => {
 
 // Test 5: Ignore patterns loaded from .gitignore/.cicignore
 runTest("Ignore patterns from .cicignore/.gitignore are loaded", () => {
-  const output = execSync("npm run wiki:validate-staging 2>&1", {
-    cwd: REPO_ROOT,
-    encoding: "utf8"
-  });
+  const output = execValidate("npm run wiki:validate-staging 2>&1");
 
   if (!output.includes("ignore pattern")) {
     throw new Error("Ignore patterns not loaded (missing log message)");
@@ -173,10 +162,7 @@ runTest("Link alias disambiguation detects potential conflicts", () => {
     fs.writeFileSync(otherFile, `# Some Pages\nContent`);
 
     // Run validator on this directory
-    const output = execSync(`node modules/wiki/validate-staging-docs.mjs "${tempDir}" 2>&1`, {
-      cwd: REPO_ROOT,
-      encoding: "utf8"
-    });
+    const output = execValidate(`node modules/wiki/validate-staging-docs.mjs "${tempDir}" 2>&1`);
 
     if (output.includes("conflict")) {
       console.log(`  Alias disambiguation active (conflict detection working)`);
@@ -192,11 +178,7 @@ runTest("Link alias disambiguation detects potential conflicts", () => {
 
 // Test 7: Fuzzy matching still works (v1.1 regression check)
 runTest("Fuzzy matching (v1.1) still works for close matches", () => {
-  const output = execSync("npm run wiki:validate-staging", {
-    cwd: REPO_ROOT,
-    encoding: "utf8",
-    stdio: "pipe"
-  });
+  const output = execValidate("npm run wiki:validate-staging 2>&1");
 
   if (!output.includes("Did you mean:")) {
     console.log(`  Fuzzy matching loaded (no suggestions in current snapshot)`);

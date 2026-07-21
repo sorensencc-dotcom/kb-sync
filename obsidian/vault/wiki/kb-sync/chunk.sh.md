@@ -1,3 +1,9 @@
+---
+title: "chunk.sh"
+category: "utilities"
+status: "active"
+---
+
 # chunk.sh
 
 **Type:** Script  
@@ -45,16 +51,16 @@ Produces `repo_knowledge_pack_part_aa.txt`, `repo_knowledge_pack_part_ab.txt`, e
 ## Relationships
 
 ### Called By
-- [[run-all.sh]] — master orchestrator
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — master orchestrator
 
 ### Calls / Depends On
 - `.nlm_pack/repo_knowledge_pack.txt` — input pack
 
 ### Related Concepts
-- [[Pack-Based Knowledge Management]] — manages pack size constraints
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — manages pack size constraints
 
 ### Participates In Workflows
-- [[Deterministic Sync Pipeline]] — Phase 3: Pack (size management)
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Phase 3: Pack (size management)
 
 ---
 
@@ -62,9 +68,9 @@ Produces `repo_knowledge_pack_part_aa.txt`, `repo_knowledge_pack_part_ab.txt`, e
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]], [[validate.sh]]
-- Related concepts: [[Pack-Based Knowledge Management]]
-- Backlinks from: [[kb-sync Core Module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]], [[kb-sync/kb-sync/validate.sh|validate.sh]]
+- Related concepts: [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- Backlinks from: [[kb-sync/kb-sync/index|kb-sync Core Module]]
 
 ---
 

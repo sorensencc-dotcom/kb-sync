@@ -1,3 +1,9 @@
+---
+title: "artifact-generator.sh"
+category: "utilities"
+status: "active"
+---
+
 # Artifact Generator Module
 
 **Purpose**: Generate interactive HTML reports from knowledge pack analysis  
@@ -116,7 +122,7 @@ When `npm run kb:sync:all` executes:
    - Artifact generated from Obsidian staging (separate report)
    - Both artifacts output to `_integration/`
 
-If either sync fails, artifact generation is **skipped for that target** ([[Fail-Soft Orchestration]]).
+If either sync fails, artifact generation is **skipped for that target** ([[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]]).
 
 ---
 
@@ -132,7 +138,7 @@ If either sync fails, artifact generation is **skipped for that target** ([[Fail
 
 ## Related Links
 
-- [[Three-Layer Vault Architecture]] — Vault organization and output dir
-- [[Fail-Soft Orchestration]] — Multi-target execution strategy
-- [[Pack-Based Knowledge Management]] — Knowledge pack structure
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Vault organization and output dir
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — Multi-target execution strategy
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — Knowledge pack structure
 - Source: `docs/modules/artifact-generator.md`

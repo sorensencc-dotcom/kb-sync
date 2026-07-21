@@ -1,3 +1,9 @@
+---
+title: "Semantic Ingest Workflow"
+category: "wiki"
+status: "active"
+---
+
 # Semantic Ingest Workflow
 
 **Type:** Workflow  
@@ -34,8 +40,8 @@ The eight-phase workflow ensures systematic, auditable wiki synthesis. Each phas
 
 ## Related Concepts
 
-- [[Karpathy LLM-Wiki Pattern]] — design pattern this workflow implements
-- [[Three-Layer Vault Architecture]] — workflow operates on Layer 2 (wiki)
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — design pattern this workflow implements
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — workflow operates on Layer 2 (wiki)
 
 ---
 
@@ -45,7 +51,7 @@ The eight-phase workflow ensures systematic, auditable wiki synthesis. Each phas
 - Phase 1: Ingest raw sources → identify 12 new entities (scripts, modules)
 - Phase 2: Lint → find 3 structural violations (missing entity pages)
 - Phase 3: Update → create 12 entity pages, 8 concept pages, fix violations
-- Phase 4: Cross-Ref → add [[Links]] and backlinks to all pages
+- Phase 4: Cross-Ref → add links and backlinks to all pages
 - Phase 5: Lint → verify no new violations introduced
 - Phase 6: Log → record: "Created 12 entities, 8 concepts, 34 cross-refs"
 - Phase 7: Review → operator verifies 5 spot-checked pages are correct
@@ -54,7 +60,7 @@ The eight-phase workflow ensures systematic, auditable wiki synthesis. Each phas
 
 **Example 2: Lint blocking update**
 - Phase 1: Identify 5 new entities
-- Phase 2: Lint → detect broken [[Links]] from prior session (reference to deleted page)
+- Phase 2: Lint → detect broken links from prior session (reference to deleted page)
 - Cannot proceed to Phase 3 (Update) until broken links are fixed
 - Operator fixes broken links manually or updates Index.md
 - Phase 2 re-runs → lint passes
@@ -76,18 +82,18 @@ The eight-phase workflow ensures systematic, auditable wiki synthesis. Each phas
 
 ### Entities That Use This Concept
 
-- [[ingest-wiki.sh]] — orchestrates workflow
-- [[run-all.sh]] — calls wiki ingestion as target
+- [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]] — orchestrates workflow
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — calls wiki ingestion as target
 
 ### Concepts This Concept Depends On
 
-- [[Karpathy LLM-Wiki Pattern]] — design pattern
-- [[Three-Layer Vault Architecture]] — wiki layer (Layer 2)
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — design pattern
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — wiki layer (Layer 2)
 
 ### Backlinks From
 
-- [[Karpathy LLM-Wiki Pattern]]
-- [[wiki module]]
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]]
+- [[kb-sync/wiki/index|wiki module]]
 
 ---
 
@@ -126,6 +132,6 @@ The workflow is designed to be operator-paced (no automation), ensuring human ov
 
 ## Related Pages
 
-- See [[Karpathy LLM-Wiki Pattern]] for design intent
-- See [[Three-Layer Vault Architecture]] for Layer 2 (wiki) details
-- See [[Log.md]] for audit trail examples
+- See [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] for design intent
+- See [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] for Layer 2 (wiki) details
+- See [[kb-sync/Log|Log.md]] for audit trail examples

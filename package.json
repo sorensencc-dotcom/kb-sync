@@ -33,7 +33,11 @@
     "test:core": "npx tsx tests/core-scripts-verification.ts",
     "test:obsidian": "npx tsx tests/obsidian-sync-verification.ts",
     "test:v12-features": "npx tsx tests/validate-staging-v12-features.ts",
-    "test:all": "npm run test:core && npm run test:obsidian && npm run test:notebooklm && npm run test:v12-features",
+    "test:contract-cleanup": "npx tsx tests/wiki-contract-cleanup-verification.ts",
+    "test:perf": "npx tsx tests/performance-benchmark.ts",
+    "test:all": "npm run test:core && npm run test:obsidian && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:perf",
+    "kb:pipeline:full": "npm run wiki:ingest && npm run wiki:validate-staging && npm run wiki:validate-contract && npm run wiki:cleanup-archives",
+    "kb:pre-flight": "npm run test:all && npm run wiki:validate-contract",
     "wiki:setup-hook": "node -e \"const fs=require('fs');fs.mkdirSync('.git/hooks',{recursive:true});fs.copyFileSync('scripts/wiki-validate-precommit.sh','.git/hooks/pre-commit');try{fs.chmodSync('.git/hooks/pre-commit',0o755)}catch{}console.log('pre-commit hook installed')\""
   },
   "devDependencies": {

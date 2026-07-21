@@ -1,3 +1,9 @@
+---
+title: "Raw Source Staging"
+category: "wiki"
+status: "active"
+---
+
 # Raw Source Staging
 
 **Type:** Pattern  
@@ -33,15 +39,15 @@ This pattern also enables traceability: if a wiki page cites a specific source v
 
 ## Related Concepts
 
-- [[Three-Layer Vault Architecture]] — Layer 1 (raw sources)
-- [[Manifest Mode]] — safe ingest strategy using manifest
-- [[Karpathy LLM-Wiki Pattern]] — raw sources support explicit synthesis
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Layer 1 (raw sources)
+- [[kb-sync/concepts/manifest-mode|Manifest Mode]] — safe ingest strategy using manifest
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — raw sources support explicit synthesis
 
 ---
 
 ## Examples
 
-**Example 1: [[ingest-obsidian.sh]] implements raw source staging**
+**Example 1: [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] implements raw source staging**
 - Stages kb-sync repo into `vault_root/_kb-sync-staging/kb-sync/20260711-174821/`
 - Creates second staging: `vault_root/_kb-sync-staging/kb-sync/20260712-093015/`
 - Both stagings remain; old one is audit trail
@@ -59,7 +65,7 @@ This pattern also enables traceability: if a wiki page cites a specific source v
 - Staging creates `FILES.manifest.txt` listing all staged files
 - Claude Code session verifies manifest before synthesizing wiki content
 - Manifest prevents accidental over-writes or missing files
-- Result: [[Manifest Mode]] ensures data integrity
+- Result: [[kb-sync/concepts/manifest-mode|Manifest Mode]] ensures data integrity
 
 ---
 
@@ -67,16 +73,16 @@ This pattern also enables traceability: if a wiki page cites a specific source v
 
 ### Entities That Use This Concept
 
-- [[ingest-obsidian.sh]] — primary implementation
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] — primary implementation
 
 ### Concepts This Concept Depends On
 
-- [[Three-Layer Vault Architecture]] — Layer 1
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Layer 1
 
 ### Backlinks From
 
-- [[Three-Layer Vault Architecture]]
-- [[Manifest Mode]]
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]]
+- [[kb-sync/concepts/manifest-mode|Manifest Mode]]
 
 ---
 
@@ -114,6 +120,6 @@ The pattern also supports distributed teams: multiple operators can reference th
 
 ## Related Pages
 
-- See [[Three-Layer Vault Architecture]] for Layer 1
-- See [[Manifest Mode]] for safe ingest strategy
-- See [[Semantic Ingest Workflow]] for wiki synthesis workflow
+- See [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] for Layer 1
+- See [[kb-sync/concepts/manifest-mode|Manifest Mode]] for safe ingest strategy
+- See [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] for wiki synthesis workflow

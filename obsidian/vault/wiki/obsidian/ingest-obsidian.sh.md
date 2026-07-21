@@ -1,3 +1,9 @@
+---
+title: "ingest-obsidian.sh"
+category: "sync-tools"
+status: "active"
+---
+
 # ingest-obsidian.sh
 
 **Type:** Script  
@@ -51,19 +57,19 @@ Preserves directory structure and generates a file manifest for auditability. En
 
 ### Called By
 - User via `npm run kb:sync:obsidian` command
-- [[run-all.sh]] — master orchestrator (optional target)
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — master orchestrator (optional target)
 
 ### Calls / Depends On
 - Obsidian vault directory (must exist and be writable)
 - Source repository (must be readable)
 
 ### Related Concepts
-- [[Three-Layer Vault Architecture]] — raw sources layer
-- [[Raw Source Staging]] — immutable timestamped snapshots
-- [[Manifest Mode]] — safe ingest strategy using file manifest
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — raw sources layer
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — immutable timestamped snapshots
+- [[kb-sync/concepts/manifest-mode|Manifest Mode]] — safe ingest strategy using file manifest
 
 ### Participates In Workflows
-- [[Semantic Ingest Workflow]] — Phase 1: staged sources
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Phase 1: staged sources
 
 ---
 
@@ -71,9 +77,9 @@ Preserves directory structure and generates a file manifest for auditability. En
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]]
-- Related concepts: [[Three-Layer Vault Architecture]], [[Raw Source Staging]], [[Manifest Mode]]
-- Backlinks from: [[obsidian module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]]
+- Related concepts: [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]], [[kb-sync/concepts/raw-source-staging|Raw Source Staging]], [[kb-sync/concepts/manifest-mode|Manifest Mode]]
+- Backlinks from: [[kb-sync/obsidian/index|obsidian module]]
 
 ---
 
@@ -90,6 +96,6 @@ Preserves directory structure and generates a file manifest for auditability. En
 
 Staging directories are timestamped to enable multiple ingest runs over time. Each run creates a new timestamped directory, preserving all prior source versions. This allows wiki pages to retroactively cite specific source versions by absolute path: `_kb-sync-staging/repo/20260711-174821/path/to/file.ts`.
 
-The manifest file (`FILES.manifest.txt`) lists all staged files with metadata (path, size, timestamp). This enables [[Manifest Mode]] — a safe ingest strategy where Claude Code can verify against the manifest before synthesizing wiki content.
+The manifest file (`FILES.manifest.txt`) lists all staged files with metadata (path, size, timestamp). This enables [[kb-sync/concepts/manifest-mode|Manifest Mode]] — a safe ingest strategy where Claude Code can verify against the manifest before synthesizing wiki content.
 
 Raw sources are never directly linked from wiki pages; only the staging directory path is cited. This maintains separation of concerns and audit trail.

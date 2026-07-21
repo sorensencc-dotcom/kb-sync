@@ -1,3 +1,9 @@
+---
+title: "Skill Approval & Installation Rules"
+category: "wiki"
+status: "active"
+---
+
 # Skill Approval & Installation Rules
 
 **Effective Date**: 2026-07-11  
@@ -101,7 +107,7 @@ Develop skill in kb-sync project:
 
 - Create `docs/skills/<skill-name>.md` (usage guide)
 - Create `kb-sync/modules/<domain>/<skill-name>.md` (wiki entity for orchestration)
-- Ensure schema compliance per [[Three-Layer Vault Architecture]]
+- Ensure schema compliance per [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]]
 
 ### 4. kb-sync Commit
 
@@ -162,6 +168,6 @@ Before marking ready for toolforge:
 
 ## Related Links
 
-- [[Semantic Ingest Workflow]] — Eight-phase synthesis workflow
-- [[Three-Layer Vault Architecture]] — Vault organization
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Eight-phase synthesis workflow
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Vault organization
 - Source: `docs/governance/skill-approval-rules.md` (staging: `/vault/_kb-sync-staging/kb-sync/20260714-213355/`)

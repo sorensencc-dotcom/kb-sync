@@ -142,7 +142,7 @@ fi
 
 # --- STEP 1: TRY PYRAGIFY FIRST (if available) --------------------------------
 PYRAGIFY_CONFIG="$REPO_ROOT/pyragify.yaml"
-if command -v uv >/dev/null 2>&1 && [ -f "$PYRAGIFY_CONFIG" ]; then
+if [ "$USE_MANIFEST" = false ] && command -v uv >/dev/null 2>&1 && [ -f "$PYRAGIFY_CONFIG" ]; then
   log_info "Attempting pyragify flattener via uv..."
   if uv run pyragify --config-file "$PYRAGIFY_CONFIG"; then
     log_info "pyragify succeeded."

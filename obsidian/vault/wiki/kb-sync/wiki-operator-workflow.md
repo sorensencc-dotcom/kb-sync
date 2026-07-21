@@ -1,3 +1,9 @@
+---
+title: "Wiki Operator Workflow"
+category: "sync-tools"
+status: "active"
+---
+
 # Wiki Operator Workflow
 
 **Type:** Module Documentation  
@@ -19,14 +25,14 @@ Complete guide for running a wiki semantic ingest session via Claude Code. Cover
 ## Relationships
 
 - **Part of:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md)
-- **Uses:** [[Wiki Schema]], [[Wiki Lint Rules]], [[Wiki Update Rules]]
+- **Uses:** [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]], [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]]
 - **Depends on:** [Karpathy LLM-Wiki Pattern](../concepts/karpathy-llm-wiki-pattern.md)
-- **References:** [[Pack-Based Knowledge Management]]
+- **References:** [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
 
 ## Cross-References
 
-- Related concepts: [[Karpathy LLM-Wiki Pattern]], [[Pack-Based Knowledge Management]]
-- Related entities: [[Wiki Schema]], [[Wiki Lint Rules]], [[Wiki Update Rules]]
+- Related concepts: [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]], [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- Related entities: [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]], [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]]
 
 ## Source Citations
 

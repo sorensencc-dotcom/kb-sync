@@ -1,3 +1,9 @@
+---
+title: "kb-sync Core Module"
+category: "wiki"
+status: "active"
+---
+
 # kb-sync Core Module
 
 **Category:** Infrastructure & System Orchestration  
@@ -5,21 +11,21 @@
 
 ## Entities
 
-- [[run-all.sh]] — Master orchestrator script; executes all pipeline stages
-- [[flatten.sh]] — Repository flattening via pyragify; AST parsing and file extraction
-- [[chunk.sh]] — Pack chunking for oversized outputs (5MB+ warning, 8MB limit)
-- [[validate.sh]] — Pack integrity validation and structure verification
-- [[artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
-- [[Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
-- [[Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
-- [[Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki
-- [[Wiki Update Rules]] — Rules for creating, updating, and removing wiki entity/concept pages
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — Master orchestrator script; executes all pipeline stages
+- [[kb-sync/kb-sync/flatten.sh|flatten.sh]] — Repository flattening via pyragify; AST parsing and file extraction
+- [[kb-sync/kb-sync/chunk.sh|chunk.sh]] — Pack chunking for oversized outputs (5MB+ warning, 8MB limit)
+- [[kb-sync/kb-sync/validate.sh|validate.sh]] — Pack integrity validation and structure verification
+- [[kb-sync/kb-sync/artifact-generator.sh|artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
+- [[kb-sync/kb-sync/wiki-schema|Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
+- [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
+- [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki
+- [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]] — Rules for creating, updating, and removing wiki entity/concept pages
 
 ## Concepts
 
-- [[Pack-Based Knowledge Management]] — Consolidated single-file knowledge representation
-- [[Deterministic Sync Pipeline]] — Sequential, repeatable execution with state tracking
-- [[Fail-Soft Orchestration]] — Multi-stage execution that continues despite individual failures
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — Consolidated single-file knowledge representation
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Sequential, repeatable execution with state tracking
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — Multi-stage execution that continues despite individual failures
 
 ## Module Purpose
 
@@ -29,6 +35,6 @@ The kb-sync core module provides the foundational scripting infrastructure for f
 
 ## See Also
 
-- [[notebooklm module]] — NotebookLM-specific sync pipeline
-- [[obsidian module]] — Obsidian vault staging integration
-- [[wiki module]] — Wiki semantic synthesis system
+- [[kb-sync/notebooklm/index|notebooklm module]] — NotebookLM-specific sync pipeline
+- [[kb-sync/obsidian/index|obsidian module]] — Obsidian vault staging integration
+- [[kb-sync/wiki/index|wiki module]] — Wiki semantic synthesis system

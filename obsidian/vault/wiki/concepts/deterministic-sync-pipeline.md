@@ -1,3 +1,9 @@
+---
+title: "Deterministic Sync Pipeline"
+category: "wiki"
+status: "active"
+---
+
 # Deterministic Sync Pipeline
 
 **Type:** Architecture, Workflow  
@@ -34,28 +40,28 @@ The six-phase model also maps cleanly to distributed execution: each phase can b
 
 ## Related Concepts
 
-- [[Pack-Based Knowledge Management]] — Phase 3 produces consolidated pack
-- [[Fail-Soft Orchestration]] — execution model for phase coordination
-- [[Deterministic Sync Pipeline]] — overall orchestration
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — Phase 3 produces consolidated pack
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — execution model for phase coordination
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — overall orchestration
 
 ---
 
 ## Examples
 
-**Example 1: [[run-all.sh]] orchestrates all six phases**
+**Example 1: [[kb-sync/kb-sync/run-all.sh|run-all.sh]] orchestrates all six phases**
 - Phase 1: User runs `npm run kb:sync`
-- Phase 2: [[flatten.sh]] extracts repository via pyragify
-- Phase 3: [[chunk.sh]] consolidates and chunks if needed
-- Phase 4: [[ingest-notebooklm.sh]] purges old NotebookLM sources
-- Phase 5: [[ingest-notebooklm.sh]] uploads fresh pack
-- Phase 6: [[validate.sh]] confirms integrity
+- Phase 2: [[kb-sync/kb-sync/flatten.sh|flatten.sh]] extracts repository via pyragify
+- Phase 3: [[kb-sync/kb-sync/chunk.sh|chunk.sh]] consolidates and chunks if needed
+- Phase 4: [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]] purges old NotebookLM sources
+- Phase 5: [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]] uploads fresh pack
+- Phase 6: [[kb-sync/kb-sync/validate.sh|validate.sh]] confirms integrity
 - Result: external systems are synchronized with latest codebase
 
 **Example 2: Fail-soft execution enables recovery**
 - Phase 5 (Upload to NotebookLM) fails due to API error
 - Phase 6 (Verify) detects failure and reports status
 - Operator can immediately retry upload without re-running expensive flatten stage
-- [[rollback.sh]] can restore previous known-good pack
+- [[kb-sync/kb-sync/rollback.sh|rollback.sh]] can restore previous known-good pack
 - Result: operator has clear recovery path
 
 **Example 3: Determinism enables testing**
@@ -70,21 +76,21 @@ The six-phase model also maps cleanly to distributed execution: each phase can b
 
 ### Entities That Use This Concept
 
-- [[run-all.sh]] — master orchestrator
-- [[flatten.sh]] — Phase 2
-- [[chunk.sh]] — Phase 3
-- [[ingest-notebooklm.sh]] — Phases 4, 5
-- [[validate.sh]] — Phase 6
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — master orchestrator
+- [[kb-sync/kb-sync/flatten.sh|flatten.sh]] — Phase 2
+- [[kb-sync/kb-sync/chunk.sh|chunk.sh]] — Phase 3
+- [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]] — Phases 4, 5
+- [[kb-sync/kb-sync/validate.sh|validate.sh]] — Phase 6
 
 ### Concepts This Concept Depends On
 
-- [[Pack-Based Knowledge Management]] — Phase 3 output
-- [[Fail-Soft Orchestration]] — execution model
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — Phase 3 output
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — execution model
 
 ### Backlinks From
 
-- [[Fail-Soft Orchestration]]
-- [[kb-sync Core Module]]
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]]
+- [[kb-sync/kb-sync/index|kb-sync Core Module]]
 
 ---
 
@@ -122,6 +128,6 @@ The model also enables future parallelization: once verified, independent phase 
 
 ## Related Pages
 
-- See [[Pack-Based Knowledge Management]] for Phase 3 data model
-- See [[Fail-Soft Orchestration]] for Phase coordination pattern
-- See [[rollback.sh]] for recovery mechanism
+- See [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] for Phase 3 data model
+- See [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] for Phase coordination pattern
+- See [[kb-sync/kb-sync/rollback.sh|rollback.sh]] for recovery mechanism

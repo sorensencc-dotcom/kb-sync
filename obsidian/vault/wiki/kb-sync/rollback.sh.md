@@ -1,3 +1,9 @@
+---
+title: "rollback.sh"
+category: "utilities"
+status: "active"
+---
+
 # rollback.sh
 
 **Type:** Script  
@@ -37,7 +43,7 @@ Enables operators to quickly recover from failed sync runs or bad source uploads
 - Network-bound (API calls to external targets)
 
 ### Constraints & Limits
-- Requires backup file to exist (created by [[run-all.sh]] after successful upload)
+- Requires backup file to exist (created by [[kb-sync/kb-sync/run-all.sh|run-all.sh]] after successful upload)
 - Can only rollback one generation (oldest backup is overwritten by new sync)
 - Backup must be less than hard limit (8 MB)
 
@@ -54,7 +60,7 @@ Enables operators to quickly recover from failed sync runs or bad source uploads
 - External sync targets (NotebookLM, Obsidian, wiki)
 
 ### Related Concepts
-- [[Deterministic Sync Pipeline]] — fallback mechanism
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — fallback mechanism
 
 ### Participates In Workflows
 - Incident response workflows
@@ -65,9 +71,9 @@ Enables operators to quickly recover from failed sync runs or bad source uploads
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]]
-- Related concepts: [[Deterministic Sync Pipeline]]
-- Backlinks from: [[kb-sync Core Module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]]
+- Related concepts: [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
+- Backlinks from: [[kb-sync/kb-sync/index|kb-sync Core Module]]
 
 ---
 

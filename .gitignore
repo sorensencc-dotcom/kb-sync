@@ -12,6 +12,7 @@ site/
 .test_*
 C*
 .validation-report.json
+.performance-report.json
 obsidian/vault/_kb-sync-staging/
 obsidian/vault/.obsidian/
 modules/notebooklm/ingest-notebooklm.sh.bak

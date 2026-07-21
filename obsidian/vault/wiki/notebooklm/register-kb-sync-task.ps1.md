@@ -1,3 +1,9 @@
+---
+title: "register-kb-sync-task.ps1"
+category: "utilities"
+status: "active"
+---
+
 # register-kb-sync-task.ps1
 
 **Type:** Script  
@@ -54,7 +60,7 @@ Registers a Windows scheduled task to run `npm run kb:sync` nightly, eliminating
 - npm environment
 
 ### Related Concepts
-- [[Deterministic Sync Pipeline]]
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
 
 ### Participates In Workflows
 - Windows-specific setup workflows
@@ -66,9 +72,9 @@ Registers a Windows scheduled task to run `npm run kb:sync` nightly, eliminating
 
 ### Bidirectional Links
 
-- Related entities: [[kb-sync-nightly.sh]]
-- Related concepts: [[Deterministic Sync Pipeline]]
-- Backlinks from: [[notebooklm module]]
+- Related entities: [[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]]
+- Related concepts: [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
+- Backlinks from: [[kb-sync/notebooklm/index|notebooklm module]]
 
 ---
 

@@ -1,3 +1,9 @@
+---
+title: "kb-sync-nightly.sh"
+category: "utilities"
+status: "active"
+---
+
 # kb-sync-nightly.sh
 
 **Type:** Script  
@@ -52,11 +58,11 @@ Invokes the full kb-sync pipeline (`npm run kb:sync`) on a cron schedule (typica
 - Edge-node evaluation runner
 
 ### Calls / Depends On
-- [[run-all.sh]] — full pipeline execution
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — full pipeline execution
 - npm environment
 
 ### Related Concepts
-- [[Deterministic Sync Pipeline]]
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
 
 ### Participates In Workflows
 - CI/CD automation workflows
@@ -68,9 +74,9 @@ Invokes the full kb-sync pipeline (`npm run kb:sync`) on a cron schedule (typica
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]], [[register-kb-sync-task.ps1]]
-- Related concepts: [[Deterministic Sync Pipeline]]
-- Backlinks from: [[notebooklm module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]], [[kb-sync/notebooklm/register-kb-sync-task.ps1|register-kb-sync-task.ps1]]
+- Related concepts: [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
+- Backlinks from: [[kb-sync/notebooklm/index|notebooklm module]]
 
 ---
 

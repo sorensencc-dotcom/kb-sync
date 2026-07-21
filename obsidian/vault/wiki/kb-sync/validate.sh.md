@@ -1,3 +1,9 @@
+---
+title: "validate.sh"
+category: "utilities"
+status: "active"
+---
+
 # validate.sh
 
 **Type:** Script  
@@ -44,16 +50,16 @@ Runs as post-pack step to ensure consolidated pack is ready for distribution to 
 ## Relationships
 
 ### Called By
-- [[run-all.sh]] — master orchestrator
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — master orchestrator
 
 ### Calls / Depends On
 - `.nlm_pack/repo_knowledge_pack.txt` — input
 
 ### Related Concepts
-- [[Pack-Based Knowledge Management]] — validates pack consistency
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — validates pack consistency
 
 ### Participates In Workflows
-- [[Deterministic Sync Pipeline]] — Phase 6: Verify
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Phase 6: Verify
 
 ---
 
@@ -61,9 +67,9 @@ Runs as post-pack step to ensure consolidated pack is ready for distribution to 
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]], [[flatten.sh]], [[chunk.sh]]
-- Related concepts: [[Pack-Based Knowledge Management]]
-- Backlinks from: [[kb-sync Core Module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]], [[kb-sync/kb-sync/flatten.sh|flatten.sh]], [[kb-sync/kb-sync/chunk.sh|chunk.sh]]
+- Related concepts: [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- Backlinks from: [[kb-sync/kb-sync/index|kb-sync Core Module]]
 
 ---
 

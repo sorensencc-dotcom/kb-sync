@@ -112,7 +112,10 @@ if [ -f "$REPO_ROOT/.env" ]; then
     # Strip surrounding quotes
     env_val="${env_val#\"}" ; env_val="${env_val%\"}"
     env_val="${env_val#\'}" ; env_val="${env_val%\'}"
-    export "$env_key"="$env_val"
+    # Only set if not already present in environment
+    if [ -z "${!env_key+x}" ]; then
+      export "$env_key"="$env_val"
+    fi
   done < "$REPO_ROOT/.env"
 fi
 

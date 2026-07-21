@@ -1,3 +1,9 @@
+---
+title: "Pack-Based Knowledge Management"
+category: "wiki"
+status: "active"
+---
+
 # Pack-Based Knowledge Management
 
 **Type:** Design Pattern  
@@ -32,26 +38,26 @@ The pack also serves as an audit trail: operators can inspect exactly what was i
 
 ## Related Concepts
 
-- [[Deterministic Sync Pipeline]] — orchestrates pack creation and distribution
-- [[Three-Layer Vault Architecture]] — raw sources and pack as Layer 1
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — orchestrates pack creation and distribution
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — raw sources and pack as Layer 1
 
 ---
 
 ## Examples
 
-**Example 1: [[flatten.sh]] creates the pack**
+**Example 1: [[kb-sync/kb-sync/flatten.sh|flatten.sh]] creates the pack**
 - Scans repository with pyragify (AST-aware extraction)
 - Applies exclusion rules from `pyragify.yaml`
 - Outputs flattened file list (stdout)
 - Result: single data stream ready for consolidation
 
-**Example 2: [[chunk.sh]] manages size constraints**
+**Example 2: [[kb-sync/kb-sync/chunk.sh|chunk.sh]] manages size constraints**
 - NotebookLM API has 8MB hard limit per source
 - If pack exceeds 8MB, chunking splits it into line-safe parts
 - Upload stage processes chunks individually
 - Result: large codebases can be synced without truncation
 
-**Example 3: [[validate.sh]] ensures consistency**
+**Example 3: [[kb-sync/kb-sync/validate.sh|validate.sh]] ensures consistency**
 - Verifies pack has correct delimiter structure (every file has START and END marker)
 - Confirms file count matches expectation
 - Detects truncation or corruption
@@ -63,19 +69,19 @@ The pack also serves as an audit trail: operators can inspect exactly what was i
 
 ### Entities That Use This Concept
 
-- [[flatten.sh]] — creates pack
-- [[chunk.sh]] — manages pack size
-- [[validate.sh]] — verifies pack integrity
-- [[run-all.sh]] — orchestrates pack lifecycle
+- [[kb-sync/kb-sync/flatten.sh|flatten.sh]] — creates pack
+- [[kb-sync/kb-sync/chunk.sh|chunk.sh]] — manages pack size
+- [[kb-sync/kb-sync/validate.sh|validate.sh]] — verifies pack integrity
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — orchestrates pack lifecycle
 
 ### Concepts This Concept Depends On
 
-- [[Deterministic Sync Pipeline]] — orchestration
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — orchestration
 
 ### Backlinks From
 
-- [[Deterministic Sync Pipeline]]
-- [[Karpathy LLM-Wiki Pattern]]
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]]
 
 ---
 
@@ -118,5 +124,5 @@ The pack format (file delimiters) is deliberately simple to avoid vendor lock-in
 
 ## Related Pages
 
-- See [[Deterministic Sync Pipeline]] for pack lifecycle orchestration
-- See [[Raw Source Staging]] for how packs inform wiki synthesis
+- See [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] for pack lifecycle orchestration
+- See [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] for how packs inform wiki synthesis

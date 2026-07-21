@@ -1,3 +1,9 @@
+---
+title: "Wiki Lint Rules"
+category: "sync-tools"
+status: "active"
+---
+
 # Wiki Lint Rules
 
 **Type:** Module Documentation  
@@ -19,14 +25,14 @@ Defines structural, referential, and semantic checks for wiki integrity. Enforce
 ## Relationships
 
 - **Used in:** [Wiki Operator Workflow](./wiki-operator-workflow.md) (Phase 2 and Phase 5)
-- **Validates:** [[Wiki Schema]], [[Wiki Structure]]
-- **Depends on:** [[Pack-Based Knowledge Management]]
+- **Validates:** [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], wiki structure
+- **Depends on:** [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
 - **Part of:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md)
 
 ## Cross-References
 
-- Related concepts: [[Karpathy LLM-Wiki Pattern]], [[Wiki Quality Assurance]]
-- Related entities: [[Wiki Schema]], [[Wiki Operator Workflow]], [[Wiki Update Rules]]
+- Related concepts: [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]], wiki quality assurance
+- Related entities: [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]], [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]]
 
 ## Source Citations
 

@@ -237,7 +237,7 @@ exit 0
       throw new Error("Sync script execution did not log success message");
     }
 
-    if (!output.includes("exceeds the hard limit") || !output.includes("Initiating automated line-safe chunk splitting")) {
+    if (!output.includes("exceeds hard limit") || !output.includes("Chunking oversized pack file")) {
       throw new Error("Sync script did not trigger chunk splitting for the large repository pack");
     }
 
@@ -311,7 +311,7 @@ exit 0
       throw new Error("Rollback did not invoke CLI to purge sources");
     }
 
-    if (!output.includes("Uploading backup file")) {
+    if (!output.includes("Uploading:") && !output.includes("Re-uploading")) {
       throw new Error("Rollback did not log uploading backup files");
     }
   } finally {

@@ -1,3 +1,9 @@
+---
+title: "CIC Governance & Policy"
+category: "wiki"
+status: "active"
+---
+
 # CIC Governance & Policy
 
 **Category:** Administration & Process  
@@ -5,12 +11,12 @@
 
 ## Governance Documents
 
-- [[skill-approval-rules]] — Approval tiers, skill development workflow, toolforge registration process
+- [[kb-sync/governance/skill-approval-rules|skill-approval-rules]] — Approval tiers, skill development workflow, toolforge registration process
 
 ## Related Concepts
 
-- [[Semantic Ingest Workflow]] — Human-in-loop wiki synthesis framework
-- [[Three-Layer Vault Architecture]] — Governance of vault layers
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Human-in-loop wiki synthesis framework
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Governance of vault layers
 
 ---
 

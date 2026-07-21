@@ -1,3 +1,9 @@
+---
+title: "Wiki Schema"
+category: "sync-tools"
+status: "active"
+---
+
 # Wiki Schema
 
 **Type:** Module Documentation  
@@ -24,8 +30,8 @@ Defines the three-layer Karpathy LLM-wiki pattern architecture for kb-sync Obsid
 
 ## Cross-References
 
-- Related concepts: [[Karpathy LLM-Wiki Pattern]], [[Pack-Based Knowledge Management]], [[Three-Layer Vault Architecture]]
-- Related entities: [[Wiki Operator Workflow]], [[Wiki Lint Rules]], [[Wiki Update Rules]]
+- Related concepts: [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]], [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]], [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]]
+- Related entities: [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]], [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]]
 
 ## Source Citations
 

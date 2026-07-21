@@ -1,3 +1,9 @@
+---
+title: "ingest-wiki.sh"
+category: "sync-tools"
+status: "active"
+---
+
 # ingest-wiki.sh
 
 **Type:** Script  
@@ -60,12 +66,12 @@ Serves as the entry point for Claude Code sessions to systematically synthesize 
 - Git environment (for commit)
 
 ### Related Concepts
-- [[Semantic Ingest Workflow]] — 8-phase workflow orchestration
-- [[Karpathy LLM-Wiki Pattern]] — implements Karpathy's wiki design
-- [[Three-Layer Vault Architecture]] — wiki layer synthesis
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — 8-phase workflow orchestration
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — implements Karpathy's wiki design
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — wiki layer synthesis
 
 ### Participates In Workflows
-- [[Semantic Ingest Workflow]]
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
 - Human-in-the-loop knowledge curation
 
 ---
@@ -74,9 +80,9 @@ Serves as the entry point for Claude Code sessions to systematically synthesize 
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]]
-- Related concepts: [[Semantic Ingest Workflow]], [[Karpathy LLM-Wiki Pattern]], [[Three-Layer Vault Architecture]]
-- Backlinks from: [[wiki module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]]
+- Related concepts: [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]], [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]], [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]]
+- Backlinks from: [[kb-sync/wiki/index|wiki module]]
 
 ---
 

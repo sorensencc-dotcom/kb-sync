@@ -1,3 +1,9 @@
+---
+title: "flatten.sh"
+category: "utilities"
+status: "active"
+---
+
 # flatten.sh
 
 **Type:** Script  
@@ -23,7 +29,7 @@ Produces raw extracted file content that serves as input to the pack consolidati
 - Environment: Python environment (pyragify via `uv run`)
 
 ### Output
-- Stdout: extracted and filtered file contents (used by [[chunk.sh]] and pack stage)
+- Stdout: extracted and filtered file contents (used by [[kb-sync/kb-sync/chunk.sh|chunk.sh]] and pack stage)
 - Exit code: 0 (success), 1 (parsing error or exclusion conflict)
 
 ### Side Effects
@@ -47,17 +53,17 @@ Produces raw extracted file content that serves as input to the pack consolidati
 ## Relationships
 
 ### Called By
-- [[run-all.sh]] — master orchestrator
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — master orchestrator
 
 ### Calls / Depends On
 - `pyragify` (external tool)
 - `.gitignore`, `pyragify.yaml` (configuration)
 
 ### Related Concepts
-- [[Pack-Based Knowledge Management]] — upstream step in pack creation
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — upstream step in pack creation
 
 ### Participates In Workflows
-- [[Deterministic Sync Pipeline]] — Phase 2: Flatten
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Phase 2: Flatten
 
 ---
 
@@ -65,9 +71,9 @@ Produces raw extracted file content that serves as input to the pack consolidati
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]], [[chunk.sh]]
-- Related concepts: [[Pack-Based Knowledge Management]]
-- Backlinks from: [[kb-sync Core Module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]], [[kb-sync/kb-sync/chunk.sh|chunk.sh]]
+- Related concepts: [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- Backlinks from: [[kb-sync/kb-sync/index|kb-sync Core Module]]
 
 ---
 

@@ -1,3 +1,9 @@
+---
+title: "ingest-notebooklm.sh"
+category: "utilities"
+status: "active"
+---
+
 # ingest-notebooklm.sh
 
 **Type:** Script  
@@ -28,7 +34,7 @@ The script purges all existing sources from the target notebook, uploads the fre
 - Exit code: 0 (success), 1 (API error or validation failure)
 
 ### Side Effects
-- Purges all existing sources in target notebook (irreversible, use [[rollback.sh]] to restore)
+- Purges all existing sources in target notebook (irreversible, use [[kb-sync/kb-sync/rollback.sh|rollback.sh]] to restore)
 - Uploads new sources to NotebookLM API
 - Creates backup files for rollback
 
@@ -48,7 +54,7 @@ The script purges all existing sources from the target notebook, uploads the fre
 ## Relationships
 
 ### Called By
-- [[run-all.sh]] — master orchestrator
+- [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — master orchestrator
 - `npm run kb:sync` command
 - CI/CD pipelines
 - Post-commit hooks (optional)
@@ -56,15 +62,15 @@ The script purges all existing sources from the target notebook, uploads the fre
 ### Calls / Depends On
 - `notebooklm-mcp` CLI (external MCP client)
 - `.env` file (credentials)
-- [[chunk.sh]] (for size management, if needed)
+- [[kb-sync/kb-sync/chunk.sh|chunk.sh]] (for size management, if needed)
 
 ### Related Concepts
-- [[Deterministic Sync Pipeline]] — implements NotebookLM-specific phases
-- [[Pack-Based Knowledge Management]] — uploads consolidated pack
-- [[Fail-Soft Orchestration]] — continues despite per-target failures
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — implements NotebookLM-specific phases
+- [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — uploads consolidated pack
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — continues despite per-target failures
 
 ### Participates In Workflows
-- [[Deterministic Sync Pipeline]]
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]]
 
 ---
 
@@ -72,9 +78,9 @@ The script purges all existing sources from the target notebook, uploads the fre
 
 ### Bidirectional Links
 
-- Related entities: [[run-all.sh]], [[chunk.sh]], [[kb-sync-nightly.sh]]
-- Related concepts: [[Deterministic Sync Pipeline]], [[Pack-Based Knowledge Management]]
-- Backlinks from: [[notebooklm module]]
+- Related entities: [[kb-sync/kb-sync/run-all.sh|run-all.sh]], [[kb-sync/kb-sync/chunk.sh|chunk.sh]], [[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]]
+- Related concepts: [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]], [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- Backlinks from: [[kb-sync/notebooklm/index|notebooklm module]]
 
 ---
 
@@ -91,6 +97,6 @@ The script purges all existing sources from the target notebook, uploads the fre
 
 The script uses the `notebooklm-mcp sources delete --notebook "$NOTEBOOK_ID" --all` command to purge old sources before uploading new ones. This prevents stale citations and conflicting source references. The purge-then-upload sequence ensures consistency.
 
-If pack size exceeds 5 MB, the script logs a warning; if it exceeds 8 MB, it invokes [[chunk.sh]] to split the pack and upload chunks individually.
+If pack size exceeds 5 MB, the script logs a warning; if it exceeds 8 MB, it invokes [[kb-sync/kb-sync/chunk.sh|chunk.sh]] to split the pack and upload chunks individually.
 
 Backup creation is deferred until successful upload, ensuring only known-good packs are backed up.

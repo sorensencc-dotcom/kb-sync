@@ -35,9 +35,12 @@ function toBashPath(absolutePath: string): string {
 
 // Convert Windows path to Git Bash mount path (/mnt/c/...) for environment variables
 function toMountPath(windowsPath: string): string {
-  return windowsPath
-    .replace(/^([A-Z]):\\/, (_, drive) => `/mnt/${drive.toLowerCase()}/`)
-    .replace(/\\/g, '/');
+  const normalized = windowsPath.replace(/\\/g, '/');
+  const match = normalized.match(/^([A-Za-z]):\/(.*)/);
+  if (match) {
+    return `/mnt/${match[1].toLowerCase()}/${match[2]}`;
+  }
+  return normalized;
 }
 
 // Clean inherited GIT environment
@@ -114,14 +117,10 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
 
   try {
     // Run staging script with temp vault
-    const env = getCleanEnv();
-    env.OBSIDIAN_VAULT_ROOT = toMountPath(tempVaultRoot);
-
-    const output = execSync(`bash modules/obsidian/ingest-obsidian.sh`, {
+    const vaultMount = toMountPath(tempVaultRoot);
+    const output = execSync(`bash -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
       cwd: REPO_ROOT,
-      env: env,
-      encoding: "utf8",
-      stdio: "pipe"
+      encoding: "utf8"
     });
 
     // Check that staging directory was created
@@ -179,12 +178,9 @@ runTest("Staging script prints operator prompt with staging path", () => {
   }
 
   try {
-    const env = getCleanEnv();
-    env.OBSIDIAN_VAULT_ROOT = toMountPath(tempVaultRoot);
-
-    const output = execSync(`bash modules/obsidian/ingest-obsidian.sh 2>&1`, {
+    const vaultMount = toMountPath(tempVaultRoot);
+    const output = execSync(`bash -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
       cwd: REPO_ROOT,
-      env: env,
       encoding: "utf8"
     });
 

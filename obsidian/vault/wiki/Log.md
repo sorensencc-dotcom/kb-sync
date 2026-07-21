@@ -1,3 +1,9 @@
+---
+title: "Sync Log"
+category: "wiki"
+status: "active"
+---
+
 # Sync Log
 
 Audit trail of kb-sync operations and manual synthesis events.
@@ -23,20 +29,20 @@ Audit trail of kb-sync operations and manual synthesis events.
 **Changes:**
 
 - Created 13 entities across 4 domain folders:
-  - kb-sync: [[run-all.sh]], [[flatten.sh]], [[chunk.sh]], [[validate.sh]], [[rollback.sh]]
-  - notebooklm: [[ingest-notebooklm.sh]], [[kb-sync-nightly.sh]], [[register-kb-sync-task.ps1]]
-  - obsidian: [[ingest-obsidian.sh]]
-  - wiki: [[ingest-wiki.sh]]
+  - kb-sync: [[kb-sync/kb-sync/run-all.sh|run-all.sh]], [[kb-sync/kb-sync/flatten.sh|flatten.sh]], [[kb-sync/kb-sync/chunk.sh|chunk.sh]], [[kb-sync/kb-sync/validate.sh|validate.sh]], [[kb-sync/kb-sync/rollback.sh|rollback.sh]]
+  - notebooklm: [[kb-sync/notebooklm/ingest-notebooklm.sh|ingest-notebooklm.sh]], [[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]], [[kb-sync/notebooklm/register-kb-sync-task.ps1|register-kb-sync-task.ps1]]
+  - obsidian: [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]]
+  - wiki: [[kb-sync/wiki/ingest-wiki.sh|ingest-wiki.sh]]
 
 - Created 8 major concepts:
-  - [[Three-Layer Vault Architecture]] — Architectural foundation (raw sources, wiki, schema)
-  - [[Karpathy LLM-Wiki Pattern]] — Design pattern for LLM-maintained wiki
-  - [[Pack-Based Knowledge Management]] — Consolidated knowledge pack model
-  - [[Deterministic Sync Pipeline]] — Six-phase orchestration (Trigger → Flatten → Pack → Purge → Upload → Verify)
-  - [[Fail-Soft Orchestration]] — Multi-target execution with graceful degradation
-  - [[Raw Source Staging]] — Timestamped immutable snapshots for auditability
-  - [[Semantic Ingest Workflow]] — Eight-phase synthesis workflow
-  - [[Manifest Mode]] — Safe ingest strategy with file verification
+  - [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Architectural foundation (raw sources, wiki, schema)
+  - [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — Design pattern for LLM-maintained wiki
+  - [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]] — Consolidated knowledge pack model
+  - [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Six-phase orchestration (Trigger → Flatten → Pack → Purge → Upload → Verify)
+  - [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — Multi-target execution with graceful degradation
+  - [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — Timestamped immutable snapshots for auditability
+  - [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Eight-phase synthesis workflow
+  - [[kb-sync/concepts/manifest-mode|Manifest Mode]] — Safe ingest strategy with file verification
 
 - Updated Index.md with entities, concepts, and cross-reference map
 - Created 4 domain folder indexes: kb-sync/, notebooklm/, obsidian/, wiki/
@@ -63,10 +69,10 @@ Audit trail of kb-sync operations and manual synthesis events.
 **Changes:**
 
 Created 4 new entities documenting wiki module architecture and workflow:
-- [[Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
-- [[Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
-- [[Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki
-- [[Wiki Update Rules]] — Rules for creating, updating, and removing wiki entity/concept pages
+- [[kb-sync/kb-sync/wiki-schema|Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
+- [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
+- [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki
+- [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]] — Rules for creating, updating, and removing wiki entity/concept pages
 
 Updated kb-sync Index.md:
 - Added 4 new entity references to wiki module documentation
@@ -145,29 +151,29 @@ New staging includes 13 additional documentation files from `docs/governance/` a
 
 **New Entities Created:**
 
-1. **[[artifact-generator.sh]]** (kb-sync Core)
+1. **[[kb-sync/kb-sync/artifact-generator.sh|artifact-generator.sh]]** (kb-sync Core)
    - Post-sync report generation; URL analysis and link health visualization
    - Supports NotebookLM and Obsidian sources
    - Interactive HTML dashboard with severity classification
    
-2. **[[skill-approval-rules]]** (Governance & Policy) — NEW FOLDER
+2. **[[kb-sync/governance/skill-approval-rules|skill-approval-rules]]** (Governance & Policy) — NEW FOLDER
    - Skill approval tiers (Tier 0 auto-install, Tier 1 review)
    - KB-Sync module vs Toolforge skill decision matrix
    - Complete skill development and registration workflow
 
 **Index Updates:**
 
-- `kb-sync/index.md`: Added [[artifact-generator.sh]] entity
+- `kb-sync/index.md`: Added [[kb-sync/kb-sync/artifact-generator.sh|artifact-generator.sh]] entity
 - `governance/index.md`: CREATED (new domain folder)
 - `wiki/Index.md`: 
   - Added 2 new entities (15 total, up from 13)
   - Updated last-updated timestamp
-  - Added [[governance/]] domain folder reference
+  - Added `governance/` domain folder reference
 
 **Cross-References Established:**
 
-- artifact-generator.sh → [[Three-Layer Vault Architecture]], [[Fail-Soft Orchestration]], [[Pack-Based Knowledge Management]]
-- skill-approval-rules → [[Semantic Ingest Workflow]], [[Three-Layer Vault Architecture]]
+- artifact-generator.sh → [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]], [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]], [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
+- skill-approval-rules → [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]], [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]]
 
 **Workflow Phases Completed:** 1–7 (Ingest, Lint, Update, Cross-Ref, Lint, Log, Review)
 

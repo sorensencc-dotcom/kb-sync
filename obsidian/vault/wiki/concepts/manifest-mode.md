@@ -1,3 +1,9 @@
+---
+title: "Manifest Mode"
+category: "wiki"
+status: "active"
+---
+
 # Manifest Mode
 
 **Type:** Pattern  
@@ -9,7 +15,7 @@
 
 ## Definition
 
-Manifest mode is a safe ingest strategy where [[ingest-obsidian.sh]] generates a `FILES.manifest.txt` file listing all staged sources, and Claude Code sessions verify against the manifest before synthesizing wiki content. The manifest acts as a control gate: operators can confirm expected files are present (no missing sources) and no unexpected files were included (no contamination).
+Manifest mode is a safe ingest strategy where [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] generates a `FILES.manifest.txt` file listing all staged sources, and Claude Code sessions verify against the manifest before synthesizing wiki content. The manifest acts as a control gate: operators can confirm expected files are present (no missing sources) and no unexpected files were included (no contamination).
 
 ---
 
@@ -30,16 +36,16 @@ Raw source staging is immutable, but staging itself is error-prone: disk I/O fai
 
 ## Related Concepts
 
-- [[Raw Source Staging]] — produces manifest
-- [[Three-Layer Vault Architecture]] — Layer 1 validation
-- [[Semantic Ingest Workflow]] — Phase 1 (Ingest) uses manifest to verify input
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — produces manifest
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Layer 1 validation
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — Phase 1 (Ingest) uses manifest to verify input
 
 ---
 
 ## Examples
 
 **Example 1: Successful manifest verification**
-- [[ingest-obsidian.sh]] stages kb-sync repo → creates `FILES.manifest.txt`
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] stages kb-sync repo → creates `FILES.manifest.txt`
 - Manifest lists 47 files (scripts, docs, configs)
 - Claude Code Phase 1 (Ingest) verifies manifest: expected count matches
 - Confidence: staged data is complete
@@ -47,11 +53,11 @@ Raw source staging is immutable, but staging itself is error-prone: disk I/O fai
 - Result: no surprises during wiki synthesis
 
 **Example 2: Manifest catches staging error**
-- [[ingest-obsidian.sh]] stages repo → creates `FILES.manifest.txt`
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] stages repo → creates `FILES.manifest.txt`
 - Manifest lists 42 files (expected 47) — 5 files missing!
 - Claude Code Phase 1 detects discrepancy
 - Stops and alerts operator: "Staging incomplete, 5 files missing"
-- Operator investigates disk error, re-runs [[ingest-obsidian.sh]]
+- Operator investigates disk error, re-runs [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]]
 - New manifest now lists all 47 files
 - Result: staging error caught before wiki synthesis wastes effort
 
@@ -68,17 +74,17 @@ Raw source staging is immutable, but staging itself is error-prone: disk I/O fai
 
 ### Entities That Use This Concept
 
-- [[ingest-obsidian.sh]] — generates manifest
+- [[kb-sync/obsidian/ingest-obsidian.sh|ingest-obsidian.sh]] — generates manifest
 
 ### Concepts This Concept Depends On
 
-- [[Raw Source Staging]] — produces manifest
-- [[Three-Layer Vault Architecture]] — Layer 1
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] — produces manifest
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Layer 1
 
 ### Backlinks From
 
-- [[Raw Source Staging]]
-- [[Semantic Ingest Workflow]]
+- [[kb-sync/concepts/raw-source-staging|Raw Source Staging]]
+- [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
 
 ---
 
@@ -99,7 +105,7 @@ Raw source staging is immutable, but staging itself is error-prone: disk I/O fai
 - Operators should verify manifest before proceeding with wiki synthesis
 
 **Decision Gates:**
-- Phase 1 (Ingest) of [[Semantic Ingest Workflow]] should include manifest verification
+- Phase 1 (Ingest) of [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] should include manifest verification
 
 **Exceptions:**
 - None; manifest is non-negotiable for staged data integrity
@@ -114,5 +120,5 @@ Early Obsidian vault staging had no verification: operators would discover mid-s
 
 ## Related Pages
 
-- See [[Raw Source Staging]] for Layer 1 implementation
-- See [[Semantic Ingest Workflow]] Phase 1 for manifest verification workflow
+- See [[kb-sync/concepts/raw-source-staging|Raw Source Staging]] for Layer 1 implementation
+- See [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] Phase 1 for manifest verification workflow

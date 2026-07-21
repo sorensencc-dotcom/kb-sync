@@ -1,3 +1,9 @@
+---
+title: "Wiki Update Rules"
+category: "sync-tools"
+status: "active"
+---
+
 # Wiki Update Rules
 
 **Type:** Module Documentation  
@@ -19,14 +25,14 @@ Rules for creating, updating, and removing entity and concept pages during seman
 ## Relationships
 
 - **Used in:** [Wiki Operator Workflow](./wiki-operator-workflow.md) (Phases 1, 3, 4, 6)
-- **References:** [[Wiki Schema]], [[Wiki Lint Rules]]
-- **Depends on:** [[Pack-Based Knowledge Management]]
+- **References:** [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]]
+- **Depends on:** [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
 - **Part of:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md)
 
 ## Cross-References
 
-- Related concepts: [[Karpathy LLM-Wiki Pattern]], [[Wiki Semantic Synthesis]]
-- Related entities: [[Wiki Schema]], [[Wiki Operator Workflow]], [[Wiki Lint Rules]]
+- Related concepts: [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]], wiki semantic synthesis
+- Related entities: [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]]
 
 ## Source Citations
 
@@ -42,7 +48,7 @@ Update rules are organized by workflow phase:
 2. **Update Phase (U1–U6):** Create new entity/concept pages from templates, update existing pages with changed content, handle stale pages (flag for review, defer deletion), and rebuild Index.md
 
 Key principles:
-- All pages created from templates ([[Wiki Schema]])
+- All pages created from templates ([[kb-sync/kb-sync/wiki-schema|Wiki Schema]])
 - Names become kebab-case filenames
 - Bidirectional links established in Cross-Ref phase
 - No autonomous page deletions; all require operator approval

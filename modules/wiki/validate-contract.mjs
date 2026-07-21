@@ -16,8 +16,11 @@ const BOLD = '\x1b[1m';
 
 console.log(`${BOLD}${CYAN}[KB-Sync Validator] Starting validation sequence...${RESET}\n`);
 
-// Load command-line target directory or use fallback staging layout
-const targetDir = process.argv[2] || path.resolve(process.cwd(), 'obsidian/vault/_kb-sync-staging/kb-sync/');
+// Load command-line target directory or default to the live wiki source.
+// The contract gate validates the live wiki (obsidian/vault/wiki/) — not staging snapshots.
+// Staging snapshots are raw, immutable copies of the full repo and are not expected to
+// conform to the wiki contract. Pass an explicit path arg to override for other targets.
+const targetDir = process.argv[2] || path.resolve(process.cwd(), 'obsidian/vault/wiki/');
 console.log(`${BOLD}Target Directory:${RESET} ${targetDir}`);
 
 // Fallback JSON Schema check
@@ -123,16 +126,21 @@ function scanDirectory(dir, relativeRoot = '') {
         const note = parseMarkdownFile(fullPath, relPath);
         notesRegistry.push(note);
         
-        // Namespace Collision Guard: ensure duplicate basenames don't exist
+        // Namespace Collision Guard: ensure duplicate basenames don't exist.
+        // Exempt 'index' and 'log' — these are intentional per-section home/log pages
+        // and are folder-namespaced by convention (e.g. kb-sync/index, notebooklm/index).
         const lowerBasename = note.basename.toLowerCase();
-        if (basenameCollisionMap.has(lowerBasename)) {
-          validationErrors.push({
-            file: relPath,
-            rule: 'Namespace Collision Guard',
-            message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(lowerBasename)}'`
-          });
-        } else {
-          basenameCollisionMap.set(lowerBasename, relPath);
+        const EXEMPT_BASENAMES = new Set(['index', 'log']);
+        if (!EXEMPT_BASENAMES.has(lowerBasename)) {
+          if (basenameCollisionMap.has(lowerBasename)) {
+            validationErrors.push({
+              file: relPath,
+              rule: 'Namespace Collision Guard',
+              message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(lowerBasename)}'`
+            });
+          } else {
+            basenameCollisionMap.set(lowerBasename, relPath);
+          }
         }
       } catch (err) {
         validationErrors.push({
