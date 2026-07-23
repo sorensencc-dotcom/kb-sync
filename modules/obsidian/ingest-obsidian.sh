@@ -44,7 +44,47 @@ get_config_value() {
     sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
 }
 
+# --- TIMEOUT & RETRY CONFIGURATION -------------------------------------------
+TIMEOUT_MS="${WORKSPACE_TIMEOUT_MS:-$(get_config_value "$GLOBAL_CONFIG" "timeout_ms")}"
+TIMEOUT_MS="${TIMEOUT_MS:-90000}"
+
+RETRY_ATTEMPTS="${WORKSPACE_RETRY_ATTEMPTS:-$(get_config_value "$GLOBAL_CONFIG" "retry_attempts")}"
+RETRY_ATTEMPTS="${RETRY_ATTEMPTS:-3}"
+
+RETRY_BACKOFF_MS=(5000 15000 30000)
+
+run_with_retry() {
+  local attempt=1
+  local timeout_sec=$((TIMEOUT_MS / 1000))
+  [ "$timeout_sec" -lt 1 ] && timeout_sec=1
+
+  while [ "$attempt" -le "$RETRY_ATTEMPTS" ]; do
+    log_info "Attempt $attempt/$RETRY_ATTEMPTS: $*"
+
+    if command -v timeout >/dev/null 2>&1 && timeout --version 2>&1 | grep -q "GNU coreutils"; then
+      timeout --foreground "$timeout_sec" "$@" && return 0
+    else
+      "$@" && return 0
+    fi
+
+    if [ "$attempt" -lt "$RETRY_ATTEMPTS" ]; then
+      local backoff_idx=$((attempt - 1))
+      local backoff_ms=${RETRY_BACKOFF_MS[$backoff_idx]:-5000}
+      local backoff_sec=$((backoff_ms / 1000))
+      [ "$backoff_sec" -lt 1 ] && backoff_sec=1
+      log_warn "Attempt $attempt failed/timed out. Retrying in ${backoff_sec}s..."
+      sleep "$backoff_sec"
+    fi
+
+    attempt=$((attempt + 1))
+  done
+
+  log_error "Command failed after $RETRY_ATTEMPTS attempts: $*"
+  return 1
+}
+
 # --- PRE-FLIGHT CHECKS -------------------------------------------------------
+
 log_info "Initializing Obsidian vault staging orchestrator..."
 
 # Verify we're in a git repo
@@ -140,7 +180,7 @@ TEMP_PACK_DIR=$(mktemp -d)
 # Cleanup deferred until after manifest is used (see cleanup trap at end of script)
 
 # Call core/flatten.sh --manifest to get newline-delimited file list
-if ! bash "$CORE_DIR/flatten.sh" \
+if ! run_with_retry bash "$CORE_DIR/flatten.sh" \
   --output "$TEMP_PACK_DIR" \
   --pack-name "unused.txt" \
   --global-config "$GLOBAL_CONFIG" \
@@ -149,6 +189,7 @@ if ! bash "$CORE_DIR/flatten.sh" \
   log_error "core/flatten.sh --manifest failed."
   exit 1
 fi
+
 
 MANIFEST_FILE="$TEMP_PACK_DIR/pack.manifest.txt"
 if [ ! -f "$MANIFEST_FILE" ]; then

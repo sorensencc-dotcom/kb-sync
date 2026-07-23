@@ -27,8 +27,33 @@ log_warn() {
   printf '\e[33m[RUN-ALL] [WARN] %s\e[0m\n' "$*" >&2
 }
 
-# --- CONFIGURATION -----------------------------------------------------------
+# --- CONFIGURATION & TIMEOUT POLICY -----------------------------------------
+get_config_value() {
+  local file="$1"
+  local key="$2"
+  if [ ! -f "$file" ]; then
+    return 0
+  fi
+  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
+    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
+}
+
+load_timeout_config() {
+  local config="${1:-$REPO_ROOT/configs/global.yaml}"
+  local timeout_val
+  local retry_val
+
+  timeout_val=$(get_config_value "$config" "timeout_ms")
+  retry_val=$(get_config_value "$config" "retry_attempts")
+
+  export WORKSPACE_TIMEOUT_MS="${timeout_val:-90000}"
+  export WORKSPACE_RETRY_ATTEMPTS="${retry_val:-3}"
+}
+
+load_timeout_config "$REPO_ROOT/configs/global.yaml"
+
 # List of sync targets to invoke (path relative to repo root)
+
 # Format: target_name:script_path
 SYNC_TARGETS=(
   "notebooklm:modules/notebooklm/ingest-notebooklm.sh"

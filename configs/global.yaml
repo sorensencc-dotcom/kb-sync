@@ -26,3 +26,15 @@ skip_patterns:
   - "*.bin"
   - "*playwright-report/*"
   - "*coverage/*"
+
+# Timeout and Retry Policy
+automation:
+  bash_workspace:
+    timeout_ms: 90000              # Increase from default 30-45s
+    retry_attempts: 3
+    retry_backoff_ms: [5000, 15000, 30000]
+    skip_on_failure: false          # Don't skip to next stage if timeout
+    alert_on_failure: true
+    alert_recipients:
+      - "sorensencc@gmail.com"
+
