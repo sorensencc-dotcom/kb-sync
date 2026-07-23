@@ -1,0 +1,21 @@
+scripts/wiki-validate-precommit.sh
+  s_5f8d40bf855cf6::t_868c3a807fdc3b 13-17
+scripts/secret-scan-hook.sh
+  s_5f8d40bf855cf6::t_68a3b4b86a2093 1-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "d54f22a65f1429cc51912ba25d19a1f51761c436",
+  "prompts": {},
+  "sessions": {
+    "s_5f8d40bf855cf6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08f1121a-602b-4b4c-a8fe-b6db21242ea3",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
