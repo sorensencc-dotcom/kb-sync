@@ -340,7 +340,8 @@ for file in "${UPLOAD_FILES[@]}"; do
   if command -v "$NLM_CLI" >/dev/null 2>&1; then
     target_upload_path="$file"
     if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
-      target_upload_path="$(wslpath -w "$file")"
+      abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
+      target_upload_path="$(wslpath -w "$abs_file")"
     fi
     if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
       log_error "Upload failed: $file"
