@@ -121,7 +121,19 @@ fi
 
 # Verify credentials & NOTEBOOK_ID
 NOTEBOOK_ID="${NOTEBOOK_ID:-}"
-NLM_CLI="${NLM_CLI:-notebooklm-mcp}"
+if [ -z "${NLM_CLI:-}" ] || [[ "$NLM_CLI" == *"notebooklm-mcp"* ]]; then
+  if command -v notebooklm >/dev/null 2>&1; then
+    NLM_CLI="notebooklm"
+  elif command -v notebooklm.exe >/dev/null 2>&1; then
+    NLM_CLI="notebooklm.exe"
+  elif command -v nlm >/dev/null 2>&1; then
+    NLM_CLI="nlm"
+  elif command -v nlm.exe >/dev/null 2>&1; then
+    NLM_CLI="nlm.exe"
+  else
+    NLM_CLI="notebooklm.exe"
+  fi
+fi
 
 if [ -z "${NOTEBOOKLM_COOKIE:-}" ] && [ -z "${NOTEBOOKLM_TOKEN:-}" ]; then
   log_error "Missing credentials: set NOTEBOOKLM_COOKIE or NOTEBOOKLM_TOKEN in .env"
@@ -131,6 +143,38 @@ fi
 if [ -z "$NOTEBOOK_ID" ]; then
   log_error "NOTEBOOK_ID not set in .env"
   exit 1
+fi
+
+# Import cookies from NOTEBOOKLM_COOKIE only if CLI auth state is missing/invalid
+if command -v "$NLM_CLI" >/dev/null 2>&1; then
+  if ! "$NLM_CLI" auth check >/dev/null 2>&1; then
+    if [ -n "${NOTEBOOKLM_COOKIE:-}" ]; then
+      log_info "CLI auth state missing or invalid. Attempting import from NOTEBOOKLM_COOKIE..."
+      if [[ "$NOTEBOOKLM_COOKIE" =~ ^\[.*\]$ ]] || [[ "$NOTEBOOKLM_COOKIE" =~ ^\{.*\}$ ]]; then
+        export NOTEBOOKLM_AUTH_JSON="$NOTEBOOKLM_COOKIE"
+      else
+        export NOTEBOOKLM_AUTH_JSON=$(node -e '
+          const cookie = process.env.NOTEBOOKLM_COOKIE || "";
+          const cookies = [];
+          cookie.split(";").forEach(p => {
+            const parts = p.trim().split("=");
+            if (parts.length >= 2) {
+              const name = parts[0].trim();
+              const value = parts.slice(1).join("=").trim();
+              if (name && value) {
+                cookies.push({ name, value, domain: ".google.com", path: "/" });
+              }
+            }
+          });
+          console.log(JSON.stringify(cookies));
+        ' 2>/dev/null || true)
+      fi
+
+      if [ -n "${NOTEBOOKLM_AUTH_JSON:-}" ]; then
+        echo "$NOTEBOOKLM_AUTH_JSON" | "$NLM_CLI" auth import-cookies --quiet - 2>/dev/null || true
+      fi
+    fi
+  fi
 fi
 
 log_info "Credentials & NOTEBOOK_ID verified."
@@ -169,8 +213,11 @@ if [ "$RUN_ROLLBACK" = true ]; then
   # Purge old sources
   log_info "Purging current sources from notebook $NOTEBOOK_ID..."
   if command -v "$NLM_CLI" >/dev/null 2>&1; then
-    if ! "$NLM_CLI" sources delete --notebook "$NOTEBOOK_ID" --all; then
-      log_warn "Failed to purge old sources. Continuing anyway..."
+    sources_json="$("$NLM_CLI" source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
+    if [ -n "$sources_json" ]; then
+      echo "$sources_json" | grep -o '"id": "[^"]*"' | cut -d'"' -f4 | while read -r src_id; do
+        [ -n "$src_id" ] && "$NLM_CLI" source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
+      done || true
     fi
   else
     log_info "CLI tool '$NLM_CLI' not installed. Skipping programmatic purge."
@@ -182,7 +229,7 @@ if [ "$RUN_ROLLBACK" = true ]; then
   for file in "${UPLOAD_FILES[@]}"; do
     log_info "Uploading: $file"
     if command -v "$NLM_CLI" >/dev/null 2>&1; then
-      if ! "$NLM_CLI" sources add --notebook "$NOTEBOOK_ID" "$file"; then
+      if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$file"; then
         log_error "Upload failed: $file"
         UPLOAD_SUCCESS=false
       fi
@@ -270,8 +317,11 @@ log_info "Step 5/5: Purging old sources and uploading new ones..."
 # Purge
 if command -v "$NLM_CLI" >/dev/null 2>&1; then
   log_info "Purging sources from notebook $NOTEBOOK_ID..."
-  if ! "$NLM_CLI" sources delete --notebook "$NOTEBOOK_ID" --all; then
-    log_warn "Failed to purge old sources. Continuing to upload..."
+  sources_json="$("$NLM_CLI" source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
+  if [ -n "$sources_json" ]; then
+    echo "$sources_json" | grep -o '"id": "[^"]*"' | cut -d'"' -f4 | while read -r src_id; do
+      [ -n "$src_id" ] && "$NLM_CLI" source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
+    done || true
   fi
 else
   log_info "CLI tool '$NLM_CLI' not installed. Skipping programmatic purge."
@@ -282,7 +332,11 @@ UPLOAD_SUCCESS=true
 for file in "${UPLOAD_FILES[@]}"; do
   log_info "Uploading: $(basename "$file")"
   if command -v "$NLM_CLI" >/dev/null 2>&1; then
-    if ! "$NLM_CLI" sources add --notebook "$NOTEBOOK_ID" "$file"; then
+    target_upload_path="$file"
+    if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+      target_upload_path="$(wslpath -w "$file")"
+    fi
+    if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
       log_error "Upload failed: $file"
       UPLOAD_SUCCESS=false
     fi
