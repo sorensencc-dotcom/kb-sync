@@ -250,6 +250,12 @@ fi
 # --- NORMAL SYNC PATH (INGEST) -----------------------------------------------
 log_info "Starting normal sync pipeline..."
 
+# Proactive Auth Refresh (Rotates __Secure-1PSIDTS & verifies token before sync)
+if command -v "$NLM_CLI" >/dev/null 2>&1; then
+  log_info "Proactively refreshing Google auth session..."
+  "$NLM_CLI" auth refresh --verify --quiet 2>/dev/null || log_warn "Proactive auth refresh skipped/failed; proceeding with existing session."
+fi
+
 # Clean old pack files
 mkdir -p "$PACK_DIR"
 # Clean via wrapper that handles immutable files
