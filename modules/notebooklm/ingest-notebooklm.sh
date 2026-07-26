@@ -145,11 +145,37 @@ if [ -z "$NOTEBOOK_ID" ]; then
   exit 1
 fi
 
-# Import cookies from NOTEBOOKLM_COOKIE only if CLI auth state is missing/invalid
+# Authenticate CLI state via Master Token or NOTEBOOKLM_COOKIE if auth state is missing/invalid
 if command -v "$NLM_CLI" >/dev/null 2>&1; then
   if ! "$NLM_CLI" auth check >/dev/null 2>&1; then
-    if [ -n "${NOTEBOOKLM_COOKIE:-}" ]; then
-      log_info "CLI auth state missing or invalid. Attempting import from NOTEBOOKLM_COOKIE..."
+    log_info "CLI auth state missing or invalid. Attempting auth recovery..."
+    AUTH_RECOVERED=false
+
+    # 1. Try explicit NOTEBOOKLM_MASTER_TOKEN env var if set
+    if [ -n "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
+      log_info "Attempting headless master token login from NOTEBOOKLM_MASTER_TOKEN..."
+      if "$NLM_CLI" login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null; then
+        AUTH_RECOVERED=true
+        log_info "Headless master token authentication successful."
+      else
+        log_warn "Headless login via NOTEBOOKLM_MASTER_TOKEN failed."
+      fi
+    fi
+
+    # 2. Try master-token-refresh from stored profile token
+    if [ "$AUTH_RECOVERED" = false ]; then
+      log_info "Attempting master token refresh..."
+      if "$NLM_CLI" login --master-token-refresh --quiet 2>/dev/null; then
+        AUTH_RECOVERED=true
+        log_info "Master token session refresh successful."
+      else
+        log_warn "Master token refresh failed; falling back to cookie import."
+      fi
+    fi
+
+    # 3. Fallback: Import cookies from NOTEBOOKLM_COOKIE
+    if [ "$AUTH_RECOVERED" = false ] && [ -n "${NOTEBOOKLM_COOKIE:-}" ]; then
+      log_info "Attempting import from NOTEBOOKLM_COOKIE..."
       if [[ "$NOTEBOOKLM_COOKIE" =~ ^\[.*\]$ ]] || [[ "$NOTEBOOKLM_COOKIE" =~ ^\{.*\}$ ]]; then
         export NOTEBOOKLM_AUTH_JSON="$NOTEBOOKLM_COOKIE"
       else

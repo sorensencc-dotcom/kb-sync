@@ -40,6 +40,28 @@ if (-not $BashPath) {
     exit 1
 }
 
+# Pre-flight Auth Refresh Check (Fail-soft)
+$NlmCli = Get-Command "notebooklm.exe" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
+if (-not $NlmCli) {
+    $NlmCli = Get-Command "notebooklm" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
+}
+
+if ($NlmCli) {
+    Write-LogInfo "Running pre-flight authentication check..."
+    & $NlmCli --quiet auth check >$null 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogWarn "Pre-flight auth check failed; attempting master token session refresh..."
+        & $NlmCli login --master-token-refresh --quiet 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            Write-LogInfo "Pre-flight master token session refresh succeeded."
+        } else {
+            Write-LogWarn "Pre-flight master token refresh failed/skipped. Proceeding to Stage 1 for fallback auth recovery."
+        }
+    } else {
+        Write-LogInfo "Pre-flight auth check passed."
+    }
+}
+
 # --- STAGE 1: SYNC TO NOTEBOOKLM ---
 Write-LogInfo "================================================================================"
 Write-LogInfo "STAGE 1: Syncing CIC & Rewrite Labs docs to NotebookLM"
