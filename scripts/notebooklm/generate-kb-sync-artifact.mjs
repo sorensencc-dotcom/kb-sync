@@ -116,6 +116,26 @@ async function main() {
   log_info(
     `Top reference: ${sortedLinks[0]?.url} (${sortedLinks[0]?.reference_count} refs)`
   );
+
+  // Write lightweight .sync-status.json telemetry endpoint file
+  const STATUS_PATH = path.join(REPO_ROOT, ".sync-status.json");
+  const packSizeBytes = packFiles.reduce((acc, f) => acc + fs.statSync(path.join(PACK_DIR, f)).size, 0);
+
+  const statusData = {
+    last_sync_timestamp: new Date().toISOString(),
+    status: "SUCCESS",
+    file_count: totalFiles,
+    pack_files_count: packFiles.length,
+    pack_size_bytes: packSizeBytes,
+    unique_urls_tracked: brokenLinks.length,
+    total_url_references: totalReferences,
+    notebook_id: process.env.NOTEBOOK_ID || "unknown",
+    stage1_success: true,
+    stage2_success: true
+  };
+
+  fs.writeFileSync(STATUS_PATH, JSON.stringify(statusData, null, 2), "utf8");
+  log_info(`Telemetry status written: ${STATUS_PATH}`);
 }
 
 function generateInteractiveArtifact(brokenLinks, metadata) {

@@ -1,0 +1,12 @@
+{
+  "last_sync_timestamp": "2026-07-26T01:00:23.970Z",
+  "status": "SUCCESS",
+  "file_count": 162,
+  "pack_files_count": 1,
+  "pack_size_bytes": 1610353,
+  "unique_urls_tracked": 78,
+  "total_url_references": 84,
+  "notebook_id": "unknown",
+  "stage1_success": true,
+  "stage2_success": true
+}
