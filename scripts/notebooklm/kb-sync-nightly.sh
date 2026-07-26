@@ -23,6 +23,21 @@ log_warn() {
   printf '\e[33m[KB-SYNC-NIGHTLY] [WARN] %s\e[0m\n' "$*" >&2
 }
 
+send_webhook_notification() {
+  local title="$1"
+  local message="$2"
+  local level="${3:-ERROR}"
+  local url="${WEBHOOK_URL:-}"
+  if [ -z "$url" ] && [ -f "$REPO_ROOT/.env" ]; then
+    url="$(grep -E "^\s*WEBHOOK_URL\s*=" "$REPO_ROOT/.env" | head -1 | sed -E 's/^\s*WEBHOOK_URL\s*=\s*//; s/#.*$//; s/^["'\'']//; s/["'\'']$//; s/\s*$//' || true)"
+  fi
+  if [ -n "$url" ] && command -v curl >/dev/null 2>&1; then
+    curl -s -X POST -H "Content-Type: application/json" \
+      -d "{\"text\":\"*[KB-SYNC] [$level] $title*\\n$message\"}" \
+      "$url" >/dev/null 2>&1 || log_warn "Failed to send webhook notification."
+  fi
+}
+
 # Validate prerequisites
 log_info "Validating prerequisites..."
 if [ ! -f "$STAGE_1_SCRIPT" ]; then
@@ -47,6 +62,7 @@ if bash "$STAGE_1_SCRIPT"; then
   log_info "Stage 1 completed successfully."
 else
   log_error "Stage 1 failed. Aborting pipeline."
+  send_webhook_notification "Stage 1 Ingest Failed" "NotebookLM Knowledge Base Ingest failed on $(hostname 2>/dev/null || echo 'localhost')." "ERROR"
   exit 1
 fi
 
@@ -63,6 +79,7 @@ if command -v node >/dev/null 2>&1; then
     log_info "Artifact output: $REPO_ROOT/_integration/kb-sync-interactive-report.html"
   else
     log_warn "Stage 2 failed, but Stage 1 succeeded. Sync is complete; artifact generation will retry next cycle."
+    send_webhook_notification "Stage 2 Artifact Generation Failed" "Stage 1 sync succeeded, but Stage 2 report generation failed." "WARN"
   fi
 else
   log_warn "node not found. Stage 2 skipped. Install Node.js to enable artifact generation."

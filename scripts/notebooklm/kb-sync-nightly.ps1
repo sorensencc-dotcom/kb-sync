@@ -23,6 +23,29 @@ function Write-LogWarn($Message) {
     Write-Host "[KB-SYNC-NIGHTLY] [WARN] $Message" -ForegroundColor Yellow
 }
 
+function Send-WebhookNotification($Title, $Message, $Level = "ERROR") {
+    $WebhookUrl = $env:WEBHOOK_URL
+    if (-not $WebhookUrl -and (Test-Path "$RepoRoot\.env")) {
+        $EnvContent = Get-Content "$RepoRoot\.env" -ErrorAction SilentlyContinue
+        foreach ($Line in $EnvContent) {
+            if ($Line -match '^\s*WEBHOOK_URL\s*=\s*["'']?(.*?)["'']?\s*$') {
+                $WebhookUrl = $Matches[1]
+                break
+            }
+        }
+    }
+    if ($WebhookUrl) {
+        try {
+            $Payload = @{ text = "*[KB-SYNC] [$Level] $Title*`n$Message" }
+            $JsonBody = $Payload | ConvertTo-Json -Compress
+            Invoke-RestMethod -Uri $WebhookUrl -Method Post -Body $JsonBody -ContentType "application/json" -TimeoutSec 10 | Out-Null
+            Write-LogInfo "Webhook notification sent to $WebhookUrl"
+        } catch {
+            Write-LogWarn "Failed to send webhook notification: $_"
+        }
+    }
+}
+
 Write-LogInfo "Initializing Native KB Sync Nightly Pipeline..."
 Write-LogInfo "REPO_ROOT: $RepoRoot"
 
@@ -75,6 +98,7 @@ if ($Stage1ExitCode -eq 0) {
     Write-LogInfo "Stage 1 completed successfully."
 } else {
     Write-LogError "Stage 1 failed with exit code $Stage1ExitCode. Aborting pipeline."
+    Send-WebhookNotification -Title "Stage 1 Ingest Failed" -Message "NotebookLM Knowledge Base Ingest failed with exit code $Stage1ExitCode on $env:COMPUTERNAME." -Level "ERROR"
     exit 1
 }
 
@@ -93,9 +117,11 @@ if ($NodeCmd) {
             Write-LogInfo "Artifact output: $RepoRoot\_integration\kb-sync-interactive-report.html"
         } else {
             Write-LogWarn "Stage 2 failed, but Stage 1 succeeded. Sync completed."
+            Send-WebhookNotification -Title "Stage 2 Artifact Generation Failed" -Message "Stage 1 sync succeeded, but Stage 2 artifact report generation exited with code $LASTEXITCODE." -Level "WARN"
         }
     } catch {
         Write-LogWarn "Stage 2 encountered an exception: $_"
+        Send-WebhookNotification -Title "Stage 2 Artifact Exception" -Message "Stage 2 threw exception: $_" -Level "WARN"
     }
 } else {
     Write-LogWarn "node.exe not found in PATH. Stage 2 skipped."
