@@ -16,3 +16,7 @@ C*
 obsidian/vault/_kb-sync-staging/
 obsidian/vault/.obsidian/
 modules/notebooklm/ingest-notebooklm.sh.bak
+
+# Third-party tool, vendored locally, not ours to version (was a broken
+# gitlink with no .gitmodules entry — clone --recursive silently got nothing)
+notebooklm-mcp-cli/
