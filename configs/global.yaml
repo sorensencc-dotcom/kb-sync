@@ -22,10 +22,23 @@ skip_patterns:
   - "*.jpg"
   - "*.jpeg"
   - "*.gif"
+  - "*.svg"
+  - "*.webp"
+  - "*.ico"
+  - "*.woff"
+  - "*.woff2"
+  - "*.ttf"
+  - "*.eot"
   - "*.pdf"
   - "*.bin"
+  - "*.zip"
+  - "*.tar.gz"
+  - "*.tgz"
   - "*playwright-report/*"
   - "*coverage/*"
+  - "*_kb-sync-staging/*"
+  - "*.nlm_pack*"
+  - "*.test_*"
 
 # Timeout and Retry Policy
 automation:
