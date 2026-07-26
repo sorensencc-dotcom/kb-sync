@@ -1,0 +1,31 @@
+docs/IMPLEMENTATION-RECORD-KB-SYNC-TIMEOUT-POLICY-2026-07-22.md
+  s_0704e88a1f3df3::t_8ce809981f2ca8 1-6
+docs/governance/automation-policy.md
+  s_0704e88a1f3df3::t_25e15c58dbef50 1-6
+obsidian/vault/wiki/Log.md
+  s_0704e88a1f3df3::t_7010b6841a6789 23-31,34-63
+obsidian/vault/wiki/kb-sync/KBSyncOrchestration.md
+  s_0704e88a1f3df3::t_6324fed3d72c76 1-74
+obsidian/vault/wiki/kb-sync/PathNormalization.md
+  s_0704e88a1f3df3::t_417e9e5eabbd97 1-77
+obsidian/vault/wiki/kb-sync/RetryAndTimeout.md
+  s_0704e88a1f3df3::t_ab3b5f2dff9ad9 1-106
+obsidian/vault/wiki/kb-sync/index.md
+  s_0704e88a1f3df3::t_2636b7f2d766b0 14-19,25-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "80b3cdb0f84d56cb584dfbd12a600c45bca54865",
+  "prompts": {},
+  "sessions": {
+    "s_0704e88a1f3df3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "de2f1c5c-6819-41a4-9422-e6d06c50274d",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
