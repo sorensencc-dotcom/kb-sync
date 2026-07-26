@@ -1,0 +1,19 @@
+scripts/notebooklm/generate-kb-sync-artifact.mjs
+  s_7355f494f0ea4c::t_ec1560b01d5ac3 119-138
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "798b2f033a0b012aa6b15b0592f6673f855f0bd5",
+  "prompts": {},
+  "sessions": {
+    "s_7355f494f0ea4c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "27f29315-1a0b-48dd-a0ea-3b2cac2d625f",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
