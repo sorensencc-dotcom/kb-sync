@@ -1,0 +1,23 @@
+.env.example
+  s_e0edbb5b6ad50b::t_6814e658e338f1 12-15
+scripts/notebooklm/kb-sync-nightly.ps1
+  s_e0edbb5b6ad50b::t_13a14623191a93 26-48,101,120,124
+scripts/notebooklm/kb-sync-nightly.sh
+  s_e0edbb5b6ad50b::t_d926fb3c9cdbf3 26-40,65,82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "978049d79241c0c658b4bb073b0dba3613394169",
+  "prompts": {},
+  "sessions": {
+    "s_e0edbb5b6ad50b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "47da2b69-f21c-4825-afc7-f62ba763fc94",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
