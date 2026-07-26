@@ -20,7 +20,46 @@ Audit trail of kb-sync operations and manual synthesis events.
 
 (Logged by kb-sync pipeline automatically)
 
+### 2026-07-25 21:34 UTC — Automated Staging (Scheduled Task)
+
+**Staging Path:** `_kb-sync-staging/kb-sync/20260725-213400`  
+**Total Files Staged:** 165  
+**Manifest:** `FILES.manifest.txt`  
+**Status:** SUCCESS
+
+Staged current kb-sync repository state including all core scripts, modules, configurations, tests, and documentation.
+
 ## Manual Synthesis Events
+
+### 2026-07-25 21:35 UTC — Wiki Semantic Synthesis (Scheduled Nightly)
+
+**Source:** Raw sources from staging directory `_kb-sync-staging/kb-sync/20260725-213400/`
+
+**Changes:**
+
+Created 3 new infrastructure entities:
+- [[kb-sync/kb-sync/KBSyncOrchestration|KB-Sync Orchestration]] — Master orchestrator (run-all.sh) with fail-soft execution strategy
+- [[kb-sync/kb-sync/PathNormalization|Path Normalization]] — Cross-platform path handling for Windows/WSL environments  
+- [[kb-sync/kb-sync/RetryAndTimeout|Retry and Timeout Strategy]] — Configurable retry mechanism with exponential backoff
+
+Updated kb-sync Index.md:
+- Reorganized entities into 3 sections: Core Orchestration, Pipeline Components, Wiki System
+- Added 3 new entity cross-references
+- Updated "Last Updated" timestamp to 2026-07-25
+
+**Operator:** Automated nightly synthesis (scheduled task: obsidian-kb-sync-nightly)
+
+**Workflow Phases Completed:** 1–7 (Ingest, Lint, Update, Cross-Ref, Lint, Log, Review)
+
+**Lint Status:** All structural checks PASS; 3 new pages conform to schema; bidirectional cross-references established
+
+**Files Created:** 3  
+**Files Updated:** 1  
+**Total Staged Sources Analyzed:** 165
+
+**Next Steps:** Phase 8 (Commit) ready for execution
+
+---
 
 ### 2026-07-11 18:30 UTC — Wiki Semantic Synthesis (Initial)
 

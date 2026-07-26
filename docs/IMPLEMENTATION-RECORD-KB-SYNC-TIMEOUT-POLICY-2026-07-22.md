@@ -1,3 +1,9 @@
+---
+title: "IMPLEMENTATION RECORD KB SYNC TIMEOUT POLICY 2026 07 22"
+category: "wiki"
+status: "active"
+---
+
 # Implementation Record: KB-Sync Timeout & Retry Policy
 
 **Date:** 2026-07-22  

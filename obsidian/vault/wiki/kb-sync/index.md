@@ -11,11 +11,19 @@ status: "active"
 
 ## Entities
 
+### Core Orchestration
+- [[kb-sync/kb-sync/KBSyncOrchestration|KB-Sync Orchestration]] — Master orchestrator (run-all.sh); executes all pipeline stages with fail-soft execution
+- [[kb-sync/kb-sync/RetryAndTimeout|Retry and Timeout Strategy]] — Configurable retry/timeout mechanism with exponential backoff
+- [[kb-sync/kb-sync/PathNormalization|Path Normalization]] — Cross-platform path handling for Windows/WSL environments
+
+### Pipeline Components
 - [[kb-sync/kb-sync/run-all.sh|run-all.sh]] — Master orchestrator script; executes all pipeline stages
 - [[kb-sync/kb-sync/flatten.sh|flatten.sh]] — Repository flattening via pyragify; AST parsing and file extraction
 - [[kb-sync/kb-sync/chunk.sh|chunk.sh]] — Pack chunking for oversized outputs (5MB+ warning, 8MB limit)
 - [[kb-sync/kb-sync/validate.sh|validate.sh]] — Pack integrity validation and structure verification
 - [[kb-sync/kb-sync/artifact-generator.sh|artifact-generator.sh]] — Post-sync report generation; URL analysis and link health visualization
+
+### Wiki System
 - [[kb-sync/kb-sync/wiki-schema|Wiki Schema]] — Three-layer Karpathy LLM-wiki pattern architecture and page templates
 - [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]] — Complete 8-phase guide for wiki semantic synthesis via Claude Code
 - [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]] — Structural, referential, and semantic integrity checks for wiki

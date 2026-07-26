@@ -1,3 +1,9 @@
+---
+title: "automation policy"
+category: "wiki"
+status: "active"
+---
+
 # Automation Policy: Workspace Timeout & Retry Configuration
 
 **Owner:** Tier 1 (Chris)  
