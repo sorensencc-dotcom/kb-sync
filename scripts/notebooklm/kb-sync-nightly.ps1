@@ -52,10 +52,10 @@ Write-LogInfo "REPO_ROOT: $RepoRoot"
 $Stage1Script = Join-Path $RepoRoot "modules\notebooklm\ingest-notebooklm.sh"
 $Stage2Script = Join-Path $RepoRoot "scripts\notebooklm\generate-kb-sync-artifact.mjs"
 
-# Find bash executable (prefer Git Bash over WSL)
+# Find bash executable
 $BashPath = Get-Command "bash.exe" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
-if (-not $BashPath -and (Test-Path "C:\Program Files\Git\bin\bash.exe")) {
-    $BashPath = "C:\Program Files\Git\bin\bash.exe"
+if (-not $BashPath) {
+    $BashPath = "bash"
 }
 
 if (-not $BashPath) {
