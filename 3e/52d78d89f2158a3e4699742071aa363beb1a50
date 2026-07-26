@@ -1,0 +1,19 @@
+configs/global.yaml
+  s_0704e88a1f3df3::t_82085e689836e7 25-31,34-36,39-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "3e52d78d89f2158a3e4699742071aa363beb1a50",
+  "prompts": {},
+  "sessions": {
+    "s_0704e88a1f3df3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "de2f1c5c-6819-41a4-9422-e6d06c50274d",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
