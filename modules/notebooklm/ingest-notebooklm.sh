@@ -360,23 +360,55 @@ else
 fi
 
 # Upload
+# Upload (Parallel support for multi-part chunks)
 UPLOAD_SUCCESS=true
-for file in "${UPLOAD_FILES[@]}"; do
-  log_info "Uploading: $(basename "$file")"
-  if command -v "$NLM_CLI" >/dev/null 2>&1; then
-    target_upload_path="$file"
-    if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
-      abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-      target_upload_path="$(wslpath -w "$abs_file")"
+MAX_PARALLEL_UPLOADS="${MAX_PARALLEL_UPLOADS:-4}"
+
+if [ "${#UPLOAD_FILES[@]}" -gt 1 ]; then
+  log_info "Uploading ${#UPLOAD_FILES[@]} pack chunk(s) in parallel (concurrency=$MAX_PARALLEL_UPLOADS)..."
+  pids=()
+  for file in "${UPLOAD_FILES[@]}"; do
+    (
+      target_upload_path="$file"
+      if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+        abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
+        target_upload_path="$(wslpath -w "$abs_file")"
+      fi
+      log_info "Uploading chunk: $(basename "$file")"
+      if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
+        log_error "Upload failed for chunk: $file"
+        exit 1
+      fi
+    ) &
+    pids+=($!)
+    if [ "${#pids[@]}" -ge "$MAX_PARALLEL_UPLOADS" ]; then
+      for pid in "${pids[@]}"; do
+        wait "$pid" || UPLOAD_SUCCESS=false
+      done
+      pids=()
     fi
-    if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
-      log_error "Upload failed: $file"
-      UPLOAD_SUCCESS=false
+  done
+  for pid in "${pids[@]}"; do
+    wait "$pid" || UPLOAD_SUCCESS=false
+  done
+else
+  for file in "${UPLOAD_FILES[@]}"; do
+    log_info "Uploading: $(basename "$file")"
+    if command -v "$NLM_CLI" >/dev/null 2>&1; then
+      target_upload_path="$file"
+      if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+        abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
+        target_upload_path="$(wslpath -w "$abs_file")"
+      fi
+      if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
+        log_error "Upload failed: $file"
+        UPLOAD_SUCCESS=false
+      fi
+    else
+      log_info "CLI not installed. Manual action required: upload $file"
     fi
-  else
-    log_info "CLI not installed. Manual action required: upload $file"
-  fi
-done
+  done
+fi
 
 if [ "$UPLOAD_SUCCESS" = true ]; then
   log_info "NotebookLM sync completed successfully!"
