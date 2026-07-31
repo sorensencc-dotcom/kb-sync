@@ -1,0 +1,27 @@
+tests/wiki-contract-cleanup-verification.ts
+  s_00d135f05ed507::t_d8a184054f7055 148-187
+core/flatten.sh
+  s_00d135f05ed507::t_d8a184054f7055 205-206
+tests/core-scripts-verification.ts
+  s_00d135f05ed507::t_d8a184054f7055 3,33,35-43,298-479
+tests/notebooklm-sync-verification.ts
+  s_00d135f05ed507::t_d8a184054f7055 45-52,101-102,104,204-208,210-211,226-228,244,260,279-283,285-286,290-292,304-305,314
+package.json
+  s_00d135f05ed507::t_d8a184054f7055 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.18",
+  "base_commit_sha": "ed8bf1b7301dd87a17de7785b34481a5ecedab88",
+  "prompts": {},
+  "sessions": {
+    "s_00d135f05ed507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f4bb51ba-5872-43ae-8c28-6c4818b108b8",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
