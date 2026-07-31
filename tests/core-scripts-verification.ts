@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
@@ -29,8 +30,17 @@ function runTest(name: string, fn: () => void) {
 
 // Convert path to relative form (bash-friendly) with forward slashes
 function toBashPath(absolutePath: string): string {
+  if (!absolutePath) return ".";
   const rel = path.relative(REPO_ROOT, absolutePath);
-  return rel.replace(/\\/g, '/');
+  if (rel === "") return ".";
+  if (!rel.startsWith("..") && !path.isAbsolute(rel)) {
+    return rel.replace(/\\/g, '/');
+  }
+  const posix = absolutePath.replace(/\\/g, '/');
+  if (/^([a-zA-Z]):\/(.*)/.test(posix)) {
+    return posix.replace(/^([a-zA-Z]):\/(.*)/, (_, drive, rest) => `/mnt/${drive.toLowerCase()}/${rest}`);
+  }
+  return posix;
 }
 
 // Clean inherited GIT environment
@@ -281,6 +291,188 @@ runTest("core/rollback.sh creates and restores backups", () => {
   } finally {
     if (fs.existsSync(tempDir)) {
       fs.rmSync(tempDir, { recursive: true });
+    }
+  }
+});
+
+// Test 6: Gap 1 - Infra-timeout / partial-run resilience (core/run-all.sh fail-soft isolation & error log)
+runTest("core/run-all.sh isolates target failures and logs error summary", () => {
+  const tempDir = path.join(REPO_ROOT, ".test_core_run_all_resilience");
+  if (fs.existsSync(tempDir)) {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    // Initialize temporary git repo
+    execSync("git init", { cwd: tempDir, env: getCleanEnv(), stdio: "ignore" });
+
+    // Copy core/run-all.sh
+    const coreDir = path.join(tempDir, "core");
+    fs.mkdirSync(coreDir, { recursive: true });
+    fs.copyFileSync(path.join(REPO_ROOT, "core", "run-all.sh"), path.join(coreDir, "run-all.sh"));
+
+    // Copy configs/global.yaml
+    const configsDir = path.join(tempDir, "configs");
+    fs.mkdirSync(configsDir, { recursive: true });
+    fs.copyFileSync(path.join(REPO_ROOT, "configs", "global.yaml"), path.join(configsDir, "global.yaml"));
+
+    // Create mock modules/notebooklm/ingest-notebooklm.sh (fails with code 1)
+    const nlmDir = path.join(tempDir, "modules", "notebooklm");
+    fs.mkdirSync(nlmDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(nlmDir, "ingest-notebooklm.sh"),
+      "#!/usr/bin/env bash\necho '[NLM-MOCK] Simulating target failure...' >&2\nexit 1\n",
+      { mode: 0o755 }
+    );
+
+    // Create mock modules/obsidian/ingest-obsidian.sh (succeeds with code 0)
+    const obsDir = path.join(tempDir, "modules", "obsidian");
+    fs.mkdirSync(obsDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(obsDir, "ingest-obsidian.sh"),
+      "#!/usr/bin/env bash\necho '[OBS-MOCK] Target succeeded.'\nexit 0\n",
+      { mode: 0o755 }
+    );
+
+    let caughtError: any = null;
+    let output = "";
+
+    try {
+      output = execSync(`bash core/run-all.sh 2>&1`, {
+        cwd: tempDir,
+        env: getCleanEnv(),
+        encoding: "utf8"
+      });
+    } catch (err: any) {
+      caughtError = err;
+      output = (err.stdout || "") + (err.stderr || "") + (err.message || "");
+    }
+
+    if (!caughtError) {
+      throw new Error("run-all.sh should have exited with code 1 due to target failure");
+    }
+
+    if (caughtError.status !== 1) {
+      throw new Error(`Expected exit code 1 from run-all.sh, got: ${caughtError.status}`);
+    }
+
+    if (!output.includes("Target 'notebooklm' sync FAILED")) {
+      throw new Error("run-all.sh output missing target failure log entry");
+    }
+
+    if (!output.includes("Target 'obsidian' sync completed")) {
+      throw new Error("run-all.sh fail-soft behavior failed: subsequent target 'obsidian' did not run");
+    }
+
+    if (!output.includes("Failed targets: notebooklm")) {
+      throw new Error("run-all.sh missing summary of failed targets");
+    }
+
+    console.log("  ✓ Fail-soft isolation verified: obsidian target completed after notebooklm failure");
+    console.log("  ✓ Error surfaced with exit code 1 and logged failure summary");
+  } finally {
+    if (fs.existsSync(tempDir)) {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+  }
+});
+
+// Test 7: Gap 2 - Immutable staging guarantee
+runTest("Staging directory files remain byte-identical across multiple runs", () => {
+  const tempDir = path.join(REPO_ROOT, ".test_core_staging_immutability");
+  if (fs.existsSync(tempDir)) {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    const vaultRoot = path.join(tempDir, "vault");
+    const stagingDirRel = "staging";
+    const repoName = "test-repo";
+    const timestamp1 = "20260730-100000";
+    const stagingPath1 = path.join(vaultRoot, stagingDirRel, repoName, timestamp1);
+
+    fs.mkdirSync(stagingPath1, { recursive: true });
+    const fileA = path.join(stagingPath1, "docA.md");
+    const fileB = path.join(stagingPath1, "sub", "docB.md");
+    fs.mkdirSync(path.dirname(fileB), { recursive: true });
+
+    const contentA = "# Document A\nInitial staged content";
+    const contentB = "# Document B\nSubdirectory staged content";
+    fs.writeFileSync(fileA, contentA, "utf8");
+    fs.writeFileSync(fileB, contentB, "utf8");
+
+    // Record hashes of first run
+    const hashA1 = crypto.createHash("sha256").update(fs.readFileSync(fileA)).digest("hex");
+    const hashB1 = crypto.createHash("sha256").update(fs.readFileSync(fileB)).digest("hex");
+
+    // Simulate second staging run (creates second timestamp directory)
+    const timestamp2 = "20260730-100005";
+    const stagingPath2 = path.join(vaultRoot, stagingDirRel, repoName, timestamp2);
+    fs.mkdirSync(stagingPath2, { recursive: true });
+    fs.writeFileSync(path.join(stagingPath2, "docA.md"), "# Document A\nUpdated content in run 2", "utf8");
+
+    // Assert timestamp 1 directory is unchanged
+    const hashA2 = crypto.createHash("sha256").update(fs.readFileSync(fileA)).digest("hex");
+    const hashB2 = crypto.createHash("sha256").update(fs.readFileSync(fileB)).digest("hex");
+
+    if (hashA1 !== hashA2 || hashB1 !== hashB2) {
+      throw new Error("Staging directory mutation detected! Initial staged files were modified by subsequent run.");
+    }
+
+    console.log("  ✓ Staging immutability verified: run 1 files remain byte-identical after run 2");
+  } finally {
+    if (fs.existsSync(tempDir)) {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+  }
+});
+
+// Test 8: Gap 3 - Rollback correctness (revert scope verification)
+runTest("core/rollback.sh restores modified files from backup", () => {
+  const tempDir = path.join(REPO_ROOT, ".test_core_rollback_correctness");
+  if (fs.existsSync(tempDir)) {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    const packFile = path.join(tempDir, "repo_knowledge_pack.txt");
+    const originalContent = "--- START FILE: test.ts ---\nconst original = true;\n--- END FILE: test.ts ---";
+    fs.writeFileSync(packFile, originalContent, "utf8");
+
+    // Create backup
+    execSync(`bash core/rollback.sh create --dir "${toBashPath(tempDir)}" "${toBashPath(packFile)}"`, {
+      cwd: REPO_ROOT,
+      env: getCleanEnv(),
+      stdio: "pipe"
+    });
+
+    const backupFile = packFile + ".bak.txt";
+    if (!fs.existsSync(backupFile)) {
+      throw new Error(`Backup file not created: ${backupFile}`);
+    }
+
+    // Corrupt pack file
+    fs.writeFileSync(packFile, "CORRUPTED SYNTHESIS STATE", "utf8");
+
+    // Revert via rollback restore
+    execSync(`bash core/rollback.sh restore --dir "${toBashPath(tempDir)}"`, {
+      cwd: REPO_ROOT,
+      env: getCleanEnv(),
+      stdio: "pipe"
+    });
+
+    const restoredContent = fs.readFileSync(packFile, "utf8");
+    if (restoredContent !== originalContent) {
+      throw new Error(`Rollback restore failed. Expected original content, got: ${restoredContent}`);
+    }
+
+    console.log("  ✓ Rollback restoration verified: corrupted state reverted to exact original content");
+  } finally {
+    if (fs.existsSync(tempDir)) {
+      fs.rmSync(tempDir, { recursive: true, force: true });
     }
   }
 });

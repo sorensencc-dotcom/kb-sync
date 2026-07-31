@@ -202,6 +202,8 @@ done > "$TEMP_FILE_LIST"
 log_info "Found $(wc -l < "$TEMP_FILE_LIST") files to include."
 
 # --- STEP 3: OUTPUT BASED ON MODE --------------------------------------------
+mkdir -p "$PACK_DIR"
+
 if [ "$USE_MANIFEST" = true ]; then
   # Manifest mode: write newline-delimited file list
   MANIFEST_FILE="$PACK_DIR/pack.manifest.txt"

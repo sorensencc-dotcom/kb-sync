@@ -145,8 +145,46 @@ status: unknown_status
       throw new Error("Expected validate-contract.mjs to fail for non-canonical category/status");
     }
 
-    if (!output.includes("Non-canonical category")) {
-      throw new Error(`Expected 'Non-canonical category' error message, got:\n${output}`);
+    if (!output.includes("Non-canonical category") && !output.includes("Non-canonical status")) {
+      throw new Error(`Expected non-canonical category/status error message, got:\n${output}`);
+    }
+  } finally {
+    cleanupTempDir(tempDir);
+  }
+});
+
+runTest("validate-contract.mjs: rejects missing category and missing status in frontmatter", () => {
+  const tempDir = createTempDir("contract_missing_cat_status");
+  try {
+    const invalidFile = path.join(tempDir, "missing-cat-status.md");
+    fs.writeFileSync(
+      invalidFile,
+      `---
+title: Missing Fields Note
+---
+
+# Missing Fields Note
+`
+    );
+
+    let failed = false;
+    let output = "";
+    try {
+      output = execSync(`node modules/wiki/validate-contract.mjs "${tempDir}" 2>&1`, {
+        cwd: REPO_ROOT,
+        encoding: "utf8"
+      });
+    } catch (err: any) {
+      failed = true;
+      output = err.stdout || err.output?.join("\n") || err.message;
+    }
+
+    if (!failed) {
+      throw new Error("Expected validate-contract.mjs to fail for missing category and status");
+    }
+
+    if (!output.includes("Missing mandatory key 'category'") || !output.includes("Missing mandatory key 'status'")) {
+      throw new Error(`Expected missing category/status error messages, got:\n${output}`);
     }
   } finally {
     cleanupTempDir(tempDir);

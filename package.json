@@ -36,7 +36,7 @@
     "test:contract-cleanup": "npx tsx tests/wiki-contract-cleanup-verification.ts",
     "test:path": "npx tsx tests/path-normalizer-verification.ts",
     "test:perf": "npx tsx tests/performance-benchmark.ts",
-    "test:all": "npm run test:core && npm run test:obsidian && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:perf",
+    "test:all": "npm run test:core && npm run test:obsidian && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:path && npm run test:perf",
     "kb:pipeline:full": "npm run wiki:ingest && npm run wiki:validate-staging && npm run wiki:validate-contract && npm run wiki:cleanup-archives",
     "wiki:weekly": "powershell.exe -ExecutionPolicy Bypass -File scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1",
     "logs:cleanup": "node scripts/cleanup-logs-and-backups.mjs",
