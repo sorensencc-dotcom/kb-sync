@@ -19,12 +19,12 @@ This document specifies three phased enhancements to `kb-sync` designed to autom
 
 ## 2. Architecture & File Structure
 
-All new components operate as lightweight, fail-soft TypeScript/Node modules executed by `npx tsx` and wired into `core/run-all.sh`.
+All new components operate as lightweight, fail-soft TypeScript/Node modules executed by `npx tsx` and wired into `core/run-all.sh` using explicit `|| true` fail-soft guards to ensure core sync pipeline execution is never blocked by telemetry/report steps.
 
 ```
 c:/dev/kb-sync/
 ├── core/
-│   └── run-all.sh                        # Updated to invoke drift, delta, and coverage stages
+│   └── run-all.sh                        # Updated to invoke drift, delta, and coverage stages (fail-soft with || true)
 ├── modules/wiki/
 │   ├── detect-drift.ts                   # Phase 1: Git vs Wiki Log timestamp & hash drift analyzer
 │   ├── generate-delta-summary.ts         # Phase 2: Diffs staging snapshots & formats operator delta prompt
@@ -86,13 +86,14 @@ c:/dev/kb-sync/
 
 ### 4.1 Phase 1: Knowledge Freshness & Drift Detection (`detect-drift.ts`)
 1. Reads `configs/obsidian.yaml` `mapping_rules` to resolve mappings between source repository paths and wiki folders.
-2. Extracts last wiki ingest timestamps from `wiki/Log.md` or `.sync-status.json`.
+2. Extracts last wiki ingest timestamps from `wiki/Log.md`; falls back cleanly to `.sync-status.json` `last_sync_timestamp` if `Log.md` dates cannot be parsed.
 3. Runs `git log -1 --format="%aI"` against source repositories to compare source commit timestamps against wiki sync timestamps.
 4. Computes SHA256 checksums of source files vs staged snapshots in `_kb-sync-staging/`.
 5. Emits findings into `.drift-report.json` and logs clear terminal warnings during `core/run-all.sh`.
 
 ### 4.2 Phase 2: Ingest Delta Summarization (`generate-delta-summary.ts`)
 1. Scans `_kb-sync-staging/<repo>/` for the current and previous timestamped staging snapshots (e.g. `20260731-120000` vs `20260801-140000`).
+   - *Initial Run Baseline Fallback*: If fewer than 2 staging snapshots exist, treats all currently staged files as new baseline additions.
 2. Computes file-level diffs (added, deleted, modified) and structural code diffs.
 3. Formats an actionable **Delta Summary** block into the operator prompt printed at the end of `ingest-obsidian.sh`, guiding human/Claude synthesis to modified areas.
 
@@ -108,7 +109,8 @@ c:/dev/kb-sync/
 
 1. **Retrospective & Backlog Integration**:
    - Telemetry from `.drift-report.json` and `.coverage-report.json` feeds into weekly retrospectives (`/retro`) and engineering health metrics.
-   - Self-healing trigger: When **Coverage Score < 85%** or **Stale Wiki Pages > 5**, `kb-sync` automatically appends a documentation backlog task to `TODOS.md`.
+   - Self-healing trigger: When **Coverage Score < 85%** or **Stale Wiki Pages > 5**, `kb-sync` appends a documentation backlog task to `TODOS.md`.
+   - *Deduplication Guard*: Checks existing lines in `TODOS.md` for matching active task signatures prior to appending, preventing duplicate backlog entries across multiple sync runs.
 
 2. **PR / CI Guard Rails**:
    - `npm run kb:drift --check-ci` can be executed in CI to alert developers when core code changes lack corresponding wiki updates.
