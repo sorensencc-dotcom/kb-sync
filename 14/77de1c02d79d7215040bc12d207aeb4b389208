@@ -1,0 +1,14 @@
+docs/superpowers/specs/2026-08-01-kb-sync-enhancements-design.md
+  h_5c172e9b435f5a 22,27,89,96,112-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "1477de1c02d79d7215040bc12d207aeb4b389208",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
