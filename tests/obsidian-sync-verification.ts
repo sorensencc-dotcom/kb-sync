@@ -33,12 +33,17 @@ function toBashPath(absolutePath: string): string {
   return rel.replace(/\\/g, '/');
 }
 
-// Convert Windows path to Git Bash mount path (/mnt/c/...) for environment variables
+// Convert Windows path to Git Bash or WSL mount path (/c/... or /mnt/c/...) for environment variables
 function toMountPath(windowsPath: string): string {
   const normalized = windowsPath.replace(/\\/g, '/');
   const match = normalized.match(/^([A-Za-z]):\/(.*)/);
   if (match) {
-    return `/mnt/${match[1].toLowerCase()}/${match[2]}`;
+    const drive = match[1].toLowerCase();
+    const rest = match[2];
+    if (fs.existsSync(`/mnt/${drive}`)) {
+      return `/mnt/${drive}/${rest}`;
+    }
+    return `/${drive}/${rest}`;
   }
   return normalized;
 }
@@ -82,10 +87,14 @@ runTest("Parse and validate obsidian.yaml config structure", () => {
 
 // Test 2: Fail-fast on missing OBSIDIAN_VAULT_ROOT
 runTest("Staging script fails fast when OBSIDIAN_VAULT_ROOT not set and vault_root invalid", () => {
+  const tempConfigDir = path.join(REPO_ROOT, "configs");
+  const tempConfig = path.join(tempConfigDir, "_invalid_obsidian_test.yaml");
+  fs.writeFileSync(tempConfig, "staging_dir: _kb-sync-staging\nwiki_dir: wiki\n");
+
   try {
-    // Run with empty env var and no valid vault directory
     const env = getCleanEnv();
     env.OBSIDIAN_VAULT_ROOT = "";
+    env.MODULE_CONFIG = "configs/_invalid_obsidian_test.yaml";
 
     execSync(`bash modules/obsidian/ingest-obsidian.sh`, {
       cwd: REPO_ROOT,
@@ -104,6 +113,10 @@ runTest("Staging script fails fast when OBSIDIAN_VAULT_ROOT not set and vault_ro
     }
 
     console.log(`  Script correctly rejected missing OBSIDIAN_VAULT_ROOT`);
+  } finally {
+    if (fs.existsSync(tempConfig)) {
+      fs.unlinkSync(tempConfig);
+    }
   }
 });
 

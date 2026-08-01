@@ -277,6 +277,7 @@ DELTA_SUMMARY=$(npx tsx "$REPO_ROOT/modules/wiki/generate-delta-summary.ts" 2>/d
 
 cat >&2 << EOF
 
+📦 Raw sources staged successfully.
 $DELTA_SUMMARY
 
 Next step: Run a Claude Code session to ingest staged sources into your wiki.
