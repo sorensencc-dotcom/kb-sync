@@ -1,0 +1,18 @@
+modules/wiki/audit-coverage.ts
+  h_5c172e9b435f5a 1-242
+package.json
+  h_5c172e9b435f5a 14
+tests/coverage-audit.test.ts
+  h_5c172e9b435f5a 1-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "b6557f4c04ac2ab8481067aade310bc0911dd5af",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
