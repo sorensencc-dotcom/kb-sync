@@ -145,6 +145,33 @@ function collectFiles(dirOrFile: string): string[] {
   return [];
 }
 
+function appendToTodos(taskLine: string, signatureKey: string) {
+  const possiblePaths = [
+    path.resolve(REPO_ROOT, "../TODOS.md"),
+    "C:/dev/TODOS.md",
+    "c:/dev/TODOS.md",
+  ];
+  let targetPath: string | null = null;
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      targetPath = p;
+      break;
+    }
+  }
+  if (!targetPath) return;
+
+  try {
+    const content = fs.readFileSync(targetPath, "utf8");
+    if (content.includes(signatureKey)) {
+      return;
+    }
+    if (content.includes("## Open")) {
+      const updated = content.replace(/## Open\r?\n/, `## Open\n\n${taskLine}\n`);
+      fs.writeFileSync(targetPath, updated, "utf8");
+    }
+  } catch {}
+}
+
 export function runDriftDetection(): DriftReport {
   const lastSync = getWikiSyncTimestamp();
 
@@ -261,6 +288,11 @@ export function runDriftDetection(): DriftReport {
       stale_pages_count: driftedSources.length,
     },
   };
+
+  if (report.summary.stale_pages_count > 5) {
+    const taskLine = `- [ ] **kb-sync drift remediation** — Knowledge base drift detected (${report.summary.stale_pages_count} stale pages > threshold 5). Run kb-sync ingest.`;
+    appendToTodos(taskLine, "kb-sync drift remediation");
+  }
 
   const reportPath = path.join(REPO_ROOT, ".drift-report.json");
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), "utf8");

@@ -169,6 +169,16 @@ if [ "$OVERALL_SUCCESS" = true ]; then
     done
     log_info ""
     log_info "Artifacts output to: $REPO_ROOT/_integration/"
+
+    log_info ""
+    log_info "========================================================================"
+    log_info "Running Telemetry & Drift Analysis..."
+    log_info "========================================================================"
+    log_info "Running Phase 1 Drift Detection..."
+    npx tsx "$REPO_ROOT/modules/wiki/detect-drift.ts" || true
+
+    log_info "Running Phase 3 Coverage Audit..."
+    npx tsx "$REPO_ROOT/modules/wiki/audit-coverage.ts" || true
   fi
 
   exit 0

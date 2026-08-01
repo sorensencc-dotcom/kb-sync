@@ -16,8 +16,8 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CORE_DIR="$REPO_ROOT/core"
 CONFIGS_DIR="$REPO_ROOT/configs"
-GLOBAL_CONFIG="$CONFIGS_DIR/global.yaml"
-MODULE_CONFIG="$CONFIGS_DIR/obsidian.yaml"
+GLOBAL_CONFIG="${GLOBAL_CONFIG:-$CONFIGS_DIR/global.yaml}"
+MODULE_CONFIG="${MODULE_CONFIG:-$CONFIGS_DIR/obsidian.yaml}"
 
 # Log helpers
 log_info() {
@@ -119,18 +119,28 @@ if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
   OBSIDIAN_VAULT_ROOT=$(get_config_value "$MODULE_CONFIG" "vault_root")
 fi
 
-# Convert Windows paths to WSL mount format (C:\... → /mnt/c/...) only if running in WSL
+# Convert Windows paths to WSL mount format (C:\... → /mnt/c/...) if running in WSL, or normalize /mnt/c/ to /c/ if in Git Bash
 convert_to_wsl_path() {
   local path="$1"
   # Remove backslashes
   path="${path//\\//}"
-  # Convert to /mnt/<drive>/ only if running under WSL
+  # Convert to /mnt/<drive>/ if running under WSL
   if grep -qi microsoft /proc/version 2>/dev/null; then
     if [[ "$path" =~ ^([A-Za-z]):/(.*) ]]; then
       local drive="${BASH_REMATCH[1]}"
       local rest="${BASH_REMATCH[2]}"
       drive=$(echo "$drive" | tr '[:upper:]' '[:lower:]')
       path="/mnt/${drive}/${rest}"
+    fi
+  else
+    # If not running under WSL, but path starts with /mnt/<drive>/ (WSL format), convert to /<drive>/ if /mnt/<drive> doesn't exist
+    if [[ "$path" =~ ^/mnt/([A-Za-z])/(.*) ]]; then
+      local drive="${BASH_REMATCH[1]}"
+      local rest="${BASH_REMATCH[2]}"
+      drive=$(echo "$drive" | tr '[:upper:]' '[:lower:]')
+      if [ ! -d "/mnt/${drive}" ] && [ -d "/${drive}" ]; then
+        path="/${drive}/${rest}"
+      fi
     fi
   fi
   echo "$path"
@@ -263,9 +273,11 @@ log_info "======================================================================
 log_info "Obsidian Sync Staging Complete"
 log_info "========================================================================"
 
-cat >&2 << 'EOF'
+DELTA_SUMMARY=$(npx tsx "$REPO_ROOT/modules/wiki/generate-delta-summary.ts" 2>/dev/null || echo "📦 Delta Summary: Not available.")
 
-📦 Raw sources staged successfully.
+cat >&2 << EOF
+
+$DELTA_SUMMARY
 
 Next step: Run a Claude Code session to ingest staged sources into your wiki.
 

@@ -61,6 +61,33 @@ function findMdFiles(dir: string): string[] {
   return results;
 }
 
+function appendToTodos(taskLine: string, signatureKey: string) {
+  const possiblePaths = [
+    path.resolve(REPO_ROOT, "../TODOS.md"),
+    "C:/dev/TODOS.md",
+    "c:/dev/TODOS.md",
+  ];
+  let targetPath: string | null = null;
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      targetPath = p;
+      break;
+    }
+  }
+  if (!targetPath) return;
+
+  try {
+    const content = fs.readFileSync(targetPath, "utf8");
+    if (content.includes(signatureKey)) {
+      return;
+    }
+    if (content.includes("## Open")) {
+      const updated = content.replace(/## Open\r?\n/, `## Open\n\n${taskLine}\n`);
+      fs.writeFileSync(targetPath, updated, "utf8");
+    }
+  } catch {}
+}
+
 export function runCoverageAudit(): CoverageReport {
   let mappingRules: MappingRule[] = [];
   const configPath = path.join(REPO_ROOT, "configs/obsidian.yaml");
@@ -231,6 +258,11 @@ export function runCoverageAudit(): CoverageReport {
     },
     coverage_score_pct: coverageScorePct,
   };
+
+  if (report.coverage_score_pct < 85) {
+    const taskLine = `- [ ] **kb-sync coverage improvement** — Documentation coverage score dropped to ${report.coverage_score_pct}% (threshold < 85%). Update mapping rules or wiki pages.`;
+    appendToTodos(taskLine, "kb-sync coverage improvement");
+  }
 
   const reportPath = path.join(REPO_ROOT, ".coverage-report.json");
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), "utf8");
