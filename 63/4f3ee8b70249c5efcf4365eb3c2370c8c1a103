@@ -1,0 +1,18 @@
+modules/wiki/generate-delta-summary.ts
+  h_5c172e9b435f5a 1-169
+package.json
+  h_5c172e9b435f5a 13
+tests/delta-summary.test.ts
+  h_5c172e9b435f5a 1-72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "634f3ee8b70249c5efcf4365eb3c2370c8c1a103",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
