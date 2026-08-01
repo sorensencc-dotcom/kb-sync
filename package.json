@@ -11,6 +11,7 @@
     "kb:sync:obsidian": "bash modules/obsidian/ingest-obsidian.sh",
     "kb:drift": "npx tsx modules/wiki/detect-drift.ts",
     "kb:delta": "npx tsx modules/wiki/generate-delta-summary.ts",
+    "kb:coverage": "npx tsx modules/wiki/audit-coverage.ts",
     "wiki:ingest:obsidian:validate": "bash modules/obsidian/ingest-wiki.sh validate",
     "wiki:ingest:obsidian:prompt": "bash modules/obsidian/ingest-wiki.sh prompt",
     "kb:sync:all": "bash core/run-all.sh",
