@@ -1,0 +1,42 @@
+.ijfw/.dream-state-v2.json
+  s_00d135f05ed507::t_d8a184054f7055 3-4,8-11,14-28,31-39,43-44,49-50
+.ijfw/.dream-state.json
+  s_00d135f05ed507::t_d8a184054f7055 1
+.ijfw/.session-marker-ts
+  s_00d135f05ed507::t_d8a184054f7055 1
+.ijfw/metrics/sessions.jsonl
+  s_00d135f05ed507::t_d8a184054f7055 2-5
+  s_00d135f05ed507::t_305bda645cd81a 6-8
+.ijfw/memory/project-journal.md
+  s_00d135f05ed507::t_d8a184054f7055 4-5
+.ijfw/.session-counter-id
+  s_00d135f05ed507::t_d8a184054f7055 1
+.ijfw/.session-counter
+  s_00d135f05ed507::t_d8a184054f7055 1
+tests/obsidian-sync-verification.ts
+  s_1866a2ce252c28::t_6281ecc143a96e 36,41-46,90-93,97,116-119
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "abe5e6584bd5092b9719f5d928620daf2d309f95",
+  "prompts": {},
+  "sessions": {
+    "s_00d135f05ed507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f4bb51ba-5872-43ae-8c28-6c4818b108b8",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_1866a2ce252c28": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fbb41-ed63-7e23-9d30-e9e99e0b99b6",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
