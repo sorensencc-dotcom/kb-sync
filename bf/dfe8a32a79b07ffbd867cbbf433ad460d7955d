@@ -1,0 +1,19 @@
+core/run-all.sh
+  s_bdfcd3eab2946a::t_8824aee67324cd 172-181
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "bfdfe8a32a79b07ffbd867cbbf433ad460d7955d",
+  "prompts": {},
+  "sessions": {
+    "s_bdfcd3eab2946a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43058819-429e-456d-a665-18392e1cb52b",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
