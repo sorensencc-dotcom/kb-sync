@@ -1,0 +1,122 @@
+{
+  "timestamp": "2026-08-02T00:22:22.785Z",
+  "status": "DRIFT_DETECTED",
+  "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "core/flatten.sh",
+      "last_code_commit": "2026-07-31T09:11:27-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/flatten.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "core/path-normalizer.mjs",
+      "last_code_commit": "2026-07-25T20:59:40-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/path-normalizer.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "core/run-all.sh",
+      "last_code_commit": "2026-08-01T18:16:54-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/run-all.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/notebooklm/ingest-notebooklm.sh",
+      "last_code_commit": "2026-07-25T20:49:16-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/ingest-notebooklm.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/obsidian/ingest-obsidian.sh",
+      "last_code_commit": "2026-08-01T18:26:24-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/ingest-obsidian.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/audit-coverage.ts",
+      "last_code_commit": "2026-08-01T18:16:54-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/audit-coverage.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/detect-drift.ts",
+      "last_code_commit": "2026-08-01T18:16:54-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/detect-drift.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/generate-delta-summary.ts",
+      "last_code_commit": "2026-08-01T18:05:29-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/generate-delta-summary.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "docs/governance/automation-policy.md",
+      "last_code_commit": "2026-07-26T01:32:52-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/automation-policy.md"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "docs/IMPLEMENTATION-RECORD-KB-SYNC-TIMEOUT-POLICY-2026-07-22.md",
+      "last_code_commit": "2026-07-26T01:32:52-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/IMPLEMENTATION-RECORD-KB-SYNC-TIMEOUT-POLICY-2026-07-22.md"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "docs/operations/kb-sync-nightly-reports/kb-sync-nightly-2026-07-23-EXECUTION-BLOCKED.md",
+      "last_code_commit": "2026-07-25T00:43:50-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/kb-sync-nightly-2026-07-23-EXECUTION-BLOCKED.md"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "docs/SESSION_WRAP_UP_2026-07-26.md",
+      "last_code_commit": "2026-07-26T00:30:32-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/SESSION_WRAP_UP_2026-07-26.md"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "docs/superpowers/plans/2026-08-01-kb-sync-enhancements.md",
+      "last_code_commit": "2026-08-01T17:52:21-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/2026-08-01-kb-sync-enhancements.md"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "docs/superpowers/specs/2026-08-01-kb-sync-enhancements-design.md",
+      "last_code_commit": "2026-08-01T17:50:57-04:00",
+      "last_wiki_sync": "2026-07-25T04:40:00.000Z",
+      "status": "STALE",
+      "wiki_page": "Unsorted/2026-08-01-kb-sync-enhancements-design.md"
+    }
+  ],
+  "summary": {
+    "total_sources_checked": 56,
+    "stale_pages_count": 14
+  }
+}

@@ -29,7 +29,14 @@ function collectFiles(dirOrFile: string): string[] {
   const fullPath = path.join(REPO_ROOT, dirOrFile);
   if (!fs.existsSync(fullPath)) return [];
   const stat = fs.statSync(fullPath);
-  if (stat.isFile()) return [dirOrFile.replace(/\\/g, "/")];
+  if (stat.isFile()) {
+    const ext = path.extname(dirOrFile).toLowerCase();
+    const codeExts = [".sh", ".mjs", ".ts", ".js", ".ps1", ".py"];
+    if (codeExts.includes(ext)) {
+      return [dirOrFile.replace(/\\/g, "/")];
+    }
+    return [];
+  }
   if (stat.isDirectory()) {
     const results: string[] = [];
     const entries = fs.readdirSync(fullPath);
@@ -134,18 +141,20 @@ export function runCoverageAudit(): CoverageReport {
   const unmappedSources: string[] = [];
   for (const fileRel of sourceFiles) {
     let isMapped = false;
-    for (const rule of mappingRules) {
-      if (fileRel.startsWith(rule.prefix)) {
-        isMapped = true;
-        break;
+    const fileBasename = path.basename(fileRel);
+    const nameWithoutExt = path.basename(fileRel, path.extname(fileRel));
+
+    if (basenameSet.has(fileBasename) || basenameSet.has(nameWithoutExt)) {
+      isMapped = true;
+    } else {
+      for (const rule of mappingRules) {
+        if (fileRel.startsWith(rule.prefix) && !["core/", "modules/", "scripts/", "tests/"].includes(rule.prefix)) {
+          isMapped = true;
+          break;
+        }
       }
     }
-    if (!isMapped) {
-      const fileBasename = path.basename(fileRel);
-      if (basenameSet.has(fileBasename) || basenameSet.has(path.basename(fileRel, path.extname(fileRel)))) {
-        isMapped = true;
-      }
-    }
+
     if (!isMapped) {
       unmappedSources.push(fileRel);
     }
@@ -161,13 +170,20 @@ export function runCoverageAudit(): CoverageReport {
     const content = fs.readFileSync(fullMdPath, "utf8");
     const lines = content.split("\n");
 
+    let inCodeBlock = false;
     lines.forEach((line, lineIndex) => {
+      if (line.trim().startsWith("```")) {
+        inCodeBlock = !inCodeBlock;
+        return;
+      }
+      if (inCodeBlock) return;
+
       // Check standard Markdown links: [text](target)
       const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
       let match: RegExpExecArray | null;
       while ((match = mdLinkRegex.exec(line)) !== null) {
         const rawTarget = match[2].trim();
-        // Ignore external links, mailto, anchor-only links
+        // Ignore external http(s) links, mailto, anchor-only links
         if (
           rawTarget.startsWith("http://") ||
           rawTarget.startsWith("https://") ||
@@ -179,8 +195,18 @@ export function runCoverageAudit(): CoverageReport {
 
         totalLinks++;
         // Clean target path (strip fragment or query string)
-        const cleanTarget = rawTarget.split("#")[0].split("?")[0].trim();
+        let cleanTarget = rawTarget.split("#")[0].split("?")[0].trim();
         if (!cleanTarget) continue;
+
+        if (cleanTarget.startsWith("file:///")) {
+          let fileUriPath = cleanTarget.replace("file:///", "");
+          if (process.platform === "win32") {
+            fileUriPath = fileUriPath.replace(/\//g, "\\");
+          }
+          if (fs.existsSync(fileUriPath) || fs.existsSync(decodeURIComponent(fileUriPath))) {
+            continue;
+          }
+        }
 
         let targetFullPath = cleanTarget.startsWith("/")
           ? path.join(REPO_ROOT, cleanTarget)

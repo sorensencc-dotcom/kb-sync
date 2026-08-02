@@ -16,7 +16,7 @@ fi
 # (b) staged content matching credential patterns
 # AIza: Google API key; sk-: OpenAI/Anthropic; ghp_/github_pat_: GitHub;
 # xox: Slack; AKIA: AWS access key id
-pattern='AIza[0-9A-Za-z_-]{35}|sk-[a-zA-Z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{22,}|xox[bp]-[0-9A-Za-z-]{10,}|AKIA[0-9A-Z]{16}'
+pattern='AIza[0-9A-Za-z_-]{35}|\bsk-[a-zA-Z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{22,}|xox[bp]-[0-9A-Za-z-]{10,}|AKIA[0-9A-Z]{16}'
 hits=$(git diff --cached -U0 --diff-filter=AM | grep -E '^\+' | grep -EI "$pattern" | head -5)
 if [ -n "$hits" ]; then
   echo ""

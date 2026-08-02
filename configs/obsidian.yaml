@@ -27,6 +27,14 @@ log_filename: "Log.md"
 # Each rule maps a source prefix to a target folder within wiki_dir
 # Used as guidance during human-run ingest sessions; not enforced mechanically
 mapping_rules:
+  - prefix: "core/"
+    folder: "entities"
+  - prefix: "modules/"
+    folder: "entities"
+  - prefix: "scripts/"
+    folder: "entities"
+  - prefix: "tests/"
+    folder: "entities"
   - prefix: "rewrite-mcp/"
     folder: "CIC/Rewrite Labs"
   - prefix: "torquequery/"

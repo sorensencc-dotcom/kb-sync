@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-08-02T01:03:02.224Z",
+  "source_files_count": 36,
+  "wiki_pages_count": 45,
+  "unmapped_sources": [],
+  "link_health": {
+    "total_links": 177,
+    "broken_links": [],
+    "healthy_pct": 100
+  },
+  "coverage_score_pct": 100
+}
