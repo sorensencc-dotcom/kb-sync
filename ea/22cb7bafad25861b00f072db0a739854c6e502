@@ -1,0 +1,19 @@
+modules/review-capacity/scripts/extract-github-prs.ps1
+  s_5a8f46f7923443::t_794be5d96ce3d5 2,4-5,12-38,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "ea22cb7bafad25861b00f072db0a739854c6e502",
+  "prompts": {},
+  "sessions": {
+    "s_5a8f46f7923443": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fbfcd-f26c-7730-a1bf-c75f1f0ad993",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
