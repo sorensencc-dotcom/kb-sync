@@ -1,6 +1,7 @@
 param(
     [string]$CsvPath = (Join-Path $PSScriptRoot '..\review-capacity-baseline.csv'),
-    [datetime]$WeekStart = ((Get-Date).Date.AddDays(-1 * [int](Get-Date).DayOfWeek + 1).AddDays(-7))
+    [datetime]$WeekStart = ((Get-Date).Date.AddDays(-1 * [int](Get-Date).DayOfWeek + 1).AddDays(-7)),
+    [int]$SustainablePrsPerEngineer = 3
 )
 
 $rows = @(Import-Csv -LiteralPath $CsvPath | Where-Object {
@@ -13,12 +14,16 @@ $reviewMinutes = ($rows | ForEach-Object { [double]$_.human_review_minutes } | M
 $aiRows = @($rows | Where-Object { $_.ai_assisted -eq 'yes' }).Count
 $reworkRows = @($rows | Where-Object { [int]$_.rework_commits_count -gt 0 }).Count
 $latencies = @($rows | ForEach-Object { [double]$_.first_review_latency_minutes } | Sort-Object)
-$median = $latencies[[math]::Floor(($latencies.Count - 1) / 2)]
+$median = if ($latencies.Count -gt 0) { $latencies[[math]::Floor(($latencies.Count - 1) / 2)] } else { 0 }
+$reviewCeiling = $engineers * $SustainablePrsPerEngineer
 
 [pscustomobject]@{
     week_start = $WeekStart.ToString('yyyy-MM-dd')
     merged_prs_week = $rows.Count
     active_engineers_week = $engineers
+    sustainable_prs_per_engineer = $SustainablePrsPerEngineer
+    review_ceiling = $reviewCeiling
+    is_saturated = ($rows.Count -gt $reviewCeiling)
     prs_per_engineer = [math]::Round($rows.Count / $engineers, 2)
     review_hours_per_engineer = [math]::Round($reviewMinutes / 60 / $engineers, 2)
     ai_pr_share = [math]::Round($aiRows / $rows.Count, 3)

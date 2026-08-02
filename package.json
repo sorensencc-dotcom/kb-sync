@@ -12,6 +12,8 @@
     "kb:drift": "npx tsx modules/wiki/detect-drift.ts",
     "kb:delta": "npx tsx modules/wiki/generate-delta-summary.ts",
     "kb:coverage": "npx tsx modules/wiki/audit-coverage.ts",
+    "kb:review-extract": "powershell.exe -ExecutionPolicy Bypass -File modules/review-capacity/scripts/extract-github-prs.ps1",
+    "kb:review-metrics": "powershell.exe -ExecutionPolicy Bypass -File modules/review-capacity/scripts/compute-weekly-metrics.ps1",
     "wiki:ingest:obsidian:validate": "bash modules/obsidian/ingest-wiki.sh validate",
     "wiki:ingest:obsidian:prompt": "bash modules/obsidian/ingest-wiki.sh prompt",
     "kb:sync:all": "bash core/run-all.sh",
