@@ -1,0 +1,69 @@
+.context/retros/2026-08-01-1.json
+  s_0b72b0b6a27e79::t_6f5137cda0b52e 1-41
+.ijfw/sessions/session_2026-07-26_02-00-04.md
+  s_3a648444963bf0::t_477b3cb2d7bec7 1-5
+modules/wiki/audit-coverage.ts
+  s_5a8f46f7923443::t_0fcce41e78b3e5 32-39,144-154,157,173,175-180,186,198,201-210
+wiki/entities/cleanup-pack-dir.sh.md
+  s_5a8f46f7923443::t_f72fb7f948d248 1-9
+wiki/entities/generate-report.mjs.md
+  s_5a8f46f7923443::t_c1e00b9efc4519 1-9
+wiki/entities/generate.sh.md
+  s_5a8f46f7923443::t_b6673c6d49d5cb 1-9
+wiki/entities/path-normalizer-verification.ts.md
+  s_5a8f46f7923443::t_b0bb9021a7924a 1-9
+wiki/entities/post-commit-hook-example.sh.md
+  s_5a8f46f7923443::t_7842bc1f46e67f 1-9
+wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md
+  s_5a8f46f7923443::t_737f883264e50b 1-9
+wiki/entities/secret-scan-hook.sh.md
+  s_5a8f46f7923443::t_4ffb47e1e6d801 1-9
+wiki/entities/setup-auth.mjs.md
+  s_5a8f46f7923443::t_7fc4a1fc1e2962 1-9
+wiki/entities/validate-staging-docs.mjs.md
+  s_5a8f46f7923443::t_6e7094154ea00a 1-9
+wiki/entities/wiki-validate-precommit.sh.md
+  s_5a8f46f7923443::t_0b24331d0b5ff2 1-9
+.gitignore
+  s_0704e88a1f3df3::t_b0dc7ce21cbde2 23-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "5048b95a3a29076963e0a5c37e7b168ef3b67ded",
+  "prompts": {},
+  "sessions": {
+    "s_0704e88a1f3df3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "de2f1c5c-6819-41a4-9422-e6d06c50274d",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_0b72b0b6a27e79": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fbdda-e73f-79e3-9b63-cfb7e0acc48c",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_3a648444963bf0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "654fa057-2fe6-49cf-b028-c4126ffbcac7",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_5a8f46f7923443": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fbfcd-f26c-7730-a1bf-c75f1f0ad993",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
