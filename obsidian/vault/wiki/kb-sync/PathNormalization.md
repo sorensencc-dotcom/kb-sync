@@ -1,6 +1,7 @@
 ---
 title: "Path Normalization"
-category: "entity"
+category: "utilities"
+status: "active"
 type: "infrastructure"
 source_path: "_kb-sync-staging/kb-sync/20260725-213400"
 last_ingest_date: "2026-07-25"

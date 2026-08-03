@@ -1,12 +1,12 @@
 {
-  "last_sync_timestamp": "2026-08-01T13:22:39.845Z",
+  "last_sync_timestamp": "2026-08-03T19:50:00.000Z",
   "status": "SUCCESS",
-  "file_count": 171,
+  "file_count": 224,
   "pack_files_count": 1,
-  "pack_size_bytes": 1651692,
+  "pack_size_bytes": 1738510,
   "unique_urls_tracked": 78,
   "total_url_references": 84,
-  "notebook_id": "unknown",
+  "notebook_id": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
   "stage1_success": true,
   "stage2_success": true
 }

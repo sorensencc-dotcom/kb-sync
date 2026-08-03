@@ -2,7 +2,7 @@
 
 **Stack:** Node.js / TypeScript / Bash  
 **Architecture:** Multi-target KB sync pipeline (modular, fail-soft orchestration, immutable staging)  
-**Entry:** `npm run kb:sync:all` | individual: `npm run kb:sync:notebooklm`, `npm run kb:sync:obsidian`  
+**Entry:** `npm run kb:status` | `npm run kb:sync:all` | individual: `npm run kb:sync:notebooklm`, `npm run kb:sync:obsidian`  
 **Tests:** TypeScript verification (tsx runner) | `npm run test:all`  
 **Lint:** None configured  
 

@@ -1,8 +1,8 @@
 # Knowledge Base Index
 
-**Last Updated:** 2026-07-25 04:40 UTC  
-**Pack Hash:** (from 20260725-041226 staging)  
-**Total Entities:** 7  
+**Last Updated:** 2026-08-03 19:50 UTC  
+**Pack Hash:** (from 20260803-195000 staging)  
+**Total Entities:** 14  
 **Total Concepts:** 4  
 
 ---
@@ -21,6 +21,7 @@
 - [[kb-sync-nightly.sh]] — Two-stage nightly orchestrator executing NotebookLM ingest and interactive artifact generation
 - [[generate-kb-sync-artifact.mjs]] — Stage 2 report generator; extracts external documentation URLs and compiles interactive HTML dashboard
 - [[register-kb-sync-task.ps1]] — Automation script registering the daily scheduled task `KB-Sync-Daily` in Windows Task Scheduler
+- [[check-status.mjs]] — CLI status dashboard and telemetry inspector for kb-sync pipeline
 - [[detect-drift.ts]] — Phase 1 Knowledge Freshness & Drift Detection analyzer
 - [[generate-delta-summary.ts]] — Phase 2 Ingest Delta Summarization snapshot diffing module
 - [[audit-coverage.ts]] — Phase 3 Observability & Coverage Analytics linter and score metrics

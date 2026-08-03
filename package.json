@@ -4,6 +4,8 @@
   "type": "module",
   "description": "CIC Knowledge Base Sync Pipeline",
   "scripts": {
+    "kb:status": "node scripts/check-status.mjs",
+    "kb:sync:status": "node scripts/check-status.mjs",
     "kb:sync": "powershell.exe -ExecutionPolicy Bypass -File scripts/notebooklm/kb-sync-nightly.ps1",
     "kb:sync:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
     "kb:sync:notebooklm": "bash modules/notebooklm/ingest-notebooklm.sh",

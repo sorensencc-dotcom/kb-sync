@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-08-02T01:10:09.629Z",
-  "source_files_count": 36,
-  "wiki_pages_count": 45,
+  "timestamp": "2026-08-03T19:48:51.426Z",
+  "source_files_count": 37,
+  "wiki_pages_count": 46,
   "unmapped_sources": [],
   "link_health": {
-    "total_links": 177,
+    "total_links": 181,
     "broken_links": [],
     "healthy_pct": 100
   },
