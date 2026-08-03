@@ -1,0 +1,29 @@
+.github/workflows/validate-staging.yml
+  s_9b04e33689e249::t_41145d2bceaa3b 27,32,34,113
+CLAUDE.md
+  s_9868dd8a6fdac9::t_13bb275c039c25 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "74a0664ee2bc44bbf06a2fa59a75b17d34c51cf2",
+  "prompts": {},
+  "sessions": {
+    "s_9868dd8a6fdac9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-aeddc748e21f23a3f",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_9b04e33689e249": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fc2cc-b74c-7c20-b39b-9af6e9ee68b9",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
