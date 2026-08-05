@@ -227,7 +227,9 @@ else
       [ -z "$file" ] && continue
       echo ""
       echo "--- START FILE: $file ---"
-      cat "$REPO_ROOT/$file"
+      if [ -f "$REPO_ROOT/$file" ]; then
+        cat "$REPO_ROOT/$file" || true
+      fi
       echo "--- END FILE: $file ---"
       echo ""
     done < "$TEMP_FILE_LIST"

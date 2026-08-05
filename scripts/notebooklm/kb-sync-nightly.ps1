@@ -64,17 +64,46 @@ if (-not $BashPath) {
 }
 
 # Pre-flight Auth Refresh Check (Fail-soft)
-$NlmCli = Get-Command "notebooklm.exe" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
-if (-not $NlmCli) {
-    $NlmCli = Get-Command "notebooklm" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
+function Resolve-NlmRuntime {
+    if ($env:NLM_CLI) {
+        return @{ Mode = "explicit"; Cmd = $env:NLM_CLI; PrefixArgs = @() }
+    }
+    $UvCmd = Get-Command "uv.exe" -ErrorAction SilentlyContinue
+    if (-not $UvCmd) { $UvCmd = Get-Command "uv" -ErrorAction SilentlyContinue }
+    $PyProject = Join-Path $RepoRoot "notebooklm-mcp-cli\pyproject.toml"
+    if ($UvCmd -and (Test-Path -LiteralPath $PyProject)) {
+        return @{ Mode = "uv-project"; Cmd = $UvCmd.Source; PrefixArgs = @("--directory", (Join-Path $RepoRoot "notebooklm-mcp-cli"), "run", "nlm") }
+    }
+    $GlobalCli = Get-Command "notebooklm.exe" -ErrorAction SilentlyContinue
+    if (-not $GlobalCli) { $GlobalCli = Get-Command "notebooklm" -ErrorAction SilentlyContinue }
+    if (-not $GlobalCli) { $GlobalCli = Get-Command "nlm.exe" -ErrorAction SilentlyContinue }
+    if (-not $GlobalCli) { $GlobalCli = Get-Command "nlm" -ErrorAction SilentlyContinue }
+    if ($GlobalCli) {
+        return @{ Mode = "global"; Cmd = $GlobalCli.Source; PrefixArgs = @() }
+    }
+    return @{ Mode = "none"; Cmd = $null; PrefixArgs = @() }
 }
 
-if ($NlmCli) {
+function Invoke-NlmCli {
+    param([string[]]$Args)
+    $rt = Resolve-NlmRuntime
+    if ($rt.Mode -eq "none") {
+        Write-LogError "No NotebookLM CLI runtime available."
+        return 1
+    }
+    $fullArgs = @($rt.PrefixArgs) + @($Args)
+    & $rt.Cmd @fullArgs
+    return $LASTEXITCODE
+}
+
+$runtime = Resolve-NlmRuntime
+Write-LogInfo "CLI resolution mode: $($runtime.Mode)"
+if ($runtime.Mode -ne "none") {
     Write-LogInfo "Running pre-flight authentication check..."
-    & $NlmCli --quiet auth check >$null 2>&1
+    Invoke-NlmCli @("auth", "check") >$null 2>&1
     if ($LASTEXITCODE -ne 0) {
         Write-LogWarn "Pre-flight auth check failed; attempting master token session refresh..."
-        & $NlmCli login --master-token-refresh --quiet 2>$null
+        Invoke-NlmCli @("login", "--master-token-refresh", "--quiet") 2>$null
         if ($LASTEXITCODE -eq 0) {
             Write-LogInfo "Pre-flight master token session refresh succeeded."
         } else {

@@ -120,20 +120,59 @@ if [ -f "$REPO_ROOT/.env" ]; then
 fi
 
 # Verify credentials & NOTEBOOK_ID
+# Verify credentials & NOTEBOOK_ID
 NOTEBOOK_ID="${NOTEBOOK_ID:-}"
-if [ -z "${NLM_CLI:-}" ] || [[ "$NLM_CLI" == *"notebooklm-mcp"* ]]; then
-  if command -v notebooklm >/dev/null 2>&1; then
-    NLM_CLI="notebooklm"
-  elif command -v notebooklm.exe >/dev/null 2>&1; then
-    NLM_CLI="notebooklm.exe"
-  elif command -v nlm >/dev/null 2>&1; then
-    NLM_CLI="nlm"
-  elif command -v nlm.exe >/dev/null 2>&1; then
-    NLM_CLI="nlm.exe"
-  else
-    NLM_CLI="notebooklm.exe"
-  fi
+
+# --- RESOLVE NOTEBOOKLM CLI RUNTIME ------------------------------------------
+# Precedence:
+# 1. Explicit NLM_CLI environment variable (supports executable path containing spaces)
+# 2. Local uv project ($REPO_ROOT/notebooklm-mcp-cli/pyproject.toml and command -v uv)
+# 3. Global CLI (notebooklm, notebooklm.exe, nlm, nlm.exe)
+# 4. Hard failure (exit 1) if no valid CLI runtime is available
+
+NLM_MODE=""
+EXPLICIT_NLM_CLI="${NLM_CLI:-}"
+
+if [ -n "$EXPLICIT_NLM_CLI" ]; then
+  NLM_MODE="explicit"
+  log_info "CLI resolution mode: explicit (path: '$EXPLICIT_NLM_CLI')"
+elif command -v uv >/dev/null 2>&1 && [ -f "$REPO_ROOT/notebooklm-mcp-cli/pyproject.toml" ]; then
+  NLM_MODE="uv-project"
+  log_info "CLI resolution mode: local uv project ($REPO_ROOT/notebooklm-mcp-cli)"
+elif command -v notebooklm >/dev/null 2>&1; then
+  NLM_MODE="global"
+  GLOBAL_NLM_EXEC="notebooklm"
+  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
+elif command -v notebooklm.exe >/dev/null 2>&1; then
+  NLM_MODE="global"
+  GLOBAL_NLM_EXEC="notebooklm.exe"
+  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
+elif command -v nlm >/dev/null 2>&1; then
+  NLM_MODE="global"
+  GLOBAL_NLM_EXEC="nlm"
+  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
+elif command -v nlm.exe >/dev/null 2>&1; then
+  NLM_MODE="global"
+  GLOBAL_NLM_EXEC="nlm.exe"
+  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
+else
+  NLM_MODE="none"
+  log_error "No valid NotebookLM CLI runtime found (explicit NLM_CLI, uv local project, or global notebooklm/nlm binaries)."
+  exit 1
 fi
+
+run_nlm_cli() {
+  if [ "$NLM_MODE" = "explicit" ]; then
+    "$EXPLICIT_NLM_CLI" "$@"
+  elif [ "$NLM_MODE" = "uv-project" ]; then
+    uv --directory "$REPO_ROOT/notebooklm-mcp-cli" run nlm "$@"
+  elif [ "$NLM_MODE" = "global" ]; then
+    "$GLOBAL_NLM_EXEC" "$@"
+  else
+    log_error "Cannot execute NotebookLM CLI: no valid runtime available."
+    return 1
+  fi
+}
 
 if [ -z "${NOTEBOOKLM_COOKIE:-}" ] && [ -z "${NOTEBOOKLM_TOKEN:-}" ]; then
   log_error "Missing credentials: set NOTEBOOKLM_COOKIE or NOTEBOOKLM_TOKEN in .env"
@@ -146,15 +185,15 @@ if [ -z "$NOTEBOOK_ID" ]; then
 fi
 
 # Authenticate CLI state via Master Token or NOTEBOOKLM_COOKIE if auth state is missing/invalid
-if command -v "$NLM_CLI" >/dev/null 2>&1; then
-  if ! "$NLM_CLI" auth check >/dev/null 2>&1; then
+if [ "$NLM_MODE" != "none" ]; then
+  if ! run_nlm_cli auth check >/dev/null 2>&1; then
     log_info "CLI auth state missing or invalid. Attempting auth recovery..."
     AUTH_RECOVERED=false
 
     # 1. Try explicit NOTEBOOKLM_MASTER_TOKEN env var if set
     if [ -n "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
       log_info "Attempting headless master token login from NOTEBOOKLM_MASTER_TOKEN..."
-      if "$NLM_CLI" login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null; then
+      if run_nlm_cli login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null; then
         AUTH_RECOVERED=true
         log_info "Headless master token authentication successful."
       else
@@ -165,7 +204,7 @@ if command -v "$NLM_CLI" >/dev/null 2>&1; then
     # 2. Try master-token-refresh from stored profile token
     if [ "$AUTH_RECOVERED" = false ]; then
       log_info "Attempting master token refresh..."
-      if "$NLM_CLI" login --master-token-refresh --quiet 2>/dev/null; then
+      if run_nlm_cli login --master-token-refresh --quiet 2>/dev/null; then
         AUTH_RECOVERED=true
         log_info "Master token session refresh successful."
       else
@@ -197,7 +236,7 @@ if command -v "$NLM_CLI" >/dev/null 2>&1; then
       fi
 
       if [ -n "${NOTEBOOKLM_AUTH_JSON:-}" ]; then
-        echo "$NOTEBOOKLM_AUTH_JSON" | "$NLM_CLI" auth import-cookies --quiet - 2>/dev/null || true
+        echo "$NOTEBOOKLM_AUTH_JSON" | run_nlm_cli auth import-cookies --quiet - 2>/dev/null || true
       fi
     fi
   fi
@@ -238,15 +277,15 @@ if [ "$RUN_ROLLBACK" = true ]; then
 
   # Purge old sources
   log_info "Purging current sources from notebook $NOTEBOOK_ID..."
-  if command -v "$NLM_CLI" >/dev/null 2>&1; then
-    sources_json="$("$NLM_CLI" source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
+  if [ "$NLM_MODE" != "none" ]; then
+    sources_json="$(run_nlm_cli source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
     if [ -n "$sources_json" ]; then
       echo "$sources_json" | grep -o '"id": "[^"]*"' | cut -d'"' -f4 | while read -r src_id; do
-        [ -n "$src_id" ] && "$NLM_CLI" source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
+        [ -n "$src_id" ] && run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
       done || true
     fi
   else
-    log_info "CLI tool '$NLM_CLI' not installed. Skipping programmatic purge."
+    log_info "CLI tool not available. Skipping programmatic purge."
   fi
 
   # Re-upload
@@ -254,13 +293,13 @@ if [ "$RUN_ROLLBACK" = true ]; then
   UPLOAD_SUCCESS=true
   for file in "${UPLOAD_FILES[@]}"; do
     log_info "Uploading: $file"
-    if command -v "$NLM_CLI" >/dev/null 2>&1; then
-      if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$file"; then
+    if [ "$NLM_MODE" != "none" ]; then
+      if ! run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$file"; then
         log_error "Upload failed: $file"
         UPLOAD_SUCCESS=false
       fi
     else
-      log_info "CLI not installed. Manual upload needed: $file"
+      log_info "CLI not available. Manual upload needed: $file"
     fi
   done
 
@@ -277,9 +316,9 @@ fi
 log_info "Starting normal sync pipeline..."
 
 # Proactive Auth Refresh (Rotates __Secure-1PSIDTS & verifies token before sync)
-if command -v "$NLM_CLI" >/dev/null 2>&1; then
+if [ "$NLM_MODE" != "none" ]; then
   log_info "Proactively refreshing Google auth session..."
-  "$NLM_CLI" auth refresh --verify --quiet 2>/dev/null || log_warn "Proactive auth refresh skipped/failed; proceeding with existing session."
+  run_nlm_cli auth refresh --verify --quiet 2>/dev/null || log_warn "Proactive auth refresh skipped/failed; proceeding with existing session."
 fi
 
 # Clean old pack files
@@ -347,16 +386,16 @@ log_info "Backups created."
 log_info "Step 5/5: Purging old sources and uploading new ones..."
 
 # Purge
-if command -v "$NLM_CLI" >/dev/null 2>&1; then
+if [ "$NLM_MODE" != "none" ]; then
   log_info "Purging sources from notebook $NOTEBOOK_ID..."
-  sources_json="$("$NLM_CLI" source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
+  sources_json="$(run_nlm_cli source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
   if [ -n "$sources_json" ]; then
     echo "$sources_json" | grep -o '"id": "[^"]*"' | cut -d'"' -f4 | while read -r src_id; do
-      [ -n "$src_id" ] && "$NLM_CLI" source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
+      [ -n "$src_id" ] && run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
     done || true
   fi
 else
-  log_info "CLI tool '$NLM_CLI' not installed. Skipping programmatic purge."
+  log_info "CLI tool not available. Skipping programmatic purge."
 fi
 
 # Upload
@@ -370,12 +409,12 @@ if [ "${#UPLOAD_FILES[@]}" -gt 1 ]; then
   for file in "${UPLOAD_FILES[@]}"; do
     (
       target_upload_path="$file"
-      if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+      if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
         abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
         target_upload_path="$(wslpath -w "$abs_file")"
       fi
       log_info "Uploading chunk: $(basename "$file")"
-      if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
+      if ! run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
         log_error "Upload failed for chunk: $file"
         exit 1
       fi
@@ -394,18 +433,18 @@ if [ "${#UPLOAD_FILES[@]}" -gt 1 ]; then
 else
   for file in "${UPLOAD_FILES[@]}"; do
     log_info "Uploading: $(basename "$file")"
-    if command -v "$NLM_CLI" >/dev/null 2>&1; then
+    if [ "$NLM_MODE" != "none" ]; then
       target_upload_path="$file"
-      if [[ "$NLM_CLI" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+      if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
         abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
         target_upload_path="$(wslpath -w "$abs_file")"
       fi
-      if ! "$NLM_CLI" source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
+      if ! run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
         log_error "Upload failed: $file"
         UPLOAD_SUCCESS=false
       fi
     else
-      log_info "CLI not installed. Manual action required: upload $file"
+      log_info "CLI not available. Manual action required: upload $file"
     fi
   done
 fi

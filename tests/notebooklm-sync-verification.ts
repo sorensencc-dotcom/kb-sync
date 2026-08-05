@@ -244,6 +244,9 @@ runTest("Sync script execution simulation with mock CLI (triggers chunking)", ()
     if (!output.includes("[MOCK-CLI] Invoked with arguments: source add --notebook mock-notebook-12345")) {
       throw new Error("Sync script did not invoke mock CLI to upload chunks");
     }
+  } catch (err: any) {
+    if (err.stdout) console.error("  Output before error:\n", err.stdout);
+    throw err;
   } finally {
     // Cleanup
     if (fs.existsSync(tempLargeFile)) {
@@ -312,6 +315,50 @@ runTest("Sync script --rollback strategy execution simulation", () => {
     // Cleanup
     if (fs.existsSync(mockBackupFile)) fs.unlinkSync(mockBackupFile);
     if (fs.existsSync(mockCliDir)) fs.rmSync(mockCliDir, { recursive: true, force: true });
+  }
+});
+runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
+  const spaceCliDir = path.join(REPO_ROOT, ".mock cli bin");
+  if (!fs.existsSync(spaceCliDir)) {
+    fs.mkdirSync(spaceCliDir);
+  }
+  const mockCliPath = path.join(spaceCliDir, "mock nlm");
+  const mockCliContent = "#!/usr/bin/env bash\necho \"[SPACE-CLI] Invoked with arguments: $@\"\nexit 0\n";
+  fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
+  try { execSync(`bash -c "chmod +x ./'${toBashPath(mockCliPath)}'"`, { cwd: REPO_ROOT }); } catch (_) {}
+
+  try {
+    const bashScriptPath = toBashPath(SYNC_SCRIPT_PATH);
+    const bashCliPath = toBashPath(mockCliPath);
+    const cmd = `bash -c 'export NOTEBOOK_ID="mock-123"; export NOTEBOOKLM_COOKIE="session=mock"; export NLM_CLI="$PWD/${bashCliPath}"; bash ./${bashScriptPath} --rollback 2>&1'`;
+    const output = execSync(cmd, {
+      cwd: REPO_ROOT,
+      env: getCleanEnv(),
+      encoding: "utf8"
+    });
+    if (!output.includes("[SPACE-CLI] Invoked with arguments:")) {
+      throw new Error("Sync script failed to execute explicit NLM_CLI path containing spaces");
+    }
+  } finally {
+    if (fs.existsSync(spaceCliDir)) fs.rmSync(spaceCliDir, { recursive: true, force: true });
+  }
+});
+
+// Test 7: Verify hard failure exit code 1 when no CLI runtime is available
+runTest("Sync script returns hard failure (exit 1) when no CLI is available", () => {
+  try {
+    const bashScriptPath = toBashPath(SYNC_SCRIPT_PATH);
+    const cmd = `bash -c 'export PATH="/usr/bin:/bin"; export NOTEBOOK_ID="mock-123"; export NOTEBOOKLM_COOKIE="session=mock"; export NLM_CLI=""; bash ./${bashScriptPath} 2>&1'`;
+    execSync(cmd, {
+      cwd: REPO_ROOT,
+      env: getCleanEnv(),
+      encoding: "utf8"
+    });
+    throw new Error("Script should have failed when no CLI was available!");
+  } catch (error: any) {
+    if (error.status !== 1) {
+      throw new Error(`Expected exit code 1 when no CLI is available, got ${error.status}`);
+    }
   }
 });
 
