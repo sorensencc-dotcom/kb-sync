@@ -1,0 +1,24 @@
+package.json
+  s_a2f9b6a53b6394::t_33aea86dfa94ce 21-23,45,49,51-53,60-61
+  s_a2f9b6a53b6394::t_807719c23df3f1 62
+CHANGELOG.md
+  s_a2f9b6a53b6394::t_12312f62f9f40c 1-26
+VERSION
+  s_a2f9b6a53b6394::t_ff8ddc967db4c8 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "2398878bd9699fdf06bec4a666d05fa873416ed6",
+  "prompts": {},
+  "sessions": {
+    "s_a2f9b6a53b6394": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fd4b3-c509-7cc2-967f-8166a46c06da",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
