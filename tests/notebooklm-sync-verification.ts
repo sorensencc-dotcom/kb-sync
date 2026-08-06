@@ -325,22 +325,37 @@ runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
   const mockCliPath = path.join(spaceCliDir, "mock nlm");
   const mockCliContent = "#!/usr/bin/env bash\necho \"[SPACE-CLI] Invoked with arguments: $@\"\nexit 0\n";
   fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
-  try { execSync(`bash -c "chmod +x ./'${toBashPath(mockCliPath)}'"`, { cwd: REPO_ROOT }); } catch (_) {}
+  try { execSync(`bash -c "chmod +x './${toBashPath(mockCliPath)}'"`, { cwd: REPO_ROOT }); } catch (_) {}
+
+  // --rollback needs at least one backup file to restore, otherwise the script
+  // exits 1 ("No files to upload after rollback") before ever invoking the CLI.
+  const packDir = path.join(REPO_ROOT, ".nlm_pack");
+  if (!fs.existsSync(packDir)) fs.mkdirSync(packDir);
+  const mockBackupFile = path.join(packDir, "repo_knowledge_pack_part_aa.bak.txt");
+  fs.writeFileSync(mockBackupFile, "MOCK BACKUP FILE CONTENTS", "utf8");
 
   try {
     const bashScriptPath = toBashPath(SYNC_SCRIPT_PATH);
     const bashCliPath = toBashPath(mockCliPath);
     const cmd = `bash -c 'export NOTEBOOK_ID="mock-123"; export NOTEBOOKLM_COOKIE="session=mock"; export NLM_CLI="$PWD/${bashCliPath}"; bash ./${bashScriptPath} --rollback 2>&1'`;
-    const output = execSync(cmd, {
-      cwd: REPO_ROOT,
-      env: getCleanEnv(),
-      encoding: "utf8"
-    });
+    let output: string;
+    try {
+      output = execSync(cmd, {
+        cwd: REPO_ROOT,
+        env: getCleanEnv(),
+        encoding: "utf8"
+      });
+    } catch (err: any) {
+      // Surface script output to make failures debuggable
+      if (err.stdout) console.error("  Script output:\n", err.stdout.split("\n").map((l: string) => "    " + l).join("\n"));
+      throw err;
+    }
     if (!output.includes("[SPACE-CLI] Invoked with arguments:")) {
       throw new Error("Sync script failed to execute explicit NLM_CLI path containing spaces");
     }
   } finally {
     if (fs.existsSync(spaceCliDir)) fs.rmSync(spaceCliDir, { recursive: true, force: true });
+    if (fs.existsSync(mockBackupFile)) { try { fs.unlinkSync(mockBackupFile); } catch (_) {} }
   }
 });
 
