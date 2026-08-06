@@ -14,17 +14,47 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 
 console.log(`  Resolved REPO_ROOT: ${REPO_ROOT}\n`);
 
-let allTestsPassed = true;
+let passedCount = 0;
+let skippedCount = 0;
+let failedCount = 0;
 
-function runTest(name: string, fn: () => void) {
+export function isBashAvailable(): boolean {
+  try {
+    execSync("bash --version", { stdio: "ignore", timeout: 2000 });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export const HAS_BASH = isBashAvailable();
+const REQUIRE_BASH_COVERAGE = process.env.REQUIRE_BASH_COVERAGE === "true" || process.env.CI === "true";
+
+if (!HAS_BASH) {
+  console.log("[PREFLIGHT WARN] Bash runner is unavailable or access is restricted in this environment.");
+  if (REQUIRE_BASH_COVERAGE) {
+    console.log("[PREFLIGHT ERROR] CI Policy Enforcement: REQUIRE_BASH_COVERAGE is ACTIVE. Skipped tests will trigger hard exit code 1.\n");
+  } else {
+    console.log("[PREFLIGHT WARN] Shell integration tests will report [SKIP] DEGRADED.\n");
+  }
+}
+
+export function runTest(name: string, fn: () => void, requiresBash: boolean = false) {
   console.log(`[TEST] Running: ${name}...`);
+  if (requiresBash && !HAS_BASH) {
+    skippedCount++;
+    console.log(`[SKIP] ⚠ ${name} (Environment Unavailable: Bash runner not accessible)\n`);
+    return;
+  }
+
   try {
     fn();
+    passedCount++;
     console.log(`[PASS] ✓ ${name}\n`);
   } catch (error: any) {
+    failedCount++;
     console.error(`[FAIL] ✗ ${name}`);
     console.error(`       Error: ${error.message || error}\n`);
-    allTestsPassed = false;
   }
 }
 
@@ -91,7 +121,7 @@ runTest("core/flatten.sh default mode produces concatenated pack", () => {
       fs.rmSync(tempDir, { recursive: true });
     }
   }
-});
+}, true);
 
 // Test 2: core/flatten.sh --manifest mode
 runTest("core/flatten.sh --manifest mode produces newline-delimited file list", () => {
@@ -134,7 +164,7 @@ runTest("core/flatten.sh --manifest mode produces newline-delimited file list", 
       fs.rmSync(tempDir, { recursive: true });
     }
   }
-});
+}, true);
 
 // Test 3: core/validate.sh size classification
 runTest("core/validate.sh classifies pack size correctly", () => {
@@ -477,14 +507,20 @@ runTest("core/rollback.sh restores modified files from backup", () => {
   }
 });
 
-if (allTestsPassed) {
-  console.log("================================================================================");
-  console.log("SUCCESS: All core scripts verification tests passed!");
-  console.log("================================================================================");
+console.log("================================================================================");
+console.log(`VERDICT SUMMARY: ${passedCount} Passed, ${skippedCount} Skipped, ${failedCount} Failed`);
+console.log("================================================================================");
+
+if (failedCount > 0) {
+  console.log("FAILURE: One or more tests failed.");
+  process.exit(1);
+} else if (skippedCount > 0 && REQUIRE_BASH_COVERAGE) {
+  console.log("FAILURE: CI Policy Enforcement — Skipped tests are disallowed when REQUIRE_BASH_COVERAGE is active.");
+  process.exit(1);
+} else if (skippedCount > 0) {
+  console.log("WARNING: Suite completed in DEGRADED mode due to skipped bash tests.");
   process.exit(0);
 } else {
-  console.log("================================================================================");
-  console.log("FAILURE: One or more tests failed.");
-  console.log("================================================================================");
-  process.exit(1);
+  console.log("SUCCESS: All core scripts verification tests passed!");
+  process.exit(0);
 }
