@@ -1,0 +1,19 @@
+tests/validate-staging-v12-features.ts
+  s_42f14c9fdf781d::t_303992cf31025a 13-17,46-99,101,103,105,136-138,140-143,153,159-161,163,177-179,181,196,198,200,216-218,227,232,246-248,250-251,254,261-265
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "ab5953754a0eb00184bef283e965ebf4d8717633",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
