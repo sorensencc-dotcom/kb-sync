@@ -1,0 +1,19 @@
+tests/notebooklm-sync-verification.ts
+  s_42f14c9fdf781d::t_c2f985823e24d0 328-335,341-352,358
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "a2729223ab2eb30dc15829d1d50e9fce7d2cfbe2",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
