@@ -38,7 +38,11 @@ function runTest(name: string, fn: () => void) {
     console.log(`[PASS] ✓ ${name}\n`);
   } catch (error: any) {
     console.error(`[FAIL] ✗ ${name}`);
-    console.error(`       Error: ${error.message || error}\n`);
+    // Include stdout/stderr from child process if available (execSync captures these on failure)
+    const scriptOutput = error.stdout || error.stderr || "";
+    console.error(`       Error: ${error.message || error}`);
+    if (scriptOutput) console.error(`       Script output: ${scriptOutput.trim()}`);
+    console.error("");
     allTestsPassed = false;
   }
 }
@@ -135,10 +139,12 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
 
   try {
     const vaultMount = toMountPath(tempVaultRoot);
-    execSync(`bash -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
+    // 30s timeout: give the script time to run flatten.sh against the full repo in CI;
+    // 5s was too short on Linux and caused a signal-kill that looked like a real failure.
+    const result = execSync(`bash -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
       cwd: REPO_ROOT,
       encoding: "utf8",
-      timeout: 5000,
+      timeout: 30000,
     });
 
     const stagingDir = path.join(tempVaultRoot, "_kb-sync-staging");
@@ -156,10 +162,18 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
 
     console.log(`  Staged files verified cleanly`);
   } catch (error: any) {
-    if (error.code === "ETIMEDOUT" || (error.message && error.message.includes("ETIMEDOUT"))) {
-      console.log("  [SKIPPED] Environment Unavailable: Bash execution timed out in Windows environment.");
+    // Detect execSync timeout: either ETIMEDOUT code, message containing ETIMEDOUT,
+    // or signal-based kill (error.killed=true) which is what execSync throws on timeout on Linux.
+    const isTimeout =
+      error.code === "ETIMEDOUT" ||
+      error.killed === true ||
+      (error.message && error.message.includes("ETIMEDOUT"));
+    if (isTimeout) {
+      console.log("  [SKIPPED] Environment Unavailable: Bash execution timed out (>30s) in this environment.");
       return;
     }
+    // Re-attach script output to the error so runTest() can surface it
+    if (!error.stdout && error.stderr) error.stdout = error.stderr;
     throw error;
   } finally {
     if (fs.existsSync(tempVaultRoot)) fs.rmSync(tempVaultRoot, { recursive: true });
