@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Obsidian Wiki Ingest Orchestrator
-# Validates staged raw sources and orchestrates Claude-driven wiki synthesis.
+# Validates staged raw sources and orchestrates autonomous wiki synthesis.
 # Implements Karpathy LLM-wiki pattern: Phase 1-8 workflow (Ingest → Commit)
 # ==============================================================================
 set -uo pipefail
@@ -67,9 +67,7 @@ fi
 # Normalize paths (handle Windows backslashes → forward slashes)
 normalize_path() {
   local path="$1"
-  # Convert backslashes to forward slashes
   path="${path//\\//}"
-  # If running in WSL, convert C: to /mnt/c, etc.
   if [ -f /etc/wsl.conf ] || grep -q microsoft /proc/version 2>/dev/null; then
     path="${path//C:/\/mnt\/c}"
     path="${path//D:/\/mnt\/d}"
@@ -92,7 +90,6 @@ fi
 
 log_info "Obsidian vault root: $OBSIDIAN_VAULT_ROOT"
 
-# Load staging/wiki directories from config
 STAGING_DIR=$(get_config_value "$MODULE_CONFIG" "staging_dir")
 WIKI_DIR=$(get_config_value "$MODULE_CONFIG" "wiki_dir")
 
@@ -109,11 +106,84 @@ fi
 log_info "Staging directory: $STAGING_DIR"
 log_info "Wiki directory: $WIKI_DIR"
 
-# --- PARSE ARGUMENTS ---------------------------------------------------------
-ACTION="${1:-validate}"  # validate (default), log-entry, prompt
-STAGING_PATH="${2:-}"
+# --- ARGUMENT PARSING (FLAGS BEFORE POSITIONAL ACTIONS) ---------------------
+PROVIDER=""
+HAS_AUTO_SYNTHESIZE=false
+HAS_OFFLINE_TEMPLATE=false
+DRY_RUN=false
+FORCE=false
+ALLOW_REMOTE_ENDPOINT=false
+LOCAL_ENDPOINT=""
+MODEL=""
+STAGING_PATH=""
+ACTION="validate"
 
-# If no staging path provided, find latest
+RAW_ARGS=("$@")
+i=0
+while [ $i -lt ${#RAW_ARGS[@]} ]; do
+  arg="${RAW_ARGS[$i]}"
+  case "$arg" in
+    --auto-synthesize|auto-synthesize)
+      HAS_AUTO_SYNTHESIZE=true
+      if [ -z "$PROVIDER" ]; then PROVIDER="anthropic"; fi
+      ;;
+    --offline-template|offline-template)
+      HAS_OFFLINE_TEMPLATE=true
+      PROVIDER="offline-template"
+      ;;
+    --provider)
+      i=$((i + 1))
+      PROVIDER="${RAW_ARGS[$i]}"
+      ;;
+    --dry-run)
+      DRY_RUN=true
+      ;;
+    --force)
+      FORCE=true
+      ;;
+    --allow-remote-endpoint)
+      ALLOW_REMOTE_ENDPOINT=true
+      ;;
+    --local-endpoint)
+      i=$((i + 1))
+      LOCAL_ENDPOINT="${RAW_ARGS[$i]}"
+      ;;
+    --model)
+      i=$((i + 1))
+      MODEL="${RAW_ARGS[$i]}"
+      ;;
+    --staging-path)
+      i=$((i + 1))
+      STAGING_PATH="${RAW_ARGS[$i]}"
+      ;;
+    validate|prompt|log-entry)
+      ACTION="$arg"
+      ;;
+    -*)
+      log_warn "Unknown flag: $arg"
+      ;;
+    *)
+      if [ -z "$STAGING_PATH" ]; then
+        STAGING_PATH="$arg"
+      fi
+      ;;
+  esac
+  i=$((i + 1))
+done
+
+# Check mutually exclusive flags
+if [ "$HAS_AUTO_SYNTHESIZE" = true ] && [ "$HAS_OFFLINE_TEMPLATE" = true ]; then
+  log_error "Mutually exclusive options: cannot pass both --auto-synthesize and --offline-template."
+  exit 1
+fi
+
+# Determine execution path: if provider or synthesis flag specified, route to worker
+IS_SYNTHESIS_RUN=false
+if [ -n "$PROVIDER" ] || [ "$HAS_AUTO_SYNTHESIZE" = true ] || [ "$HAS_OFFLINE_TEMPLATE" = true ]; then
+  IS_SYNTHESIS_RUN=true
+fi
+
+# Find latest staging directory if not specified
 if [ -z "$STAGING_PATH" ]; then
   log_info "No staging path provided. Finding latest staging..."
   LATEST_STAGING=$(find "$OBSIDIAN_VAULT_ROOT/$STAGING_DIR" -maxdepth 3 -type d -name "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]" 2>/dev/null | sort -r | head -1)
@@ -124,16 +194,10 @@ if [ -z "$STAGING_PATH" ]; then
   STAGING_PATH="$LATEST_STAGING"
 fi
 
-# Normalize path
 STAGING_PATH="${STAGING_PATH%/}"
-
 log_info "Staging path: $STAGING_PATH"
 
-# --- VALIDATE STAGING --------------------------------------------------------
-log_info "========================================================================"
-log_info "Validating staged sources..."
-log_info "========================================================================"
-
+# Validate staging
 if [ ! -d "$STAGING_PATH" ]; then
   log_error "Staging directory not found: $STAGING_PATH"
   exit 1
@@ -142,71 +206,71 @@ fi
 MANIFEST_FILE="$STAGING_PATH/FILES.manifest.txt"
 if [ ! -f "$MANIFEST_FILE" ]; then
   log_error "Manifest not found: $MANIFEST_FILE"
-  log_error "Staging directory may be corrupted or not created by ingest-obsidian.sh"
   exit 1
 fi
 
 FILE_COUNT=$(wc -l < "$MANIFEST_FILE")
 log_info "Manifest validated: $FILE_COUNT files in staging."
 
-# --- DETERMINE ACTION --------------------------------------------------------
+# If this is a synthesis run, delegate to synthesize-wiki.ts
+if [ "$IS_SYNTHESIS_RUN" = true ]; then
+  log_info "Routing to Headless Wiki Synthesis Worker (provider: '${PROVIDER:-anthropic}')..."
+
+  # Pre-flight API key check for anthropic provider
+  if [ "${PROVIDER:-anthropic}" = "anthropic" ]; then
+    if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+      log_error "ANTHROPIC_API_KEY environment variable is required for provider 'anthropic'."
+      log_error "Set ANTHROPIC_API_KEY or use --provider offline-template for local draft generation."
+      exit 1
+    fi
+  fi
+
+  WORKER_ARGS=("--provider" "${PROVIDER:-anthropic}" "--staging-path" "$STAGING_PATH" "--vault-root" "$OBSIDIAN_VAULT_ROOT" "--config" "$MODULE_CONFIG")
+  if [ "$DRY_RUN" = true ]; then WORKER_ARGS+=("--dry-run"); fi
+  if [ "$FORCE" = true ]; then WORKER_ARGS+=("--force"); fi
+  if [ "$ALLOW_REMOTE_ENDPOINT" = true ]; then WORKER_ARGS+=("--allow-remote-endpoint"); fi
+  if [ -n "$LOCAL_ENDPOINT" ]; then WORKER_ARGS+=("--local-endpoint" "$LOCAL_ENDPOINT"); fi
+  if [ -n "$MODEL" ]; then WORKER_ARGS+=("--model" "$MODEL"); fi
+
+  npx tsx "$SCRIPT_DIR/synthesize-wiki.ts" "${WORKER_ARGS[@]}"
+  exit $?
+fi
+
+# Fallback to positional ACTIONS
 case "$ACTION" in
   validate)
     log_info "Validation complete. Staging ready for wiki ingest."
     exit 0
     ;;
-
   log-entry)
-    # Log entry written by Claude after synthesis completes
-    # Called from git hook or wrapper script
-    log_info "Action: log-entry (not yet implemented)"
+    log_info "Action: log-entry (handled by synthesize-wiki.ts)"
     exit 0
     ;;
-
   prompt)
-    # Generate operator prompt for Claude Code
     log_info "Generating Claude Code prompt..."
     cat << EOF
 
 === OBSIDIAN WIKI INGEST PROMPT ===
 
-You are about to ingest staged raw sources into the Obsidian wiki using an 8-phase workflow.
+Staging Path: $STAGING_PATH
+Vault Root: $OBSIDIAN_VAULT_ROOT
+Schema Document: docs/targets/obsidian.md
 
-**Staging Path:** $STAGING_PATH
-**Vault Root:** $OBSIDIAN_VAULT_ROOT
-**Schema Document:** docs/targets/obsidian.md
-
-**Workflow Phases:**
-1. **Ingest** — Identify new entities and concepts from staged sources
-2. **Lint** — Verify current wiki for structural/semantic issues
-3. **Update** — Create/modify entity and concept pages
-4. **Cross-Ref** — Establish bidirectional links
-5. **Lint** — Re-verify after updates
-6. **Log** — Record session in Log.md
-7. **Review** — Spot-check for accuracy
-8. **Commit** — Git commit with change summary
-
-**Schema Reference:** Read docs/targets/obsidian.md for:
-- Entity page format (summary, purpose, operations, links)
-- Concept page format (problem, solution, examples)
-- Cross-reference conventions
-- Index and Log.md templates
-
-**Constraints:**
-- Do NOT edit raw sources (they are immutable)
-- Preserve existing wiki content (append, don't overwrite)
-- All pages link back to staging path for traceability
-- Use exact schema format from obsidian.md
-
-After completing phases 1-7, reply with: ✓ Wiki synthesis complete and your change summary.
+Workflow Phases:
+1. Ingest — Identify new entities and concepts from staged sources
+2. Lint — Verify current wiki for structural/semantic issues
+3. Update — Create/modify entity and concept pages
+4. Cross-Ref — Establish bidirectional links
+5. Lint — Re-verify after updates
+6. Log — Record session in Log.md
+7. Review — Spot-check for accuracy
+8. Commit — Git commit with change summary
 
 EOF
     exit 0
     ;;
-
   *)
     log_error "Unknown action: $ACTION"
-    log_error "Usage: $0 [action|validate|log-entry|prompt] [staging_path]"
     exit 1
     ;;
 esac

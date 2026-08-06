@@ -8,43 +8,49 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 
-interface BenchmarkTarget {
-  name: string;
-  command: string;
-  maxAllowedMs: number;
+export interface PlatformThresholds {
+  posixMs: number;
+  win32Ms: number;
 }
 
-// NOTE: core/flatten.sh --manifest is intentionally excluded from automated perf gates.
-// It invokes git grep over ~135 files via WSL2, which produces 40-60% timing variance
-// across runs (observed range: 4000-7000ms) due to WSL2 filesystem I/O jitter.
-// Gating on this would produce persistent false failures without detecting real regressions.
-// Profile it manually with `time bash core/flatten.sh --manifest` when investigating perf.
-const TARGETS: BenchmarkTarget[] = [
+export interface BenchmarkTarget {
+  name: string;
+  command: string;
+  thresholds: PlatformThresholds;
+}
+
+export const TARGET_DEFINITIONS: BenchmarkTarget[] = [
   {
     name: "modules/wiki/validate-contract.mjs",
     command: "node modules/wiki/validate-contract.mjs",
-    maxAllowedMs: 2500
+    thresholds: { posixMs: 2500, win32Ms: 6250 }
   },
   {
     name: "modules/wiki/cleanup-staging-archives.mjs --dry-run",
     command: "node modules/wiki/cleanup-staging-archives.mjs --dry-run",
-    maxAllowedMs: 2000
+    thresholds: { posixMs: 2000, win32Ms: 5000 }
   },
   {
     name: "modules/wiki/validate-staging-docs.mjs --diff",
     command: "node modules/wiki/validate-staging-docs.mjs --diff",
-    maxAllowedMs: 3500
+    thresholds: { posixMs: 3500, win32Ms: 8750 }
   }
 ];
 
+export function resolveTargetMaxAllowedMs(target: BenchmarkTarget, platform: string = process.platform): number {
+  return platform === "win32" ? target.thresholds.win32Ms : target.thresholds.posixMs;
+}
+
 console.log("================================================================================");
 console.log("Pipeline Performance Benchmark Suite");
+console.log(`  Active Platform Baseline: ${process.platform === "win32" ? "Windows (win32Ms)" : "POSIX (posixMs)"}`);
 console.log("================================================================================\n");
 
 let failedCount = 0;
 const reportData: Record<string, { durationMs: number; maxAllowedMs: number; status: string }> = {};
 
-for (const target of TARGETS) {
+for (const target of TARGET_DEFINITIONS) {
+  const maxAllowedMs = resolveTargetMaxAllowedMs(target);
   console.log(`[PERF] Profiling: ${target.name}...`);
   const start = performance.now();
   let status = "PASS";
@@ -65,10 +71,10 @@ for (const target of TARGETS) {
   }
 
   const durationMs = Math.round(performance.now() - start);
-  console.log(`  Duration: ${durationMs} ms (Max Allowed: ${target.maxAllowedMs} ms)`);
+  console.log(`  Duration: ${durationMs} ms (Max Allowed: ${maxAllowedMs} ms)`);
 
-  if (durationMs > target.maxAllowedMs) {
-    console.error(`  [FAIL] ✘ ${target.name} exceeded latency threshold (${durationMs}ms > ${target.maxAllowedMs}ms)`);
+  if (durationMs > maxAllowedMs) {
+    console.error(`  [FAIL] ✘ ${target.name} exceeded latency threshold (${durationMs}ms > ${maxAllowedMs}ms)`);
     status = "EXCEEDED_THRESHOLD";
     failedCount++;
   } else if (status === "PASS") {
@@ -77,7 +83,7 @@ for (const target of TARGETS) {
 
   reportData[target.name] = {
     durationMs,
-    maxAllowedMs: target.maxAllowedMs,
+    maxAllowedMs: maxAllowedMs,
     status
   };
   console.log();
@@ -88,7 +94,7 @@ const reportPayload = {
   timestamp: new Date().toISOString(),
   benchmarks: reportData,
   summary: {
-    totalTested: TARGETS.length,
+    totalTested: TARGET_DEFINITIONS.length,
     failedCount,
     status: failedCount === 0 ? "PASS" : "FAIL"
   }

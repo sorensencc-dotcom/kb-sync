@@ -4,7 +4,18 @@ Complete guide for running a wiki semantic ingest session via Claude Code.
 
 ---
 
-## Prerequisites
+## Ingest Workflows
+
+### Option A: Autonomous Headless Ingest (`--auto-synthesize` / `--provider`)
+1. Run automated synthesis:
+   - Cloud AI: `npm run wiki:ingest:obsidian:auto` (requires `ANTHROPIC_API_KEY`)
+   - Local AI: `npm run wiki:ingest:obsidian:local` (uses local Ollama endpoint)
+   - Offline Drafts: `npm run wiki:ingest:obsidian:offline` (scaffolds draft pages)
+2. Review generated PR report printed to terminal.
+3. Run `git status` and `git diff wiki/` to review changes.
+4. Commit and open PR.
+
+### Option B: Interactive Human-Curated Session (Prerequisites below)
 
 - `npm run kb:sync` or `npm run kb:sync:all` completed (pack generated)
 - Wiki initialized: `wiki/Index.md`, `wiki/Log.md`, `wiki/entities/`, `wiki/concepts/` exist
