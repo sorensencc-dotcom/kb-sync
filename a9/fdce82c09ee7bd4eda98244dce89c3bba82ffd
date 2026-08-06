@@ -1,0 +1,16 @@
+tests/harness-safeguards-verification.ts
+  h_5c172e9b435f5a 1-90
+tests/synthesize-worker-verification.ts
+  h_5c172e9b435f5a 1-401
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "a9fdce82c09ee7bd4eda98244dce89c3bba82ffd",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
