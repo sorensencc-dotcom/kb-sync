@@ -14,7 +14,7 @@ The Karpathy LLM-wiki pattern defines three immutable layers:
 - Located: `wiki/`
 - LLM-maintained semantic structure (entities, concepts, relationships)
 - Human-readable catalog and audit trail
-- Updated via manual ingest sessions, never auto-modified
+- Updated via interactive human sessions or autonomous headless synthesis (--auto-synthesize / --provider) guarded by Phase 5 contract linting and human PR review
 - Three-part structure:
   - **Index.md** — catalog of all entities/concepts (curated list)
   - **Log.md** — append-only audit trail of all semantic updates

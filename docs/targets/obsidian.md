@@ -78,7 +78,7 @@ Domain-organized entity/concept pages, curated by you or Claude in interactive s
   ```
   This log is queryable and auditable — critical for tracking what the LLM has synthesized and when.
 
-## Ingest Workflow
+## Ingest Workflows
 
 **Trigger**: Run `npm run kb:sync:obsidian` to stage new/updated sources.
 
@@ -87,7 +87,14 @@ Domain-organized entity/concept pages, curated by you or Claude in interactive s
 2. Raw sources are staged under `vault_root/_kb-sync-staging/<repo>/<timestamp>/` preserving directory structure.
 3. A manifest (`FILES.manifest.txt`) lists all staged files for reference.
 
-**Claude Code Session** (Human-Triggered):
+### 1. Autonomous Headless Ingest (`--auto-synthesize` / `--provider`)
+Automated synthesis runs Phases 3–6 via provider-neutral engine (`anthropic`, `local`, `offline-template`), shifting human role to PR reviewer:
+- **Cloud AI**: `npm run wiki:ingest:obsidian:auto` (uses `--provider anthropic`, requires `ANTHROPIC_API_KEY`)
+- **Local AI**: `npm run wiki:ingest:obsidian:local` (uses `--provider local` with Ollama / OpenAI API)
+- **Offline Draft**: `npm run wiki:ingest:obsidian:offline` (uses `--provider offline-template` to scaffold draft pages)
+- **PR Review Gate**: Output prints PR Reviewer Summary Report. Run `git status` and `git diff wiki/` to inspect synthesized changes before committing.
+
+### 2. Interactive Human-Curated Session
 1. Open Claude Code (this codebase + your Obsidian vault in focus).
 2. Reference this schema doc (`docs/targets/obsidian.md`) and your vault's existing `Index.md` structures.
 3. Claude reads the staged sources and your current wiki state.
