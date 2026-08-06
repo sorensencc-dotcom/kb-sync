@@ -1,0 +1,19 @@
+tests/obsidian-sync-verification.ts
+  s_42f14c9fdf781d::t_00c5d585a3e574 41-45,142-144,147,165-172,175-176
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "681a14cef3b85e08b0c444355673a3029ee6829e",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
