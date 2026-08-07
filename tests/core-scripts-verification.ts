@@ -403,7 +403,9 @@ runTest("core/run-all.sh isolates target failures and logs error summary", () =>
     console.log("  ✓ Error surfaced with exit code 1 and logged failure summary");
   } finally {
     if (fs.existsSync(tempDir)) {
-      fs.rmSync(tempDir, { recursive: true, force: true });
+      try {
+        fs.rmSync(tempDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
+      } catch {}
     }
   }
 });
