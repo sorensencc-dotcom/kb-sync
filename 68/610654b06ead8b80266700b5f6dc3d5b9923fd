@@ -1,0 +1,21 @@
+modules/wiki/detect-drift.js
+  s_c1043ee729806c::t_7d8f94199ec7fb 1-702
+modules/wiki/detect-drift.ts
+  s_c1043ee729806c::t_4522cbb4c85df4 34-494,517,525,531,557,566,569,608,628-629,654,716-757
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "68610654b06ead8b80266700b5f6dc3d5b9923fd",
+  "prompts": {},
+  "sessions": {
+    "s_c1043ee729806c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99d25816-4ecb-479a-8849-989c70467307",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
