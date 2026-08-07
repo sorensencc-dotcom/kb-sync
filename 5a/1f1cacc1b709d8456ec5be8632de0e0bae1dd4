@@ -1,0 +1,29 @@
+tests/incremental-delta-sync.test.ts
+  s_c1043ee729806c::t_a661a20d2f8b7e 1-230
+tests/obsidian-sync-verification.ts
+  s_42f14c9fdf781d::t_87e336d8ab7001 19-33,35,38-39,43-44,65-67,124,157,216-239
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "5a1f1cacc1b709d8456ec5be8632de0e0bae1dd4",
+  "prompts": {},
+  "sessions": {
+    "s_42f14c9fdf781d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f069dbee-d913-47fe-a7cd-a60531c75062",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_c1043ee729806c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99d25816-4ecb-479a-8849-989c70467307",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
