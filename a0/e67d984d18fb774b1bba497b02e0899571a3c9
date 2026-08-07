@@ -1,0 +1,21 @@
+package.json
+  s_c1043ee729806c::t_da47940f8d907c 14-15,53,55-56
+schedule-task-wrapper-KB-Sync-Stage-Sources.ps1
+  s_c1043ee729806c::t_7402606d4cced0 18-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "a0e67d984d18fb774b1bba497b02e0899571a3c9",
+  "prompts": {},
+  "sessions": {
+    "s_c1043ee729806c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99d25816-4ecb-479a-8849-989c70467307",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
