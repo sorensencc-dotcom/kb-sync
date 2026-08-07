@@ -15,7 +15,8 @@ $StartTime = Get-Date
 
 try {
     Set-Location "C:\dev\kb-sync"
-    & cmd /c "npm run kb:sync:obsidian" 2>&1 | Tee-Object -FilePath $LogFile -Append
+    $env:INCREMENTAL_SYNC = "1"
+    & cmd /c "npm run kb:sync:obsidian -- --incremental" 2>&1 | Tee-Object -FilePath $LogFile -Append
     $ExitCode = $LASTEXITCODE
 } catch {
     "ERROR: $_" | Tee-Object -FilePath $LogFile -Append
