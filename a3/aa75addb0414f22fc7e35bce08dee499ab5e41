@@ -1,0 +1,21 @@
+CHANGELOG.md
+  s_a2f9b6a53b6394::t_fc88b76f933359 5-19
+VERSION
+  s_a2f9b6a53b6394::t_560e3d09205a7d 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "a3aa75addb0414f22fc7e35bce08dee499ab5e41",
+  "prompts": {},
+  "sessions": {
+    "s_a2f9b6a53b6394": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fd4b3-c509-7cc2-967f-8166a46c06da",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
