@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import crypto from 'node:crypto';
+import Ajv from 'ajv';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildDagGraph } from '../core/dag.mjs';
@@ -22,7 +24,16 @@ export function ensureDirs(rootDir = defaultRootDir) {
   if (!fs.existsSync(path.dirname(docsFile))) fs.mkdirSync(path.dirname(docsFile), { recursive: true });
 }
 
+
 export function checkHealth(rootDir = defaultRootDir) {
+  const ajv = new Ajv();
+  const dagSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/dag.schema.v2.json'), 'utf8'));
+  const adjSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/adjacency.schema.v2.json'), 'utf8'));
+  delete dagSchema.$schema;
+  delete adjSchema.$schema;
+  const validateDag = ajv.compile(dagSchema);
+  const validateAdj = ajv.compile(adjSchema);
+
   const { gensDir, pointerFile, docsFile } = getPaths(rootDir);
   if (!fs.existsSync(pointerFile)) return { healthy: false, reason: 'Missing pointer file' };
   try {
@@ -52,6 +63,23 @@ export function checkHealth(rootDir = defaultRootDir) {
     const genDocContent = fs.readFileSync(genDocPath, 'utf8');
     if (docContent !== genDocContent) return { healthy: false, reason: 'Doc content mismatch with active generation' };
 
+    // Schema validation
+    const dagJson = JSON.parse(fs.readFileSync(dagPath, 'utf8'));
+    if (!validateDag(dagJson)) return { healthy: false, reason: 'dag.json schema validation failed' };
+    const adjJson = JSON.parse(fs.readFileSync(adjPath, 'utf8'));
+    if (!validateAdj(adjJson)) return { healthy: false, reason: 'adjacency.json schema validation failed' };
+
+    // Hash validation
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (manifest.signatures) {
+      const hDag = crypto.createHash('sha256').update(fs.readFileSync(dagPath)).digest('hex');
+      const hAdj = crypto.createHash('sha256').update(fs.readFileSync(adjPath)).digest('hex');
+      const hDoc = crypto.createHash('sha256').update(fs.readFileSync(genDocPath)).digest('hex');
+      if (manifest.signatures['dag.json'] !== hDag) return { healthy: false, reason: 'dag.json hash mismatch' };
+      if (manifest.signatures['adjacency.json'] !== hAdj) return { healthy: false, reason: 'adjacency.json hash mismatch' };
+      if (manifest.signatures['KB_SYNC_DAG.md'] !== hDoc) return { healthy: false, reason: 'KB_SYNC_DAG.md hash mismatch' };
+    }
+
     return { healthy: true, activeGen };
   } catch (err) {
     return { healthy: false, reason: err.message };
@@ -59,24 +87,27 @@ export function checkHealth(rootDir = defaultRootDir) {
 }
 
 export function atomicRenameSync(tmpPath, destPath) {
-  if (fs.existsSync(destPath)) {
+  for (let i = 0; i < 3; i++) {
     try {
-      fs.unlinkSync(destPath);
-    } catch {
-      fs.copyFileSync(tmpPath, destPath);
-      try { fs.unlinkSync(tmpPath); } catch {}
+      fs.renameSync(tmpPath, destPath);
       return;
+    } catch (err) {
+      if (i === 2) throw err;
+      const start = Date.now();
+      while(Date.now() - start < 50) {} // Sync sleep for 50ms
     }
-  }
-  try {
-    fs.renameSync(tmpPath, destPath);
-  } catch {
-    fs.copyFileSync(tmpPath, destPath);
-    try { fs.unlinkSync(tmpPath); } catch {}
   }
 }
 
 export function runRecovery(rootDir = defaultRootDir) {
+  const ajv = new Ajv();
+  const dagSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/dag.schema.v2.json'), 'utf8'));
+  const adjSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/adjacency.schema.v2.json'), 'utf8'));
+  delete dagSchema.$schema;
+  delete adjSchema.$schema;
+  const validateDag = ajv.compile(dagSchema);
+  const validateAdj = ajv.compile(adjSchema);
+
   console.log('[Recovery] Running recovery scan across generations...');
   const { gensDir, pointerFile, docsFile } = getPaths(rootDir);
   if (!fs.existsSync(gensDir)) {
@@ -100,6 +131,20 @@ export function runRecovery(rootDir = defaultRootDir) {
 
     try {
       const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      
+      const dagJson = JSON.parse(fs.readFileSync(dagPath, 'utf8'));
+      if (!validateDag(dagJson)) continue;
+      const adjJson = JSON.parse(fs.readFileSync(adjPath, 'utf8'));
+      if (!validateAdj(adjJson)) continue;
+
+      if (manifest.signatures) {
+        const hDag = crypto.createHash('sha256').update(fs.readFileSync(dagPath)).digest('hex');
+        const hAdj = crypto.createHash('sha256').update(fs.readFileSync(adjPath)).digest('hex');
+        const hDoc = crypto.createHash('sha256').update(fs.readFileSync(srcDoc)).digest('hex');
+        if (manifest.signatures['dag.json'] !== hDag || manifest.signatures['adjacency.json'] !== hAdj || manifest.signatures['KB_SYNC_DAG.md'] !== hDoc) {
+          continue;
+        }
+      }
 
       // Atomic doc update
       const tmpDoc = `${docsFile}.tmp`;
@@ -242,7 +287,12 @@ function runCli() {
   const manifest = {
     generation_id: genId,
     created_at: dag.metadata.created_at,
-    sha256: dag.metadata.content_hash
+    sha256: dag.metadata.content_hash,
+    signatures: {
+      'dag.json': crypto.createHash('sha256').update(fs.readFileSync(path.join(targetGenDir, 'dag.json'))).digest('hex'),
+      'adjacency.json': crypto.createHash('sha256').update(fs.readFileSync(path.join(targetGenDir, 'adjacency.json'))).digest('hex'),
+      'KB_SYNC_DAG.md': crypto.createHash('sha256').update(fs.readFileSync(path.join(targetGenDir, 'KB_SYNC_DAG.md'))).digest('hex')
+    }
   };
   fs.writeFileSync(path.join(targetGenDir, 'manifest.json'), JSON.stringify(manifest, null, 2));
 
