@@ -102,3 +102,92 @@ test('buildDagGraph populates cycles_count from real backlink cycles, not hardco
   });
   assert.equal(dag.metadata.cycles_count, 1);
 });
+
+test('buildDagGraph deduplicates chunk anchors on the same file and handles default anchor', () => {
+  const chunks = [
+    { file: 'docs/guide.md', anchor: 'intro', line: 10, content: 'First intro' },
+    { file: 'docs/guide.md', anchor: 'intro', line: 45, content: 'Second intro' },
+    { file: 'docs/guide.md', line: 80, content: 'No anchor specified' },
+    { file: 'docs/guide.md', line: 120, content: 'Another no anchor' }
+  ];
+  const fileList = ['docs/guide.md'];
+
+  const { dag } = buildDagGraph({ chunks, fileList });
+
+  const chunkNodes = dag.nodes.filter(n => n.node_type === 'chunk');
+  assert.equal(chunkNodes.length, 4);
+
+  // First 'intro' keeps base anchor
+  assert.equal(chunkNodes[0].anchor, 'intro');
+  assert.equal(chunkNodes[0].id, 'node:chunk:docs/guide.md#intro');
+
+  // Second 'intro' gets line number suffix
+  assert.equal(chunkNodes[1].anchor, 'intro_L45');
+  assert.equal(chunkNodes[1].id, 'node:chunk:docs/guide.md#intro_L45');
+
+  // First chunk without anchor defaults to 'section'
+  assert.equal(chunkNodes[2].anchor, 'section');
+  assert.equal(chunkNodes[2].id, 'node:chunk:docs/guide.md#section');
+
+  // Second chunk without anchor gets 'section_L120'
+  assert.equal(chunkNodes[3].anchor, 'section_L120');
+  assert.equal(chunkNodes[3].id, 'node:chunk:docs/guide.md#section_L120');
+});
+
+test('buildDagGraph links a backlink to an existing file node instead of creating a dangling one', () => {
+  const backlinks = [
+    { source: 'a.md', target: 'b.md', type: 'wikilink' }
+  ];
+  const { dag } = buildDagGraph({ chunks: [], backlinks, fileList: ['a.md', 'b.md'] });
+
+  assert.equal(dag.nodes.length, 2);
+  const targetNode = dag.nodes.find(n => n.id === 'node:file:b.md');
+  assert.ok(targetNode);
+  assert.equal(targetNode.node_type, 'file');
+  assert.equal(targetNode.status, 'valid');
+});
+
+test('buildDagGraph defaults backlink relation to wikilink when type is omitted', () => {
+  const backlinks = [{ source: 'a.md', target: 'b.md' }];
+  const { dag } = buildDagGraph({ chunks: [], backlinks, fileList: ['a.md'] });
+
+  const edge = dag.edges.find(e => e.source === 'node:file:a.md' && e.target === 'node:file:b.md');
+  assert.ok(edge);
+  assert.equal(edge.relation, 'wikilink');
+});
+
+test('buildDagGraph collapses duplicate backlink edges with the same source/target/relation', () => {
+  const backlinks = [
+    { source: 'a.md', target: 'b.md', type: 'wikilink' },
+    { source: 'a.md', target: 'b.md', type: 'wikilink' }
+  ];
+  const { dag } = buildDagGraph({ chunks: [], backlinks, fileList: ['a.md', 'b.md'] });
+
+  const matching = dag.edges.filter(e => e.source === 'node:file:a.md' && e.target === 'node:file:b.md');
+  assert.equal(matching.length, 1);
+});
+
+test('buildDagGraph renders a truncation notice instead of a mermaid diagram past 50 nodes', () => {
+  const fileList = Array.from({ length: 51 }, (_, i) => `file-${i}.md`);
+  const { markdownDoc } = buildDagGraph({ chunks: [], backlinks: [], fileList });
+
+  assert.ok(markdownDoc.includes('Topology exceeds 50 nodes'));
+  assert.ok(!markdownDoc.includes('```mermaid'));
+});
+
+test('buildDagGraph renders a mermaid diagram at or under 50 nodes', () => {
+  const fileList = Array.from({ length: 50 }, (_, i) => `file-${i}.md`);
+  const { markdownDoc } = buildDagGraph({ chunks: [], backlinks: [], fileList });
+
+  assert.ok(markdownDoc.includes('```mermaid'));
+  assert.ok(!markdownDoc.includes('Topology exceeds 50 nodes'));
+});
+
+test('canonicalize sorts keys inside arrays of objects, not just top-level objects', () => {
+  const input = { list: [{ z: 1, a: 2 }, { b: 3, a: 4 }] };
+  const canonical = canonicalize(input);
+
+  assert.deepEqual(Object.keys(canonical.list[0]), ['a', 'z']);
+  assert.deepEqual(Object.keys(canonical.list[1]), ['a', 'b']);
+});
+

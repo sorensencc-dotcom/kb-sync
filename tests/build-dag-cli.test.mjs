@@ -50,3 +50,23 @@ test('build-dag.mjs --recover restores active generation on corrupt pointer', ()
   const checkOutput = execSync('node kb-sync/scripts/build-dag.mjs --check-only', { cwd: rootDir, encoding: 'utf8' });
   assert.ok(checkOutput.includes('[OK] KBSync DAG Health Check PASS'));
 });
+
+test('build-dag.mjs --gc runs garbage collection via the CLI entry point', () => {
+  const rootDir = process.cwd();
+  const gensDir = path.join(rootDir, '.nlm_pack', 'generations');
+
+  // Ensure at least one generation exists to garbage-collect against.
+  execSync('node kb-sync/scripts/build-dag.mjs', { cwd: rootDir, encoding: 'utf8' });
+
+  const before = fs.readdirSync(gensDir).filter(d => fs.statSync(path.join(gensDir, d)).isDirectory());
+
+  const gcOutput = execSync('node kb-sync/scripts/build-dag.mjs --gc', { cwd: rootDir, encoding: 'utf8' });
+  assert.ok(gcOutput.includes('[GC] Garbage collection completed.'), 'GC output should indicate completion');
+
+  // The active generation must survive GC — health check still passes afterward.
+  const checkOutput = execSync('node kb-sync/scripts/build-dag.mjs --check-only', { cwd: rootDir, encoding: 'utf8' });
+  assert.ok(checkOutput.includes('[OK] KBSync DAG Health Check PASS'));
+
+  const after = fs.readdirSync(gensDir).filter(d => fs.statSync(path.join(gensDir, d)).isDirectory());
+  assert.ok(after.length <= before.length, 'GC must not increase the number of generation directories');
+});
