@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2.0] - 2026-08-08
+
+### Added
+- **Weekly Review Capacity Telemetry Workflow** (`.github/workflows/weekly-review-capacity.yml`): Staged scheduled telemetry workflow running `npm run kb:review-metrics` in the `kb-sync` repository.
+- **Workflow Validation Test Suite** (`tests/weekly-review-capacity-workflow.test.ts`): Updated path resolution to validate workflow configuration at `kb-sync` repository root.
+
+### Changed
+- **Incremental Delta Sync Engine** (`modules/wiki/detect-drift.js` & `modules/wiki/detect-drift.ts`): Integrated SHA-256 file hash diffing into `_kb-sync-staging/` to package only changed and added source files during scheduled and manual runs.
+- **Obsidian Target Documentation** (`docs/targets/obsidian.md`): Updated target schema documentation with incremental delta staging modes and atomic lock specifications.
+
 ## [0.1.1.0] - 2026-08-06
+
 
 ### Added
 - **Incremental Delta Sync Engine** (`modules/wiki/detect-drift.js` & `modules/wiki/detect-drift.ts`): Integrated SHA-256 file hash diffing into `_kb-sync-staging/` to package only changed and added source files during scheduled and manual runs while maintaining 100% downstream consumer compatibility through materialized complete snapshot trees.
