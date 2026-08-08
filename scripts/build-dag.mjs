@@ -25,15 +25,55 @@ export function ensureDirs(rootDir = defaultRootDir) {
 }
 
 
-export function checkHealth(rootDir = defaultRootDir) {
-  const ajv = new Ajv();
-  const dagSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/dag.schema.v2.json'), 'utf8'));
-  const adjSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/adjacency.schema.v2.json'), 'utf8'));
-  delete dagSchema.$schema;
-  delete adjSchema.$schema;
-  const validateDag = ajv.compile(dagSchema);
-  const validateAdj = ajv.compile(adjSchema);
+export function validateGeneration(rootDir, genDirName) {
+  try {
+    const ajv = new Ajv();
+    const dagSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/dag.schema.v2.json'), 'utf8'));
+    const adjSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/adjacency.schema.v2.json'), 'utf8'));
+    delete dagSchema.$schema;
+    delete adjSchema.$schema;
+    const validateDag = ajv.compile(dagSchema);
+    const validateAdj = ajv.compile(adjSchema);
 
+    const { gensDir } = getPaths(rootDir);
+    const genPath = path.join(gensDir, genDirName);
+    if (!fs.existsSync(genPath) || !fs.statSync(genPath).isDirectory()) return false;
+
+    const manifestPath = path.join(genPath, 'manifest.json');
+    const dagPath = path.join(genPath, 'dag.json');
+    const adjPath = path.join(genPath, 'adjacency.json');
+    const docPath = path.join(genPath, 'KB_SYNC_DAG.md');
+
+    if (!fs.existsSync(manifestPath) || !fs.existsSync(dagPath) || !fs.existsSync(adjPath) || !fs.existsSync(docPath)) {
+      return false;
+    }
+
+    const dagJson = JSON.parse(fs.readFileSync(dagPath, 'utf8'));
+    if (!validateDag(dagJson)) return false;
+    const adjJson = JSON.parse(fs.readFileSync(adjPath, 'utf8'));
+    if (!validateAdj(adjJson)) return false;
+
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    const sigs = manifest.signatures || {};
+    const expectedDag = sigs['dag.json'] || manifest.sha256;
+    const expectedAdj = sigs['adjacency.json'];
+    const expectedDoc = sigs['KB_SYNC_DAG.md'];
+
+    if (!expectedDag || !expectedAdj || !expectedDoc) return false;
+
+    const hDag = crypto.createHash('sha256').update(fs.readFileSync(dagPath)).digest('hex');
+    const hAdj = crypto.createHash('sha256').update(fs.readFileSync(adjPath)).digest('hex');
+    const hDoc = crypto.createHash('sha256').update(fs.readFileSync(docPath)).digest('hex');
+
+    if (expectedDag !== hDag || expectedAdj !== hAdj || expectedDoc !== hDoc) return false;
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function checkHealth(rootDir = defaultRootDir) {
   const { gensDir, pointerFile, docsFile } = getPaths(rootDir);
   if (!fs.existsSync(pointerFile)) return { healthy: false, reason: 'Missing pointer file' };
   try {
@@ -44,18 +84,7 @@ export function checkHealth(rootDir = defaultRootDir) {
     const genPath = path.join(gensDir, activeGen);
     if (!fs.existsSync(genPath)) return { healthy: false, reason: `Missing generation directory: ${activeGen}` };
 
-    const manifestPath = path.join(genPath, 'manifest.json');
-    if (!fs.existsSync(manifestPath)) return { healthy: false, reason: 'Missing manifest.json in generation' };
-
-    const dagPath = path.join(genPath, 'dag.json');
-    if (!fs.existsSync(dagPath)) return { healthy: false, reason: 'Missing dag.json in generation' };
-
-    const adjPath = path.join(genPath, 'adjacency.json');
-    if (!fs.existsSync(adjPath)) return { healthy: false, reason: 'Missing adjacency.json in generation' };
-
     const genDocPath = path.join(genPath, 'KB_SYNC_DAG.md');
-    if (!fs.existsSync(genDocPath)) return { healthy: false, reason: 'Missing KB_SYNC_DAG.md in generation' };
-
     const docExists = fs.existsSync(docsFile);
     if (!docExists) return { healthy: false, reason: 'Missing docs/KB_SYNC_DAG.md' };
 
@@ -63,21 +92,8 @@ export function checkHealth(rootDir = defaultRootDir) {
     const genDocContent = fs.readFileSync(genDocPath, 'utf8');
     if (docContent !== genDocContent) return { healthy: false, reason: 'Doc content mismatch with active generation' };
 
-    // Schema validation
-    const dagJson = JSON.parse(fs.readFileSync(dagPath, 'utf8'));
-    if (!validateDag(dagJson)) return { healthy: false, reason: 'dag.json schema validation failed' };
-    const adjJson = JSON.parse(fs.readFileSync(adjPath, 'utf8'));
-    if (!validateAdj(adjJson)) return { healthy: false, reason: 'adjacency.json schema validation failed' };
-
-    // Hash validation
-    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    if (manifest.signatures) {
-      const hDag = crypto.createHash('sha256').update(fs.readFileSync(dagPath)).digest('hex');
-      const hAdj = crypto.createHash('sha256').update(fs.readFileSync(adjPath)).digest('hex');
-      const hDoc = crypto.createHash('sha256').update(fs.readFileSync(genDocPath)).digest('hex');
-      if (manifest.signatures['dag.json'] !== hDag) return { healthy: false, reason: 'dag.json hash mismatch' };
-      if (manifest.signatures['adjacency.json'] !== hAdj) return { healthy: false, reason: 'adjacency.json hash mismatch' };
-      if (manifest.signatures['KB_SYNC_DAG.md'] !== hDoc) return { healthy: false, reason: 'KB_SYNC_DAG.md hash mismatch' };
+    if (!validateGeneration(rootDir, activeGen)) {
+      return { healthy: false, reason: 'Active generation failed schema or hash validation' };
     }
 
     return { healthy: true, activeGen };
@@ -89,25 +105,30 @@ export function checkHealth(rootDir = defaultRootDir) {
 export function atomicRenameSync(tmpPath, destPath) {
   for (let i = 0; i < 3; i++) {
     try {
+      if (process.platform === 'win32' && fs.existsSync(destPath)) {
+        fs.copyFileSync(tmpPath, destPath);
+        try { fs.unlinkSync(tmpPath); } catch {}
+        return;
+      }
       fs.renameSync(tmpPath, destPath);
       return;
     } catch (err) {
-      if (i === 2) throw err;
+      if (i === 2) {
+        try {
+          fs.copyFileSync(tmpPath, destPath);
+          try { fs.unlinkSync(tmpPath); } catch {}
+          return;
+        } catch {
+          throw err;
+        }
+      }
       const start = Date.now();
-      while(Date.now() - start < 50) {} // Sync sleep for 50ms
+      while (Date.now() - start < 50) {}
     }
   }
 }
 
 export function runRecovery(rootDir = defaultRootDir) {
-  const ajv = new Ajv();
-  const dagSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/dag.schema.v2.json'), 'utf8'));
-  const adjSchema = JSON.parse(fs.readFileSync(path.join(rootDir, 'kb-sync/schemas/adjacency.schema.v2.json'), 'utf8'));
-  delete dagSchema.$schema;
-  delete adjSchema.$schema;
-  const validateDag = ajv.compile(dagSchema);
-  const validateAdj = ajv.compile(adjSchema);
-
   console.log('[Recovery] Running recovery scan across generations...');
   const { gensDir, pointerFile, docsFile } = getPaths(rootDir);
   if (!fs.existsSync(gensDir)) {
@@ -120,31 +141,14 @@ export function runRecovery(rootDir = defaultRootDir) {
     const genPath = path.join(gensDir, d);
     if (!fs.statSync(genPath).isDirectory()) continue;
 
-    const manifestPath = path.join(genPath, 'manifest.json');
-    const srcDoc = path.join(genPath, 'KB_SYNC_DAG.md');
-    const dagPath = path.join(genPath, 'dag.json');
-    const adjPath = path.join(genPath, 'adjacency.json');
-
-    if (!fs.existsSync(manifestPath) || !fs.existsSync(srcDoc) || !fs.existsSync(dagPath) || !fs.existsSync(adjPath)) {
+    if (!validateGeneration(rootDir, d)) {
       continue;
     }
 
     try {
+      const manifestPath = path.join(genPath, 'manifest.json');
       const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-      
-      const dagJson = JSON.parse(fs.readFileSync(dagPath, 'utf8'));
-      if (!validateDag(dagJson)) continue;
-      const adjJson = JSON.parse(fs.readFileSync(adjPath, 'utf8'));
-      if (!validateAdj(adjJson)) continue;
-
-      if (manifest.signatures) {
-        const hDag = crypto.createHash('sha256').update(fs.readFileSync(dagPath)).digest('hex');
-        const hAdj = crypto.createHash('sha256').update(fs.readFileSync(adjPath)).digest('hex');
-        const hDoc = crypto.createHash('sha256').update(fs.readFileSync(srcDoc)).digest('hex');
-        if (manifest.signatures['dag.json'] !== hDag || manifest.signatures['adjacency.json'] !== hAdj || manifest.signatures['KB_SYNC_DAG.md'] !== hDoc) {
-          continue;
-        }
-      }
+      const srcDoc = path.join(genPath, 'KB_SYNC_DAG.md');
 
       // Atomic doc update
       const tmpDoc = `${docsFile}.tmp`;
@@ -193,15 +197,7 @@ export function runGC(rootDir = defaultRootDir) {
     }
 
     const dirs = fs.readdirSync(gensDir).filter(d => fs.statSync(path.join(gensDir, d)).isDirectory());
-    const validDirs = dirs.filter(d => {
-      const genPath = path.join(gensDir, d);
-      return (
-        fs.existsSync(path.join(genPath, 'manifest.json')) &&
-        fs.existsSync(path.join(genPath, 'dag.json')) &&
-        fs.existsSync(path.join(genPath, 'adjacency.json')) &&
-        fs.existsSync(path.join(genPath, 'KB_SYNC_DAG.md'))
-      );
-    }).sort().reverse();
+    const validDirs = dirs.filter(d => validateGeneration(rootDir, d)).sort().reverse();
 
     const toRetain = new Set();
     if (activeGen && validDirs.includes(activeGen)) {
