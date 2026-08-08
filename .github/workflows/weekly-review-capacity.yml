@@ -1,0 +1,53 @@
+name: Weekly Review Capacity Telemetry
+
+concurrency:
+  group: weekly-review-capacity
+  cancel-in-progress: false
+
+on:
+  schedule:
+    # Executes every Friday at 23:00 UTC per weekly loop protocol
+    - cron: '0 23 * * 5'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  update-capacity-baseline:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Sync Target Branch
+        run: |
+          git fetch origin ${{ github.event.repository.default_branch }}
+          git rebase origin/${{ github.event.repository.default_branch }}
+
+      - name: Extract GitHub PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          powershell.exe -ExecutionPolicy Bypass -File modules/review-capacity/scripts/extract-github-prs.ps1 -Repo "sorensencc-dotcom/kb-sync", "sorensencc-dotcom/cic-ingestion", "sorensencc-dotcom/charlie-deep-research"
+
+      - name: Compute Weekly Metrics
+        run: npm run kb:review-metrics
+
+      - name: Commit and Push Updated Baseline
+        run: |
+          git add modules/review-capacity/review-capacity-baseline.csv
+          if (git diff --cached --quiet) {
+            Write-Host "No baseline changes detected."
+            exit 0
+          }
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(telemetry): auto-update weekly PR review capacity baseline"
+          git push origin HEAD:${{ github.event.repository.default_branch }}
