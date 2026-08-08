@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 ## [0.1.2.0] - 2026-08-08
 
 ### Added
+- **KB-Sync Directed Graph & Structural DAG** (`core/dag.mjs`, `scripts/build-dag.mjs`, `schemas/*.v2.json`): Machine-readable `dag.json`/`adjacency.json` graph builder with crash-consistent generation directories, atomic doc/pointer commits, recovery scan, and GC retention. See `docs/meta/specs/2026-08-08-kb-sync-dag-design.md`.
 - **Weekly Review Capacity Telemetry Workflow** (`.github/workflows/weekly-review-capacity.yml`): Staged scheduled telemetry workflow running `npm run kb:review-metrics` in the `kb-sync` repository.
 - **Workflow Validation Test Suite** (`tests/weekly-review-capacity-workflow.test.ts`): Updated path resolution to validate workflow configuration at `kb-sync` repository root.
+
+### Fixed
+- **DAG builder determinism** (`core/dag.mjs`, `scripts/build-dag.mjs`): `cycles_count` was hardcoded to 0 (now computed via Tarjan's SCC); `created_at` used wall-clock time, breaking cross-run bit-identical output (now derived from git commit time, with `SOURCE_DATE_EPOCH` override); `generation_id` didn't match the documented `YYYYMMDD_HHMMSS_<hash8>` format.
+- **notebooklm-sync-verification.ts**: Test 7's minimal-PATH simulation hid `git` on Windows Git Bash (MSYS2), causing the sync script to fail at `git rev-parse` (exit 127) before reaching its own CLI-availability check (exit 1).
 
 ### Changed
 - **Incremental Delta Sync Engine** (`modules/wiki/detect-drift.js` & `modules/wiki/detect-drift.ts`): Integrated SHA-256 file hash diffing into `_kb-sync-staging/` to package only changed and added source files during scheduled and manual runs.
