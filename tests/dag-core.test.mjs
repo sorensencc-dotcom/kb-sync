@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildDagGraph, canonicalize } from '../core/dag.mjs';
+import { buildDagGraph, canonicalize, countNonTrivialSCCs } from '../core/dag.mjs';
 
 test('buildDagGraph constructs canonical nodes, canonicalizes keys, contentHash, and adjacency maps', () => {
   const chunks = [
@@ -65,4 +65,40 @@ test('buildDagGraph constructs canonical nodes, canonicalizes keys, contentHash,
   const canonical = canonicalize(uncanonical);
   assert.deepEqual(Object.keys(canonical), ['a', 'm', 'z']);
   assert.deepEqual(Object.keys(canonical.m), ['a', 'b']);
+});
+
+test('countNonTrivialSCCs reports 0 for an acyclic graph', () => {
+  const nodes = [{ id: 'node:file:a.md' }, { id: 'node:file:b.md' }];
+  const edges = [{ source: 'node:file:a.md', target: 'node:file:b.md' }];
+  assert.equal(countNonTrivialSCCs(nodes, edges), 0);
+});
+
+test('countNonTrivialSCCs detects a self-loop as one non-trivial SCC', () => {
+  const nodes = [{ id: 'node:file:a.md' }];
+  const edges = [{ source: 'node:file:a.md', target: 'node:file:a.md' }];
+  assert.equal(countNonTrivialSCCs(nodes, edges), 1);
+});
+
+test('countNonTrivialSCCs detects a multi-node cycle as one non-trivial SCC', () => {
+  const nodes = [{ id: 'node:file:a.md' }, { id: 'node:file:b.md' }, { id: 'node:file:c.md' }];
+  const edges = [
+    { source: 'node:file:a.md', target: 'node:file:b.md' },
+    { source: 'node:file:b.md', target: 'node:file:a.md' },
+    { source: 'node:file:b.md', target: 'node:file:c.md' }
+  ];
+  assert.equal(countNonTrivialSCCs(nodes, edges), 1);
+});
+
+test('buildDagGraph populates cycles_count from real backlink cycles, not hardcoded 0', () => {
+  const backlinks = [
+    { source: 'a.md', target: 'b.md', type: 'wikilink' },
+    { source: 'b.md', target: 'a.md', type: 'wikilink' }
+  ];
+  const { dag } = buildDagGraph({
+    chunks: [],
+    backlinks,
+    fileList: ['a.md', 'b.md'],
+    commitTimestamp: '2026-08-08T00:00:00.000Z'
+  });
+  assert.equal(dag.metadata.cycles_count, 1);
 });

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import Ajv from 'ajv';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildDagGraph } from '../core/dag.mjs';
 
@@ -15,6 +16,32 @@ export function getPaths(rootDir = defaultRootDir) {
   const pointerFile = path.join(nlmDir, 'current_generation.json');
   const docsFile = path.join(rootDir, 'docs', 'KB_SYNC_DAG.md');
   return { nlmDir, gensDir, pointerFile, docsFile };
+}
+
+export function getDeterministicTimestamp(rootDir, fileList) {
+  if (process.env.SOURCE_DATE_EPOCH) {
+    const epoch = Number(process.env.SOURCE_DATE_EPOCH);
+    if (!Number.isNaN(epoch)) return new Date(epoch * 1000).toISOString();
+  }
+
+  let latest = null;
+  for (const f of fileList) {
+    try {
+      const gitBin = process.platform === 'win32' ? 'git.exe' : 'git';
+      const out = execFileSync(gitBin, ['log', '-1', '--format=%cI', '--', f], {
+        cwd: rootDir,
+        encoding: 'utf8'
+      }).trim();
+      if (out) {
+        const d = new Date(out);
+        if (!latest || d > latest) latest = d;
+      }
+    } catch {
+      // File untracked or git unavailable; skip.
+    }
+  }
+
+  return latest ? latest.toISOString() : new Date(0).toISOString();
 }
 
 export function ensureDirs(rootDir = defaultRootDir) {
@@ -257,7 +284,7 @@ function runCli() {
   const { gensDir, pointerFile, docsFile } = getPaths();
   const statusFile = path.join(defaultRootDir, 'KB_SYNC_STATUS.md');
   const fileList = fs.existsSync(statusFile) ? ['KB_SYNC_STATUS.md', 'README.md'] : ['README.md'];
-  const commitTimestamp = new Date().toISOString();
+  const commitTimestamp = getDeterministicTimestamp(defaultRootDir, fileList);
 
   const { dag, adjacency, markdownDoc, genId } = buildDagGraph({
     chunks: [],

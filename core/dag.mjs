@@ -1,5 +1,60 @@
 import crypto from 'node:crypto';
 
+export function countNonTrivialSCCs(nodes, edges) {
+  const orderedIds = nodes.map(n => n.id).sort((a, b) => a.localeCompare(b));
+  const adj = new Map(orderedIds.map(id => [id, []]));
+  const selfLoop = new Set();
+  for (const e of edges) {
+    if (!adj.has(e.source) || !adj.has(e.target)) continue;
+    if (e.source === e.target) selfLoop.add(e.source);
+    adj.get(e.source).push(e.target);
+  }
+
+  let index = 0;
+  const indices = new Map();
+  const lowlink = new Map();
+  const onStack = new Set();
+  const stack = [];
+  let nonTrivialCount = 0;
+
+  function strongconnect(v) {
+    indices.set(v, index);
+    lowlink.set(v, index);
+    index++;
+    stack.push(v);
+    onStack.add(v);
+
+    for (const w of adj.get(v)) {
+      if (!indices.has(w)) {
+        strongconnect(w);
+        lowlink.set(v, Math.min(lowlink.get(v), lowlink.get(w)));
+      } else if (onStack.has(w)) {
+        lowlink.set(v, Math.min(lowlink.get(v), indices.get(w)));
+      }
+    }
+
+    if (lowlink.get(v) === indices.get(v)) {
+      const component = [];
+      let w;
+      do {
+        w = stack.pop();
+        onStack.delete(w);
+        component.push(w);
+      } while (w !== v);
+
+      if (component.length > 1 || selfLoop.has(component[0])) {
+        nonTrivialCount++;
+      }
+    }
+  }
+
+  for (const v of orderedIds) {
+    if (!indices.has(v)) strongconnect(v);
+  }
+
+  return nonTrivialCount;
+}
+
 export function canonicalize(obj) {
   if (obj === null || typeof obj !== 'object') return obj;
   if (Array.isArray(obj)) return obj.map(canonicalize);
@@ -107,8 +162,12 @@ export function buildDagGraph({ chunks = [], backlinks = [], fileList = [], comm
   const contentHashInput = JSON.stringify(canonicalize({ nodes, edges }));
   const contentHash = 'sha256:' + crypto.createHash('sha256').update(contentHashInput).digest('hex');
 
+  const cyclesCount = countNonTrivialSCCs(nodes, edges);
+
   const isoDate = commitTimestamp ? new Date(commitTimestamp).toISOString() : new Date().toISOString();
-  const genId = `${isoDate.replace(/[-:T.]/g, '').slice(0, 15)}_${contentHash.slice(7, 15)}`;
+  const datePart = isoDate.slice(0, 10).replace(/-/g, '');
+  const timePart = isoDate.slice(11, 19).replace(/:/g, '');
+  const genId = `${datePart}_${timePart}_${contentHash.slice(7, 15)}`;
 
   const dag = canonicalize({
     $schema: 'https://json-schema.org/draft/2020-12/schema',
@@ -116,7 +175,7 @@ export function buildDagGraph({ chunks = [], backlinks = [], fileList = [], comm
     metadata: {
       content_hash: contentHash,
       created_at: commitTimestamp,
-      cycles_count: 0,
+      cycles_count: cyclesCount,
       generation_id: genId,
       source_file_count: fileList.length,
       total_edges: edges.length,
