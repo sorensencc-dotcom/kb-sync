@@ -363,7 +363,16 @@ runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
 runTest("Sync script returns hard failure (exit 1) when no CLI is available", () => {
   try {
     const bashScriptPath = toBashPath(SYNC_SCRIPT_PATH);
-    const cmd = `bash -c 'export PATH="/usr/bin:/bin"; export NOTEBOOK_ID="mock-123"; export NOTEBOOKLM_COOKIE="session=mock"; export NLM_CLI=""; bash ./${bashScriptPath} 2>&1'`;
+    // The script itself needs `git` on PATH (REPO_ROOT resolution) before it ever
+    // reaches its own CLI-availability check. A hardcoded "/usr/bin:/bin" only
+    // contains git on native Linux/macOS; on Windows Git Bash (MSYS2) git lives
+    // under mingw64/bin, so trimming to /usr/bin:/bin kills git too and the
+    // script dies with exit 127 (command not found) instead of its intended
+    // exit 1. Resolve git's real directory and keep it on the minimal PATH.
+    const gitDir = path
+      .dirname(execSync(`bash -c "command -v git"`, { encoding: "utf8" }).trim());
+    const minimalPath = `/usr/bin:/bin:${gitDir}`;
+    const cmd = `bash -c 'export PATH="${minimalPath}"; export NOTEBOOK_ID="mock-123"; export NOTEBOOKLM_COOKIE="session=mock"; export NLM_CLI=""; bash ./${bashScriptPath} 2>&1'`;
     execSync(cmd, {
       cwd: REPO_ROOT,
       env: getCleanEnv(),
