@@ -4,7 +4,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { runGC, checkHealth, runRecovery, atomicRenameSync } from '../scripts/build-dag.mjs';
+import { runGC, checkHealth, runRecovery, atomicRenameSync, getPaths, getDeterministicTimestamp, validateGeneration } from '../scripts/build-dag.mjs';
 
 const rootDir = process.cwd();
 const nlmDir = path.join(rootDir, '.nlm_pack');
@@ -377,3 +377,179 @@ test('P1 Regression: Health check & recovery fail when hashes/signatures are mis
   assert.equal(recovered, false, 'Recovery must fail to adopt generation with missing/invalid signatures');
 });
 
+// 11. Unit Test: atomicRenameSync retry loop exception handling & transient retries
+test('atomicRenameSync throws error when rename repeatedly fails and exhausts maxRetries', () => {
+  const originalRename = fs.renameSync;
+  let attempts = 0;
+  fs.renameSync = () => {
+    attempts++;
+    throw new Error('EBUSY: resource locked');
+  };
+  try {
+    assert.throws(
+      () => atomicRenameSync('nonexistent.tmp', 'dest.file'),
+      /Atomic rename failed from nonexistent.tmp to dest.file: EBUSY: resource locked/
+    );
+    assert.equal(attempts, 5, 'Should attempt maxRetries (5) times');
+  } finally {
+    fs.renameSync = originalRename;
+  }
+});
+
+test('atomicRenameSync retries and succeeds after transient failure', () => {
+  const originalRename = fs.renameSync;
+  let attempts = 0;
+  fs.renameSync = (src, dest) => {
+    attempts++;
+    if (attempts === 1) {
+      throw new Error('EPERM: operation not permitted');
+    }
+    return originalRename(src, dest);
+  };
+
+  const tmpPath = path.join(nlmDir, 'retry_success.tmp');
+  const destPath = path.join(nlmDir, 'retry_success.dest');
+  fs.writeFileSync(tmpPath, 'RETRY_TEST');
+
+  try {
+    atomicRenameSync(tmpPath, destPath);
+    assert.equal(attempts, 2, 'Should succeed on second attempt');
+    assert.equal(fs.readFileSync(destPath, 'utf8'), 'RETRY_TEST');
+  } finally {
+    fs.renameSync = originalRename;
+    if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
+    if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
+  }
+});
+
+// 12. Unit Test: checkHealth negative branches
+test('checkHealth returns healthy: false for negative branches', () => {
+  const tempDir = path.join(nlmDir, 'temp_health_test');
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    // Missing pointer file
+    const health1 = checkHealth(tempDir);
+    assert.equal(health1.healthy, false);
+    assert.equal(health1.reason, 'Missing pointer file');
+
+    // Pointer missing active_generation
+    const ptrFile = path.join(tempDir, '.nlm_pack', 'current_generation.json');
+    fs.mkdirSync(path.dirname(ptrFile), { recursive: true });
+    fs.writeFileSync(ptrFile, '{}');
+    const health2 = checkHealth(tempDir);
+    assert.equal(health2.healthy, false);
+    assert.equal(health2.reason, 'Pointer file missing active_generation');
+
+    // Missing generation directory
+    fs.writeFileSync(ptrFile, JSON.stringify({ active_generation: 'gen_missing' }));
+    const health3 = checkHealth(tempDir);
+    assert.equal(health3.healthy, false);
+    assert.equal(health3.reason, 'Missing generation directory: gen_missing');
+
+    // Missing docs/KB_SYNC_DAG.md
+    const genDir = path.join(tempDir, '.nlm_pack', 'generations', 'gen_missing');
+    fs.mkdirSync(genDir, { recursive: true });
+    const health4 = checkHealth(tempDir);
+    assert.equal(health4.healthy, false);
+    assert.equal(health4.reason, 'Missing docs/KB_SYNC_DAG.md');
+
+    // Doc content mismatch
+    const docFile = path.join(tempDir, 'docs', 'KB_SYNC_DAG.md');
+    fs.mkdirSync(path.dirname(docFile), { recursive: true });
+    fs.writeFileSync(docFile, 'DOC_CONTENT_A');
+    fs.writeFileSync(path.join(genDir, 'KB_SYNC_DAG.md'), 'DOC_CONTENT_B');
+    const health5 = checkHealth(tempDir);
+    assert.equal(health5.healthy, false);
+    assert.equal(health5.reason, 'Doc content mismatch with active generation');
+
+    // JSON syntax error in pointer file
+    fs.writeFileSync(ptrFile, 'INVALID_JSON_HERE');
+    const health6 = checkHealth(tempDir);
+    assert.equal(health6.healthy, false);
+    assert.ok(health6.reason.includes('Unexpected token') || health6.reason.includes('JSON'));
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+// 13. Unit Test: validateGeneration negative branches
+test('validateGeneration returns false for negative branches', () => {
+  const tempDir = path.join(nlmDir, 'temp_val_test');
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    // Non-existent gen directory
+    assert.equal(validateGeneration(tempDir, 'nonexistent_gen'), false);
+
+    // Gen path is a file, not a directory
+    const filePath = path.join(tempDir, '.nlm_pack', 'generations', 'file_gen');
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, 'NOT_A_DIR');
+    assert.equal(validateGeneration(tempDir, 'file_gen'), false);
+
+    // Missing required files
+    const dirPath = path.join(tempDir, '.nlm_pack', 'generations', 'incomplete_gen');
+    fs.mkdirSync(dirPath, { recursive: true });
+    assert.equal(validateGeneration(tempDir, 'incomplete_gen'), false);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+// 14. Unit Test: getDeterministicTimestamp env and fallback handling
+test('getDeterministicTimestamp handles SOURCE_DATE_EPOCH and git failures', () => {
+  const originalEpoch = process.env.SOURCE_DATE_EPOCH;
+  try {
+    process.env.SOURCE_DATE_EPOCH = '1600000000';
+    const ts = getDeterministicTimestamp(rootDir, ['README.md']);
+    assert.equal(ts, new Date(1600000000 * 1000).toISOString());
+  } finally {
+    if (originalEpoch !== undefined) {
+      process.env.SOURCE_DATE_EPOCH = originalEpoch;
+    } else {
+      delete process.env.SOURCE_DATE_EPOCH;
+    }
+  }
+
+  // Fallback when git log fails / non-existent file
+  const tsFallback = getDeterministicTimestamp(rootDir, ['non_existent_file_xyz_123.md']);
+  assert.equal(tsFallback, new Date(0).toISOString());
+});
+
+// 15. Unit Test: runRecovery edge cases
+test('runRecovery handles missing generations dir or empty candidates gracefully', () => {
+  const tempDir = path.join(nlmDir, 'temp_rec_test');
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    // No generations dir
+    assert.equal(runRecovery(tempDir), false);
+
+    // Empty generations dir
+    fs.mkdirSync(path.join(tempDir, '.nlm_pack', 'generations'), { recursive: true });
+    assert.equal(runRecovery(tempDir), false);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+// 16. Unit Test: runGC edge cases
+test('runGC handles non-existent generations directory and lock file contention', () => {
+  const tempDir = path.join(nlmDir, 'temp_gc_test');
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  try {
+    // Should return gracefully without throw
+    runGC(tempDir);
+
+    // With empty generations dir and existing lock file
+    const nlm = path.join(tempDir, '.nlm_pack');
+    fs.mkdirSync(path.join(nlm, 'generations'), { recursive: true });
+    fs.writeFileSync(path.join(nlm, 'gc.lock'), String(Date.now()));
+
+    runGC(tempDir);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});

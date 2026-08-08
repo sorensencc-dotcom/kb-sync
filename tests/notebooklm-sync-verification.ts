@@ -204,8 +204,15 @@ runTest("Sync script execution simulation with mock CLI (triggers chunking)", ()
   // Write mock notebooklm binary
   const mockCliPath = path.join(mockCliDir, "mock-nlm");
   const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
-  const mockCliContent = "#!/usr/bin/env bash\necho \"[MOCK-CLI] Invoked with arguments: $@\"\nexit 0\n";
-  const mockCliCmdContent = "@echo off\r\necho [MOCK-CLI] Invoked with arguments: %*\r\nexit /b 0\r\n";
+  const mockCliContent = `#!/usr/bin/env bash
+if [ "$1" = "source" ] && [ "$2" = "list" ]; then
+  echo "[]"
+  exit 0
+fi
+echo "[MOCK-CLI] Invoked with arguments: $@"
+exit 0
+`;
+  const mockCliCmdContent = `@echo off\r\nif "%1"=="source" if "%2"=="list" (echo []\r\nexit /b 0)\r\necho [MOCK-CLI] Invoked with arguments: %*\r\nexit /b 0\r\n`;
   fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
   fs.writeFileSync(mockCliCmdPath, mockCliCmdContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x ./.mock_cli_bin/mock-nlm"`, { cwd: REPO_ROOT }); } catch (_) {}
@@ -282,8 +289,15 @@ runTest("Sync script --rollback strategy execution simulation", () => {
   // Write mock notebooklm binary
   const mockCliPath = path.join(mockCliDir, "mock-nlm");
   const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
-  const mockCliContent = "#!/usr/bin/env bash\necho \"[MOCK-CLI] Invoked with arguments: $@\"\nexit 0\n";
-  const mockCliCmdContent = "@echo off\r\necho [MOCK-CLI] Invoked with arguments: %*\r\nexit /b 0\r\n";
+  const mockCliContent = `#!/usr/bin/env bash
+if [ "$1" = "source" ] && [ "$2" = "list" ]; then
+  echo "[]"
+  exit 0
+fi
+echo "[MOCK-CLI] Invoked with arguments: $@"
+exit 0
+`;
+  const mockCliCmdContent = `@echo off\r\nif "%1"=="source" if "%2"=="list" (echo []\r\nexit /b 0)\r\necho [MOCK-CLI] Invoked with arguments: %*\r\nexit /b 0\r\n`;
   fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
   fs.writeFileSync(mockCliCmdPath, mockCliCmdContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x ./.mock_cli_bin/mock-nlm"`, { cwd: REPO_ROOT }); } catch (_) {}
@@ -323,7 +337,14 @@ runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
     fs.mkdirSync(spaceCliDir);
   }
   const mockCliPath = path.join(spaceCliDir, "mock nlm");
-  const mockCliContent = "#!/usr/bin/env bash\necho \"[SPACE-CLI] Invoked with arguments: $@\"\nexit 0\n";
+  const mockCliContent = `#!/usr/bin/env bash
+if [ "$1" = "source" ] && [ "$2" = "list" ]; then
+  echo "[]"
+  exit 0
+fi
+echo "[SPACE-CLI] Invoked with arguments: $@"
+exit 0
+`;
   fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x './${toBashPath(mockCliPath)}'"`, { cwd: REPO_ROOT }); } catch (_) {}
 
