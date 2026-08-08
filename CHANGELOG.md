@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3.0] - 2026-08-08
+
+### Added
+- **Headless NotebookLM Stage 3 Integration Hardening** (`modules/notebooklm/ingest-notebooklm.sh`): Stage 3 upload pipeline featuring Master Token preflight checks, cookie auto-recovery, structural stdin JSON list parsing (`printf '%s'`), exact pack-name pattern filtering (`^repo_knowledge_pack(_part_[0-9]+)?\.txt$`), staged zero-downtime uploads, atomic telemetry (`.sync-status.json`), and multi-run state reconciliation.
+- **Fail-Closed Rollback Path**: Restored backup files re-uploaded BEFORE purging old sources, maintaining 100% staged zero-downtime guarantees during `--rollback`.
+- **13-Case Verification Suite** (`tests/modules/test-notebooklm-ingest.sh`): Comprehensive isolated fixture test harness with stateful unique-ID mock CLI covering auth checks, atomic telemetry, call ordering, error paths, malformed JSON, timeout boundaries, rollback safety, and state reconciliation.
+
+### Fixed
+- **Loud Telemetry Failures & Orchestrator Surfacing** (`modules/notebooklm/ingest-notebooklm.sh`, `core/run-all.sh`): Telemetry writes mark success only after atomic rename succeeds, and `core/run-all.sh` surfaces telemetry failure details when target exits non-zero.
+
 ## [0.1.2.0] - 2026-08-08
 
 ### Added
