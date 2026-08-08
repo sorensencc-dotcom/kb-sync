@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
 const ROOT_DEV = path.resolve(REPO_ROOT, "..");
-const WORKFLOW_PATH = path.join(ROOT_DEV, ".github", "workflows", "weekly-review-capacity.yml");
+const WORKFLOW_PATH = path.join(REPO_ROOT, ".github", "workflows", "weekly-review-capacity.yml");
 const KB_PACKAGE_PATH = path.join(REPO_ROOT, "package.json");
 
 let allPassed = true;
@@ -35,10 +35,6 @@ test("Workflow file existence", () => {
 
 test("Workflow configuration & path alignment", () => {
   const content = fs.readFileSync(WORKFLOW_PATH, "utf8");
-
-  if (!content.includes("working-directory: kb-sync")) {
-    throw new Error("Workflow must explicitly specify 'working-directory: kb-sync'");
-  }
 
   if (!content.includes("concurrency:")) {
     throw new Error("Workflow must define concurrency protection block");

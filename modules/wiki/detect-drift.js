@@ -9,59 +9,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "../..");
 
-export interface DriftReport {
-  timestamp: string;
-  status: "NO_DRIFT" | "DRIFT_DETECTED";
-  drifted_sources: Array<{
-    repo: string;
-    file: string;
-    last_code_commit: string;
-    last_wiki_sync: string;
-    status: string;
-    wiki_page: string;
-  }>;
-  summary: {
-    total_sources_checked: number;
-    stale_pages_count: number;
-  };
-}
-
-interface MappingRule {
-  prefix: string;
-  folder: string;
-}
-
-export interface StagingPathOptions {
-  repoRoot?: string;
-  vaultRoot?: string;
-  stagingDir?: string;
-  repoName?: string;
-}
-
-export interface SyncMeta {
-  schema_version: string;
-  run_id: string;
-  timestamp: string;
-  mode: "INCREMENTAL" | "FULL";
-  status: "COMPLETE" | "INCOMPLETE";
-  source_root: string;
-  repo_name: string;
-  previous_snapshot: string | null;
-  transfer_method: "HARD_LINK" | "COPY_FALLBACK";
-  stats: {
-    total_files: number;
-    added_files: number;
-    modified_files: number;
-    deleted_files: number;
-    reused_unchanged_files: number;
-  };
-  deleted_paths: string[];
-}
-
 // -----------------------------------------------------------------------------
 // 1. SECURITY & PATH SANITIZATION
 // -----------------------------------------------------------------------------
-export function sanitizeRelativePath(relPath: string, repoRoot: string = REPO_ROOT): string {
+export function sanitizeRelativePath(relPath, repoRoot = REPO_ROOT) {
   if (!relPath || typeof relPath !== "string") {
     throw new Error("Invalid relative path: path must be a non-empty string");
   }
@@ -71,10 +22,12 @@ export function sanitizeRelativePath(relPath: string, repoRoot: string = REPO_RO
     throw new Error("Invalid relative path: empty after normalization");
   }
 
+  // Reject absolute paths
   if (path.isAbsolute(normalized) || /^[a-zA-Z]:/.test(normalized) || normalized.startsWith("/")) {
     throw new Error(`Security Violation: Absolute path rejected: ${relPath}`);
   }
 
+  // Reject path traversal
   const segments = normalized.split("/");
   if (segments.includes("..") || segments.includes(".")) {
     for (const seg of segments) {
@@ -97,10 +50,10 @@ export function sanitizeRelativePath(relPath: string, repoRoot: string = REPO_RO
 // -----------------------------------------------------------------------------
 // 2. PATH RESOLUTION & SNAPSHOT VALIDATION
 // -----------------------------------------------------------------------------
-export function resolveStagingPaths(options: StagingPathOptions = {}) {
+export function resolveStagingPaths(options = {}) {
   const repoRoot = options.repoRoot || REPO_ROOT;
   const repoName = options.repoName || path.basename(repoRoot);
-  const stagingDirName = options.stagingDir || ("staging_dir" in options ? (options.stagingDir as string) : "_kb-sync-staging");
+  const stagingDirName = options.stagingDir || ("staging_dir" in options ? options.stagingDir : "_kb-sync-staging");
 
   let vaultRoot = options.vaultRoot || process.env.OBSIDIAN_VAULT_ROOT || "";
 
@@ -114,7 +67,7 @@ export function resolveStagingPaths(options: StagingPathOptions = {}) {
     if (fs.existsSync(configPath)) {
       try {
         const rawConfig = fs.readFileSync(configPath, "utf8");
-        const parsed = yaml.load(rawConfig) as any;
+        const parsed = yaml.load(rawConfig);
         if (parsed && parsed.vault_root) {
           vaultRoot = parsed.vault_root;
         }
@@ -130,7 +83,7 @@ export function resolveStagingPaths(options: StagingPathOptions = {}) {
   return { repoRoot, repoName, vaultRoot, stagingDirName, stagingRoot };
 }
 
-export function validateSnapshot(dirPath: string): { valid: boolean; meta?: SyncMeta; reason?: string } {
+export function validateSnapshot(dirPath) {
   if (!fs.existsSync(dirPath)) {
     return { valid: false, reason: "Directory does not exist" };
   }
@@ -147,7 +100,7 @@ export function validateSnapshot(dirPath: string): { valid: boolean; meta?: Sync
   }
 
   try {
-    const meta: SyncMeta = JSON.parse(fs.readFileSync(metaPath, "utf8"));
+    const meta = JSON.parse(fs.readFileSync(metaPath, "utf8"));
     if (meta.status !== "COMPLETE") {
       return { valid: false, meta, reason: `Incomplete status: ${meta.status}` };
     }
@@ -170,18 +123,18 @@ export function validateSnapshot(dirPath: string): { valid: boolean; meta?: Sync
         if (!stat.isFile() || stat.isSymbolicLink()) {
           return { valid: false, meta, reason: `Manifest entry is not a regular file (symlink/directory rejected): ${relFile}` };
         }
-      } catch (err: any) {
+      } catch (err) {
         return { valid: false, meta, reason: `Unsafe manifest entry in snapshot (${relFile}): ${err.message}` };
       }
     }
 
     return { valid: true, meta };
-  } catch (err: any) {
+  } catch (err) {
     return { valid: false, reason: `Parse error: ${err.message}` };
   }
 }
 
-export function getLatestValidStagingDir(options: StagingPathOptions = {}): string | null {
+export function getLatestValidStagingDir(options = {}) {
   const { stagingRoot } = resolveStagingPaths(options);
   if (!fs.existsSync(stagingRoot)) return null;
 
@@ -208,7 +161,7 @@ export function getLatestValidStagingDir(options: StagingPathOptions = {}): stri
 // -----------------------------------------------------------------------------
 // 3. CONCURRENCY LOCK MANAGEMENT (Atomic Exclusive Write with Safe Stale Unlink)
 // -----------------------------------------------------------------------------
-export function acquireLock(stagingRoot: string): string {
+export function acquireLock(stagingRoot) {
   fs.mkdirSync(stagingRoot, { recursive: true });
   const lockFile = path.join(stagingRoot, ".staging.lock");
 
@@ -224,7 +177,7 @@ export function acquireLock(stagingRoot: string): string {
       fs.writeFileSync(fd, payload, "utf8");
       fs.closeSync(fd);
       return lockFile;
-    } catch (err: any) {
+    } catch (err) {
       if (err.code === "EEXIST") {
         try {
           const rawContent = fs.readFileSync(lockFile, "utf8");
@@ -234,6 +187,7 @@ export function acquireLock(stagingRoot: string): string {
           const isStale = now - lockTime > 10 * 60 * 1000; // 10 minutes
 
           if (isStale) {
+            // Verify lock content hasn't changed before unlinking to prevent race with concurrent acquirer
             try {
               const recheckContent = fs.readFileSync(lockFile, "utf8");
               if (recheckContent === rawContent) {
@@ -243,7 +197,7 @@ export function acquireLock(stagingRoot: string): string {
             continue; // Retry acquisition after removing stale lock
           }
           throw new Error(`Concurrency Lock Error: Active staging run in progress (PID ${lockData.pid}, acquired ${lockData.timestamp})`);
-        } catch (innerErr: any) {
+        } catch (innerErr) {
           if (innerErr.message.includes("Concurrency Lock Error")) throw innerErr;
           continue;
         }
@@ -255,7 +209,7 @@ export function acquireLock(stagingRoot: string): string {
   throw new Error("Concurrency Lock Error: Unable to acquire atomic lock");
 }
 
-export function releaseLock(lockFile: string) {
+export function releaseLock(lockFile) {
   if (fs.existsSync(lockFile)) {
     try { fs.unlinkSync(lockFile); } catch {}
   }
@@ -264,7 +218,7 @@ export function releaseLock(lockFile: string) {
 // -----------------------------------------------------------------------------
 // 4. SHA256 HASH DIFFING & DELTA COMPUTATION
 // -----------------------------------------------------------------------------
-function getFileSha256(filePath: string): string | null {
+function getFileSha256(filePath) {
   if (!fs.existsSync(filePath)) return null;
   try {
     const content = fs.readFileSync(filePath);
@@ -274,10 +228,7 @@ function getFileSha256(filePath: string): string | null {
   }
 }
 
-export function computeIncrementalDelta(
-  manifestFiles: string[],
-  options: StagingPathOptions = {}
-) {
+export function computeIncrementalDelta(manifestFiles, options = {}) {
   const { repoRoot } = resolveStagingPaths(options);
   const sanitizedManifest = manifestFiles.map((f) => sanitizeRelativePath(f, repoRoot));
 
@@ -288,14 +239,14 @@ export function computeIncrementalDelta(
       isBaseline: true,
       prevSnapshotDir: null,
       addedFiles: sanitizedManifest,
-      modifiedFiles: [] as string[],
-      deletedFiles: [] as string[],
-      unchangedFiles: [] as string[],
+      modifiedFiles: [],
+      deletedFiles: [],
+      unchangedFiles: [],
     };
   }
 
   const prevManifestPath = path.join(prevSnapshotDir, "FILES.manifest.txt");
-  let prevFiles: string[] = [];
+  let prevFiles = [];
   if (fs.existsSync(prevManifestPath)) {
     prevFiles = fs
       .readFileSync(prevManifestPath, "utf8")
@@ -307,10 +258,10 @@ export function computeIncrementalDelta(
   const currentSet = new Set(sanitizedManifest);
   const prevSet = new Set(prevFiles);
 
-  const addedFiles: string[] = [];
-  const modifiedFiles: string[] = [];
-  const unchangedFiles: string[] = [];
-  const deletedFiles: string[] = [];
+  const addedFiles = [];
+  const modifiedFiles = [];
+  const unchangedFiles = [];
+  const deletedFiles = [];
 
   for (const relFile of sanitizedManifest) {
     const fullSourcePath = path.join(repoRoot, relFile);
@@ -349,7 +300,7 @@ export function computeIncrementalDelta(
 // -----------------------------------------------------------------------------
 // 5. ATOMIC MATERIALIZATION ENGINE
 // -----------------------------------------------------------------------------
-function safeRenameSync(srcDir: string, targetDir: string): string {
+function safeRenameSync(srcDir, targetDir) {
   let destDir = targetDir;
   if (fs.existsSync(destDir)) {
     let counter = 1;
@@ -364,7 +315,7 @@ function safeRenameSync(srcDir: string, targetDir: string): string {
     try {
       fs.renameSync(srcDir, destDir);
       return destDir;
-    } catch (err: any) {
+    } catch (err) {
       if (err.code === "EPERM" || err.code === "EBUSY" || err.code === "EACCES" || err.code === "EXDEV") {
         attempts++;
         if (attempts >= 5) {
@@ -382,14 +333,7 @@ function safeRenameSync(srcDir: string, targetDir: string): string {
   return destDir;
 }
 
-export function materializeIncrementalStaging(options: {
-  repoRoot?: string;
-  vaultRoot?: string;
-  stagingDir?: string;
-  repoName?: string;
-  manifestFiles: string[];
-  forceFull?: boolean;
-}) {
+export function materializeIncrementalStaging(options = {}) {
   const { repoRoot, vaultRoot, stagingDirName, repoName, stagingRoot } = resolveStagingPaths(options);
   const lockFile = acquireLock(stagingRoot);
 
@@ -407,7 +351,7 @@ export function materializeIncrementalStaging(options: {
       : computeIncrementalDelta(options.manifestFiles, options);
 
     const now = new Date();
-    const pad = (n: number) => String(n).padStart(2, "0");
+    const pad = (n) => String(n).padStart(2, "0");
     let timestampStr = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
     
     let targetDir = path.join(stagingRoot, timestampStr);
@@ -420,16 +364,16 @@ export function materializeIncrementalStaging(options: {
     const tmpDir = path.join(stagingRoot, `.tmp-${timestampStr}-${randSuffix}`);
     fs.mkdirSync(tmpDir, { recursive: true });
 
-    let transferMethod: "HARD_LINK" | "COPY_FALLBACK" = "HARD_LINK";
+    let transferMethod = "HARD_LINK";
 
-    const copyFile = (relFile: string) => {
+    const copyFile = (relFile) => {
       const src = path.join(repoRoot, relFile);
       const dest = path.join(tmpDir, relFile);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
       fs.copyFileSync(src, dest);
     };
 
-    const linkOrCopyUnchangedFile = (relFile: string, prevDir: string) => {
+    const linkOrCopyUnchangedFile = (relFile, prevDir) => {
       const src = path.join(prevDir, relFile);
       const dest = path.join(tmpDir, relFile);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
@@ -453,7 +397,7 @@ export function materializeIncrementalStaging(options: {
     const sanitizedManifest = options.manifestFiles.map((f) => sanitizeRelativePath(f, repoRoot)).sort();
     fs.writeFileSync(path.join(tmpDir, "FILES.manifest.txt"), sanitizedManifest.join("\n") + "\n", "utf8");
 
-    const syncMeta: SyncMeta = {
+    const syncMeta = {
       schema_version: "1.0.0",
       run_id: crypto.randomUUID(),
       timestamp: timestampStr,
@@ -482,7 +426,7 @@ export function materializeIncrementalStaging(options: {
       publishedStagingDir: finalDir,
       syncMeta,
     };
-  } catch (err: any) {
+  } catch (err) {
     throw err;
   } finally {
     releaseLock(lockFile);
@@ -492,14 +436,14 @@ export function materializeIncrementalStaging(options: {
 // -----------------------------------------------------------------------------
 // 6. ORIGINAL DRIFT DETECTION WORKFLOW (Preserved)
 // -----------------------------------------------------------------------------
-function parseWikiLogTimestamp(): string | null {
+function parseWikiLogTimestamp() {
   const logPath = path.join(REPO_ROOT, "wiki/Log.md");
   if (!fs.existsSync(logPath)) return null;
 
   try {
     const content = fs.readFileSync(logPath, "utf8");
     const matches = content.matchAll(/##\s*\[([^\]]+)\]/g);
-    let latestDate: Date | null = null;
+    let latestDate = null;
 
     for (const match of matches) {
       let dateStr = match[1].trim();
@@ -520,7 +464,7 @@ function parseWikiLogTimestamp(): string | null {
   return null;
 }
 
-function getWikiSyncTimestamp(): string {
+function getWikiSyncTimestamp() {
   const logTimestamp = parseWikiLogTimestamp();
   if (logTimestamp) return logTimestamp;
 
@@ -534,8 +478,8 @@ function getWikiSyncTimestamp(): string {
   return new Date(0).toISOString();
 }
 
-function buildGitCommitMap(): Map<string, string> {
-  const map = new Map<string, string>();
+function buildGitCommitMap() {
+  const map = new Map();
   try {
     const output = execSync('git log --format="COMMIT:%aI" --name-only', {
       cwd: REPO_ROOT,
@@ -561,22 +505,22 @@ function buildGitCommitMap(): Map<string, string> {
   return map;
 }
 
-function getLastCommitDate(relativeFilePath: string, commitMap: Map<string, string>): string {
+function getLastCommitDate(relativeFilePath, commitMap) {
   const normalized = relativeFilePath.replace(/\\/g, "/");
-  if (commitMap.has(normalized)) return commitMap.get(normalized)!;
+  if (commitMap.has(normalized)) return commitMap.get(normalized);
 
   const fullPath = path.join(REPO_ROOT, relativeFilePath);
   if (fs.existsSync(fullPath)) return fs.statSync(fullPath).mtime.toISOString();
   return new Date(0).toISOString();
 }
 
-function collectFiles(dirOrFile: string): string[] {
+function collectFiles(dirOrFile) {
   const fullPath = path.join(REPO_ROOT, dirOrFile);
   if (!fs.existsSync(fullPath)) return [];
   const stat = fs.statSync(fullPath);
   if (stat.isFile()) return [dirOrFile.replace(/\\/g, "/")];
   if (stat.isDirectory()) {
-    const results: string[] = [];
+    const results = [];
     const entries = fs.readdirSync(fullPath);
     for (const entry of entries) {
       if (entry.startsWith(".") || entry === "node_modules") continue;
@@ -588,13 +532,13 @@ function collectFiles(dirOrFile: string): string[] {
   return [];
 }
 
-function appendToTodos(taskLine: string, signatureKey: string) {
+function appendToTodos(taskLine, signatureKey) {
   const possiblePaths = [
     path.resolve(REPO_ROOT, "../TODOS.md"),
     "C:/dev/TODOS.md",
     "c:/dev/TODOS.md",
   ];
-  let targetPath: string | null = null;
+  let targetPath = null;
   for (const p of possiblePaths) {
     if (fs.existsSync(p)) {
       targetPath = p;
@@ -613,17 +557,17 @@ function appendToTodos(taskLine: string, signatureKey: string) {
   } catch {}
 }
 
-export function runDriftDetection(): DriftReport {
+export function runDriftDetection() {
   const lastSync = getWikiSyncTimestamp();
 
-  let mappingRules: MappingRule[] = [];
+  let mappingRules = [];
   let defaultFolder = "Unsorted";
   const configPath = path.join(REPO_ROOT, "configs/obsidian.yaml");
 
   if (fs.existsSync(configPath)) {
     try {
       const rawConfig = fs.readFileSync(configPath, "utf8");
-      const parsedConfig = yaml.load(rawConfig) as any;
+      const parsedConfig = yaml.load(rawConfig);
       if (parsedConfig) {
         if (Array.isArray(parsedConfig.mapping_rules)) mappingRules = parsedConfig.mapping_rules;
         if (parsedConfig.default_folder) defaultFolder = parsedConfig.default_folder;
@@ -631,7 +575,7 @@ export function runDriftDetection(): DriftReport {
     } catch {}
   }
 
-  const sourceFilesSet = new Set<string>();
+  const sourceFilesSet = new Set();
 
   for (const rule of mappingRules) {
     const files = collectFiles(rule.prefix);
@@ -648,7 +592,7 @@ export function runDriftDetection(): DriftReport {
 
   const sourceFiles = Array.from(sourceFilesSet);
   const commitMap = buildGitCommitMap();
-  const driftedSources: DriftReport["drifted_sources"] = [];
+  const driftedSources = [];
   const lastSyncDate = new Date(lastSync);
 
   const stagingBase = getLatestValidStagingDir();
@@ -693,7 +637,7 @@ export function runDriftDetection(): DriftReport {
     }
   }
 
-  const report: DriftReport = {
+  const report = {
     timestamp: new Date().toISOString(),
     status: driftedSources.length > 0 ? "DRIFT_DETECTED" : "NO_DRIFT",
     drifted_sources: driftedSources,
@@ -716,7 +660,7 @@ export function runDriftDetection(): DriftReport {
 // -----------------------------------------------------------------------------
 // 7. CLI HANDLER FOR MATERIALIZATION & FILTERING
 // -----------------------------------------------------------------------------
-if (process.argv[1] && (process.argv[1].endsWith("detect-drift.ts") || process.argv[1].endsWith("detect-drift.js"))) {
+if (process.argv[1] && (process.argv[1].endsWith("detect-drift.js") || process.argv[1].endsWith("detect-drift.ts"))) {
   const args = process.argv.slice(2);
   
   if (args.includes("--materialize-staging")) {
@@ -748,7 +692,7 @@ if (process.argv[1] && (process.argv[1].endsWith("detect-drift.ts") || process.a
       console.log(`MODIFIED:${res.syncMeta.stats.modified_files}`);
       console.log(`DELETED:${res.syncMeta.stats.deleted_files}`);
       process.exit(0);
-    } catch (err: any) {
+    } catch (err) {
       console.error(`[ERROR] Materialization failed: ${err.message}`);
       process.exit(1);
     }

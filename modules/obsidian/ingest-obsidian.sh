@@ -83,6 +83,35 @@ run_with_retry() {
   return 1
 }
 
+# --- ARGUMENT PARSING & MODE RESOLUTION -------------------------------------
+MODE_ARG=""
+HAS_INCREMENTAL=false
+HAS_FULL=false
+
+for arg in "$@"; do
+  case "$arg" in
+    --incremental)
+      HAS_INCREMENTAL=true
+      ;;
+    --full)
+      HAS_FULL=true
+      ;;
+  esac
+done
+
+if [ "$HAS_INCREMENTAL" = true ] && [ "$HAS_FULL" = true ]; then
+  log_error "Conflicting flags: cannot specify both --incremental and --full"
+  exit 2
+fi
+
+if [ "$HAS_FULL" = true ]; then
+  MODE_ARG="--full"
+elif [ "$HAS_INCREMENTAL" = true ]; then
+  MODE_ARG=""
+elif [ "${INCREMENTAL_SYNC:-}" = "0" ] || [ "${INCREMENTAL_SYNC:-}" = "false" ]; then
+  MODE_ARG="--full"
+fi
+
 # --- PRE-FLIGHT CHECKS -------------------------------------------------------
 
 log_info "Initializing Obsidian vault staging orchestrator..."
@@ -200,7 +229,6 @@ if ! run_with_retry bash "$CORE_DIR/flatten.sh" \
   exit 1
 fi
 
-
 MANIFEST_FILE="$TEMP_PACK_DIR/pack.manifest.txt"
 if [ ! -f "$MANIFEST_FILE" ]; then
   log_error "Manifest file not generated: $MANIFEST_FILE"
@@ -209,71 +237,37 @@ fi
 
 log_info "Manifest generated: $(wc -l < "$MANIFEST_FILE") files found."
 
-# --- STEP 2: STAGE RAW SOURCE FILES -------------------------------------------
-# Create timestamped staging directory
-TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
-REPO_NAME=$(basename "$REPO_ROOT")
-STAGING_PATH="$OBSIDIAN_VAULT_ROOT/$STAGING_DIR/$REPO_NAME/$TIMESTAMP"
-
+# --- STEP 2: MATERIALIZE STAGING TREE VIA DETECT-DRIFT ENGINE ----------------
 log_info "========================================================================"
-log_info "Staging raw sources to: $STAGING_PATH"
+log_info "Materializing staging tree (Incremental Delta Engine)..."
 log_info "========================================================================"
 
-mkdir -p "$STAGING_PATH"
+MAT_OUTPUT=$(node "$REPO_ROOT/modules/wiki/detect-drift.js" --materialize-staging --manifest "$MANIFEST_FILE" $MODE_ARG 2>&1)
+MAT_EXIT=$?
 
-# Copy files from manifest, preserving relative directory structure
-FILE_COUNT=0
-COPY_ERRORS=0
-
-# Read manifest into memory to avoid issues with temp directory cleanup
-mapfile -t MANIFEST_LINES < "$MANIFEST_FILE"
-
-for file in "${MANIFEST_LINES[@]}"; do
-  [ -z "$file" ] && continue
-
-  SOURCE_FILE="$REPO_ROOT/$file"
-  TARGET_FILE="$STAGING_PATH/$file"
-
-  # Verify source exists
-  if [ ! -f "$SOURCE_FILE" ]; then
-    log_warn "Source file not found (skipping): $file"
-    continue
-  fi
-
-  # Create target directory
-  TARGET_DIR=$(dirname "$TARGET_FILE")
-  if ! mkdir -p "$TARGET_DIR" 2>/dev/null; then
-    log_warn "Failed to create directory (skipping): $TARGET_DIR"
-    ((COPY_ERRORS++))
-    continue
-  fi
-
-  # Copy file verbatim
-  if ! cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null; then
-    log_warn "Failed to copy file (skipping): $file"
-    ((COPY_ERRORS++))
-    continue
-  fi
-  ((FILE_COUNT++))
-done
-
-if [ "$COPY_ERRORS" -gt 0 ]; then
-  log_warn "Encountered $COPY_ERRORS copy errors during staging (files skipped)."
+if [ $MAT_EXIT -ne 0 ]; then
+  log_error "Materialization failed with exit code $MAT_EXIT:"
+  log_error "$MAT_OUTPUT"
+  rm -rf "$TEMP_PACK_DIR"
+  exit $MAT_EXIT
 fi
 
-log_info "Staged $FILE_COUNT files."
+STAGING_PATH=$(echo "$MAT_OUTPUT" | grep -E "^STAGING_DIR:" | cut -d':' -f2-)
+RUN_MODE=$(echo "$MAT_OUTPUT" | grep -E "^MODE:" | cut -d':' -f2-)
+REUSED_COUNT=$(echo "$MAT_OUTPUT" | grep -E "^REUSED:" | cut -d':' -f2-)
+ADDED_COUNT=$(echo "$MAT_OUTPUT" | grep -E "^ADDED:" | cut -d':' -f2-)
+MODIFIED_COUNT=$(echo "$MAT_OUTPUT" | grep -E "^MODIFIED:" | cut -d':' -f2-)
+DELETED_COUNT=$(echo "$MAT_OUTPUT" | grep -E "^DELETED:" | cut -d':' -f2-)
 
-# --- STEP 3: COPY MANIFEST TO STAGING PATH ------------------------------------
-# Copy manifest into staging root for reference
-cp "$MANIFEST_FILE" "$STAGING_PATH/FILES.manifest.txt"
-log_info "Manifest saved: $STAGING_PATH/FILES.manifest.txt"
+log_info "Staging materialization completed successfully (Mode: ${RUN_MODE:-FULL})."
+log_info "Stats: ${ADDED_COUNT:-0} Added, ${MODIFIED_COUNT:-0} Modified, ${DELETED_COUNT:-0} Deleted, ${REUSED_COUNT:-0} Reused (Unchanged)."
 
-# --- STEP 4: PRINT OPERATOR PROMPT -------------------------------------------
+# --- STEP 3: PRINT OPERATOR PROMPT -------------------------------------------
 log_info "========================================================================"
 log_info "Obsidian Sync Staging Complete"
 log_info "========================================================================"
 
-DELTA_SUMMARY=$(npx tsx "$REPO_ROOT/modules/wiki/generate-delta-summary.ts" 2>/dev/null || echo "📦 Delta Summary: Not available.")
+DELTA_SUMMARY=$(node "$REPO_ROOT/modules/wiki/generate-delta-summary.ts" 2>/dev/null || npx tsx "$REPO_ROOT/modules/wiki/generate-delta-summary.ts" 2>/dev/null || echo "📦 Delta Summary: Not available.")
 
 cat >&2 << EOF
 
@@ -320,3 +314,4 @@ log_info "Ingest staging completed successfully."
 rm -rf "$TEMP_PACK_DIR"
 
 exit 0
+

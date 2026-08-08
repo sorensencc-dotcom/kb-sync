@@ -82,10 +82,14 @@ Domain-organized entity/concept pages, curated by you or Claude in interactive s
 
 **Trigger**: Run `npm run kb:sync:obsidian` to stage new/updated sources.
 
+**Modes**:
+- **Incremental Staging** (Default for scheduled runs): Run `npm run kb:sync:obsidian:incremental` (or pass `--incremental`). Uses SHA-256 hash diffing to copy only changed/added files, hard-linking unchanged files from the previous valid snapshot.
+- **Full Staging**: Run `npm run kb:sync:obsidian:full` (or pass `--full`). Forces a complete re-copy of all files into a fresh snapshot directory.
+
 **Setup**: 
 1. Verify `OBSIDIAN_VAULT_ROOT` env var or `vault_root` in `configs/obsidian.yaml` points to your vault directory.
 2. Raw sources are staged under `vault_root/_kb-sync-staging/<repo>/<timestamp>/` preserving directory structure.
-3. A manifest (`FILES.manifest.txt`) lists all staged files for reference.
+3. A manifest (`FILES.manifest.txt`) lists all staged files and metadata (`SYNC_META.json`) tracks delta stats.
 
 ### 1. Autonomous Headless Ingest (`--auto-synthesize` / `--provider`)
 Automated synthesis runs Phases 3–6 via provider-neutral engine (`anthropic`, `local`, `offline-template`), shifting human role to PR reviewer:

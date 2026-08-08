@@ -16,19 +16,32 @@ console.log(`  Resolved REPO_ROOT: ${REPO_ROOT}\n`);
 let allTestsPassed = true;
 
 // Preflight Shell Capability Detection
-function isBashAvailable(): boolean {
-  try {
-    execSync("bash --version", { stdio: "ignore", timeout: 2000 });
-    return true;
-  } catch {
-    return false;
+function getBashExecutable(): string | null {
+  const candidates = [
+    "bash",
+    "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
+    "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\usr\\bin\\bash.exe",
+    "C:\\Program Files\\Git\\bin\\bash.exe",
+    "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
+  ];
+
+  for (const cmd of candidates) {
+    try {
+      if (cmd.includes("\\") && !fs.existsSync(cmd)) continue;
+      execSync(`"${cmd}" --version`, { stdio: "ignore", timeout: 2000 });
+      return cmd;
+    } catch {}
   }
+  return null;
 }
 
-const HAS_BASH = isBashAvailable();
+const BASH_CMD = getBashExecutable();
+const HAS_BASH = BASH_CMD !== null;
 if (!HAS_BASH) {
   console.log("[PREFLIGHT WARN] Bash runner is unavailable or access is restricted in this environment.");
   console.log("[PREFLIGHT WARN] Shell integration tests will test configuration contracts; bash subprocess calls will report Environment Unavailable.\n");
+} else {
+  console.log(`[PREFLIGHT INFO] Resolved Bash runner: ${BASH_CMD}\n`);
 }
 
 function runTest(name: string, fn: () => void) {
@@ -38,7 +51,6 @@ function runTest(name: string, fn: () => void) {
     console.log(`[PASS] ✓ ${name}\n`);
   } catch (error: any) {
     console.error(`[FAIL] ✗ ${name}`);
-    // Include stdout/stderr from child process if available (execSync captures these on failure)
     const scriptOutput = error.stdout || error.stderr || "";
     console.error(`       Error: ${error.message || error}`);
     if (scriptOutput) console.error(`       Script output: ${scriptOutput.trim()}`);
@@ -50,6 +62,9 @@ function runTest(name: string, fn: () => void) {
 // Convert Windows path to Git Bash or WSL mount path
 function toMountPath(windowsPath: string): string {
   const normalized = windowsPath.replace(/\\/g, '/');
+  if (process.platform === 'win32') {
+    return normalized;
+  }
   const match = normalized.match(/^([A-Za-z]):\/(.*)/);
   if (match) {
     const drive = match[1].toLowerCase();
@@ -106,7 +121,7 @@ runTest("Staging script fails fast when OBSIDIAN_VAULT_ROOT not set and vault_ro
     env.OBSIDIAN_VAULT_ROOT = "";
     env.MODULE_CONFIG = "configs/_invalid_obsidian_test.yaml";
 
-    execSync(`bash modules/obsidian/ingest-obsidian.sh`, {
+    execSync(`"${BASH_CMD}" modules/obsidian/ingest-obsidian.sh`, {
       cwd: REPO_ROOT,
       env: env,
       stdio: "pipe",
@@ -139,9 +154,7 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
 
   try {
     const vaultMount = toMountPath(tempVaultRoot);
-    // 30s timeout: give the script time to run flatten.sh against the full repo in CI;
-    // 5s was too short on Linux and caused a signal-kill that looked like a real failure.
-    const result = execSync(`bash -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
+    const result = execSync(`"${BASH_CMD}" -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
       cwd: REPO_ROOT,
       encoding: "utf8",
       timeout: 30000,
@@ -162,8 +175,6 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
 
     console.log(`  Staged files verified cleanly`);
   } catch (error: any) {
-    // Detect execSync timeout: either ETIMEDOUT code, message containing ETIMEDOUT,
-    // or signal-based kill (error.killed=true) which is what execSync throws on timeout on Linux.
     const isTimeout =
       error.code === "ETIMEDOUT" ||
       error.killed === true ||
@@ -172,7 +183,6 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
       console.log("  [SKIPPED] Environment Unavailable: Bash execution timed out (>30s) in this environment.");
       return;
     }
-    // Re-attach script output to the error so runTest() can surface it
     if (!error.stdout && error.stderr) error.stdout = error.stderr;
     throw error;
   } finally {
@@ -201,6 +211,30 @@ runTest("Schema document (docs/targets/obsidian.md) exists and contains key sect
   }
 
   console.log(`  Schema doc contains all ${requiredSections.length} required sections`);
+});
+
+// Test 5: Reject conflicting flags (--incremental and --full)
+runTest("Staging script rejects conflicting flags (--incremental and --full)", () => {
+  if (!HAS_BASH) {
+    console.log("  [SKIPPED] Environment Unavailable: Bash executable not accessible.");
+    return;
+  }
+
+  try {
+    const env = getCleanEnv();
+    execSync(`"${BASH_CMD}" modules/obsidian/ingest-obsidian.sh --incremental --full`, {
+      cwd: REPO_ROOT,
+      env: env,
+      stdio: "pipe",
+      timeout: 10000,
+    });
+    throw new Error("Script should have failed due to conflicting flags");
+  } catch (error: any) {
+    if (error.status !== 2) {
+      throw new Error(`Expected exit code 2 for conflicting flags, got ${error.status}`);
+    }
+    console.log("  Script correctly rejected conflicting flags with exit code 2");
+  }
 });
 
 if (allTestsPassed) {
