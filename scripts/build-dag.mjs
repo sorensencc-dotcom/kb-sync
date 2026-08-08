@@ -103,27 +103,20 @@ export function checkHealth(rootDir = defaultRootDir) {
 }
 
 export function atomicRenameSync(tmpPath, destPath) {
-  for (let i = 0; i < 3; i++) {
+  const maxRetries = 5;
+  const backoffMs = 100;
+  for (let i = 0; i < maxRetries; i++) {
     try {
-      if (process.platform === 'win32' && fs.existsSync(destPath)) {
-        fs.copyFileSync(tmpPath, destPath);
-        try { fs.unlinkSync(tmpPath); } catch {}
-        return;
-      }
+      // Node fs.renameSync calls Win32 MoveFileExW(MOVEFILE_REPLACE_EXISTING) on Windows,
+      // providing 100% OS-level atomic file replacement when it succeeds.
       fs.renameSync(tmpPath, destPath);
       return;
     } catch (err) {
-      if (i === 2) {
-        try {
-          fs.copyFileSync(tmpPath, destPath);
-          try { fs.unlinkSync(tmpPath); } catch {}
-          return;
-        } catch {
-          throw err;
-        }
+      if (i === maxRetries - 1) {
+        throw new Error(`Atomic rename failed from ${tmpPath} to ${destPath}: ${err.message}`);
       }
       const start = Date.now();
-      while (Date.now() - start < 50) {}
+      while (Date.now() - start < backoffMs) {} // Sync backoff sleep
     }
   }
 }
