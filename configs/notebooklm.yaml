@@ -12,6 +12,11 @@ output_dir: "./.nlm_pack"
 # Knowledge pack filename (without extension, .txt is added)
 pack_filename: "repo_knowledge_pack"
 
+# Execution & Retry parameters
+timeout_ms: 90000
+retry_attempts: 3
+backoff_ms: 2000
+
 # Maximum words in a single source document (NotebookLM limit guidance)
 # Note: chunks are line-safe splits, not word-counted
 max_words: 200000

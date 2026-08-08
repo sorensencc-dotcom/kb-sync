@@ -5,13 +5,73 @@
 # ==============================================================================
 set -euo pipefail
 
+# Line 1 REPO_ROOT resolution (guarantees $REPO_ROOT is bound)
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+
+START_SECONDS=$SECONDS
+SYNC_STATUS_TMP=""
+TELEMETRY_WRITTEN=false
+
+cleanup_sync_telemetry_tmp() {
+  if [ -n "${SYNC_STATUS_TMP:-}" ] && [ -f "$SYNC_STATUS_TMP" ]; then
+    rm -f "$SYNC_STATUS_TMP" 2>/dev/null || true
+  fi
+}
+
+write_sync_telemetry() {
+  [ "$TELEMETRY_WRITTEN" = true ] && return 0
+
+  local status="$1"
+  local purged="$2"
+  local uploaded="$3"
+  local elapsed_sec=$(( SECONDS - START_SECONDS ))
+  local duration_ms=$(( elapsed_sec * 1000 ))
+  local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+  SYNC_STATUS_TMP="$REPO_ROOT/.sync-status.json.tmp.$$"
+
+  if cat << EOF > "$SYNC_STATUS_TMP"
+{
+  "target": "notebooklm",
+  "status": "$status",
+  "timestamp": "$timestamp",
+  "duration_ms": $duration_ms,
+  "purged_sources": $purged,
+  "uploaded_chunks": $uploaded
+}
+EOF
+  then
+    if mv -f "$SYNC_STATUS_TMP" "$REPO_ROOT/.sync-status.json" 2>/dev/null; then
+      TELEMETRY_WRITTEN=true
+      SYNC_STATUS_TMP=""
+      return 0
+    fi
+  fi
+
+  log_error "FATAL: Failed to write sync telemetry to $REPO_ROOT/.sync-status.json"
+  cleanup_sync_telemetry_tmp
+  return 1
+}
+
+on_script_error() {
+  write_sync_telemetry "FAILED" 0 0 || true
+}
+trap on_script_error ERR
+
+on_signal_exit() {
+  cleanup_sync_telemetry_tmp
+  write_sync_telemetry "FAILED" 0 0 || true
+  exit 130
+}
+trap cleanup_sync_telemetry_tmp EXIT
+trap on_signal_exit INT TERM
+
 # Unset git environment overrides
 unset GIT_DIR
 unset GIT_WORK_TREE
 unset GIT_INDEX_FILE
 
 # --- CONSTANTS & SETUP -------------------------------------------------------
-REPO_ROOT="$(git rev-parse --show-toplevel)"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CORE_DIR="$REPO_ROOT/core"
 CONFIGS_DIR="$REPO_ROOT/configs"
@@ -49,23 +109,27 @@ log_info "Initializing NotebookLM sync orchestrator..."
 # Verify we're in a git repo
 if [ -z "$REPO_ROOT" ] || [ ! -d "$REPO_ROOT/.git" ]; then
   log_error "Not inside a valid git repository."
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
 # Verify core scripts exist
 if [ ! -x "$CORE_DIR/flatten.sh" ]; then
   log_error "Core script not found: $CORE_DIR/flatten.sh"
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
 # Verify configs exist
 if [ ! -f "$GLOBAL_CONFIG" ]; then
   log_error "Global config not found: $GLOBAL_CONFIG"
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
 if [ ! -f "$MODULE_CONFIG" ]; then
   log_error "NotebookLM config not found: $MODULE_CONFIG"
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
@@ -74,9 +138,33 @@ log_info "Core scripts and configs located."
 # --- LOAD MODULE CONFIG & ENVIRONMENT ----------------------------------------
 PACK_DIR=$(get_config_value "$MODULE_CONFIG" "output_dir")
 PACK_FILE=$(get_config_value "$MODULE_CONFIG" "pack_filename")
-# Note: include_extensions is a multi-line YAML list; not currently parsed
-# Core scripts include all non-skip-pattern files by default
 INCLUDE_EXTENSIONS=""
+
+raw_timeout=$(get_config_value "$MODULE_CONFIG" "timeout_ms")
+raw_retry=$(get_config_value "$MODULE_CONFIG" "retry_attempts")
+raw_backoff=$(get_config_value "$MODULE_CONFIG" "backoff_ms")
+
+export TIMEOUT_MS="${raw_timeout:-90000}"
+export RETRY_ATTEMPTS="${raw_retry:-3}"
+export BACKOFF_MS="${raw_backoff:-2000}"
+
+if ! [[ "$TIMEOUT_MS" =~ ^[0-9]+$ ]] || [ "$TIMEOUT_MS" -lt 1000 ]; then
+  log_error "Invalid configuration: timeout_ms must be an integer >= 1000 (got '$TIMEOUT_MS')"
+  write_sync_telemetry "FAILED" 0 0
+  exit 1
+fi
+
+if ! [[ "$RETRY_ATTEMPTS" =~ ^[0-9]+$ ]] || [ "$RETRY_ATTEMPTS" -lt 1 ]; then
+  log_error "Invalid configuration: retry_attempts must be an integer >= 1 (got '$RETRY_ATTEMPTS')"
+  write_sync_telemetry "FAILED" 0 0
+  exit 1
+fi
+
+if ! [[ "$BACKOFF_MS" =~ ^[0-9]+$ ]] || [ "$BACKOFF_MS" -lt 100 ]; then
+  log_error "Invalid configuration: backoff_ms must be an integer >= 100 (got '$BACKOFF_MS')"
+  write_sync_telemetry "FAILED" 0 0
+  exit 1
+fi
 
 # Set defaults if config parsing failed
 : ${PACK_DIR:="./.nlm_pack"}
@@ -84,10 +172,8 @@ INCLUDE_EXTENSIONS=""
 
 # Make paths absolute (handle both Unix / and Windows \ separators)
 if [[ ! "$PACK_DIR" =~ ^[/A-Za-z]: ]]; then
-  # Relative path: prepend REPO_ROOT
   PACK_DIR="$REPO_ROOT/$PACK_DIR"
 fi
-# Convert backslashes to forward slashes for consistency in bash
 PACK_DIR="${PACK_DIR//\\//}"
 
 log_info "Pack directory: $PACK_DIR"
@@ -96,40 +182,25 @@ log_info "Pack filename: $PACK_FILE"
 # Load .env (hardened parser)
 if [ -f "$REPO_ROOT/.env" ]; then
   while IFS= read -r line || [ -n "$line" ]; do
-    # Skip comments and empty lines
     [[ "$line" =~ ^#.*$ ]] && continue
     [[ -z "$line" ]] && continue
-    # Trim carriage returns (Windows compatibility)
     line="${line%$'\r'}"
-    # Skip lines with no =
     [[ "$line" != *"="* ]] && continue
-    # Split on first = only
     env_key="${line%%=*}"
     env_val="${line#*=}"
-    # Skip if key empty or invalid chars
     [[ -z "$env_key" ]] && continue
     [[ "$env_key" =~ [^a-zA-Z0-9_] ]] && continue
-    # Strip surrounding quotes
     env_val="${env_val#\"}" ; env_val="${env_val%\"}"
     env_val="${env_val#\'}" ; env_val="${env_val%\'}"
-    # Only set if not already present in environment
     if [ -z "${!env_key+x}" ]; then
       export "$env_key"="$env_val"
     fi
   done < "$REPO_ROOT/.env"
 fi
 
-# Verify credentials & NOTEBOOK_ID
-# Verify credentials & NOTEBOOK_ID
 NOTEBOOK_ID="${NOTEBOOK_ID:-}"
 
 # --- RESOLVE NOTEBOOKLM CLI RUNTIME ------------------------------------------
-# Precedence:
-# 1. Explicit NLM_CLI environment variable (supports executable path containing spaces)
-# 2. Local uv project ($REPO_ROOT/notebooklm-mcp-cli/pyproject.toml and command -v uv)
-# 3. Global CLI (notebooklm, notebooklm.exe, nlm, nlm.exe)
-# 4. Hard failure (exit 1) if no valid CLI runtime is available
-
 NLM_MODE=""
 EXPLICIT_NLM_CLI="${NLM_CLI:-}"
 
@@ -158,91 +229,170 @@ elif command -v nlm.exe >/dev/null 2>&1; then
 else
   NLM_MODE="none"
   log_error "No valid NotebookLM CLI runtime found (explicit NLM_CLI, uv local project, or global notebooklm/nlm binaries)."
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
+exec_with_timeout() {
+  local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
+  [ "$timeout_sec" -lt 1 ] && timeout_sec=1
+  if command -v timeout >/dev/null 2>&1; then
+    timeout "$timeout_sec" "$@"
+  elif node -e 'process.exit(0)' >/dev/null 2>&1; then
+    node -e '
+      const { spawnSync } = require("child_process");
+      const [cmd, ...args] = process.argv.slice(1);
+      const res = spawnSync(cmd, args, { stdio: "inherit", timeout: parseInt(process.env.TIMEOUT_MS, 10) || 90000 });
+      if (res.error || res.status !== 0) process.exit(res.status || 1);
+    ' "$@"
+  else
+    log_error "FATAL: No valid timeout provider available (neither 'timeout' binary nor 'node')."
+    write_sync_telemetry "FAILED" 0 0
+    exit 1
+  fi
+}
+
 run_nlm_cli() {
   if [ "$NLM_MODE" = "explicit" ]; then
-    "$EXPLICIT_NLM_CLI" "$@"
+    exec_with_timeout "$EXPLICIT_NLM_CLI" "$@"
   elif [ "$NLM_MODE" = "uv-project" ]; then
-    uv --directory "$REPO_ROOT/notebooklm-mcp-cli" run nlm "$@"
+    exec_with_timeout uv --directory "$REPO_ROOT/notebooklm-mcp-cli" run nlm "$@"
   elif [ "$NLM_MODE" = "global" ]; then
-    "$GLOBAL_NLM_EXEC" "$@"
+    exec_with_timeout "$GLOBAL_NLM_EXEC" "$@"
   else
     log_error "Cannot execute NotebookLM CLI: no valid runtime available."
+    write_sync_telemetry "FAILED" 0 0
     return 1
   fi
 }
 
-if [ -z "${NOTEBOOKLM_COOKIE:-}" ] && [ -z "${NOTEBOOKLM_TOKEN:-}" ]; then
-  log_error "Missing credentials: set NOTEBOOKLM_COOKIE or NOTEBOOKLM_TOKEN in .env"
+sleep_backoff() {
+  local ms="${1:-2000}"
+  if node -e "setTimeout(() => {}, $ms)" 2>/dev/null; then
+    return 0
+  fi
+  local sec=$(( (ms + 999) / 1000 ))
+  [ "$sec" -lt 1 ] && sec=1
+  sleep "$sec"
+}
+
+if [ -z "${NOTEBOOKLM_COOKIE:-}" ] && [ -z "${NOTEBOOKLM_TOKEN:-}" ] && [ -z "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
+  log_error "Missing credentials: set NOTEBOOKLM_COOKIE, NOTEBOOKLM_TOKEN, or NOTEBOOKLM_MASTER_TOKEN in .env"
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
 if [ -z "$NOTEBOOK_ID" ]; then
   log_error "NOTEBOOK_ID not set in .env"
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
-# Authenticate CLI state via Master Token or NOTEBOOKLM_COOKIE if auth state is missing/invalid
-if [ "$NLM_MODE" != "none" ]; then
-  if ! run_nlm_cli auth check >/dev/null 2>&1; then
-    log_info "CLI auth state missing or invalid. Attempting auth recovery..."
-    AUTH_RECOVERED=false
-
-    # 1. Try explicit NOTEBOOKLM_MASTER_TOKEN env var if set
-    if [ -n "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
-      log_info "Attempting headless master token login from NOTEBOOKLM_MASTER_TOKEN..."
-      if run_nlm_cli login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null; then
-        AUTH_RECOVERED=true
-        log_info "Headless master token authentication successful."
-      else
-        log_warn "Headless login via NOTEBOOKLM_MASTER_TOKEN failed."
-      fi
-    fi
-
-    # 2. Try master-token-refresh from stored profile token
-    if [ "$AUTH_RECOVERED" = false ]; then
-      log_info "Attempting master token refresh..."
-      if run_nlm_cli login --master-token-refresh --quiet 2>/dev/null; then
-        AUTH_RECOVERED=true
-        log_info "Master token session refresh successful."
-      else
-        log_warn "Master token refresh failed; falling back to cookie import."
-      fi
-    fi
-
-    # 3. Fallback: Import cookies from NOTEBOOKLM_COOKIE
-    if [ "$AUTH_RECOVERED" = false ] && [ -n "${NOTEBOOKLM_COOKIE:-}" ]; then
-      log_info "Attempting import from NOTEBOOKLM_COOKIE..."
-      if [[ "$NOTEBOOKLM_COOKIE" =~ ^\[.*\]$ ]] || [[ "$NOTEBOOKLM_COOKIE" =~ ^\{.*\}$ ]]; then
-        export NOTEBOOKLM_AUTH_JSON="$NOTEBOOKLM_COOKIE"
-      else
-        export NOTEBOOKLM_AUTH_JSON=$(node -e '
-          const cookie = process.env.NOTEBOOKLM_COOKIE || "";
-          const cookies = [];
-          cookie.split(";").forEach(p => {
-            const parts = p.trim().split("=");
-            if (parts.length >= 2) {
-              const name = parts[0].trim();
-              const value = parts.slice(1).join("=").trim();
-              if (name && value) {
-                cookies.push({ name, value, domain: ".google.com", path: "/" });
-              }
-            }
-          });
-          console.log(JSON.stringify(cookies));
-        ' 2>/dev/null || true)
-      fi
-
-      if [ -n "${NOTEBOOKLM_AUTH_JSON:-}" ]; then
-        echo "$NOTEBOOKLM_AUTH_JSON" | run_nlm_cli auth import-cookies --quiet - 2>/dev/null || true
-      fi
-    fi
+import_cookie_json() {
+  if [ -z "${NOTEBOOKLM_COOKIE:-}" ]; then return 1; fi
+  log_info "Attempting import from NOTEBOOKLM_COOKIE..."
+  local auth_json=""
+  if [[ "$NOTEBOOKLM_COOKIE" =~ ^\[.*\]$ ]] || [[ "$NOTEBOOKLM_COOKIE" =~ ^\{.*\}$ ]]; then
+    auth_json="$NOTEBOOKLM_COOKIE"
+  else
+    auth_json=$(node -e '
+      const cookie = process.env.NOTEBOOKLM_COOKIE || "";
+      const cookies = [];
+      cookie.split(";").forEach(p => {
+        const parts = p.trim().split("=");
+        if (parts.length >= 2) {
+          const name = parts[0].trim();
+          const value = parts.slice(1).join("=").trim();
+          if (name && value) {
+            cookies.push({ name, value, domain: ".google.com", path: "/" });
+          }
+        }
+      });
+      console.log(JSON.stringify(cookies));
+    ' 2>/dev/null || echo "")
   fi
+
+  if [ -n "$auth_json" ]; then
+    echo "$auth_json" | run_nlm_cli auth import-cookies --quiet - 2>/dev/null || return 1
+    return 0
+  fi
+  return 1
+}
+
+CHECK_AUTH_ONLY=false
+for arg in "$@"; do
+  if [ "$arg" = "--check-auth-only" ] || [ "$arg" = "-c" ]; then
+    CHECK_AUTH_ONLY=true
+  fi
+done
+
+verify_auth_or_die() {
+  if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+  log_warn "CLI auth state missing/invalid. Recovering..."
+
+  run_nlm_cli auth refresh --verify --quiet 2>/dev/null || true
+  if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+
+  if [ -n "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
+    run_nlm_cli login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null || true
+    if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+  fi
+
+  if import_cookie_json; then
+    if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+  fi
+
+  log_error "FATAL: All authentication recovery paths failed. Hard-stopping before purge/upload."
+  write_sync_telemetry "FAILED" 0 0
+  exit 1
+}
+
+verify_auth_or_die
+
+if [ "$CHECK_AUTH_ONLY" = true ]; then
+  log_info "Auth check passed successfully. Exiting without side effects."
+  exit 0
 fi
 
-log_info "Credentials & NOTEBOOK_ID verified."
+# Shared helper for structural source querying & exact pack pattern filtering
+query_preexisting_pack_sources() {
+  PRE_EXISTING_SOURCES=()
+  local sources_json
+  if ! sources_json="$(run_nlm_cli source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null)"; then
+    log_error "FATAL: Failed to query existing notebook sources for Notebook ID: $NOTEBOOK_ID"
+    return 1
+  fi
+
+  local parsed_ids
+  parsed_ids=$(printf '%s' "$sources_json" | node -e '
+    const fs = require("fs");
+    try {
+      const input = fs.readFileSync(0, "utf8");
+      const list = JSON.parse(input || "[]");
+      if (!Array.isArray(list)) process.exit(1);
+      const pattern = /^repo_knowledge_pack(_part_[0-9]+)?\.txt$/;
+      for (const s of list) {
+        if (!s || typeof s.id !== "string" || !s.id || typeof s.name !== "string") {
+          process.exit(1);
+        }
+      }
+      const matching = list.filter(s => pattern.test(s.name));
+      console.log(matching.map(s => s.id).join("\n"));
+    } catch(e) { process.exit(1); }
+  ' 2>/dev/null || echo "PARSE_ERROR")
+
+  if [ "$parsed_ids" = "PARSE_ERROR" ]; then
+    log_error "FATAL: Malformed JSON output returned from source list."
+    return 1
+  fi
+
+  if [ -n "$parsed_ids" ]; then
+    while read -r src_id; do
+      [ -n "$src_id" ] && PRE_EXISTING_SOURCES+=("$src_id")
+    done <<< "$parsed_ids"
+  fi
+  return 0
+}
 
 # --- ARGUMENT PARSING --------------------------------------------------------
 RUN_ROLLBACK=false
@@ -254,76 +404,84 @@ fi
 if [ "$RUN_ROLLBACK" = true ]; then
   log_info "Executing ROLLBACK strategy..."
 
-  # Restore backups
   if ! "$CORE_DIR/rollback.sh" restore --dir "$PACK_DIR"; then
     log_error "Rollback restore failed."
+    write_sync_telemetry "FAILED" 0 0
     exit 1
   fi
 
-  # Get list of restored files
   UPLOAD_FILES=()
   while IFS= read -r file; do
-    # Remove .bak.txt to get original filename
     upload_file="${file%.bak.txt}"
     [ -f "$upload_file" ] && UPLOAD_FILES+=("$upload_file")
   done < <("$CORE_DIR/rollback.sh" list --dir "$PACK_DIR" 2>/dev/null || true)
 
   if [ ${#UPLOAD_FILES[@]} -eq 0 ]; then
     log_error "No files to upload after rollback."
+    write_sync_telemetry "FAILED" 0 0
     exit 1
   fi
 
-  log_info "Found ${#UPLOAD_FILES[@]} file(s) to re-upload."
+  log_info "Found ${#UPLOAD_FILES[@]} restored backup file(s) to re-upload."
 
-  # Purge old sources
-  log_info "Purging current sources from notebook $NOTEBOOK_ID..."
-  if [ "$NLM_MODE" != "none" ]; then
-    sources_json="$(run_nlm_cli source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
-    if [ -n "$sources_json" ]; then
-      echo "$sources_json" | grep -o '"id": "[^"]*"' | cut -d'"' -f4 | while read -r src_id; do
-        [ -n "$src_id" ] && run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
-      done || true
-    fi
-  else
-    log_info "CLI tool not available. Skipping programmatic purge."
+  PRE_EXISTING_SOURCES=()
+  if ! query_preexisting_pack_sources; then
+    write_sync_telemetry "FAILED" 0 0
+    exit 1
   fi
 
-  # Re-upload
-  log_info "Re-uploading ${#UPLOAD_FILES[@]} files..."
-  UPLOAD_SUCCESS=true
+  # Staged Rollback Upload FIRST
+  log_info "Re-uploading ${#UPLOAD_FILES[@]} restored backup file(s)..."
+  UPLOADED_COUNT=0
   for file in "${UPLOAD_FILES[@]}"; do
-    log_info "Uploading: $file"
-    if [ "$NLM_MODE" != "none" ]; then
-      if ! run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$file"; then
-        log_error "Upload failed: $file"
-        UPLOAD_SUCCESS=false
+    retry_count=0
+    target_upload_path="$file"
+    if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+      abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
+      target_upload_path="$(wslpath -w "$abs_file")"
+    fi
+
+    until run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; do
+      retry_count=$((retry_count + 1))
+      if [ "$retry_count" -ge "$RETRY_ATTEMPTS" ]; then
+        log_error "Rollback upload failed after $RETRY_ATTEMPTS attempts for file: $file"
+        write_sync_telemetry "FAILED" 0 $UPLOADED_COUNT
+        exit 1
       fi
+      log_warn "Rollback upload failed for $file. Retrying in ${BACKOFF_MS}ms (attempt $retry_count/$RETRY_ATTEMPTS)..."
+      sleep_backoff "$BACKOFF_MS"
+    done
+    UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
+  done
+
+  # Purge pre-existing pack sources ONLY after rollback upload succeeds
+  log_info "Rollback upload complete. Purging ${#PRE_EXISTING_SOURCES[@]} old pack source(s)..."
+  PURGED_COUNT=0
+  PURGE_SUCCESS=true
+  for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
+    if run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1; then
+      PURGED_COUNT=$((PURGED_COUNT + 1))
     else
-      log_info "CLI not available. Manual upload needed: $file"
+      log_error "Failed to purge old source ID during rollback: $src_id"
+      PURGE_SUCCESS=false
     fi
   done
 
-  if [ "$UPLOAD_SUCCESS" = true ]; then
-    log_info "NotebookLM rollback completed successfully!"
-    exit 0
-  else
-    log_error "Rollback completed with upload failures."
+  if [ "$PURGE_SUCCESS" = false ]; then
+    log_error "Rollback completed with purge failures. Setting status to PARTIAL_SUCCESS."
+    write_sync_telemetry "PARTIAL_SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
     exit 1
   fi
+
+  log_info "NotebookLM rollback completed successfully! Purged: $PURGED_COUNT, Uploaded: $UPLOADED_COUNT."
+  write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
+  exit 0
 fi
 
 # --- NORMAL SYNC PATH (INGEST) -----------------------------------------------
 log_info "Starting normal sync pipeline..."
 
-# Proactive Auth Refresh (Rotates __Secure-1PSIDTS & verifies token before sync)
-if [ "$NLM_MODE" != "none" ]; then
-  log_info "Proactively refreshing Google auth session..."
-  run_nlm_cli auth refresh --verify --quiet 2>/dev/null || log_warn "Proactive auth refresh skipped/failed; proceeding with existing session."
-fi
-
-# Clean old pack files
 mkdir -p "$PACK_DIR"
-# Clean via wrapper that handles immutable files
 "$REPO_ROOT/modules/notebooklm/cleanup-pack-dir.sh" "$PACK_DIR"
 log_info "Cleaned old pack files."
 
@@ -336,6 +494,7 @@ if ! "$CORE_DIR/flatten.sh" \
   --include-extensions "$INCLUDE_EXTENSIONS" \
   --repo-root "$REPO_ROOT"; then
   log_error "Flatten step failed."
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 
@@ -360,10 +519,10 @@ if [ "$SIZE_STATUS" = "HARD" ]; then
     --output-dir "$PACK_DIR" \
     --global-config "$GLOBAL_CONFIG" > /tmp/chunks.txt 2>&1; then
     log_error "Chunk step failed."
+    write_sync_telemetry "FAILED" 0 0
     exit 1
   fi
 
-  # Gather chunk files: find the generated parts
   while IFS= read -r -d '' chunk; do
     [ -n "$chunk" ] && [ -f "$chunk" ] && UPLOAD_FILES+=("$chunk")
   done < <(find "$PACK_DIR" -type f -name 'repo_knowledge_pack_part_*.txt' -print0 2>/dev/null || true)
@@ -378,81 +537,65 @@ fi
 log_info "Step 4/5: Creating backup files..."
 if ! "$CORE_DIR/rollback.sh" create --dir "$PACK_DIR" "${UPLOAD_FILES[@]}"; then
   log_error "Backup creation failed."
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
 log_info "Backups created."
 
-# Step 5: Purge & Upload
-log_info "Step 5/5: Purging old sources and uploading new ones..."
+# Step 5: Purge & Upload (Staged)
+log_info "Step 5/5: Staged upload of fresh sources, followed by purge..."
 
-# Purge
-if [ "$NLM_MODE" != "none" ]; then
-  log_info "Purging sources from notebook $NOTEBOOK_ID..."
-  sources_json="$(run_nlm_cli source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null || true)"
-  if [ -n "$sources_json" ]; then
-    echo "$sources_json" | grep -o '"id": "[^"]*"' | cut -d'"' -f4 | while read -r src_id; do
-      [ -n "$src_id" ] && run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1 || true
-    done || true
-  fi
-else
-  log_info "CLI tool not available. Skipping programmatic purge."
-fi
-
-# Upload
-# Upload (Parallel support for multi-part chunks)
-UPLOAD_SUCCESS=true
-MAX_PARALLEL_UPLOADS="${MAX_PARALLEL_UPLOADS:-4}"
-
-if [ "${#UPLOAD_FILES[@]}" -gt 1 ]; then
-  log_info "Uploading ${#UPLOAD_FILES[@]} pack chunk(s) in parallel (concurrency=$MAX_PARALLEL_UPLOADS)..."
-  pids=()
-  for file in "${UPLOAD_FILES[@]}"; do
-    (
-      target_upload_path="$file"
-      if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
-        abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-        target_upload_path="$(wslpath -w "$abs_file")"
-      fi
-      log_info "Uploading chunk: $(basename "$file")"
-      if ! run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
-        log_error "Upload failed for chunk: $file"
-        exit 1
-      fi
-    ) &
-    pids+=($!)
-    if [ "${#pids[@]}" -ge "$MAX_PARALLEL_UPLOADS" ]; then
-      for pid in "${pids[@]}"; do
-        wait "$pid" || UPLOAD_SUCCESS=false
-      done
-      pids=()
-    fi
-  done
-  for pid in "${pids[@]}"; do
-    wait "$pid" || UPLOAD_SUCCESS=false
-  done
-else
-  for file in "${UPLOAD_FILES[@]}"; do
-    log_info "Uploading: $(basename "$file")"
-    if [ "$NLM_MODE" != "none" ]; then
-      target_upload_path="$file"
-      if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
-        abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-        target_upload_path="$(wslpath -w "$abs_file")"
-      fi
-      if ! run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; then
-        log_error "Upload failed: $file"
-        UPLOAD_SUCCESS=false
-      fi
-    else
-      log_info "CLI not available. Manual action required: upload $file"
-    fi
-  done
-fi
-
-if [ "$UPLOAD_SUCCESS" = true ]; then
-  log_info "NotebookLM sync completed successfully!"
-  exit 0
-else
-  log_error "Sync completed with upload failures."
+PRE_EXISTING_SOURCES=()
+log_info "Step 5a: Querying existing notebook sources..."
+if ! query_preexisting_pack_sources; then
+  write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
+log_info "Found ${#PRE_EXISTING_SOURCES[@]} matching pre-existing knowledge pack source(s)."
+
+# Step 5b: Upload fresh chunks
+log_info "Step 5b: Uploading fresh pack chunks to Notebook $NOTEBOOK_ID..."
+UPLOADED_COUNT=0
+for file in "${UPLOAD_FILES[@]}"; do
+  retry_count=0
+  target_upload_path="$file"
+  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+    abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
+    target_upload_path="$(wslpath -w "$abs_file")"
+  fi
+
+  until run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; do
+    retry_count=$((retry_count + 1))
+    if [ "$retry_count" -ge "$RETRY_ATTEMPTS" ]; then
+      log_error "Upload failed after $RETRY_ATTEMPTS attempts for file: $file"
+      write_sync_telemetry "FAILED" 0 $UPLOADED_COUNT
+      exit 1
+    fi
+    log_warn "Upload failed for $file. Retrying in ${BACKOFF_MS}ms (attempt $retry_count/$RETRY_ATTEMPTS)..."
+    sleep_backoff "$BACKOFF_MS"
+  done
+  UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
+done
+
+# Step 5c: Delete pre-existing sources ONLY after upload succeeds
+log_info "Step 5c: Upload complete. Purging ${#PRE_EXISTING_SOURCES[@]} old source(s)..."
+PURGED_COUNT=0
+PURGE_SUCCESS=true
+for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
+  if run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1; then
+    PURGED_COUNT=$((PURGED_COUNT + 1))
+  else
+    log_error "Failed to purge old source ID: $src_id"
+    PURGE_SUCCESS=false
+  fi
+done
+
+if [ "$PURGE_SUCCESS" = false ]; then
+  log_error "Sync completed with purge failures. Setting status to PARTIAL_SUCCESS."
+  write_sync_telemetry "PARTIAL_SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
+  exit 1
+fi
+
+log_info "NotebookLM sync completed successfully! Purged: $PURGED_COUNT, Uploaded: $UPLOADED_COUNT."
+write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
+exit 0

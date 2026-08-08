@@ -27,6 +27,37 @@ log_warn() {
   printf '\e[33m[RUN-ALL] [WARN] %s\e[0m\n' "$*" >&2
 }
 
+validate_notebooklm_telemetry() {
+  local status_file="$REPO_ROOT/.sync-status.json"
+  if [ ! -f "$status_file" ]; then
+    log_error "Telemetry status file missing: $status_file"
+    return 1
+  fi
+  local validation_code
+  validation_code=$(node -e '
+    try {
+      const d = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+      if (d.target !== "notebooklm") process.exit(10);
+      if (!Number.isInteger(d.duration_ms) || d.duration_ms < 0) process.exit(11);
+      if (!Number.isInteger(d.purged_sources) || d.purged_sources < 0) process.exit(12);
+      if (!Number.isInteger(d.uploaded_chunks) || d.uploaded_chunks < 0) process.exit(13);
+      const age = (Date.now() - new Date(d.timestamp).getTime()) / 1000;
+      if (isNaN(age) || age < -5) process.exit(14);
+      if (age > 600) process.exit(15);
+      if (d.status !== "SUCCESS") process.exit(20);
+      console.log(d.status);
+    } catch (e) { process.exit(1); }
+  ' "$status_file" 2>&1 || echo "FAIL_$?")
+
+  if [ "$validation_code" = "SUCCESS" ]; then
+    log_info "✓ NotebookLM sync validated via telemetry ($status_file)."
+    return 0
+  else
+    log_error "✗ NotebookLM telemetry validation failed with code: '$validation_code'"
+    return 1
+  fi
+}
+
 # --- CONFIGURATION & TIMEOUT POLICY -----------------------------------------
 get_config_value() {
   local file="$1"
@@ -53,8 +84,6 @@ load_timeout_config() {
 load_timeout_config "$REPO_ROOT/configs/global.yaml"
 
 # List of sync targets to invoke (path relative to repo root)
-
-# Format: target_name:script_path
 SYNC_TARGETS=(
   "notebooklm:modules/notebooklm/ingest-notebooklm.sh"
   "obsidian:modules/obsidian/ingest-obsidian.sh"
@@ -81,13 +110,10 @@ COMPLETED_TARGETS=()
 FAILED_TARGETS=()
 
 for target_entry in "${SYNC_TARGETS[@]}"; do
-  # Parse target_name:script_path
   target_name="${target_entry%%:*}"
   target_script="${target_entry##*:}"
-
   target_path="$REPO_ROOT/$target_script"
 
-  # Check if target script exists
   if [ ! -f "$target_path" ]; then
     log_warn "Target '$target_name' script not found: $target_path (skipping)"
     continue
@@ -97,7 +123,6 @@ for target_entry in "${SYNC_TARGETS[@]}"; do
   log_info "Running target: $target_name"
   log_info "========================================================================"
 
-  # Run the target with optional --rollback flag
   if [ "$RUN_ROLLBACK" = true ]; then
     if bash "$target_path" --rollback; then
       log_info "✓ Target '$target_name' rollback completed."
@@ -106,17 +131,31 @@ for target_entry in "${SYNC_TARGETS[@]}"; do
       log_error "✗ Target '$target_name' rollback FAILED."
       FAILED_TARGETS+=("$target_name")
       OVERALL_SUCCESS=false
-      # Continue with next target (fail-soft)
     fi
   else
     if bash "$target_path"; then
-      log_info "✓ Target '$target_name' sync completed."
-      COMPLETED_TARGETS+=("$target_name")
+      if [ "$target_name" = "notebooklm" ]; then
+        if validate_notebooklm_telemetry; then
+          log_info "✓ Target '$target_name' sync completed and validated."
+          COMPLETED_TARGETS+=("$target_name")
+        else
+          log_error "✗ Target '$target_name' telemetry validation FAILED."
+          FAILED_TARGETS+=("$target_name")
+          OVERALL_SUCCESS=false
+        fi
+      else
+        log_info "✓ Target '$target_name' sync completed."
+        COMPLETED_TARGETS+=("$target_name")
+      fi
     else
       log_error "✗ Target '$target_name' sync FAILED."
+      if [ "$target_name" = "notebooklm" ]; then
+        if [ -f "$REPO_ROOT/.sync-status.json" ]; then
+          log_info "NotebookLM failure telemetry: $(cat "$REPO_ROOT/.sync-status.json" 2>/dev/null || echo "")"
+        fi
+      fi
       FAILED_TARGETS+=("$target_name")
       OVERALL_SUCCESS=false
-      # Continue with next target (fail-soft)
     fi
   fi
 
@@ -143,15 +182,12 @@ log_info "Failed: ${#FAILED_TARGETS[@]}"
 if [ "$OVERALL_SUCCESS" = true ]; then
   log_info "All targets completed successfully."
 
-  # --- ARTIFACT GENERATION (POST-SYNC, OPTIONAL) ---
-  # Fail-soft: a failed report never fails the sync (sync already succeeded).
   if [ "$RUN_ROLLBACK" = false ]; then
     log_info ""
     log_info "========================================================================"
     log_info "Generating artifact reports..."
     log_info "========================================================================"
 
-    # Run artifact generation for completed targets (fail-soft)
     for target in "${COMPLETED_TARGETS[@]}"; do
       if [ "$target" = "notebooklm" ]; then
         if bash "$REPO_ROOT/modules/artifact-generator/generate.sh" "$REPO_ROOT/configs/artifact-generator.yaml" notebooklm; then
