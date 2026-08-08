@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "2.0.0",
+  "title": "KBSyncAdjacencySchema",
+  "type": "object",
+  "required": ["version", "forward", "reverse"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "const": "2.0.0" },
+    "forward": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["relation", "target"],
+          "additionalProperties": false,
+          "properties": {
+            "relation": { "type": "string", "enum": ["contains", "wikilink", "mdlink", "mention"] },
+            "target": { "type": "string" }
+          }
+        }
+      }
+    },
+    "reverse": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["relation", "source"],
+          "additionalProperties": false,
+          "properties": {
+            "relation": { "type": "string", "enum": ["contains", "wikilink", "mdlink", "mention"] },
+            "source": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

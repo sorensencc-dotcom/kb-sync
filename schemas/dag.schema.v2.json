@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "2.0.0",
+  "title": "KBSyncDAGSchema",
+  "type": "object",
+  "required": ["$schema", "version", "metadata", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string", "const": "2.0.0" },
+    "metadata": {
+      "type": "object",
+      "required": ["content_hash", "created_at", "source_file_count", "total_nodes", "total_edges", "cycles_count", "generation_id"],
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "created_at": { "type": "string" },
+        "source_file_count": { "type": "integer", "minimum": 0 },
+        "total_nodes": { "type": "integer", "minimum": 0 },
+        "total_edges": { "type": "integer", "minimum": 0 },
+        "cycles_count": { "type": "integer", "minimum": 0 },
+        "generation_id": { "type": "string" }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "node_type", "label", "path", "status", "target_kind", "tags"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "node_type": { "type": "string", "enum": ["file", "chunk", "dangling"] },
+          "label": { "type": "string" },
+          "path": { "type": "string" },
+          "status": { "type": "string", "enum": ["valid", "missing", "stale"] },
+          "target_kind": { "type": "string", "enum": ["file", "chunk", "external"] },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "anchor": { "type": "string" },
+          "line_number": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "target", "relation"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "source": { "type": "string" },
+          "target": { "type": "string" },
+          "relation": { "type": "string", "enum": ["contains", "wikilink", "mdlink", "mention"] }
+        }
+      }
+    }
+  }
+}
