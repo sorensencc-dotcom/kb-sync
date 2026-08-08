@@ -55,15 +55,21 @@ Splits oversized pack using `split -C 4M` to maintain line boundaries. Produces 
 ### Step 4: Rollback Snapshot
 Backs up all files (pack or chunks) as `*.bak.txt` before purge. Enables recovery if something breaks.
 
-### Step 5: Purge & Upload
-Invokes `notebooklm-mcp` CLI:
+### Step 5: Staged Zero-Downtime Upload & Purge
+Invokes `notebooklm-mcp-cli` using staged upload:
 ```bash
-notebooklm-mcp sources delete --notebook "$NOTEBOOK_ID" --all
-notebooklm-mcp sources add --notebook "$NOTEBOOK_ID" <file>  # per chunk or single pack
+# 1. Query existing pack sources (exact pattern filtering: ^repo_knowledge_pack(_part_[0-9]+)?\.txt$)
+notebooklm source list --notebook "$NOTEBOOK_ID" --json
+
+# 2. Upload fresh pack chunks FIRST (with timeout enforcement & retry backoff)
+notebooklm source add --notebook "$NOTEBOOK_ID" <file>
+
+# 3. Purge pre-existing pack sources ONLY after upload succeeds
+notebooklm source delete --notebook "$NOTEBOOK_ID" <src_id> -y
 ```
 
-### Step 6: Verify
-Logs success confirmation. If any step fails, exits with code 1.
+### Step 6: Verify & Telemetry
+Writes `$REPO_ROOT/.sync-status.json` atomically via global trap cleanup, containing `target: "notebooklm"`, `status` (`SUCCESS` / `PARTIAL_SUCCESS` / `FAILED`), `timestamp`, `duration_ms`, `purged_sources`, and `uploaded_chunks`.
 
 ## Authentication
 
