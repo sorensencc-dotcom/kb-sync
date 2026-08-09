@@ -450,6 +450,187 @@ try {
 }
 
 # ------------------------------------------------------------------------------
+# Test 13: Weekly Metrics - Empty Week (0 merged PRs)
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 13] Weekly Metrics - Empty Week (0 merged PRs)..." -ForegroundColor Yellow
+$ComputeMetricsScript = Join-Path $ScriptDir "..\scripts\compute-weekly-metrics.ps1"
+Assert-True -Condition (Test-Path -LiteralPath $ComputeMetricsScript) -Message "compute-weekly-metrics.ps1 script exists"
+
+$emptyCsv = Join-Path $env:TEMP "test_metrics_empty_$([guid]::NewGuid().ToString('N')).csv"
+try {
+    $emptyRow = [pscustomobject]@{
+        pr_id = "owner/repo#100"
+        repo = "owner/repo"
+        author = "dev"
+        created_at = "2026-01-01T00:00:00Z"
+        merged_at = "2026-01-01T01:00:00Z"
+        outcome = "merged"
+        lines_changed = "10"
+        lines_changed_filtered = "10"
+        ai_assisted = "no"
+        ai_authored_bucket = "1-25"
+        human_reviewers = ""
+        human_review_minutes = ""
+        first_review_latency_minutes = ""
+        automated_findings_count = ""
+        rework_commits_count = ""
+        collection_status = "ok"
+        classification_reason = ""
+        telemetry_version = "v1.1"
+        query_timestamp = "2026-01-01T00:00:00Z"
+    }
+    Publish-AiTelemetryCsv -OutputPath $emptyCsv -Rows @($emptyRow)
+
+    $rawJson = & $ComputeMetricsScript -CsvPath $emptyCsv -WeekStart (Get-Date "2026-08-03")
+    $metrics = $rawJson | ConvertFrom-Json
+
+    Assert-Equal -Actual $metrics.merged_prs_week -Expected 0 -Message "Empty week merged_prs_week is 0"
+    Assert-Equal -Actual $metrics.active_engineers_week -Expected 0 -Message "Empty week active_engineers_week is 0"
+    Assert-Equal -Actual $metrics.prs_per_engineer -Expected 0 -Message "Empty week prs_per_engineer is 0 (no divide-by-zero)"
+    Assert-Equal -Actual $metrics.review_hours_per_engineer -Expected 0 -Message "Empty week review_hours_per_engineer is 0 (no divide-by-zero)"
+    Assert-Equal -Actual $metrics.ai_pr_share -Expected 0 -Message "Empty week ai_pr_share is 0 (no divide-by-zero)"
+    Assert-Equal -Actual $metrics.rework_rate -Expected 0 -Message "Empty week rework_rate is 0 (no divide-by-zero)"
+    Assert-Equal -Actual $metrics.median_first_review_latency_minutes -Expected 0 -Message "Empty week median latency is 0"
+    Assert-Equal -Actual $metrics.telemetry_collection_ok -Expected 0 -Message "Empty week telemetry_collection_ok is 0"
+} finally {
+    if (Test-Path -LiteralPath $emptyCsv) { Remove-Item -LiteralPath $emptyCsv -Force }
+}
+
+# ------------------------------------------------------------------------------
+# Test 14: Weekly Metrics - All-Null Review Fields
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 14] Weekly Metrics - All-Null Review Fields..." -ForegroundColor Yellow
+$nullFieldsCsv = Join-Path $env:TEMP "test_metrics_null_$([guid]::NewGuid().ToString('N')).csv"
+try {
+    $nullRow = [pscustomobject]@{
+        pr_id = "owner/repo#1"
+        repo = "owner/repo"
+        author = "dev1"
+        created_at = "2026-08-03T10:00:00Z"
+        merged_at = "2026-08-04T10:00:00Z"
+        outcome = "merged"
+        lines_changed = "100"
+        lines_changed_filtered = "80"
+        ai_assisted = "yes"
+        ai_authored_bucket = "76-100"
+        human_reviewers = ""
+        human_review_minutes = ""
+        first_review_latency_minutes = ""
+        automated_findings_count = ""
+        rework_commits_count = ""
+        collection_status = "ok"
+        classification_reason = ""
+        telemetry_version = "v1.1"
+        query_timestamp = "2026-08-04T11:00:00Z"
+    }
+    Publish-AiTelemetryCsv -OutputPath $nullFieldsCsv -Rows @($nullRow)
+
+    $rawJson = & $ComputeMetricsScript -CsvPath $nullFieldsCsv -WeekStart (Get-Date "2026-08-03")
+    $metrics = $rawJson | ConvertFrom-Json
+
+    Assert-Equal -Actual $metrics.merged_prs_week -Expected 1 -Message "Merged PR count is 1"
+    Assert-Equal -Actual $metrics.active_engineers_week -Expected 1 -Message "Active engineers count is 1"
+    Assert-Equal -Actual $metrics.review_hours_per_engineer -Expected 0 -Message "Review hours per engineer is 0 when review_minutes is empty"
+    Assert-Equal -Actual $metrics.median_first_review_latency_minutes -Expected 0 -Message "Median latency is 0 when latency field is empty"
+    Assert-Equal -Actual $metrics.rework_rate -Expected 0 -Message "Rework rate is 0 when rework field is empty"
+    Assert-Equal -Actual $metrics.ai_pr_share -Expected 1 -Message "AI PR share is 1.0 for 1 AI-assisted PR"
+} finally {
+    if (Test-Path -LiteralPath $nullFieldsCsv) { Remove-Item -LiteralPath $nullFieldsCsv -Force }
+}
+
+# ------------------------------------------------------------------------------
+# Test 15: Weekly Metrics - Mixed Telemetry Collection Status Rows (ok, degraded, error)
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 15] Weekly Metrics - Mixed Telemetry Collection Status Rows..." -ForegroundColor Yellow
+$mixedCsv = Join-Path $env:TEMP "test_metrics_mixed_$([guid]::NewGuid().ToString('N')).csv"
+try {
+    $rows = @(
+        [pscustomobject]@{
+            pr_id = "owner/repo#1"; repo = "owner/repo"; author = "dev1"
+            created_at = "2026-08-03T10:00:00Z"; merged_at = "2026-08-04T10:00:00Z"; outcome = "merged"
+            lines_changed = "10"; lines_changed_filtered = "10"; ai_assisted = "no"; ai_authored_bucket = "1-25"
+            human_reviewers = "rev1"; human_review_minutes = "30"; first_review_latency_minutes = "60"
+            automated_findings_count = "0"; rework_commits_count = "0"
+            collection_status = "ok"; classification_reason = ""; telemetry_version = "v1.1"; query_timestamp = "2026-08-04T11:00:00Z"
+        },
+        [pscustomobject]@{
+            pr_id = "owner/repo#2"; repo = "owner/repo"; author = "dev2"
+            created_at = "2026-08-03T11:00:00Z"; merged_at = "2026-08-04T11:00:00Z"; outcome = "merged"
+            lines_changed = "50"; lines_changed_filtered = "40"; ai_assisted = "yes"; ai_authored_bucket = "26-50"
+            human_reviewers = "rev1"; human_review_minutes = "15"; first_review_latency_minutes = "120"
+            automated_findings_count = "1"; rework_commits_count = "1"
+            collection_status = "degraded"; classification_reason = "Missing reviewer payload"; telemetry_version = "v1.1"; query_timestamp = "2026-08-04T12:00:00Z"
+        },
+        [pscustomobject]@{
+            pr_id = "owner/repo#3"; repo = "owner/repo"; author = "dev3"
+            created_at = "2026-08-03T12:00:00Z"; merged_at = "2026-08-04T12:00:00Z"; outcome = "merged"
+            lines_changed = "100"; lines_changed_filtered = ""; ai_assisted = ""; ai_authored_bucket = ""
+            human_reviewers = ""; human_review_minutes = ""; first_review_latency_minutes = ""
+            automated_findings_count = ""; rework_commits_count = ""
+            collection_status = "error"; classification_reason = "GraphQL failure"; telemetry_version = "v1.1"; query_timestamp = "2026-08-04T13:00:00Z"
+        }
+    )
+    Publish-AiTelemetryCsv -OutputPath $mixedCsv -Rows $rows
+
+    $rawJson = & $ComputeMetricsScript -CsvPath $mixedCsv -WeekStart (Get-Date "2026-08-03")
+    $metrics = $rawJson | ConvertFrom-Json
+
+    Assert-Equal -Actual $metrics.merged_prs_week -Expected 3 -Message "Merged PR count is 3"
+    Assert-Equal -Actual $metrics.telemetry_collection_ok -Expected 1 -Message "telemetry_collection_ok count is 1"
+    Assert-Equal -Actual $metrics.telemetry_collection_degraded -Expected 1 -Message "telemetry_collection_degraded count is 1"
+    Assert-Equal -Actual $metrics.telemetry_collection_error -Expected 1 -Message "telemetry_collection_error count is 1"
+} finally {
+    if (Test-Path -LiteralPath $mixedCsv) { Remove-Item -LiteralPath $mixedCsv -Force }
+}
+
+# ------------------------------------------------------------------------------
+# Test 16: Weekly Metrics - Populated Week with Valid Schema v1.1 Metrics JSON
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 16] Weekly Metrics - Populated Week Schema v1.1 JSON Output..." -ForegroundColor Yellow
+$populatedCsv = Join-Path $env:TEMP "test_metrics_populated_$([guid]::NewGuid().ToString('N')).csv"
+try {
+    $rows = @(
+        [pscustomobject]@{
+            pr_id = "owner/repo#10"; repo = "owner/repo"; author = "dev1"
+            created_at = "2026-08-03T10:00:00Z"; merged_at = "2026-08-04T10:00:00Z"; outcome = "merged"
+            lines_changed = "100"; lines_changed_filtered = "50"; ai_assisted = "yes"; ai_authored_bucket = "26-50"
+            human_reviewers = "rev1"; human_review_minutes = "60"; first_review_latency_minutes = "30"
+            automated_findings_count = "0"; rework_commits_count = "2"
+            collection_status = "ok"; classification_reason = "Signature match"; telemetry_version = "v1.1"; query_timestamp = "2026-08-04T11:00:00Z"
+        },
+        [pscustomobject]@{
+            pr_id = "owner/repo#11"; repo = "owner/repo"; author = "dev2"
+            created_at = "2026-08-03T11:00:00Z"; merged_at = "2026-08-05T11:00:00Z"; outcome = "merged"
+            lines_changed = "200"; lines_changed_filtered = "150"; ai_assisted = "no"; ai_authored_bucket = "101+"
+            human_reviewers = "rev2"; human_review_minutes = "120"; first_review_latency_minutes = "90"
+            automated_findings_count = "1"; rework_commits_count = "0"
+            collection_status = "ok"; classification_reason = "No AI signature"; telemetry_version = "v1.1"; query_timestamp = "2026-08-05T12:00:00Z"
+        }
+    )
+    Publish-AiTelemetryCsv -OutputPath $populatedCsv -Rows $rows
+
+    $rawJson = & $ComputeMetricsScript -CsvPath $populatedCsv -WeekStart (Get-Date "2026-08-03") -SustainablePrsPerEngineer 3
+    $metrics = $rawJson | ConvertFrom-Json
+
+    Assert-Equal -Actual $metrics.week_start -Expected "2026-08-03" -Message "week_start is 2026-08-03"
+    Assert-Equal -Actual $metrics.merged_prs_week -Expected 2 -Message "merged_prs_week is 2"
+    Assert-Equal -Actual $metrics.active_engineers_week -Expected 2 -Message "active_engineers_week is 2"
+    Assert-Equal -Actual $metrics.sustainable_prs_per_engineer -Expected 3 -Message "sustainable_prs_per_engineer is 3"
+    Assert-Equal -Actual $metrics.review_ceiling -Expected 6 -Message "review_ceiling is 6"
+    Assert-Equal -Actual $metrics.is_saturated -Expected $false -Message "is_saturated is false"
+    Assert-Equal -Actual $metrics.prs_per_engineer -Expected 1.0 -Message "prs_per_engineer is 1.0"
+    Assert-Equal -Actual $metrics.review_hours_per_engineer -Expected 1.5 -Message "review_hours_per_engineer is 1.5 (180 min / 60 / 2)"
+    Assert-Equal -Actual $metrics.ai_pr_share -Expected 0.5 -Message "ai_pr_share is 0.5"
+    Assert-Equal -Actual $metrics.rework_rate -Expected 0.5 -Message "rework_rate is 0.5"
+    Assert-Equal -Actual $metrics.median_first_review_latency_minutes -Expected 30 -Message "median_first_review_latency_minutes is 30"
+    Assert-Equal -Actual $metrics.telemetry_collection_ok -Expected 2 -Message "telemetry_collection_ok is 2"
+    Assert-Equal -Actual $metrics.telemetry_collection_degraded -Expected 0 -Message "telemetry_collection_degraded is 0"
+    Assert-Equal -Actual $metrics.telemetry_collection_error -Expected 0 -Message "telemetry_collection_error is 0"
+} finally {
+    if (Test-Path -LiteralPath $populatedCsv) { Remove-Item -LiteralPath $populatedCsv -Force }
+}
+
+# ------------------------------------------------------------------------------
 # Summary Report
 # ------------------------------------------------------------------------------
 Write-Host "`n================================================================================" -ForegroundColor Cyan
@@ -462,4 +643,5 @@ if ($script:failCount -eq 0) {
     Write-Host "================================================================================" -ForegroundColor Cyan
     exit 1
 }
+
 
