@@ -368,16 +368,18 @@ query_preexisting_pack_sources() {
     const fs = require("fs");
     try {
       const input = fs.readFileSync(0, "utf8");
-      const list = JSON.parse(input || "[]");
-      if (!Array.isArray(list)) process.exit(1);
+      let raw = JSON.parse(input || "[]");
+      let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : null);
+      if (!list) process.exit(1);
       const pattern = /^repo_knowledge_pack(_part_[0-9]+)?\.txt$/;
+      const matching = [];
       for (const s of list) {
-        if (!s || typeof s.id !== "string" || !s.id || typeof s.name !== "string") {
-          process.exit(1);
-        }
+        if (!s || typeof s.id !== "string" || !s.id) process.exit(1);
+        const name = typeof s.title === "string" ? s.title : (typeof s.name === "string" ? s.name : "");
+        if (!name) process.exit(1);
+        if (pattern.test(name)) matching.push(s.id);
       }
-      const matching = list.filter(s => pattern.test(s.name));
-      console.log(matching.map(s => s.id).join("\n"));
+      console.log(matching.join("\n"));
     } catch(e) { process.exit(1); }
   ' 2>/dev/null || echo "PARSE_ERROR")
 

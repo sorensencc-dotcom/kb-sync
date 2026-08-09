@@ -1,3 +1,9 @@
+---
+title: "generate kb sync artifact.mjs"
+category: "wiki"
+status: "active"
+---
+
 # generate-kb-sync-artifact.mjs
 
 **Type:** Node.js Script / Module  
@@ -19,16 +25,16 @@
 
 ## Relationships
 
-- **Called by:** [[kb-sync-nightly.sh]]
+- **Called by:** [[kb-sync/entities/kb-sync-nightly.sh]]
 - **Calls:** Node `fs`, `path` modules
-- **Depends on:** [[pack-based-knowledge-management]]
+- **Depends on:** [[kb-sync/concepts/pack-based-knowledge-management]]
 - **Used in workflows:** Stage 2 Artifact Generation Workflow
 
 ## Cross-References
 
-- Related entities: [[kb-sync-nightly.sh]], [[ingest-notebooklm.sh]]
-- Related concepts: [[pack-based-knowledge-management]]
-- Backlinks from: [[Index.md]], [[kb-sync-nightly.sh]]
+- Related entities: [[kb-sync/entities/kb-sync-nightly.sh]], [[kb-sync/entities/ingest-notebooklm.sh]]
+- Related concepts: [[kb-sync/concepts/pack-based-knowledge-management]]
+- Backlinks from: [[kb-sync/wiki/Index]], [[kb-sync/entities/kb-sync-nightly.sh]]
 
 ## Source Citations
 

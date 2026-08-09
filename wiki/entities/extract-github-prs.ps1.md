@@ -1,4 +1,7 @@
 ---
+title: "extract-github-prs.ps1"
+category: "utilities"
+status: "active"
 type: entity
 tags: [review-capacity, github, prs]
 created: 2026-08-01

@@ -560,6 +560,9 @@ ${createdOrModifiedPaths.map((p) => `- [[${p.replace(/\.md$/, "")}]]`).join("\n"
 `;
 
   fs.writeFileSync(indexFilePath, indexContent, "utf-8");
+  const nestedIndexFilePath = path.join(transactWikiRoot, "kb-sync", "wiki", "Index.md");
+  fs.mkdirSync(path.dirname(nestedIndexFilePath), { recursive: true });
+  fs.writeFileSync(nestedIndexFilePath, indexContent, "utf-8");
   createdOrModifiedPaths.push("Index.md");
 
   const transactLogPath = path.join(transactWikiRoot, "Log.md");

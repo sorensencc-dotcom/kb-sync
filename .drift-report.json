@@ -1,9 +1,58 @@
 {
-  "timestamp": "2026-08-03T19:48:03.117Z",
-  "status": "NO_DRIFT",
-  "drifted_sources": [],
+  "timestamp": "2026-08-09T18:13:43.259Z",
+  "status": "DRIFT_DETECTED",
+  "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "modules/obsidian/providers/offlineTemplateProvider.ts",
+      "last_code_commit": "2026-08-06T09:29:21-04:00",
+      "last_wiki_sync": "2026-08-09T22:13:00.000Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/offlineTemplateProvider.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/obsidian/synthesize-wiki.ts",
+      "last_code_commit": "2026-08-06T09:29:21-04:00",
+      "last_wiki_sync": "2026-08-09T22:13:00.000Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/synthesize-wiki.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/review-capacity/scripts/compute-weekly-metrics.ps1",
+      "last_code_commit": "2026-08-08T23:55:00-04:00",
+      "last_wiki_sync": "2026-08-09T22:13:00.000Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/compute-weekly-metrics.ps1"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/review-capacity/scripts/extract-github-prs.ps1",
+      "last_code_commit": "2026-08-08T23:48:17-04:00",
+      "last_wiki_sync": "2026-08-09T22:13:00.000Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/extract-github-prs.ps1"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/review-capacity/weekly-metrics.md",
+      "last_code_commit": "2026-08-08T23:55:00-04:00",
+      "last_wiki_sync": "2026-08-09T22:13:00.000Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/weekly-metrics.md"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/audit-coverage.ts",
+      "last_code_commit": "2026-08-01T21:04:31-04:00",
+      "last_wiki_sync": "2026-08-09T22:13:00.000Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/audit-coverage.ts"
+    }
+  ],
   "summary": {
-    "total_sources_checked": 61,
-    "stale_pages_count": 0
+    "total_sources_checked": 91,
+    "stale_pages_count": 6
   }
 }

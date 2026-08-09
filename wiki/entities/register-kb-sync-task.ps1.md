@@ -1,3 +1,9 @@
+---
+title: "register kb sync task.ps1"
+category: "wiki"
+status: "active"
+---
+
 # register-kb-sync-task.ps1
 
 **Type:** PowerShell Script / Automation  
@@ -26,9 +32,9 @@
 
 ## Cross-References
 
-- Related entities: [[kb-sync-nightly.sh]], [[ingest-notebooklm.sh]]
-- Related concepts: [[fail-soft-orchestration]]
-- Backlinks from: [[Index.md]], [[kb-sync-nightly.sh]]
+- Related entities: [[kb-sync/entities/kb-sync-nightly.sh]], [[kb-sync/entities/ingest-notebooklm.sh]]
+- Related concepts: [[kb-sync/concepts/fail-soft-orchestration]]
+- Backlinks from: [[kb-sync/wiki/Index]], [[kb-sync/entities/kb-sync-nightly.sh]]
 
 ## Source Citations
 

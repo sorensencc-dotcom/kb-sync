@@ -1,4 +1,7 @@
 ---
+title: "path-normalizer-verification.ts"
+category: "utilities"
+status: "active"
 type: entity
 tags: [tests, path-normalization, verification]
 created: 2026-08-01

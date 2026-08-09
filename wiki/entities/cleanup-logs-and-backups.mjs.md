@@ -1,4 +1,7 @@
 ---
+title: "cleanup-logs-and-backups.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, housekeeping, cleanup]
 created: 2026-08-01

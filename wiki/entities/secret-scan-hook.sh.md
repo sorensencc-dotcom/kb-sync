@@ -1,4 +1,7 @@
 ---
+title: "secret-scan-hook.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, security, git]
 created: 2026-08-01

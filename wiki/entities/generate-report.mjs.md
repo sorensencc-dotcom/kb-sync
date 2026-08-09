@@ -1,4 +1,7 @@
 ---
+title: "generate-report.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [artifact-generator, report, mjs]
 created: 2026-08-01

@@ -1,3 +1,9 @@
+---
+title: "pack based knowledge management"
+category: "wiki"
+status: "active"
+---
+
 # Pack-Based Knowledge Management
 
 **Type**: System Design Pattern  
@@ -67,17 +73,17 @@ How do you capture a snapshot of an entire repository (source code, docs, config
 
 ## Integration with Other Concepts
 
-- [[immutable-staging]] — Pack sources come from immutable staging layer
-- [[deterministic-sync-pipeline]] — Pack generation is deterministic and reproducible
-- [[manifest-mode]] — Alternative to pack: generate manifest-only for file discovery
+- [[kb-sync/concepts/immutable-staging]] — Pack sources come from immutable staging layer
+- [[kb-sync/concepts/deterministic-sync-pipeline]] — Pack generation is deterministic and reproducible
+- [[kb-sync/concepts/manifest-mode]] — Alternative to pack: generate manifest-only for file discovery
 
 ---
 
 ## Related Entities
 
-- [[flatten.sh]] — Generates packs
-- [[chunk.sh]] — Handles pack size management
-- [[validate.sh]] — Validates pack integrity
+- [[kb-sync/entities/flatten.sh]] — Generates packs
+- [[kb-sync/entities/chunk.sh]] — Handles pack size management
+- [[kb-sync/entities/validate.sh]] — Validates pack integrity
 
 ---
 

@@ -1,4 +1,7 @@
 ---
+title: "cleanup-staging-archives.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, staging, cleanup]
 created: 2026-08-01

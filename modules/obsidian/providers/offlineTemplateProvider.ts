@@ -13,21 +13,36 @@ export class OfflineTemplateProvider implements SynthesisProvider {
     const timestamp = new Date().toISOString();
     const proposals: SynthesisProposal[] = [];
 
+    const existingBasenames = new Set(
+      input.existingWikiFiles.map((f) => path.basename(f.relativePath, path.extname(f.relativePath)).toLowerCase())
+    );
+    const seenBasenames = new Set<string>();
+
     for (const file of input.stagedFiles) {
       const ext = path.extname(file.relativePath).toLowerCase();
-      const validExts = [".md", ".ts", ".js", ".json", ".sh", ".ps1", ".py", ".yaml", ".yml", ".txt"];
+      const validExts = [".md", ".ts", ".js", ".mjs", ".json", ".sh", ".ps1", ".py", ".yaml", ".yml", ".txt"];
       if (ext && !validExts.includes(ext)) {
         continue;
       }
 
-      const basename = path.basename(file.relativePath, path.extname(file.relativePath));
+      const rawBasename = path.basename(file.relativePath, path.extname(file.relativePath));
+      if (existingBasenames.has(rawBasename.toLowerCase())) {
+        continue;
+      }
+
       // Normalize title (e.g. ingest-wiki -> IngestWiki)
-      const cleanTitle = basename
+      const cleanTitle = rawBasename
         .replace(/[-_]+/g, " ")
         .replace(/\b\w/g, (char) => char.toUpperCase())
         .replace(/\s+/g, "");
 
       if (!cleanTitle || cleanTitle.length < 2) continue;
+
+      const lowerTitle = cleanTitle.toLowerCase();
+      if (seenBasenames.has(lowerTitle) || existingBasenames.has(lowerTitle)) {
+        continue;
+      }
+      seenBasenames.add(lowerTitle);
 
       const category = file.relativePath.endsWith(".sh") ? "utilities" : "wiki";
       const summary = `Offline draft template for ${cleanTitle} staged from ${file.relativePath}.`;

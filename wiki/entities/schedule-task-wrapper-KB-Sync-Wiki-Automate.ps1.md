@@ -1,4 +1,7 @@
 ---
+title: "schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, automation, powershell]
 created: 2026-08-01

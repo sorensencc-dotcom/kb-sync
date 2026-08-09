@@ -1,4 +1,7 @@
 ---
+title: "validate.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [core, validation, quality]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Scripts
 
-- [[run-all.sh]]
-- [[flatten.sh]]
+- [[kb-sync/entities/run-all.sh]]
+- [[kb-sync/entities/flatten.sh]]

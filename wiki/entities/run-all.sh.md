@@ -1,3 +1,9 @@
+---
+title: "run all.sh"
+category: "wiki"
+status: "active"
+---
+
 # run-all.sh
 
 **Type**: Core Orchestration Script  
@@ -58,8 +64,8 @@ Master script that orchestrates all KB sync targets (NotebookLM, Obsidian, etc.)
 
 - **Source Version**: Stage hash TBD  
 - **Last Ingest**: [Awaiting first synthesis]  
-- **Related Entities**: [[flatten.sh]], [[chunk.sh]], [[validate.sh]]  
-- **Related Concepts**: [[fail-soft-orchestration]], [[deterministic-sync-pipeline]]
+- **Related Entities**: [[kb-sync/entities/flatten.sh]], [[kb-sync/entities/chunk.sh]], [[kb-sync/entities/validate.sh]]  
+- **Related Concepts**: [[kb-sync/concepts/fail-soft-orchestration]], [[kb-sync/concepts/deterministic-sync-pipeline]]
 
 ---
 

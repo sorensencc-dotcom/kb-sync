@@ -1,4 +1,7 @@
 ---
+title: "compute-weekly-metrics.ps1"
+category: "utilities"
+status: "active"
 type: entity
 tags: [review-capacity, metrics, powershell]
 created: 2026-08-01

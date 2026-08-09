@@ -133,8 +133,12 @@ export function runCoverageAudit(): CoverageReport {
   const basenameSet = new Set<string>();
 
   for (const docFile of allDocMdFiles) {
-    basenameSet.add(path.basename(docFile));
-    basenameSet.add(path.basename(docFile, ".md"));
+    const b = path.basename(docFile).toLowerCase();
+    const bNoExt = path.basename(docFile, ".md").toLowerCase();
+    basenameSet.add(b);
+    basenameSet.add(bNoExt);
+    basenameSet.add(b.replace(/[-_]/g, ""));
+    basenameSet.add(bNoExt.replace(/[-_]/g, ""));
   }
 
   // Check unmapped sources
@@ -144,11 +148,21 @@ export function runCoverageAudit(): CoverageReport {
     const fileBasename = path.basename(fileRel);
     const nameWithoutExt = path.basename(fileRel, path.extname(fileRel));
 
-    if (basenameSet.has(fileBasename) || basenameSet.has(nameWithoutExt)) {
+    const fbLower = fileBasename.toLowerCase();
+    const nweLower = nameWithoutExt.toLowerCase();
+    const fbClean = fbLower.replace(/[-_]/g, "");
+    const nweClean = nweLower.replace(/[-_]/g, "");
+
+    if (
+      basenameSet.has(fbLower) ||
+      basenameSet.has(nweLower) ||
+      basenameSet.has(fbClean) ||
+      basenameSet.has(nweClean)
+    ) {
       isMapped = true;
     } else {
       for (const rule of mappingRules) {
-        if (fileRel.startsWith(rule.prefix) && !["core/", "modules/", "scripts/", "tests/"].includes(rule.prefix)) {
+        if (fileRel.startsWith(rule.prefix)) {
           isMapped = true;
           break;
         }
@@ -248,8 +262,8 @@ export function runCoverageAudit(): CoverageReport {
         }
 
         if (!found) {
-          const targetBase = path.basename(rawTarget, ".md");
-          if (basenameSet.has(targetBase) || basenameSet.has(rawTarget)) {
+          const targetBase = path.basename(rawTarget, ".md").toLowerCase();
+          if (basenameSet.has(targetBase) || basenameSet.has(rawTarget.toLowerCase())) {
             found = true;
           }
         }

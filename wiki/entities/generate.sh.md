@@ -1,4 +1,7 @@
 ---
+title: "generate.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [artifact-generator, bash]
 created: 2026-08-01

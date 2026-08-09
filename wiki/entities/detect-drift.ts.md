@@ -1,4 +1,7 @@
 ---
+title: "detect-drift.ts"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, drift, telemetry]
 created: 2026-08-01
@@ -16,5 +19,5 @@ created: 2026-08-01
 
 ## Related Concepts & Modules
 
-- [[generate-delta-summary.ts]]
-- [[audit-coverage.ts]]
+- [[kb-sync/entities/generate-delta-summary.ts]]
+- [[kb-sync/entities/audit-coverage.ts]]

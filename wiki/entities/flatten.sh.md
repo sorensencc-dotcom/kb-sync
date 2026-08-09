@@ -1,3 +1,9 @@
+---
+title: "flatten.sh"
+category: "wiki"
+status: "active"
+---
+
 # flatten.sh
 
 **Type**: Core Utility Script  
@@ -69,8 +75,8 @@ Flattens repository into a single knowledge pack or generates a newline-delimite
 
 - **Source Version**: Stage hash TBD  
 - **Last Ingest**: [Awaiting first synthesis]  
-- **Related Entities**: [[run-all.sh]], [[chunk.sh]], [[validate.sh]]  
-- **Related Concepts**: [[pack-based-knowledge-management]], [[immutable-staging]]
+- **Related Entities**: [[kb-sync/entities/run-all.sh]], [[kb-sync/entities/chunk.sh]], [[kb-sync/entities/validate.sh]]  
+- **Related Concepts**: [[kb-sync/concepts/pack-based-knowledge-management]], [[kb-sync/concepts/immutable-staging]]
 
 ---
 

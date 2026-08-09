@@ -5,7 +5,7 @@
 
 # Obsidian vault root directory (absolute path or relative to where script runs)
 # Override via OBSIDIAN_VAULT_ROOT environment variable
-vault_root: "C:\dev"
+vault_root: "C:/dev/kb-sync"
 
 # File extensions to include in staging (staging script focuses on .md for v1)
 include_extensions:
@@ -35,6 +35,14 @@ mapping_rules:
     folder: "entities"
   - prefix: "tests/"
     folder: "entities"
+  - prefix: "modules/obsidian/providers/"
+    folder: "entities/providers"
+  - prefix: "modules/obsidian/"
+    folder: "entities/obsidian"
+  - prefix: "modules/review-capacity/"
+    folder: "entities/review-capacity"
+  - prefix: "modules/wiki/"
+    folder: "entities/wiki"
   - prefix: "rewrite-mcp/"
     folder: "CIC/Rewrite Labs"
   - prefix: "torquequery/"

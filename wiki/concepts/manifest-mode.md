@@ -1,4 +1,7 @@
 ---
+title: "manifest-mode"
+category: "wiki"
+status: "active"
 type: concept
 tags: [manifest, packing, nlm]
 created: 2026-08-01
@@ -16,5 +19,5 @@ created: 2026-08-01
 
 ## Related Entities & Concepts
 
-- [[flatten.sh]]
-- [[pack-based-knowledge-management]]
+- [[kb-sync/entities/flatten.sh]]
+- [[kb-sync/concepts/pack-based-knowledge-management]]

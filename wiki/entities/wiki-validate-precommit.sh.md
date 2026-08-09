@@ -1,4 +1,7 @@
 ---
+title: "wiki-validate-precommit.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, wiki, git]
 created: 2026-08-01

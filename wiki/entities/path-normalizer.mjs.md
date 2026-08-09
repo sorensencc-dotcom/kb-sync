@@ -1,4 +1,7 @@
 ---
+title: "path-normalizer.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [core, path-normalization, cross-platform]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Entities & Tests
 
-- [[run-all.sh]]
-- [[path-normalizer-verification.ts]]
+- [[kb-sync/entities/run-all.sh]]
+- [[kb-sync/entities/path-normalizer-verification.ts]]

@@ -1,4 +1,7 @@
 ---
+title: "check-status.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, status, dashboard, CLI]
 created: 2026-08-03
@@ -16,6 +19,6 @@ created: 2026-08-03
 
 ## Related Concepts & Modules
 
-- [[audit-coverage.ts]]
-- [[detect-drift.ts]]
-- [[run-all.sh]]
+- [[kb-sync/entities/audit-coverage.ts]]
+- [[kb-sync/entities/detect-drift.ts]]
+- [[kb-sync/entities/run-all.sh]]

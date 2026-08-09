@@ -1,4 +1,7 @@
 ---
+title: "post-commit-hook-example.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, git, hooks]
 created: 2026-08-01

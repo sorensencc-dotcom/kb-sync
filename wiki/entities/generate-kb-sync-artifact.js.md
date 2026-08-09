@@ -1,4 +1,7 @@
 ---
+title: "generate-kb-sync-artifact.js"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, notebooklm, artifact]
 created: 2026-08-01

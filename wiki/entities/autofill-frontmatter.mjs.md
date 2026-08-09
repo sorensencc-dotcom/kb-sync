@@ -1,4 +1,7 @@
 ---
+title: "autofill-frontmatter.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, frontmatter, automation]
 created: 2026-08-01

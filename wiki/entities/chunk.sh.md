@@ -1,4 +1,7 @@
 ---
+title: "chunk.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [core, chunking, bash]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Concepts & Scripts
 
-- [[flatten.sh]]
-- [[pack-based-knowledge-management]]
+- [[kb-sync/entities/flatten.sh]]
+- [[kb-sync/concepts/pack-based-knowledge-management]]

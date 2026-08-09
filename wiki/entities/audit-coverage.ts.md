@@ -1,4 +1,7 @@
 ---
+title: "audit-coverage.ts"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, coverage, telemetry]
 created: 2026-08-01
@@ -16,5 +19,5 @@ created: 2026-08-01
 
 ## Related Concepts & Modules
 
-- [[detect-drift.ts]]
-- [[generate-delta-summary.ts]]
+- [[kb-sync/entities/detect-drift.ts]]
+- [[kb-sync/entities/generate-delta-summary.ts]]

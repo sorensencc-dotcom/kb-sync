@@ -1,4 +1,7 @@
 ---
+title: "validate-contract.mjs"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, validation, contract]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Scripts
 
-- [[audit-coverage.ts]]
-- [[detect-drift.ts]]
+- [[kb-sync/entities/audit-coverage.ts]]
+- [[kb-sync/entities/detect-drift.ts]]

@@ -1,4 +1,7 @@
 ---
+title: "raw-source-staging"
+category: "wiki"
+status: "active"
 type: concept
 tags: [staging, immutability, audit]
 created: 2026-08-01
@@ -11,11 +14,11 @@ created: 2026-08-01
 ## Workflow Role
 
 - **Immutable Audit Trail**: Preserves exact source state at ingestion time.
-- **Delta Analysis**: Enables [[generate-delta-summary.ts]] to compute changes between consecutive passes.
+- **Delta Analysis**: Enables [[kb-sync/entities/generate-delta-summary.ts]] to compute changes between consecutive passes.
 - **Human Ingest Guidance**: Serves as the frozen target for human/Claude synthesis sessions.
 
 ## Related Entities & Concepts
 
-- [[ingest-obsidian.sh]]
-- [[generate-delta-summary.ts]]
-- [[karpathy-llm-wiki-pattern]]
+- [[kb-sync/entities/ingest-obsidian.sh]]
+- [[kb-sync/entities/generate-delta-summary.ts]]
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern]]

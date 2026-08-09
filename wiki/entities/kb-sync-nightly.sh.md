@@ -1,3 +1,9 @@
+---
+title: "kb sync nightly.sh"
+category: "wiki"
+status: "active"
+---
+
 # kb-sync-nightly.sh
 
 **Type:** Script / Orchestrator  
@@ -20,15 +26,15 @@
 ## Relationships
 
 - **Called by:** `npm run kb:sync`, Windows Task Scheduler (`KB-Sync-Daily`)
-- **Calls:** [[ingest-notebooklm.sh]], [[generate-kb-sync-artifact.mjs]]
-- **Depends on:** [[fail-soft-orchestration]], [[karpathy-llm-wiki-pattern]]
+- **Calls:** [[kb-sync/entities/ingest-notebooklm.sh]], [[kb-sync/entities/generate-kb-sync-artifact.mjs]]
+- **Depends on:** [[kb-sync/concepts/fail-soft-orchestration]], [[kb-sync/concepts/karpathy-llm-wiki-pattern]]
 - **Used in workflows:** Scheduled Nightly Pipeline Workflow
 
 ## Cross-References
 
-- Related entities: [[ingest-notebooklm.sh]], [[generate-kb-sync-artifact.mjs]], [[register-kb-sync-task.ps1]]
-- Related concepts: [[fail-soft-orchestration]], [[immutable-staging]]
-- Backlinks from: [[Index.md]], [[register-kb-sync-task.ps1]]
+- Related entities: [[kb-sync/entities/ingest-notebooklm.sh]], [[kb-sync/entities/generate-kb-sync-artifact.mjs]], [[kb-sync/entities/register-kb-sync-task.ps1]]
+- Related concepts: [[kb-sync/concepts/fail-soft-orchestration]], [[kb-sync/concepts/immutable-staging]]
+- Backlinks from: [[kb-sync/wiki/Index]], [[kb-sync/entities/register-kb-sync-task.ps1]]
 
 ## Source Citations
 

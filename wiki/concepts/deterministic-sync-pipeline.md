@@ -1,4 +1,7 @@
 ---
+title: "deterministic-sync-pipeline"
+category: "wiki"
+status: "active"
 type: concept
 tags: [pipeline, orchestration, determinism]
 created: 2026-08-01
@@ -16,6 +19,6 @@ The **Deterministic Sync Pipeline** is a core architectural pattern in `kb-sync`
 
 ## Related Entities & Concepts
 
-- [[run-all.sh]]
-- [[raw-source-staging]]
-- [[manifest-mode]]
+- [[kb-sync/entities/run-all.sh]]
+- [[kb-sync/concepts/raw-source-staging]]
+- [[kb-sync/concepts/manifest-mode]]

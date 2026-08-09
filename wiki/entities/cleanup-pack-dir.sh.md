@@ -1,4 +1,7 @@
 ---
+title: "cleanup-pack-dir.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [notebooklm, pack, cleanup]
 created: 2026-08-01

@@ -1,3 +1,9 @@
+---
+title: "fail soft orchestration"
+category: "wiki"
+status: "active"
+---
+
 # Fail-Soft Orchestration
 
 **Type**: Operational Pattern  
@@ -56,15 +62,15 @@ Result: If notebooklm fails, obsidian still runs. Both results are logged and re
 
 ## Related Concepts
 
-- [[deterministic-sync-pipeline]] — Repeatability and auditability work together with fail-soft
-- [[immutable-staging]] — Failed staging can be rolled back safely
+- [[kb-sync/concepts/deterministic-sync-pipeline]] — Repeatability and auditability work together with fail-soft
+- [[kb-sync/concepts/immutable-staging]] — Failed staging can be rolled back safely
 
 ---
 
 ## Related Entities
 
-- [[run-all.sh]] — Master orchestrator implementing fail-soft pattern
-- [[ingest-obsidian.sh]] — Demonstrates fail-fast behavior at script level (exits on error)
+- [[kb-sync/entities/run-all.sh]] — Master orchestrator implementing fail-soft pattern
+- [[kb-sync/entities/ingest-obsidian.sh]] — Demonstrates fail-fast behavior at script level (exits on error)
 
 ---
 

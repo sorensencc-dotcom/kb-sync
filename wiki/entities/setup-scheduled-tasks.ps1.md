@@ -1,4 +1,7 @@
 ---
+title: "setup-scheduled-tasks.ps1"
+category: "utilities"
+status: "active"
 type: entity
 tags: [scripts, automation, task-scheduler]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Scripts
 
-- [[register-kb-sync-task.ps1]]
-- [[kb-sync-nightly.sh]]
+- [[kb-sync/entities/register-kb-sync-task.ps1]]
+- [[kb-sync/entities/kb-sync-nightly.sh]]

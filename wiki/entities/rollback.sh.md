@@ -1,4 +1,7 @@
 ---
+title: "rollback.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [core, rollback, recovery]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Scripts
 
-- [[run-all.sh]]
-- [[ingest-notebooklm.sh]]
+- [[kb-sync/entities/run-all.sh]]
+- [[kb-sync/entities/ingest-notebooklm.sh]]

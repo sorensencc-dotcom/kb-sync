@@ -1,3 +1,9 @@
+---
+title: "immutable staging"
+category: "wiki"
+status: "active"
+---
+
 # Immutable Staging
 
 **Type**: System Architecture Pattern  
@@ -82,15 +88,15 @@ If the source is later updated and re-staged, the wiki can retroactively point t
 
 ## Related Concepts
 
-- [[pack-based-knowledge-management]] — Packs are generated from staging sources
-- [[deterministic-sync-pipeline]] — Staging is part of the deterministic pipeline
-- [[raw-source-staging]] — Staging is the immutable raw layer
+- [[kb-sync/concepts/pack-based-knowledge-management]] — Packs are generated from staging sources
+- [[kb-sync/concepts/deterministic-sync-pipeline]] — Staging is part of the deterministic pipeline
+- [[kb-sync/concepts/raw-source-staging]] — Staging is the immutable raw layer
 
 ---
 
 ## Related Entities
 
-- [[ingest-obsidian.sh]] — Creates new stagings with timestamps
+- [[kb-sync/entities/ingest-obsidian.sh]] — Creates new stagings with timestamps
 
 ---
 

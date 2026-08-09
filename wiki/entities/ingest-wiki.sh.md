@@ -1,4 +1,7 @@
 ---
+title: "ingest-wiki.sh"
+category: "utilities"
+status: "active"
 type: entity
 tags: [wiki, ingest, obsidian]
 created: 2026-08-01
@@ -15,5 +18,5 @@ created: 2026-08-01
 
 ## Related Concepts
 
-- [[ingest-obsidian.sh]]
-- [[karpathy-llm-wiki-pattern]]
+- [[kb-sync/entities/ingest-obsidian.sh]]
+- [[kb-sync/concepts/karpathy-llm-wiki-pattern]]

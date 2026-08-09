@@ -1,3 +1,9 @@
+---
+title: "ingest notebooklm.sh"
+category: "wiki"
+status: "active"
+---
+
 # ingest-notebooklm.sh
 
 **Type:** Script / Module  
@@ -21,14 +27,14 @@
 
 - **Called by:** `scripts/notebooklm/kb-sync-nightly.sh`, `npm run kb:sync`
 - **Calls:** `core/flatten.sh`, `core/validate.sh`, `core/chunk.sh`, `core/rollback.sh`, `notebooklm.exe`
-- **Depends on:** [[pack-based-knowledge-management]], [[fail-soft-orchestration]]
+- **Depends on:** [[kb-sync/concepts/pack-based-knowledge-management]], [[kb-sync/concepts/fail-soft-orchestration]]
 - **Used in workflows:** Nightly Knowledge Base Sync Workflow
 
 ## Cross-References
 
-- Related entities: [[kb-sync-nightly.sh]], [[flatten.sh]], [[validate.sh]], [[rollback.sh]]
-- Related concepts: [[pack-based-knowledge-management]], [[immutable-staging]]
-- Backlinks from: [[Index.md]], [[kb-sync-nightly.sh]]
+- Related entities: [[kb-sync/entities/kb-sync-nightly.sh]], [[kb-sync/entities/flatten.sh]], [[kb-sync/entities/validate.sh]], [[kb-sync/entities/rollback.sh]]
+- Related concepts: [[kb-sync/concepts/pack-based-knowledge-management]], [[kb-sync/concepts/immutable-staging]]
+- Backlinks from: [[kb-sync/wiki/Index]], [[kb-sync/entities/kb-sync-nightly.sh]]
 
 ## Source Citations
 

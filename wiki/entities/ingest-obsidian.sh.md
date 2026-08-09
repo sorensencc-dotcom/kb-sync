@@ -1,3 +1,9 @@
+---
+title: "ingest obsidian.sh"
+category: "wiki"
+status: "active"
+---
+
 # ingest-obsidian.sh
 
 **Type**: Obsidian Sync Module Script  
@@ -77,8 +83,8 @@ Orchestrates the Karpathy LLM-wiki pattern for Obsidian: stages raw sources into
 
 - **Source Version**: Stage hash TBD  
 - **Last Ingest**: 2026-07-20  
-- **Related Entities**: [[run-all.sh]], [[flatten.sh]], [[ingest-wiki.sh]]  
-- **Related Concepts**: [[raw-source-staging]], [[karpathy-llm-wiki-pattern]], [[immutable-staging]]
+- **Related Entities**: [[kb-sync/entities/run-all.sh]], [[kb-sync/entities/flatten.sh]], [[kb-sync/entities/ingest-wiki.sh]]  
+- **Related Concepts**: [[kb-sync/concepts/raw-source-staging]], [[kb-sync/concepts/karpathy-llm-wiki-pattern]], [[kb-sync/concepts/immutable-staging]]
 
 ---
 

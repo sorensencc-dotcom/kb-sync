@@ -1,3 +1,9 @@
+---
+title: "karpathy llm wiki pattern"
+category: "wiki"
+status: "active"
+---
+
 # Karpathy LLM-Wiki Pattern
 
 **Type**: Knowledge Management Architecture  
@@ -97,16 +103,16 @@ The **Karpathy LLM-Wiki Pattern** (named after Andrej Karpathy's approach to dat
 
 ## Related Concepts
 
-- [[immutable-staging]] — Staging layer is immutable
-- [[pack-based-knowledge-management]] — Packs are synthesized into wiki
-- [[deterministic-sync-pipeline]] — Repeatable and auditable
+- [[kb-sync/concepts/immutable-staging]] — Staging layer is immutable
+- [[kb-sync/concepts/pack-based-knowledge-management]] — Packs are synthesized into wiki
+- [[kb-sync/concepts/deterministic-sync-pipeline]] — Repeatable and auditable
 
 ---
 
 ## Related Entities
 
-- [[ingest-obsidian.sh]] — Stages sources (feeds into pattern)
-- [[ingest-wiki.sh]] — Validates staging and generates prompts
+- [[kb-sync/entities/ingest-obsidian.sh]] — Stages sources (feeds into pattern)
+- [[kb-sync/entities/ingest-wiki.sh]] — Validates staging and generates prompts
 
 ---
 
