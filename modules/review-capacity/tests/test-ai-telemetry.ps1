@@ -139,7 +139,7 @@ $bucketFixtures = @(
     @{ lines = 75; expectedBucket = "51-75" },
     @{ lines = 76; expectedBucket = "76-100" },
     @{ lines = 100; expectedBucket = "76-100" },
-    @{ lines = 101; expectedBucket = "101+" }
+    @{ lines = 101; expectedBucket = "76-100" }
 )
 
 foreach ($b in $bucketFixtures) {
@@ -261,7 +261,7 @@ try {
             rework_commits_count = 1
             collection_status = "success"
             classification_reason = "Signature match: [claude]"
-            telemetry_version = "v1.1"
+            telemetry_version = "1.0"
             query_timestamp = "2026-08-08T02:00:00Z"
         }
     )
@@ -293,7 +293,7 @@ try {
         lines_changed = "100"
         lines_changed_filtered = "100"
         ai_assisted = "no"
-        ai_authored_bucket = "101+"
+        ai_authored_bucket = "76-100"
         human_reviewers = "rev1"
         human_review_minutes = "15"
         first_review_latency_minutes = "30"
@@ -301,7 +301,7 @@ try {
         rework_commits_count = "0"
         collection_status = "ok"
         classification_reason = "No AI signature detected"
-        telemetry_version = "v1.1"
+        telemetry_version = "1.0"
         query_timestamp = "2026-06-01T02:00:00Z"
     }
 
@@ -414,7 +414,7 @@ try {
         rework_commits_count = "0"
         collection_status = "ok"
         classification_reason = "Original baseline"
-        telemetry_version = "v1.1"
+        telemetry_version = "1.0"
         query_timestamp = "2026-06-01T00:00:00Z"
     }
     Publish-AiTelemetryCsv -OutputPath $testAtomicCsv -Rows @($initialRow)
@@ -476,7 +476,7 @@ try {
         rework_commits_count = ""
         collection_status = "ok"
         classification_reason = ""
-        telemetry_version = "v1.1"
+        telemetry_version = "1.0"
         query_timestamp = "2026-01-01T00:00:00Z"
     }
     Publish-AiTelemetryCsv -OutputPath $emptyCsv -Rows @($emptyRow)
@@ -520,7 +520,7 @@ try {
         rework_commits_count = ""
         collection_status = "ok"
         classification_reason = ""
-        telemetry_version = "v1.1"
+        telemetry_version = "1.0"
         query_timestamp = "2026-08-04T11:00:00Z"
     }
     Publish-AiTelemetryCsv -OutputPath $nullFieldsCsv -Rows @($nullRow)
@@ -601,10 +601,10 @@ try {
         [pscustomobject]@{
             pr_id = "owner/repo#11"; repo = "owner/repo"; author = "dev2"
             created_at = "2026-08-03T11:00:00Z"; merged_at = "2026-08-05T11:00:00Z"; outcome = "merged"
-            lines_changed = "200"; lines_changed_filtered = "150"; ai_assisted = "no"; ai_authored_bucket = "101+"
+            lines_changed = "200"; lines_changed_filtered = "150"; ai_assisted = "no"; ai_authored_bucket = "0"
             human_reviewers = "rev2"; human_review_minutes = "120"; first_review_latency_minutes = "90"
             automated_findings_count = "1"; rework_commits_count = "0"
-            collection_status = "ok"; classification_reason = "No AI signature"; telemetry_version = "v1.1"; query_timestamp = "2026-08-05T12:00:00Z"
+            collection_status = "ok"; classification_reason = "No AI signature"; telemetry_version = "1.0"; query_timestamp = "2026-08-05T12:00:00Z"
         }
     )
     Publish-AiTelemetryCsv -OutputPath $populatedCsv -Rows $rows

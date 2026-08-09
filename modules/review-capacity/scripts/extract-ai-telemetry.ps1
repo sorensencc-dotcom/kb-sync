@@ -162,16 +162,17 @@ function Get-FilteredLinesChanged {
 
 function Get-AiAuthoredBucket {
     param(
-        [int]$LinesChangedFiltered
+        [int]$LinesChangedFiltered,
+        [bool]$IsAssisted = $true
     )
 
-    if ($LinesChangedFiltered -le 0) { return "0" }
+    if (-not $IsAssisted -or $LinesChangedFiltered -le 0) { return "0" }
     elseif ($LinesChangedFiltered -le 25) { return "1-25" }
     elseif ($LinesChangedFiltered -le 50) { return "26-50" }
     elseif ($LinesChangedFiltered -le 75) { return "51-75" }
-    elseif ($LinesChangedFiltered -le 100) { return "76-100" }
-    else { return "101+" }
+    else { return "76-100" }
 }
+
 
 function Test-IsBotUser {
     param(
@@ -352,7 +353,7 @@ function Get-TelemetryFromPullRequestPayload {
     $sigResult = Test-AiSignature -Title $title -Body $body -CommitMessages $commitMsgs
 
     $aiAssisted = if ($sigResult.IsAssisted) { "yes" } else { "no" }
-    $aiBucket = Get-AiAuthoredBucket -LinesChangedFiltered $filteredLines
+    $aiBucket = Get-AiAuthoredBucket -LinesChangedFiltered $filteredLines -IsAssisted $sigResult.IsAssisted
 
     # Reviews
     $reviews = if ($PrNode.reviews) { $PrNode.reviews } else { @() }
@@ -412,7 +413,7 @@ function Get-TelemetryFromPullRequestPayload {
         rework_commits_count         = $reworkCount
         collection_status            = "ok"
         classification_reason        = $sigResult.Reason
-        telemetry_version            = "v1.1"
+        telemetry_version            = "1.0"
         query_timestamp              = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
     }
 }

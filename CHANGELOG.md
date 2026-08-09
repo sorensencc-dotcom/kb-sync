@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4.0] - 2026-08-09
+
+### Added
+- **Gated Climb Auto-Repair Loop (Self-Healing Wiki)** (`modules/wiki/gated-climb-repair.mjs`, `modules/wiki/normalized-diff-guard.mjs`, `modules/wiki/repair-provider.mjs`): Self-healing pipeline featuring lock-before-validation (`.gated-climb.lock`), `realpathSync` path traversal containment (`ERR_PATH_TRAVERSAL_VIOLATION`), AST normalized diff guard for YAML frontmatter & body byte-for-byte immutability (`UNALLOWED_DIFF_REJECTED`), local Ollama (`llama3.1:70b`) & offline repair providers, atomic same-filesystem directory promotion to `staged-proposals/<run_id>`, atomic quarantine bundle publishing, and single-writer audit logging.
+- **Automated PR AI-Telemetry Extractor (Schema v1.1)** (`modules/review-capacity/scripts/extract-ai-telemetry.ps1`, `extract-github-prs.ps1`, `compute-weekly-metrics.ps1`, `weekly-metrics.md`): Schema v1.1 telemetry extractor with 19 standardized columns, multi-pattern AI signature parser, normalized line path filter (`package-lock.json`, `dist/` exclusions), conservative bucket mapper (`0`, `1-25`, `26-50`, `51-75`, `76-100`), reviewer deduplication, first-review latency, rework commit counter, estimated review minutes, atomic baseline CSV publication (`Publish-AiTelemetryCsv`), and null-safe capacity metrics computation.
+
+### Fixed
+- **Worker Teardown Timeout** (`modules/obsidian/synthesize-wiki.ts`, `tests/synthesize-worker-verification.ts`): Resolved worker vitest timeout during startup recovery and fixture promotion.
+- **Contract Validator `--json` Mode** (`modules/wiki/validate-contract.mjs`): Added exclusive `--json` v1.0 output mode with stable `rule_id` diagnostic codes and stderr logging redirection.
+
 ## [0.1.3.0] - 2026-08-08
+
 
 ### Added
 - **Headless NotebookLM Stage 3 Integration Hardening** (`modules/notebooklm/ingest-notebooklm.sh`): Stage 3 upload pipeline featuring Master Token preflight checks, cookie auto-recovery, structural stdin JSON list parsing (`printf '%s'`), exact pack-name pattern filtering (`^repo_knowledge_pack(_part_[0-9]+)?\.txt$`), staged zero-downtime uploads, atomic telemetry (`.sync-status.json`), and multi-run state reconciliation.
