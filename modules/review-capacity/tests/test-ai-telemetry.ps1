@@ -274,6 +274,182 @@ try {
 }
 
 # ------------------------------------------------------------------------------
+# Test 11: Integration — Baseline Merging & 14-day Window Boundaries
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 11] Baseline Merging & 14-Day Window Boundaries..." -ForegroundColor Yellow
+$ExtractGithubPrsScript = Join-Path $ScriptDir "..\scripts\extract-github-prs.ps1"
+Assert-True -Condition (Test-Path -LiteralPath $ExtractGithubPrsScript) -Message "Target script extract-github-prs.ps1 exists"
+
+$testMergeCsv = Join-Path $env:TEMP "test_telemetry_merge_$([guid]::NewGuid().ToString('N')).csv"
+try {
+    # Existing baseline row outside 14-day window (created 30 days ago)
+    $oldOutsideRow = [pscustomobject]@{
+        pr_id = "owner/repo#10"
+        repo = "owner/repo"
+        author = "dev1"
+        created_at = "2026-06-01T00:00:00Z"
+        merged_at = "2026-06-01T01:00:00Z"
+        outcome = "merged"
+        lines_changed = "100"
+        lines_changed_filtered = "100"
+        ai_assisted = "no"
+        ai_authored_bucket = "101+"
+        human_reviewers = "rev1"
+        human_review_minutes = "15"
+        first_review_latency_minutes = "30"
+        automated_findings_count = "0"
+        rework_commits_count = "0"
+        collection_status = "ok"
+        classification_reason = "No AI signature detected"
+        telemetry_version = "v1.1"
+        query_timestamp = "2026-06-01T02:00:00Z"
+    }
+
+    # Existing baseline row inside 14-day window (created 5 days ago, old values)
+    $insideOldDate = (Get-Date).ToUniversalTime().AddDays(-5).ToString('yyyy-MM-ddTHH:mm:ssZ')
+    $oldInsideRow = [pscustomobject]@{
+        pr_id = "owner/repo#20"
+        repo = "owner/repo"
+        author = "dev2"
+        created_at = $insideOldDate
+        merged_at = ""
+        outcome = "open"
+        lines_changed = "50"
+        lines_changed_filtered = ""
+        ai_assisted = "no"
+        ai_authored_bucket = ""
+        human_reviewers = ""
+        human_review_minutes = ""
+        first_review_latency_minutes = ""
+        automated_findings_count = ""
+        rework_commits_count = ""
+        collection_status = "ok"
+        classification_reason = ""
+        telemetry_version = "1.0"
+        query_timestamp = "2026-08-01T00:00:00Z"
+    }
+
+    Publish-AiTelemetryCsv -OutputPath $testMergeCsv -Rows @($oldOutsideRow, $oldInsideRow)
+
+    # Fixtures to extract: PR #20 (updated inside window) and PR #30 (new inside window)
+    $insideNewDate = (Get-Date).ToUniversalTime().AddDays(-2).ToString('yyyy-MM-ddTHH:mm:ssZ')
+    $fixturePrs = @(
+        @{
+            repo = "owner/repo"
+            number = 20
+            author = @{ login = "dev2"; __typename = "User" }
+            createdAt = $insideOldDate
+            mergedAt = $null
+            closedAt = $null
+            title = "feat: add feature [claude]"
+            body = ""
+            additions = 20
+            deletions = 5
+            files = @( @{ path = "src/app.ts"; additions = 20; deletions = 5 } )
+            reviews = @()
+            comments = @()
+            commits = @()
+        },
+        @{
+            repo = "owner/repo"
+            number = 30
+            author = @{ login = "dev3"; __typename = "User" }
+            createdAt = $insideNewDate
+            mergedAt = $null
+            closedAt = $null
+            title = "fix: manual fix"
+            body = ""
+            additions = 10
+            deletions = 2
+            files = @( @{ path = "src/fix.ts"; additions = 10; deletions = 2 } )
+            reviews = @()
+            comments = @()
+            commits = @()
+        }
+    )
+
+    # Run extract-github-prs.ps1 with fixture PRs
+    & $ExtractGithubPrsScript -OutputPath $testMergeCsv -FixturePrs $fixturePrs
+
+    $mergedContent = @(Import-Csv -LiteralPath $testMergeCsv)
+    Assert-Equal -Actual $mergedContent.Count -Expected 3 -Message "Merged CSV contains 3 rows (1 retained outside window, 1 updated inside window, 1 new inside window)"
+
+    $row10 = $mergedContent | Where-Object { $_.pr_id -eq "owner/repo#10" }
+    Assert-True -Condition ($null -ne $row10) -Message "Existing row outside 14-day window retained"
+    Assert-Equal -Actual $row10.ai_assisted -Expected "no" -Message "Retained row properties preserved"
+
+    $row20 = $mergedContent | Where-Object { $_.pr_id -eq "owner/repo#20" }
+    Assert-True -Condition ($null -ne $row20) -Message "Existing row inside 14-day window updated"
+    Assert-Equal -Actual $row20.ai_assisted -Expected "yes" -Message "Updated row has enriched Schema v1.1 telemetry (ai_assisted=yes)"
+    Assert-Equal -Actual $row20.lines_changed_filtered -Expected "25" -Message "Updated row has lines_changed_filtered populated"
+
+    $row30 = $mergedContent | Where-Object { $_.pr_id -eq "owner/repo#30" }
+    Assert-True -Condition ($null -ne $row30) -Message "New PR inside 14-day window added"
+    Assert-Equal -Actual $row30.ai_assisted -Expected "no" -Message "New PR telemetry populated correctly"
+} finally {
+    if (Test-Path -LiteralPath $testMergeCsv) { Remove-Item -LiteralPath $testMergeCsv -Force }
+}
+
+# ------------------------------------------------------------------------------
+# Test 12: Atomic Publication Failure & Cleanup Safety Assertion
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 12] Atomic Publication Failure & Cleanup Safety Assertion..." -ForegroundColor Yellow
+$testAtomicCsv = Join-Path $env:TEMP "test_telemetry_atomic_$([guid]::NewGuid().ToString('N')).csv"
+try {
+    $initialRow = [pscustomobject]@{
+        pr_id = "owner/repo#999"
+        repo = "owner/repo"
+        author = "baseline_user"
+        created_at = "2026-06-01T00:00:00Z"
+        merged_at = ""
+        outcome = "open"
+        lines_changed = "10"
+        lines_changed_filtered = "10"
+        ai_assisted = "no"
+        ai_authored_bucket = "1-25"
+        human_reviewers = ""
+        human_review_minutes = ""
+        first_review_latency_minutes = ""
+        automated_findings_count = "0"
+        rework_commits_count = "0"
+        collection_status = "ok"
+        classification_reason = "Original baseline"
+        telemetry_version = "v1.1"
+        query_timestamp = "2026-06-01T00:00:00Z"
+    }
+    Publish-AiTelemetryCsv -OutputPath $testAtomicCsv -Rows @($initialRow)
+
+    # Attempt running extraction with fixture that triggers enrichment error
+    $failingFixturePrs = @(
+        @{
+            TriggerExtractionException = $true
+        }
+    )
+
+    $failed = $false
+    try {
+        & $ExtractGithubPrsScript -OutputPath $testAtomicCsv -FixturePrs $failingFixturePrs
+    } catch {
+        $failed = $true
+    }
+
+    Assert-True -Condition $failed -Message "Extraction failure raised an exception as expected"
+
+    # Verify target CSV remains intact
+    $currentContent = @(Import-Csv -LiteralPath $testAtomicCsv)
+    Assert-Equal -Actual $currentContent.Count -Expected 1 -Message "Existing target CSV remains intact after extraction failure"
+    Assert-Equal -Actual $currentContent[0].pr_id -Expected "owner/repo#999" -Message "Existing target CSV content uncorrupted"
+
+    # Verify no temporary files remain
+    $parentDir = Split-Path -Parent $testAtomicCsv
+    $leftoverTmp = Get-ChildItem -Path $parentDir -Filter "$([System.IO.Path]::GetFileName($testAtomicCsv)).tmp.*" -ErrorAction SilentlyContinue
+    Assert-Equal -Actual ($leftoverTmp.Count) -Expected 0 -Message "No leftover temporary files remaining after failure"
+
+} finally {
+    if (Test-Path -LiteralPath $testAtomicCsv) { Remove-Item -LiteralPath $testAtomicCsv -Force }
+}
+
+# ------------------------------------------------------------------------------
 # Summary Report
 # ------------------------------------------------------------------------------
 Write-Host "`n================================================================================" -ForegroundColor Cyan
@@ -286,3 +462,4 @@ if ($script:failCount -eq 0) {
     Write-Host "================================================================================" -ForegroundColor Cyan
     exit 1
 }
+

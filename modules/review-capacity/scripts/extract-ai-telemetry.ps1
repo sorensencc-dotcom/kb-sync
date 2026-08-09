@@ -310,6 +310,10 @@ function Get-TelemetryFromPullRequestPayload {
         [object]$PrNode
     )
 
+    if ($PrNode -and $PrNode.TriggerExtractionException) {
+        throw "Simulated telemetry extraction exception"
+    }
+
     $prId = if ($PrNode.pr_id) { $PrNode.pr_id } elseif ($PrNode.repo -and $PrNode.number) { "$($PrNode.repo)#$($PrNode.number)" } else { "" }
     $repo = if ($PrNode.repo) { $PrNode.repo } else { "" }
     $author = if ($PrNode.author -is [hashtable] -or $PrNode.author -is [pscustomobject]) { $PrNode.author.login } else { [string]$PrNode.author }
@@ -339,6 +343,10 @@ function Get-TelemetryFromPullRequestPayload {
         if ($c -is [string]) { $commitMsgs += $c }
         elseif ($c.message) { $commitMsgs += $c.message }
         elseif ($c.commit -and $c.commit.message) { $commitMsgs += $c.commit.message }
+        elseif ($c.messageHeadline -or $c.messageBody) {
+            $msg = @($c.messageHeadline, $c.messageBody) -join "`n"
+            $commitMsgs += $msg
+        }
     }
 
     $sigResult = Test-AiSignature -Title $title -Body $body -CommitMessages $commitMsgs
@@ -451,9 +459,13 @@ function Publish-AiTelemetryCsv {
         [array]$Rows
     )
 
-    $parentDir = Split-Path -Parent $OutputPath
-    if ($parentDir -and -not (Test-Path -LiteralPath $parentDir)) {
-        New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
+    if ([string]::IsNullOrWhiteSpace($OutputPath)) {
+        throw "OutputPath parameter cannot be null or empty"
+    }
+
+    $parentDir = [System.IO.Path]::GetDirectoryName($OutputPath)
+    if (-not [string]::IsNullOrWhiteSpace($parentDir) -and -not [System.IO.Directory]::Exists($parentDir)) {
+        [System.IO.Directory]::CreateDirectory($parentDir) | Out-Null
     }
 
     $tempFile = "$OutputPath.tmp.$([guid]::NewGuid().ToString('N'))"
@@ -462,7 +474,7 @@ function Publish-AiTelemetryCsv {
         $Rows | Export-Csv -LiteralPath $tempFile -NoTypeInformation -Encoding UTF8
         Move-Item -LiteralPath $tempFile -Destination $OutputPath -Force
     } finally {
-        if (Test-Path -LiteralPath $tempFile) {
+        if ([System.IO.File]::Exists($tempFile)) {
             Remove-Item -LiteralPath $tempFile -Force -ErrorAction SilentlyContinue
         }
     }
