@@ -14,14 +14,16 @@ const YELLOW = '\x1b[33m';
 const CYAN = '\x1b[36m';
 const BOLD = '\x1b[1m';
 
-console.log(`${BOLD}${CYAN}[KB-Sync Validator] Starting validation sequence...${RESET}\n`);
+const isJsonMode = process.argv.includes('--json');
+const log = isJsonMode ? (...args) => console.error(...args) : (...args) => console.log(...args);
+
+log(`${BOLD}${CYAN}[KB-Sync Validator] Starting validation sequence...${RESET}\n`);
 
 // Load command-line target directory or default to the live wiki source.
-// The contract gate validates the live wiki (obsidian/vault/wiki/) — not staging snapshots.
-// Staging snapshots are raw, immutable copies of the full repo and are not expected to
-// conform to the wiki contract. Pass an explicit path arg to override for other targets.
-const targetDir = process.argv[2] || path.resolve(process.cwd(), 'obsidian/vault/wiki/');
-console.log(`${BOLD}Target Directory:${RESET} ${targetDir}`);
+// Filter out flags like --json from positional args.
+const positionalArgs = process.argv.slice(2).filter(arg => arg !== '--json');
+const targetDir = positionalArgs[0] || path.resolve(process.cwd(), 'obsidian/vault/wiki/');
+log(`${BOLD}Target Directory:${RESET} ${targetDir}`);
 
 // Fallback JSON Schema check
 const schemaPath = path.resolve(__dirname, 'toolforge-kbsync-contract.json');
@@ -29,12 +31,12 @@ let contractSchema = null;
 if (fs.existsSync(schemaPath)) {
   try {
     contractSchema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
-    console.log(`${GREEN}✓ Loaded contract schema:${RESET} ${schemaPath}`);
+    log(`${GREEN}✓ Loaded contract schema:${RESET} ${schemaPath}`);
   } catch (err) {
     console.warn(`${YELLOW}⚠ Warning: Could not parse contract schema JSON: ${err.message}${RESET}`);
   }
 } else {
-  console.log(`${YELLOW}⚠ Warning: No toolforge-kbsync-contract.json found in execution directory.${RESET}`);
+  log(`${YELLOW}⚠ Warning: No toolforge-kbsync-contract.json found in execution directory.${RESET}`);
 }
 
 // Allowed values from our contract
@@ -60,8 +62,10 @@ function parseMarkdownFile(filePath, relativePath) {
 
   // 2. Parse Frontmatter
   let frontmatter = {};
+  let hasFrontmatter = false;
   const frontmatterMatch = strippedContent.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (frontmatterMatch) {
+    hasFrontmatter = true;
     const yamlBlock = frontmatterMatch[1];
     const lines = yamlBlock.split('\n');
     for (const line of lines) {
@@ -99,6 +103,7 @@ function parseMarkdownFile(filePath, relativePath) {
     path: relativePath,
     basename,
     frontmatter,
+    hasFrontmatter,
     links
   };
 }
@@ -135,6 +140,7 @@ function scanDirectory(dir, relativeRoot = '') {
           if (basenameCollisionMap.has(lowerBasename)) {
             validationErrors.push({
               file: relPath,
+              rule_id: 'DOC_ID_COLLISION',
               rule: 'Namespace Collision Guard',
               message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(lowerBasename)}'`
             });
@@ -145,6 +151,7 @@ function scanDirectory(dir, relativeRoot = '') {
       } catch (err) {
         validationErrors.push({
           file: relPath,
+          rule_id: 'FILE_READ_ERROR',
           rule: 'File Read Resilience',
           message: `Fatal error reading/parsing file: ${err.message}`
         });
@@ -161,57 +168,104 @@ if (fs.existsSync(targetDir)) {
 } else {
   // If target folder is absent and we are in CI, trigger a resilient exit fallback
   if (process.env.CI) {
-    console.log(`${YELLOW}[CI Fallback] Staging directories are absent in clean checkout. Constructing clean exit to unblock downstream runs.${RESET}`);
+    log(`${YELLOW}[CI Fallback] Staging directories are absent in clean checkout. Constructing clean exit to unblock downstream runs.${RESET}`);
+    if (isJsonMode) {
+      const payload = {
+        schema_version: "1.0",
+        validator_version: "1.1.0",
+        target_dir: targetDir,
+        exit_code: 0,
+        scanned_count: 0,
+        passed_count: 0,
+        failed_count: 0,
+        warnings: ["Staging directory absent in CI"],
+        errors: []
+      };
+      console.log(JSON.stringify(payload, null, 2));
+    }
     process.exit(0);
   } else {
     console.error(`${RED}[Fatal] Targeted directory does not exist: ${targetDir}${RESET}`);
+    if (isJsonMode) {
+      const payload = {
+        schema_version: "1.0",
+        validator_version: "1.1.0",
+        target_dir: targetDir,
+        exit_code: 1,
+        scanned_count: 0,
+        passed_count: 0,
+        failed_count: 0,
+        warnings: [],
+        errors: [{
+          file: targetDir,
+          rule_id: 'TARGET_DIR_NOT_FOUND',
+          rule: 'Directory Existence Check',
+          message: `Targeted directory does not exist: ${targetDir}`
+        }]
+      };
+      console.log(JSON.stringify(payload, null, 2));
+    }
     process.exit(1);
   }
 }
 
-console.log(`${GREEN}✓ Scanned ${scannedCount} documentation nodes successfully.${RESET}\n`);
+log(`${GREEN}✓ Scanned ${scannedCount} documentation nodes successfully.${RESET}\n`);
 
 // ----------------------------------------------------
 // Step 2: Perform Contract Checks & Schema Validation
 // ----------------------------------------------------
 for (const note of notesRegistry) {
   // 1. Validate Frontmatter Schema (Core Fields)
-  const { title, category, status } = note.frontmatter;
+  if (!note.hasFrontmatter) {
+    validationErrors.push({
+      file: note.path,
+      rule_id: 'FRONTMATTER_SCHEMA_MISSING',
+      rule: 'Frontmatter Schema',
+      message: "Missing frontmatter block (YAML header between --- markers)"
+    });
+  } else {
+    const { title, category, status } = note.frontmatter;
 
-  if (!title) {
-    validationErrors.push({
-      file: note.path,
-      rule: 'Frontmatter Schema',
-      message: "Missing mandatory key 'title' in frontmatter"
-    });
-  }
+    if (!title) {
+      validationErrors.push({
+        file: note.path,
+        rule_id: 'MANDATORY_KEY_MISSING',
+        rule: 'Frontmatter Schema',
+        message: "Missing mandatory key 'title' in frontmatter"
+      });
+    }
 
-  if (!category) {
-    validationErrors.push({
-      file: note.path,
-      rule: 'Frontmatter Schema',
-      message: "Missing mandatory key 'category' in frontmatter"
-    });
-  } else if (!ALLOWED_CATEGORIES.has(category.toLowerCase())) {
-    validationErrors.push({
-      file: note.path,
-      rule: 'Frontmatter Schema',
-      message: `Non-canonical category '${category}' declared. Allowed values: [${Array.from(ALLOWED_CATEGORIES).join(', ')}]`
-    });
-  }
+    if (!category) {
+      validationErrors.push({
+        file: note.path,
+        rule_id: 'MANDATORY_KEY_MISSING',
+        rule: 'Frontmatter Schema',
+        message: "Missing mandatory key 'category' in frontmatter"
+      });
+    } else if (!ALLOWED_CATEGORIES.has(category.toLowerCase())) {
+      validationErrors.push({
+        file: note.path,
+        rule_id: 'CATEGORY_ENUM_INVALID',
+        rule: 'Frontmatter Schema',
+        message: `Non-canonical category '${category}' declared. Allowed values: [${Array.from(ALLOWED_CATEGORIES).join(', ')}]`
+      });
+    }
 
-  if (!status) {
-    validationErrors.push({
-      file: note.path,
-      rule: 'Frontmatter Schema',
-      message: "Missing mandatory key 'status' in frontmatter"
-    });
-  } else if (!ALLOWED_STATUSES.has(status.toLowerCase())) {
-    validationErrors.push({
-      file: note.path,
-      rule: 'Frontmatter Schema',
-      message: `Non-canonical status '${status}' declared. Allowed values: [${Array.from(ALLOWED_STATUSES).join(', ')}]`
-    });
+    if (!status) {
+      validationErrors.push({
+        file: note.path,
+        rule_id: 'MANDATORY_KEY_MISSING',
+        rule: 'Frontmatter Schema',
+        message: "Missing mandatory key 'status' in frontmatter"
+      });
+    } else if (!ALLOWED_STATUSES.has(status.toLowerCase())) {
+      validationErrors.push({
+        file: note.path,
+        rule_id: 'STATUS_ENUM_INVALID',
+        rule: 'Frontmatter Schema',
+        message: `Non-canonical status '${status}' declared. Allowed values: [${Array.from(ALLOWED_STATUSES).join(', ')}]`
+      });
+    }
   }
 
   // 2. Absolute Link format enforcement: e.g. require [[kb-sync/daemons/manifest]]
@@ -221,6 +275,7 @@ for (const note of notesRegistry) {
     if (!isAbsoluteToVault) {
       validationErrors.push({
         file: note.path,
+        rule_id: 'ABSOLUTE_LINK_INVALID',
         rule: 'Absolute Link Enforcement',
         message: `Non-canonical local link format: '[[${link}]]'. Link must be written as an absolute path in the vault (e.g. [[kb-sync/your/target]]) to maintain namespace integrity`
       });
@@ -230,6 +285,7 @@ for (const note of notesRegistry) {
       if (rootFolder && !['kb-sync', 'toolforge', 'rewrite-docs', 'rewrite-mcp', 'cic-os', 'charlie-deep-research', 'cic-ingestion'].includes(rootFolder)) {
         validationErrors.push({
           file: note.path,
+          rule_id: 'ABSOLUTE_LINK_INVALID',
           rule: 'Absolute Link Enforcement',
           message: `Link '[[${link}]]' references an invalid or untracked repository boundary folder '${rootFolder}'`
         });
@@ -284,29 +340,52 @@ if (contractSchema) {
       for (const err of validate.errors) {
         validationErrors.push({
           file: 'Contract Schema Mapping',
+          rule_id: 'CONTRACT_SCHEMA_INVALID',
           rule: 'JSON Schema Validation',
           message: `${err.instancePath || ''} ${err.message} (Value: ${JSON.stringify(err.data)})`
         });
       }
     } else {
-      console.log(`${GREEN}✓ Notes registry matches toolforge-kbsync-contract.json schema perfectly.${RESET}`);
+      log(`${GREEN}✓ Notes registry matches toolforge-kbsync-contract.json schema perfectly.${RESET}`);
     }
   } catch (ajvLoadErr) {
     // AJV is optional/dev-only; we fall back gracefully to our hand-crafted, high-fidelity validations above.
-    console.log(`${CYAN}[Contract Validator] AJV validator skipped (using fallback static contract checking).${RESET}`);
+    log(`${CYAN}[Contract Validator] AJV validator skipped (using fallback static contract checking).${RESET}`);
   }
 }
 
 // ----------------------------------------------------
 // Step 4: Generate Verdict Report
 // ----------------------------------------------------
-console.log(`\n${BOLD}======================================================================${RESET}`);
-console.log(`${BOLD}                      VALIDATION VERDICT REPORT                      ${RESET}`);
-console.log(`${BOLD}======================================================================${RESET}`);
+const exitCode = validationErrors.length === 0 ? 0 : 1;
+const failedFilesSet = new Set(validationErrors.map(e => e.file));
+const failedCount = failedFilesSet.size;
+const passedCount = Math.max(0, scannedCount - failedCount);
+
+const jsonPayload = {
+  schema_version: "1.0",
+  validator_version: "1.1.0",
+  target_dir: targetDir,
+  exit_code: exitCode,
+  scanned_count: scannedCount,
+  passed_count: passedCount,
+  failed_count: failedCount,
+  warnings: [],
+  errors: validationErrors
+};
+
+if (isJsonMode) {
+  console.log(JSON.stringify(jsonPayload, null, 2));
+  process.exit(exitCode);
+}
+
+log(`\n${BOLD}======================================================================${RESET}`);
+log(`${BOLD}                      VALIDATION VERDICT REPORT                      ${RESET}`);
+log(`${BOLD}======================================================================${RESET}`);
 
 if (validationErrors.length === 0) {
-  console.log(`\n${BOLD}${GREEN}✔ STATUS: PASS${RESET}`);
-  console.log(`${GREEN}No contract violations, collisions, or link defects found. Clean state lock confirmed.${RESET}\n`);
+  log(`\n${BOLD}${GREEN}✔ STATUS: PASS${RESET}`);
+  log(`${GREEN}No contract violations, collisions, or link defects found. Clean state lock confirmed.${RESET}\n`);
   process.exit(0);
 } else {
   console.error(`\n${BOLD}${RED}✘ STATUS: FAIL${RESET}`);
