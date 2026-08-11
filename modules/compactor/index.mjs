@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
+import yaml from 'js-yaml';
 import { classifyFile } from './classifier.mjs';
 import { skeletonizeFile } from './skeletonizer.mjs';
 import { outlineFile } from './outliner.mjs';
@@ -11,6 +12,26 @@ import { loadNormalizedManifest } from './manifest-loader.mjs';
 import { countTokens } from './telemetry.mjs';
 import { replaceFileAtomically } from './atomic-file.mjs';
 import { runCompactCli } from './cli.mjs';
+
+/**
+ * Loads top-level skip_patterns from the shared global.yaml config, mirroring
+ * how core/flatten.sh derives SKIP_PATTERNS for the non-compaction path.
+ * Fail-soft: missing file, missing key, or parse error yields an empty list
+ * rather than blocking the build (classifier Stage 1 exclusion becomes a no-op,
+ * not a fatal error) -- callers running via CLI always pass --global-config
+ * when it matters, so this only degrades quietly for ad-hoc invocations.
+ */
+export function loadGlobalSkipPatterns(globalConfigPath) {
+  if (!globalConfigPath || !fs.existsSync(globalConfigPath)) {
+    return [];
+  }
+  try {
+    const parsed = yaml.load(fs.readFileSync(globalConfigPath, 'utf8'));
+    return Array.isArray(parsed && parsed.skip_patterns) ? parsed.skip_patterns : [];
+  } catch (_) {
+    return [];
+  }
+}
 
 async function writeChunk(stream, chunk) {
   if (!stream.write(chunk)) {
@@ -178,7 +199,7 @@ if (process.argv[1] && process.argv[1].endsWith('index.mjs')) {
       manifestPath: values['manifest'],
       outputPath: values['output'],
       configPath: values['config'],
-      skipPatterns: []
+      skipPatterns: loadGlobalSkipPatterns(values['global-config'])
     }).catch(err => {
       console.error(`Batch Pack Build Error: ${err.message}`);
       process.exit(1);

@@ -23,6 +23,8 @@
 - **Rollback-Safe File Replacement:** Replacement uses POSIX `fs.renameSync` where supported, falling back to copy/unlink with `.bak.<filename>.<timestamp>` rollback recovery on Windows file lock collisions.
 - **Control Flow & Pipeline Continuation:** In `core/flatten.sh`, when `USE_MANIFEST` is false, `index.mjs` generates `$FULL_PACK` directly. Script execution then continues seamlessly through caller tasks and downstream `core/chunk.sh` processing without calling `exit 0` prematurely.
 - **Fallback Contract:** If `index.mjs` exits non-zero or `COMPACTION_ENABLED=false`, `core/flatten.sh` falls back to standard `cat` concatenation without interrupting downstream pipeline execution.
+- **Config Override Contract:** `core/flatten.sh` resolves `COMPACTION_CONFIG` as `${COMPACTION_CONFIG:-$REPO_ROOT/configs/compaction.yaml}` -- an env override takes precedence over the default path, so tests/operators can point at an alternate or missing config without touching the repo's real `configs/compaction.yaml`.
+- **Global Skip Patterns:** `index.mjs`'s CLI entry now loads `skip_patterns` from `--global-config` via `loadGlobalSkipPatterns()` (fail-soft: missing file/key/parse error yields `[]`, not a hard failure) and threads them into `buildCompactedPack`, so classifier Stage 1 (Excluded) actually enforces the same lockfile/`node_modules`/binary exclusions as the non-compaction path.
 
 ---
 
@@ -276,7 +278,7 @@ Replace lines 214-239 in `core/flatten.sh`:
   FULL_PACK="$PACK_DIR/$PACK_FILE"
   log_info "Writing concatenated pack to: $FULL_PACK"
 
-  COMPACTION_CONFIG="$REPO_ROOT/configs/compaction.yaml"
+  COMPACTION_CONFIG="${COMPACTION_CONFIG:-$REPO_ROOT/configs/compaction.yaml}"
   USE_COMPACTION=false
 
   if [ "${COMPACTION_ENABLED:-true}" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
@@ -426,6 +428,11 @@ test('core/flatten.sh compactor execution failure falls back to standard pack an
     assert.ok(fs.existsSync(packPath), 'Fallback pack must be created despite compactor failure');
     const content = fs.readFileSync(packPath, 'utf8');
     assert.ok(content.includes('REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK'), 'Must contain standard flattener header');
+    // Discriminating check: the compacted-pack header is a superstring of the
+    // assertion above ('...KNOWLEDGE PACK (COMPACTED CONTEXT ENGINE)'), so a
+    // false 'success took over' regression would still pass the line above.
+    // Assert absence of the compacted-only marker to actually prove fallback ran.
+    assert.ok(!content.includes('COMPACTED CONTEXT ENGINE'), 'Must NOT contain compactor header -- proves fallback path actually ran, not success path');
 
     execFileSync('bash', [
       'core/chunk.sh',
