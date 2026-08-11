@@ -1,8 +1,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateAllowedDiff } from './normalized-diff-guard.mjs';
+
+/**
+ * Normalizes Windows drive letter and path separators.
+ * @param {string} p
+ * @returns {string}
+ */
+function normalizePath(p) {
+  let normalized = (p || '').replace(/\\/g, '/').replace(/\/+$/, '');
+  const driveMatch = normalized.match(/^([A-Za-z]):/);
+  if (driveMatch) {
+    normalized = driveMatch[1].toLowerCase() + normalized.slice(1);
+  }
+  return normalized;
+}
 
 const LOCK_FILENAME = '.gated-climb.lock';
 
@@ -383,6 +398,22 @@ export async function runGatedClimbRepair(options = {}) {
       try {
         fs.rmdirSync(path.join(baseDir, '.tmp-quarantine'));
       } catch {}
+
+      try {
+        const errorSummary = finalErrors.length > 0
+          ? finalErrors.map(e => e.message || e.rule || JSON.stringify(e)).join('; ')
+          : 'Retries expired without resolving all validation errors';
+        const targetPathStr = filesToQuarantine.size > 0
+          ? Array.from(filesToQuarantine).map(f => path.join('wiki', f)).join(', ')
+          : targetDir;
+        generateLessonFromFailure({
+          runId,
+          error: errorSummary,
+          targetPath: targetPathStr,
+          quarantinePath: finalQuarantinePath,
+          vaultRoot: baseDir
+        });
+      } catch {}
     }
   } finally {
     lock.release();
@@ -423,3 +454,88 @@ export async function runGatedClimbRepair(options = {}) {
     auditLogPath
   };
 }
+
+/**
+ * Generates a deterministic lesson document from an auto-repair failure.
+ * 
+ * @param {object} params
+ * @param {string} params.runId
+ * @param {string} params.error
+ * @param {string} params.targetPath
+ * @param {string} params.quarantinePath
+ * @param {string} [params.vaultRoot]
+ * @returns {string} Path to created/existing lesson file
+ */
+export function generateLessonFromFailure({ runId, error, targetPath, quarantinePath, vaultRoot = process.cwd() }) {
+  const dateStr = new Date().toISOString().split('T')[0];
+  const normalizedTarget = normalizePath(targetPath || 'kb-sync/wiki/Unknown');
+  const normalizedError = (error || 'Unknown repair error').trim();
+  const fingerprint = crypto.createHash('md5').update(`${normalizedTarget}\n${normalizedError}`).digest('hex').slice(0, 8);
+
+  const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
+  fs.mkdirSync(lessonsDir, { recursive: true });
+
+  const prefix = `unallowed-diff-${runId}-`;
+  const existingFiles = fs.readdirSync(lessonsDir).filter(f => f.startsWith(prefix) && f.endsWith('.md'));
+
+  let lessonPath;
+
+  if (existingFiles.length > 0) {
+    // Check if any existing file has identical error content
+    for (const file of existingFiles) {
+      const fullP = path.join(lessonsDir, file);
+      const content = fs.readFileSync(fullP, 'utf8');
+      if (content.includes(normalizedError)) {
+        return fullP; // Identical evidence -> skip write
+      }
+    }
+
+    // Determine primary base file (the one without -rev)
+    const baseFile = existingFiles.find(f => !/-rev\d+\.md$/.test(f)) || existingFiles[0];
+    const baseFileNoExt = baseFile.replace(/(-rev\d+)?\.md$/, '');
+
+    // Dynamic revision counter calculation
+    let maxRev = 1;
+    for (const file of existingFiles) {
+      const match = file.match(/-rev(\d+)\.md$/);
+      if (match) {
+        const rev = parseInt(match[1], 10);
+        if (rev > maxRev) maxRev = rev;
+      }
+    }
+    const nextRev = maxRev + 1;
+    lessonPath = path.join(lessonsDir, `${baseFileNoExt}-rev${nextRev}.md`);
+  } else {
+    const baseName = `unallowed-diff-${runId}-${fingerprint}`;
+    lessonPath = path.join(lessonsDir, `${baseName}.md`);
+  }
+
+  const content = `---
+title: "Unallowed Diff Failure - Run ${runId}"
+category: "lessons"
+status: "active"
+tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]
+---
+
+### Unallowed Diff Failure - Run ${runId}
+
+#### 1. Context & Symptom
+* **Target Subsystem / File:** [[${targetPath || 'kb-sync/wiki/Unknown'}]]
+* **Error Signature / Output:** \`${normalizedError}\`
+* **First Identified:** ${dateStr} via Log entry [[kb-sync/wiki/Log]]
+
+#### 2. Root Cause Analysis
+Diagnostic Log captured from auto-repair failure run ${runId}. Detailed root cause pending background LLM enrichment pass.
+
+#### 3. Resolution & Prevention
+Programmatic fix pending background LLM enrichment pass.
+
+#### 4. Source Citations
+* **Staged Snapshot:** \`${quarantinePath || '_quarantine/' + runId}\`
+* **Diagnostic Reference:** [[kb-sync/wiki/concepts/deterministic-sync-pipeline]]
+`;
+
+  fs.writeFileSync(lessonPath, content, 'utf8');
+  return lessonPath;
+}
+
