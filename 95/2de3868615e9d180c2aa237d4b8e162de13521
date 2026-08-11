@@ -1,0 +1,20 @@
+modules/compactor/skeletonizer.mjs
+  s_aa6a468218ebd1::t_145293d1dfe8a7 53-54,63-69
+  s_aa6a468218ebd1::t_036882a4f6b62c 70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "952de3868615e9d180c2aa237d4b8e162de13521",
+  "prompts": {},
+  "sessions": {
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
