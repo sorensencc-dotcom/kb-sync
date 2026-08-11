@@ -50,16 +50,8 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
       reportDiagnostics: true
     });
 
-    const sourceFile = ts.createSourceFile(
-      filePath,
-      rawContent,
-      ts.ScriptTarget.Latest,
-      true,
-      scriptKind
-    );
-
-    if (sourceFile.parseDiagnostics && sourceFile.parseDiagnostics.length > 0) {
-      const diag = sourceFile.parseDiagnostics[0];
+    if (transpileResult.diagnostics && transpileResult.diagnostics.length > 0) {
+      const diag = transpileResult.diagnostics[0];
       const text = typeof diag.messageText === 'string' ? diag.messageText : diag.messageText.messageText;
       return {
         content: rawContent,
@@ -67,6 +59,14 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
         warning: `Syntactic diagnostic error: "${text}"`
       };
     }
+
+    const sourceFile = ts.createSourceFile(
+      filePath,
+      rawContent,
+      ts.ScriptTarget.Latest,
+      true,
+      scriptKind
+    );
 
     const transformer = (context) => {
       return (rootNode) => {
