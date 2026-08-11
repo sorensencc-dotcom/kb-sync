@@ -1,7 +1,9 @@
 # Design Specification: Compacted Context Engine (Token-Aware Sync Pipeline)
 
 **Document Status:** Approved Design Specification  
-**Target Path:** `docs/superpowers/specs/2026-08-11-compacted-context-design.md`  
+**Target Paths:**  
+- `docs/meta/specs/2026-08-11-compacted-context-design.md` (Governed)  
+- `docs/superpowers/specs/2026-08-11-compacted-context-design.md`  
 **Engine Version:** v1.0.0  
 
 ---
@@ -17,78 +19,358 @@ Inspired by Memcode's context compaction pattern, the **Compacted Context Engine
 
 ---
 
-## 2. Architecture & Pipeline Integration
+## 2. Architecture & `core/flatten.sh` Integration
 
-The Compactor sits directly between manifest compilation and consolidated file writing in `core/flatten.sh`:
+The Compactor sits directly inside Stage 2 of `core/flatten.sh`. When compaction is enabled, `flatten.sh` delegates full batch pack compilation to `modules/compactor/index.mjs`:
+
+```bash
+# core/flatten.sh integration hook
+COMPACTION_CONFIG="$REPO_ROOT/configs/compaction.yaml"
+
+if [ "$COMPACTION_ENABLED" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
+  log_info "Compacted Context Engine enabled. Invoking batch compactor..."
+  
+  node "$REPO_ROOT/modules/compactor/index.mjs" \
+    --repo-root "$REPO_ROOT" \
+    --manifest "$TEMP_FILE_LIST" \
+    --output "$PACK_DIR/$PACK_FILE" \
+    --config "$COMPACTION_CONFIG" \
+    --global-config "$GLOBAL_CONFIG"
+    
+  log_info "Compacted knowledge pack generated successfully."
+  exit 0
+fi
+```
+
+### Pipeline Execution Diagram
 
 ```
-               [Repository File Manifest]
-                           │
-                           ▼
-             [modules/compactor/index.mjs]
-                           │
-    ┌──────────────────────┼──────────────────────┐
-    ▼                      ▼                      ▼
-[Git Status &      [Local Overrides &     [Config Rules &
- Git Log Check]    .compaction-overrides]  configs/compaction.yaml]
-    │                      │                      │
-    └──────────────────────┼──────────────────────┘
-                           │
-                           ▼
-               [Strict 10-Stage Classifier]
-   ┌───────────────┬───────┴───────┬───────────────┐
-   ▼               ▼               ▼               ▼
- [FULL]       [SKELETON]       [OUTLINE]      [EXCLUDED]
-   │               │               │               │
- (Original)  (TS Compiler API)  (Structure)   (Omit file)
-   │               │               │               │
-   └───────────────┼───────────────┘               │
-                   │                               │
-                   ▼                               ▼
-       [Add Provenance Banner]                  (Skip)
-                   │
-                   ▼
-         [Atomic Staging File]
-       (.nlm_pack/pack.tmp.txt)
-                   │
-                   ▼ (Verify Integrity, Hashes & Non-Zero Byte Count)
-      [Atomic Replacement / Rollback]
-         (repo_knowledge_pack.txt)
+                 [git grep File List Manifest]
+                              │
+                              ▼
+            [node modules/compactor/index.mjs]
+                              │
+    ┌─────────────────────────┼─────────────────────────┐
+    ▼                         ▼                         ▼
+[Git Status &         [Local Overrides &        [Config Rules &
+ Git Log Check]       .compaction-overrides]    configs/compaction.yaml]
+    │                         │                         │
+    └─────────────────────────┼─────────────────────────┘
+                              │
+                              ▼
+                 [10-Stage Classifier Pipeline]
+   ┌──────────────────┬───────┴───────┬──────────────────┐
+   ▼                  ▼               ▼                  ▼
+ [FULL]          [SKELETON]       [OUTLINE]         [EXCLUDED]
+   │                  │               │                  │
+ (Original)     (TS Compiler API) (Structure)      (Omit file)
+   │                  │               │                  │
+   └──────────────────┼───────────────┘                  │
+                      │                                  │
+                      ▼                                  ▼
+          [Add Provenance Banner]                     (Skip)
+                      │
+                      ▼
+            [Atomic Staging File]
+          (.nlm_pack/pack.tmp.txt)
+                      │
+                      ▼ (Verify Integrity, Hashes & Non-Zero Byte Count)
+         [Atomic Replacement / Rollback]
+            (repo_knowledge_pack.txt)
 ```
 
 ---
 
-## 3. 4-State Compaction Model & Decision Hierarchy
+## 3. Schemas & Configuration Specs
 
-### 3.1 Compaction States
+### 3.1 Policy Configuration Schema (`configs/compaction.yaml`)
 
-| Compaction State | Target File Types | Description | Default Policy |
-| :--- | :--- | :--- | :--- |
-| **`Full`** | Active/dirty code, high-risk paths, overrides, parser fallbacks | Preserves the entire file byte-for-byte. | Default state for all files unless explicitly qualified |
-| **`Skeleton`** | Clean, untouched `.ts`, `.tsx`, `.js`, `.jsx`, `.mjs`, `.cjs` | Strips function/method bodies (`{ ... }`), keeping imports, exports, types, signatures, and JSDocs. | Enabled for clean stable JS/TS paths |
-| **`Outline`** | `.md`, `.json` (allowlist only) | Summarizes headings or top-level keys. | Restricted strictly to `.md` and `.json`; default is `Full` |
-| **`Excluded`** | Vendored code, build artifacts, lockfiles, binaries | Omitted completely from the pack. | Controlled by `skip_patterns` |
+```yaml
+# configs/compaction.yaml
+compaction:
+  # Global compaction toggle. When false, all non-excluded files default to Full context.
+  enabled: true
+  
+  # Git modification recency window in days. Files modified within this window resolve to Full.
+  git_window_days: 14
+  
+  # Default state for files not explicitly matched by prefix rules (Full | Skeleton | Outline | Excluded)
+  default_level: "Full"
+  
+  # High-risk path prefixes. Files matching these prefixes always force Full context.
+  high_risk_prefixes:
+    - "auth/"
+    - "db/migrations/"
+    - "deploy/"
+    - ".github/workflows/"
+    - "configs/"
 
-### 3.2 Strict Classifier Decision Hierarchy
+  # Path rules (evaluated top-to-bottom; first match wins for clean stable files)
+  rules:
+    - prefix: "modules/obsidian/"
+      level: "Full"          # Domain logic; keep full
+    - prefix: "core/"
+      level: "Skeleton"      # Pipeline engines; skeletonize
+    - prefix: "modules/compactor/"
+      level: "Skeleton"      # Compactor itself; skeletonize
+    - prefix: "tests/"
+      level: "Outline"       # Test names and suites outlined (Markdown/JSON only)
+    - prefix: "wiki/"
+      level: "Full"          # Knowledge nodes; keep full
+```
 
-File classification follows a strict, non-ambiguous 10-stage priority hierarchy:
+### 3.2 Transient Override Schema (`.compaction-overrides.yaml`)
 
-1. **Excluded Skip Patterns Check:** Matches `skip_patterns` (always outranks dirty files to exclude lockfiles/node_modules).
-2. **Global Compaction Disabled Check:** If `compaction.enabled: false`, non-excluded files default to `Full`.
-3. **Fail-Closed Overrides Error Check:** If `.compaction-overrides.yaml` is malformed, force `Full`.
-4. **Fail-Closed Git Inspection Check:** If Git status or log commands fail, force `Full`.
-5. **Local Dirty / Untracked / Staged Check:** Files with uncommitted Git changes force `Full`.
-6. **Active Local Transient Override Check:** Non-expired entries in `.compaction-overrides.yaml` force `Full`.
-7. **High-Risk Path Check:** Files in `auth/`, `db/migrations/`, `deploy/`, `.github/workflows/`, `configs/` force `Full`.
-8. **Bulk Git Recency Check:** Files modified within `git_window_days` (default: 14 days) force `Full`.
-9. **Explicit Prefix Rule Match:** Matches `configs/compaction.yaml` rules (first match wins for clean stable files).
-10. **Default Policy Fallback:** Unclassified files default to `compaction.default_level` (`Full`).
+```yaml
+# .compaction-overrides.yaml (Git-ignored)
+# Managed via npm run kb:compact -- --restore <path>
+overrides:
+  - path: "core/dag.mjs"
+    created_at: "2026-08-11T17:50:00Z"
+    expire_at: "2026-08-14T17:50:00Z"
+    reason: "Requested by LLM session for structural validation debug"
+```
 
 ---
 
-## 4. AST Skeletonizer Engine (`modules/compactor/skeletonizer.mjs`)
+## 4. 4-State Compaction Model & Classifier Engine (`modules/compactor/classifier.mjs`)
 
-The skeletonizer uses the official `typescript` Compiler API (pinned to `"typescript": "5.4.5"`) to safely parse ASTs and replace function bodies with explicit non-executable throw statements.
+```javascript
+import { normalizeRepoPath, matchGlobPattern } from './path-utils.mjs';
+
+const JS_TS_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']);
+const OUTLINE_EXTENSIONS = new Set(['.md', '.json']);
+
+function isJsTsFile(filePath) {
+  const ext = filePath.slice(((filePath.lastIndexOf(".") - 1) >>> 0) + 2).toLowerCase();
+  return JS_TS_EXTENSIONS.has('.' + ext);
+}
+
+function isOutlineAllowedFile(filePath) {
+  const ext = filePath.slice(((filePath.lastIndexOf(".") - 1) >>> 0) + 2).toLowerCase();
+  return OUTLINE_EXTENSIONS.has('.' + ext);
+}
+
+function matchesPrefixBoundary(filePath, prefix) {
+  if (filePath === prefix) return true;
+  if (filePath.startsWith(prefix.endsWith('/') ? prefix : prefix + '/')) return true;
+  return false;
+}
+
+export function classifyFile({ repoRoot, rawPath, config, overridesResult, dirtyFilesSet, recentFilesSet, skipPatterns }) {
+  const relativePath = normalizeRepoPath(rawPath, repoRoot);
+
+  // 1. Excluded Skip Patterns Check
+  for (const pattern of skipPatterns || []) {
+    if (matchGlobPattern(relativePath, pattern)) {
+      return { state: 'Excluded', reason: `Matched exclusion pattern (${pattern})` };
+    }
+  }
+
+  // 2. Global Compaction Disabled Check
+  if (!config.compaction.enabled) {
+    return { state: 'Full', reason: 'Global compaction disabled (compaction.enabled = false)' };
+  }
+
+  // 3. Fail-Closed Overrides Error Check
+  if (overridesResult.error) {
+    return { state: 'Full', reason: `Fail-closed: Overrides error (${overridesResult.error})` };
+  }
+
+  // 4. Fail-Closed Git Inspection Check
+  if (dirtyFilesSet === null || recentFilesSet === null) {
+    return { state: 'Full', reason: 'Fail-closed: Git status or log inspection failed' };
+  }
+
+  // 5. Local Dirty / Untracked / Staged Check
+  if (dirtyFilesSet.has(relativePath)) {
+    return { state: 'Full', reason: 'Uncommitted local modifications (Git dirty state)' };
+  }
+
+  // 6. Active Transient Local Override Check
+  if (overridesResult.map.has(relativePath)) {
+    return { state: 'Full', reason: 'Active local override in .compaction-overrides.yaml' };
+  }
+
+  // 7. High-Risk Path Check
+  for (const prefix of config.compaction.high_risk_prefixes || []) {
+    if (matchesPrefixBoundary(relativePath, prefix)) {
+      return { state: 'Full', reason: `High-risk path match (${prefix})` };
+    }
+  }
+
+  // 8. Bulk Git Recency Check
+  if (recentFilesSet.has(relativePath)) {
+    return { state: 'Full', reason: `Modified within recent ${config.compaction.git_window_days}-day Git window` };
+  }
+
+  // 9. Explicit Configured Rule Match (First match wins)
+  for (const rule of config.compaction.rules || []) {
+    if (matchesPrefixBoundary(relativePath, rule.prefix)) {
+      if (rule.level === 'Skeleton') {
+        if (isJsTsFile(relativePath)) {
+          return { state: 'Skeleton', reason: `Clean stable file matching Skeleton rule (${rule.prefix})` };
+        }
+        return { state: 'Full', reason: `Skeleton rule matched but unsupported file extension` };
+      }
+      if (rule.level === 'Outline') {
+        if (isOutlineAllowedFile(relativePath)) {
+          return { state: 'Outline', reason: `Clean stable file matching Outline rule (${rule.prefix})` };
+        }
+        return { state: 'Full', reason: `Outline rule matched but file type not in Outline allowlist` };
+      }
+      if (rule.level === 'Full') {
+        return { state: 'Full', reason: `Configured Full rule match (${rule.prefix})` };
+      }
+    }
+  }
+
+  // 10. Default Policy Fallback
+  return { state: config.compaction.default_level, reason: `Default policy fallback (${config.compaction.default_level})` };
+}
+```
+
+---
+
+## 5. Config Loader & Overrides Manager
+
+### 5.1 `modules/compactor/config-loader.mjs`
+
+```javascript
+import fs from 'node:fs';
+import yaml from 'js-yaml';
+
+const VALID_STATES = new Set(['Full', 'Skeleton', 'Outline', 'Excluded']);
+
+export function loadCompactionConfig(configPath) {
+  if (!fs.existsSync(configPath)) {
+    throw new Error(`Configuration Error: File not found at "${configPath}"`);
+  }
+
+  const rawText = fs.readFileSync(configPath, 'utf8');
+  let rawDoc;
+  try {
+    rawDoc = yaml.load(rawText);
+  } catch (err) {
+    throw new Error(`YAML Parsing Error in "${configPath}": ${err.message}`);
+  }
+
+  if (!rawDoc || typeof rawDoc !== 'object' || !rawDoc.compaction) {
+    throw new Error('Configuration Governance Error: Missing root "compaction" key');
+  }
+
+  const c = rawDoc.compaction;
+  if (typeof c.enabled !== 'boolean') {
+    throw new Error('Configuration Governance Error: "compaction.enabled" must be a boolean');
+  }
+
+  if (typeof c.git_window_days !== 'number' || c.git_window_days < 0 || !Number.isInteger(c.git_window_days)) {
+    throw new Error('Configuration Governance Error: "compaction.git_window_days" must be a non-negative integer');
+  }
+
+  if (!VALID_STATES.has(c.default_level)) {
+    throw new Error(`Configuration Governance Error: Invalid "compaction.default_level": "${c.default_level}"`);
+  }
+
+  const highRiskPrefixes = (Array.isArray(c.high_risk_prefixes) ? c.high_risk_prefixes : []).map(p => {
+    if (typeof p !== 'string') throw new Error('Invalid high_risk_prefix item');
+    return p.replace(/\\/g, '/').replace(/^\.\//, '');
+  });
+
+  const rules = (Array.isArray(c.rules) ? c.rules : []).map(r => {
+    if (!r || typeof r.prefix !== 'string' || !VALID_STATES.has(r.level)) {
+      throw new Error(`Invalid compaction rule specification: ${JSON.stringify(r)}`);
+    }
+    return {
+      prefix: r.prefix.replace(/\\/g, '/').replace(/^\.\//, ''),
+      level: r.level
+    };
+  });
+
+  return {
+    compaction: {
+      enabled: c.enabled,
+      git_window_days: c.git_window_days,
+      default_level: c.default_level,
+      high_risk_prefixes: highRiskPrefixes,
+      rules
+    }
+  };
+}
+```
+
+### 5.2 `modules/compactor/overrides-manager.mjs`
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+import yaml from 'js-yaml';
+import { normalizeRepoPath } from './path-utils.mjs';
+
+const OVERRIDES_FILE = '.compaction-overrides.yaml';
+
+export function loadActiveOverrides(repoRoot) {
+  const filePath = path.join(repoRoot, OVERRIDES_FILE);
+  if (!fs.existsSync(filePath)) return { map: new Map(), error: null };
+
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    const doc = yaml.load(raw);
+    if (!doc || typeof doc !== 'object' || !Array.isArray(doc.overrides)) {
+      return { map: new Map(), error: 'Malformed .compaction-overrides.yaml schema' };
+    }
+
+    const activeMap = new Map();
+    const now = Date.now();
+
+    for (const entry of doc.overrides) {
+      if (!entry || typeof entry.path !== 'string') continue;
+
+      let normPath;
+      try {
+        normPath = normalizeRepoPath(entry.path, repoRoot);
+      } catch (err) {
+        return { map: new Map(), error: `Invalid path in override file: ${entry.path}` };
+      }
+      
+      if (entry.expire_at) {
+        const expireMs = Date.parse(entry.expire_at);
+        if (!Number.isFinite(expireMs)) {
+          return { map: new Map(), error: `Invalid expire_at timestamp for path ${normPath}` };
+        }
+        if (expireMs <= now) continue;
+      }
+
+      activeMap.set(normPath, entry);
+    }
+    return { map: activeMap, error: null };
+  } catch (err) {
+    return { map: new Map(), error: `Failed to load overrides: ${err.message}` };
+  }
+}
+
+export function saveOverrides(repoRoot, overridesMap) {
+  const filePath = path.join(repoRoot, OVERRIDES_FILE);
+  const tmpPath = `${filePath}.tmp.${Date.now()}`;
+  
+  const doc = { overrides: Array.from(overridesMap.values()) };
+  const yamlStr = yaml.dump(doc);
+
+  fs.writeFileSync(tmpPath, yamlStr, 'utf8');
+  try {
+    fs.renameSync(tmpPath, filePath);
+  } catch (err) {
+    fs.copyFileSync(tmpPath, filePath);
+    fs.unlinkSync(tmpPath);
+  }
+}
+```
+
+---
+
+## 6. AST Skeletonizer Engine (`modules/compactor/skeletonizer.mjs`)
+
+Uses TypeScript Public API (`ts.transpileModule` with `reportDiagnostics: true`) to safely check syntax diagnostics before AST transformation, avoiding internal/private compiler properties.
 
 ```javascript
 import fs from 'node:fs';
@@ -136,24 +418,30 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
 
   try {
     const scriptKind = getScriptKind(filePath);
-    const sourceFile = ts.createSourceFile(
-      filePath,
-      rawContent,
-      ts.ScriptTarget.Latest,
-      true, // Preserve trivia (comments / JSDoc)
-      scriptKind
-    );
 
-    if (sourceFile.parseDiagnostics && sourceFile.parseDiagnostics.length > 0) {
-      const diag = sourceFile.parseDiagnostics[0];
-      const pos = sourceFile.getLineAndCharacterOfPosition(diag.start);
+    // Fail-Closed Check via Public Compiler API
+    const transpileResult = ts.transpileModule(rawContent, {
+      compilerOptions: { target: ts.ScriptTarget.Latest, jsx: ts.JsxEmit.Preserve },
+      reportDiagnostics: true
+    });
+
+    if (transpileResult.diagnostics && transpileResult.diagnostics.length > 0) {
+      const diag = transpileResult.diagnostics[0];
       const text = typeof diag.messageText === 'string' ? diag.messageText : diag.messageText.messageText;
       return {
         content: rawContent,
         state: 'Full',
-        warning: `Parse diagnostic error: "${text}" at line ${pos.line + 1}:${pos.character + 1}`
+        warning: `Syntactic diagnostic error: "${text}"`
       };
     }
+
+    const sourceFile = ts.createSourceFile(
+      filePath,
+      rawContent,
+      ts.ScriptTarget.Latest,
+      true,
+      scriptKind
+    );
 
     const transformer = (context) => {
       return (rootNode) => {
@@ -162,6 +450,13 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
             return ts.factory.updateFunctionDeclaration(
               node, node.modifiers, node.asteriskToken, node.name,
               node.typeParameters, node.parameters, node.type,
+              createPlaceholderBlock()
+            );
+          }
+          if (ts.isFunctionExpression(node) && node.body) {
+            return ts.factory.updateFunctionExpression(
+              node, node.modifiers, node.name, node.typeParameters,
+              node.parameters, node.type,
               createPlaceholderBlock()
             );
           }
@@ -248,131 +543,290 @@ function generateProvenanceBanner({ relativePath, contentHash, state, reason, co
 
 ---
 
-## 5. Security & Canonical Path Boundary (`modules/compactor/path-utils.mjs`)
+## 7. Token Telemetry & Process-Lifetime Encoder (`modules/compactor/telemetry.mjs`)
 
 ```javascript
-import path from 'node:path';
-import fs from 'node:fs';
+import { getEncoding } from 'js-tiktoken';
 
-export function normalizeRepoPath(inputPath, repoRoot) {
-  if (!inputPath || typeof inputPath !== 'string') {
-    throw new Error('Invalid path input: Path must be a non-empty string');
-  }
+// Singleton instance managed across process lifetime
+let globalTokenizer = null;
 
-  const resolvedRepoRoot = path.resolve(repoRoot);
-  const absolutePath = path.isAbsolute(inputPath) 
-    ? path.resolve(inputPath) 
-    : path.resolve(resolvedRepoRoot, inputPath);
-
-  const relative = path.relative(resolvedRepoRoot, absolutePath);
-
-  if (relative === '' || relative === '.') {
-    throw new Error(`Security Exception: Cannot target repository root directory: "${inputPath}"`);
-  }
-
-  if (relative.startsWith('..') || path.isAbsolute(relative)) {
-    throw new Error(`Security Exception: Path traversal outside repository root: "${inputPath}"`);
-  }
-
-  if (fs.existsSync(absolutePath)) {
-    const realPath = fs.realpathSync(absolutePath);
-    const realRelative = path.relative(resolvedRepoRoot, realPath);
-    if (realRelative.startsWith('..') || path.isAbsolute(realRelative)) {
-      throw new Error(`Security Exception: Symbolic link escapes repository root: "${inputPath}" -> "${realPath}"`);
-    }
-  }
-
-  return relative.replace(/\\/g, '/');
-}
-```
-
----
-
-## 6. Windows-Safe Atomic Replacement (`modules/compactor/atomic-file.mjs`)
-
-```javascript
-import fs from 'node:fs';
-import path from 'node:path';
-
-export function replaceFileAtomically(srcPath, destPath) {
-  const dir = path.dirname(destPath);
-  const bakPath = path.join(dir, `.bak.${path.basename(destPath)}.${Date.now()}`);
-  let hasBackup = false;
-
-  try {
-    if (fs.existsSync(destPath)) {
-      fs.copyFileSync(destPath, bakPath);
-      hasBackup = true;
-    }
-
+function getTokenizer() {
+  if (!globalTokenizer) {
     try {
-      fs.renameSync(srcPath, destPath);
+      globalTokenizer = getEncoding('cl100k_base');
+    } catch (_) {
+      globalTokenizer = null;
+    }
+  }
+  return globalTokenizer;
+}
+
+export function countTokens(text) {
+  if (!text) return 0;
+  const tokenizer = getTokenizer();
+  if (tokenizer) {
+    try {
+      return tokenizer.encode(text).length;
+    } catch (_) {}
+  }
+  return Math.ceil(text.length / 4);
+}
+```
+
+---
+
+## 8. CLI Command Interface (`modules/compactor/cli.mjs`)
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+import { loadActiveOverrides, saveOverrides } from './overrides-manager.mjs';
+import { normalizeRepoPath } from './path-utils.mjs';
+
+export async function runCompactCli(args, repoRoot) {
+  const command = args[0];
+
+  switch (command) {
+    case 'inspect': {
+      const statusFile = path.join(repoRoot, '.sync-status.json');
+      if (!fs.existsSync(statusFile)) {
+        console.log('No sync status available. Run kb-sync first.');
+        return;
+      }
+      const status = JSON.parse(fs.readFileSync(statusFile, 'utf8'));
+      console.log('=== COMPACTED CONTEXT ENGINE STATUS ===');
+      console.dir(status.compaction_stats || {}, { depth: null });
+      break;
+    }
+
+    case 'restore': {
+      const targetPath = args[1];
+      if (!targetPath) {
+        console.error('Error: Missing target path. Usage: npm run kb:compact -- --restore <path>');
+        process.exit(1);
+      }
+
+      const overridesResult = loadActiveOverrides(repoRoot);
+      if (overridesResult.error) {
+        console.error(`Error: Refusing to update overrides due to schema error: ${overridesResult.error}`);
+        process.exit(1);
+      }
+
+      const normPath = normalizeRepoPath(targetPath, repoRoot);
+      const expireAt = new Date(Date.now() + 3 * 86400 * 1000).toISOString();
+      
+      overridesResult.map.set(normPath, {
+        path: normPath,
+        created_at: new Date().toISOString(),
+        expire_at: expireAt,
+        reason: 'Manual restore via CLI subcommand'
+      });
+
+      saveOverrides(repoRoot, overridesResult.map);
+      console.log(`[COMPACTOR] Successfully restored "${normPath}" to FULL context (Active until ${expireAt}).`);
+      break;
+    }
+
+    case 'dump': {
+      const targetPath = args[1];
+      if (!targetPath) {
+        console.error('Error: Missing target path. Usage: npm run kb:compact -- --dump <path>');
+        process.exit(1);
+      }
+      const normPath = normalizeRepoPath(targetPath, repoRoot);
+      const fullPath = path.join(repoRoot, normPath);
+      if (!fs.existsSync(fullPath)) {
+        console.error(`Error: File not found: ${normPath}`);
+        process.exit(1);
+      }
+      process.stdout.write(fs.readFileSync(fullPath, 'utf8'));
+      break;
+    }
+
+    case 'prune-overrides': {
+      const overridesResult = loadActiveOverrides(repoRoot);
+      if (overridesResult.error) {
+        console.error(`Error: Cannot prune overrides: ${overridesResult.error}`);
+        process.exit(1);
+      }
+      saveOverrides(repoRoot, overridesResult.map);
+      console.log('[COMPACTOR] Expired overrides pruned successfully.');
+      break;
+    }
+
+    default:
+      console.log('Usage: npm run kb:compact -- <inspect | --restore <path> | --dump <path> | prune-overrides>');
+  }
+}
+```
+
+---
+
+## 9. Batch Pack Builder (`modules/compactor/index.mjs`)
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+import { classifyFile } from './classifier.mjs';
+import { skeletonizeFile } from './skeletonizer.mjs';
+import { outlineFile } from './outliner.mjs';
+import { getGitDirtyFiles, getBulkRecentlyModifiedFiles, getFileContentHash } from './git-inspector.mjs';
+import { loadActiveOverrides } from './overrides-manager.mjs';
+import { loadCompactionConfig } from './config-loader.mjs';
+import { loadNormalizedManifest } from './manifest-loader.mjs';
+import { countTokens } from './telemetry.mjs';
+import { replaceFileAtomically } from './atomic-file.mjs';
+
+async function writeChunk(stream, chunk) {
+  if (!stream.write(chunk)) {
+    await new Promise((resolve, reject) => {
+      const onDrain = () => { stream.off('error', onError); resolve(); };
+      const onError = (err) => { stream.off('drain', onDrain); reject(err); };
+      stream.once('drain', onDrain);
+      stream.once('error', onError);
+    });
+  }
+}
+
+export async function buildCompactedPack({ repoRoot, manifestPath, outputPath, configPath, skipPatterns }) {
+  const config = loadCompactionConfig(configPath);
+  const manifestFiles = loadNormalizedManifest(manifestPath, repoRoot);
+
+  const dirtyFilesSet = getGitDirtyFiles(repoRoot);
+  const recentFilesSet = getBulkRecentlyModifiedFiles(repoRoot, config.compaction.git_window_days);
+  const overridesResult = loadActiveOverrides(repoRoot);
+
+  const tmpOutputPath = `${outputPath}.tmp.${Date.now()}`;
+  const outStream = fs.createWriteStream(tmpOutputPath, { encoding: 'utf8' });
+
+  let totalRawBytes = 0;
+  let totalCompactedBytes = 0;
+  let totalRawTokens = 0;
+  let totalCompactedTokens = 0;
+
+  const stateCounts = { Full: 0, Skeleton: 0, Outline: 0, Excluded: 0 };
+  const compactorWarnings = [];
+
+  const headerText = [
+    "================================================================================",
+    "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK (COMPACTED CONTEXT ENGINE)",
+    `Generated: ${new Date().toISOString()}`,
+    "================================================================================\n\n"
+  ].join('\n');
+
+  await writeChunk(outStream, headerText);
+  const headerBytes = Buffer.byteLength(headerText, 'utf8');
+  totalCompactedBytes += headerBytes;
+  totalCompactedTokens += countTokens(headerText);
+
+  for (const relativePath of manifestFiles) {
+    const classification = classifyFile({
+      repoRoot,
+      rawPath: relativePath,
+      config,
+      overridesResult,
+      dirtyFilesSet,
+      recentFilesSet,
+      skipPatterns
+    });
+
+    if (classification.state === 'Excluded') {
+      stateCounts.Excluded++;
+      continue;
+    }
+
+    const fullFilePath = path.join(repoRoot, relativePath);
+    let rawContent;
+    try {
+      rawContent = fs.readFileSync(fullFilePath, 'utf8');
     } catch (err) {
-      fs.copyFileSync(srcPath, destPath);
-      fs.unlinkSync(srcPath);
+      compactorWarnings.push({ file: relativePath, requestedState: classification.state, finalState: 'Excluded', reason: `Read failed: ${err.message}` });
+      continue;
     }
 
-    if (hasBackup && fs.existsSync(bakPath)) {
-      fs.unlinkSync(bakPath);
+    const rawBytes = Buffer.byteLength(rawContent, 'utf8');
+    const rawTokens = countTokens(rawContent);
+    totalRawBytes += rawBytes;
+    totalRawTokens += rawTokens;
+
+    let finalContent = rawContent;
+    let finalState = classification.state;
+    const contentHash = getFileContentHash(fullFilePath);
+
+    if (classification.state === 'Skeleton') {
+      const res = skeletonizeFile(fullFilePath, relativePath, contentHash, classification.reason);
+      finalContent = res.content;
+      finalState = res.state;
+      if (res.warning) {
+        compactorWarnings.push({ file: relativePath, requestedState: 'Skeleton', finalState: res.state, reason: res.warning });
+      }
+    } else if (classification.state === 'Outline') {
+      const res = outlineFile(fullFilePath, relativePath, contentHash, classification.reason);
+      finalContent = res.content;
+      finalState = res.state;
+      if (res.warning) {
+        compactorWarnings.push({ file: relativePath, requestedState: 'Outline', finalState: res.state, reason: res.warning });
+      }
     }
-  } catch (err) {
-    if (hasBackup && fs.existsSync(bakPath)) {
-      fs.copyFileSync(bakPath, destPath);
-      fs.unlinkSync(bakPath);
-    }
-    if (fs.existsSync(srcPath)) fs.unlinkSync(srcPath);
-    throw new Error(`Atomic File Replacement Failure for "${destPath}": ${err.message}`);
+
+    stateCounts[finalState]++;
+
+    const payloadBlock = `\n--- START FILE: ${relativePath} ---\n${finalContent}\n--- END FILE: ${relativePath} ---\n`;
+    const finalBytes = Buffer.byteLength(payloadBlock, 'utf8');
+    const finalTokens = countTokens(payloadBlock);
+    
+    totalCompactedBytes += finalBytes;
+    totalCompactedTokens += finalTokens;
+
+    await writeChunk(outStream, payloadBlock);
   }
+
+  await new Promise((resolve, reject) => {
+    outStream.on('error', reject);
+    outStream.end(resolve);
+  });
+
+  const stats = {
+    total_raw_size_bytes: totalRawBytes,
+    compacted_size_bytes: totalCompactedBytes,
+    total_raw_tokens: totalRawTokens,
+    compacted_tokens: totalCompactedTokens,
+    byte_reduction_percentage: totalRawBytes > 0 ? parseFloat(((1 - totalCompactedBytes / totalRawBytes) * 100).toFixed(2)) : 0,
+    token_reduction_percentage: totalRawTokens > 0 ? parseFloat(((1 - totalCompactedTokens / totalRawTokens) * 100).toFixed(2)) : 0,
+    state_counts: stateCounts,
+    warnings_count: compactorWarnings.length
+  };
+
+  replaceFileAtomically(tmpOutputPath, outputPath);
+  updateSyncStatusAtomically(repoRoot, stats, compactorWarnings);
+  return stats;
+}
+
+function updateSyncStatusAtomically(repoRoot, stats, warnings) {
+  const statusFile = path.join(repoRoot, '.sync-status.json');
+  const tmpStatusFile = `${statusFile}.tmp.${Date.now()}`;
+  let status = {};
+  if (fs.existsSync(statusFile)) {
+    try { status = JSON.parse(fs.readFileSync(statusFile, 'utf8')); } catch (_) {}
+  }
+
+  status.compaction_stats = stats;
+  status.compactor_warnings = warnings;
+  
+  fs.writeFileSync(tmpStatusFile, JSON.stringify(status, null, 2), 'utf8');
+  replaceFileAtomically(tmpStatusFile, statusFile);
 }
 ```
 
 ---
 
-## 7. Provenance & CLI Subcommand Suite (`modules/compactor/cli.mjs`)
+## 10. Verification Plan & Test Suite Matrix
 
-Command interface exposed via `npm run kb:compact -- <subcommand>`:
-
-- `inspect`: Displays latest compaction statistics from `.sync-status.json`.
-- `restore <path>`: Writes a transient override entry to `.compaction-overrides.yaml` forcing `Full` context for 3 days.
-- `dump <path>`: Prints the raw, uncompacted file directly to stdout for instant reference.
-- `prune-overrides`: Cleans expired override entries safely.
-
----
-
-## 8. Telemetry Metrics & Status Schema
-
-Telemetry is recorded in `.sync-status.json` under `compaction_stats`:
-
-```json
-{
-  "compaction_stats": {
-    "total_raw_size_bytes": 2170779,
-    "compacted_size_bytes": 845000,
-    "total_raw_tokens": 542694,
-    "compacted_tokens": 211250,
-    "byte_reduction_percentage": 61.07,
-    "token_reduction_percentage": 61.07,
-    "state_counts": {
-      "Full": 44,
-      "Skeleton": 182,
-      "Outline": 12,
-      "Excluded": 35
-    },
-    "warnings_count": 0
-  }
-}
-```
-
----
-
-## 9. Verification Plan & Test Matrix
-
-The engine requires automated vitest coverage before deployment:
-
-| Test Module | Test Coverage Required |
-| :--- | :--- |
-| `tests/skeletonizer.test.mjs` | Functions, methods, getters/setters, arrow functions, decorators, generics, JSX/TSX, fail-closed fallback |
-| `tests/classifier.test.mjs` | 10-stage resolution hierarchy, dirty status, override precedence, recency window, high-risk path rules |
-| `tests/path-utils.test.mjs` | Path traversal rejection, POSIX slashes, symlink escaping, Windows drive root checks |
-| `tests/atomic-file.test.mjs` | Atomic file promotion, backup restoration on failure, Windows file lock handling |
-| `tests/integration.test.mjs` | Full `buildCompactedPack` end-to-end pass, pack manifest verification, `.sync-status.json` generation |
+| Test Suite | File Path | Scope & Assertions |
+| :--- | :--- | :--- |
+| **Skeletonizer Unit Tests** | `tests/skeletonizer.test.mjs` | Function declarations, FunctionExpression (`const foo = function()`), ArrowFunctions, MethodDeclarations, constructors, getters/setters, decorators, generics, JSX/TSX, `ts.transpileModule` fail-closed fallback |
+| **Classifier Unit Tests** | `tests/classifier.test.mjs` | 10-stage hierarchy resolution, dirty Git workspace check, override precedence, recency window, high-risk path rules, default fallback |
+| **Path Security Tests** | `tests/path-utils.test.mjs` | Path traversal (`../`), POSIX slash normalization, symlink escaping verification, root target rejection |
+| **Atomic File Replacement Tests** | `tests/atomic-file.test.mjs` | Atomic file promotion, `.bak` restoration on failed replace, Windows lock collision recovery |
+| **End-to-End Integration Tests** | `tests/integration.test.mjs` | Full `buildCompactedPack` pass, `.sync-status.json` atomic update, telemetry calculations, `core/flatten.sh` execution |
