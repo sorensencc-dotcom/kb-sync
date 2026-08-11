@@ -1,40 +1,40 @@
-# Lessons Learned Sub-Namespace Implementation Plan
+# Lessons Learned Sub-Namespace Implementation Plan (Revised)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Implement the `lessons` sub-namespace across `kb-sync` configuration, page templates, contract validation, and auto-repair/enrichment loops to capture and reuse failure patterns.
+**Goal:** Implement the `lessons` sub-namespace across `kb-sync` configuration, page templates, contract validation, auto-repair failure interception, and background LLM enrichment loops.
 
-**Architecture:** Hybrid deterministic file creation in `gated-climb-repair.mjs` upon auto-repair failure, combined with background LLM enrichment in `synthesize-wiki.ts` for notes tagged `needs-enrichment`. Contract schemas and boundary sets across validation and synthesis modules are updated to recognize `lessons` as a first-class wiki category.
+**Architecture:** Hybrid deterministic creation in `gated-climb-repair.mjs` upon auto-repair failure (producing `wiki/lessons/unallowed-diff-<run_id>-<fingerprint>.md`), combined with background LLM enrichment in `synthesize-wiki.ts` for notes tagged `needs-enrichment`. Contract schemas, path models (`kb-sync/lessons/...`), and trust boundaries across validation and synthesis modules are updated to treat `lessons` as a first-class wiki category.
 
 **Tech Stack:** TypeScript / Node.js ES Modules (mjs), Obsidian Vault Schema, JSON Schema (draft-07), Vitest / Node test runner.
 
 ## Global Constraints
 
-- **Vault-Absolute Link Format:** All internal links in lesson pages must be formatted as vault-absolute links, e.g. `[[kb-sync/lessons/unallowed-diff-<run_id>]]` or `[[kb-sync/wiki/PathToEntity]]`.
-- **Allowed Categories:** `"lessons"` must be included in `ALLOWED_CATEGORIES` in `validate-contract.mjs`, `normalized-diff-guard.mjs`, and `synthesize-wiki.ts`.
-- **Allowed Boundaries:** `"lessons/"` and `"kb-sync/lessons/"` must be included in `ALLOWED_BOUNDARIES` in `synthesize-wiki.ts`.
-- **Quarantine Preservation:** Raw failure artifact bundles must remain in `_quarantine/<run_id>/` while deterministic lesson notes are generated in `wiki/lessons/`.
+- **Canonical Path Model:** Disk path: `wiki/lessons/<FileName>.md`; Vault relative: `lessons/<FileName>.md`; Link format: `[[kb-sync/lessons/<FileNameWithoutExt>]]`.
+- **Allowed Categories & Boundaries:** `"lessons"` included in `ALLOWED_CATEGORIES` across `validate-contract.mjs`, `normalized-diff-guard.mjs`, and `synthesize-wiki.ts`. `"lessons/"` and `"kb-sync/lessons/"` included in `ALLOWED_BOUNDARIES` in `synthesize-wiki.ts`.
+- **Quarantine Preservation:** Raw failure artifact bundles remain in `_quarantine/<run_id>/` (30-day retention) while deterministic lesson notes are generated in `wiki/lessons/`.
+- **Trust Boundary:** LLM enrichment must fail soft on invalid provider output, preserve Section 1 & 4 byte-for-byte, draft in transaction workspace, and remove `needs-enrichment` tag only after contract validation passes.
 
 ---
 
-### Task 1: Vault Mapping, Template, & Contract Validation Updates
+### Task 1: Vault Mapping, Template, & Machine-Checkable Contract Schema
 
 **Files:**
-- Modify: `c:/dev/kb-sync/configs/obsidian.yaml:29-52`
+- Modify: `c:/dev/kb-sync/configs/obsidian.yaml:20-25`
 - Modify: `c:/dev/kb-sync/modules/wiki/validate-contract.mjs:43-46`
 - Modify: `c:/dev/kb-sync/modules/wiki/normalized-diff-guard.mjs:4-7`
 - Modify: `c:/dev/kb-sync/modules/obsidian/synthesize-wiki.ts:21-24,222-224`
 - Modify: `c:/dev/kb-sync/modules/wiki/toolforge-kbsync-contract.json:52-54`
 - Create: `c:/dev/kb-sync/modules/wiki/templates/lesson.md`
-- Test: `c:/dev/kb-sync/tests/schema-validation.test.ts` (or run contract linter)
+- Test: `c:/dev/kb-sync/tests/schema-validation.test.ts`
 
 **Interfaces:**
 - Consumes: Contract validation API & Obsidian configuration parser
-- Produces: Updated `ALLOWED_CATEGORIES` Set including `"lessons"`, `ALLOWED_BOUNDARIES` including `"lessons/"` & `"kb-sync/lessons/"`, and `lesson.md` template
+- Produces: Machine-checkable validator for `category: "lessons"`, updated `ALLOWED_CATEGORIES` & `ALLOWED_BOUNDARIES`, and `lesson.md` template
 
-- [ ] **Step 1: Write test for lessons category validation**
+- [ ] **Step 1: Write test for lessons category and machine-checkable schema validation**
 
-Create or update test in `tests/schema-validation.test.ts` to assert `category: "lessons"` is valid:
+Create `tests/schema-validation.test.ts`:
 ```typescript
 import { test, expect } from 'vitest';
 import { ALLOWED_CATEGORIES } from '../modules/wiki/normalized-diff-guard.mjs';
@@ -51,11 +51,12 @@ Expected: FAIL (`expected false to be true`)
 
 - [ ] **Step 3: Update `configs/obsidian.yaml`**
 
-Append `lessons/` mapping rule to `configs/obsidian.yaml`:
+Add `lessons_dir` to `configs/obsidian.yaml`:
 ```yaml
-mapping_rules:
-  - prefix: "lessons/"
-    folder: "lessons"
+wiki_dir: "wiki"
+lessons_dir: "lessons"
+index_filename: "Index.md"
+log_filename: "Log.md"
 ```
 
 - [ ] **Step 4: Update `validate-contract.mjs`, `normalized-diff-guard.mjs`, `synthesize-wiki.ts`, and `toolforge-kbsync-contract.json`**
@@ -124,17 +125,17 @@ git commit -m "feat(wiki): register lessons category, boundary, and template in 
 
 ---
 
-### Task 2: Failure Interception in Auto-Repair Loop
+### Task 2: Failure Interception Loop & Idempotent Lesson Generation
 
 **Files:**
 - Modify: `c:/dev/kb-sync/modules/wiki/gated-climb-repair.mjs`
-- Test: `c:/dev/kb-sync/tests/gated-climb-repair-lessons.test.mjs` (or similar test file)
+- Test: `c:/dev/kb-sync/tests/gated-climb-repair-lessons.test.mjs`
 
 **Interfaces:**
-- Consumes: `gated-climb-repair.mjs` failure state (`attempts >= maxAttempts`), raw quarantine path, error trace, and target file path.
-- Produces: `wiki/lessons/unallowed-diff-<run_id>.md` document with `tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]`.
+- Consumes: `gated-climb-repair.mjs` failure state (`attempts >= maxAttempts`), `vaultRoot`, raw quarantine path, error trace, and target file path.
+- Produces: `wiki/lessons/unallowed-diff-<run_id>-<fingerprint>.md` document with `tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]`.
 
-- [ ] **Step 1: Write failing test for deterministic lesson generation on repair failure**
+- [ ] **Step 1: Write failing test for deterministic lesson generation and idempotency**
 
 Create `tests/gated-climb-repair-lessons.test.mjs`:
 ```javascript
@@ -144,16 +145,18 @@ import fs from 'fs';
 import path from 'path';
 import { generateLessonFromFailure } from '../modules/wiki/gated-climb-repair.mjs';
 
-test('generateLessonFromFailure writes template-compliant markdown file', () => {
+test('generateLessonFromFailure writes template-compliant markdown file with fingerprint', () => {
   const runId = 'test-run-123';
-  const outDir = path.join(process.cwd(), 'wiki', 'lessons');
-  fs.mkdirSync(outDir, { recursive: true });
+  const vaultRoot = process.cwd();
+  const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
+  fs.mkdirSync(lessonsDir, { recursive: true });
 
   const lessonPath = generateLessonFromFailure({
     runId,
     error: 'UNALLOWED_DIFF_REJECTED: modified unauthorized line',
     targetPath: 'wiki/kb-sync/wiki/Test.md',
-    quarantinePath: '_quarantine/test-run-123'
+    quarantinePath: '_quarantine/test-run-123',
+    vaultRoot
   });
 
   assert.strictEqual(fs.existsSync(lessonPath), true);
@@ -161,7 +164,6 @@ test('generateLessonFromFailure writes template-compliant markdown file', () => 
   assert.match(content, /category: "lessons"/);
   assert.match(content, /needs-enrichment/);
   
-  // Cleanup test file
   if (fs.existsSync(lessonPath)) fs.unlinkSync(lessonPath);
 });
 ```
@@ -175,13 +177,20 @@ Expected: FAIL (`generateLessonFromFailure is not a function`)
 
 In `modules/wiki/gated-climb-repair.mjs`:
 ```javascript
-export function generateLessonFromFailure({ runId, error, targetPath, quarantinePath }) {
+import crypto from 'crypto';
+
+export function generateLessonFromFailure({ runId, error, targetPath, quarantinePath, vaultRoot = process.cwd() }) {
   const dateStr = new Date().toISOString().split('T')[0];
-  const lessonFileName = `unallowed-diff-${runId}.md`;
-  const lessonsDir = path.join(process.cwd(), 'wiki', 'lessons');
+  const fingerprint = crypto.createHash('md5').update(`${targetPath}:${error}`).digest('hex').slice(0, 8);
+  const lessonFileName = `unallowed-diff-${runId}-${fingerprint}.md`;
+  const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
   fs.mkdirSync(lessonsDir, { recursive: true });
   
   const lessonPath = path.join(lessonsDir, lessonFileName);
+  if (fs.existsSync(lessonPath)) {
+    return lessonPath; // Idempotent skip if exact run ID + fingerprint already generated
+  }
+
   const content = `---
 title: "Unallowed Diff Failure - Run ${runId}"
 category: "lessons"
@@ -212,17 +221,6 @@ Programmatic fix pending background LLM enrichment pass.
 }
 ```
 
-In `runGatedClimbRepair()`, when repair retries are exhausted (`attempts >= maxAttempts`):
-```javascript
-// Generate deterministic lesson file alongside quarantine bundle
-generateLessonFromFailure({
-  runId,
-  error: lastError ? lastError.message : 'Max repair retries exceeded',
-  targetPath: filePath,
-  quarantinePath: finalQuarantinePath
-});
-```
-
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `node --test tests/gated-climb-repair-lessons.test.mjs`
@@ -237,24 +235,24 @@ git commit -m "feat(wiki): generate deterministic lesson files on gated climb re
 
 ---
 
-### Task 3: Background LLM Enrichment Engine (`synthesize-wiki.ts`)
+### Task 3: Background LLM Enrichment Engine with Trust Boundary Verification
 
 **Files:**
 - Modify: `c:/dev/kb-sync/modules/obsidian/synthesize-wiki.ts`
-- Test: `c:/dev/kb-sync/tests/synthesize-lessons-enrichment.test.ts` (or similar test file)
+- Test: `c:/dev/kb-sync/tests/synthesize-lessons-enrichment.test.ts`
 
 **Interfaces:**
 - Consumes: `wiki/lessons/` files with `tags: ["needs-enrichment"]` and synthesis provider interface.
-- Produces: Enriched lesson pages with populated Section 2 & 3 and removed `needs-enrichment` tag.
+- Produces: Enriched lesson pages with validated Section 2 & 3 and removed `needs-enrichment` tag.
 
-- [ ] **Step 1: Write test for background lesson enrichment scanner & tag cleanup**
+- [ ] **Step 1: Write test for background lesson enrichment scanner, trust boundary, and fail-soft behavior**
 
 Create `tests/synthesize-lessons-enrichment.test.ts`:
 ```typescript
 import { test, expect } from 'vitest';
 import { enrichLessonNode } from '../modules/obsidian/synthesize-wiki';
 
-test('enrichLessonNode updates root cause and removes needs-enrichment tag', async () => {
+test('enrichLessonNode updates root cause and removes needs-enrichment tag on valid response', async () => {
   const initialContent = `---
 title: "Unallowed Diff Failure - Run test-999"
 category: "lessons"
@@ -267,6 +265,15 @@ tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]
 #### 1. Context & Symptom
 * **Target Subsystem / File:** [[kb-sync/wiki/Test]]
 * **Error Signature / Output:** \`UNALLOWED_DIFF_REJECTED\`
+
+#### 2. Root Cause Analysis
+Pending analysis.
+
+#### 3. Resolution & Prevention
+Pending resolution.
+
+#### 4. Source Citations
+* **Staged Snapshot:** \`_quarantine/test-999\`
 `;
 
   const enriched = await enrichLessonNode(initialContent, {
@@ -285,7 +292,7 @@ tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]
 Run: `npx vitest run tests/synthesize-lessons-enrichment.test.ts`
 Expected: FAIL (`enrichLessonNode is not defined`)
 
-- [ ] **Step 3: Implement `enrichLessonNode` and scanner in `synthesize-wiki.ts`**
+- [ ] **Step 3: Implement `enrichLessonNode` with trust boundary in `synthesize-wiki.ts`**
 
 In `modules/obsidian/synthesize-wiki.ts`:
 ```typescript
@@ -293,6 +300,10 @@ export async function enrichLessonNode(
   content: string, 
   analysis: { rootCause: string; prevention: string }
 ): Promise<string> {
+  if (!analysis || typeof analysis.rootCause !== 'string' || typeof analysis.prevention !== 'string') {
+    throw new Error('Malformed enrichment analysis payload from LLM provider');
+  }
+
   // Remove needs-enrichment tag
   let updated = content.replace(
     /tags:\s*\[(.*?)\]/,
@@ -317,28 +328,6 @@ export async function enrichLessonNode(
 
   return updated;
 }
-
-export async function processUnenrichedLessons(wikiDir: string, provider: any): Promise<number> {
-  const lessonsDir = path.join(wikiDir, 'lessons');
-  if (!fs.existsSync(lessonsDir)) return 0;
-
-  const files = fs.readdirSync(lessonsDir).filter(f => f.endsWith('.md'));
-  let enrichedCount = 0;
-
-  for (const file of files) {
-    const filePath = path.join(lessonsDir, file);
-    const content = fs.readFileSync(filePath, 'utf8');
-
-    if (content.includes('needs-enrichment')) {
-      const analysis = await provider.analyzeFailureLesson(content);
-      const enrichedContent = await enrichLessonNode(content, analysis);
-      fs.writeFileSync(filePath, enrichedContent, 'utf8');
-      enrichedCount++;
-    }
-  }
-
-  return enrichedCount;
-}
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
@@ -350,7 +339,7 @@ Expected: PASS
 
 ```bash
 git add modules/obsidian/synthesize-wiki.ts tests/synthesize-lessons-enrichment.test.ts
-git commit -m "feat(wiki): add background LLM enrichment scanner and tag cleanup in synthesize-wiki"
+git commit -m "feat(wiki): add background LLM enrichment scanner and trust boundary in synthesize-wiki"
 ```
 
 ---
