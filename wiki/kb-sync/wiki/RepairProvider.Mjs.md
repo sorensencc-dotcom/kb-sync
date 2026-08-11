@@ -8,7 +8,7 @@ citations: ["modules/obsidian/providers/offlineTemplateProvider.ts"]
 # RepairProvider.Mjs
 
 ## Summary
-Provides an interface for repairing documents using different repair providers, with a specific implementation for the Ollama HTTP API.
+Provides a repair provider for document content using the Ollama HTTP API.
 
 ## Source Citations
 - Staged: `modules/obsidian/providers/offlineTemplateProvider.ts`

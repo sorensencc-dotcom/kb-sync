@@ -13,7 +13,7 @@ Synthesized documentation node for wiki/Log.md
 ## Source Citations
 - Staged: `wiki/Log.md`
 
-## [2026-08-11 00:54] auto-synthesize
+## [2026-08-11 05:21] auto-synthesize
 
 - Provider: `local` (`qwen2.5:latest`)
 - Session Hash: `b3fb3089988ddff1`
@@ -38,7 +38,26 @@ Synthesized documentation node for wiki/Log.md
   - `wiki/kb-sync/wiki/IjfwMetricsSessions.md`
   - `wiki/kb-sync/wiki/Session20260723010038.md`
   - `wiki/kb-sync/wiki/Session20260726020004.md`
-  - `wiki/kb-sync/wiki/Core/PathNormalizer.Mjs.md`
+  - `wiki/kb-sync/wiki/Session20260730231936.md`
+  - `wiki/kb-sync/wiki/Progress.md`
+  - `wiki/kb-sync/wiki/SyncStatus.md`
+  - `wiki/kb-sync/wiki/CHANGELOG.md`
+  - `wiki/kb-sync/wiki/CLAUDE.md`
+  - `wiki/kb-sync/wiki/CROSSPLATFORMTESTCHECKLIST.md`
+  - `wiki/kb-sync/wiki/PIPELINEEXECUTIONREPORT.md`
+  - `wiki/kb-sync/wiki/README.md`
+  - `wiki/kb-sync/wiki/REVIEW.md`
+  - `wiki/kb-sync/wiki/SYNCFAILURE20260720.md`
+  - `wiki/kb-sync/wiki/VERSION.md`
+  - `wiki/kb-sync/wiki/ArtifactGenerator.Sh.md`
+  - `wiki/kb-sync/wiki/Global.md`
+  - `wiki/kb-sync/wiki/Notebooklm.md`
+  - `wiki/kb-sync/wiki/Obsidian.md`
+  - `wiki/kb-sync/wiki/Webhooks.md`
+  - `wiki/kb-sync/utilities/Chunk.md`
+  - `wiki/kb-sync/wiki/CoreDag.md`
+  - `wiki/kb-sync/utilities/Flatten.md`
+  - `wiki/kb-sync/wiki/PathNormalizer.md`
   - `wiki/kb-sync/utilities/Rollback.md`
   - `wiki/kb-sync/utilities/RunAll.md`
   - `wiki/kb-sync/utilities/Validate.md`
@@ -59,28 +78,9 @@ Synthesized documentation node for wiki/Log.md
   - `wiki/kb-sync/wiki/KbSyncNightlyAudit.md`
   - `wiki/kb-sync/wiki/202607152134.md`
   - `wiki/kb-sync/wiki/KbSyncNightly20260717FINAL.md`
-  - `wiki/kb-sync/wiki/KbSyncNightly20260717.md`
-  - `wiki/kb-sync/wiki/KbSyncNightly20260723EXECUTIONBLOCKED.md`
-  - `wiki/kb-sync/wiki/ObsidianIngestWiki.md`
-  - `wiki/kb-sync/wiki/20260801KbSyncCoverageRemediation.md`
-  - `wiki/kb-sync/wiki/20260801KbSyncEnhancements.md`
-  - `wiki/kb-sync/wiki/20260801KbSyncEnhancementsDesign.md`
-  - `wiki/kb-sync/wiki/Notebooklm.md`
-  - `wiki/kb-sync/wiki/Obsidian.md`
-  - `wiki/kb-sync/wiki/TaskSchedulerSetup.md`
-  - `wiki/kb-sync/wiki/Mkdocs.md`
-  - `wiki/kb-sync/wiki/README.md`
-  - `wiki/kb-sync/wiki/GenerateReport.md`
-  - `wiki/kb-sync/utilities/Generate.md`
-  - `wiki/kb-sync/utilities/CleanupPackDir.md`
-  - `wiki/kb-sync/utilities/IngestNotebooklm.md`
-  - `wiki/kb-sync/utilities/IngestObsidian.md`
-  - `wiki/kb-sync/utilities/IngestWiki.md`
-  - `wiki/kb-sync/wiki/ModulesObsidianProvidersAnthropicProvider.md`
-  - `wiki/kb-sync/wiki/Index.md`
-  - `wiki/kb-sync/wiki/ModulesObsidianProvidersLocalProvider.md`
+  - `wiki/kb-sync/wiki/Headless-Synthesis-Worker.md`
   - `wiki/kb-sync/wiki/RepairProvider.Mjs.md`
-  - `wiki/kb-sync/wiki/KBVaultObsidianVaultConfiguration.md`
+  - `wiki/kb-sync/wiki/CreateALink.md`
   - `wiki/kb-sync/wiki/RoadmapSync20260719.md`
   - `wiki/kb-sync/wiki/ObsidianVaultWikiCatalog.md`
   - `wiki/kb-sync/wiki/Index.md`
@@ -165,7 +165,7 @@ Synthesized documentation node for wiki/Log.md
   - `wiki/entities/kb-sync-nightly.ps1.md`
   - `wiki/entities/kb-sync-nightly.sh.md`
   - `wiki/entities/path-normalizer-verification.ts.md`
-  - `wiki/entities/path-normalizer.mjs.md`
+  - `wiki/kb-sync/wiki/Core/PathNormalizer.Mjs.md`
   - `wiki/entities/post-commit-hook-example.sh.md`
   - `wiki/entities/register-kb-sync-task.ps1.md`
   - `wiki/entities/rollback.sh.md`

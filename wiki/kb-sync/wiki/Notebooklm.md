@@ -1,14 +1,14 @@
 ---
-title: "DocsTargetsNotebooklm"
+title: "ConfigsNotebooklm"
 category: "wiki"
 status: "active"
-citations: ["docs/targets/notebooklm.md"]
+citations: ["configs/notebooklm.yaml"]
 ---
 
-# DocsTargetsNotebooklm
+# ConfigsNotebooklm
 
 ## Summary
-Synthesized documentation node for docs/targets/notebooklm.md
+Synthesized documentation node for configs/notebooklm.yaml
 
 ## Source Citations
-- Staged: `docs/targets/notebooklm.md`
+- Staged: `configs/notebooklm.yaml`

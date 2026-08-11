@@ -1,14 +1,14 @@
 ---
-title: "ModulesArtifactGeneratorREADME"
+title: "DocsREADME"
 category: "wiki"
 status: "active"
-citations: ["modules/artifact-generator/README.md"]
+citations: ["docs/README.md"]
 ---
 
-# ModulesArtifactGeneratorREADME
+# DocsREADME
 
 ## Summary
-Synthesized documentation node for modules/artifact-generator/README.md
+Synthesized documentation node for docs/README.md
 
 ## Source Citations
-- Staged: `modules/artifact-generator/README.md`
+- Staged: `docs/README.md`

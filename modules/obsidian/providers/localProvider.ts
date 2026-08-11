@@ -22,6 +22,10 @@ export class LocalProvider implements SynthesisProvider {
     this.model = model;
     this.allowRemoteEndpoint = allowRemoteEndpoint;
 
+    // Disable Node undici native fetch 5-minute headers & body timeout for local LLM requests
+    process.env.UNDICI_HEADERS_TIMEOUT = "0";
+    process.env.UNDICI_BODY_TIMEOUT = "0";
+
     this.validateEndpointSecurity();
   }
 
@@ -146,7 +150,7 @@ Rules:
 - Outbound wiki links in body MUST be written as vault-absolute links: [[kb-sync/category/filename]].
 - Do NOT output markdown code fences outside JSON. Return raw JSON.`;
 
-    const batchSize = parseInt(process.env.LOCAL_LLM_BATCH_SIZE || "20", 10);
+    const batchSize = parseInt(process.env.LOCAL_LLM_BATCH_SIZE || "5", 10);
     const files = input.stagedFiles;
     const batches: (typeof files)[] = [];
 
@@ -159,33 +163,48 @@ Rules:
     for (let bIndex = 0; bIndex < batches.length; bIndex++) {
       const batchFiles = batches[bIndex];
       const stagedSummary = batchFiles
-        .map((f) => `### File: ${f.relativePath}\n${f.content.slice(0, 3000)}`)
+        .map((f) => `### File: ${f.relativePath}\n${f.content.slice(0, 1200)}`)
         .join("\n\n");
 
       const userMessage = `<untrusted_source_content>\n${stagedSummary}\n</untrusted_source_content>`;
 
       try {
-        const timeoutMs = parseInt(process.env.LOCAL_LLM_TIMEOUT_MS || "900000", 10);
+        const timeoutMs = parseInt(process.env.LOCAL_LLM_TIMEOUT_MS || "600000", 10);
         console.log(`[LOCAL-PROVIDER] [INFO] Requesting batch ${bIndex + 1}/${batches.length} (${batchFiles.length} files) via model '${currentModel}'...`);
 
-        let response: Response;
-        try {
-          response = await fetch(targetUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              model: currentModel,
-              messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userMessage },
-              ],
-              temperature: 0.1,
-              response_format: { type: "json_object" },
-            }),
-            signal: timeoutMs > 0 ? AbortSignal.timeout(timeoutMs) : undefined,
-          });
-        } catch (err: any) {
-          console.warn(`[LOCAL-PROVIDER] [WARN] Batch ${bIndex + 1}/${batches.length} LLM request failed (${err.message}). Fallback to file citation proposals.`);
+        let response: Response | undefined;
+        let lastError: any;
+        const maxRetries = 3;
+
+        for (let attempt = 1; attempt <= maxRetries; attempt++) {
+          try {
+            response = await fetch(targetUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                model: currentModel,
+                messages: [
+                  { role: "system", content: systemPrompt },
+                  { role: "user", content: userMessage },
+                ],
+                temperature: 0.1,
+                response_format: { type: "json_object" },
+              }),
+              signal: timeoutMs > 0 ? AbortSignal.timeout(timeoutMs) : undefined,
+            });
+            if (response && response.ok) break;
+          } catch (err: any) {
+            lastError = err;
+            if (attempt < maxRetries) {
+              console.log(`[LOCAL-PROVIDER] [INFO] Batch ${bIndex + 1}/${batches.length} attempt ${attempt} failed (${err.message}). Retrying in 2s...`);
+              await new Promise((r) => setTimeout(r, 2000));
+            }
+          }
+        }
+
+        if (!response || !response.ok) {
+          const detail = response ? await response.text().catch(() => "") : (lastError?.message || "fetch failed");
+          console.warn(`[LOCAL-PROVIDER] [WARN] Batch ${bIndex + 1}/${batches.length} LLM request failed (${detail}). Fallback to file citation proposals.`);
           allProposals.push(...this.generateFallbackProposals(batchFiles, existingTitleToPathMap));
           continue;
         }

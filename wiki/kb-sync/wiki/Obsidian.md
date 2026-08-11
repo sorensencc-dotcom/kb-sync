@@ -1,14 +1,14 @@
 ---
-title: "DocsTargetsObsidian"
+title: "ConfigsObsidian"
 category: "wiki"
 status: "active"
-citations: ["docs/targets/obsidian.md"]
+citations: ["configs/obsidian.yaml"]
 ---
 
-# DocsTargetsObsidian
+# ConfigsObsidian
 
 ## Summary
-Synthesized documentation node for docs/targets/obsidian.md
+Synthesized documentation node for configs/obsidian.yaml
 
 ## Source Citations
-- Staged: `docs/targets/obsidian.md`
+- Staged: `configs/obsidian.yaml`

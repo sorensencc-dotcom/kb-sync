@@ -1,14 +1,14 @@
 ---
-title: "ObsidianVaultKBVaultCreateALink"
+title: "CreateALink"
 category: "wiki"
 status: "active"
-citations: ["obsidian/vault/KB-Vault/create a link.md"]
+citations: ["modules/wiki/templates/concept.md"]
 ---
 
-# ObsidianVaultKBVaultCreateALink
+# CreateALink
 
 ## Summary
-Synthesized documentation node for obsidian/vault/KB-Vault/create a link.md
+
 
 ## Source Citations
-- Staged: `obsidian/vault/KB-Vault/create a link.md`
+- Staged: `modules/wiki/templates/concept.md`

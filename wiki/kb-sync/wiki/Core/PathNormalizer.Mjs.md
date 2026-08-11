@@ -1,14 +1,14 @@
 ---
-title: "Core/PathNormalizer.Mjs"
+title: "WikiEntitiesPathNormalizerMjs"
 category: "wiki"
 status: "active"
-citations: [".ijfw/sessions/session_2026-07-30_23-19-36.md"]
+citations: ["wiki/entities/path-normalizer.mjs.md"]
 ---
 
-# Core/PathNormalizer.Mjs
+# WikiEntitiesPathNormalizerMjs
 
 ## Summary
-
+Synthesized documentation node for wiki/entities/path-normalizer.mjs.md
 
 ## Source Citations
-- Staged: `.ijfw/sessions/session_2026-07-30_23-19-36.md`
+- Staged: `wiki/entities/path-normalizer.mjs.md`
