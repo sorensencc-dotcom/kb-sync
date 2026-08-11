@@ -1,0 +1,27 @@
+modules/compactor/index.mjs
+  s_aa6a468218ebd1::t_aeb979c0c4f700 16-35
+  s_aa6a468218ebd1::t_4de1fe4e96073d 202
+  s_aa6a468218ebd1::t_b87103d1ad82f5 4
+docs/superpowers/plans/2026-08-11-compacted-context-engine.md
+  s_aa6a468218ebd1::t_8f4270c799e51a 26-27,281,431-435
+docs/meta/plans/2026-08-11-compacted-context-engine.md
+  s_aa6a468218ebd1::t_6a46da2a5c1681 281
+  s_aa6a468218ebd1::t_459745692f6cec 26-27
+  s_aa6a468218ebd1::t_65643628529df0 431-435
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2d4ca705f5776f419fe5a099adc7b0df5eb9c85f",
+  "prompts": {},
+  "sessions": {
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
