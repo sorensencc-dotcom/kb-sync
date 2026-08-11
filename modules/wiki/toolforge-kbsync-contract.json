@@ -49,7 +49,10 @@
                 "required": ["title", "category", "status"],
                 "properties": {
                   "title": { "type": "string" },
-                  "category": { "type": "string" },
+                  "category": { 
+                    "type": "string",
+                    "description": "Category of the documentation note (daemons, utilities, sync-tools, adapters, mcp-servers, scaffolds, prototypes, wiki, lessons)."
+                  },
                   "status": { 
                     "type": "string",
                     "enum": ["active", "beta", "archived", "draft"]

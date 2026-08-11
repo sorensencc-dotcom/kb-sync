@@ -3,7 +3,7 @@
  */
 export const ALLOWED_CATEGORIES = new Set([
   "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki",
-  "manifest", "spec", "readme", "pipeline"
+  "manifest", "spec", "readme", "pipeline", "lessons"
 ]);
 
 export const ALLOWED_STATUSES = new Set([

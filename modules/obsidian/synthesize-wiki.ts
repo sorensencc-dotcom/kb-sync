@@ -19,7 +19,7 @@ function logError(msg: string) {
 
 // --- ALLOWED CONTRACT CONSTANTS ---
 const ALLOWED_CATEGORIES = new Set([
-  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki"
+  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "lessons"
 ]);
 const ALLOWED_STATUSES = new Set(["active", "beta", "archived"]);
 
@@ -219,7 +219,7 @@ function validateProposalSchema(proposal: SynthesisProposal, stagedManifestSet: 
     errors.push(`Invalid vaultPath '${proposal.vaultPath}'. Must end in .md and have no '..' path traversal.`);
   }
 
-  const ALLOWED_BOUNDARIES = ["kb-sync/", "entities/", "concepts/", "utilities/", "daemons/", "scripts/", "tests/"];
+  const ALLOWED_BOUNDARIES = ["kb-sync/", "entities/", "concepts/", "utilities/", "daemons/", "scripts/", "tests/", "lessons/", "kb-sync/lessons/"];
   const isRootSpecial = proposal.vaultPath === "Log.md" || proposal.vaultPath === "Index.md";
   const isValidBoundary = ALLOWED_BOUNDARIES.some((b) => proposal.vaultPath.startsWith(b)) || isRootSpecial;
   if (!isValidBoundary) {

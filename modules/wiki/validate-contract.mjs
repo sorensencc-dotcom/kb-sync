@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import jsYaml from 'js-yaml';
 
 // Define directories and ESM paths
 const __filename = fileURLToPath(import.meta.url);
@@ -17,162 +18,221 @@ const BOLD = '\x1b[1m';
 const isJsonMode = process.argv.includes('--json');
 const log = isJsonMode ? (...args) => console.error(...args) : (...args) => console.log(...args);
 
-log(`${BOLD}${CYAN}[KB-Sync Validator] Starting validation sequence...${RESET}\n`);
-
-// Load command-line target directory or default to the live wiki source.
-// Filter out flags like --json from positional args.
-const positionalArgs = process.argv.slice(2).filter(arg => arg !== '--json');
-const targetDir = positionalArgs[0] || path.resolve(process.cwd(), 'obsidian/vault/wiki/');
-log(`${BOLD}Target Directory:${RESET} ${targetDir}`);
-
-// Fallback JSON Schema check
-const schemaPath = path.resolve(__dirname, 'toolforge-kbsync-contract.json');
-let contractSchema = null;
-if (fs.existsSync(schemaPath)) {
-  try {
-    contractSchema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
-    log(`${GREEN}✓ Loaded contract schema:${RESET} ${schemaPath}`);
-  } catch (err) {
-    console.warn(`${YELLOW}⚠ Warning: Could not parse contract schema JSON: ${err.message}${RESET}`);
-  }
-} else {
-  log(`${YELLOW}⚠ Warning: No toolforge-kbsync-contract.json found in execution directory.${RESET}`);
-}
-
 // Allowed values from our contract
-const ALLOWED_CATEGORIES = new Set([
-  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki"
+export const ALLOWED_CATEGORIES = new Set([
+  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "lessons"
 ]);
-const ALLOWED_STATUSES = new Set(["active", "beta", "archived"]);
+export const ALLOWED_STATUSES = new Set(["active", "beta", "archived"]);
 
-// Run-time telemetry stores
-const notesRegistry = [];
-const basenameCollisionMap = new Map();
-const validationErrors = [];
-let scannedCount = 0;
+export function resolveCanonicalVaultPath(inputPath, config = { vault_root: process.cwd(), wiki_dir: "wiki", lessons_dir: "lessons" }) {
+  const vaultRoot = config.vault_root || process.cwd();
+  const wikiDir = config.wiki_dir || "wiki";
+  const lessonsDir = config.lessons_dir || "lessons";
 
-/**
- * Strips code fences and comments, parses yaml frontmatter, and extracts link nodes.
- */
-function parseMarkdownFile(filePath, relativePath) {
-  const content = fs.readFileSync(filePath, 'utf8');
+  const normInput = path.normalize(inputPath).replace(/\\/g, '/').trim();
+  const normVaultRoot = path.normalize(vaultRoot).replace(/\\/g, '/').trim();
   
-  // 1. Dynamic Exclusion: Strip code blocks so we avoid false positives in links/lints inside code
-  const strippedContent = content.replace(/```[\s\S]*?```/g, '');
-
-  // 2. Parse Frontmatter
-  let frontmatter = {};
-  let hasFrontmatter = false;
-  const frontmatterMatch = strippedContent.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (frontmatterMatch) {
-    hasFrontmatter = true;
-    const yamlBlock = frontmatterMatch[1];
-    const lines = yamlBlock.split('\n');
-    for (const line of lines) {
-      const colonIndex = line.indexOf(':');
-      if (colonIndex !== -1) {
-        const key = line.slice(0, colonIndex).trim();
-        let val = line.slice(colonIndex + 1).trim();
-        // Clean surrounding quotes
-        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-          val = val.slice(1, -1);
-        }
-        if (key) frontmatter[key] = val;
-      }
-    }
+  let relativePath = normInput;
+  if (normInput.toLowerCase().startsWith(normVaultRoot.toLowerCase())) {
+    relativePath = path.relative(vaultRoot, inputPath).replace(/\\/g, '/');
   }
-
-  // 3. Link Extraction: Match [[wiki-links]]
-  const links = [];
-  const linkRegex = /\[\[(.*?)\]\]/g;
-  let match;
-  while ((match = linkRegex.exec(strippedContent)) !== null) {
-    let linkTarget = match[1].trim();
-    // Strip display label if link uses [[Target|Display Label]] format
-    if (linkTarget.includes('|')) {
-      linkTarget = linkTarget.split('|')[0].trim();
-    }
-    if (linkTarget) {
-      links.push(linkTarget);
-    }
+  
+  let cleaned = relativePath.replace(/^kb-sync\//i, '').replace(/^wiki\//i, '');
+  
+  if (!cleaned.startsWith(lessonsDir + '/')) {
+    throw new Error(`Invalid lesson vault path '${inputPath}'. Must resolve under '${lessonsDir}/'`);
   }
-
-  const basename = path.basename(filePath, '.md');
-
-  return {
-    path: relativePath,
-    basename,
-    frontmatter,
-    hasFrontmatter,
-    links
-  };
+  
+  const vaultPath = cleaned;
+  const diskPath = path.join(vaultRoot, wikiDir, vaultPath).replace(/\\/g, '/');
+  const wikiLink = `[[kb-sync/${vaultPath.replace(/\.md$/, '')}]]`;
+  
+  return { vaultPath, diskPath, wikiLink };
 }
 
-/**
- * Scan directory recursively for markdown files
- */
-function scanDirectory(dir, relativeRoot = '') {
-  if (!fs.existsSync(dir)) {
-    return;
+export function validateLessonSchema(content, filePath) {
+  const errors = [];
+  if (typeof content !== 'string') return ["Content must be a string"];
+  const parts = content.split(/^---\r?\n/m);
+  if (parts.length < 3) return ["Missing required YAML frontmatter block"];
+
+  let frontmatter;
+  try {
+    frontmatter = jsYaml.load(parts[1]);
+  } catch (err) {
+    return [`YAML frontmatter parse error: ${err.message}`];
   }
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const fullPath = path.join(dir, file);
-    const relPath = relativeRoot ? path.join(relativeRoot, file) : file;
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      // Ignore git and node modules
-      if (file !== '.git' && file !== 'node_modules') {
-        scanDirectory(fullPath, relPath);
-      }
-    } else if (file.endsWith('.md')) {
-      scannedCount++;
-      try {
-        const note = parseMarkdownFile(fullPath, relPath);
-        notesRegistry.push(note);
-        
-        // Namespace Collision Guard: ensure duplicate basenames don't exist.
-        // Exempt 'index' and 'log' — these are intentional per-section home/log pages
-        // and are folder-namespaced by convention (e.g. kb-sync/index, notebooklm/index).
-        const lowerBasename = note.basename.toLowerCase();
-        const EXEMPT_BASENAMES = new Set(['index', 'log']);
-        if (!EXEMPT_BASENAMES.has(lowerBasename)) {
-          if (basenameCollisionMap.has(lowerBasename)) {
-            validationErrors.push({
-              file: relPath,
-              rule_id: 'DOC_ID_COLLISION',
-              rule: 'Namespace Collision Guard',
-              message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(lowerBasename)}'`
-            });
-          } else {
-            basenameCollisionMap.set(lowerBasename, relPath);
+
+  if (!frontmatter || typeof frontmatter !== 'object') return ["Invalid frontmatter structure"];
+  if (frontmatter.category !== "lessons") errors.push(`Category must be 'lessons', got '${frontmatter.category}'`);
+  if (!frontmatter.title || typeof frontmatter.title !== 'string') errors.push("Missing valid frontmatter 'title'");
+  if (!Array.isArray(frontmatter.tags) || !frontmatter.tags.includes("failure-pattern")) errors.push("Frontmatter 'tags' must contain 'failure-pattern'");
+
+  const requiredHeadings = [
+    /#### 1\. Context & Symptom/i,
+    /#### 2\. Root Cause Analysis/i,
+    /#### 3\. Resolution & Prevention/i,
+    /#### 4\. Source Citations/i
+  ];
+  for (const headingRegex of requiredHeadings) {
+    if (!headingRegex.test(content)) errors.push(`Missing required heading matching '${headingRegex.source}'`);
+  }
+
+  return errors;
+}
+
+const isMainScript = process.argv[1] && (process.argv[1].endsWith('validate-contract.mjs') || process.argv[1].endsWith('validate-contract'));
+
+if (isMainScript) {
+  log(`${BOLD}${CYAN}[KB-Sync Validator] Starting validation sequence...${RESET}\n`);
+
+  // Load command-line target directory or default to the live wiki source.
+  // Filter out flags like --json from positional args.
+  const positionalArgs = process.argv.slice(2).filter(arg => arg !== '--json');
+  const targetDir = positionalArgs[0] || path.resolve(process.cwd(), 'obsidian/vault/wiki/');
+  log(`${BOLD}Target Directory:${RESET} ${targetDir}`);
+
+  // Fallback JSON Schema check
+  const schemaPath = path.resolve(__dirname, 'toolforge-kbsync-contract.json');
+  let contractSchema = null;
+  if (fs.existsSync(schemaPath)) {
+    try {
+      contractSchema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+      log(`${GREEN}✓ Loaded contract schema:${RESET} ${schemaPath}`);
+    } catch (err) {
+      console.warn(`${YELLOW}⚠ Warning: Could not parse contract schema JSON: ${err.message}${RESET}`);
+    }
+  } else {
+    log(`${YELLOW}⚠ Warning: No toolforge-kbsync-contract.json found in execution directory.${RESET}`);
+  }
+
+  // Run-time telemetry stores
+  const notesRegistry = [];
+  const basenameCollisionMap = new Map();
+  const validationErrors = [];
+  let scannedCount = 0;
+
+  /**
+   * Strips code fences and comments, parses yaml frontmatter, and extracts link nodes.
+   */
+  function parseMarkdownFile(filePath, relativePath) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    
+    // 1. Dynamic Exclusion: Strip code blocks so we avoid false positives in links/lints inside code
+    const strippedContent = content.replace(/```[\s\S]*?```/g, '');
+
+    // 2. Parse Frontmatter
+    let frontmatter = {};
+    let hasFrontmatter = false;
+    const frontmatterMatch = strippedContent.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (frontmatterMatch) {
+      hasFrontmatter = true;
+      const yamlBlock = frontmatterMatch[1];
+      const lines = yamlBlock.split('\n');
+      for (const line of lines) {
+        const colonIndex = line.indexOf(':');
+        if (colonIndex !== -1) {
+          const key = line.slice(0, colonIndex).trim();
+          let val = line.slice(colonIndex + 1).trim();
+          // Clean surrounding quotes
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.slice(1, -1);
           }
+          if (key) frontmatter[key] = val;
         }
-      } catch (err) {
-        validationErrors.push({
-          file: relPath,
-          rule_id: 'FILE_READ_ERROR',
-          rule: 'File Read Resilience',
-          message: `Fatal error reading/parsing file: ${err.message}`
-        });
+      }
+    }
+
+    // 3. Link Extraction: Match [[wiki-links]]
+    const links = [];
+    const linkRegex = /\[\[(.*?)\]\]/g;
+    let match;
+    while ((match = linkRegex.exec(strippedContent)) !== null) {
+      let linkTarget = match[1].trim();
+      // Strip display label if link uses [[Target|Display Label]] format
+      if (linkTarget.includes('|')) {
+        linkTarget = linkTarget.split('|')[0].trim();
+      }
+      if (linkTarget) {
+        links.push(linkTarget);
+      }
+    }
+
+    const basename = path.basename(filePath, '.md');
+
+    return {
+      path: relativePath,
+      basename,
+      frontmatter,
+      hasFrontmatter,
+      links
+    };
+  }
+
+  /**
+   * Scan directory recursively for markdown files
+   */
+  function scanDirectory(dir, relativeRoot = '') {
+    if (!fs.existsSync(dir)) {
+      return;
+    }
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+      const fullPath = path.join(dir, file);
+      const relPath = relativeRoot ? path.join(relativeRoot, file) : file;
+      const stat = fs.statSync(fullPath);
+      if (stat.isDirectory()) {
+        // Ignore git and node modules
+        if (file !== '.git' && file !== 'node_modules') {
+          scanDirectory(fullPath, relPath);
+        }
+      } else if (file.endsWith('.md')) {
+        scannedCount++;
+        try {
+          const note = parseMarkdownFile(fullPath, relPath);
+          notesRegistry.push(note);
+          
+          // Namespace Collision Guard: ensure duplicate basenames don't exist.
+          // Exempt 'index' and 'log' — these are intentional per-section home/log pages
+          // and are folder-namespaced by convention (e.g. kb-sync/index, notebooklm/index).
+          const lowerBasename = note.basename.toLowerCase();
+          const EXEMPT_BASENAMES = new Set(['index', 'log']);
+          if (!EXEMPT_BASENAMES.has(lowerBasename)) {
+            if (basenameCollisionMap.has(lowerBasename)) {
+              validationErrors.push({
+                file: relPath,
+                rule_id: 'DOC_ID_COLLISION',
+                rule: 'Namespace Collision Guard',
+                message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(lowerBasename)}'`
+              });
+            } else {
+              basenameCollisionMap.set(lowerBasename, relPath);
+            }
+          }
+        } catch (err) {
+          validationErrors.push({
+            file: relPath,
+            rule_id: 'FILE_READ_ERROR',
+            rule: 'File Read Resilience',
+            message: `Fatal error reading/parsing file: ${err.message}`
+          });
+        }
       }
     }
   }
-}
 
-// ----------------------------------------------------
-// Step 1: Scan target vault
-// ----------------------------------------------------
-if (fs.existsSync(targetDir)) {
-  scanDirectory(targetDir);
-} else {
-  // If target folder is absent and we are in CI, trigger a resilient exit fallback
-  if (process.env.CI) {
-    log(`${YELLOW}[CI Fallback] Staging directories are absent in clean checkout. Constructing clean exit to unblock downstream runs.${RESET}`);
-    if (isJsonMode) {
-      const payload = {
-        schema_version: "1.0",
-        validator_version: "1.1.0",
+  // ----------------------------------------------------
+  // Step 1: Scan target vault
+  // ----------------------------------------------------
+  if (fs.existsSync(targetDir)) {
+    scanDirectory(targetDir);
+  } else {
+    // If target folder is absent and we are in CI, trigger a resilient exit fallback
+    if (process.env.CI) {
+      log(`${YELLOW}[CI Fallback] Staging directories are absent in clean checkout. Constructing clean exit to unblock downstream runs.${RESET}`);
+      if (isJsonMode) {
+        const payload = {
+          schema_version: "1.0",
         target_dir: targetDir,
         exit_code: 0,
         scanned_count: 0,
@@ -407,4 +467,5 @@ if (validationErrors.length === 0) {
   }
   
   process.exit(1);
+}
 }

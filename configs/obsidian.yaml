@@ -19,6 +19,9 @@ staging_dir: "_kb-sync-staging"
 # Full path will be: vault_root/<wiki_dir>/
 wiki_dir: "wiki"
 
+# Subdirectory inside wiki_dir for failure pattern lesson notes
+lessons_dir: "lessons"
+
 # Schema documentation filenames inside wiki_dir
 index_filename: "Index.md"
 log_filename: "Log.md"
