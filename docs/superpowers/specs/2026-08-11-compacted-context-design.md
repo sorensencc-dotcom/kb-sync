@@ -965,7 +965,143 @@ if (process.argv[1] && process.argv[1].endsWith('index.mjs')) {
 
 ---
 
-## 13. Verification Plan & Test Suite Matrix
+## 13. Config Loader (`modules/compactor/config-loader.mjs`)
+
+Validates `configs/compaction.yaml` against the schema in §3.1. Fail-closed: any missing/malformed field throws — callers (via `buildCompactedPack`) do not catch this, so a broken config aborts the build rather than silently falling back to defaults.
+
+```javascript
+import fs from 'node:fs';
+import yaml from 'js-yaml';
+
+const REQUIRED_LEVELS = new Set(['Full', 'Skeleton', 'Outline', 'Excluded']);
+
+export function loadCompactionConfig(configPath) {
+  if (!configPath || !fs.existsSync(configPath)) {
+    throw new Error(`Config Error: compaction config not found at "${configPath}"`);
+  }
+
+  let parsed;
+  try {
+    parsed = yaml.load(fs.readFileSync(configPath, 'utf8'));
+  } catch (err) {
+    throw new Error(`Config Error: failed to parse YAML at "${configPath}": ${err.message}`);
+  }
+
+  const compaction = parsed && parsed.compaction;
+  if (!compaction || typeof compaction !== 'object') {
+    throw new Error(`Config Error: missing top-level "compaction" key in "${configPath}"`);
+  }
+
+  if (typeof compaction.enabled !== 'boolean') {
+    throw new Error('Config Error: compaction.enabled must be a boolean');
+  }
+  if (!REQUIRED_LEVELS.has(compaction.default_level)) {
+    throw new Error(`Config Error: compaction.default_level must be one of ${[...REQUIRED_LEVELS].join(', ')}`);
+  }
+  if (typeof compaction.git_window_days !== 'number' || compaction.git_window_days < 0) {
+    throw new Error('Config Error: compaction.git_window_days must be a non-negative number');
+  }
+
+  compaction.high_risk_prefixes = Array.isArray(compaction.high_risk_prefixes) ? compaction.high_risk_prefixes : [];
+  compaction.rules = Array.isArray(compaction.rules) ? compaction.rules : [];
+
+  for (const [i, rule] of compaction.rules.entries()) {
+    if (!rule || typeof rule.prefix !== 'string' || !REQUIRED_LEVELS.has(rule.level)) {
+      throw new Error(`Config Error: rules[${i}] must have a string "prefix" and valid "level"`);
+    }
+  }
+
+  return { compaction };
+}
+```
+
+---
+
+## 14. Overrides Manager (`modules/compactor/overrides-manager.mjs`)
+
+Loads/persists `.compaction-overrides.yaml` (§3.2). `loadActiveOverrides` returns `{ map, error }` — fail-closed on malformed YAML or schema violations (`map: null`, `error` set); classifier stage 3 (§8) forces `Full` on any `error`. Expired entries are dropped silently during load, not treated as errors. `saveOverrides` re-filters expired entries defensively at write time, so `prune-overrides` (§11) and `restore` (§11) share one code path and neither can accidentally persist a stale entry.
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+import yaml from 'js-yaml';
+
+const OVERRIDES_FILENAME = '.compaction-overrides.yaml';
+
+export function loadActiveOverrides(repoRoot) {
+  const filePath = path.join(repoRoot, OVERRIDES_FILENAME);
+
+  if (!fs.existsSync(filePath)) {
+    return { map: new Map(), error: null };
+  }
+
+  let parsed;
+  try {
+    parsed = yaml.load(fs.readFileSync(filePath, 'utf8'));
+  } catch (err) {
+    return { map: null, error: `Failed to parse ${OVERRIDES_FILENAME}: ${err.message}` };
+  }
+
+  if (parsed == null) {
+    return { map: new Map(), error: null };
+  }
+
+  const entries = parsed.overrides;
+  if (!Array.isArray(entries)) {
+    return { map: null, error: `${OVERRIDES_FILENAME}: "overrides" must be an array` };
+  }
+
+  const now = Date.now();
+  const map = new Map();
+
+  for (const [i, entry] of entries.entries()) {
+    if (!entry || typeof entry.path !== 'string' || typeof entry.expire_at !== 'string') {
+      return { map: null, error: `${OVERRIDES_FILENAME}: overrides[${i}] missing required "path" or "expire_at"` };
+    }
+    const expireMs = Date.parse(entry.expire_at);
+    if (Number.isNaN(expireMs)) {
+      return { map: null, error: `${OVERRIDES_FILENAME}: overrides[${i}] has invalid expire_at "${entry.expire_at}"` };
+    }
+    if (expireMs <= now) continue; // expired: drop silently, not an error
+    map.set(entry.path, entry);
+  }
+
+  return { map, error: null };
+}
+
+export function saveOverrides(repoRoot, map) {
+  const filePath = path.join(repoRoot, OVERRIDES_FILENAME);
+  const now = Date.now();
+  const overrides = [...map.values()].filter(entry => {
+    const expireMs = Date.parse(entry.expire_at);
+    return !Number.isNaN(expireMs) && expireMs > now;
+  });
+
+  const doc = {
+    overrides: overrides.map(({ path: p, created_at, expire_at, reason }) => ({
+      path: p, created_at, expire_at, reason
+    }))
+  };
+
+  fs.writeFileSync(filePath, yaml.dump(doc), 'utf8');
+}
+```
+
+---
+
+## 15. Dependency Gaps (Pre-Implementation Blockers)
+
+The following must land before `writing-plans` / implementation, not after — confirmed by direct inspection of `kb-sync/package.json` and `node_modules`:
+
+| Dependency | Current State | Required |
+| :--- | :--- | :--- |
+| `typescript` | `package.json` declares `^5.0.0`; not present in `node_modules` at all (not installed) | Pin to `5.4.5` exactly (skeletonizer's `ts.version.startsWith('5.4')` guard throws otherwise), then `npm install` |
+| `js-tiktoken` | Not declared in `package.json`; not installed | Add as a dependency, `npm install` |
+| `js-yaml` | Already declared (`^4.1.0`) and used by `config-loader.mjs` / `overrides-manager.mjs` | No action — already satisfied |
+
+---
+
+## 16. Verification Plan & Test Suite Matrix
 
 | Test Suite | File Path | Scope & Assertions |
 | :--- | :--- | :--- |
@@ -973,4 +1109,10 @@ if (process.argv[1] && process.argv[1].endsWith('index.mjs')) {
 | **Classifier Unit Tests** | `tests/classifier.test.mjs` | 10-stage hierarchy resolution, dirty Git workspace check, override precedence, recency window, high-risk path rules, default fallback |
 | **Path Security Tests** | `tests/path-utils.test.mjs` | Path traversal (`../`), POSIX slash normalization, symlink escaping verification (`fs.realpathSync`), root target rejection |
 | **Atomic File Replacement Tests** | `tests/atomic-file.test.mjs` | Atomic file promotion, `.bak` restoration on failed replace, Windows lock collision recovery |
+| **Config Loader Tests** | `tests/config-loader.test.mjs` | Missing file, malformed YAML, missing/invalid `compaction.enabled`/`default_level`/`git_window_days`, invalid rule entries |
+| **Overrides Manager Tests** | `tests/overrides-manager.test.mjs` | Missing file (empty map), malformed YAML (fail-closed error), expired-entry filtering on load, `saveOverrides` round-trip, `saveOverrides` re-filtering stale entries at write time |
+| **Manifest Loader Tests** | `tests/manifest-loader.test.mjs` | Missing manifest file, comment/blank-line skipping, path-traversal rejection surfaced as `Manifest Boundary Errors`, duplicate-entry dedup via `Set` |
 | **End-to-End Integration Tests** | `tests/integration.test.mjs` | Full `buildCompactedPack` pass, `.sync-status.json` atomic update, telemetry calculations, `core/flatten.sh` execution |
+
+> [!NOTE]
+> `config-loader.mjs`, `overrides-manager.mjs`, `manifest-loader.mjs`, `classifier.mjs`, and `path-utils.mjs` were smoke-tested manually against a temp repo fixture (config parse, override expiry filtering + round-trip save, malformed-YAML fail-closed, manifest path-traversal rejection, classifier priority resolution) — all passed. `skeletonizer.mjs` and `telemetry.mjs` were NOT smoke-tested: `typescript` and `js-tiktoken` are not installed in `node_modules` (see §15), so nothing importing them can currently run.
