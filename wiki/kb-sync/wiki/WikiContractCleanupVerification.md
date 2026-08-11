@@ -1,22 +1,14 @@
 ---
-title: "WikiContractCleanupVerification"
+title: "TestsWikiContractCleanupVerification"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["tests/wiki-contract-cleanup-verification.ts"]
 ---
 
-# WikiContractCleanupVerification
+# TestsWikiContractCleanupVerification
 
 ## Summary
-Offline draft template for WikiContractCleanupVerification staged from tests/wiki-contract-cleanup-verification.ts.
+Synthesized documentation node for tests/wiki-contract-cleanup-verification.ts
 
-## Purpose & Scope
-Draft specification for WikiContractCleanupVerification. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `tests/wiki-contract-cleanup-verification.ts`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `tests/wiki-contract-cleanup-verification.ts`

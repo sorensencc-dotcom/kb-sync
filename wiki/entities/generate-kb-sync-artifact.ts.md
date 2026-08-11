@@ -1,12 +1,14 @@
 ---
-title: "generate-kb-sync-artifact.ts"
-category: "utilities"
+title: "WikiEntitiesGenerateKbSyncArtifactTs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, notebooklm, artifact]
-created: 2026-08-01
+citations: ["wiki/entities/generate-kb-sync-artifact.ts.md"]
 ---
 
-# `generate-kb-sync-artifact.ts`
+# WikiEntitiesGenerateKbSyncArtifactTs
 
-`scripts/notebooklm/generate-kb-sync-artifact.ts` compiles Stage 2 interactive documentation dashboards.
+## Summary
+Synthesized documentation node for wiki/entities/generate-kb-sync-artifact.ts.md
+
+## Source Citations
+- Staged: `wiki/entities/generate-kb-sync-artifact.ts.md`

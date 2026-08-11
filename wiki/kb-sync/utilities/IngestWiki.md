@@ -1,22 +1,14 @@
 ---
-title: "IngestWiki"
-category: "utilities"
+title: "ModulesObsidianIngestWiki"
+category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["modules/obsidian/ingest-wiki.sh"]
 ---
 
-# IngestWiki
+# ModulesObsidianIngestWiki
 
 ## Summary
-Offline draft template for IngestWiki staged from modules/obsidian/ingest-wiki.sh.
+Synthesized documentation node for modules/obsidian/ingest-wiki.sh
 
-## Purpose & Scope
-Draft specification for IngestWiki. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `modules/obsidian/ingest-wiki.sh`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `modules/obsidian/ingest-wiki.sh`

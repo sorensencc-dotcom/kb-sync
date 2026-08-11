@@ -1,22 +1,14 @@
 ---
-title: "SetupScheduledTasks"
+title: "ScriptsSetupScheduledTasks"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["scripts/setup-scheduled-tasks.ps1"]
 ---
 
-# SetupScheduledTasks
+# ScriptsSetupScheduledTasks
 
 ## Summary
-Offline draft template for SetupScheduledTasks staged from scripts/setup-scheduled-tasks.ps1.
+Synthesized documentation node for scripts/setup-scheduled-tasks.ps1
 
-## Purpose & Scope
-Draft specification for SetupScheduledTasks. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `scripts/setup-scheduled-tasks.ps1`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `scripts/setup-scheduled-tasks.ps1`

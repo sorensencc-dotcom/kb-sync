@@ -1,12 +1,14 @@
 ---
-title: "validate-staging-docs.mjs"
-category: "utilities"
+title: "WikiEntitiesValidateStagingDocsMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [wiki, validation, staging]
-created: 2026-08-01
+citations: ["wiki/entities/validate-staging-docs.mjs.md"]
 ---
 
-# `validate-staging-docs.mjs`
+# WikiEntitiesValidateStagingDocsMjs
 
-`modules/wiki/validate-staging-docs.mjs` validates raw staged markdown documents prior to wiki ingestion.
+## Summary
+Synthesized documentation node for wiki/entities/validate-staging-docs.mjs.md
+
+## Source Citations
+- Staged: `wiki/entities/validate-staging-docs.mjs.md`

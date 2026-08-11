@@ -1,12 +1,14 @@
 ---
-title: "path-normalizer-verification.ts"
-category: "utilities"
+title: "WikiEntitiesPathNormalizerVerificationTs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [tests, path-normalization, verification]
-created: 2026-08-01
+citations: ["wiki/entities/path-normalizer-verification.ts.md"]
 ---
 
-# `path-normalizer-verification.ts`
+# WikiEntitiesPathNormalizerVerificationTs
 
-`tests/path-normalizer-verification.ts` verifies path normalization logic across Windows, Git Bash, MSYS, and Linux environments.
+## Summary
+Synthesized documentation node for wiki/entities/path-normalizer-verification.ts.md
+
+## Source Citations
+- Staged: `wiki/entities/path-normalizer-verification.ts.md`

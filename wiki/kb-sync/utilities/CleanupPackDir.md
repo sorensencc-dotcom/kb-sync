@@ -1,22 +1,14 @@
 ---
-title: "CleanupPackDir"
-category: "utilities"
+title: "ModulesNotebooklmCleanupPackDir"
+category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["modules/notebooklm/cleanup-pack-dir.sh"]
 ---
 
-# CleanupPackDir
+# ModulesNotebooklmCleanupPackDir
 
 ## Summary
-Offline draft template for CleanupPackDir staged from modules/notebooklm/cleanup-pack-dir.sh.
+Synthesized documentation node for modules/notebooklm/cleanup-pack-dir.sh
 
-## Purpose & Scope
-Draft specification for CleanupPackDir. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `modules/notebooklm/cleanup-pack-dir.sh`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `modules/notebooklm/cleanup-pack-dir.sh`

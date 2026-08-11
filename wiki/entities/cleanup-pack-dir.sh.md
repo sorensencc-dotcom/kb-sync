@@ -1,12 +1,14 @@
 ---
-title: "cleanup-pack-dir.sh"
-category: "utilities"
+title: "WikiEntitiesCleanupPackDirSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [notebooklm, pack, cleanup]
-created: 2026-08-01
+citations: ["wiki/entities/cleanup-pack-dir.sh.md"]
 ---
 
-# `cleanup-pack-dir.sh`
+# WikiEntitiesCleanupPackDirSh
 
-`modules/notebooklm/cleanup-pack-dir.sh` manages pack directory lifecycle and cleans temporary pack chunks.
+## Summary
+Synthesized documentation node for wiki/entities/cleanup-pack-dir.sh.md
+
+## Source Citations
+- Staged: `wiki/entities/cleanup-pack-dir.sh.md`

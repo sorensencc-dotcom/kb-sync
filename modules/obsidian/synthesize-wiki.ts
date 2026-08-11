@@ -217,8 +217,13 @@ function validateProposalSchema(proposal: SynthesisProposal, stagedManifestSet: 
 
   if (!proposal.vaultPath || !proposal.vaultPath.endsWith(".md") || proposal.vaultPath.includes("..")) {
     errors.push(`Invalid vaultPath '${proposal.vaultPath}'. Must end in .md and have no '..' path traversal.`);
-  } else if (!proposal.vaultPath.startsWith("kb-sync/")) {
-    errors.push(`Invalid vaultPath '${proposal.vaultPath}'. Must start with canonical repository boundary 'kb-sync/'.`);
+  }
+
+  const ALLOWED_BOUNDARIES = ["kb-sync/", "entities/", "concepts/", "utilities/", "daemons/", "scripts/", "tests/"];
+  const isRootSpecial = proposal.vaultPath === "Log.md" || proposal.vaultPath === "Index.md";
+  const isValidBoundary = ALLOWED_BOUNDARIES.some((b) => proposal.vaultPath.startsWith(b)) || isRootSpecial;
+  if (!isValidBoundary) {
+    errors.push(`Invalid vaultPath '${proposal.vaultPath}'. Must start with a canonical vault directory boundary.`);
   }
 
   if (!Array.isArray(proposal.citations)) {
@@ -515,7 +520,7 @@ async function main() {
   const createdOrModifiedPaths: string[] = [];
 
   for (const prop of acceptedProposals) {
-    const relTarget = prop.vaultPath; // e.g. "kb-sync/wiki/PageTitle.md"
+    const relTarget = prop.vaultPath;
     const targetFile = path.join(transactWikiRoot, relTarget);
 
     assertPathContainment(getCanonicalPath(transactWikiRoot), targetFile);
@@ -556,7 +561,11 @@ status: "active"
 # Wiki Index
 
 ## Pages
-${createdOrModifiedPaths.map((p) => `- [[${p.replace(/\.md$/, "")}]]`).join("\n") || "- None"}
+${createdOrModifiedPaths.map((p) => {
+  const cleanP = p.replace(/\.md$/, "");
+  const targetLink = cleanP.startsWith("kb-sync/") ? cleanP : `kb-sync/${cleanP}`;
+  return `- [[${targetLink}]]`;
+}).join("\n") || "- None"}
 `;
 
   fs.writeFileSync(indexFilePath, indexContent, "utf-8");
@@ -589,7 +598,8 @@ status: "active"
 
   if (validatorResult.status !== 0) {
     logError("Phase 5 Contract Validator Failed! Output:");
-    logError(validatorResult.stdout || validatorResult.stderr || "Unknown validator failure");
+    if (validatorResult.stdout) console.log(validatorResult.stdout);
+    if (validatorResult.stderr) console.error(validatorResult.stderr);
     logError("Transaction aborted. Target vault remains untouched and Log.md was NOT updated.");
     fs.rmSync(transactDir, { recursive: true, force: true });
     process.exit(1);

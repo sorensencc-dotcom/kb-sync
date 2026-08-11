@@ -1,22 +1,14 @@
 ---
-title: "CreateALink"
+title: "ObsidianVaultKBVaultCreateALink"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["obsidian/vault/KB-Vault/create a link.md"]
 ---
 
-# CreateALink
+# ObsidianVaultKBVaultCreateALink
 
 ## Summary
-Offline draft template for CreateALink staged from obsidian/vault/KB-Vault/create a link.md.
+Synthesized documentation node for obsidian/vault/KB-Vault/create a link.md
 
-## Purpose & Scope
-Draft specification for CreateALink. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `obsidian/vault/KB-Vault/create a link.md`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `obsidian/vault/KB-Vault/create a link.md`

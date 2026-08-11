@@ -1,12 +1,14 @@
 ---
-title: "kb-sync-nightly.ps1"
-category: "utilities"
+title: "WikiEntitiesKbSyncNightlyPs1"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, notebooklm, orchestrator, powershell]
-created: 2026-08-01
+citations: ["wiki/entities/kb-sync-nightly.ps1.md"]
 ---
 
-# `kb-sync-nightly.ps1`
+# WikiEntitiesKbSyncNightlyPs1
 
-`scripts/notebooklm/kb-sync-nightly.ps1` is the native Windows PowerShell orchestrator executing Stage 1 & Stage 2 nightly jobs.
+## Summary
+Synthesized documentation node for wiki/entities/kb-sync-nightly.ps1.md
+
+## Source Citations
+- Staged: `wiki/entities/kb-sync-nightly.ps1.md`

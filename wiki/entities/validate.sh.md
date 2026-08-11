@@ -1,22 +1,14 @@
 ---
-title: "validate.sh"
-category: "utilities"
+title: "WikiEntitiesValidateSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [core, validation, quality]
-created: 2026-08-01
+citations: ["wiki/entities/validate.sh.md"]
 ---
 
-# `validate.sh`
+# WikiEntitiesValidateSh
 
-`core/validate.sh` executes structural integrity checks against staged outputs and generated knowledge packs.
+## Summary
+Synthesized documentation node for wiki/entities/validate.sh.md
 
-## Validations Performed
-
-- **File Existence**: Asserts required pack structures and `manifest.txt`.
-- **Non-Empty Checks**: Verifies pack output sizes >0 bytes.
-
-## Related Scripts
-
-- [[kb-sync/entities/run-all.sh]]
-- [[kb-sync/entities/flatten.sh]]
+## Source Citations
+- Staged: `wiki/entities/validate.sh.md`

@@ -1,21 +1,14 @@
 ---
-title: "cleanup-logs-and-backups.mjs"
-category: "utilities"
+title: "WikiEntitiesCleanupLogsAndBackupsMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, housekeeping, cleanup]
-created: 2026-08-01
+citations: ["wiki/entities/cleanup-logs-and-backups.mjs.md"]
 ---
 
-# `cleanup-logs-and-backups.mjs`
+# WikiEntitiesCleanupLogsAndBackupsMjs
 
-`scripts/cleanup-logs-and-backups.mjs` is an automated housekeeping utility that rotates and cleans up stale `.nlm_pack.backup.*` directories and old log files.
+## Summary
+Synthesized documentation node for wiki/entities/cleanup-logs-and-backups.mjs.md
 
-## Responsibilities
-
-- **Backup Pruning**: Deletes staging backup directories older than retention thresholds.
-- **Log Rotation**: Cleans up dated execution logs under `logs/`.
-
-## CLI Entry
-
-- `npm run logs:cleanup`
+## Source Citations
+- Staged: `wiki/entities/cleanup-logs-and-backups.mjs.md`

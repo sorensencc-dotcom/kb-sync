@@ -1,12 +1,14 @@
 ---
-title: "schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1"
-category: "utilities"
+title: "WikiEntitiesScheduleTaskWrapperKBSyncWikiAutomatePs1"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, automation, powershell]
-created: 2026-08-01
+citations: ["wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md"]
 ---
 
-# `schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1`
+# WikiEntitiesScheduleTaskWrapperKBSyncWikiAutomatePs1
 
-`scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1` is the wrapper script invoked by Windows Task Scheduler for weekly wiki automation.
+## Summary
+Synthesized documentation node for wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md
+
+## Source Citations
+- Staged: `wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md`

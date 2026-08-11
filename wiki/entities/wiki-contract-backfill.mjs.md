@@ -1,12 +1,14 @@
 ---
-title: "wiki-contract-backfill.mjs"
-category: "utilities"
+title: "WikiEntitiesWikiContractBackfillMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, wiki, backfill]
-created: 2026-08-01
+citations: ["wiki/entities/wiki-contract-backfill.mjs.md"]
 ---
 
-# `wiki-contract-backfill.mjs`
+# WikiEntitiesWikiContractBackfillMjs
 
-`scripts/wiki-contract-backfill.mjs` backfills missing contract schema fields across legacy wiki pages.
+## Summary
+Synthesized documentation node for wiki/entities/wiki-contract-backfill.mjs.md
+
+## Source Citations
+- Staged: `wiki/entities/wiki-contract-backfill.mjs.md`

@@ -1,22 +1,14 @@
 ---
-title: "KBSyncOrchestration"
+title: "ObsidianVaultWikiKbSyncKBSyncOrchestration"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["obsidian/vault/wiki/kb-sync/KBSyncOrchestration.md"]
 ---
 
-# KBSyncOrchestration
+# ObsidianVaultWikiKbSyncKBSyncOrchestration
 
 ## Summary
-Offline draft template for KBSyncOrchestration staged from obsidian/vault/wiki/kb-sync/KBSyncOrchestration.md.
+Synthesized documentation node for obsidian/vault/wiki/kb-sync/KBSyncOrchestration.md
 
-## Purpose & Scope
-Draft specification for KBSyncOrchestration. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `obsidian/vault/wiki/kb-sync/KBSyncOrchestration.md`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `obsidian/vault/wiki/kb-sync/KBSyncOrchestration.md`

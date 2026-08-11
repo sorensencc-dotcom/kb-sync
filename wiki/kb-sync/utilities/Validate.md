@@ -1,22 +1,14 @@
 ---
-title: "Validate"
-category: "utilities"
+title: "CoreValidate"
+category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["core/validate.sh"]
 ---
 
-# Validate
+# CoreValidate
 
 ## Summary
-Offline draft template for Validate staged from core/validate.sh.
+Synthesized documentation node for core/validate.sh
 
-## Purpose & Scope
-Draft specification for Validate. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `core/validate.sh`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `core/validate.sh`

@@ -1,12 +1,14 @@
 ---
-title: "post-commit-hook-example.sh"
-category: "utilities"
+title: "WikiEntitiesPostCommitHookExampleSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, git, hooks]
-created: 2026-08-01
+citations: ["wiki/entities/post-commit-hook-example.sh.md"]
 ---
 
-# `post-commit-hook-example.sh`
+# WikiEntitiesPostCommitHookExampleSh
 
-`scripts/notebooklm/post-commit-hook-example.sh` provides an example post-commit hook for automated local sync triggers.
+## Summary
+Synthesized documentation node for wiki/entities/post-commit-hook-example.sh.md
+
+## Source Citations
+- Staged: `wiki/entities/post-commit-hook-example.sh.md`

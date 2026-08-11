@@ -1,22 +1,14 @@
 ---
-title: "GithubActionsSetup"
+title: "DocsGithubActionsSetup"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["docs/github-actions-setup.md"]
 ---
 
-# GithubActionsSetup
+# DocsGithubActionsSetup
 
 ## Summary
-Offline draft template for GithubActionsSetup staged from docs/github-actions-setup.md.
+Synthesized documentation node for docs/github-actions-setup.md
 
-## Purpose & Scope
-Draft specification for GithubActionsSetup. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `docs/github-actions-setup.md`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `docs/github-actions-setup.md`

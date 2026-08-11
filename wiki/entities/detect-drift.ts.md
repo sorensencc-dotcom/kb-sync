@@ -1,23 +1,14 @@
 ---
-title: "detect-drift.ts"
-category: "utilities"
+title: "WikiEntitiesDetectDriftTs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [wiki, drift, telemetry]
-created: 2026-08-01
+citations: ["wiki/entities/detect-drift.ts.md"]
 ---
 
-# `detect-drift.ts`
+# WikiEntitiesDetectDriftTs
 
-`modules/wiki/detect-drift.ts` implements Phase 1 Knowledge Freshness & Drift Detection.
+## Summary
+Synthesized documentation node for wiki/entities/detect-drift.ts.md
 
-## Responsibilities
-
-- **Timestamp & Hash Drift Analysis**: Compares git commit timestamps and file SHA256 hashes against `wiki/Log.md` / `.sync-status.json`.
-- **Telemetry Reporting**: Writes findings to `.drift-report.json`.
-- **Self-Healing Backlog Trigger**: Appends remediation tasks to `TODOS.md` when stale pages >5 (with deduplication guards).
-
-## Related Concepts & Modules
-
-- [[kb-sync/entities/generate-delta-summary.ts]]
-- [[kb-sync/entities/audit-coverage.ts]]
+## Source Citations
+- Staged: `wiki/entities/detect-drift.ts.md`

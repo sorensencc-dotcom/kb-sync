@@ -1,12 +1,14 @@
 ---
-title: "cleanup-staging-archives.mjs"
-category: "utilities"
+title: "WikiEntitiesCleanupStagingArchivesMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [wiki, staging, cleanup]
-created: 2026-08-01
+citations: ["wiki/entities/cleanup-staging-archives.mjs.md"]
 ---
 
-# `cleanup-staging-archives.mjs`
+# WikiEntitiesCleanupStagingArchivesMjs
 
-`modules/wiki/cleanup-staging-archives.mjs` manages staging archive retention and prunes obsolete snapshots under `_kb-sync-staging/`.
+## Summary
+Synthesized documentation node for wiki/entities/cleanup-staging-archives.mjs.md
+
+## Source Citations
+- Staged: `wiki/entities/cleanup-staging-archives.mjs.md`

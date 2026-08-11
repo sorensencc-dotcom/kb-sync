@@ -1,22 +1,14 @@
 ---
-title: "path-normalizer.mjs"
-category: "utilities"
+title: "WikiEntitiesPathNormalizerMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [core, path-normalization, cross-platform]
-created: 2026-08-01
+citations: ["wiki/entities/path-normalizer.mjs.md"]
 ---
 
-# `path-normalizer.mjs`
+# WikiEntitiesPathNormalizerMjs
 
-`core/path-normalizer.mjs` provides centralized cross-platform path normalization across Windows, Git Bash, MSYS, and Linux environments.
+## Summary
+Synthesized documentation node for wiki/entities/path-normalizer.mjs.md
 
-## Responsibilities
-
-- **Drive Mount Conversion**: Converts Windows drive letters (`C:\dev\`) into Git Bash (`/c/dev/`) or WSL (`/mnt/c/dev/`) formats.
-- **Path Sanitization**: Strips duplicate slashes and normalizes trailing separators.
-
-## Related Entities & Tests
-
-- [[kb-sync/entities/run-all.sh]]
-- [[kb-sync/entities/path-normalizer-verification.ts]]
+## Source Citations
+- Staged: `wiki/entities/path-normalizer.mjs.md`

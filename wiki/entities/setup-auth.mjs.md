@@ -1,12 +1,14 @@
 ---
-title: "setup-auth.mjs"
-category: "utilities"
+title: "WikiEntitiesSetupAuthMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, auth, notebooklm]
-created: 2026-08-01
+citations: ["wiki/entities/setup-auth.mjs.md"]
 ---
 
-# `setup-auth.mjs`
+# WikiEntitiesSetupAuthMjs
 
-`scripts/notebooklm/setup-auth.mjs` bootstraps master token authentication state for headless cookie renewal.
+## Summary
+Synthesized documentation node for wiki/entities/setup-auth.mjs.md
+
+## Source Citations
+- Staged: `wiki/entities/setup-auth.mjs.md`

@@ -1,22 +1,14 @@
 ---
-title: "Pipeline"
+title: "DocsKbNotebooklmSyncPipeline"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["docs/kb/notebooklm-sync/pipeline.md"]
 ---
 
-# Pipeline
+# DocsKbNotebooklmSyncPipeline
 
 ## Summary
-Offline draft template for Pipeline staged from docs/kb/notebooklm-sync/pipeline.md.
+Synthesized documentation node for docs/kb/notebooklm-sync/pipeline.md
 
-## Purpose & Scope
-Draft specification for Pipeline. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `docs/kb/notebooklm-sync/pipeline.md`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `docs/kb/notebooklm-sync/pipeline.md`

@@ -1,12 +1,14 @@
 ---
-title: "generate-report.mjs"
-category: "utilities"
+title: "WikiEntitiesGenerateReportMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [artifact-generator, report, mjs]
-created: 2026-08-01
+citations: ["wiki/entities/generate-report.mjs.md"]
 ---
 
-# `generate-report.mjs`
+# WikiEntitiesGenerateReportMjs
 
-`modules/artifact-generator/generate-report.mjs` parses raw pack outputs and generates interactive HTML report artifacts.
+## Summary
+Synthesized documentation node for wiki/entities/generate-report.mjs.md
+
+## Source Citations
+- Staged: `wiki/entities/generate-report.mjs.md`

@@ -1,22 +1,14 @@
 ---
-title: "ErrorBoundaries"
+title: "DocsKbNotebooklmSyncErrorBoundaries"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["docs/kb/notebooklm-sync/error-boundaries.md"]
 ---
 
-# ErrorBoundaries
+# DocsKbNotebooklmSyncErrorBoundaries
 
 ## Summary
-Offline draft template for ErrorBoundaries staged from docs/kb/notebooklm-sync/error-boundaries.md.
+Synthesized documentation node for docs/kb/notebooklm-sync/error-boundaries.md
 
-## Purpose & Scope
-Draft specification for ErrorBoundaries. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `docs/kb/notebooklm-sync/error-boundaries.md`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `docs/kb/notebooklm-sync/error-boundaries.md`

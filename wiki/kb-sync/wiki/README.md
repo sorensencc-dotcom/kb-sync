@@ -1,22 +1,14 @@
 ---
-title: "README"
+title: "ModulesArtifactGeneratorREADME"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["modules/artifact-generator/README.md"]
 ---
 
-# README
+# ModulesArtifactGeneratorREADME
 
 ## Summary
-Offline draft template for README staged from README.md.
+Synthesized documentation node for modules/artifact-generator/README.md
 
-## Purpose & Scope
-Draft specification for README. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `README.md`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `modules/artifact-generator/README.md`

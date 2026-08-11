@@ -1,12 +1,14 @@
 ---
-title: "secret-scan-hook.sh"
-category: "utilities"
+title: "WikiEntitiesSecretScanHookSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, security, git]
-created: 2026-08-01
+citations: ["wiki/entities/secret-scan-hook.sh.md"]
 ---
 
-# `secret-scan-hook.sh`
+# WikiEntitiesSecretScanHookSh
 
-`scripts/secret-scan-hook.sh` scans staged commits for accidentally exposed secrets and API credentials.
+## Summary
+Synthesized documentation node for wiki/entities/secret-scan-hook.sh.md
+
+## Source Citations
+- Staged: `wiki/entities/secret-scan-hook.sh.md`

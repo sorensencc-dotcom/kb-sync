@@ -1,12 +1,14 @@
 ---
-title: "generate.sh"
-category: "utilities"
+title: "WikiEntitiesGenerateSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [artifact-generator, bash]
-created: 2026-08-01
+citations: ["wiki/entities/generate.sh.md"]
 ---
 
-# `generate.sh`
+# WikiEntitiesGenerateSh
 
-`modules/artifact-generator/generate.sh` orchestrates artifact generation workflows from `.nlm_pack/` source directories.
+## Summary
+Synthesized documentation node for wiki/entities/generate.sh.md
+
+## Source Citations
+- Staged: `wiki/entities/generate.sh.md`

@@ -1,12 +1,14 @@
 ---
-title: "extract-github-prs.ps1"
-category: "utilities"
+title: "WikiEntitiesExtractGithubPrsPs1"
+category: "wiki"
 status: "active"
-type: entity
-tags: [review-capacity, github, prs]
-created: 2026-08-01
+citations: ["wiki/entities/extract-github-prs.ps1.md"]
 ---
 
-# `extract-github-prs.ps1`
+# WikiEntitiesExtractGithubPrsPs1
 
-`modules/review-capacity/scripts/extract-github-prs.ps1` extracts merged GitHub PR data for review capacity metrics.
+## Summary
+Synthesized documentation node for wiki/entities/extract-github-prs.ps1.md
+
+## Source Citations
+- Staged: `wiki/entities/extract-github-prs.ps1.md`

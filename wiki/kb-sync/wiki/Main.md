@@ -1,22 +1,14 @@
 ---
-title: "Main"
+title: "ObsidianVaultKBVaultObsidianPluginsObsidianTasksPluginMain"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["obsidian/vault/KB-Vault/.obsidian/plugins/obsidian-tasks-plugin/main.js"]
 ---
 
-# Main
+# ObsidianVaultKBVaultObsidianPluginsObsidianTasksPluginMain
 
 ## Summary
-Offline draft template for Main staged from obsidian/vault/KB-Vault/.obsidian/plugins/obsidian-tasks-plugin/main.js.
+Synthesized documentation node for obsidian/vault/KB-Vault/.obsidian/plugins/obsidian-tasks-plugin/main.js
 
-## Purpose & Scope
-Draft specification for Main. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `obsidian/vault/KB-Vault/.obsidian/plugins/obsidian-tasks-plugin/main.js`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `obsidian/vault/KB-Vault/.obsidian/plugins/obsidian-tasks-plugin/main.js`

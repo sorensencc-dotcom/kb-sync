@@ -1,12 +1,14 @@
 ---
-title: "compute-weekly-metrics.ps1"
-category: "utilities"
+title: "WikiEntitiesComputeWeeklyMetricsPs1"
+category: "wiki"
 status: "active"
-type: entity
-tags: [review-capacity, metrics, powershell]
-created: 2026-08-01
+citations: ["wiki/entities/compute-weekly-metrics.ps1.md"]
 ---
 
-# `compute-weekly-metrics.ps1`
+# WikiEntitiesComputeWeeklyMetricsPs1
 
-`modules/review-capacity/scripts/compute-weekly-metrics.ps1` computes team review capacity and throughput metrics.
+## Summary
+Synthesized documentation node for wiki/entities/compute-weekly-metrics.ps1.md
+
+## Source Citations
+- Staged: `wiki/entities/compute-weekly-metrics.ps1.md`

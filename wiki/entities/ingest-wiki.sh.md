@@ -1,22 +1,14 @@
 ---
-title: "ingest-wiki.sh"
-category: "utilities"
+title: "WikiEntitiesIngestWikiSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [wiki, ingest, obsidian]
-created: 2026-08-01
+citations: ["wiki/entities/ingest-wiki.sh.md"]
 ---
 
-# `ingest-wiki.sh`
+# WikiEntitiesIngestWikiSh
 
-`modules/obsidian/ingest-wiki.sh` validates staging directories and generates operator prompts for human-in-the-loop Obsidian wiki synthesis.
+## Summary
+Synthesized documentation node for wiki/entities/ingest-wiki.sh.md
 
-## Responsibilities
-
-- **Staging Validation**: Asserts staged raw source file presence and manifests.
-- **Operator Prompt Generation**: Output guidance for Claude Code ingest sessions.
-
-## Related Concepts
-
-- [[kb-sync/entities/ingest-obsidian.sh]]
-- [[kb-sync/concepts/karpathy-llm-wiki-pattern]]
+## Source Citations
+- Staged: `wiki/entities/ingest-wiki.sh.md`

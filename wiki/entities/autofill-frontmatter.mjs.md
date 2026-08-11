@@ -1,12 +1,14 @@
 ---
-title: "autofill-frontmatter.mjs"
-category: "utilities"
+title: "WikiEntitiesAutofillFrontmatterMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [wiki, frontmatter, automation]
-created: 2026-08-01
+citations: ["wiki/entities/autofill-frontmatter.mjs.md"]
 ---
 
-# `autofill-frontmatter.mjs`
+# WikiEntitiesAutofillFrontmatterMjs
 
-`modules/wiki/autofill-frontmatter.mjs` automatically populates required frontmatter metadata across newly generated wiki pages.
+## Summary
+Synthesized documentation node for wiki/entities/autofill-frontmatter.mjs.md
+
+## Source Citations
+- Staged: `wiki/entities/autofill-frontmatter.mjs.md`

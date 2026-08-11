@@ -232,6 +232,22 @@ if [ "$IS_SYNTHESIS_RUN" = true ]; then
   if [ -n "$LOCAL_ENDPOINT" ]; then WORKER_ARGS+=("--local-endpoint" "$LOCAL_ENDPOINT"); fi
   if [ -n "$MODEL" ]; then WORKER_ARGS+=("--model" "$MODEL"); fi
 
+  if [ -f /etc/wsl.conf ] || grep -q microsoft /proc/version 2>/dev/null; then
+    if command -v cmd.exe &>/dev/null; then
+      WIN_SCRIPT_PATH=$(wslpath -w "$SCRIPT_DIR/synthesize-wiki.ts")
+      WIN_WORKER_ARGS=()
+      for arg in "${WORKER_ARGS[@]}"; do
+        if [[ "$arg" == /mnt/?/* ]]; then
+          WIN_WORKER_ARGS+=("$(wslpath -w "$arg")")
+        else
+          WIN_WORKER_ARGS+=("$arg")
+        fi
+      done
+      cmd.exe /c npx tsx "$WIN_SCRIPT_PATH" "${WIN_WORKER_ARGS[@]}"
+      exit $?
+    fi
+  fi
+
   npx tsx "$SCRIPT_DIR/synthesize-wiki.ts" "${WORKER_ARGS[@]}"
   exit $?
 fi

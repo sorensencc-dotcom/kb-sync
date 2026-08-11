@@ -1,12 +1,14 @@
 ---
-title: "wiki-validate-precommit.sh"
-category: "utilities"
+title: "WikiEntitiesWikiValidatePrecommitSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, wiki, git]
-created: 2026-08-01
+citations: ["wiki/entities/wiki-validate-precommit.sh.md"]
 ---
 
-# `wiki-validate-precommit.sh`
+# WikiEntitiesWikiValidatePrecommitSh
 
-`scripts/wiki-validate-precommit.sh` executes pre-commit validation of staged markdown files against frontmatter schema rules.
+## Summary
+Synthesized documentation node for wiki/entities/wiki-validate-precommit.sh.md
+
+## Source Citations
+- Staged: `wiki/entities/wiki-validate-precommit.sh.md`

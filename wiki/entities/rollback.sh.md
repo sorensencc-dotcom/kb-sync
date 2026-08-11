@@ -1,22 +1,14 @@
 ---
-title: "rollback.sh"
-category: "utilities"
+title: "WikiEntitiesRollbackSh"
+category: "wiki"
 status: "active"
-type: entity
-tags: [core, rollback, recovery]
-created: 2026-08-01
+citations: ["wiki/entities/rollback.sh.md"]
 ---
 
-# `rollback.sh`
+# WikiEntitiesRollbackSh
 
-`core/rollback.sh` provides emergency rollback mechanisms for `kb-sync` target modules (`--rollback`), restoring previous staging directories and `.nlm_pack/` backups.
+## Summary
+Synthesized documentation node for wiki/entities/rollback.sh.md
 
-## Key Functions
-
-- **Staging Reversion**: Restores `.nlm_pack.backup.*` directories.
-- **Fail-Soft Recovery**: Ensures corrupted sync passes can be cleanly unwound.
-
-## Related Scripts
-
-- [[kb-sync/entities/run-all.sh]]
-- [[kb-sync/entities/ingest-notebooklm.sh]]
+## Source Citations
+- Staged: `wiki/entities/rollback.sh.md`

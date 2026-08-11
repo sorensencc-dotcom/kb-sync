@@ -1,22 +1,14 @@
 ---
-title: "Global"
+title: "ConfigsGlobal"
 category: "wiki"
 status: "active"
-draft: true
-created: "2026-08-09T18:09:20.455Z"
+citations: ["configs/global.yaml"]
 ---
 
-# Global
+# ConfigsGlobal
 
 ## Summary
-Offline draft template for Global staged from configs/global.yaml.
+Synthesized documentation node for configs/global.yaml
 
-## Purpose & Scope
-Draft specification for Global. Synthesized via OfflineTemplateProvider.
-
-## Operations & Details
-- Source: `configs/global.yaml`
-- Staged Pack: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
-
-## Related Pages
-- [[kb-sync/wiki/Index]]
+## Source Citations
+- Staged: `configs/global.yaml`

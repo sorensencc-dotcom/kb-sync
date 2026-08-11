@@ -1,12 +1,14 @@
 ---
-title: "generate-kb-sync-artifact.js"
-category: "utilities"
+title: "WikiEntitiesGenerateKbSyncArtifactJs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [scripts, notebooklm, artifact]
-created: 2026-08-01
+citations: ["wiki/entities/generate-kb-sync-artifact.js.md"]
 ---
 
-# `generate-kb-sync-artifact.js`
+# WikiEntitiesGenerateKbSyncArtifactJs
 
-`scripts/notebooklm/generate-kb-sync-artifact.js` is the JavaScript entry for compiling Stage 2 interactive documentation dashboards.
+## Summary
+Synthesized documentation node for wiki/entities/generate-kb-sync-artifact.js.md
+
+## Source Citations
+- Staged: `wiki/entities/generate-kb-sync-artifact.js.md`

@@ -1,23 +1,14 @@
 ---
-title: "manifest-mode"
+title: "WikiConceptsManifestMode"
 category: "wiki"
 status: "active"
-type: concept
-tags: [manifest, packing, nlm]
-created: 2026-08-01
+citations: ["wiki/concepts/manifest-mode.md"]
 ---
 
-# Manifest Mode
+# WikiConceptsManifestMode
 
-**Manifest Mode** is an ingestion strategy in `core/flatten.sh` where source repository files are listed into `manifest.txt` with SHA256 checksums and relative file paths before consolidation into `.nlm_pack/`.
+## Summary
+Synthesized documentation node for wiki/concepts/manifest-mode.md
 
-## Key Capabilities
-
-- **Path Preservation**: Retains exact relative paths across multi-file repositories.
-- **Hash Integrity**: Provides checksum validation during pack consolidation.
-- **Config-Driven Inclusions**: Adheres to `pyragify.yaml` rules.
-
-## Related Entities & Concepts
-
-- [[kb-sync/entities/flatten.sh]]
-- [[kb-sync/concepts/pack-based-knowledge-management]]
+## Source Citations
+- Staged: `wiki/concepts/manifest-mode.md`

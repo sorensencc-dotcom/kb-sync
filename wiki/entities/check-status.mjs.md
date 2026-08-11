@@ -1,24 +1,14 @@
 ---
-title: "check-status.mjs"
-category: "utilities"
+title: "WikiEntitiesCheckStatusMjs"
+category: "wiki"
 status: "active"
-type: entity
-tags: [wiki, status, dashboard, CLI]
-created: 2026-08-03
+citations: ["wiki/entities/check-status.mjs.md"]
 ---
 
-# `check-status.mjs`
+# WikiEntitiesCheckStatusMjs
 
-`scripts/check-status.mjs` provides the CLI status dashboard for the `kb-sync` pipeline (`npm run kb:status`).
+## Summary
+Synthesized documentation node for wiki/entities/check-status.mjs.md
 
-## Responsibilities
-
-- **Telemetry Inspection**: Reads `.sync-status.json` for sync health, timestamp, file counts, pack size, and URL tracking stats.
-- **Log Verification**: Checks the `logs/` directory for recent NotebookLM and Obsidian pipeline execution logs.
-- **Staging Verification**: Inspects `_kb-sync-staging/kb-sync` to verify the latest staged snapshot and manifest.
-
-## Related Concepts & Modules
-
-- [[kb-sync/entities/audit-coverage.ts]]
-- [[kb-sync/entities/detect-drift.ts]]
-- [[kb-sync/entities/run-all.sh]]
+## Source Citations
+- Staged: `wiki/entities/check-status.mjs.md`
