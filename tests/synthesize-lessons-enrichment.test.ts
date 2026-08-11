@@ -145,7 +145,7 @@ _quarantine/test
 `;
     fs.writeFileSync(lessonFile, originalContent, "utf-8");
 
-    // Failing provider
+    // 1. Failing provider (throws error)
     const failingProvider: any = {
       name: "failing-provider",
       enrichLesson: async () => {
@@ -153,12 +153,19 @@ _quarantine/test
       },
     };
 
-    const result = await processUnenrichedLessons(tmpDir, failingProvider, "lessons");
-    expect(result).toHaveLength(0);
+    const result1 = await processUnenrichedLessons(tmpDir, failingProvider, "lessons");
+    expect(result1).toHaveLength(0);
+    expect(fs.readFileSync(lessonFile, "utf-8")).toBe(originalContent);
 
-    const afterContent = fs.readFileSync(lessonFile, "utf-8");
-    expect(afterContent).toBe(originalContent);
-    expect(afterContent).toContain("needs-enrichment");
+    // 2. Null-returning provider (returns null analysis payload)
+    const nullProvider: any = {
+      name: "null-provider",
+      enrichLesson: async () => null,
+    };
+
+    const result2 = await processUnenrichedLessons(tmpDir, nullProvider, "lessons");
+    expect(result2).toHaveLength(0);
+    expect(fs.readFileSync(lessonFile, "utf-8")).toBe(originalContent);
 
     fs.rmSync(tmpDir, { recursive: true, force: true });
   });

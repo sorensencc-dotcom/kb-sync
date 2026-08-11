@@ -474,19 +474,26 @@ export async function runGatedClimbRepair(options = {}) {
  * @returns {string} Path to created/existing lesson file
  */
 /**
- * Dynamically resolves obsidian vault configuration for lessons directory.
+ * Dynamically resolves obsidian vault configuration by searching upward for configs/obsidian.yaml.
  */
 function getObsidianLessonsDir(vaultRoot) {
-  try {
-    const configPath = path.join(vaultRoot, 'configs', 'obsidian.yaml');
+  let root = vaultRoot || process.env.OBSIDIAN_VAULT_ROOT || process.cwd();
+  let curr = path.resolve(root);
+  while (curr && curr !== path.parse(curr).root) {
+    const configPath = path.join(curr, 'configs', 'obsidian.yaml');
     if (fs.existsSync(configPath)) {
-      const parsed = jsYaml.load(fs.readFileSync(configPath, 'utf8'));
-      const wikiDir = parsed.wiki_dir || 'wiki';
-      const lessonsDir = parsed.lessons_dir || 'lessons';
-      return path.join(vaultRoot, wikiDir, lessonsDir);
+      try {
+        const parsed = jsYaml.load(fs.readFileSync(configPath, 'utf8'));
+        const wikiDir = parsed.wiki_dir || 'wiki';
+        const lessonsDir = parsed.lessons_dir || 'lessons';
+        return path.join(curr, wikiDir, lessonsDir);
+      } catch {}
     }
-  } catch {}
-  return path.join(vaultRoot, 'wiki', 'lessons');
+    const parent = path.dirname(curr);
+    if (parent === curr) break;
+    curr = parent;
+  }
+  return path.join(path.resolve(root), 'wiki', 'lessons');
 }
 
 /**
@@ -499,6 +506,14 @@ function escapeMarkdown(str) {
     .replace(/\r?\n/g, ' ');
 }
 
+function escapeWikiLinkTarget(str) {
+  return (str || '')
+    .replace(/[\r\n]/g, '')
+    .replace(/\[/g, '%5B')
+    .replace(/\]/g, '%5D')
+    .trim();
+}
+
 /**
  * Generates a deterministic lesson document on auto-repair failure.
  * @param {Object} params
@@ -509,12 +524,11 @@ export function generateLessonFromFailure({ runId, error, targetPath, quarantine
   const normalizedTarget = normalizePath(targetPath || 'kb-sync/wiki/Unknown');
   const rawError = (error || 'Unknown repair error').trim();
   const escapedError = escapeMarkdown(rawError);
-  const escapedTarget = (targetPath || 'kb-sync/wiki/Unknown').replace(/[\r\n]/g, '').trim();
+  const escapedTarget = escapeWikiLinkTarget(targetPath || 'kb-sync/wiki/Unknown');
 
   const fingerprint = crypto.createHash('md5').update(`${normalizedTarget}\n${rawError}`).digest('hex').slice(0, 8);
   const lessonsDir = getObsidianLessonsDir(vaultRoot);
 
-  // Path containment check
   const canonicalLessonsDir = path.resolve(lessonsDir);
   fs.mkdirSync(canonicalLessonsDir, { recursive: true });
 
@@ -550,9 +564,10 @@ export function generateLessonFromFailure({ runId, error, targetPath, quarantine
     lessonPath = path.join(canonicalLessonsDir, `${baseName}.md`);
   }
 
-  // Double-check path containment
+  // Robust path containment check using path.relative
   const resolvedLessonPath = path.resolve(lessonPath);
-  if (!resolvedLessonPath.startsWith(canonicalLessonsDir)) {
+  const relPath = path.relative(canonicalLessonsDir, resolvedLessonPath);
+  if (relPath.startsWith('..') || path.isAbsolute(relPath)) {
     throw new Error(`Path containment failure: '${lessonPath}' escapes lessons directory '${canonicalLessonsDir}'`);
   }
 
