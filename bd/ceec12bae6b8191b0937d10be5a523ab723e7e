@@ -1,0 +1,18 @@
+modules/obsidian/synthesize-wiki.ts
+  h_5c172e9b435f5a 5-6,253,264,283-284,559-565,834-835,837,849-861,872-875,878-890
+modules/wiki/gated-climb-repair.mjs
+  h_5c172e9b435f5a 7-8,404,419-422,433,437,476-506,510-515,517-519,522,528,530-531,547,550-556,569-570,584-589,594
+tests/synthesize-lessons-enrichment.test.ts
+  h_5c172e9b435f5a 2-5,119-213
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "bdceec12bae6b8191b0937d10be5a523ab723e7e",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
