@@ -1,9 +1,8 @@
 # Design Specification: Compacted Context Engine (Token-Aware Sync Pipeline)
 
-**Document Status:** Approved Design Specification  
-**Target Paths:**  
-- `docs/meta/specs/2026-08-11-compacted-context-design.md` (Governed)  
-- `docs/superpowers/specs/2026-08-11-compacted-context-design.md`  
+**Document Status:** Draft (In Review)  
+**Canonical Path:** `docs/meta/specs/2026-08-11-compacted-context-design.md` (Governed Source of Truth)  
+**Mirrored Path:** `docs/superpowers/specs/2026-08-11-compacted-context-design.md` (Automated Spec Mirror)  
 **Engine Version:** v1.0.0  
 
 ---
@@ -133,22 +132,265 @@ overrides:
 
 ---
 
-## 4. 4-State Compaction Model & Classifier Engine (`modules/compactor/classifier.mjs`)
+## 4. Path Utilities & Security Boundary (`modules/compactor/path-utils.mjs`)
+
+```javascript
+import path from 'node:path';
+import fs from 'node:fs';
+
+export function normalizeRepoPath(inputPath, repoRoot) {
+  if (!inputPath || typeof inputPath !== 'string') {
+    throw new Error('Invalid path input: Path must be a non-empty string');
+  }
+
+  const resolvedRepoRoot = path.resolve(repoRoot);
+  const absolutePath = path.isAbsolute(inputPath) 
+    ? path.resolve(inputPath) 
+    : path.resolve(resolvedRepoRoot, inputPath);
+
+  const relative = path.relative(resolvedRepoRoot, absolutePath);
+
+  if (relative === '' || relative === '.') {
+    throw new Error(`Security Exception: Cannot target repository root directory: "${inputPath}"`);
+  }
+
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    throw new Error(`Security Exception: Path traversal outside repository root: "${inputPath}"`);
+  }
+
+  // Symlink Safety Boundary Check: Verifies underlying real path stays within repo root
+  if (fs.existsSync(absolutePath)) {
+    const realPath = fs.realpathSync(absolutePath);
+    const realRelative = path.relative(resolvedRepoRoot, realPath);
+    if (realRelative.startsWith('..') || path.isAbsolute(realRelative)) {
+      throw new Error(`Security Exception: Symbolic link escapes repository root: "${inputPath}" -> "${realPath}"`);
+    }
+  }
+
+  return relative.replace(/\\/g, '/');
+}
+
+export function matchGlobPattern(filePath, pattern) {
+  const escaped = pattern
+    .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+    .replace(/\*/g, '.*')
+    .replace(/\?/g, '.');
+  return new RegExp(`^${escaped}$`).test(filePath);
+}
+```
+
+---
+
+## 5. Git Status & Content Hashing (`modules/compactor/git-inspector.mjs`)
+
+```javascript
+import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import crypto from 'node:crypto';
+import { normalizeRepoPath } from './path-utils.mjs';
+
+/**
+ * Computes 12-char SHA-256 content hash of file content on disk.
+ */
+export function getFileContentHash(fullPath) {
+  try {
+    const buffer = fs.readFileSync(fullPath);
+    return crypto.createHash('sha256').update(buffer).digest('hex').slice(0, 12);
+  } catch (_) {
+    return 'unknown-hash';
+  }
+}
+
+/**
+ * Parses git status -z including rename (R) and copy (C) source and target pairs.
+ */
+export function getGitDirtyFiles(repoRoot) {
+  try {
+    const output = execFileSync('git', ['status', '--porcelain', '-z'], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'ignore'],
+      maxBuffer: 10 * 1024 * 1024
+    });
+
+    const dirtyFiles = new Set();
+    const tokens = output.split('\0');
+    let i = 0;
+
+    while (i < tokens.length) {
+      const token = tokens[i];
+      if (!token) { i++; continue; }
+      
+      const statusCode = token.slice(0, 2);
+      const filePath = token.slice(3);
+
+      if (filePath) {
+        try { dirtyFiles.add(normalizeRepoPath(filePath, repoRoot)); } catch (_) {}
+      }
+
+      if (statusCode.includes('R') || statusCode.includes('C')) {
+        i++;
+        if (i < tokens.length && tokens[i]) {
+          try { dirtyFiles.add(normalizeRepoPath(tokens[i], repoRoot)); } catch (_) {}
+        }
+      }
+      i++;
+    }
+
+    return dirtyFiles;
+  } catch (err) {
+    return null; // Fail-Closed: Return null to force ALL files to Full
+  }
+}
+
+/**
+ * Bulk fetches all files modified within recent N days in ONE single Git log call.
+ */
+export function getBulkRecentlyModifiedFiles(repoRoot, windowDays) {
+  if (windowDays === 0) return new Set();
+
+  try {
+    const sinceDate = `${windowDays} days ago`;
+    const output = execFileSync('git', ['log', `--since=${sinceDate}`, '--name-only', '--format=', '-z'], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'ignore'],
+      maxBuffer: 20 * 1024 * 1024
+    });
+
+    const recentFiles = new Set();
+    const paths = output.split('\0').filter(Boolean);
+    for (const p of paths) {
+      try { recentFiles.add(normalizeRepoPath(p, repoRoot)); } catch (_) {}
+    }
+    return recentFiles;
+  } catch (err) {
+    return null; // Fail-Closed: Force all to Full if git log fails
+  }
+}
+```
+
+---
+
+## 6. Atomic File Replacement (`modules/compactor/atomic-file.mjs`)
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+
+/**
+ * Atomically replaces destPath with srcPath with Windows file-locking retry safety.
+ * Preserves prior target file intact via temporary backup if promotion fails.
+ */
+export function replaceFileAtomically(srcPath, destPath) {
+  const dir = path.dirname(destPath);
+  const bakPath = path.join(dir, `.bak.${path.basename(destPath)}.${Date.now()}`);
+  let hasBackup = false;
+
+  try {
+    if (fs.existsSync(destPath)) {
+      fs.copyFileSync(destPath, bakPath);
+      hasBackup = true;
+    }
+
+    try {
+      fs.renameSync(srcPath, destPath);
+    } catch (err) {
+      fs.copyFileSync(srcPath, destPath);
+      fs.unlinkSync(srcPath);
+    }
+
+    if (hasBackup && fs.existsSync(bakPath)) {
+      fs.unlinkSync(bakPath);
+    }
+  } catch (err) {
+    if (hasBackup && fs.existsSync(bakPath)) {
+      fs.copyFileSync(bakPath, destPath);
+      fs.unlinkSync(bakPath);
+    }
+    if (fs.existsSync(srcPath)) fs.unlinkSync(srcPath);
+    throw new Error(`Atomic File Replacement Failure for "${destPath}": ${err.message}`);
+  }
+}
+```
+
+---
+
+## 7. Outliner Engine (`modules/compactor/outliner.mjs`)
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+
+export const OUTLINE_ALLOWLIST_EXT = new Set(['.md', '.json']);
+
+export function isOutlineAllowedFile(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  return OUTLINE_ALLOWLIST_EXT.has(ext);
+}
+
+export function outlineFile(filePath, relativePath, contentHash, reason) {
+  let rawContent;
+  try {
+    rawContent = fs.readFileSync(filePath, 'utf8');
+  } catch (err) {
+    return { content: '', state: 'Full', warning: `Read error: ${err.message}` };
+  }
+
+  const ext = path.extname(filePath).toLowerCase();
+
+  try {
+    let outlinedText = '';
+
+    if (ext === '.md') {
+      const lines = rawContent.split(/\r?\n/);
+      const headingLines = lines.filter(line => /^#{1,6}\s+/.test(line));
+      outlinedText = [
+        `<!-- [COMPACTED OUTLINE: MARKDOWN HEADINGS ONLY (${headingLines.length} sections)] -->`,
+        ...headingLines
+      ].join('\n');
+    } else if (ext === '.json') {
+      const parsed = JSON.parse(rawContent);
+      const keys = Object.keys(parsed);
+      outlinedText = [
+        `// [COMPACTED OUTLINE: TOP-LEVEL JSON KEYS ONLY]`,
+        JSON.stringify({ _keys: keys, _count: keys.length }, null, 2)
+      ].join('\n');
+    } else {
+      return { content: rawContent, state: 'Full', warning: `Outline unsupported for extension "${ext}"` };
+    }
+
+    const banner = [
+      '// =================================================================================',
+      '// [COMPACTED OUTLINE]',
+      `// Source Path:         ${relativePath}`,
+      `// Source Content Hash: ${contentHash}`,
+      `// Compaction State:    Outline`,
+      `// Selection Reason:    ${reason}`,
+      '// ================================================================================='
+    ].join('\n');
+
+    return { content: `${banner}\n\n${outlinedText}`, state: 'Outline' };
+
+  } catch (err) {
+    return { content: rawContent, state: 'Full', warning: `Outline processing failed: ${err.message}` };
+  }
+}
+```
+
+---
+
+## 8. 4-State Compaction Classifier (`modules/compactor/classifier.mjs`)
 
 ```javascript
 import { normalizeRepoPath, matchGlobPattern } from './path-utils.mjs';
+import { isOutlineAllowedFile } from './outliner.mjs';
 
 const JS_TS_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']);
-const OUTLINE_EXTENSIONS = new Set(['.md', '.json']);
 
 function isJsTsFile(filePath) {
   const ext = filePath.slice(((filePath.lastIndexOf(".") - 1) >>> 0) + 2).toLowerCase();
   return JS_TS_EXTENSIONS.has('.' + ext);
-}
-
-function isOutlineAllowedFile(filePath) {
-  const ext = filePath.slice(((filePath.lastIndexOf(".") - 1) >>> 0) + 2).toLowerCase();
-  return OUTLINE_EXTENSIONS.has('.' + ext);
 }
 
 function matchesPrefixBoundary(filePath, prefix) {
@@ -232,145 +474,12 @@ export function classifyFile({ repoRoot, rawPath, config, overridesResult, dirty
 
 ---
 
-## 5. Config Loader & Overrides Manager
+## 9. AST Skeletonizer Engine (`modules/compactor/skeletonizer.mjs`)
 
-### 5.1 `modules/compactor/config-loader.mjs`
+Uses TypeScript Public API (`ts.transpileModule` with `reportDiagnostics: true`) to safely check syntax diagnostics before AST transformation.
 
-```javascript
-import fs from 'node:fs';
-import yaml from 'js-yaml';
-
-const VALID_STATES = new Set(['Full', 'Skeleton', 'Outline', 'Excluded']);
-
-export function loadCompactionConfig(configPath) {
-  if (!fs.existsSync(configPath)) {
-    throw new Error(`Configuration Error: File not found at "${configPath}"`);
-  }
-
-  const rawText = fs.readFileSync(configPath, 'utf8');
-  let rawDoc;
-  try {
-    rawDoc = yaml.load(rawText);
-  } catch (err) {
-    throw new Error(`YAML Parsing Error in "${configPath}": ${err.message}`);
-  }
-
-  if (!rawDoc || typeof rawDoc !== 'object' || !rawDoc.compaction) {
-    throw new Error('Configuration Governance Error: Missing root "compaction" key');
-  }
-
-  const c = rawDoc.compaction;
-  if (typeof c.enabled !== 'boolean') {
-    throw new Error('Configuration Governance Error: "compaction.enabled" must be a boolean');
-  }
-
-  if (typeof c.git_window_days !== 'number' || c.git_window_days < 0 || !Number.isInteger(c.git_window_days)) {
-    throw new Error('Configuration Governance Error: "compaction.git_window_days" must be a non-negative integer');
-  }
-
-  if (!VALID_STATES.has(c.default_level)) {
-    throw new Error(`Configuration Governance Error: Invalid "compaction.default_level": "${c.default_level}"`);
-  }
-
-  const highRiskPrefixes = (Array.isArray(c.high_risk_prefixes) ? c.high_risk_prefixes : []).map(p => {
-    if (typeof p !== 'string') throw new Error('Invalid high_risk_prefix item');
-    return p.replace(/\\/g, '/').replace(/^\.\//, '');
-  });
-
-  const rules = (Array.isArray(c.rules) ? c.rules : []).map(r => {
-    if (!r || typeof r.prefix !== 'string' || !VALID_STATES.has(r.level)) {
-      throw new Error(`Invalid compaction rule specification: ${JSON.stringify(r)}`);
-    }
-    return {
-      prefix: r.prefix.replace(/\\/g, '/').replace(/^\.\//, ''),
-      level: r.level
-    };
-  });
-
-  return {
-    compaction: {
-      enabled: c.enabled,
-      git_window_days: c.git_window_days,
-      default_level: c.default_level,
-      high_risk_prefixes: highRiskPrefixes,
-      rules
-    }
-  };
-}
-```
-
-### 5.2 `modules/compactor/overrides-manager.mjs`
-
-```javascript
-import fs from 'node:fs';
-import path from 'node:path';
-import yaml from 'js-yaml';
-import { normalizeRepoPath } from './path-utils.mjs';
-
-const OVERRIDES_FILE = '.compaction-overrides.yaml';
-
-export function loadActiveOverrides(repoRoot) {
-  const filePath = path.join(repoRoot, OVERRIDES_FILE);
-  if (!fs.existsSync(filePath)) return { map: new Map(), error: null };
-
-  try {
-    const raw = fs.readFileSync(filePath, 'utf8');
-    const doc = yaml.load(raw);
-    if (!doc || typeof doc !== 'object' || !Array.isArray(doc.overrides)) {
-      return { map: new Map(), error: 'Malformed .compaction-overrides.yaml schema' };
-    }
-
-    const activeMap = new Map();
-    const now = Date.now();
-
-    for (const entry of doc.overrides) {
-      if (!entry || typeof entry.path !== 'string') continue;
-
-      let normPath;
-      try {
-        normPath = normalizeRepoPath(entry.path, repoRoot);
-      } catch (err) {
-        return { map: new Map(), error: `Invalid path in override file: ${entry.path}` };
-      }
-      
-      if (entry.expire_at) {
-        const expireMs = Date.parse(entry.expire_at);
-        if (!Number.isFinite(expireMs)) {
-          return { map: new Map(), error: `Invalid expire_at timestamp for path ${normPath}` };
-        }
-        if (expireMs <= now) continue;
-      }
-
-      activeMap.set(normPath, entry);
-    }
-    return { map: activeMap, error: null };
-  } catch (err) {
-    return { map: new Map(), error: `Failed to load overrides: ${err.message}` };
-  }
-}
-
-export function saveOverrides(repoRoot, overridesMap) {
-  const filePath = path.join(repoRoot, OVERRIDES_FILE);
-  const tmpPath = `${filePath}.tmp.${Date.now()}`;
-  
-  const doc = { overrides: Array.from(overridesMap.values()) };
-  const yamlStr = yaml.dump(doc);
-
-  fs.writeFileSync(tmpPath, yamlStr, 'utf8');
-  try {
-    fs.renameSync(tmpPath, filePath);
-  } catch (err) {
-    fs.copyFileSync(tmpPath, filePath);
-    fs.unlinkSync(tmpPath);
-  }
-}
-```
-
----
-
-## 6. AST Skeletonizer Engine (`modules/compactor/skeletonizer.mjs`)
-
-Uses TypeScript Public API (`ts.transpileModule` with `reportDiagnostics: true`) to safely check syntax diagnostics before AST transformation, avoiding internal/private compiler properties.
+> [!NOTE]
+> `ts.transpileModule` performs fast syntactic syntax diagnostic verification. Semantic/type-checking diagnostics (which require full symbol graph building) are intentionally out of scope for pipeline speed performance.
 
 ```javascript
 import fs from 'node:fs';
@@ -419,7 +528,7 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
   try {
     const scriptKind = getScriptKind(filePath);
 
-    // Fail-Closed Check via Public Compiler API
+    // Fail-Closed Syntactic Diagnostic Gate via Public Compiler API
     const transpileResult = ts.transpileModule(rawContent, {
       compilerOptions: { target: ts.ScriptTarget.Latest, jsx: ts.JsxEmit.Preserve },
       reportDiagnostics: true
@@ -543,12 +652,11 @@ function generateProvenanceBanner({ relativePath, contentHash, state, reason, co
 
 ---
 
-## 7. Token Telemetry & Process-Lifetime Encoder (`modules/compactor/telemetry.mjs`)
+## 10. Token Telemetry (`modules/compactor/telemetry.mjs`)
 
 ```javascript
 import { getEncoding } from 'js-tiktoken';
 
-// Singleton instance managed across process lifetime
 let globalTokenizer = null;
 
 function getTokenizer() {
@@ -576,7 +684,7 @@ export function countTokens(text) {
 
 ---
 
-## 8. CLI Command Interface (`modules/compactor/cli.mjs`)
+## 11. CLI Command Suite (`modules/compactor/cli.mjs`)
 
 ```javascript
 import fs from 'node:fs';
@@ -663,11 +771,12 @@ export async function runCompactCli(args, repoRoot) {
 
 ---
 
-## 9. Batch Pack Builder (`modules/compactor/index.mjs`)
+## 12. Batch Pack Builder Main Entry (`modules/compactor/index.mjs`)
 
 ```javascript
 import fs from 'node:fs';
 import path from 'node:path';
+import { parseArgs } from 'node:util';
 import { classifyFile } from './classifier.mjs';
 import { skeletonizeFile } from './skeletonizer.mjs';
 import { outlineFile } from './outliner.mjs';
@@ -677,6 +786,7 @@ import { loadCompactionConfig } from './config-loader.mjs';
 import { loadNormalizedManifest } from './manifest-loader.mjs';
 import { countTokens } from './telemetry.mjs';
 import { replaceFileAtomically } from './atomic-file.mjs';
+import { runCompactCli } from './cli.mjs';
 
 async function writeChunk(stream, chunk) {
   if (!stream.write(chunk)) {
@@ -817,16 +927,50 @@ function updateSyncStatusAtomically(repoRoot, stats, warnings) {
   fs.writeFileSync(tmpStatusFile, JSON.stringify(status, null, 2), 'utf8');
   replaceFileAtomically(tmpStatusFile, statusFile);
 }
+
+// Main CLI Execution Guard
+if (process.argv[1] && process.argv[1].endsWith('index.mjs')) {
+  const rawArgs = process.argv.slice(2);
+  
+  if (rawArgs[0] && !rawArgs[0].startsWith('--')) {
+    runCompactCli(rawArgs, process.cwd()).catch(err => {
+      console.error(`CLI Error: ${err.message}`);
+      process.exit(1);
+    });
+  } else {
+    const { values } = parseArgs({
+      args: rawArgs,
+      options: {
+        'repo-root': { type: 'string' },
+        'manifest': { type: 'string' },
+        'output': { type: 'string' },
+        'config': { type: 'string' },
+        'global-config': { type: 'string' }
+      }
+    });
+
+    buildCompactedPack({
+      repoRoot: values['repo-root'] || process.cwd(),
+      manifestPath: values['manifest'],
+      outputPath: values['output'],
+      configPath: values['config'],
+      skipPatterns: []
+    }).catch(err => {
+      console.error(`Batch Pack Build Error: ${err.message}`);
+      process.exit(1);
+    });
+  }
+}
 ```
 
 ---
 
-## 10. Verification Plan & Test Suite Matrix
+## 13. Verification Plan & Test Suite Matrix
 
 | Test Suite | File Path | Scope & Assertions |
 | :--- | :--- | :--- |
 | **Skeletonizer Unit Tests** | `tests/skeletonizer.test.mjs` | Function declarations, FunctionExpression (`const foo = function()`), ArrowFunctions, MethodDeclarations, constructors, getters/setters, decorators, generics, JSX/TSX, `ts.transpileModule` fail-closed fallback |
 | **Classifier Unit Tests** | `tests/classifier.test.mjs` | 10-stage hierarchy resolution, dirty Git workspace check, override precedence, recency window, high-risk path rules, default fallback |
-| **Path Security Tests** | `tests/path-utils.test.mjs` | Path traversal (`../`), POSIX slash normalization, symlink escaping verification, root target rejection |
+| **Path Security Tests** | `tests/path-utils.test.mjs` | Path traversal (`../`), POSIX slash normalization, symlink escaping verification (`fs.realpathSync`), root target rejection |
 | **Atomic File Replacement Tests** | `tests/atomic-file.test.mjs` | Atomic file promotion, `.bak` restoration on failed replace, Windows lock collision recovery |
 | **End-to-End Integration Tests** | `tests/integration.test.mjs` | Full `buildCompactedPack` pass, `.sync-status.json` atomic update, telemetry calculations, `core/flatten.sh` execution |
