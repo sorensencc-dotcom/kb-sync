@@ -1,0 +1,19 @@
+docs/meta/specs/2026-08-11-compacted-context-design.md
+  s_d7803eae61c362::t_b769f82f048f1a 3-5,135-383,387,477,479,481-482,531,655,687,774,779,789,930-963,968,974
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "248f6713354d2b971e6da7b2a64ea72eff99cae7",
+  "prompts": {},
+  "sessions": {
+    "s_d7803eae61c362": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff2eb-8249-7603-ba7b-4504dd8618bd",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
