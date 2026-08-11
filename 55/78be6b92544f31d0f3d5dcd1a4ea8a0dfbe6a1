@@ -1,0 +1,16 @@
+docs/meta/specs/2026-08-11-compacted-context-design.md
+  h_5c172e9b435f5a 1-378
+docs/superpowers/specs/2026-08-11-compacted-context-design.md
+  h_5c172e9b435f5a 1-378
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "5578be6b92544f31d0f3d5dcd1a4ea8a0dfbe6a1",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
