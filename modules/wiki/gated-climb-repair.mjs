@@ -4,6 +4,8 @@ import crypto from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateAllowedDiff } from './normalized-diff-guard.mjs';
+import { validateLessonSchema } from './validate-contract.mjs';
+import jsYaml from 'js-yaml';
 
 /**
  * Normalizes Windows drive letter and path separators.
@@ -399,6 +401,7 @@ export async function runGatedClimbRepair(options = {}) {
         fs.rmdirSync(path.join(baseDir, '.tmp-quarantine'));
       } catch {}
 
+      let lessonError = null;
       try {
         const errorSummary = finalErrors.length > 0
           ? finalErrors.map(e => e.message || e.rule || JSON.stringify(e)).join('; ')
@@ -413,7 +416,10 @@ export async function runGatedClimbRepair(options = {}) {
           quarantinePath: finalQuarantinePath,
           vaultRoot: baseDir
         });
-      } catch {}
+      } catch (err) {
+        lessonError = err.message || String(err);
+        console.warn(`[GATED-CLIMB] Warning: Failed to generate lesson file for run ${runId}: ${lessonError}`);
+      }
     }
   } finally {
     lock.release();
@@ -424,10 +430,11 @@ export async function runGatedClimbRepair(options = {}) {
     timestamp: new Date().toISOString(),
     run_id: runId,
     target_dir: targetDir,
-    status: passed ? 'PASS' : 'QUARANTINED',
+    status: passed ? 'PASS' : (lessonError ? 'QUARANTINED_LESSON_FAILED' : 'QUARANTINED'),
     retries_used: attempts,
     promoted_to: destinationPath,
     quarantined_to: finalQuarantinePath,
+    lesson_error: lessonError,
     errors: validationResult && validationResult.json ? (validationResult.json.errors || []) : []
   };
 
@@ -466,35 +473,68 @@ export async function runGatedClimbRepair(options = {}) {
  * @param {string} [params.vaultRoot]
  * @returns {string} Path to created/existing lesson file
  */
+/**
+ * Dynamically resolves obsidian vault configuration for lessons directory.
+ */
+function getObsidianLessonsDir(vaultRoot) {
+  try {
+    const configPath = path.join(vaultRoot, 'configs', 'obsidian.yaml');
+    if (fs.existsSync(configPath)) {
+      const parsed = jsYaml.load(fs.readFileSync(configPath, 'utf8'));
+      const wikiDir = parsed.wiki_dir || 'wiki';
+      const lessonsDir = parsed.lessons_dir || 'lessons';
+      return path.join(vaultRoot, wikiDir, lessonsDir);
+    }
+  } catch {}
+  return path.join(vaultRoot, 'wiki', 'lessons');
+}
+
+/**
+ * Escapes backticks for code blocks and brackets for wiki links.
+ */
+function escapeMarkdown(str) {
+  return (str || '')
+    .replace(/\\/g, '\\\\')
+    .replace(/`/g, '\\`')
+    .replace(/\r?\n/g, ' ');
+}
+
+/**
+ * Generates a deterministic lesson document on auto-repair failure.
+ * @param {Object} params
+ * @returns {string} Path to generated lesson file
+ */
 export function generateLessonFromFailure({ runId, error, targetPath, quarantinePath, vaultRoot = process.cwd() }) {
   const dateStr = new Date().toISOString().split('T')[0];
   const normalizedTarget = normalizePath(targetPath || 'kb-sync/wiki/Unknown');
-  const normalizedError = (error || 'Unknown repair error').trim();
-  const fingerprint = crypto.createHash('md5').update(`${normalizedTarget}\n${normalizedError}`).digest('hex').slice(0, 8);
+  const rawError = (error || 'Unknown repair error').trim();
+  const escapedError = escapeMarkdown(rawError);
+  const escapedTarget = (targetPath || 'kb-sync/wiki/Unknown').replace(/[\r\n]/g, '').trim();
 
-  const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
-  fs.mkdirSync(lessonsDir, { recursive: true });
+  const fingerprint = crypto.createHash('md5').update(`${normalizedTarget}\n${rawError}`).digest('hex').slice(0, 8);
+  const lessonsDir = getObsidianLessonsDir(vaultRoot);
+
+  // Path containment check
+  const canonicalLessonsDir = path.resolve(lessonsDir);
+  fs.mkdirSync(canonicalLessonsDir, { recursive: true });
 
   const prefix = `unallowed-diff-${runId}-`;
-  const existingFiles = fs.readdirSync(lessonsDir).filter(f => f.startsWith(prefix) && f.endsWith('.md'));
+  const existingFiles = fs.readdirSync(canonicalLessonsDir).filter(f => f.startsWith(prefix) && f.endsWith('.md'));
 
   let lessonPath;
 
   if (existingFiles.length > 0) {
-    // Check if any existing file has identical error content
     for (const file of existingFiles) {
-      const fullP = path.join(lessonsDir, file);
+      const fullP = path.join(canonicalLessonsDir, file);
       const content = fs.readFileSync(fullP, 'utf8');
-      if (content.includes(normalizedError)) {
-        return fullP; // Identical evidence -> skip write
+      if (content.includes(escapedError) || content.includes(rawError)) {
+        return fullP; // Identical evidence -> skip write (idempotent)
       }
     }
 
-    // Determine primary base file (the one without -rev)
     const baseFile = existingFiles.find(f => !/-rev\d+\.md$/.test(f)) || existingFiles[0];
     const baseFileNoExt = baseFile.replace(/(-rev\d+)?\.md$/, '');
 
-    // Dynamic revision counter calculation
     let maxRev = 1;
     for (const file of existingFiles) {
       const match = file.match(/-rev(\d+)\.md$/);
@@ -504,10 +544,16 @@ export function generateLessonFromFailure({ runId, error, targetPath, quarantine
       }
     }
     const nextRev = maxRev + 1;
-    lessonPath = path.join(lessonsDir, `${baseFileNoExt}-rev${nextRev}.md`);
+    lessonPath = path.join(canonicalLessonsDir, `${baseFileNoExt}-rev${nextRev}.md`);
   } else {
     const baseName = `unallowed-diff-${runId}-${fingerprint}`;
-    lessonPath = path.join(lessonsDir, `${baseName}.md`);
+    lessonPath = path.join(canonicalLessonsDir, `${baseName}.md`);
+  }
+
+  // Double-check path containment
+  const resolvedLessonPath = path.resolve(lessonPath);
+  if (!resolvedLessonPath.startsWith(canonicalLessonsDir)) {
+    throw new Error(`Path containment failure: '${lessonPath}' escapes lessons directory '${canonicalLessonsDir}'`);
   }
 
   const content = `---
@@ -520,8 +566,8 @@ tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]
 ### Unallowed Diff Failure - Run ${runId}
 
 #### 1. Context & Symptom
-* **Target Subsystem / File:** [[${targetPath || 'kb-sync/wiki/Unknown'}]]
-* **Error Signature / Output:** \`${normalizedError}\`
+* **Target Subsystem / File:** [[${escapedTarget}]]
+* **Error Signature / Output:** \`${escapedError}\`
 * **First Identified:** ${dateStr} via Log entry [[kb-sync/wiki/Log]]
 
 #### 2. Root Cause Analysis
@@ -535,7 +581,14 @@ Programmatic fix pending background LLM enrichment pass.
 * **Diagnostic Reference:** [[kb-sync/wiki/concepts/deterministic-sync-pipeline]]
 `;
 
+  // Validate against schema contract before saving
+  const schemaErrors = validateLessonSchema(content, lessonPath);
+  if (schemaErrors.length > 0) {
+    throw new Error(`Generated lesson fails schema validation: ${schemaErrors.join('; ')}`);
+  }
+
   fs.writeFileSync(lessonPath, content, 'utf8');
   return lessonPath;
 }
+
 

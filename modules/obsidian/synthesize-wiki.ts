@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { spawnSync } from "child_process";
+import jsYaml from "js-yaml";
+import { validateLessonSchema } from "../wiki/validate-contract.mjs";
 import { createProvider, SynthesisProvider, SynthesisInput, SynthesisProposal, ProviderError } from "./providers/index.js";
 
 // --- LOG HELPERS ---
@@ -248,6 +250,7 @@ interface CLIConfig {
   dryRun: boolean;
   force: boolean;
   allowRemoteEndpoint: boolean;
+  enrichLessons: boolean;
   localEndpoint?: string;
   model?: string;
 }
@@ -258,6 +261,7 @@ function parseCLIArgs(): CLIConfig {
   let dryRun = false;
   let force = false;
   let allowRemoteEndpoint = false;
+  let enrichLessons = false;
   let stagingPath: string | undefined;
   let vaultRoot: string | undefined;
   let configPath: string | undefined;
@@ -276,6 +280,8 @@ function parseCLIArgs(): CLIConfig {
     } else if (arg === "--offline-template" || arg === "offline-template") {
       hasOfflineTemplate = true;
       providerName = "offline-template";
+    } else if (arg === "--enrich-lessons" || arg === "enrich-lessons") {
+      enrichLessons = true;
     } else if (arg === "--provider") {
       providerName = args[++i];
     } else if (arg === "--dry-run") {
@@ -550,11 +556,13 @@ ${(prop.citations || []).map((c) => `- Staged: \`${c}\``).join("\n")}
     createdOrModifiedPaths.push(relTarget);
   }
 
-  // 10b. Process any unenriched lessons in the transaction workspace
-  const enrichedLessons = await processUnenrichedLessons(transactWikiRoot, provider);
-  if (enrichedLessons.length > 0) {
-    logInfo(`Enriched ${enrichedLessons.length} lesson node(s) in transaction workspace.`);
-    createdOrModifiedPaths.push(...enrichedLessons);
+  // 10b. Process any unenriched lessons in the transaction workspace if --enrich-lessons flag is set
+  if (cli.enrichLessons) {
+    const enrichedLessons = await processUnenrichedLessons(transactWikiRoot, provider, lessonsDirName);
+    if (enrichedLessons.length > 0) {
+      logInfo(`Enriched ${enrichedLessons.length} lesson node(s) in transaction workspace.`);
+      createdOrModifiedPaths.push(...enrichedLessons);
+    }
   }
 
   // Deterministically generate Index.md and Log.md with contract frontmatter in Transaction Workspace
@@ -823,9 +831,10 @@ export async function enrichLessonNode(
 
 export async function processUnenrichedLessons(
   wikiDir: string,
-  provider: SynthesisProvider
+  provider: SynthesisProvider,
+  lessonsDirName: string = "lessons"
 ): Promise<string[]> {
-  const lessonsDir = path.join(wikiDir, "lessons");
+  const lessonsDir = path.join(wikiDir, lessonsDirName);
   if (!fs.existsSync(lessonsDir)) {
     return [];
   }
@@ -837,7 +846,19 @@ export async function processUnenrichedLessons(
     const filePath = path.join(lessonsDir, file);
     const content = fs.readFileSync(filePath, "utf-8");
 
-    if (content.includes("needs-enrichment")) {
+    // Strict frontmatter tag check
+    let hasTag = false;
+    try {
+      const parts = content.split(/^---\r?\n/m);
+      if (parts.length >= 3) {
+        const fm = jsYaml.load(parts[1]) as any;
+        if (fm && Array.isArray(fm.tags) && fm.tags.includes("needs-enrichment")) {
+          hasTag = true;
+        }
+      }
+    } catch {}
+
+    if (hasTag) {
       let analysis: LessonAnalysisPayload | null = null;
 
       if (typeof (provider as any).enrichLesson === "function") {
@@ -848,18 +869,25 @@ export async function processUnenrichedLessons(
         }
       }
 
-      if (!analysis) {
-        // Fallback default analysis if provider does not have custom enrichLesson implementation
-        analysis = {
-          rootCause: `Root cause analysis synthesized by provider '${provider.name}'.`,
-          prevention: `Resolution and prevention guidelines established by provider '${provider.name}'.`,
-        };
+      // FAIL-SOFT: If provider fails, returns null, or lacks required fields, DO NOT fabricate fallback text!
+      if (!analysis || typeof analysis.rootCause !== "string" || typeof analysis.prevention !== "string" || !analysis.rootCause.trim() || !analysis.prevention.trim()) {
+        logWarn(`Skipping enrichment for '${file}': provider '${provider.name}' returned invalid/null analysis payload. Retaining original file and 'needs-enrichment' tag.`);
+        continue;
       }
 
-      const updatedContent = await enrichLessonNode(content, analysis);
-      if (updatedContent !== content) {
-        fs.writeFileSync(filePath, updatedContent, "utf-8");
-        enrichedFiles.push(path.join("lessons", file).replace(/\\/g, "/"));
+      try {
+        const updatedContent = await enrichLessonNode(content, analysis);
+        const schemaErrors = validateLessonSchema(updatedContent, filePath);
+        
+        // Ensure schema passes, content actually changed, and tag was removed
+        if (schemaErrors.length === 0 && updatedContent !== content && !updatedContent.includes("needs-enrichment")) {
+          fs.writeFileSync(filePath, updatedContent, "utf-8");
+          enrichedFiles.push(path.join(lessonsDirName, file).replace(/\\/g, "/"));
+        } else if (schemaErrors.length > 0) {
+          logWarn(`Enriched content for '${file}' failed schema validation: ${schemaErrors.join("; ")}. Preserving original file.`);
+        }
+      } catch (err) {
+        logWarn(`Failed to apply enrichment to '${file}': ${err instanceof Error ? err.message : String(err)}. Preserving original file.`);
       }
     }
   }

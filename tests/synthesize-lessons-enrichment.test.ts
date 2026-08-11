@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { enrichLessonNode } from "../modules/obsidian/synthesize-wiki.js";
+import fs from "fs";
+import path from "path";
+import os from "os";
+import { enrichLessonNode, processUnenrichedLessons } from "../modules/obsidian/synthesize-wiki.js";
 
 describe("enrichLessonNode", () => {
   it("preserves Section 1 and Section 4 byte-for-byte via case-insensitive heading matcher, updates Section 2 and 3, and strips needs-enrichment", async () => {
@@ -111,5 +114,100 @@ Citations
     };
     const res4 = await enrichLessonNode(initialContent, hugePayload);
     expect(res4).toBe(initialContent);
+  });
+});
+
+describe("processUnenrichedLessons (Fail-Soft & Validation Gate)", () => {
+  it("skips file and preserves original content + tag when provider fails or returns null", async () => {
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "kb-sync-test-"));
+    const lessonsDir = path.join(tmpDir, "lessons");
+    fs.mkdirSync(lessonsDir, { recursive: true });
+
+    const lessonFile = path.join(lessonsDir, "unallowed-diff-test.md");
+    const originalContent = `---
+title: "Test Failure"
+category: "lessons"
+status: "active"
+tags: ["failure-pattern", "needs-enrichment"]
+---
+
+#### 1. Context & Symptom
+Symptom trace
+
+#### 2. Root Cause Analysis
+Pending
+
+#### 3. Resolution & Prevention
+Pending
+
+#### 4. Source Citations
+_quarantine/test
+`;
+    fs.writeFileSync(lessonFile, originalContent, "utf-8");
+
+    // Failing provider
+    const failingProvider: any = {
+      name: "failing-provider",
+      enrichLesson: async () => {
+        throw new Error("Provider API connection refused");
+      },
+    };
+
+    const result = await processUnenrichedLessons(tmpDir, failingProvider, "lessons");
+    expect(result).toHaveLength(0);
+
+    const afterContent = fs.readFileSync(lessonFile, "utf-8");
+    expect(afterContent).toBe(originalContent);
+    expect(afterContent).toContain("needs-enrichment");
+
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  it("updates file and removes needs-enrichment when provider returns valid analysis", async () => {
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "kb-sync-test-"));
+    const lessonsDir = path.join(tmpDir, "lessons");
+    fs.mkdirSync(lessonsDir, { recursive: true });
+
+    const lessonFile = path.join(lessonsDir, "unallowed-diff-test-2.md");
+    const originalContent = `---
+title: "Test Failure 2"
+category: "lessons"
+status: "active"
+tags: ["failure-pattern", "needs-enrichment"]
+---
+
+#### 1. Context & Symptom
+Symptom trace 2
+
+#### 2. Root Cause Analysis
+Pending
+
+#### 3. Resolution & Prevention
+Pending
+
+#### 4. Source Citations
+_quarantine/test2
+`;
+    fs.writeFileSync(lessonFile, originalContent, "utf-8");
+
+    // Valid provider
+    const validProvider: any = {
+      name: "valid-provider",
+      enrichLesson: async () => ({
+        rootCause: "Analyzed root cause.",
+        prevention: "Analyzed prevention steps.",
+      }),
+    };
+
+    const result = await processUnenrichedLessons(tmpDir, validProvider, "lessons");
+    expect(result).toHaveLength(1);
+    expect(result[0]).toBe("lessons/unallowed-diff-test-2.md");
+
+    const afterContent = fs.readFileSync(lessonFile, "utf-8");
+    expect(afterContent).not.toContain("needs-enrichment");
+    expect(afterContent).toContain("Analyzed root cause.");
+    expect(afterContent).toContain("Analyzed prevention steps.");
+
+    fs.rmSync(tmpDir, { recursive: true, force: true });
   });
 });
