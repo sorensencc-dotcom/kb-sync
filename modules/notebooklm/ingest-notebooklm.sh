@@ -503,6 +503,30 @@ fi
 PACK_FILE_PATH="$PACK_DIR/$PACK_FILE.txt"
 log_info "Flatten completed: $PACK_FILE_PATH"
 
+# Consolidate wiki/lessons/*.md into knowledge pack
+if [ -d "$REPO_ROOT/wiki/lessons" ]; then
+  shopt -s nullglob
+  LESSON_FILES=("$REPO_ROOT/wiki/lessons"/*.md)
+  shopt -u nullglob
+  if [ ${#LESSON_FILES[@]} -gt 0 ]; then
+    log_info "Consolidating ${#LESSON_FILES[@]} lesson note(s) into knowledge pack..."
+    for lf in "${LESSON_FILES[@]}"; do
+      rel_lf="${lf#$REPO_ROOT/}"
+      rel_lf="${rel_lf//\\//}"
+      if ! grep -Fq "--- START FILE: $rel_lf ---" "$PACK_FILE_PATH" 2>/dev/null; then
+        {
+          echo ""
+          echo "--- START FILE: $rel_lf ---"
+          cat "$lf" || true
+          echo "--- END FILE: $rel_lf ---"
+          echo ""
+        } >> "$PACK_FILE_PATH"
+      fi
+    done
+  fi
+fi
+
+
 # Step 2: Validate
 log_info "Step 2/5: Validating pack file size..."
 SIZE_STATUS=$("$CORE_DIR/validate.sh" \

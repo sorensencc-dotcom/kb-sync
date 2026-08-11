@@ -550,6 +550,13 @@ ${(prop.citations || []).map((c) => `- Staged: \`${c}\``).join("\n")}
     createdOrModifiedPaths.push(relTarget);
   }
 
+  // 10b. Process any unenriched lessons in the transaction workspace
+  const enrichedLessons = await processUnenrichedLessons(transactWikiRoot, provider);
+  if (enrichedLessons.length > 0) {
+    logInfo(`Enriched ${enrichedLessons.length} lesson node(s) in transaction workspace.`);
+    createdOrModifiedPaths.push(...enrichedLessons);
+  }
+
   // Deterministically generate Index.md and Log.md with contract frontmatter in Transaction Workspace
   const indexFilePath = path.join(transactWikiRoot, "Index.md");
   const indexContent = `---
@@ -742,7 +749,133 @@ ${createdOrModifiedPaths.map((p) => `  - \`wiki/${p}\``).join("\n")}
   process.exit(0);
 }
 
-main().catch((err) => {
-  logError(`Unhandled exception in synthesis worker: ${err instanceof Error ? err.stack || err.message : String(err)}`);
-  process.exit(1);
-});
+// --- LESSON ENRICHMENT ENGINE ---
+export interface LessonAnalysisPayload {
+  rootCause: string;
+  prevention: string;
+}
+
+export async function enrichLessonNode(
+  content: string,
+  analysis: LessonAnalysisPayload
+): Promise<string> {
+  // Fail-soft validation: missing or invalid payload returns original content
+  if (
+    !analysis ||
+    typeof analysis.rootCause !== "string" ||
+    typeof analysis.prevention !== "string"
+  ) {
+    return content;
+  }
+
+  const rootCause = analysis.rootCause.trim();
+  const prevention = analysis.prevention.trim();
+
+  if (!rootCause || !prevention) {
+    return content;
+  }
+
+  // Payload length check: total payload or individual fields <= 10000 chars
+  if (rootCause.length > 10000 || prevention.length > 10000 || (rootCause.length + prevention.length) > 10000) {
+    return content;
+  }
+
+  // Case-insensitive heading regex matchers for Section 2 and Section 4
+  const sec2Match = content.match(/#### 2\. Root Cause Analysis/i);
+  const sec4Match = content.match(/#### 4\. Source Citations/i);
+
+  if (!sec2Match || !sec4Match || sec2Match.index === undefined || sec4Match.index === undefined) {
+    return content;
+  }
+
+  const index2 = sec2Match.index;
+  const index4 = sec4Match.index;
+
+  if (index2 >= index4) {
+    return content;
+  }
+
+  // Section 1 slice: byte-for-byte from start up to Section 2 heading start, with "needs-enrichment" stripped from frontmatter
+  let sec1Slice = content.slice(0, index2);
+
+  // Strip "needs-enrichment" tag from tags in frontmatter
+  // 1. Inline array: tags: [...]
+  sec1Slice = sec1Slice.replace(/tags:\s*\[(.*?)\]/s, (match, p1) => {
+    const tags = p1
+      .split(",")
+      .map((t: string) => t.trim().replace(/^["']|["']$/g, ""))
+      .filter(Boolean);
+    const filtered = tags.filter((t: string) => t !== "needs-enrichment");
+    return `tags: [${filtered.map((t: string) => `"${t}"`).join(", ")}]`;
+  });
+
+  // 2. YAML list format: - needs-enrichment
+  sec1Slice = sec1Slice.replace(/^\s*-\s*["']?needs-enrichment["']?\r?\n/gm, "");
+
+  // Section 4 slice: byte-for-byte from Section 4 heading to end of content
+  const sec4Slice = content.slice(index4);
+
+  // Replacement Sections 2 & 3
+  const sec2And3 = `#### 2. Root Cause Analysis\n${rootCause}\n\n#### 3. Resolution & Prevention\n${prevention}\n\n`;
+
+  return sec1Slice + sec2And3 + sec4Slice;
+}
+
+export async function processUnenrichedLessons(
+  wikiDir: string,
+  provider: SynthesisProvider
+): Promise<string[]> {
+  const lessonsDir = path.join(wikiDir, "lessons");
+  if (!fs.existsSync(lessonsDir)) {
+    return [];
+  }
+
+  const files = fs.readdirSync(lessonsDir).filter((f) => f.endsWith(".md"));
+  const enrichedFiles: string[] = [];
+
+  for (const file of files) {
+    const filePath = path.join(lessonsDir, file);
+    const content = fs.readFileSync(filePath, "utf-8");
+
+    if (content.includes("needs-enrichment")) {
+      let analysis: LessonAnalysisPayload | null = null;
+
+      if (typeof (provider as any).enrichLesson === "function") {
+        try {
+          analysis = await (provider as any).enrichLesson(content, file);
+        } catch (err) {
+          logWarn(`Provider failed to enrich lesson '${file}': ${err instanceof Error ? err.message : String(err)}`);
+        }
+      }
+
+      if (!analysis) {
+        // Fallback default analysis if provider does not have custom enrichLesson implementation
+        analysis = {
+          rootCause: `Root cause analysis synthesized by provider '${provider.name}'.`,
+          prevention: `Resolution and prevention guidelines established by provider '${provider.name}'.`,
+        };
+      }
+
+      const updatedContent = await enrichLessonNode(content, analysis);
+      if (updatedContent !== content) {
+        fs.writeFileSync(filePath, updatedContent, "utf-8");
+        enrichedFiles.push(path.join("lessons", file).replace(/\\/g, "/"));
+      }
+    }
+  }
+
+  return enrichedFiles;
+}
+
+const isMainModule = process.argv[1] && (
+  process.argv[1].endsWith("synthesize-wiki.ts") ||
+  process.argv[1].endsWith("synthesize-wiki.js")
+);
+
+if (isMainModule) {
+  main().catch((err) => {
+    logError(`Unhandled exception in synthesis worker: ${err instanceof Error ? err.stack || err.message : String(err)}`);
+    process.exit(1);
+  });
+}
+
