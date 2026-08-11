@@ -4,24 +4,24 @@
 
 **Goal:** Integrate, validate, and harden the Compacted Context Engine (`modules/compactor/`) into Stage 2 of `core/flatten.sh` to reduce consolidated knowledge pack (`repo_knowledge_pack.txt`) token footprint by 50–70% while maintaining fail-closed reliability, downstream `chunk.sh` compatibility, and complete test suite integrity.
 
-**Architecture:** A modular Node.js engine (`modules/compactor/`) invoked by `core/flatten.sh` during concatenated pack generation. The engine classifies files across 4 compaction states (`Full`, `Skeleton`, `Outline`, `Excluded`) through a 10-stage decision hierarchy, skeletonizes clean untouched TS/JS files via TypeScript Compiler API (`typescript@5.4.5`), outlines Markdown/JSON files, computes token telemetry via `js-tiktoken` (`1.0.21`), and atomically updates knowledge packs and `.sync-status.json`.
+**Architecture:** A modular Node.js engine (`modules/compactor/`) invoked by `core/flatten.sh` during concatenated pack generation. The engine classifies files across 4 compaction states (`Full`, `Skeleton`, `Outline`, `Excluded`) through a 10-stage decision hierarchy, skeletonizes clean untouched TS/JS files via TypeScript Compiler API (`typescript@5.4.5`), outlines Markdown/JSON files, computes token telemetry via `js-tiktoken` (`1.0.21`), and updates knowledge packs using rollback-safe atomic file replacements (`replaceFileAtomically`) and `.sync-status.json`.
 
-**Tech Stack:** Node.js ES Modules (`.mjs`), TypeScript Compiler API (`typescript@5.4.5`), `js-tiktoken` (`1.0.21`), `js-yaml` (`^4.1.0`), Bash (`core/flatten.sh`), Node.js Test Runner (`node --test`).
+**Tech Stack:** Node.js ES Modules (`.mjs`), TypeScript Compiler API (`typescript@5.4.5`), `js-tiktoken` (`1.0.21`), `js-yaml` (`^4.1.0`), Bash (`core/flatten.sh`, `core/chunk.sh`), Node.js Test Runner (`node --test`).
 
 ---
 
 ## Global Constraints & Spec Ownership
 
 - **Canonical Spec Source of Truth:** `docs/meta/specs/2026-08-11-compacted-context-design.md` (Governed). `docs/superpowers/specs/` is an automated mirror.
-- **Exact Pinned Dependencies (Verified via `npm ls`):**
+- **Exact Pinned Dependencies (Verified via `npm ls --depth=0`):**
   - `typescript`: `"5.4.5"` (exact version lock)
   - `js-tiktoken`: `"1.0.21"` (exact version lock)
-- **Telemetry Acceptance Policy:** The 50–70% token reduction target is an informational telemetry metric recorded in `.sync-status.json` (`token_reduction_percentage`). It provides observability and regression tracking, but is not a build-blocking threshold on small or un-skeletonizable repositories.
+- **Telemetry Acceptance Policy:** The 50–70% token reduction target is an informational telemetry metric recorded in `.sync-status.json` (`token_reduction_percentage`). It provides observability and performance tracking, but is not a build-blocking gate on small or un-skeletonizable repositories.
 - **Decision Hierarchy:** Excluded -> Disabled -> Overrides Error -> Git Error -> Dirty Workspace -> Active Override -> High-Risk -> Git Recency -> Config Rules -> Default.
 - **Fail-Closed Guarantee:** Any parser error, missing Git metadata, or malformed override forces file state to `Full`.
 - **Security Boundary:** POSIX path normalization, traversal rejection (`../`), and real symlink escape verification (`fs.realpathSync`).
-- **Atomic Operations:** All file replacements use `replaceFileAtomically` with temporary `.bak.<filename>.<timestamp>` rollback safety during writes.
-- **Control Flow & Pipeline Continuation:** In `core/flatten.sh`, when `USE_MANIFEST` is false, `index.mjs` generates `$FULL_PACK` directly. Script execution then continues seamlessly to complete downstream logging and caller tasks without calling `exit 0` prematurely.
+- **Rollback-Safe File Replacement:** Replacement uses POSIX `fs.renameSync` where supported, falling back to copy/unlink with `.bak.<filename>.<timestamp>` rollback recovery on Windows file lock collisions.
+- **Control Flow & Pipeline Continuation:** In `core/flatten.sh`, when `USE_MANIFEST` is false, `index.mjs` generates `$FULL_PACK` directly. Script execution then continues seamlessly through caller tasks and downstream `core/chunk.sh` processing without calling `exit 0` prematurely.
 - **Fallback Contract:** If `index.mjs` exits non-zero or `COMPACTION_ENABLED=false`, `core/flatten.sh` falls back to standard `cat` concatenation without interrupting downstream pipeline execution.
 
 ---
@@ -31,7 +31,7 @@
 | Module File | Responsibility | Existing State |
 | :--- | :--- | :--- |
 | `modules/compactor/path-utils.mjs` | Path normalization, POSIX formatting, symlink security boundary | Implemented |
-| `modules/compactor/atomic-file.mjs` | Windows-portable atomic file replacement & `.bak` rollback | Implemented |
+| `modules/compactor/atomic-file.mjs` | Windows-portable rollback-safe file replacement helper | Implemented |
 | `modules/compactor/git-inspector.mjs` | Git porcelain status parsing, bulk recency log checking, SHA-256 content hashing | Implemented |
 | `modules/compactor/config-loader.mjs` | `configs/compaction.yaml` YAML parser & schema validator | Implemented |
 | `modules/compactor/overrides-manager.mjs` | Transient `.compaction-overrides.yaml` loader & writer | Implemented |
@@ -45,12 +45,12 @@
 
 ---
 
-### Task 1: Exact Dependency Locking & Verification
+### Task 1: Exact Dependency Locking & Clean Lockfile Verification
 
 **Files:**
 - Modify: `package.json:68-74`
 - Modify: `package-lock.json`
-- Test: `npm ls typescript js-tiktoken`
+- Test: `npm ls --depth=0 typescript js-tiktoken`
 
 **Interfaces:**
 - Consumes: `package.json`
@@ -69,9 +69,9 @@ Verify `package.json` devDependencies are declared without carets:
   }
 ```
 
-- [ ] **Step 2: Run dependency lock command to confirm lockfile alignment**
+- [ ] **Step 2: Run dependency lock verification**
 
-Run: `npm install && npm ls typescript js-tiktoken`  
+Run: `npm install && npm ls --depth=0 typescript js-tiktoken && git status --porcelain package-lock.json`  
 Expected Output:
 ```text
 kb-sync@0.1.3.0 C:\dev\kb-sync
@@ -92,9 +92,9 @@ Commit dependency lock updates cleanly.
 - Test: `node --test tests/adversarial-compactor.test.mjs`
 
 **Interfaces:**
-- Tests: Real filesystem symlink traversal escape, real space-containing filename parsing, Git status porcelain `-z` rename (`R`)/copy (`C`) path pairs, and classifier override error state fallback.
+- Tests: Real filesystem symlink traversal escape (with explicit OS privilege skip logging), real space-containing filename parsing, Git status porcelain `-z` rename (`R`)/copy (`C`) path pairs, and classifier override error state fallback.
 
-- [ ] **Step 1: Implement `tests/adversarial-compactor.test.mjs` with real edge-case fixtures**
+- [ ] **Step 1: Implement `tests/adversarial-compactor.test.mjs` with explicit privilege skip logging**
 
 ```javascript
 import test from 'node:test';
@@ -113,14 +113,16 @@ test('normalizeRepoPath rejects real filesystem symbolic links that escape repos
   const targetOutside = path.resolve(repoRoot, '..');
 
   try {
-    if (!fs.existsSync(symlinkPath)) {
-      try {
-        fs.symlinkSync(targetOutside, symlinkPath, 'junction');
-      } catch (_) {
-        // Fallback for environments without symlink privileges
-        fs.symlinkSync(targetOutside, symlinkPath, 'dir');
+    try {
+      fs.symlinkSync(targetOutside, symlinkPath, 'junction');
+    } catch (err) {
+      if (err.code === 'EPERM' || err.code === 'EACCES') {
+        console.log('[SKIP] Symlink creation requires elevated OS privileges on Windows.');
+        return;
       }
+      throw err;
     }
+
     assert.throws(
       () => normalizeRepoPath('.tmp-outside-symlink', repoRoot),
       /Security Exception/
@@ -193,7 +195,7 @@ Expected: PASS (All 13+ tests pass cleanly)
 
 ---
 
-### Task 3: Stage 2 Pipeline Control Flow & Fallback Integration
+### Task 3: Configuration Setup, Stage 2 Pipeline Integration & Downstream `chunk.sh` Test
 
 **Files:**
 - Create: `configs/compaction.yaml`
@@ -201,8 +203,9 @@ Expected: PASS (All 13+ tests pass cleanly)
 - Create: `tests/pipeline-fallback.test.mjs`
 
 **Interfaces:**
-- Modifies `core/flatten.sh` concatenated pack block to execute compactor without calling `exit 0` prematurely, continuing script execution through completion.
-- Adds `tests/pipeline-fallback.test.mjs` to test `flatten.sh` behavior under both `COMPACTION_ENABLED=true` and `COMPACTION_ENABLED=false`.
+- Creates `configs/compaction.yaml` with production risk boundaries and compaction rules.
+- Modifies `core/flatten.sh` concatenated pack block to execute compactor using exact CLI flags `--output <dir> --pack-name <name> --repo-root <dir>`.
+- Adds `tests/pipeline-fallback.test.mjs` to test real `flatten.sh` CLI arguments and downstream `chunk.sh` continuation.
 
 - [ ] **Step 1: Create `configs/compaction.yaml` configuration**
 
@@ -234,7 +237,7 @@ compaction:
 
 - [ ] **Step 2: Update `core/flatten.sh` concatenated pack mode (lines 214-239)**
 
-Replace lines 214-239 in `core/flatten.sh` so compactor runs inside concatenated pack mode, continuing control flow upon success:
+Replace lines 214-239 in `core/flatten.sh`:
 
 ```bash
   # Concatenated pack mode: write full pack file with START/END FILE markers
@@ -284,7 +287,7 @@ Replace lines 214-239 in `core/flatten.sh` so compactor runs inside concatenated
   fi
 ```
 
-- [ ] **Step 3: Write pipeline fallback verification test (`tests/pipeline-fallback.test.mjs`)**
+- [ ] **Step 3: Write pipeline CLI & downstream `chunk.sh` continuation test (`tests/pipeline-fallback.test.mjs`)**
 
 ```javascript
 import test from 'node:test';
@@ -295,23 +298,43 @@ import { execFileSync } from 'node:child_process';
 
 const repoRoot = path.resolve('.');
 
-test('core/flatten.sh generates pack via fallback when COMPACTION_ENABLED=false', () => {
-  const outDir = path.join(repoRoot, '.tmp-fallback-pack');
-  
+test('core/flatten.sh CLI and downstream chunk.sh continuation under COMPACTION_ENABLED=false', () => {
+  const packDir = path.join(repoRoot, '.tmp-pipeline-pack');
+  const chunkDir = path.join(repoRoot, '.tmp-pipeline-chunks');
+  const packFile = 'test_pack.txt';
+
   try {
-    execFileSync('bash', ['core/flatten.sh'], {
+    // 1. Execute flatten.sh using exact CLI flags
+    execFileSync('bash', [
+      'core/flatten.sh',
+      '--output', packDir,
+      '--pack-name', packFile,
+      '--repo-root', repoRoot
+    ], {
       cwd: repoRoot,
-      env: { ...process.env, COMPACTION_ENABLED: 'false', PACK_DIR: outDir, PACK_FILE: 'fallback_pack.txt' },
+      env: { ...process.env, COMPACTION_ENABLED: 'false' },
       encoding: 'utf8'
     });
 
-    const packPath = path.join(outDir, 'fallback_pack.txt');
-    assert.ok(fs.existsSync(packPath));
-    const content = fs.readFileSync(packPath, 'utf8');
-    assert.ok(content.includes('REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK'));
-    assert.ok(content.includes('--- START FILE: package.json ---'));
+    const packPath = path.join(packDir, packFile);
+    assert.ok(fs.existsSync(packPath), 'flatten.sh generated pack file must exist');
+
+    // 2. Verify downstream chunk.sh consumes generated pack
+    execFileSync('bash', [
+      'core/chunk.sh',
+      '--file', packPath,
+      '--output-dir', chunkDir
+    ], {
+      cwd: repoRoot,
+      encoding: 'utf8'
+    });
+
+    const chunkFiles = fs.readdirSync(chunkDir).filter(f => f.startsWith('repo_knowledge_pack_part_'));
+    assert.ok(chunkFiles.length > 0, 'chunk.sh must successfully split the generated knowledge pack');
+
   } finally {
-    if (fs.existsSync(outDir)) fs.rmSync(outDir, { recursive: true, force: true });
+    if (fs.existsSync(packDir)) fs.rmSync(packDir, { recursive: true, force: true });
+    if (fs.existsSync(chunkDir)) fs.rmSync(chunkDir, { recursive: true, force: true });
   }
 });
 ```
@@ -329,4 +352,4 @@ If the Compacted Context Engine encounters a production issue or generates an in
 
 1. **Disable Compaction:** Set `COMPACTION_ENABLED=false` in environment or set `compaction.enabled: false` in `configs/compaction.yaml`. `core/flatten.sh` will bypass the Node.js batch compactor and fall back to standard uncompacted `cat` concatenation without interrupting pipeline execution.
 2. **Purge Transient Overrides:** Run `npm run kb:compact -- prune-overrides` or remove `.compaction-overrides.yaml`.
-3. **Atomic Replace Lifecycle:** `replaceFileAtomically` creates a temporary `.bak.<filename>.<timestamp>` file during replacement. If a write or file lock error occurs, the temporary backup is restored over the target. Once replacement completes cleanly, the temporary backup is removed.
+3. **Rollback-Safe File Replacement:** `replaceFileAtomically` creates a temporary `.bak.<filename>.<timestamp>` file during replacement. If a write or file lock error occurs, the temporary backup is restored over the target. Once replacement completes cleanly, the temporary backup is removed.
