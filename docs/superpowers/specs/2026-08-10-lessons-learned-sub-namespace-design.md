@@ -1,7 +1,7 @@
-# Lessons Learned Sub-Namespace Design (Revised Contract)
+# Lessons Learned Sub-Namespace Design (Sealed Contract v3)
 
 **Date:** 2026-08-10  
-**Status:** Under Revision (Contract Amendment v2)  
+**Status:** Approved for Implementation (Contract v3 Sealed)  
 **Target Repository:** `kb-sync` (`c:/dev/kb-sync`)
 
 ---
@@ -11,160 +11,158 @@
 This design specification establishes a canonical `lessons` sub-namespace inside the `kb-sync` Obsidian vault. The sub-namespace captures failed auto-repair runs, integration hurdles, and contract violations so error signatures and remediation steps are persisted for downstream AI agent retrieval.
 
 ### Architectural Choice: Hybrid Deterministic Creation + Background LLM Enrichment
-1. **Immediate Interception (Deterministic):** When `runGatedClimbRepair()` exhausts repair attempts, it retains the quarantine bundle in `_quarantine/<run_id>/` and synchronously writes a structured lesson document to `wiki/lessons/unallowed-diff-<run_id>-<fingerprint>.md`.
+1. **Immediate Interception (Deterministic):** When `runGatedClimbRepair()` exhausts repair attempts, it retains the quarantine bundle in `_quarantine/<run_id>/` and synchronously writes a structured lesson document to `<vault_root>/<wiki_dir>/<lessons_dir>/unallowed-diff-<run_id>-<fingerprint>.md`.
 2. **Zero-Latency Execution:** The initial lesson creation is fast, offline, and deterministic, avoiding Git hook timeouts.
 3. **Background Enrichment (LLM Pass):** Subsequent background synthesis runs (`synthesize-wiki.ts`) discover notes tagged `needs-enrichment`, request structured JSON root-cause and prevention fields from the synthesis provider, validate outputs, and atomically update the note while stripping `needs-enrichment`.
 
 ---
 
-## 2. Canonical Path & Mapping Model
+## 2. Single Canonical Vault Path Resolver & Configuration Integration
 
-To avoid path ambiguity across disk, vault, and link validators, a single canonical mapping model is enforced:
+### 2.1 Configuration Integration (`configs/obsidian.yaml`)
+`configs/obsidian.yaml` defines the root directory parameters. All code modules (`validate-contract.mjs`, `normalized-diff-guard.mjs`, `synthesize-wiki.ts`, `gated-climb-repair.mjs`) dynamically load these parameters via a shared helper:
 
-| Layer | Value / Format | Example |
-|---|---|---|
-| **Vault Root (`vault_root`)** | `C:/dev/kb-sync` (from `configs/obsidian.yaml`) | `C:/dev/kb-sync` |
-| **Wiki Directory (`wiki_dir`)** | `wiki` (from `configs/obsidian.yaml`) | `C:/dev/kb-sync/wiki` |
-| **Disk Storage Path** | `<vault_root>/<wiki_dir>/lessons/<FileName>.md` | `C:/dev/kb-sync/wiki/lessons/unallowed-diff-run1-a1b2.md` |
-| **Vault-Relative Path** | `lessons/<FileName>.md` (relative to `wiki_dir`) | `lessons/unallowed-diff-run1-a1b2.md` |
-| **Absolute Vault Identifier** | `kb-sync/lessons/<FileName>.md` | `kb-sync/lessons/unallowed-diff-run1-a1b2.md` |
-| **Wiki Link Format** | `[[kb-sync/lessons/<FileNameWithoutExt>]]` | `[[kb-sync/lessons/unallowed-diff-run1-a1b2]]` |
-
-### Configuration Updates (`configs/obsidian.yaml`)
-Add `lessons_dir` to reserved wiki configuration keys:
 ```yaml
+vault_root: "C:/dev/kb-sync"
 wiki_dir: "wiki"
 lessons_dir: "lessons"
 index_filename: "Index.md"
 log_filename: "Log.md"
 ```
 
----
+### 2.2 Canonical Path Resolver
+To eliminate path ambiguity across disk, vault, and link validators, a single canonical resolver function `resolveCanonicalVaultPath(inputPath)` is defined in `modules/wiki/validate-contract.mjs`:
 
-## 3. Machine-Checkable Page Template & Contract Validation
-
-### 3.1 Template Specification (`modules/wiki/templates/lesson.md`)
-```markdown
----
-title: "[Short, Descriptive Title of the Error or Correction]"
-category: "lessons"
-status: "active"
-tags: ["failure-pattern", "remediation", "pipeline", "needs-enrichment"]
----
-
-### [Short, Descriptive Title of the Error or Correction]
-
-#### 1. Context & Symptom
-* **Target Subsystem / File:** [[kb-sync/wiki/PathToEntity]]
-* **Error Signature / Output:** `[Insert exact terminal log or crash traceback]`
-* **First Identified:** [YYYY-MM-DD] via Log entry [[kb-sync/wiki/Log]]
-
-#### 2. Root Cause Analysis
-Explain *why* the failure occurred. Connect the symptom to physical or logical constraints.
-
-#### 3. Resolution & Prevention
-Describe the exact solution implemented. Focus on programmatic fixes for agent reuse.
-
-#### 4. Source Citations
-* **Staged Snapshot:** `_kb-sync-staging/kb-sync/<timestamp>/path/to/failed-file`
-* **Diagnostic Reference:** [[kb-sync/wiki/concepts/deterministic-sync-pipeline]]
+```javascript
+export function resolveCanonicalVaultPath(inputPath, config = { vault_root: "C:/dev/kb-sync", wiki_dir: "wiki", lessons_dir: "lessons" }) {
+  // Strip leading vault_root, wiki_dir, or kb-sync/ prefixes
+  let cleaned = inputPath.replace(/\\/g, '/').trim();
+  cleaned = cleaned.replace(/^C:\/dev\/kb-sync\//i, '').replace(/^kb-sync\//i, '').replace(/^wiki\//i, '');
+  
+  if (!cleaned.startsWith(config.lessons_dir + '/')) {
+    throw new Error(`Invalid lesson vault path '${inputPath}'. Must resolve under '${config.lessons_dir}/'`);
+  }
+  
+  const vaultPath = cleaned; // e.g. "lessons/unallowed-diff-run1-a1b2c3d4.md"
+  const diskPath = path.join(config.vault_root, config.wiki_dir, vaultPath);
+  const wikiLink = `[[kb-sync/${vaultPath.replace(/\.md$/, '')}]]`;
+  
+  return { vaultPath, diskPath, wikiLink };
+}
 ```
 
-### 3.2 Machine-Checkable Schema Contract
-`validate-contract.mjs` and `normalized-diff-guard.mjs` will enforce strict structural validation for `category: "lessons"`:
-- **Required Frontmatter:** `title` (string), `category` ("lessons"), `status` ("active" | "archived" | "beta"), `tags` (array containing `"failure-pattern"`).
-- **Required Headings:**
-  - `#### 1. Context & Symptom`
-  - `#### 2. Root Cause Analysis`
-  - `#### 3. Resolution & Prevention`
-  - `#### 4. Source Citations`
-- **Link Escaping & Boundaries:** All bracketed links inside body text must begin with `kb-sync/` or `wiki/` (e.g. `[[kb-sync/wiki/Path]]`).
+| Layer | Canonical Value | Example |
+|---|---|---|
+| **Vault Path (`vaultPath`)** | `lessons/<FileName>.md` | `lessons/unallowed-diff-run1-a1b2c3d4.md` |
+| **Disk Storage Path (`diskPath`)** | `<vault_root>/<wiki_dir>/lessons/<FileName>.md` | `C:/dev/kb-sync/wiki/lessons/unallowed-diff-run1-a1b2c3d4.md` |
+| **Wiki Link Format (`wikiLink`)** | `[[kb-sync/lessons/<FileNameWithoutExt>]]` | `[[kb-sync/lessons/unallowed-diff-run1-a1b2c3d4]]` |
+| **Entity Link Format** | `[[kb-sync/wiki/<PathToEntity>]]` | `[[kb-sync/wiki/PathToEntity]]` |
 
-### 3.3 Contract Code Enumerations
-1. **`modules/wiki/validate-contract.mjs`**:
-   Add `"lessons"` to `ALLOWED_CATEGORIES`:
-   ```javascript
-   const ALLOWED_CATEGORIES = new Set([
-     "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "lessons"
-   ]);
-   ```
-2. **`modules/wiki/normalized-diff-guard.mjs`**:
-   Add `"lessons"` to `ALLOWED_CATEGORIES`:
-   ```javascript
-   export const ALLOWED_CATEGORIES = new Set([
-     "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki",
-     "manifest", "spec", "readme", "pipeline", "lessons"
-   ]);
-   ```
-3. **`modules/obsidian/synthesize-wiki.ts`**:
-   Add `"lessons"` to `ALLOWED_CATEGORIES` and `"lessons/"`, `"kb-sync/lessons/"` to `ALLOWED_BOUNDARIES`:
-   ```typescript
-   const ALLOWED_CATEGORIES = new Set([
-     "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "lessons"
-   ]);
-   const ALLOWED_BOUNDARIES = ["kb-sync/", "entities/", "concepts/", "utilities/", "daemons/", "scripts/", "tests/", "lessons/", "kb-sync/lessons/"];
-   ```
-4. **`modules/wiki/toolforge-kbsync-contract.json`**:
-   Update `category` property schema documentation to explicitly include `"lessons"`.
+Both `[[kb-sync/lessons/...]]` and `[[kb-sync/wiki/...]]` format styles share the required `kb-sync/` vault prefix, satisfying link integrity checks.
+
+---
+
+## 3. Machine-Checkable Contract & Schema Ownership
+
+### 3.1 Schema Ownership (`modules/wiki/validate-contract.mjs`)
+The `validateLessonSchema(content, filePath)` function is centrally exported by `modules/wiki/validate-contract.mjs` and re-used by `normalized-diff-guard.mjs` and `synthesize-wiki.ts`:
+
+```javascript
+export function validateLessonSchema(content, filePath) {
+  const errors = [];
+  const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!fmMatch) return ["Missing required YAML frontmatter"];
+
+  const frontmatter = jsYaml.load(fmMatch[1]);
+  if (frontmatter.category !== "lessons") errors.push(`Category must be 'lessons', got '${frontmatter.category}'`);
+  if (!frontmatter.title || typeof frontmatter.title !== 'string') errors.push("Missing valid frontmatter 'title'");
+  if (!Array.isArray(frontmatter.tags) || !frontmatter.tags.includes("failure-pattern")) errors.push("Frontmatter 'tags' must contain 'failure-pattern'");
+
+  const requiredHeadings = [
+    "#### 1. Context & Symptom",
+    "#### 2. Root Cause Analysis",
+    "#### 3. Resolution & Prevention",
+    "#### 4. Source Citations"
+  ];
+  for (const heading of requiredHeadings) {
+    if (!content.includes(heading)) errors.push(`Missing required heading '${heading}'`);
+  }
+
+  return errors;
+}
+```
+
+### 3.2 Category & Boundary Contract Updates
+1. **`modules/wiki/validate-contract.mjs`**: Add `"lessons"` to `ALLOWED_CATEGORIES`.
+2. **`modules/wiki/normalized-diff-guard.mjs`**: Add `"lessons"` to `ALLOWED_CATEGORIES`.
+3. **`modules/obsidian/synthesize-wiki.ts`**: Add `"lessons"` to `ALLOWED_CATEGORIES` and `"lessons/"`, `"kb-sync/lessons/"` to `ALLOWED_BOUNDARIES`.
+4. **`modules/wiki/toolforge-kbsync-contract.json`**: Update category property schema docs.
 
 ---
 
 ## 4. Failure Interception Contract (`gated-climb-repair.mjs`)
 
-### 4.1 Lesson Creation Authorization & Paths
-`runGatedClimbRepair(options)` receives an explicit `vaultRoot` parameter (defaulting to `configs/obsidian.yaml` `vault_root`).
-When auto-repair retries are exhausted (`attempts >= maxAttempts`):
-1. **Quarantine Write:** Preserve raw bundle in `_quarantine/<run_id>/` (retention policy: 30 days).
-2. **Fingerprint Calculation:** Compute `fingerprint = md5(targetFile + errorTrace).slice(0, 8)`.
-3. **Identity & File Name:** Construct file name `unallowed-diff-<run_id>-<fingerprint>.md`.
-4. **Idempotency Check:** If `wiki/lessons/unallowed-diff-<run_id>-<fingerprint>.md` already exists, skip duplicate creation or append timestamp.
-5. **Deterministic Write:** Write the structured lesson file to `<vaultRoot>/wiki/lessons/unallowed-diff-<run_id>-<fingerprint>.md`.
+### 4.1 Fingerprint Specification
+- **Input Encoding:** UTF-8 string concatenation: `normalizePath(targetPath) + "\n" + errorSignature.trim()`.
+- **Normalization:** Forward slashes (`/`), LF line endings (`\n`), trimmed error signatures.
+- **Hash Function:** Non-cryptographic identity digest using MD5 truncated to 8 hexadecimal chars (`crypto.createHash('md5').update(...).digest('hex').slice(0, 8)`). Used strictly for non-colliding identity naming.
+
+### 4.2 Idempotency & Revision Policy
+If a lesson with identity `unallowed-diff-<run_id>-<fingerprint>.md` already exists:
+- **Identical Content:** Skip creation, log `LESSON_EXISTS_SKIP`, and return existing path.
+- **New Evidence/Revision:** Write `unallowed-diff-<run_id>-<fingerprint>-rev2.md` (incrementing revision integer). Never append uncontracted timestamps.
+
+### 4.3 Failure Semantics & Fail-Safe Boundary
+- **Quarantine Failure:** If writing `_quarantine/<run_id>` fails, log error, abort lesson write, return `QUARANTINE_FAILED`.
+- **Lesson Write Failure:** If writing the lesson fails, retain quarantine bundle, log `LESSON_WRITE_FAILED` in audit log, and return `QUARANTINED_LESSON_FAILED`.
+- **Path Traversal Guard:** Resolve target disk path and throw error if path attempts to escape `<vault_root>/<wiki_dir>/<lessons_dir>/`.
 
 ---
 
-## 5. Background LLM Enrichment Engine & Trust Boundary (`synthesize-wiki.ts`)
+## 5. Background LLM Enrichment & Transaction Semantics (`synthesize-wiki.ts`)
 
-### 5.1 Enrichment Workflow & Schema
-`synthesize-wiki.ts` implements a dedicated `--enrich-lessons` phase:
-1. **Scan:** Search `wiki/lessons/` for files with frontmatter `tags` containing `"needs-enrichment"`.
-2. **Provider Input:** Extract Section 1 (Context & Symptom) error signatures and Section 4 quarantine references.
-3. **Structured Response Schema:** Demand JSON response matching schema:
-   ```json
-   {
-     "type": "object",
-     "required": ["rootCause", "prevention"],
-     "properties": {
-       "rootCause": { "type": "string" },
-       "prevention": { "type": "string" }
-     }
-   }
-   ```
+### 5.1 Reuse of Phase 13 Transaction Engine
+Enrichment uses the existing `synthesize-wiki.ts` Phase 13 Journaled Recoverable Promotion:
+1. **Locking:** Acquire `.wiki-synthesis.lock`.
+2. **Transactional Workspace:** Clone active `wiki/` directory to `.transact-<sessionId>/`.
+3. **Drafting:** Write enriched markdown files into `.transact-<sessionId>/lessons/`.
+4. **Validation:** Run `validateLessonSchema()` and `validate-contract.mjs` against `.transact-<sessionId>/`.
+5. **Atomic Promotion:** On 100% validation pass, atomically rename `.transact-<sessionId>/` to `wiki/`.
+6. **Crash Recovery:** If process crashes or validation fails, delete `.transact-<sessionId>/`, restore from `.backup-<sessionId>/`, and release lock.
 
-### 5.2 Trust Boundary & Validation Guard
-To prevent LLM hallucinations or corrupt writes:
-- **Immutable Preservations:** Section 1 (Context & Symptom) and Section 4 (Source Citations) must remain byte-for-byte identical.
-- **Fail-Soft Behavior:** If the provider fails, times out, or returns malformed JSON, log a warning, leave `needs-enrichment` intact, and abort changes for that file.
-- **Atomic Transaction Write:** Draft enriched lesson content into `.transact-<sessionId>/wiki/lessons/`.
-- **Contract & Diff Validation:** Pass enriched document through `validate-contract.mjs`.
-- **Tag Removal:** Remove `"needs-enrichment"` tag **only after** schema validation passes cleanly in the transaction workspace.
+### 5.2 Byte-for-Byte Preservation Boundary
+Preservation is defined strictly by exact string slices:
+- **Header & Section 1:** `content.substring(0, content.indexOf("#### 2. Root Cause Analysis"))` is preserved byte-for-byte.
+- **Section 4:** `content.substring(content.indexOf("#### 4. Source Citations"))` is preserved byte-for-byte.
+- **Enrichment Insertion:** Replaces ONLY the string slice between `#### 2. Root Cause Analysis` and `#### 4. Source Citations`.
+- **Tag Removal:** Remove `"needs-enrichment"` tag from frontmatter slice **only inside the transaction workspace prior to promotion**.
+- **Oversized String Guard:** Reject provider payloads where `rootCause` or `prevention` exceeds 10,000 characters.
 
 ---
 
-## 6. Knowledge Pack Producer Contract
+## 6. Real Knowledge Pack Producer Contract & Retention Policy
 
-- **Producer Location:** `scripts/schedule-task-wrapper-KB-Sync-Consolidate-Pack.ps1` and `.nlm_pack` consolidation pipeline.
-- **Contract Rule:** Update consolidation scripts to include `wiki/lessons/*.md` files into `.nlm_pack/repo_knowledge_pack.txt` under `--- START FILE: wiki/lessons/<file> ---` headers.
+### 6.1 Knowledge Pack Authoritative Producer
+- **Authoritative Producer Script:** `modules/notebooklm/ingest-notebooklm.sh` (triggered via `npm run kb:sync:notebooklm` or `schedule-task-wrapper-KB-Sync-Consolidate-Pack.ps1`).
+- **Inclusion Rule:** Update `modules/notebooklm/ingest-notebooklm.sh` to scan `<vault_root>/<wiki_dir>/lessons/*.md` and append files into `.nlm_pack/repo_knowledge_pack.txt` formatted with headers:
+  `--- START FILE: wiki/lessons/<FileName>.md ---`
+
+### 6.2 Quarantine Retention Policy
+- **Owner Script:** `modules/wiki/cleanup-staging-archives.mjs` (executed via `npm run wiki:cleanup-archives`).
+- **Policy:** `_quarantine/<run_id>` directories older than 30 days are purged during routine cleanup.
+- **Self-Contained Validity:** Lesson documents embed complete error trace logs inline in Section 1, ensuring lesson nodes remain 100% diagnostically valid after quarantine bundle purge.
 
 ---
 
-## 7. Comprehensive Test Matrix
+## 7. Executable Test Matrix
 
-| Test Suite | File | Verified Behavior |
-|---|---|---|
-| **Contract Schema** | `tests/schema-validation.test.ts` | Validates `category: "lessons"`, boundaries, and frontmatter constraints |
-| **Failure Interception** | `tests/gated-climb-repair-lessons.test.mjs` | Verifies `gated-climb-repair` writes quarantine + deterministic lesson file on retry exhaustion |
-| **Idempotency & Fingerprint** | `tests/gated-climb-repair-lessons.test.mjs` | Verifies rerun with duplicate run ID + fingerprint does not overwrite or crash |
-| **Enrichment Parser** | `tests/synthesize-lessons-enrichment.test.ts` | Verifies structured JSON response, Section 2 & 3 replacement, and `needs-enrichment` removal |
-| **Fail-Soft Provider** | `tests/synthesize-lessons-enrichment.test.ts` | Verifies malformed provider JSON leaves original file untouched with `needs-enrichment` |
-| **Path Traversal Guard** | `tests/path-traversal-containment.test.ts` | Ensures lesson file writes cannot escape `wiki/lessons/` |
-| **Knowledge Pack Pipeline** | `tests/consolidate-pack-lessons.test.ps1` | Asserts `wiki/lessons/*.md` files appear in compiled `.nlm_pack/repo_knowledge_pack.txt` |
+| Test Suite | Command | Verified Behavior | Expected Result |
+|---|---|---|---|
+| **Contract Schema** | `npx vitest run tests/schema-validation.test.ts` | Validates `category: "lessons"`, boundaries, and required headings via `validateLessonSchema()` | PASS (exit code 0) |
+| **Failure Interception** | `node --test tests/gated-climb-repair-lessons.test.mjs` | Verifies `runGatedClimbRepair` writes `_quarantine/` AND deterministic lesson file on retry exhaustion | PASS (exit code 0) |
+| **Idempotency & Fingerprint** | `node --test tests/gated-climb-repair-lessons.test.mjs` | Asserts exact duplicate payload skips write; changed evidence creates `-rev2.md` | PASS (exit code 0) |
+| **Enrichment & Boundary** | `npx vitest run tests/synthesize-lessons-enrichment.test.ts` | Verifies structured JSON response, byte-for-byte preservation of Sec 1 & 4, and tag removal | PASS (exit code 0) |
+| **Fail-Soft Provider** | `npx vitest run tests/synthesize-lessons-enrichment.test.ts` | Offline/malformed provider returns error, leaving original file with `needs-enrichment` intact | PASS (exit code 0) |
+| **Path Traversal Guard** | `npx vitest run tests/path-traversal-containment.test.ts` | Attempts to write lesson to `../../outside.md` throw containment exception | PASS (exit code 0) |
+| **Transaction Recovery** | `npx vitest run tests/transaction-recovery.test.ts` | Simulates crash during enrichment; verifies rollback from `.backup-*` and clean lock release | PASS (exit code 0) |
+| **Knowledge Pack Producer** | `bash modules/notebooklm/ingest-notebooklm.sh --dry-run` | Verifies `wiki/lessons/*.md` files appear in `.nlm_pack/repo_knowledge_pack.txt` | PASS (exit code 0) |
