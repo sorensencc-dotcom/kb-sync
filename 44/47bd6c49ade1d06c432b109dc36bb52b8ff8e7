@@ -1,0 +1,16 @@
+docs/meta/plans/2026-08-11-compacted-context-engine.md
+  h_5c172e9b435f5a 7,9,16,19,23-24,34,48,53,72,74,95,97,116-121,123,125,198,206-208,240,290,301-305,307-313,315,319-334,336-337,355
+docs/superpowers/plans/2026-08-11-compacted-context-engine.md
+  h_5c172e9b435f5a 7,9,16,19,23-24,34,48,53,72,74,95,97,116-121,123,125,198,206-208,240,290,301-305,307-313,315,319-334,336-337,355
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "4447bd6c49ade1d06c432b109dc36bb52b8ff8e7",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
