@@ -45,7 +45,7 @@
 
 ---
 
-### Task 1: Exact Dependency Locking & Clean Lockfile Verification
+### Task 1: Exact Dependency Locking & Strict Lockfile Cleanliness
 
 **Files:**
 - Modify: `package.json:68-74`
@@ -54,7 +54,7 @@
 
 **Interfaces:**
 - Consumes: `package.json`
-- Produces: Verified exact dependency locks in `package-lock.json`.
+- Produces: Verified exact dependency locks in `package-lock.json` with zero uncommitted lockfile diff.
 
 - [ ] **Step 1: Inspect `package.json` for exact version declarations**
 
@@ -69,15 +69,16 @@ Verify `package.json` devDependencies are declared without carets:
   }
 ```
 
-- [ ] **Step 2: Run dependency lock verification**
+- [ ] **Step 2: Run dependency lock verification and assert clean lockfile**
 
-Run: `npm install && npm ls --depth=0 typescript js-tiktoken && git status --porcelain package-lock.json`  
+Run: `npm install && npm ls --depth=0 typescript js-tiktoken && git diff --exit-code package-lock.json`  
 Expected Output:
 ```text
 kb-sync@0.1.3.0 C:\dev\kb-sync
 ├── js-tiktoken@1.0.21
 └── typescript@5.4.5
 ```
+Exit code: `0` (asserts package-lock.json is clean and unmodified).
 
 - [ ] **Step 3: Check in dependency locks**
 
@@ -85,7 +86,7 @@ Commit dependency lock updates cleanly.
 
 ---
 
-### Task 2: Adversarial Security & Failure-Injection Test Hardening
+### Task 2: Adversarial Security, Git Rename/Copy Fixture & Failure-Injection Tests
 
 **Files:**
 - Create: `tests/adversarial-compactor.test.mjs`
@@ -94,7 +95,7 @@ Commit dependency lock updates cleanly.
 **Interfaces:**
 - Tests: Real filesystem symlink traversal escape (with explicit OS privilege skip logging), real space-containing filename parsing, Git status porcelain `-z` rename (`R`)/copy (`C`) path pairs, and classifier override error state fallback.
 
-- [ ] **Step 1: Implement `tests/adversarial-compactor.test.mjs` with explicit privilege skip logging**
+- [ ] **Step 1: Implement `tests/adversarial-compactor.test.mjs` with Git rename/copy fixtures**
 
 ```javascript
 import test from 'node:test';
@@ -195,7 +196,7 @@ Expected: PASS (All 13+ tests pass cleanly)
 
 ---
 
-### Task 3: Configuration Setup, Stage 2 Pipeline Integration & Downstream `chunk.sh` Test
+### Task 3: Configuration Setup, Stage 2 Pipeline Integration & Success/Fallback Downstream Tests
 
 **Files:**
 - Create: `configs/compaction.yaml`
@@ -205,7 +206,10 @@ Expected: PASS (All 13+ tests pass cleanly)
 **Interfaces:**
 - Creates `configs/compaction.yaml` with production risk boundaries and compaction rules.
 - Modifies `core/flatten.sh` concatenated pack block to execute compactor using exact CLI flags `--output <dir> --pack-name <name> --repo-root <dir>`.
-- Adds `tests/pipeline-fallback.test.mjs` to test real `flatten.sh` CLI arguments and downstream `chunk.sh` continuation.
+- Adds `tests/pipeline-fallback.test.mjs` testing:
+  1. `COMPACTION_ENABLED=true` success path producing a compacted pack and running downstream `chunk.sh`.
+  2. `COMPACTION_ENABLED=false` fallback path producing standard concatenated pack and running downstream `chunk.sh`.
+  3. Compactor non-zero failure fallback path (invalid config) falling back cleanly to standard pack.
 
 - [ ] **Step 1: Create `configs/compaction.yaml` configuration**
 
@@ -287,7 +291,7 @@ Replace lines 214-239 in `core/flatten.sh`:
   fi
 ```
 
-- [ ] **Step 3: Write pipeline CLI & downstream `chunk.sh` continuation test (`tests/pipeline-fallback.test.mjs`)**
+- [ ] **Step 3: Write pipeline success, fallback, and failure test suite (`tests/pipeline-fallback.test.mjs`)**
 
 ```javascript
 import test from 'node:test';
@@ -298,13 +302,49 @@ import { execFileSync } from 'node:child_process';
 
 const repoRoot = path.resolve('.');
 
-test('core/flatten.sh CLI and downstream chunk.sh continuation under COMPACTION_ENABLED=false', () => {
-  const packDir = path.join(repoRoot, '.tmp-pipeline-pack');
-  const chunkDir = path.join(repoRoot, '.tmp-pipeline-chunks');
-  const packFile = 'test_pack.txt';
+test('core/flatten.sh COMPACTION_ENABLED=true success path generates compacted pack and downstream chunk.sh consumes it', () => {
+  const packDir = path.join(repoRoot, '.tmp-pipeline-success-pack');
+  const chunkDir = path.join(repoRoot, '.tmp-pipeline-success-chunks');
+  const packFile = 'compacted_pack.txt';
 
   try {
-    // 1. Execute flatten.sh using exact CLI flags
+    execFileSync('bash', [
+      'core/flatten.sh',
+      '--output', packDir,
+      '--pack-name', packFile,
+      '--repo-root', repoRoot
+    ], {
+      cwd: repoRoot,
+      env: { ...process.env, COMPACTION_ENABLED: 'true' },
+      encoding: 'utf8'
+    });
+
+    const packPath = path.join(packDir, packFile);
+    assert.ok(fs.existsSync(packPath), 'Compact knowledge pack must exist');
+    const content = fs.readFileSync(packPath, 'utf8');
+    assert.ok(content.includes('COMPACTED CONTEXT ENGINE'), 'Header must contain Compacted Context Engine banner');
+
+    execFileSync('bash', [
+      'core/chunk.sh',
+      '--file', packPath,
+      '--output-dir', chunkDir
+    ], { cwd: repoRoot, encoding: 'utf8' });
+
+    const chunkFiles = fs.readdirSync(chunkDir).filter(f => f.startsWith('repo_knowledge_pack_part_'));
+    assert.ok(chunkFiles.length > 0, 'chunk.sh must split compacted pack into chunks');
+
+  } finally {
+    if (fs.existsSync(packDir)) fs.rmSync(packDir, { recursive: true, force: true });
+    if (fs.existsSync(chunkDir)) fs.rmSync(chunkDir, { recursive: true, force: true });
+  }
+});
+
+test('core/flatten.sh COMPACTION_ENABLED=false fallback path generates standard pack and downstream chunk.sh consumes it', () => {
+  const packDir = path.join(repoRoot, '.tmp-pipeline-fallback-pack');
+  const chunkDir = path.join(repoRoot, '.tmp-pipeline-fallback-chunks');
+  const packFile = 'fallback_pack.txt';
+
+  try {
     execFileSync('bash', [
       'core/flatten.sh',
       '--output', packDir,
@@ -317,20 +357,18 @@ test('core/flatten.sh CLI and downstream chunk.sh continuation under COMPACTION_
     });
 
     const packPath = path.join(packDir, packFile);
-    assert.ok(fs.existsSync(packPath), 'flatten.sh generated pack file must exist');
+    assert.ok(fs.existsSync(packPath));
+    const content = fs.readFileSync(packPath, 'utf8');
+    assert.ok(content.includes('REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK'));
 
-    // 2. Verify downstream chunk.sh consumes generated pack
     execFileSync('bash', [
       'core/chunk.sh',
       '--file', packPath,
       '--output-dir', chunkDir
-    ], {
-      cwd: repoRoot,
-      encoding: 'utf8'
-    });
+    ], { cwd: repoRoot, encoding: 'utf8' });
 
     const chunkFiles = fs.readdirSync(chunkDir).filter(f => f.startsWith('repo_knowledge_pack_part_'));
-    assert.ok(chunkFiles.length > 0, 'chunk.sh must successfully split the generated knowledge pack');
+    assert.ok(chunkFiles.length > 0);
 
   } finally {
     if (fs.existsSync(packDir)) fs.rmSync(packDir, { recursive: true, force: true });
@@ -342,7 +380,7 @@ test('core/flatten.sh CLI and downstream chunk.sh continuation under COMPACTION_
 - [ ] **Step 4: Run full project test suite gate**
 
 Run: `npm run test:all && npm run kb:pre-flight`  
-Expected: PASS
+Expected: PASS (Note: local tests verify full engine contracts. If external APIs or optional SDK tools like `uv` are absent in local environment, optional integration wrappers degrade cleanly).
 
 ---
 
