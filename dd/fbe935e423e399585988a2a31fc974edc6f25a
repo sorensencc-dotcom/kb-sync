@@ -1,0 +1,19 @@
+tests/pipeline-fallback.test.mjs
+  s_aa6a468218ebd1::t_e4a90f0ebfe4b8 17-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "ddfbe935e423e399585988a2a31fc974edc6f25a",
+  "prompts": {},
+  "sessions": {
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
