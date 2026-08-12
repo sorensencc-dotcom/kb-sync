@@ -281,7 +281,9 @@ Replace lines 214-239 in `core/flatten.sh`:
   COMPACTION_CONFIG="${COMPACTION_CONFIG:-$REPO_ROOT/configs/compaction.yaml}"
   USE_COMPACTION=false
 
-  if [ "${COMPACTION_ENABLED:-true}" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
+  # Default OFF: compaction is an explicit opt-in (set COMPACTION_ENABLED=true)
+  # until a Tier 1 rollout decision turns it on by default for production syncs.
+  if [ "${COMPACTION_ENABLED:-false}" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
     log_info "Compacted Context Engine enabled. Invoking batch compactor..."
     if node "$REPO_ROOT/modules/compactor/index.mjs" \
       --repo-root "$REPO_ROOT" \
@@ -428,11 +430,15 @@ test('core/flatten.sh compactor execution failure falls back to standard pack an
     assert.ok(fs.existsSync(packPath), 'Fallback pack must be created despite compactor failure');
     const content = fs.readFileSync(packPath, 'utf8');
     assert.ok(content.includes('REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK'), 'Must contain standard flattener header');
-    // Discriminating check: the compacted-pack header is a superstring of the
-    // assertion above ('...KNOWLEDGE PACK (COMPACTED CONTEXT ENGINE)'), so a
-    // false 'success took over' regression would still pass the line above.
-    // Assert absence of the compacted-only marker to actually prove fallback ran.
-    assert.ok(!content.includes('COMPACTED CONTEXT ENGINE'), 'Must NOT contain compactor header -- proves fallback path actually ran, not success path');
+    // Discriminating check on the file HEADER only, not the whole blob: the
+    // fallback pack is a raw cat of every repo file, and several already-
+    // committed files (index.mjs's header template, skeletonizer.mjs's banner
+    // string, spec docs) literally contain 'COMPACTED CONTEXT ENGINE' as
+    // source text -- a content-wide .includes() would false-positive-match
+    // those regardless of which path ran. Scoping to the first 500 chars
+    // (the actual generated banner) avoids that pollution.
+    const header = content.slice(0, 500);
+    assert.ok(!header.includes('COMPACTED CONTEXT ENGINE'), 'Header must NOT contain compactor banner -- proves fallback path actually ran, not success path');
 
     execFileSync('bash', [
       'core/chunk.sh',

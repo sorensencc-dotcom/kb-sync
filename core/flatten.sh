@@ -224,7 +224,9 @@ else
   COMPACTION_CONFIG="${COMPACTION_CONFIG:-$REPO_ROOT/configs/compaction.yaml}"
   USE_COMPACTION=false
 
-  if [ "${COMPACTION_ENABLED:-true}" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
+  # Default OFF: compaction is an explicit opt-in (set COMPACTION_ENABLED=true)
+  # until a Tier 1 rollout decision turns it on by default for production syncs.
+  if [ "${COMPACTION_ENABLED:-false}" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
     log_info "Compacted Context Engine enabled. Invoking batch compactor..."
     if node "$REPO_ROOT/modules/compactor/index.mjs" \
       --repo-root "$REPO_ROOT" \

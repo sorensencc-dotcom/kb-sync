@@ -14,23 +14,23 @@ function runBashCommand(args, env) {
       encoding: 'utf8'
     });
   } catch (err) {
+    const errorStr = `${err.code || ''} ${err.message || ''} ${err.stderr || ''}`;
     if (
       err.code === 'EACCES' ||
       err.code === 'EPERM' ||
+      err.code === 'ENOENT' ||
       err.code === 'E_ACCESSDENIED' ||
-      err.message?.includes('E_ACCESSDENIED') ||
-      err.message?.includes('CreateInstance') ||
-      err.stderr?.includes('E_ACCESSDENIED') ||
-      err.stderr?.includes('CreateInstance')
+      errorStr.includes('E_ACCESSDENIED') ||
+      errorStr.includes('CreateInstance') ||
+      errorStr.includes('Service/CreateInstance')
     ) {
-      console.log(`[SKIP] Bash shell execution failed due to OS environment permissions (${err.code || 'E_ACCESSDENIED'}). Marking test as environment-degraded skip.`);
       return null;
     }
     throw err;
   }
 }
 
-test('core/flatten.sh COMPACTION_ENABLED=true success path generates skeletonized pack and chunk.sh consumes it', () => {
+test('core/flatten.sh COMPACTION_ENABLED=true success path generates skeletonized pack and chunk.sh consumes it', (t) => {
   const packDir = '.tmp-pipeline-success-pack';
   const chunkDir = '.tmp-pipeline-success-chunks';
   const packFile = 'compacted_pack.txt';
@@ -44,7 +44,10 @@ test('core/flatten.sh COMPACTION_ENABLED=true success path generates skeletonize
       '--pack-name', packFile
     ], { COMPACTION_ENABLED: 'true' });
 
-    if (flattenRes === null) return; // Explicit degraded-environment skip
+    if (flattenRes === null) {
+      t.skip('Bash shell execution unavailable or restricted by OS permissions (E_ACCESSDENIED)');
+      return;
+    }
 
     assert.ok(fs.existsSync(packPath), 'Compact knowledge pack must exist');
     const content = fs.readFileSync(packPath, 'utf8');
@@ -57,7 +60,10 @@ test('core/flatten.sh COMPACTION_ENABLED=true success path generates skeletonize
       '--output-dir', chunkDir
     ], {});
 
-    if (chunkRes === null) return; // Explicit degraded-environment skip
+    if (chunkRes === null) {
+      t.skip('Bash shell execution unavailable or restricted by OS permissions (E_ACCESSDENIED)');
+      return;
+    }
 
     assert.ok(fs.existsSync(chunkDirPath));
     const chunkFiles = fs.readdirSync(chunkDirPath).filter(f => f.startsWith('repo_knowledge_pack_part_'));
@@ -69,7 +75,7 @@ test('core/flatten.sh COMPACTION_ENABLED=true success path generates skeletonize
   }
 });
 
-test('core/flatten.sh COMPACTION_ENABLED=false fallback path generates standard pack and chunk.sh consumes it', () => {
+test('core/flatten.sh COMPACTION_ENABLED=false fallback path generates standard pack and chunk.sh consumes it', (t) => {
   const packDir = '.tmp-pipeline-fallback-pack';
   const chunkDir = '.tmp-pipeline-fallback-chunks';
   const packFile = 'fallback_pack.txt';
@@ -83,7 +89,10 @@ test('core/flatten.sh COMPACTION_ENABLED=false fallback path generates standard 
       '--pack-name', packFile
     ], { COMPACTION_ENABLED: 'false' });
 
-    if (flattenRes === null) return;
+    if (flattenRes === null) {
+      t.skip('Bash shell execution unavailable or restricted by OS permissions (E_ACCESSDENIED)');
+      return;
+    }
 
     assert.ok(fs.existsSync(packPath));
     const content = fs.readFileSync(packPath, 'utf8');
@@ -95,7 +104,10 @@ test('core/flatten.sh COMPACTION_ENABLED=false fallback path generates standard 
       '--output-dir', chunkDir
     ], {});
 
-    if (chunkRes === null) return;
+    if (chunkRes === null) {
+      t.skip('Bash shell execution unavailable or restricted by OS permissions (E_ACCESSDENIED)');
+      return;
+    }
 
     assert.ok(fs.existsSync(chunkDirPath));
     const chunkFiles = fs.readdirSync(chunkDirPath).filter(f => f.startsWith('repo_knowledge_pack_part_'));
@@ -107,7 +119,7 @@ test('core/flatten.sh COMPACTION_ENABLED=false fallback path generates standard 
   }
 });
 
-test('core/flatten.sh compactor execution failure falls back to standard pack and chunk.sh succeeds', () => {
+test('core/flatten.sh compactor execution failure falls back to standard pack and chunk.sh succeeds', (t) => {
   const packDir = '.tmp-pipeline-fail-pack';
   const chunkDir = '.tmp-pipeline-fail-chunks';
   const packFile = 'fail_fallback_pack.txt';
@@ -121,7 +133,10 @@ test('core/flatten.sh compactor execution failure falls back to standard pack an
       '--pack-name', packFile
     ], { COMPACTION_ENABLED: 'true', COMPACTION_CONFIG: 'non-existent-file.yaml' });
 
-    if (flattenRes === null) return;
+    if (flattenRes === null) {
+      t.skip('Bash shell execution unavailable or restricted by OS permissions (E_ACCESSDENIED)');
+      return;
+    }
 
     assert.ok(fs.existsSync(packPath), 'Fallback pack must be created despite compactor failure');
     const content = fs.readFileSync(packPath, 'utf8');
@@ -133,7 +148,10 @@ test('core/flatten.sh compactor execution failure falls back to standard pack an
       '--output-dir', chunkDir
     ], {});
 
-    if (chunkRes === null) return;
+    if (chunkRes === null) {
+      t.skip('Bash shell execution unavailable or restricted by OS permissions (E_ACCESSDENIED)');
+      return;
+    }
 
     assert.ok(fs.existsSync(chunkDirPath));
     const chunkFiles = fs.readdirSync(chunkDirPath).filter(f => f.startsWith('repo_knowledge_pack_part_'));

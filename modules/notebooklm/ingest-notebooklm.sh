@@ -30,16 +30,24 @@ write_sync_telemetry() {
 
   SYNC_STATUS_TMP="$REPO_ROOT/.sync-status.json.tmp.$$"
 
-  if cat << EOF > "$SYNC_STATUS_TMP"
-{
-  "target": "notebooklm",
-  "status": "$status",
-  "timestamp": "$timestamp",
-  "duration_ms": $duration_ms,
-  "purged_sources": $purged,
-  "uploaded_chunks": $uploaded
-}
-EOF
+  # Merge into any existing .sync-status.json instead of overwriting it --
+  # core/flatten.sh's compactor step writes compaction_stats/compactor_warnings
+  # into this same file earlier in the pipeline; a raw overwrite here erased them.
+  if node -e '
+    const fs = require("fs");
+    const [statusFile, tmpFile, status, purged, uploaded, durationMs, timestamp] = process.argv.slice(1);
+    let existing = {};
+    if (fs.existsSync(statusFile)) {
+      try { existing = JSON.parse(fs.readFileSync(statusFile, "utf8")); } catch (_) {}
+    }
+    existing.target = "notebooklm";
+    existing.status = status;
+    existing.timestamp = timestamp;
+    existing.duration_ms = Number(durationMs);
+    existing.purged_sources = Number(purged);
+    existing.uploaded_chunks = Number(uploaded);
+    fs.writeFileSync(tmpFile, JSON.stringify(existing, null, 2), "utf8");
+  ' "$REPO_ROOT/.sync-status.json" "$SYNC_STATUS_TMP" "$status" "$purged" "$uploaded" "$duration_ms" "$timestamp"
   then
     if mv -f "$SYNC_STATUS_TMP" "$REPO_ROOT/.sync-status.json" 2>/dev/null; then
       TELEMETRY_WRITTEN=true

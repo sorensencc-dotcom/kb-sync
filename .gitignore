@@ -22,3 +22,6 @@ modules/notebooklm/ingest-notebooklm.sh.bak
 notebooklm-mcp-cli/
 schedule-task-wrapper-*.ps1
 
+# Compacted Context Engine transient state (per-machine, expiry-based)
+.compaction-overrides.yaml
+
