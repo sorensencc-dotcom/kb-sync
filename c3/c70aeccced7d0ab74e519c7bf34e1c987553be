@@ -1,0 +1,19 @@
+tests/pipeline-fallback.test.mjs
+  s_aa6a468218ebd1::t_be40baffa34342 9-32,41,45-47,54,58-60,62,67-68,80,84-86,92,96-98,105-106,118,122-124,130,134-136,143-144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "c3c70aeccced7d0ab74e519c7bf34e1c987553be",
+  "prompts": {},
+  "sessions": {
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
