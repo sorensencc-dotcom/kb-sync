@@ -14,16 +14,16 @@ function runBashCommand(args, env) {
       encoding: 'utf8'
     });
   } catch (err) {
-    const errorStr = `${err.code || ''} ${err.message || ''} ${err.stderr || ''}`;
-    if (
-      err.code === 'EACCES' ||
-      err.code === 'EPERM' ||
-      err.code === 'ENOENT' ||
-      err.code === 'E_ACCESSDENIED' ||
-      errorStr.includes('E_ACCESSDENIED') ||
-      errorStr.includes('CreateInstance') ||
-      errorStr.includes('Service/CreateInstance')
-    ) {
+    const rawOutputs = [
+      err.code,
+      err.message,
+      err.stderr,
+      err.stdout,
+      Array.isArray(err.output) ? err.output.filter(Boolean).join(' ') : ''
+    ];
+    const errorStr = rawOutputs.filter(Boolean).join(' ').replace(/\0/g, '');
+
+    if (/E_ACCESSDENIED|CreateInstance|Service[\\/]+CreateInstance/i.test(errorStr)) {
       return null;
     }
     throw err;
