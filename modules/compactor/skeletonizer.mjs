@@ -150,17 +150,5 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
 }
 
 function generateProvenanceBanner({ relativePath, contentHash, state, reason, compactorVer, parserVer }) {
-  return [
-    '// =================================================================================',
-    '// [COMPACTED SKELETON]',
-    `// Source Path:         ${relativePath}`,
-    `// Source Content Hash: ${contentHash}`,
-    `// Compaction State:    ${state}`,
-    `// Selection Reason:    ${reason}`,
-    `// Compactor Ver:       ${compactorVer}`,
-    `// Parser Engine:       ${parserVer}`,
-    `// RESTORE COMMAND:     npm run kb:compact -- --restore ${relativePath}`,
-    `// DUMP COMMAND:        npm run kb:compact -- --dump ${relativePath}`,
-    '// ================================================================================='
-  ].join('\n');
+  return `// [COMPACTED SKELETON] path: ${relativePath} | hash: ${contentHash.slice(0, 12)} | state: ${state} | reason: ${reason} | v${compactorVer} (${parserVer})`;
 }

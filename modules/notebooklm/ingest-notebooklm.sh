@@ -8,7 +8,7 @@ set -euo pipefail
 # Line 1 REPO_ROOT resolution (guarantees $REPO_ROOT is bound)
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 
-START_SECONDS=$SECONDS
+START_TIME_MS=$(node -e 'console.log(Date.now())' 2>/dev/null || echo $(($(date +%s)*1000)))
 SYNC_STATUS_TMP=""
 TELEMETRY_WRITTEN=false
 
@@ -24,8 +24,10 @@ write_sync_telemetry() {
   local status="$1"
   local purged="$2"
   local uploaded="$3"
-  local elapsed_sec=$(( SECONDS - START_SECONDS ))
-  local duration_ms=$(( elapsed_sec * 1000 ))
+  local last_error="${4:-}"
+  local now_ms=$(node -e 'console.log(Date.now())' 2>/dev/null || echo $(($(date +%s)*1000)))
+  local duration_ms=$(( now_ms - START_TIME_MS ))
+  if [ "$duration_ms" -lt 0 ]; then duration_ms=0; fi
   local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
   SYNC_STATUS_TMP="$REPO_ROOT/.sync-status.json.tmp.$$"
@@ -35,7 +37,7 @@ write_sync_telemetry() {
   # into this same file earlier in the pipeline; a raw overwrite here erased them.
   if node -e '
     const fs = require("fs");
-    const [statusFile, tmpFile, status, purged, uploaded, durationMs, timestamp] = process.argv.slice(1);
+    const [statusFile, tmpFile, status, purged, uploaded, durationMs, timestamp, lastError] = process.argv.slice(1);
     let existing = {};
     if (fs.existsSync(statusFile)) {
       try { existing = JSON.parse(fs.readFileSync(statusFile, "utf8")); } catch (_) {}
@@ -46,8 +48,13 @@ write_sync_telemetry() {
     existing.duration_ms = Number(durationMs);
     existing.purged_sources = Number(purged);
     existing.uploaded_chunks = Number(uploaded);
+    if (lastError) {
+      existing.last_error = lastError;
+    } else if (status === "SUCCESS") {
+      delete existing.last_error;
+    }
     fs.writeFileSync(tmpFile, JSON.stringify(existing, null, 2), "utf8");
-  ' "$REPO_ROOT/.sync-status.json" "$SYNC_STATUS_TMP" "$status" "$purged" "$uploaded" "$duration_ms" "$timestamp"
+  ' "$REPO_ROOT/.sync-status.json" "$SYNC_STATUS_TMP" "$status" "$purged" "$uploaded" "$duration_ms" "$timestamp" "$last_error"
   then
     if mv -f "$SYNC_STATUS_TMP" "$REPO_ROOT/.sync-status.json" 2>/dev/null; then
       TELEMETRY_WRITTEN=true
@@ -62,13 +69,18 @@ write_sync_telemetry() {
 }
 
 on_script_error() {
-  write_sync_telemetry "FAILED" 0 0 || true
+  local exit_code=$?
+  local line_no="${1:-${BASH_LINENO[0]:-unknown}}"
+  local command="${2:-${BASH_COMMAND:-unknown}}"
+  local err_msg="Script terminated with error (exit code ${exit_code}) at line ${line_no}: '${command}'"
+  log_error "$err_msg"
+  write_sync_telemetry "FAILED" 0 0 "$err_msg" || true
 }
-trap on_script_error ERR
+trap 'on_script_error "${LINENO:-}" "${BASH_COMMAND:-}"' ERR
 
 on_signal_exit() {
   cleanup_sync_telemetry_tmp
-  write_sync_telemetry "FAILED" 0 0 || true
+  write_sync_telemetry "FAILED" 0 0 "Script interrupted by signal" || true
   exit 130
 }
 trap cleanup_sync_telemetry_tmp EXIT

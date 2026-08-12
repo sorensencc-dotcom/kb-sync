@@ -40,15 +40,7 @@ export function outlineFile(filePath, relativePath, contentHash, reason) {
       return { content: rawContent, state: 'Full', warning: `Outline unsupported for extension "${ext}"` };
     }
 
-    const banner = [
-      '// =================================================================================',
-      `// [COMPACTED OUTLINE]`,
-      `// Source Path:      ${relativePath}`,
-      `// Source Content Hash: ${contentHash}`,
-      `// Compaction State: Outline`,
-      `// Selection Reason: ${reason}`,
-      '// ================================================================================='
-    ].join('\n');
+    const banner = `// [COMPACTED OUTLINE] path: ${relativePath} | hash: ${contentHash.slice(0, 12)} | state: Outline | reason: ${reason}`;
 
     return { content: `${banner}\n\n${outlinedText}`, state: 'Outline' };
   } catch (err) {
