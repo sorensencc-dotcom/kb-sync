@@ -1,0 +1,31 @@
+docs/meta/plans/2026-08-11-compacted-context-engine.md
+  s_aa6a468218ebd1::t_e0402d3b6fcbbf 284-286
+  s_aa6a468218ebd1::t_18a525f660f787 433-441
+.gitignore
+  s_aa6a468218ebd1::t_06b9fbad02fce8 25-27
+modules/notebooklm/ingest-notebooklm.sh
+  s_aa6a468218ebd1::t_2bc3bb682aff76 33-50
+docs/superpowers/plans/2026-08-11-compacted-context-engine.md
+  s_aa6a468218ebd1::t_95bf1ade4e2981 433-441
+  s_aa6a468218ebd1::t_fefada63e4100c 284-286
+core/flatten.sh
+  s_aa6a468218ebd1::t_64a59c8c7db6f8 227-229
+tests/pipeline-fallback.test.mjs
+  s_aa6a468218ebd1::t_6fed7a90706896 17,21,23-25,33,47-50,63-66,78,92-95,107-110,122,136-139,151-154
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "f6010019776c394feb81a1c79ae7ea2f9e7c4a40",
+  "prompts": {},
+  "sessions": {
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
