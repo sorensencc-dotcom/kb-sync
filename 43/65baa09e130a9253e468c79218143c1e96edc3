@@ -1,0 +1,27 @@
+.sync-status.json
+  s_aa6a468218ebd1::t_6c73f4c95dea0e 12,19,22-27
+  s_aa6a468218ebd1::t_7db6162b05b679 2,11,13-18,20-21
+  s_aa6a468218ebd1::t_df41070cc267b3 28-30
+modules/compactor/outliner.mjs
+  s_aa6a468218ebd1::t_b2da6869a95d57 43
+modules/compactor/skeletonizer.mjs
+  s_aa6a468218ebd1::t_175eb1904f56f1 153
+modules/notebooklm/ingest-notebooklm.sh
+  s_aa6a468218ebd1::t_6a9f843e00b0e1 11,27-30,40,51-55,57,72-77,79,83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "4365baa09e130a9253e468c79218143c1e96edc3",
+  "prompts": {},
+  "sessions": {
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
