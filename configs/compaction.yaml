@@ -1,0 +1,23 @@
+# configs/compaction.yaml
+compaction:
+  enabled: true
+  git_window_days: 14
+  default_level: "Full"
+  high_risk_prefixes:
+    - "auth/"
+    - "db/migrations/"
+    - "deploy/"
+    - ".github/workflows/"
+    - "configs/"
+
+  rules:
+    - prefix: "modules/obsidian/"
+      level: "Full"
+    - prefix: "core/"
+      level: "Skeleton"
+    - prefix: "modules/compactor/"
+      level: "Skeleton"
+    - prefix: "tests/"
+      level: "Outline"
+    - prefix: "wiki/"
+      level: "Full"

@@ -96,6 +96,12 @@ done
 # Default REPO_ROOT if not provided
 if [ -z "$REPO_ROOT" ]; then
   REPO_ROOT="$(git rev-parse --show-toplevel)"
+elif command -v cygpath >/dev/null 2>&1 && [[ "$REPO_ROOT" =~ ^[A-Za-z]: ]]; then
+  REPO_ROOT="$(cygpath -u "$REPO_ROOT")"
+fi
+
+if command -v cygpath >/dev/null 2>&1 && [[ "$PACK_DIR" =~ ^[A-Za-z]: ]]; then
+  PACK_DIR="$(cygpath -u "$PACK_DIR")"
 fi
 
 # Validate required arguments
@@ -215,27 +221,47 @@ else
   FULL_PACK="$PACK_DIR/$PACK_FILE"
   log_info "Writing concatenated pack to: $FULL_PACK"
 
-  {
-    echo "================================================================================"
-    echo "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK"
-    echo "Generated: $(date)"
-    echo "Repo Root: $REPO_ROOT"
-    echo "================================================================================"
-    echo ""
+  COMPACTION_CONFIG="${COMPACTION_CONFIG:-$REPO_ROOT/configs/compaction.yaml}"
+  USE_COMPACTION=false
 
-    while IFS= read -r file; do
-      [ -z "$file" ] && continue
-      echo ""
-      echo "--- START FILE: $file ---"
-      if [ -f "$REPO_ROOT/$file" ]; then
-        cat "$REPO_ROOT/$file" || true
-      fi
-      echo "--- END FILE: $file ---"
-      echo ""
-    done < "$TEMP_FILE_LIST"
-  } > "$FULL_PACK"
+  if [ "${COMPACTION_ENABLED:-true}" = "true" ] && [ -f "$COMPACTION_CONFIG" ]; then
+    log_info "Compacted Context Engine enabled. Invoking batch compactor..."
+    if node "$REPO_ROOT/modules/compactor/index.mjs" \
+      --repo-root "$REPO_ROOT" \
+      --manifest "$TEMP_FILE_LIST" \
+      --output "$FULL_PACK" \
+      --config "$COMPACTION_CONFIG" \
+      --global-config "${GLOBAL_CONFIG:-}"; then
+      log_info "Compacted knowledge pack generated successfully."
+      USE_COMPACTION=true
+    else
+      log_warn "Compactor execution failed. Falling back to standard git flattener..."
+    fi
+  fi
 
-  log_info "Knowledge pack generated successfully."
+  if [ "$USE_COMPACTION" = false ]; then
+    {
+      echo "================================================================================"
+      echo "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK"
+      echo "Generated: $(date)"
+      echo "Repo Root: $REPO_ROOT"
+      echo "================================================================================"
+      echo ""
+
+      while IFS= read -r file; do
+        [ -z "$file" ] && continue
+        echo ""
+        echo "--- START FILE: $file ---"
+        if [ -f "$REPO_ROOT/$file" ]; then
+          cat "$REPO_ROOT/$file" || true
+        fi
+        echo "--- END FILE: $file ---"
+        echo ""
+      done < "$TEMP_FILE_LIST"
+    } > "$FULL_PACK"
+
+    log_info "Standard uncompacted knowledge pack generated successfully."
+  fi
 fi
 
 exit 0

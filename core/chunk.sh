@@ -62,6 +62,13 @@ while [ $# -gt 0 ]; do
   esac
 done
 
+if command -v cygpath >/dev/null 2>&1 && [[ "$PACK_FILE" =~ ^[A-Za-z]: ]]; then
+  PACK_FILE="$(cygpath -u "$PACK_FILE")"
+fi
+if command -v cygpath >/dev/null 2>&1 && [[ "$OUTPUT_DIR" =~ ^[A-Za-z]: ]]; then
+  OUTPUT_DIR="$(cygpath -u "$OUTPUT_DIR")"
+fi
+
 # Validate required arguments
 if [ -z "$PACK_FILE" ] || [ -z "$OUTPUT_DIR" ]; then
   log_error "Missing required arguments: --file PATH --output-dir DIR"
