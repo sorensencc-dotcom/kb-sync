@@ -286,6 +286,41 @@ run_nlm_cli() {
   fi
 }
 
+# The local uv-project `nlm` CLI (notebooklm-mcp-cli) and the global
+# `notebooklm` CLI use incompatible argument dialects for the same
+# operations: uv-project takes NOTEBOOK_ID positionally and has no
+# --notebook flag at all on `source delete`, and requires --file (not a
+# bare positional) for local file uploads on `source add`. Calling
+# uv-project's `nlm` with the global CLI's --notebook flag fails outright
+# (exit 2, empty output) -- confirmed live against the CIC-KB notebook,
+# where it silently broke the pre-existing-source query every run.
+nlm_source_list_json() {
+  local notebook_id="$1"
+  if [ "$NLM_MODE" = "uv-project" ]; then
+    run_nlm_cli source list "$notebook_id" --json
+  else
+    run_nlm_cli source list --notebook "$notebook_id" --json
+  fi
+}
+
+nlm_source_add() {
+  local notebook_id="$1" file_path="$2"
+  if [ "$NLM_MODE" = "uv-project" ]; then
+    run_nlm_cli source add "$notebook_id" --file "$file_path"
+  else
+    run_nlm_cli source add --notebook "$notebook_id" "$file_path"
+  fi
+}
+
+nlm_source_delete() {
+  local notebook_id="$1" source_id="$2"
+  if [ "$NLM_MODE" = "uv-project" ]; then
+    run_nlm_cli source delete "$source_id" -y
+  else
+    run_nlm_cli source delete --notebook "$notebook_id" "$source_id" -y
+  fi
+}
+
 sleep_backoff() {
   local ms="${1:-2000}"
   if node -e "setTimeout(() => {}, $ms)" 2>/dev/null; then
@@ -378,7 +413,7 @@ fi
 query_preexisting_pack_sources() {
   PRE_EXISTING_SOURCES=()
   local sources_json
-  if ! sources_json="$(run_nlm_cli source list --notebook "$NOTEBOOK_ID" --json 2>/dev/null)"; then
+  if ! sources_json="$(nlm_source_list_json "$NOTEBOOK_ID" 2>/dev/null)"; then
     log_error "FATAL: Failed to query existing notebook sources for Notebook ID: $NOTEBOOK_ID"
     return 1
   fi
@@ -463,7 +498,7 @@ if [ "$RUN_ROLLBACK" = true ]; then
       target_upload_path="$(wslpath -w "$abs_file")"
     fi
 
-    until run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; do
+    until nlm_source_add "$NOTEBOOK_ID" "$target_upload_path"; do
       retry_count=$((retry_count + 1))
       if [ "$retry_count" -ge "$RETRY_ATTEMPTS" ]; then
         log_error "Rollback upload failed after $RETRY_ATTEMPTS attempts for file: $file"
@@ -481,7 +516,7 @@ if [ "$RUN_ROLLBACK" = true ]; then
   PURGED_COUNT=0
   PURGE_SUCCESS=true
   for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
-    if run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1; then
+    if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
       PURGED_COUNT=$((PURGED_COUNT + 1))
     else
       log_error "Failed to purge old source ID during rollback: $src_id"
@@ -610,7 +645,7 @@ for file in "${UPLOAD_FILES[@]}"; do
     target_upload_path="$(wslpath -w "$abs_file")"
   fi
 
-  until run_nlm_cli source add --notebook "$NOTEBOOK_ID" "$target_upload_path"; do
+  until nlm_source_add "$NOTEBOOK_ID" "$target_upload_path"; do
     retry_count=$((retry_count + 1))
     if [ "$retry_count" -ge "$RETRY_ATTEMPTS" ]; then
       log_error "Upload failed after $RETRY_ATTEMPTS attempts for file: $file"
@@ -628,7 +663,7 @@ log_info "Step 5c: Upload complete. Purging ${#PRE_EXISTING_SOURCES[@]} old sour
 PURGED_COUNT=0
 PURGE_SUCCESS=true
 for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
-  if run_nlm_cli source delete --notebook "$NOTEBOOK_ID" "$src_id" -y >/dev/null 2>&1; then
+  if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
     PURGED_COUNT=$((PURGED_COUNT + 1))
   else
     log_error "Failed to purge old source ID: $src_id"
