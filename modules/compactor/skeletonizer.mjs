@@ -127,7 +127,7 @@ export function skeletonizeFile(filePath, relativePath, contentHash, reason) {
     let skeletonCode;
     try {
       result = ts.transform(sourceFile, [transformer]);
-      const printer = ts.createPrinter({ removeComments: false, newLine: ts.NewLineKind.LineFeed });
+      const printer = ts.createPrinter({ removeComments: true, newLine: ts.NewLineKind.LineFeed });
       skeletonCode = printer.printFile(result.transformed[0]);
     } finally {
       if (result) result.dispose();

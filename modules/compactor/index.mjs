@@ -12,6 +12,7 @@ import { loadNormalizedManifest } from './manifest-loader.mjs';
 import { countTokens } from './telemetry.mjs';
 import { replaceFileAtomically } from './atomic-file.mjs';
 import { runCompactCli } from './cli.mjs';
+import { scanAndSanitizeText } from './secret-pii-sanitizer.mjs';
 
 /**
  * Loads top-level skip_patterns from the shared global.yaml config, mirroring
@@ -126,6 +127,25 @@ export async function buildCompactedPack({ repoRoot, manifestPath, outputPath, c
     }
 
     stateCounts[finalState]++;
+
+    // Fail-Closed Secret & PII Sanitization
+    try {
+      const sanitizedRes = scanAndSanitizeText(finalContent);
+      finalContent = sanitizedRes.sanitizedText;
+      if (sanitizedRes.secretsFound > 0) {
+        compactorWarnings.push({
+          file: relativePath,
+          requestedState: classification.state,
+          finalState,
+          reason: `Sanitized ${sanitizedRes.secretsFound} secret(s): ${Object.keys(sanitizedRes.categories).join(', ')}`
+        });
+      }
+    } catch (sanitizeErr) {
+      compactorWarnings.push({ file: relativePath, requestedState: classification.state, finalState: 'Excluded', reason: sanitizeErr.message });
+      stateCounts[finalState]--;
+      stateCounts.Excluded++;
+      continue;
+    }
 
     const payloadBlock = `\n--- START FILE: ${relativePath} ---\n${finalContent}\n--- END FILE: ${relativePath} ---\n`;
     const finalBytes = Buffer.byteLength(payloadBlock, 'utf8');

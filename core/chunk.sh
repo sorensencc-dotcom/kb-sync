@@ -18,16 +18,14 @@ log_warn() {
   printf '\e[33m[CHUNK] [WARN] %s\e[0m\n' "$*" >&2
 }
 
-# Parse config value from simple key=value or key: value format
-# Strips inline comments (anything after #)
+# Parse config value using Node.js config-loader
 get_config_value() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
     return 0
   fi
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
-    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/\s*$//" || true
+  node "$(dirname "$0")/config-loader.mjs" --file "$file" --key "$key" || true
 }
 
 # --- ARGUMENT PARSING --------------------------------------------------------

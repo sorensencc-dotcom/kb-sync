@@ -23,33 +23,24 @@ log_warn() {
   printf '\e[33m[FLATTEN] [WARN] %s\e[0m\n' "$*" >&2
 }
 
-# Parse YAML-like config file for a specific key (simple key=value or key: value)
-# Returns empty if key not found. Strips inline comments.
+# Parse YAML-like config file for a specific key using Node.js config-loader
 get_config_value() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
     return 0
   fi
-  # Match "key:" or "key =" (with optional surrounding spaces), return value after it
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
-    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/\s*$//" || true
+  node "$(dirname "$0")/config-loader.mjs" --file "$file" --key "$key" || true
 }
 
-# Parse array-like config value (comma-separated or YAML list items)
-# Handles: [".md", ".ts"] or .md, .ts or - .md
+# Parse array-like config value using Node.js config-loader
 get_config_array() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
     return 0
   fi
-  # Extract lines starting with the key, then grab everything after it (brackets/commas/list markers)
-  sed -n "/^\s*${key}\s*[:=]/,/^\s*[a-zA-Z]/p" "$file" | \
-    sed "1s/^.*[:=]//" | \
-    sed '/^\s*$/d' | \
-    sed 's/[\[\]",]//g; s/^\s*-\s*//' | \
-    sed 's/^\s*//; s/\s*$//' || true
+  node "$(dirname "$0")/config-loader.mjs" --file "$file" --key "$key" --array || true
 }
 
 # --- ARGUMENT PARSING --------------------------------------------------------

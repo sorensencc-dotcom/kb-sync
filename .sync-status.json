@@ -1,33 +1,12 @@
 {
-  "last_sync_timestamp": "2026-08-12T01:30:49.970Z",
+  "last_sync_timestamp": "2026-08-13T01:32:42.903Z",
   "status": "SUCCESS",
-  "file_count": 453,
+  "file_count": 483,
   "pack_files_count": 1,
-  "pack_size_bytes": 2243340,
-  "unique_urls_tracked": 100,
-  "total_url_references": 144,
+  "pack_size_bytes": 2425084,
+  "unique_urls_tracked": 52,
+  "total_url_references": 62,
   "notebook_id": "unknown",
   "stage1_success": true,
-  "stage2_success": true,
-  "compaction_stats": {
-    "total_raw_size_bytes": 13664,
-    "compacted_size_bytes": 14073,
-    "total_raw_tokens": 3812,
-    "compacted_tokens": 3890,
-    "byte_reduction_percentage": -2.99,
-    "token_reduction_percentage": -2.05,
-    "state_counts": {
-      "Full": 2,
-      "Skeleton": 0,
-      "Outline": 0,
-      "Excluded": 0
-    },
-    "warnings_count": 0
-  },
-  "compactor_warnings": [],
-  "target": "notebooklm",
-  "timestamp": "2026-08-12T07:00:42Z",
-  "duration_ms": 21828,
-  "purged_sources": 0,
-  "uploaded_chunks": 1
+  "stage2_success": true
 }

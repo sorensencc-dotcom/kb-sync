@@ -186,7 +186,11 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
     if (!error.stdout && error.stderr) error.stdout = error.stderr;
     throw error;
   } finally {
-    if (fs.existsSync(tempVaultRoot)) fs.rmSync(tempVaultRoot, { recursive: true });
+    if (fs.existsSync(tempVaultRoot)) {
+      try {
+        fs.rmSync(tempVaultRoot, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+      } catch (_) {}
+    }
   }
 });
 

@@ -17,7 +17,15 @@ export function countNonTrivialSCCs(nodes, edges) {
   const stack = [];
   let nonTrivialCount = 0;
 
+  let depth = 0;
+  const MAX_RECURSION_DEPTH = 5000;
+
   function strongconnect(v) {
+    if (depth > MAX_RECURSION_DEPTH) {
+      // Fallback: stop recursion if path exceeds stack limits to prevent stack overflow
+      return;
+    }
+    depth++;
     indices.set(v, index);
     lowlink.set(v, index);
     index++;
@@ -27,7 +35,9 @@ export function countNonTrivialSCCs(nodes, edges) {
     for (const w of adj.get(v)) {
       if (!indices.has(w)) {
         strongconnect(w);
-        lowlink.set(v, Math.min(lowlink.get(v), lowlink.get(w)));
+        if (lowlink.has(w)) {
+          lowlink.set(v, Math.min(lowlink.get(v), lowlink.get(w)));
+        }
       } else if (onStack.has(w)) {
         lowlink.set(v, Math.min(lowlink.get(v), indices.get(w)));
       }
@@ -40,12 +50,13 @@ export function countNonTrivialSCCs(nodes, edges) {
         w = stack.pop();
         onStack.delete(w);
         component.push(w);
-      } while (w !== v);
+      } while (w !== v && stack.length > 0);
 
       if (component.length > 1 || selfLoop.has(component[0])) {
         nonTrivialCount++;
       }
     }
+    depth--;
   }
 
   for (const v of orderedIds) {
