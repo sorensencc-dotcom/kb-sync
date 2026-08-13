@@ -321,6 +321,21 @@ nlm_source_delete() {
   fi
 }
 
+# uv-project's `nlm` has no `auth` command group at all (confirmed live:
+# "No such command 'auth'. Did you mean 'batch'?") -- its equivalent is
+# `login --check`. This previously made verify_auth_or_die always think
+# auth was broken and fall through every recovery path to a hard FATAL
+# stop, even when the stored profile was already valid (confirmed live:
+# `login --check` returns "Authentication valid!" with the same profile
+# that `auth check` was failing against).
+nlm_auth_check() {
+  if [ "$NLM_MODE" = "uv-project" ]; then
+    run_nlm_cli login --check
+  else
+    run_nlm_cli auth check
+  fi
+}
+
 sleep_backoff() {
   local ms="${1:-2000}"
   if node -e "setTimeout(() => {}, $ms)" 2>/dev/null; then
@@ -367,11 +382,22 @@ import_cookie_json() {
     ' 2>/dev/null || echo "")
   fi
 
-  if [ -n "$auth_json" ]; then
-    echo "$auth_json" | run_nlm_cli auth import-cookies --quiet - 2>/dev/null || return 1
-    return 0
+  if [ -z "$auth_json" ]; then return 1; fi
+
+  if [ "$NLM_MODE" = "uv-project" ]; then
+    # uv-project's `login --manual` reads cookies from a --file path, not
+    # stdin -- there is no `auth import-cookies` command in this dialect.
+    local cookie_file
+    cookie_file="$(mktemp)"
+    printf '%s' "$auth_json" > "$cookie_file"
+    run_nlm_cli login --manual --file "$cookie_file" 2>/dev/null
+    local status=$?
+    rm -f "$cookie_file"
+    return $status
   fi
-  return 1
+
+  echo "$auth_json" | run_nlm_cli auth import-cookies --quiet - 2>/dev/null || return 1
+  return 0
 }
 
 CHECK_AUTH_ONLY=false
@@ -382,19 +408,29 @@ for arg in "$@"; do
 done
 
 verify_auth_or_die() {
-  if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+  if nlm_auth_check >/dev/null 2>&1; then return 0; fi
   log_warn "CLI auth state missing/invalid. Recovering..."
 
-  run_nlm_cli auth refresh --verify --quiet 2>/dev/null || true
-  if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+  if [ "$NLM_MODE" = "uv-project" ]; then
+    # No `auth refresh` equivalent in this dialect -- login --check above
+    # already reflects live token validity, nothing to refresh separately.
+    :
+  else
+    run_nlm_cli auth refresh --verify --quiet 2>/dev/null || true
+    if nlm_auth_check >/dev/null 2>&1; then return 0; fi
+  fi
 
   if [ -n "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
-    run_nlm_cli login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null || true
-    if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+    if [ "$NLM_MODE" = "uv-project" ]; then
+      log_warn "Master-token login is not supported by the local uv-project nlm CLI; skipping this recovery path."
+    else
+      run_nlm_cli login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null || true
+      if nlm_auth_check >/dev/null 2>&1; then return 0; fi
+    fi
   fi
 
   if import_cookie_json; then
-    if run_nlm_cli auth check >/dev/null 2>&1; then return 0; fi
+    if nlm_auth_check >/dev/null 2>&1; then return 0; fi
   fi
 
   log_error "FATAL: All authentication recovery paths failed. Hard-stopping before purge/upload."
