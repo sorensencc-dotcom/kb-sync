@@ -1,0 +1,29 @@
+docs/superpowers/plans/2026-08-12-sibling-pattern-checking.md
+  s_acaa711e7c3399::t_8be2948b61a34a 1-497
+scripts/wiki-validate-precommit.sh
+  s_5f8d40bf855cf6::t_a1d1b003b59800 2-3,11,16-17,26,35,60,62-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "ffea133814dab6fea135d24e13a2762830462ee9",
+  "prompts": {},
+  "sessions": {
+    "s_5f8d40bf855cf6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08f1121a-602b-4b4c-a8fe-b6db21242ea3",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_acaa711e7c3399": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1e8e68d7-e38d-48b1-be86-3a7570d8ddcd",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
