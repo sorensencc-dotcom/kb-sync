@@ -342,7 +342,7 @@ for (const note of notesRegistry) {
     } else {
       // Verify path starts with a canonical top-level repo folder
       const rootFolder = link.split('/')[0];
-      if (rootFolder && !['kb-sync', 'toolforge', 'rewrite-docs', 'rewrite-mcp', 'cic-os', 'charlie-deep-research', 'cic-ingestion'].includes(rootFolder)) {
+      if (rootFolder && !['kb-sync', 'toolforge', 'rewrite-docs', 'rewrite-mcp', 'cic-os', 'charlie-deep-research', 'cic-ingestion', 'sigil', 'castironforge'].includes(rootFolder)) {
         validationErrors.push({
           file: note.path,
           rule_id: 'ABSOLUTE_LINK_INVALID',

@@ -22,7 +22,17 @@
     },
     "sourceRepository": {
       "type": "string",
-      "enum": ["toolforge", "kb-sync", "rewrite-docs"],
+      "enum": [
+        "toolforge",
+        "kb-sync",
+        "rewrite-docs",
+        "cic-ingestion",
+        "rewrite-mcp",
+        "cic-os",
+        "charlie-deep-research",
+        "sigil",
+        "castironforge"
+      ],
       "description": "The repository originating this run payload."
     },
     "payload": {
