@@ -1,0 +1,21 @@
+modules/wiki/toolforge-kbsync-contract.json
+  s_97e9c28b8bd31b::t_fabac4bfccd5cd 25-35
+modules/wiki/validate-contract.mjs
+  s_97e9c28b8bd31b::t_e94caddbb4cada 345
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2d34c0033a240bef1e2961767f5958fbe5bfff7a",
+  "prompts": {},
+  "sessions": {
+    "s_97e9c28b8bd31b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "25ce2d99-e802-4543-93f0-7807ba509cf3",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
