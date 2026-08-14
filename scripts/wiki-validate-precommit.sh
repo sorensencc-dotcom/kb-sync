@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
-# Pre-commit hook: validate changed repo markdown for broken relative links,
-# enforce wiki contract rules, and perform sibling pattern scope checks.
-
+### Pre-commit hook v2: validate changed repo markdown for broken relative links,
+### enforce wiki contract rules, and perform Graft-enhanced sibling pattern checks.
 set -e
-
 REPO_ROOT=$(git rev-parse --show-toplevel)
 cd "$REPO_ROOT"
 
 VALIDATOR="modules/wiki/validate-staging-docs.mjs"
 CONTRACT_VALIDATOR="modules/wiki/validate-contract.mjs"
 
-# Step 0: Secret scan
+### Step 0: Secret scan
 if ! bash "$REPO_ROOT/scripts/secret-scan-hook.sh"; then
   exit 1
 fi
 
-# Staged markdown files (added/copied/modified). Exclude vault staging tree
-# and human wiki (obsidian/vault), which have a separate lifecycle.
+### Staged markdown files (added/copied/modified). Exclude vault staging tree
+### and human wiki (obsidian/vault), which have a separate lifecycle.
 CHANGED_MD=$(
   git diff --cached --name-only --diff-filter=ACM \
     | grep -E '\.md$' \
@@ -25,7 +23,7 @@ CHANGED_MD=$(
     || true
 )
 
-# Staged scripts/modules (js, mjs, ts, sh)
+### Staged scripts/modules (js, mjs, ts, sh)
 CHANGED_CODE=$(
   git diff --cached --name-only --diff-filter=ACM \
     | grep -E '\.(js|mjs|ts|sh)$' \
@@ -34,7 +32,7 @@ CHANGED_CODE=$(
 
 FAILED=0
 
-# Step 1: Validate changed Markdown files
+### Step 1: Validate changed Markdown files
 if [ -n "$CHANGED_MD" ]; then
   echo "[WIKI-VALIDATE] Validating $(echo "$CHANGED_MD" | wc -l | tr -d ' ') changed markdown file(s)..."
   while IFS= read -r file; do
@@ -59,17 +57,10 @@ else
   echo "[WIKI-VALIDATE] No repo markdown files staged; skipping doc validation."
 fi
 
-# Step 2: Sibling Pattern Scope Check for Code Changes
+### Step 2: Sibling Pattern Scope Check for Code Changes (Phase 2 Native Node Engine with Graft Enhancement)
 if [ -n "$CHANGED_CODE" ]; then
-  echo "[SIBLING-CHECK] Performing sibling scope check for modified code files..."
-  while IFS= read -r codefile; do
-    [ -n "$codefile" ] || continue
-    basename=$(basename "$codefile" | cut -d. -f1)
-    
-    # Grep for references to modified file basename across repo
-    match_count=$(git grep -l "$basename" -- ':(exclude)'"$codefile" ':(exclude)package-lock.json' || true | wc -l | tr -d ' ')
-    echo "[SIBLING-CHECK] Found $match_count sibling file(s) referencing '$basename'."
-  done <<< "$CHANGED_CODE"
+  echo "[SIBLING-CHECK] Performing Graft-enhanced sibling scope check for modified code files..."
+  node modules/wiki/run-sibling-check.mjs --mode=pre-commit
 fi
 
 if [ "$FAILED" -eq 0 ]; then
