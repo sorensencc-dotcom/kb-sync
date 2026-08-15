@@ -1,0 +1,20 @@
+modules/obsidian/synthesize-wiki.ts
+  h_5c172e9b435f5a 224
+modules/wiki/validate-trm-semantics.mjs
+  h_5c172e9b435f5a 1-205
+package.json
+  h_5c172e9b435f5a 66-71
+tests/trm-pipeline.test.ts
+  h_5c172e9b435f5a 1-227
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "41722c9a7dd5d17516ef6e24a9dab2fd469aed7f",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
