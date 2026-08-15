@@ -1,0 +1,14 @@
+docs/TRM_INGESTION_PIPELINE_SPEC.md
+  h_5c172e9b435f5a 1005-1044
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "57fbae86041f8e6e3f4929bb4baab02da7711064",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
