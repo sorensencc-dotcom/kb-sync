@@ -1,0 +1,19 @@
+scripts/cleanup-logs-and-backups.mjs
+  s_2afe06807554bb::t_060c96c73e7a61 3-4,11-14,17,19,22-74,76-82,84-93,96,101-104,106-127,131-132,135-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "c15b972d3d52c66629794538429d0c4bd77ee137",
+  "prompts": {},
+  "sessions": {
+    "s_2afe06807554bb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6294ff91-fde0-4654-bfc7-e05c971e527f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
