@@ -166,3 +166,26 @@ status: "active"
 - [[kb-sync/entities/validate.sh]]
 - [[kb-sync/entities/wiki-contract-backfill.mjs]]
 - [[kb-sync/entities/wiki-validate-precommit.sh]]
+
+### System Topology Map
+
+<!-- MERMAID-MAP-START -->
+```mermaid
+flowchart TD
+  %% Theme styling
+  classDef core fill:#2d1b4e,stroke:#9d4edd,stroke-width:2px,color:#fff;
+  classDef modules fill:#112a46,stroke:#0077b6,stroke-width:2px,color:#fff;
+  classDef docs fill:#1b4d3e,stroke:#52b788,stroke-width:2px,color:#fff;
+  classDef fallback fill:#343a40,stroke:#6c757d,stroke-width:1px,color:#fff;
+
+  subgraph root ["ROOT DIRECTORY"]
+    node_file_kb_sync_status_md["Kb_sync_status"]
+    node_file_readme_md["Readme"]
+  end
+
+
+  %% Node style mappings
+  class node_file_kb_sync_status_md fallback;
+  class node_file_readme_md fallback;
+```
+<!-- MERMAID-MAP-END -->

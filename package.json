@@ -40,6 +40,7 @@
     "wiki:cleanup-archives:dry-run": "node modules/wiki/cleanup-staging-archives.mjs --dry-run",
     "wiki:cleanup-archives:verbose": "node modules/wiki/cleanup-staging-archives.mjs --verbose",
     "wiki:autofill-frontmatter": "node modules/wiki/autofill-frontmatter.mjs",
+    "wiki:generate-map": "node scripts/generate-mermaid-maps.mjs",
     "artifact:generate": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm",
     "artifact:generate:obsidian": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
     "artifact:generate:all": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm && bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
