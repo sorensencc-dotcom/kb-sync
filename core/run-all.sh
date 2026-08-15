@@ -162,6 +162,23 @@ for target_entry in "${SYNC_TARGETS[@]}"; do
   log_info ""
 done
 
+### ==============================================================================
+### --- POST-SYNC: Living System Topology Map (CodeWiki Pattern) -----------------
+### ==============================================================================
+MAP_GENERATOR="$REPO_ROOT/scripts/generate-mermaid-maps.mjs"
+
+if [ -f "$MAP_GENERATOR" ]; then
+    log_info "------------------------------------------------------------------------"
+    log_info "Updating CodeWiki Mermaid topology diagram..."
+    
+    # Run the map generator with a fail-soft guard
+    if ! node "$MAP_GENERATOR" >/dev/null 2>&1; then
+        log_warn "CodeWiki Mermaid map generation completed with warnings."
+    else
+        log_info "✓ CodeWiki topology map successfully updated in wiki/Index.md."
+    fi
+fi
+
 # --- SUMMARY -----------------------------------------------------------------
 log_info "========================================================================"
 log_info "Multi-Target Sync Summary"
