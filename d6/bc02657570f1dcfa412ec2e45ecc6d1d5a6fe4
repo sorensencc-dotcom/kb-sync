@@ -1,0 +1,20 @@
+package.json
+  h_5c172e9b435f5a 43
+scripts/generate-mermaid-maps.mjs
+  h_5c172e9b435f5a 1-280
+scripts/schedule-task-wrapper-KB-Sync-Mermaid-Map.ps1
+  h_5c172e9b435f5a 1-31
+wiki/Index.md
+  h_5c172e9b435f5a 169-191
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "d6bc02657570f1dcfa412ec2e45ecc6d1d5a6fe4",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
