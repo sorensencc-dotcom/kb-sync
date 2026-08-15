@@ -215,6 +215,24 @@ if [ "$OVERALL_SUCCESS" = true ]; then
 
     log_info "Running Phase 3 Coverage Audit..."
     npx tsx "$REPO_ROOT/modules/wiki/audit-coverage.ts" || true
+
+    log_info ""
+    log_info "========================================================================"
+    log_info "Running Wave 3 Frontier Rescue (Quarantined Lesson Auto-Enrichment)..."
+    log_info "========================================================================"
+    if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+      npx tsx -e '
+        import path from "path";
+        import { enrichPendingLessons } from "./modules/obsidian/synthesize-wiki.ts";
+        import { AnthropicProvider } from "./modules/obsidian/providers/index.ts";
+        const provider = new AnthropicProvider();
+        enrichPendingLessons(process.cwd(), provider)
+          .then(() => console.log("[Frontier Rescue] Automated rescue pass complete."))
+          .catch(err => console.warn("[Frontier Rescue] Non-blocking warning:", err.message));
+      ' || true
+    else
+      log_info "Frontier Rescue: ANTHROPIC_API_KEY not configured; skipping automated enrichment pass."
+    fi
   fi
 
   exit 0

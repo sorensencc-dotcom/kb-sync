@@ -895,6 +895,53 @@ export async function processUnenrichedLessons(
   return enrichedFiles;
 }
 
+export async function enrichPendingLessons(vaultRoot: string, frontierProvider: { generate: (prompt: string) => Promise<string> }) {
+  const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
+  if (!fs.existsSync(lessonsDir)) return;
+
+  const lessonFiles = fs.readdirSync(lessonsDir).filter((f) => f.endsWith('.md'));
+
+  for (const file of lessonFiles) {
+    const filePath = path.join(lessonsDir, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    // Only process notes tagged with needs-enrichment
+    if (!content.includes('needs-enrichment')) continue;
+
+    logInfo(`[Frontier Rescue] Enriching quarantined lesson: ${file}`);
+
+    const prompt = `
+You are the Frontier Judgment Tier (Tier 1).
+A local Tier 2 agent tripped an execution gate or tripwire during self-healing.
+
+### QUARANTINED LESSON NODE
+${content}
+
+### INSTRUCTIONS
+1. Analyze the exact failure mode / cycle.
+2. Complete Section 2 (Root Cause Analysis) and Section 3 (Resolution & Prevention).
+3. Preserve Section 1 (Context & Symptom) and Section 4 (Citations) byte-for-byte.
+4. Remove the "needs-enrichment" tag from frontmatter.
+`;
+
+    try {
+      // High-cognition analysis via AnthropicProvider
+      const enrichedContent = await frontierProvider.generate(prompt);
+
+      // Validate schema contract before atomic promotion
+      const errors = validateLessonSchema(enrichedContent, filePath);
+      if (errors.length === 0) {
+        fs.writeFileSync(filePath, enrichedContent, 'utf8');
+        logInfo(`[Frontier Rescue] Successfully resolved and enriched ${file}`);
+      } else {
+        logError(`[Frontier Rescue] Schema validation failed for ${file}: ${errors.join('; ')}`);
+      }
+    } catch (err: any) {
+      logWarn(`[Frontier Rescue] Failed to generate enrichment for ${file}: ${err?.message || String(err)}`);
+    }
+  }
+}
+
 const isMainModule = process.argv[1] && (
   process.argv[1].endsWith("synthesize-wiki.ts") ||
   process.argv[1].endsWith("synthesize-wiki.js")

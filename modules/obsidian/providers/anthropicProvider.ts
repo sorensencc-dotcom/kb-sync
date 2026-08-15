@@ -123,4 +123,39 @@ Rules:
 
     throw new ProviderError(`Anthropic synthesis failed after ${maxRetries} attempts.`, true);
   }
+
+  async generate(prompt: string, options: { model?: string; max_tokens?: number } = {}): Promise<string> {
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      throw new ProviderError("[ERROR] ANTHROPIC_API_KEY environment variable is required for generate.", false);
+    }
+
+    let AnthropicModule: any;
+    try {
+      AnthropicModule = await import("@anthropic-ai/sdk");
+    } catch (err) {
+      throw new ProviderError(
+        `[ERROR] @anthropic-ai/sdk package is not installed. Run 'npm install @anthropic-ai/sdk' to use the anthropic provider.`,
+        false
+      );
+    }
+
+    const Anthropic = AnthropicModule.default || AnthropicModule.Anthropic || AnthropicModule;
+    const client = new Anthropic({ apiKey });
+
+    const targetModel = options.model || this.model;
+    const response = await client.messages.create({
+      model: targetModel,
+      max_tokens: options.max_tokens || 4000,
+      temperature: 0.1,
+      messages: [{ role: "user", content: prompt }],
+    });
+
+    const textBlock = response.content.find((c: any) => c.type === "text");
+    if (!textBlock || !textBlock.text) {
+      throw new ProviderError("Anthropic API returned empty or non-text content.", false);
+    }
+
+    return textBlock.text;
+  }
 }
