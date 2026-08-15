@@ -1002,3 +1002,43 @@ Invalid link to unallowed directory: [[kb-sync/wiki/unallowed-dir/some-doc]]
   "emitted_at": "2026-08-15T00:52:00-04:00"
 }
 ```
+
+---
+
+## 10. Information Architecture & CLI Design Standards (Plan Design Review)
+
+### 10.1 Synthesized Note Visual Hierarchy & Obsidian Tokens
+1. **Breadcrumbs Header**: Every synthesized note includes a top-level breadcrumb navigation block:
+   ```markdown
+   > [!breadcrumb] Navigation
+   > [[kb-sync/wiki/Index|📚 Master Index]] / [[kb-sync/wiki/research/Index|🔬 Research Topics]] / **Topic Title**
+   ```
+2. **Executive Crux**: Standardized Obsidian callout block `> [!abstract] Executive Summary`.
+3. **AST Call-Tree Formatting**: Structured ASCII trees in ````text` code fences.
+4. **Provenance Appendix**: Standardized Markdown table with `:---` alignment for names and `---:` for byte sizes.
+
+### 10.2 Prompt Anti-Slop Guidelines
+Synthesis providers are bound by strict prompt invariants:
+* Prohibit conversational throat-clearing and preamble announcements.
+* Require active technical prose and concrete code symbols.
+* Enforce a lexical blacklist (`seamless`, `robust`, `crucial`, `vital`, `delve`, `dive into`, `leverage`, `game-changing`).
+
+### 10.3 Terminal & Accessibility Standards
+* Bounded 80-column safe progress output with compact hash badges (`7f83b1...d9069`).
+* Standardized `NO_COLOR=1` / `process.stdout.isTTY` detection with accessible ANSI color mapping.
+* Prominent yellow `[WARN:DEGRADED]` terminal banner when static DAG fallback is applied.
+
+---
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Why | Runs | Status | Findings |
+|--------|---------|-----|------|--------|----------|
+| CEO Review | `/plan-ceo-review` | Scope & strategy | 0 | — | — |
+| Codex Review | `/codex review` | Independent 2nd opinion | 0 | — | — |
+| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 0 | — | eng review required |
+| Design Review | `/plan-design-review` | UI/UX & Information Design | 1 | CLEAR | score: 7/10 → 10/10, 6 decisions |
+
+- **UNRESOLVED:** 0 decisions unresolved across all reviews
+- **VERDICT:** DESIGN CLEARED — Eng Review required next before implementation
+
