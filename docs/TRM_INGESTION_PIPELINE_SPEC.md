@@ -1036,9 +1036,10 @@ Synthesis providers are bound by strict prompt invariants:
 |--------|---------|-----|------|--------|----------|
 | CEO Review | `/plan-ceo-review` | Scope & strategy | 0 | — | — |
 | Codex Review | `/codex review` | Independent 2nd opinion | 0 | — | — |
-| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 0 | — | eng review required |
+| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 1 | CLEAR | 0 issues, 15/15 test paths mapped, WAL + stream hashing locked |
 | Design Review | `/plan-design-review` | UI/UX & Information Design | 1 | CLEAR | score: 7/10 → 10/10, 6 decisions |
 
 - **UNRESOLVED:** 0 decisions unresolved across all reviews
-- **VERDICT:** DESIGN CLEARED — Eng Review required next before implementation
+- **VERDICT:** DESIGN + ENG CLEARED — Ready for implementation
+
 
