@@ -63,7 +63,12 @@
     "kb:pre-flight": "npm run test:all && npm run wiki:validate-contract",
     "wiki:setup-hook": "node -e \"const fs=require('fs');fs.mkdirSync('.git/hooks',{recursive:true});fs.copyFileSync('scripts/wiki-validate-precommit.sh','.git/hooks/pre-commit');try{fs.chmodSync('.git/hooks/pre-commit',0o755)}catch{}console.log('pre-commit hook installed')\"",
     "wiki:sibling-check": "node modules/wiki/run-sibling-check.mjs",
-    "wiki:setup-push-hook": "node -e \"const fs=require('fs');fs.mkdirSync('.git/hooks',{recursive:true});fs.copyFileSync('scripts/wiki-validate-prepush.sh','.git/hooks/pre-push');try{fs.chmodSync('.git/hooks/pre-push',0o755)}catch{}console.log('pre-push hook installed')\""
+    "wiki:setup-push-hook": "node -e \"const fs=require('fs');fs.mkdirSync('.git/hooks',{recursive:true});fs.copyFileSync('scripts/wiki-validate-prepush.sh','.git/hooks/pre-push');try{fs.chmodSync('.git/hooks/pre-push',0o755)}catch{}console.log('pre-push hook installed')\"",
+    "wiki:validate-staging:trm": "node modules/wiki/validate-staging-docs.mjs _kb-sync-staging/trm",
+    "wiki:ingest:trm:offline": "npx tsx modules/obsidian/synthesize-wiki.ts --source trm --provider offline-template",
+    "wiki:ingest:trm:auto": "npx tsx modules/obsidian/synthesize-wiki.ts --source trm --provider anthropic",
+    "kb:pipeline:trm": "npm run wiki:validate-staging:trm && npm run wiki:ingest:trm:offline && npm run wiki:validate-contract",
+    "test:trm": "node --test --experimental-strip-types tests/trm-pipeline.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
