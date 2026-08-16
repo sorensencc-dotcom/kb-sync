@@ -1,0 +1,181 @@
+.ijfw/sessions/session_2026-08-12_18-17-47.md
+  s_94faec07655f22::t_ec485687d2204c 4
+  s_acaa711e7c3399::t_d649b29fa64834 1-3,5
+.context/retros/2026-08-11-1.json
+  s_aa6a468218ebd1::t_b05e0ce0f45e05 1-41
+.ijfw/sessions/session_2026-08-11_18-20-07.md
+  s_aa6a468218ebd1::t_6c73f4c95dea0e 1-5
+.ijfw/metrics/sessions.jsonl
+  s_aa6a468218ebd1::t_7db6162b05b679 24-25
+  s_aa6a468218ebd1::t_3b3f4aa2b691d4 21
+  s_aa6a468218ebd1::t_d99e0a5fffe0f9 19
+  s_aa6a468218ebd1::t_23dbf8b8c06bf0 22
+  s_aa6a468218ebd1::t_e42a83d058a8b9 23
+  s_94faec07655f22::t_ec485687d2204c 28
+  s_aa6a468218ebd1::t_1ec93e37642521 17
+  s_aa6a468218ebd1::t_29e93505614dca 20
+  s_aa6a468218ebd1::t_6c73f4c95dea0e 9-16
+  s_aa6a468218ebd1::t_b8a61480c868d9 18
+  s_97e9c28b8bd31b::t_f1fab2bf529962 26-27,29-31
+.ijfw/.session-edits.jsonl
+  s_aa6a468218ebd1::t_6c73f4c95dea0e 1-2
+  s_aa6a468218ebd1::t_b8cf48c687c6d2 3
+.coverage-report.json
+  s_f6aa48b2d59f04::t_46498adaa29a3f 2-4,7-21
+.ijfw/.dream-state-v2.json
+  s_97e9c28b8bd31b::t_ab7ed8e361b2fd 3-4,8-11,15-16,32-33,38,43-45,49-50
+.ijfw/.dream-state.json
+  s_97e9c28b8bd31b::t_c5f91e8bde1abb 1
+.ijfw/.session-counter
+  s_97e9c28b8bd31b::t_499b868ab7d021 1
+.ijfw/.session-counter-id
+  s_97e9c28b8bd31b::t_71d54bfa3d7abe 1
+.ijfw/.session-marker-ts
+  s_97e9c28b8bd31b::t_cee7b218e42884 1
+.ijfw/memory/project-journal.md
+  s_97e9c28b8bd31b::t_929c72294514c9 6-9
+.ijfw/metrics/.transcript-cursor.json
+  s_97e9c28b8bd31b::t_0d4fe4d660cc53 1
+.ijfw/sessions/session_2026-08-08_09-17-28.md
+  s_7865db9174fb40::t_bb750b9b6c1fe7 1-5
+.ijfw/sessions/session_2026-08-14_21-03-31.md
+  s_97e9c28b8bd31b::t_107412d082123d 1-5
+configs/obsidian.yaml
+  s_758b92363514e5::t_30a4f0e9352410 8
+core/run-all.sh
+  s_758b92363514e5::t_8ca7d3ad4a0d32 68-73
+core/validate.sh
+  s_758b92363514e5::t_e7ba5c424ab570 22,29-34
+modules/obsidian/ingest-obsidian.sh
+  s_3841bb92f28092::t_6af9e5e3eafd94 36,43-48
+modules/wiki/detect-drift.js
+  s_758b92363514e5::t_3577fe49362590 54-64,70-77,97-106
+modules/wiki/detect-drift.ts
+  s_758b92363514e5::t_2bed84031c9afb 101-111,117-124,144-153
+schemas/kb_sync_trm_architecture.md
+  s_4d5378553c6b81::t_7c2d86227d4a53 1-213
+wiki/Index.md
+  s_f6aa48b2d59f04::t_1366dd91acfa6b 10-21
+wiki/Log.md
+  s_f6aa48b2d59f04::t_c4f9a46ad8e811 183-203
+wiki/kb-sync/wiki/.Catalog.md
+  s_f6aa48b2d59f04::t_b3e0585c272992 6
+wiki/kb-sync/wiki/.CoverageReport.md
+  s_f6aa48b2d59f04::t_f28872a14b9310 6
+wiki/kb-sync/wiki/.DreamState.md
+  s_f6aa48b2d59f04::t_a4711e30c96e88 6
+wiki/kb-sync/wiki/.DreamStateV2.md
+  s_f6aa48b2d59f04::t_eb96acd81d60be 6
+wiki/kb-sync/wiki/.DriftReport.md
+  s_f6aa48b2d59f04::t_9f530c30ec1653 6
+wiki/kb-sync/wiki/.Gitattributes.md
+  s_f6aa48b2d59f04::t_b06f7d7001fd87 6
+wiki/kb-sync/wiki/.Gitignore.md
+  s_f6aa48b2d59f04::t_10c8740745989c 6
+wiki/kb-sync/wiki/.SessionCounter.md
+  s_f6aa48b2d59f04::t_f4f8456ee24215 6
+wiki/kb-sync/wiki/.SessionCounterId.md
+  s_f6aa48b2d59f04::t_ed8144df671321 6
+wiki/kb-sync/wiki/.SessionMarkerTs.md
+  s_f6aa48b2d59f04::t_919381553b7417 6
+wiki/kb-sync/wiki/.SyncStatus.md
+  s_f6aa48b2d59f04::t_5e4f75edde3103 6
+wiki/kb-sync/wiki/.TranscriptCursor.md
+  s_f6aa48b2d59f04::t_901b0dff02455b 6
+wiki/kb-sync/wiki/Index.md
+  s_f6aa48b2d59f04::t_5f86d7859be672 10-21
+.gitignore
+  s_aa6a468218ebd1::t_a5bca0d1bb4f93 12
+modules/notebooklm/ingest-notebooklm.sh
+  s_94faec07655f22::t_279bd2a1713564 122-123,465,490-516,519-520,523-531,615-617
+modules/obsidian/ingest-wiki.sh
+  s_d05a08dc3db088::t_5dc3991b59aacf 20-21,36,43-48,74,79-100,215
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "4526e55ea65b0bb308dc672090545f0e61cf9508",
+  "prompts": {},
+  "sessions": {
+    "s_3841bb92f28092": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5ae3c205-297a-40a4-896d-c3fbc44ef13e",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_4d5378553c6b81": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a005b0-ab11-7f52-989d-e699d42e7a83",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_758b92363514e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc6b4d83-44cf-4509-9618-a786a6b33de6",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_7865db9174fb40": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e0308c01-f8fb-4bc0-ada7-67977422c16b",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_94faec07655f22": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f60c70b8-bc6f-4f21-bbae-d9e10da07149",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_97e9c28b8bd31b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "25ce2d99-e802-4543-93f0-7807ba509cf3",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_aa6a468218ebd1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e264e00c-8463-4685-8c93-475734d93ca4",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_acaa711e7c3399": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1e8e68d7-e38d-48b1-be86-3a7570d8ddcd",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_d05a08dc3db088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9837535e-c768-4223-a214-59099185e3e1",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_f6aa48b2d59f04": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a007da-4822-7db0-998d-6f48eda7e830",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
