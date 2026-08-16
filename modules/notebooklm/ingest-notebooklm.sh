@@ -119,8 +119,8 @@ get_config_value() {
   if [ ! -f "$file" ]; then
     return 0
   fi
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
-    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
+  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | tr -d '\r' | \
+    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^\s*['\"]//; s/['\"]\s*$//; s/\s*$//" || true
 }
 
 # --- PRE-FLIGHT CHECKS -------------------------------------------------------
@@ -462,7 +462,7 @@ query_preexisting_pack_sources() {
       let raw = JSON.parse(input || "[]");
       let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : null);
       if (!list) process.exit(1);
-      const pattern = /^repo_knowledge_pack(_part_[0-9]+)?\.txt$/;
+      const pattern = /^repo_knowledge_pack.*\.txt$/i;
       const matching = [];
       for (const s of list) {
         if (!s || typeof s.id !== "string" || !s.id) process.exit(1);
@@ -487,10 +487,48 @@ query_preexisting_pack_sources() {
   return 0
 }
 
+# Pre-flight audit and automated drift correction
+run_preflight_drift_audit() {
+  log_info "Step 0/5: Executing pre-flight source audit and drift check..."
+  if ! query_preexisting_pack_sources; then
+    log_warn "[AUDIT] Pre-flight source query failed. Proceeding with caution..."
+    return 0
+  fi
+
+  local count="${#PRE_EXISTING_SOURCES[@]}"
+  if [ "$count" -gt 1 ]; then
+    log_warn "[AUDIT-DRIFT] Anomaly detected: Found $count matching knowledge pack sources (drift from interrupted prior run)."
+    log_info "[AUDIT-DRIFT] Executing automated drift correction... Purging $((count - 1)) duplicate stale source(s)."
+    
+    local purged=0
+    for ((i=0; i<count-1; i++)); do
+      local src_id="${PRE_EXISTING_SOURCES[i]}"
+      if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
+        purged=$((purged + 1))
+      fi
+    done
+    log_info "[AUDIT-DRIFT] Automated drift correction complete: Purged $purged stale duplicate source(s)."
+  else
+    log_info "[AUDIT] Pre-flight audit passed cleanly ($count active pack source)."
+  fi
+  return 0
+}
+
 # --- ARGUMENT PARSING --------------------------------------------------------
 RUN_ROLLBACK=false
+RUN_REPAIR_DRIFT=false
+
 if [ "${1:-}" = "--rollback" ] || [ "${1:-}" = "-r" ]; then
   RUN_ROLLBACK=true
+elif [ "${1:-}" = "--repair-drift" ] || [ "${1:-}" = "--audit-drift" ]; then
+  RUN_REPAIR_DRIFT=true
+fi
+
+if [ "$RUN_REPAIR_DRIFT" = true ]; then
+  log_info "Executing STANDALONE REPAIR DRIFT audit..."
+  run_preflight_drift_audit
+  log_info "Standalone drift repair completed successfully."
+  exit 0
 fi
 
 # --- ROLLBACK PATH -----------------------------------------------------------
@@ -573,6 +611,9 @@ fi
 
 # --- NORMAL SYNC PATH (INGEST) -----------------------------------------------
 log_info "Starting normal sync pipeline..."
+
+# Step 0: Pre-flight audit & drift correction
+run_preflight_drift_audit
 
 mkdir -p "$PACK_DIR"
 "$REPO_ROOT/modules/notebooklm/cleanup-pack-dir.sh" "$PACK_DIR"

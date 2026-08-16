@@ -180,3 +180,24 @@ Synthesized documentation node for wiki/Log.md
   - `wiki/entities/wiki-contract-backfill.mjs.md`
   - `wiki/entities/wiki-validate-precommit.sh.md`
   - `wiki/Index.md`
+
+## [2026-08-16 03:21] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `4d139064e864a44a`
+- Staging Path: `c:/dev/_kb-sync-staging/kb-sync/20260805-220602`
+- Proposals Accepted: 12 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/Index.md`

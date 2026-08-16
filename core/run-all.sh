@@ -65,8 +65,12 @@ get_config_value() {
   if [ ! -f "$file" ]; then
     return 0
   fi
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
-    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
+  if command -v node >/dev/null 2>&1 && [ -f "$REPO_ROOT/core/config-loader.mjs" ]; then
+    node "$REPO_ROOT/core/config-loader.mjs" --file "$file" --key "$key" || true
+  else
+    grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | tr -d '\r' | \
+      sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^\s*//; s/\s*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
+  fi
 }
 
 load_timeout_config() {

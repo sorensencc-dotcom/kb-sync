@@ -98,15 +98,30 @@ export function sanitizeRelativePath(relPath: string, repoRoot: string = REPO_RO
 // 2. PATH RESOLUTION & SNAPSHOT VALIDATION
 // -----------------------------------------------------------------------------
 export function resolveStagingPaths(options: StagingPathOptions = {}) {
-  const repoRoot = options.repoRoot || REPO_ROOT;
+  let repoRoot = options.repoRoot || REPO_ROOT;
+  if (process.platform === "win32" && repoRoot) {
+    if (/^\/mnt\/([a-zA-Z])\/(.*)/i.test(repoRoot)) {
+      const match = repoRoot.match(/^\/mnt\/([a-zA-Z])\/(.*)/i);
+      repoRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    } else if (/^\/([a-zA-Z])\/(.*)/.test(repoRoot)) {
+      const match = repoRoot.match(/^\/([a-zA-Z])\/(.*)/);
+      repoRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    }
+  }
+
   const repoName = options.repoName || path.basename(repoRoot);
   const stagingDirName = options.stagingDir || ("staging_dir" in options ? (options.stagingDir as string) : "_kb-sync-staging");
 
   let vaultRoot = options.vaultRoot || process.env.OBSIDIAN_VAULT_ROOT || "";
 
-  if (process.platform === "win32" && vaultRoot && /^\/([a-zA-Z])\/(.*)/.test(vaultRoot)) {
-    const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
-    vaultRoot = `${match[1].toUpperCase()}:/${match[2]}`;
+  if (process.platform === "win32" && vaultRoot) {
+    if (/^\/mnt\/([a-zA-Z])\/(.*)/i.test(vaultRoot)) {
+      const match = vaultRoot.match(/^\/mnt\/([a-zA-Z])\/(.*)/i);
+      vaultRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    } else if (/^\/([a-zA-Z])\/(.*)/.test(vaultRoot)) {
+      const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
+      vaultRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    }
   }
 
   if (!vaultRoot) {
@@ -124,6 +139,16 @@ export function resolveStagingPaths(options: StagingPathOptions = {}) {
 
   if (!vaultRoot) {
     vaultRoot = repoRoot;
+  }
+
+  if (process.platform === "win32" && vaultRoot) {
+    if (/^\/mnt\/([a-zA-Z])\/(.*)/i.test(vaultRoot)) {
+      const match = vaultRoot.match(/^\/mnt\/([a-zA-Z])\/(.*)/i);
+      vaultRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    } else if (/^\/([a-zA-Z])\/(.*)/.test(vaultRoot)) {
+      const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
+      vaultRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    }
   }
 
   const stagingRoot = path.join(vaultRoot, stagingDirName, repoName);

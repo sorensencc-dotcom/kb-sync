@@ -17,6 +17,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIGS_DIR="$REPO_ROOT/configs"
 MODULE_CONFIG="$CONFIGS_DIR/obsidian.yaml"
 
+CORE_DIR="$REPO_ROOT/core"
+
 # Log helpers
 log_info() {
   printf '\e[32m[WIKI-INGEST] [INFO] %s\e[0m\n' "$*" >&2
@@ -31,14 +33,19 @@ log_warn() {
 }
 
 # Parse config value (simple key=value or key: value)
+# Strips surrounding quotes, inline comments, CRLF
 get_config_value() {
   local file="$1"
   local key="$2"
   if [ ! -f "$file" ]; then
     return 1
   fi
-  grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | \
-    sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
+  if command -v node >/dev/null 2>&1 && [ -f "$CORE_DIR/config-loader.mjs" ]; then
+    node "$CORE_DIR/config-loader.mjs" --file "$file" --key "$key" || true
+  else
+    grep -E "^\s*${key}\s*[:=]" "$file" | head -1 | tr -d '\r' | \
+      sed -E "s/^\s*${key}\s*[:=]\s*//; s/#.*$//; s/^\s*//; s/\s*$//; s/^['\"]//; s/['\"]$//; s/\s*$//" || true
+  fi
 }
 
 # --- PRE-FLIGHT CHECKS -------------------------------------------------------
@@ -64,14 +71,33 @@ if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
   OBSIDIAN_VAULT_ROOT=$(get_config_value "$MODULE_CONFIG" "vault_root")
 fi
 
-# Normalize paths (handle Windows backslashes → forward slashes)
+# Normalize paths (handle Windows backslashes → forward slashes, WSL/Git Bash mounts)
 normalize_path() {
   local path="$1"
   path="${path//\\//}"
   if [ -f /etc/wsl.conf ] || grep -q microsoft /proc/version 2>/dev/null; then
-    path="${path//C:/\/mnt\/c}"
-    path="${path//D:/\/mnt\/d}"
-    path="${path//E:/\/mnt\/e}"
+    if [[ "$path" =~ ^([A-Za-z]):/(.*) ]]; then
+      local drive="${BASH_REMATCH[1]}"
+      local rest="${BASH_REMATCH[2]}"
+      drive=$(echo "$drive" | tr '[:upper:]' '[:lower:]')
+      path="/mnt/${drive}/${rest}"
+    fi
+  else
+    if [[ "$path" =~ ^/mnt/([A-Za-z])/(.*) ]]; then
+      local drive="${BASH_REMATCH[1]}"
+      local rest="${BASH_REMATCH[2]}"
+      drive=$(echo "$drive" | tr '[:upper:]' '[:lower:]')
+      if [ ! -d "/mnt/${drive}" ] && [ -d "/${drive}" ]; then
+        path="/${drive}/${rest}"
+      fi
+    elif [[ "$path" =~ ^([A-Za-z]):/(.*) ]]; then
+      local drive="${BASH_REMATCH[1]}"
+      local rest="${BASH_REMATCH[2]}"
+      drive=$(echo "$drive" | tr '[:upper:]' '[:lower:]')
+      if [ -d "/${drive}" ]; then
+        path="/${drive}/${rest}"
+      fi
+    fi
   fi
   echo "$path"
 }
@@ -186,7 +212,7 @@ fi
 # Find latest staging directory if not specified
 if [ -z "$STAGING_PATH" ]; then
   log_info "No staging path provided. Finding latest staging..."
-  LATEST_STAGING=$(find "$OBSIDIAN_VAULT_ROOT/$STAGING_DIR" -maxdepth 3 -type d -name "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]" 2>/dev/null | sort -r | head -1)
+  LATEST_STAGING=$(find "$OBSIDIAN_VAULT_ROOT/$STAGING_DIR" -maxdepth 3 -type d -name "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]*" 2>/dev/null | sort -r | head -1)
   if [ -z "$LATEST_STAGING" ]; then
     log_error "No staged sources found. Run: npm run kb:sync:obsidian"
     exit 1

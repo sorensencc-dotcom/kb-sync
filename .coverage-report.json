@@ -1,12 +1,24 @@
 {
-  "timestamp": "2026-08-10T23:04:54.050Z",
-  "source_files_count": 78,
-  "wiki_pages_count": 217,
+  "timestamp": "2026-08-16T03:22:09.795Z",
+  "source_files_count": 111,
+  "wiki_pages_count": 222,
   "unmapped_sources": [],
   "link_health": {
-    "total_links": 546,
-    "broken_links": [],
-    "healthy_pct": 100
+    "total_links": 73,
+    "broken_links": [
+      "docs/superpowers/plans/2026-08-10-lessons-learned-sub-namespace.md:13: broken wikilink '[[kb-sync/lessons/<FileNameWithoutExt>]]'",
+      "docs/superpowers/specs/2026-08-10-lessons-learned-sub-namespace-design.md:68: broken wikilink '[[kb-sync/lessons/<FileNameWithoutExt>]]'",
+      "docs/superpowers/specs/2026-08-10-lessons-learned-sub-namespace-design.md:68: broken wikilink '[[kb-sync/lessons/unallowed-diff-run1-a1b2c3d4]]'",
+      "docs/superpowers/specs/2026-08-10-lessons-learned-sub-namespace-design.md:69: broken wikilink '[[kb-sync/wiki/<PathToEntity>]]'",
+      "docs/superpowers/specs/2026-08-10-lessons-learned-sub-namespace-design.md:69: broken wikilink '[[kb-sync/wiki/PathToEntity]]'",
+      "docs/superpowers/specs/2026-08-10-lessons-learned-sub-namespace-design.md:71: broken wikilink '[[kb-sync/lessons/...]]'",
+      "docs/superpowers/specs/2026-08-10-lessons-learned-sub-namespace-design.md:71: broken wikilink '[[kb-sync/wiki/...]]'",
+      "docs/TRM_INGESTION_PIPELINE_SPEC.md:58: broken wikilink '[[kb-sync/wiki/research/<slug>]]'",
+      "docs/TRM_INGESTION_PIPELINE_SPEC.md:58: broken wikilink '[[kb-sync/wiki/research/<slug>]]'",
+      "docs/TRM_INGESTION_PIPELINE_SPEC.md:59: broken wikilink '[[kb-sync/wiki/concepts/<slug>]]'",
+      "docs/TRM_INGESTION_PIPELINE_SPEC.md:59: broken wikilink '[[kb-sync/wiki/concepts/<slug>]]'"
+    ],
+    "healthy_pct": 84.93
   },
   "coverage_score_pct": 100
 }

@@ -1,0 +1,41 @@
+{
+  "date": "2026-08-12",
+  "window": "7d",
+  "metrics": {
+    "commits": 68,
+    "contributors": 1,
+    "prs_merged": 1,
+    "insertions": 28950,
+    "deletions": 9410,
+    "net_loc": 19540,
+    "test_loc": 8940,
+    "test_ratio": 0.308,
+    "active_days": 7,
+    "sessions": 19,
+    "deep_sessions": 3,
+    "avg_session_minutes": 22,
+    "loc_per_session_hour": 4400,
+    "feat_pct": 0.353,
+    "fix_pct": 0.323,
+    "peak_hour": 18,
+    "ai_assisted_commits": 12
+  },
+  "authors": {
+    "Chris Sorensen": {
+      "commits": 68,
+      "insertions": 28950,
+      "deletions": 9410,
+      "test_ratio": 0.308,
+      "top_area": "modules/wiki/"
+    }
+  },
+  "version_range": ["0.1.0.0", "0.1.4.0"],
+  "streak_days": 5,
+  "tweetable": "Week of Aug 5: 68 commits (solo), 28.9k LOC (+28.9k/-9.4k), 31% tests, 19 sessions, peak: 6pm | Streak: 5d",
+  "test_health": {
+    "total_test_files": 36,
+    "tests_added_this_period": 9,
+    "regression_test_commits": 4,
+    "test_files_changed": 12
+  }
+}

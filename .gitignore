@@ -9,6 +9,7 @@ build/
 site/
 *.bak.txt
 *.log
+logs/
 .test_*
 C*
 .validation-report.json
