@@ -1,0 +1,24 @@
+﻿{
+    "timestamp":  "2026-08-17T16:32:22Z",
+    "baselines":  {
+                      "Validate Pack Integrity":  {
+                                                      "median_ms":  185,
+                                                      "recommended_gate_ms":  277,
+                                                      "p95_ms":  287,
+                                                      "iterations":  10
+                                                  },
+                      "Validate Contract":  {
+                                                "median_ms":  285,
+                                                "recommended_gate_ms":  427,
+                                                "p95_ms":  1892,
+                                                "iterations":  10
+                                            },
+                      "Flatten Pack":  {
+                                           "median_ms":  180,
+                                           "recommended_gate_ms":  271,
+                                           "p95_ms":  820,
+                                           "iterations":  10
+                                       }
+                  },
+    "platform":  "win32"
+}
