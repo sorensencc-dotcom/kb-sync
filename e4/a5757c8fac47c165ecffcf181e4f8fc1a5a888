@@ -1,0 +1,19 @@
+.coverage-report.json
+  s_a2f9b6a53b6394::t_94383ce8d8e5d2 2-3,7-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e4a5757c8fac47c165ecffcf181e4f8fc1a5a888",
+  "prompts": {},
+  "sessions": {
+    "s_a2f9b6a53b6394": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fd4b3-c509-7cc2-967f-8166a46c06da",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
