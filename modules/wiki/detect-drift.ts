@@ -518,30 +518,39 @@ export function materializeIncrementalStaging(options: {
 // 6. ORIGINAL DRIFT DETECTION WORKFLOW (Preserved)
 // -----------------------------------------------------------------------------
 function parseWikiLogTimestamp(): string | null {
-  const logPath = path.join(REPO_ROOT, "wiki/Log.md");
-  if (!fs.existsSync(logPath)) return null;
+  const { vaultRoot } = resolveStagingPaths();
+  const possibleLogPaths = [
+    path.join(vaultRoot, "wiki/Log.md"),
+    path.join(REPO_ROOT, "wiki/Log.md"),
+  ];
 
-  try {
-    const content = fs.readFileSync(logPath, "utf8");
-    const matches = content.matchAll(/##\s*\[([^\]]+)\]/g);
-    let latestDate: Date | null = null;
+  let latestDate: Date | null = null;
 
-    for (const match of matches) {
-      let dateStr = match[1].trim();
-      if (dateStr.endsWith(" UTC")) {
-        dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
-      }
-      const d = new Date(dateStr);
-      if (!isNaN(d.getTime())) {
-        if (!latestDate || d > latestDate) {
-          latestDate = d;
+  for (const logPath of possibleLogPaths) {
+    if (!fs.existsSync(logPath)) continue;
+
+    try {
+      const content = fs.readFileSync(logPath, "utf8");
+      const matches = content.matchAll(/##\s*\[([^\]]+)\]/g);
+
+      for (const match of matches) {
+        let dateStr = match[1].trim();
+        if (dateStr.endsWith(" UTC")) {
+          dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
+        } else if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(dateStr)) {
+          dateStr = dateStr.replace(" ", "T") + ":00Z";
+        }
+        const d = new Date(dateStr);
+        if (!isNaN(d.getTime())) {
+          if (!latestDate || d > latestDate) {
+            latestDate = d;
+          }
         }
       }
-    }
+    } catch {}
+  }
 
-    if (latestDate) return latestDate.toISOString();
-  } catch {}
-
+  if (latestDate) return latestDate.toISOString();
   return null;
 }
 

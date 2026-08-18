@@ -192,17 +192,23 @@ export function runCoverageAudit(): CoverageReport {
       }
       if (inCodeBlock) return;
 
+      // Strip inline code spans from line to avoid checking code examples/placeholders
+      const cleanLine = line.replace(/`[^`]+`/g, "");
+
       // Check standard Markdown links: [text](target)
       const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
       let match: RegExpExecArray | null;
-      while ((match = mdLinkRegex.exec(line)) !== null) {
+      while ((match = mdLinkRegex.exec(cleanLine)) !== null) {
         const rawTarget = match[2].trim();
         // Ignore external http(s) links, mailto, anchor-only links
         if (
           rawTarget.startsWith("http://") ||
           rawTarget.startsWith("https://") ||
           rawTarget.startsWith("mailto:") ||
-          rawTarget.startsWith("#")
+          rawTarget.startsWith("#") ||
+          rawTarget.includes("<") ||
+          rawTarget.includes(">") ||
+          rawTarget.includes("...")
         ) {
           continue;
         }
@@ -234,9 +240,16 @@ export function runCoverageAudit(): CoverageReport {
       // Check Wikilinks: [[target]] or [[target|label]]
       const wikiLinkRegex = /\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]/g;
       let wMatch: RegExpExecArray | null;
-      while ((wMatch = wikiLinkRegex.exec(line)) !== null) {
+      while ((wMatch = wikiLinkRegex.exec(cleanLine)) !== null) {
         const rawTarget = wMatch[1].trim();
-        if (!rawTarget) continue;
+        if (
+          !rawTarget ||
+          rawTarget.includes("<") ||
+          rawTarget.includes(">") ||
+          rawTarget.includes("...")
+        ) {
+          continue;
+        }
 
         totalLinks++;
         let found = false;

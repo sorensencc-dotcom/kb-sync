@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-08-16T14:39:25.367Z",
+  "timestamp": "2026-08-18T17:58:46.754Z",
   "status": "NO_DRIFT",
   "drifted_sources": [],
   "summary": {
-    "total_sources_checked": 125,
+    "total_sources_checked": 126,
     "stale_pages_count": 0
   }
 }
