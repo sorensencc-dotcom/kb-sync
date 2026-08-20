@@ -76,6 +76,7 @@
     "@esbuild/linux-x64": "^0.28.2"
   },
   "devDependencies": {
+    "@nanonets/graft": "^0.10.1",
     "@types/node": "^20.0.0",
     "js-tiktoken": "1.0.21",
     "js-yaml": "^4.1.0",
