@@ -227,8 +227,12 @@ EXPLICIT_NLM_CLI="${NLM_CLI:-}"
 if [ -n "$EXPLICIT_NLM_CLI" ]; then
   NLM_MODE="explicit"
   log_info "CLI resolution mode: explicit (path: '$EXPLICIT_NLM_CLI')"
-elif command -v uv >/dev/null 2>&1 && [ -f "$REPO_ROOT/notebooklm-mcp-cli/pyproject.toml" ]; then
+elif (command -v uv >/dev/null 2>&1 || command -v uv.exe >/dev/null 2>&1) && [ -f "$REPO_ROOT/notebooklm-mcp-cli/pyproject.toml" ]; then
   NLM_MODE="uv-project"
+  UV_EXEC="uv"
+  if ! command -v uv >/dev/null 2>&1 && command -v uv.exe >/dev/null 2>&1; then
+    UV_EXEC="uv.exe"
+  fi
   log_info "CLI resolution mode: local uv project ($REPO_ROOT/notebooklm-mcp-cli)"
 elif command -v notebooklm >/dev/null 2>&1; then
   NLM_MODE="global"
@@ -276,7 +280,7 @@ run_nlm_cli() {
   if [ "$NLM_MODE" = "explicit" ]; then
     exec_with_timeout "$EXPLICIT_NLM_CLI" "$@"
   elif [ "$NLM_MODE" = "uv-project" ]; then
-    exec_with_timeout uv --directory "$REPO_ROOT/notebooklm-mcp-cli" run nlm "$@"
+    exec_with_timeout "${UV_EXEC:-uv}" --directory "$REPO_ROOT/notebooklm-mcp-cli" run nlm "$@"
   elif [ "$NLM_MODE" = "global" ]; then
     exec_with_timeout "$GLOBAL_NLM_EXEC" "$@"
   else

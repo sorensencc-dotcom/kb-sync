@@ -52,8 +52,26 @@ Write-LogInfo "REPO_ROOT: $RepoRoot"
 $Stage1Script = Join-Path $RepoRoot "modules\notebooklm\ingest-notebooklm.sh"
 $Stage2Script = Join-Path $RepoRoot "scripts\notebooklm\generate-kb-sync-artifact.mjs"
 
-# Find bash executable
-$BashPath = Get-Command "bash.exe" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
+# Find bash executable (prioritize Git Bash over System32 WSL shim)
+$GitBashCandidates = @(
+    "C:\Program Files\Git\bin\bash.exe",
+    "C:\Program Files\Git\usr\bin\bash.exe",
+    "${env:ProgramFiles}\Git\bin\bash.exe",
+    "${env:LOCALAPPDATA}\Programs\Git\bin\bash.exe"
+)
+$BashPath = $null
+foreach ($cand in $GitBashCandidates) {
+    if ($cand -and (Test-Path $cand)) {
+        $BashPath = $cand
+        break
+    }
+}
+if (-not $BashPath) {
+    $BashPath = Get-Command "bash.exe" -ErrorAction SilentlyContinue | Where-Object { $_.Source -notlike "*System32*" } | Select-Object -First 1 -ExpandProperty Source
+}
+if (-not $BashPath) {
+    $BashPath = Get-Command "bash.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty Source
+}
 if (-not $BashPath) {
     $BashPath = "bash"
 }
