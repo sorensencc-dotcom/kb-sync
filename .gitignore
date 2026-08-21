@@ -26,3 +26,5 @@ schedule-task-wrapper-*.ps1
 # Compacted Context Engine transient state (per-machine, expiry-based)
 .compaction-overrides.yaml
 
+# Local SQLite knowledge base cache
+.kb_cache/

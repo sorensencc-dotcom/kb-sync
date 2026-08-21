@@ -68,8 +68,11 @@
     "wiki:validate-staging:trm": "node modules/wiki/validate-staging-docs.mjs _kb-sync-staging/trm",
     "wiki:ingest:trm:offline": "npx tsx modules/obsidian/synthesize-wiki.ts --source trm --provider offline-template",
     "wiki:ingest:trm:auto": "npx tsx modules/obsidian/synthesize-wiki.ts --source trm --provider anthropic",
-    "kb:pipeline:trm": "npm run wiki:validate-staging:trm && npm run wiki:ingest:trm:offline && npm run wiki:validate-contract",
-    "test:trm": "node --test --experimental-strip-types tests/trm-pipeline.test.ts"
+    "kb:pipeline:trm": "npm run wiki:validate-staging:trm && npm run wiki:ingest:trm:offline && npm run wiki:validate-contract && npm run kb:cache:sync",
+    "test:trm": "node --test --experimental-strip-types tests/trm-pipeline.test.ts",
+    "kb:cache:sync": "node scripts/sync-kb-cache.mjs",
+    "kb:cache:server": "node scripts/mcp-memory-server.mjs",
+    "test:cache": "node --test --experimental-strip-types tests/context-cache.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
