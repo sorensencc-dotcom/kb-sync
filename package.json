@@ -72,7 +72,9 @@
     "test:trm": "node --test --experimental-strip-types tests/trm-pipeline.test.ts",
     "kb:cache:sync": "node scripts/sync-kb-cache.mjs",
     "kb:cache:server": "node scripts/mcp-memory-server.mjs",
-    "test:cache": "node --test --experimental-strip-types tests/context-cache.test.ts"
+    "test:cache": "node --test --experimental-strip-types tests/context-cache.test.ts",
+    "trm:triage": "node scripts/trm-triage.mjs",
+    "test:trm:triage": "node --test --experimental-strip-types tests/trm-gap-triage.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

@@ -71,10 +71,10 @@ export function handleQueryContextCache(dbInstance, { query, category = 'all', l
 
   // Sanitize query for fts5 bare words or pass clean string
   let cleanQuery = query.trim();
-  // If no boolean operators or quotes, wrap words to allow prefix search or standard match
+  // If no boolean operators or quotes, wrap words with OR to allow BM25 ranking across matching tokens
   if (!/[*":]/.test(cleanQuery) && !/\b(AND|OR|NOT)\b/.test(cleanQuery)) {
     const tokens = cleanQuery.split(/\s+/).filter(Boolean);
-    cleanQuery = tokens.map((t) => `"${t.replace(/"/g, '""')}"*`).join(' ');
+    cleanQuery = tokens.map((t) => `"${t.replace(/"/g, '""')}"*`).join(' OR ');
   }
 
   let sql = `
