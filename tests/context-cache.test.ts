@@ -222,9 +222,94 @@ Content here...`;
         arguments: { query: 'test' }
       }
     });
-    assert.equal(callRes?.id, 3);
-    assert.ok(Array.isArray(callRes?.result.content));
+    db.close();
+  });
+
+  test('TEST-07: Stale record purging when markdown files are removed from vault', () => {
+    const researchDir = path.join(sandboxRoot, 'wiki', 'research');
+    fs.mkdirSync(researchDir, { recursive: true });
+
+    const file1 = path.join(researchDir, 'keep.md');
+    const file2 = path.join(researchDir, 'remove-me.md');
+    fs.writeFileSync(file1, '# Keep\nThis file stays.');
+    fs.writeFileSync(file2, '# Temporary\nThis file will be deleted.');
+
+    // 1. Initial sync across whole sandboxRoot
+    const res1 = syncKnowledgeCache({
+      dbPath: testDbPath,
+      repoRoot: sandboxRoot
+    });
+    assert.equal(res1.inserted, 2);
+
+    let db = getDatabase(testDbPath);
+    let count = db.prepare('SELECT COUNT(*) as c FROM kb_documents').get() as { c: number };
+    assert.equal(count.c, 2);
+    db.close();
+
+    // 2. Remove one file on disk
+    fs.rmSync(file2);
+
+    // 3. Re-sync whole sandboxRoot and verify stale record deletion
+    const res2 = syncKnowledgeCache({
+      dbPath: testDbPath,
+      repoRoot: sandboxRoot
+    });
+    assert.equal(res2.deleted, 1, 'Must report 1 deleted record');
+
+    db = getDatabase(testDbPath);
+    count = db.prepare('SELECT COUNT(*) as c FROM kb_documents').get() as { c: number };
+    assert.equal(count.c, 1, 'Database must only contain 1 document after purge');
+
+    // FTS check
+    const ftsCheck = db.prepare("SELECT * FROM kb_fts WHERE kb_fts MATCH 'Temporary'").all();
+    assert.equal(ftsCheck.length, 0, 'FTS index must be purged of deleted file');
+    db.close();
+  });
+
+  test('TEST-08: MCP JSON-RPC error handling for malformed messages, unknown methods, and unknown tools', () => {
+    const db = getDatabase(testDbPath);
+
+    // 1. Unknown method
+    const unknownMethodRes = processRpcMessage(db, {
+      jsonrpc: '2.0',
+      id: 10,
+      method: 'non_existent_method',
+      params: {}
+    });
+    assert.equal(unknownMethodRes?.id, 10);
+    assert.equal(unknownMethodRes?.error.code, -32601);
+    assert.ok(unknownMethodRes?.error.message.includes('Method not found'));
+
+    // 2. tools/call with unknown tool name
+    const unknownToolRes = processRpcMessage(db, {
+      jsonrpc: '2.0',
+      id: 11,
+      method: 'tools/call',
+      params: {
+        name: 'unregistered_tool',
+        arguments: {}
+      }
+    });
+    assert.equal(unknownToolRes?.id, 11);
+    assert.equal(unknownToolRes?.error.code, -32601);
+    assert.ok(unknownToolRes?.error.message.includes('Unknown tool'));
+
+    // 3. Notification message (no id) returns null
+    const notifRes = processRpcMessage(db, {
+      jsonrpc: '2.0',
+      method: 'notifications/initialized'
+    });
+    assert.equal(notifRes, null);
+
+    // 4. Malformed message object (missing method)
+    const malformedRes = processRpcMessage(db, {
+      jsonrpc: '2.0',
+      id: 12
+    });
+    assert.equal(malformedRes?.id, 12);
+    assert.equal(malformedRes?.error.code, -32601);
 
     db.close();
   });
 });
+

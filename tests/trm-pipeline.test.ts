@@ -224,4 +224,138 @@ describe('TRM Pipeline Hardened Sandbox Verification Suite', () => {
     assert.equal(fs.existsSync(newFile), false, 'New file created during failed transaction must be deleted');
     assert.equal(fs.readFileSync(existingFile, 'utf-8'), 'Original content before transaction', 'Existing file must retain original content');
   });
+
+  test('TEST-05: Rejects missing payload sources array, missing manifest, and missing sources directory', async () => {
+    const batchId = '20260814-220000-t05';
+    const batchDir = path.join(sandboxRoot, '_kb-sync-staging', 'trm', batchId);
+    fs.mkdirSync(batchDir, { recursive: true });
+
+    // 1. Missing sources array in payload
+    const invalidPayloadResult = await validateTrmPayloadSemantics(batchDir, {} as any, {});
+    assert.equal(invalidPayloadResult.valid, false, 'Must reject payload without sources array');
+    assert.equal(invalidPayloadResult.errors[0]?.rule_id, 'RULE_SEMANTIC_SCHEMA_INVALID');
+
+    // 2. Missing manifest
+    const invalidManifestResult = await validateTrmPayloadSemantics(batchDir, { sources: [] } as any, null as any);
+    assert.equal(invalidManifestResult.valid, false, 'Must reject null manifest');
+    assert.equal(invalidManifestResult.errors[0]?.rule_id, 'RULE_SEMANTIC_MANIFEST_INVALID');
+
+    // 3. Missing sources directory on disk
+    const missingDirResult = await validateTrmPayloadSemantics(batchDir, { sources: [] } as any, {});
+    assert.equal(missingDirResult.valid, false, 'Must reject batch directory without sources subdirectory');
+    assert.equal(missingDirResult.errors[0]?.rule_id, 'RULE_SEMANTIC_DIR_MISSING');
+  });
+
+  test('TEST-06: Validates duplicate source IDs, filename binding mismatches, invalid hash formats, and orphan manifest entries', async () => {
+    const batchId = '20260814-220000-t06';
+    const batchDir = path.join(sandboxRoot, '_kb-sync-staging', 'trm', batchId);
+    fs.mkdirSync(path.join(batchDir, 'sources'), { recursive: true });
+
+    const payload = {
+      schema_version: '2.3.0',
+      batch_id: batchId,
+      topic_id: 'trm:edge-topic',
+      title: 'Edge Topic',
+      domain: 'wiki',
+      status: 'beta',
+      summary: 'Edge test summary.',
+      sources: [
+        {
+          source_id: 'INVALID_ID_FORMAT',
+          title: 'Invalid ID',
+          origin_uri: 'https://example.com/bad-id',
+          staged_filename: 'src-dup.md',
+          content_sha256: 'not-a-valid-sha256',
+          byte_size: 10,
+          retrieved_at: new Date().toISOString()
+        },
+        {
+          source_id: 'src-dup',
+          title: 'First Dup',
+          origin_uri: 'https://example.com/dup1',
+          staged_filename: 'src-dup.md',
+          content_sha256: 'a'.repeat(64),
+          byte_size: 10,
+          retrieved_at: new Date().toISOString()
+        },
+        {
+          source_id: 'src-dup',
+          title: 'Second Dup',
+          origin_uri: 'https://example.com/dup2',
+          staged_filename: 'src-mismatch.md',
+          content_sha256: 'b'.repeat(64),
+          byte_size: 15,
+          retrieved_at: new Date().toISOString()
+        }
+      ],
+      extracted_concepts: []
+    };
+
+    const manifest = {
+      'src-dup.md': {
+        content_sha256: 'a'.repeat(64),
+        byte_size: 10
+      },
+      'src-mismatch.md': {
+        content_sha256: 'b'.repeat(64),
+        byte_size: 15
+      },
+      'orphan-entry.md': {
+        content_sha256: 'c'.repeat(64),
+        byte_size: 20
+      }
+    };
+
+    const result = await validateTrmPayloadSemantics(batchDir, payload, manifest);
+    assert.equal(result.valid, false, 'Must fail validation with multiple errors');
+
+    const ruleIds = new Set(result.errors.map((e) => e.rule_id));
+    assert.ok(ruleIds.has('RULE_SEMANTIC_SOURCE_ID_INVALID'), 'Must cite RULE_SEMANTIC_SOURCE_ID_INVALID');
+    assert.ok(ruleIds.has('RULE_SEMANTIC_DUPLICATE_ID'), 'Must cite RULE_SEMANTIC_DUPLICATE_ID');
+    assert.ok(ruleIds.has('RULE_SEMANTIC_HASH_FORMAT_INVALID'), 'Must cite RULE_SEMANTIC_HASH_FORMAT_INVALID');
+    assert.ok(ruleIds.has('RULE_SEMANTIC_FILENAME_BINDING'), 'Must cite RULE_SEMANTIC_FILENAME_BINDING');
+    assert.ok(ruleIds.has('RULE_SEMANTIC_ORPHAN_MANIFEST_ENTRY'), 'Must cite RULE_SEMANTIC_ORPHAN_MANIFEST_ENTRY');
+  });
+
+  test('TEST-07: Detects missing source files on disk', async () => {
+    const batchId = '20260814-220000-t07';
+    const batchDir = path.join(sandboxRoot, '_kb-sync-staging', 'trm', batchId);
+    fs.mkdirSync(path.join(batchDir, 'sources'), { recursive: true });
+
+    const validHash = 'd'.repeat(64);
+    const payload = {
+      schema_version: '2.3.0',
+      batch_id: batchId,
+      topic_id: 'trm:missing-disk-file',
+      title: 'Missing Disk File',
+      domain: 'wiki',
+      status: 'beta',
+      summary: 'Summary description',
+      sources: [
+        {
+          source_id: 'src-missing',
+          title: 'Missing File',
+          origin_uri: 'https://example.com/missing',
+          staged_filename: 'src-missing.md',
+          content_sha256: validHash,
+          byte_size: 42,
+          retrieved_at: new Date().toISOString()
+        }
+      ],
+      extracted_concepts: []
+    };
+
+    const manifest = {
+      'src-missing.md': {
+        content_sha256: validHash,
+        byte_size: 42
+      }
+    };
+
+    const result = await validateTrmPayloadSemantics(batchDir, payload, manifest);
+    assert.equal(result.valid, false, 'Must fail validation when source file is not on disk');
+    const ruleIds = result.errors.map((e) => e.rule_id);
+    assert.ok(ruleIds.includes('RULE_SEMANTIC_FILE_NOT_FOUND'), 'Must cite RULE_SEMANTIC_FILE_NOT_FOUND');
+  });
 });
+
