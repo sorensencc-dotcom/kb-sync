@@ -118,17 +118,11 @@ $runtime = Resolve-NlmRuntime
 Write-LogInfo "CLI resolution mode: $($runtime.Mode)"
 if ($runtime.Mode -ne "none") {
     Write-LogInfo "Running pre-flight authentication check..."
-    Invoke-NlmCli @("auth", "check") >$null 2>&1
-    if ($LASTEXITCODE -ne 0) {
-        Write-LogWarn "Pre-flight auth check failed; attempting master token session refresh..."
-        Invoke-NlmCli @("login", "--master-token-refresh", "--quiet") 2>$null
-        if ($LASTEXITCODE -eq 0) {
-            Write-LogInfo "Pre-flight master token session refresh succeeded."
-        } else {
-            Write-LogWarn "Pre-flight master token refresh failed/skipped. Proceeding to Stage 1 for fallback auth recovery."
-        }
-    } else {
+    $null = Invoke-NlmCli @("login", "--check") >$null 2>&1
+    if ($LASTEXITCODE -eq 0) {
         Write-LogInfo "Pre-flight auth check passed."
+    } else {
+        Write-LogWarn "Pre-flight auth check failed. Proceeding to Stage 1 for fallback auth recovery."
     }
 }
 

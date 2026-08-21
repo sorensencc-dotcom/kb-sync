@@ -9,6 +9,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "../..");
 
+const envPath = path.resolve(REPO_ROOT, ".env");
+if (fs.existsSync(envPath)) {
+  try {
+    const envLines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
+    for (const line of envLines) {
+      if (!line || line.startsWith("#") || !line.includes("=")) continue;
+      const idx = line.indexOf("=");
+      const key = line.slice(0, idx).trim();
+      let val = line.slice(idx + 1).trim();
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
+      if (key && process.env[key] === undefined) {
+        process.env[key] = val;
+      }
+    }
+  } catch {}
+}
+
 export interface DriftReport {
   timestamp: string;
   status: "NO_DRIFT" | "DRIFT_DETECTED";

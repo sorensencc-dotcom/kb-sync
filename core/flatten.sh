@@ -137,15 +137,15 @@ if [ -n "$GLOBAL_CONFIG" ] && [ -f "$GLOBAL_CONFIG" ]; then
   done
 fi
 
-# --- STEP 1: TRY PYRAGIFY FIRST (if available) --------------------------------
+# --- STEP 1: TRY PYRAGIFY FIRST (if explicitly enabled) -----------------------
 PYRAGIFY_CONFIG="$REPO_ROOT/pyragify.yaml"
-if [ "$USE_MANIFEST" = false ] && command -v uv >/dev/null 2>&1 && [ -f "$PYRAGIFY_CONFIG" ]; then
+if [ "${ENABLE_PYRAGIFY:-false}" = "true" ] && [ "$USE_MANIFEST" = false ] && command -v uv >/dev/null 2>&1 && [ -f "$PYRAGIFY_CONFIG" ]; then
   log_info "Attempting pyragify flattener via uv..."
-  if uv run pyragify --config-file "$PYRAGIFY_CONFIG"; then
+  if uvx pyragify --config-file "$PYRAGIFY_CONFIG"; then
     log_info "pyragify succeeded."
     exit 0
   else
-    log_info "pyragify failed or not installed. Falling back to manual git flattener..."
+    log_info "pyragify failed. Falling back to standard flattener..."
   fi
 fi
 

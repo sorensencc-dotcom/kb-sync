@@ -1,6 +1,8 @@
 repo_path: "."
 output_dir: "./.nlm_pack"
 max_words: 200000
+max_file_size: 10485760
+verbose: false
 skip_dirs:
   - ".git"
   - "node_modules"
@@ -9,6 +11,11 @@ skip_dirs:
   - "__pycache__"
   - ".venv"
   - "venv"
+  - ".ijfw"
+  - "logs"
+  - "_kb-sync-staging"
+  - ".test_obsidian_vault"
+  - "notebooklm-mcp-cli"
 skip_patterns:
   - "*.png"
   - "*.jpg"

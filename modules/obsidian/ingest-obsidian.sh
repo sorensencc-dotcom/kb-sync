@@ -146,6 +146,24 @@ fi
 log_info "Core scripts and configs located."
 
 # --- LOAD MODULE CONFIG & ENVIRONMENT ----------------------------------------
+if [ -f "$REPO_ROOT/.env" ]; then
+  while IFS= read -r line || [ -n "$line" ]; do
+    [[ "$line" =~ ^#.*$ ]] && continue
+    [[ -z "$line" ]] && continue
+    line="${line%$'\r'}"
+    [[ "$line" != *"="* ]] && continue
+    env_key="${line%%=*}"
+    env_val="${line#*=}"
+    [[ -z "$env_key" ]] && continue
+    [[ "$env_key" =~ [^a-zA-Z0-9_] ]] && continue
+    env_val="${env_val#\"}" ; env_val="${env_val%\"}"
+    env_val="${env_val#\'}" ; env_val="${env_val%\'}"
+    if [ -z "${!env_key+x}" ]; then
+      export "$env_key"="$env_val"
+    fi
+  done < "$REPO_ROOT/.env"
+fi
+
 # Try env var first, fall back to config
 OBSIDIAN_VAULT_ROOT="${OBSIDIAN_VAULT_ROOT:-}"
 if [ -z "$OBSIDIAN_VAULT_ROOT" ]; then
