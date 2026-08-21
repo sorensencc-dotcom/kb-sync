@@ -74,7 +74,8 @@
     "kb:cache:server": "node scripts/mcp-memory-server.mjs",
     "test:cache": "node --test --experimental-strip-types tests/context-cache.test.ts",
     "trm:triage": "node scripts/trm-triage.mjs",
-    "test:trm:triage": "node --test --experimental-strip-types tests/trm-gap-triage.test.ts"
+    "test:trm:triage": "node --test --experimental-strip-types tests/trm-gap-triage.test.ts",
+    "test:trm-boundary": "node --test --experimental-strip-types tests/trm-cache-boundary.test.mjs"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
