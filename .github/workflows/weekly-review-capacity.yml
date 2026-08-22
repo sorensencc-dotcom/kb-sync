@@ -35,7 +35,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          powershell.exe -ExecutionPolicy Bypass -File modules/review-capacity/scripts/extract-github-prs.ps1 -Repo "sorensencc-dotcom/kb-sync", "sorensencc-dotcom/cic-ingestion", "sorensencc-dotcom/charlie-deep-research"
+          & ./modules/review-capacity/scripts/extract-github-prs.ps1 -Repo @("sorensencc-dotcom/kb-sync", "sorensencc-dotcom/cic-ingestion", "sorensencc-dotcom/charlie-deep-research")
 
       - name: Compute Weekly Metrics
         run: npm run kb:review-metrics
