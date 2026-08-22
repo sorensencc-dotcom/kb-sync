@@ -472,7 +472,12 @@ function Publish-AiTelemetryCsv {
     $tempFile = "$OutputPath.tmp.$([guid]::NewGuid().ToString('N'))"
 
     try {
-        $Rows | Export-Csv -LiteralPath $tempFile -NoTypeInformation -Encoding UTF8
+        if ($Rows -and $Rows.Count -gt 0) {
+            $Rows | Export-Csv -LiteralPath $tempFile -NoTypeInformation -Encoding UTF8
+        } else {
+            $headerLine = (Get-AiTelemetryCsvHeaders) -join ','
+            Set-Content -LiteralPath $tempFile -Value $headerLine -Encoding UTF8
+        }
         Move-Item -LiteralPath $tempFile -Destination $OutputPath -Force
     } finally {
         if ([System.IO.File]::Exists($tempFile)) {

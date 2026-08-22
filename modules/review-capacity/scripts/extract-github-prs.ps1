@@ -130,7 +130,7 @@ if ($null -ne $FixturePrs) {
     foreach ($r in $Repo) {
         $fullRepo = if ($r -contains '/' -or $r.Contains('/')) { $r } else { "$DefaultOwner/$r" }
         try {
-            $rawPrs = gh pr list --repo $fullRepo --state all --limit 500 --json $jsonFields | ConvertFrom-Json
+            $rawPrs = gh pr list --repo $fullRepo --state all --limit 30 --json $jsonFields | ConvertFrom-Json
             if ($rawPrs) {
                 Process-PullRequests -PrList @($rawPrs) -RepoName $fullRepo
             }
