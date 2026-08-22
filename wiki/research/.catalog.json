@@ -1,0 +1,131 @@
+{
+  "generated": "2026-08-22T01:52:02.931Z",
+  "files": [
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",
+      "title": "RFC: GAP-01 - **Willow Run Videos (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 211,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01-fail-soft-recovery-during-conc.md",
+      "title": "RFC: GAP-01 - Fail-soft recovery during concurrent WebSocket packet collision",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 235,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--willow-run-videos-open-contra.md",
+      "title": "RFC: GAP-02 - **Willow Run Videos (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 244,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02-cross-platform-path-normalizat.md",
+      "title": "RFC: GAP-02 - Cross-platform path normalization for Windows and POSIX vault roots",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 238,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03-deterministic-ast-parsing-and.md",
+      "title": "RFC: GAP-03 - Deterministic AST parsing and chunk boundary calculation",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 228,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04-dodge-brothers-vs-henry-ford-g.md",
+      "title": "RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 236,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-05-harry-bennett-service-departme.md",
+      "title": "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 236,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-06-willow-run-b-24-knock-down-kit.md",
+      "title": "RFC: GAP-06 - Willow Run B-24 knock-down kit manufacturing and logistics",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 224,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-07-ford-5-day-wage-increase-impac.md",
+      "title": "RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 33,
+        "words": 252,
+        "headings": 5,
+        "links": 0
+      }
+    }
+  ]
+}

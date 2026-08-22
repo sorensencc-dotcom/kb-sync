@@ -25,7 +25,8 @@ export function parseGapItems(content) {
       else if (checkState === '/') status = 'in-progress';
 
       const gapId = match[2] || `GAP-${String(gaps.length + 1).padStart(2, '0')}`;
-      const fullText = match[3].trim();
+      const rawText = match[3].trim();
+      const fullText = rawText.replace(/\s*\(Drafted:[^)]*\)/g, '').trim();
       
       const colonIdx = fullText.indexOf(':');
       let title = fullText;
@@ -76,7 +77,14 @@ export function triageGapAgainstCache(dbInstance, gap, options = {}) {
 
   const citations = matchedDocuments.map((doc) => doc.file_path || doc.id);
   const evidenceList = matchedDocuments.length > 0
-    ? matchedDocuments.map((doc) => `- **${doc.topic}** (\`${doc.file_path}\`):\n  > ${doc.snippet.replace(/\r?\n/g, ' ')}`).join('\n')
+    ? matchedDocuments.map((doc) => {
+        const cleanSnippet = (doc.snippet || '')
+          .replace(/\r?\n/g, ' ')
+          .replace(/\[MATCH\]|\[\/MATCH\]/g, '')
+          .replace(/[[\]()]/g, '')
+          .trim();
+        return `- **${doc.topic}** (\`${doc.file_path}\`):\n  > ${cleanSnippet}`;
+      }).join('\n')
     : '- *No immediate lexical matches found in local knowledge cache. External investigation required.*';
 
   const rfcContent = `---
@@ -165,7 +173,9 @@ export function executeGapTriage(options = {}) {
 
     // Update gap line in markdown with RFC backlink
     const rfcRelativePath = path.relative(path.dirname(gapsPath), rfcFullPath).replace(/\\/g, '/');
-    const updatedLine = `- [/] [${gap.id}] ${gap.title}: ${gap.description} (Drafted: [RFC](${rfcRelativePath}))`;
+    const updatedLine = gap.title === gap.description
+      ? `- [/] [${gap.id}] ${gap.title} (Drafted: [RFC](${rfcRelativePath}))`
+      : `- [/] [${gap.id}] ${gap.title}: ${gap.description} (Drafted: [RFC](${rfcRelativePath}))`;
     updatedContent = updatedContent.replace(gap.raw, updatedLine);
   }
 
