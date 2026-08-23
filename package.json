@@ -6,6 +6,12 @@
   "scripts": {
     "kb:status": "node scripts/check-status.mjs",
     "kb:sync:status": "node scripts/check-status.mjs",
+    "kb:dag": "node scripts/build-dag.mjs",
+    "kb:dag:check": "node scripts/build-dag.mjs --check-only",
+    "kb:dag:recover": "node scripts/build-dag.mjs --recover",
+    "kb:validate:chunks": "node scripts/validate-chunks.mjs",
+    "kb:consolidate:packs": "node scripts/consolidate-pack.mjs",
+    "trm:closed-loop": "node scripts/run-closed-loop-research.mjs",
     "kb:sync": "powershell.exe -ExecutionPolicy Bypass -File scripts/notebooklm/kb-sync-nightly.ps1",
     "kb:sync:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
     "kb:sync:repair-drift": "bash modules/notebooklm/ingest-notebooklm.sh --repair-drift",
@@ -75,7 +81,8 @@
     "test:cache": "node --test --experimental-strip-types tests/context-cache.test.ts",
     "trm:triage": "node scripts/trm-triage.mjs",
     "test:trm:triage": "node --test --experimental-strip-types tests/trm-gap-triage.test.ts",
-    "test:trm-boundary": "node --test --experimental-strip-types tests/trm-cache-boundary.test.mjs"
+    "test:trm-boundary": "node --test --experimental-strip-types tests/trm-cache-boundary.test.mjs",
+    "trm:materialize-approved": "node scripts/materialize-approved-result.mjs"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

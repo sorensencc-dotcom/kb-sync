@@ -4,14 +4,14 @@ category: "research"
 topic: "rfc-gap-06-willow-run-b-24-knock-down-kit"
 gap_id: "GAP-06"
 status: "draft"
-created_at: "2026-08-22T01:52:02.765Z"
+created_at: "2026-08-23T01:58:16.720Z"
 citations: ["wiki/research/rfc-gap-03-deterministic-ast-parsing-and.md","docs/kb/notebooklm-sync/pipeline.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-06 - Willow Run B-24 knock-down kit manufacturing and logistics
 
 ## 1. Problem Statement & Context
-Investigate sub-assembly shipment schedules to Douglas and Consolidated aircraft assembly plants.)))))))
+Investigate sub-assembly shipment schedules to Douglas and Consolidated aircraft assembly plants.))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

@@ -4,14 +4,14 @@ category: "research"
 topic: "rfc-gap-02-cross-platform-path-normalizat"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-08-22T01:52:02.758Z"
+created_at: "2026-08-23T01:58:16.710Z"
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02-cross-platform-path-normalizat.md","docs/kb/notebooklm-sync/error-boundaries.md"]
 ---
 
 # RFC: GAP-02 - Cross-platform path normalization for Windows and POSIX vault roots
 
 ## 1. Problem Statement & Context
-Standardize backslash stripping and UNC handling across staging tools.))))))))
+Standardize backslash stripping and UNC handling across staging tools.)))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

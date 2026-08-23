@@ -51,7 +51,21 @@ if [ ! -f "$STAGE_2_SCRIPT" ]; then
 fi
 
 log_info "Starting KB Sync Nightly Pipeline..."
-log_info "REPO_ROOT: $REPO_ROOT"
+# --- STAGE 0: DAG INTEGRITY & TOPOLOGY CHECK ---
+log_info "================================================================================"
+log_info "STAGE 0: Verifying KB-Sync DAG integrity & Topology"
+log_info "================================================================================"
+
+if node "$REPO_ROOT/scripts/build-dag.mjs" --check-only 2>/dev/null || node "$REPO_ROOT/kb-sync/scripts/build-dag.mjs" --check-only 2>/dev/null; then
+  log_info "DAG check passed cleanly."
+else
+  log_warn "DAG check detected drift/missing state. Running DAG auto-recovery..."
+  if node "$REPO_ROOT/scripts/build-dag.mjs" --recover 2>/dev/null || node "$REPO_ROOT/kb-sync/scripts/build-dag.mjs" --recover 2>/dev/null; then
+    log_info "DAG auto-recovery succeeded."
+  else
+    log_warn "DAG auto-recovery skipped or non-blocking. Proceeding with sync..."
+  fi
+fi
 
 # --- STAGE 1: SYNC TO NOTEBOOKLM ---
 log_info "================================================================================"

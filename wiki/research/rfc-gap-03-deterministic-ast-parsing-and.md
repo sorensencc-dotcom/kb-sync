@@ -4,14 +4,14 @@ category: "research"
 topic: "rfc-gap-03-deterministic-ast-parsing-and"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-08-22T01:52:02.760Z"
+created_at: "2026-08-23T01:58:16.713Z"
 citations: ["wiki/research/rfc-gap-03-deterministic-ast-parsing-and.md","trm-research-gaps.md","docs/kb/notebooklm-sync/pipeline.md"]
 ---
 
 # RFC: GAP-03 - Deterministic AST parsing and chunk boundary calculation
 
 ## 1. Problem Statement & Context
-Define optimal token chunk sizing for NotebookLM pack consolidation.))))))))
+Define optimal token chunk sizing for NotebookLM pack consolidation.)))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:
