@@ -678,19 +678,26 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  // Atomic file lock / deduplication check
+  // Atomic file lock / deduplication check — fail closed if lock is unavailable
   const lockFile = `${resolvedPath}.lock`;
   let lockFd = null;
   try {
-    // Acquire lock (wait up to 2 seconds if busy)
+    // Attempt to acquire lock with a 2-second deadline
     const startTime = Date.now();
-    while (!lockFd && Date.now() - startTime < 2000) {
+    while (lockFd === null && Date.now() - startTime < 2000) {
       try {
         lockFd = fs.openSync(lockFile, 'wx');
       } catch {
-        // Lock exists; short busy wait
+        // Lock file exists; short busy wait then retry
         Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
       }
+    }
+
+    if (lockFd === null) {
+      throw new Error(
+        `QUEUE_LOCK_TIMEOUT: Could not acquire exclusive lock on ${resolvedPath} within 2 seconds. ` +
+        `Another process may be holding it. Dispatch aborted to prevent unsafe concurrent writes.`
+      );
     }
 
     if (fs.existsSync(resolvedPath)) {
@@ -772,6 +779,9 @@ export async function monitorCompetitorWatchlist(watchlistPath, optionsOrDbPath 
 
   let db = null;
   try {
+    // ---------------------------------------------------------------------------
+    // SQLite schema bootstrap & migration
+    // ---------------------------------------------------------------------------
     if (options.dbPath && !isDryRun) {
       if (!Database) {
         throw new Error(`SQLITE_UNAVAILABLE: better-sqlite3 module could not be loaded for requested dbPath: ${options.dbPath}`);
@@ -781,31 +791,132 @@ export async function monitorCompetitorWatchlist(watchlistPath, optionsOrDbPath 
         fs.mkdirSync(dbDir, { recursive: true });
       }
       db = new Database(options.dbPath);
-      db.pragma('foreign_keys = ON');
+      db.pragma('foreign_keys = OFF'); // Disabled during migrations; re-enabled after
 
-      // Ensure table structure exists with unique index on approval_id
-      db.exec(`
-        CREATE TABLE IF NOT EXISTS local_approvals (
-          approval_id TEXT PRIMARY KEY,
-          profile_id TEXT NOT NULL,
-          action_hash TEXT NOT NULL,
-          capability TEXT NOT NULL,
-          scope TEXT NOT NULL,
-          requested_by TEXT NOT NULL,
-          status TEXT NOT NULL,
-          envelope_json TEXT,
-          created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
-      `);
+      // Schema version tracking
+      db.exec(`CREATE TABLE IF NOT EXISTS schema_version (
+        version INTEGER PRIMARY KEY,
+        applied_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+      )`);
+
+      const currentVersion = (() => {
+        const row = db.prepare('SELECT MAX(version) AS v FROM schema_version').get();
+        return row?.v ?? 0;
+      })();
+
+      // Migration v1 — initial full schema (connector_profiles, local_approvals)
+      if (currentVersion < 1) {
+        db.exec(`
+          CREATE TABLE IF NOT EXISTS connector_profiles (
+            profile_id TEXT PRIMARY KEY,
+            owner_id TEXT NOT NULL,
+            endpoint_id TEXT NOT NULL UNIQUE,
+            display_name TEXT NOT NULL,
+            relay_url TEXT NOT NULL,
+            status TEXT CHECK(status IN ('active', 'suspended', 'decommissioned')) DEFAULT 'active',
+            secure_key_reference TEXT NOT NULL,
+            secure_token_reference TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+          );
+
+          CREATE TABLE IF NOT EXISTS local_approvals (
+            approval_id TEXT PRIMARY KEY,
+            profile_id TEXT NOT NULL,
+            action_hash TEXT NOT NULL,
+            capability TEXT NOT NULL,
+            scope TEXT NOT NULL,
+            requested_by TEXT NOT NULL,
+            status TEXT CHECK(status IN ('pending','approved','denied')) DEFAULT 'pending',
+            decision_signature TEXT,
+            created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+            decided_at TEXT
+          );
+
+          CREATE TABLE IF NOT EXISTS endpoint_keys (
+            key_id TEXT PRIMARY KEY,
+            profile_id TEXT NOT NULL,
+            algorithm TEXT NOT NULL DEFAULT 'Ed25519',
+            public_key_pem TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+            expires_at TEXT
+          );
+
+          INSERT OR IGNORE INTO schema_version (version) VALUES (1);
+        `);
+      }
+
+      // Migration v2 — add envelope_json to local_approvals (if absent)
+      if (currentVersion < 2) {
+        const cols = db.prepare('PRAGMA table_info(local_approvals)').all().map(c => c.name);
+        if (!cols.includes('envelope_json')) {
+          db.exec(`ALTER TABLE local_approvals ADD COLUMN envelope_json TEXT`);
+        }
+        db.exec(`INSERT OR IGNORE INTO schema_version (version) VALUES (2)`);
+      }
+
+      // Migration v3 — ensure endpoint_keys table exists for pre-v2 databases
+      if (currentVersion < 3) {
+        db.exec(`
+          CREATE TABLE IF NOT EXISTS endpoint_keys (
+            key_id TEXT PRIMARY KEY,
+            profile_id TEXT NOT NULL,
+            algorithm TEXT NOT NULL DEFAULT 'Ed25519',
+            public_key_pem TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+            expires_at TEXT
+          );
+          INSERT OR IGNORE INTO schema_version (version) VALUES (3);
+        `);
+      }
+
+      db.pragma('foreign_keys = ON'); // Re-enable after migrations
+
+      // Provision system profile if absent. Validates prerequisite before any insert.
+      const systemProfileId = options.systemProfileId || 'prof_trm_system';
+      const existingProfile = db.prepare('SELECT profile_id FROM connector_profiles WHERE profile_id = ?').get(systemProfileId);
+      if (!existingProfile) {
+        if (options.requireExistingProfile) {
+          throw new Error(
+            `DB_PREREQUISITE: connector_profiles requires a profile row (profile_id="${systemProfileId}") ` +
+            `but none was found. Provision the profile before running the monitor, or pass systemProfileId ` +
+            `matching an existing row.`
+          );
+        }
+        // Auto-provision system watcher profile so the monitor is self-contained
+        db.prepare(`
+          INSERT OR IGNORE INTO connector_profiles
+            (profile_id, owner_id, endpoint_id, display_name, relay_url, secure_key_reference, secure_token_reference)
+          VALUES (?, 'usr_system', 'ep_trm_watcher', 'TRM Competitor Watcher', 'sigil://relay/trm', 'key_ref:none', 'token_ref:none')
+        `).run(systemProfileId);
+        logInfo(`  -> Provisioned system connector profile: ${systemProfileId}`);
+      }
+
+      // Register the session's public signing key in endpoint_keys for relay verification
+      options._systemProfileId = systemProfileId;
     }
 
     const keyPair = options.keyPair || generateSigilKeyPair();
 
-    let totalTargets = watchlist.targets.length;
+    // Persist the signing key into endpoint_keys so the relay can verify envelopes independently
+    if (db) {
+      db.prepare(`
+        INSERT OR IGNORE INTO endpoint_keys (key_id, profile_id, algorithm, public_key_pem, expires_at)
+        VALUES (?, ?, 'Ed25519', ?, ?)
+      `).run(
+        keyPair.keyId,
+        options._systemProfileId || 'prof_trm_system',
+        keyPair.publicKeyPem,
+        new Date(Date.now() + 30 * 24 * 3600 * 1000).toISOString() // 30-day key lifetime
+      );
+      logInfo(`  -> Signing key ${keyPair.keyId} registered in endpoint_keys.`);
+    }
+
+    const totalTargets = watchlist.targets.length;
     let cacheHits = 0;
     let driftsDetected = 0;
     let fetchErrors = 0;
     const queuedEnvelopes = [];
+
 
     for (const target of watchlist.targets) {
       logInfo(`Evaluating target: '${target.target_id}' (${target.type}) ...`);

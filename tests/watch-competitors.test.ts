@@ -206,6 +206,106 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
       const lines = fs.readFileSync(testQueuePath, 'utf8').trim().split('\n');
       expect(lines.length).toBe(1);
     });
+
+    it('fails closed when lock cannot be acquired (simulated stale lock)', () => {
+      const staleLockPath = `${testQueuePath}.lock`;
+      fs.writeFileSync(staleLockPath, 'locked', 'utf8');
+      const keyPair = generateSigilKeyPair();
+      const env = signSigilEnvelope({
+        protocol: "sigil/1", message_id: "msg_lockfail_test", conversation_id: "conv_lock",
+        message_type: "task.request",
+        sender: { owner_id: "usr_1", endpoint_id: "ep_lock", kind: "agent" },
+        recipient: { owner_id: "usr_2", endpoint_id: "ep_2" },
+        body: { task_id: "lock_fail" }, context_refs: [], capabilities: [],
+        approval: { required: false, status: "none" },
+        created_at: "2026-08-23T12:00:00Z", expires_at: "2026-08-24T12:00:00Z"
+      }, keyPair.privateKeyPem, keyPair.keyId);
+
+      expect(() => dispatchSigilEnvelope(null, env, testQueuePath)).toThrow(/QUEUE_LOCK_TIMEOUT/);
+      if (fs.existsSync(staleLockPath)) fs.unlinkSync(staleLockPath);
+    });
+  });
+
+  describe('6a. SQLite Schema Provisioning & Migrations', () => {
+    it('bootstraps fresh database with all required tables and auto-provisions system profile', async () => {
+      const dbPath = path.join(testTmpDir, 'fresh.db');
+      const mockWatchlist = {
+        watchlist_id: "trm:watchlist:google-sam", competitor_name: "Google SAM",
+        last_monitored_at: "2026-08-01T00:00:00Z",
+        targets: [{ target_id: "sam-repo", url: "https://github.com/google/sam", type: "git_repo", hash_baseline: "0".repeat(64) }],
+        memory_alignment: { layer2_wiki_path: "wiki-baseline.md", status: "stable", delta_rules: { trigger_comparison: true } },
+        human_in_the_loop: { step_up_required: false }
+      };
+      fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
+
+      await monitorCompetitorWatchlist(testWatchlistPath, {
+        dbPath, forceMock: true, wikiRoot: testTmpDir, queuePath: testQueuePath
+      });
+
+      const { default: BetterSQLite } = await import('better-sqlite3');
+      const db = new BetterSQLite(dbPath);
+      const version = db.prepare('SELECT MAX(version) AS v FROM schema_version').get() as any;
+      expect(version.v).toBeGreaterThanOrEqual(3);
+
+      const tables = (db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all() as any[]).map(r => r.name);
+      expect(tables).toContain('connector_profiles');
+      expect(tables).toContain('local_approvals');
+      expect(tables).toContain('endpoint_keys');
+
+      const profile = db.prepare("SELECT profile_id FROM connector_profiles WHERE profile_id='prof_trm_system'").get();
+      expect(profile).not.toBeNull();
+
+      const key = db.prepare("SELECT key_id, public_key_pem FROM endpoint_keys LIMIT 1").get() as any;
+      expect(key).not.toBeNull();
+      expect(key.public_key_pem).toMatch(/BEGIN PUBLIC KEY/);
+      db.close();
+    });
+
+    it('migrates a v0 legacy database (missing envelope_json and endpoint_keys) to current schema', async () => {
+      const dbPath = path.join(testTmpDir, 'v0-legacy.db');
+      const { default: BetterSQLite } = await import('better-sqlite3');
+      const legacyDb = new BetterSQLite(dbPath);
+      legacyDb.exec(`CREATE TABLE local_approvals (
+        approval_id TEXT PRIMARY KEY, profile_id TEXT NOT NULL,
+        action_hash TEXT NOT NULL, capability TEXT NOT NULL,
+        scope TEXT NOT NULL, requested_by TEXT NOT NULL, status TEXT
+      )`);
+      legacyDb.close();
+
+      const mockWatchlist = {
+        watchlist_id: "trm:watchlist:google-sam", competitor_name: "Google SAM",
+        last_monitored_at: "2026-08-01T00:00:00Z",
+        targets: [{ target_id: "sam-repo", url: "https://github.com/google/sam", type: "git_repo", hash_baseline: "0".repeat(64) }],
+        memory_alignment: { layer2_wiki_path: "wiki-baseline.md", status: "stable", delta_rules: { trigger_comparison: true } }
+      };
+      fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
+
+      await monitorCompetitorWatchlist(testWatchlistPath, {
+        dbPath, forceMock: true, wikiRoot: testTmpDir, queuePath: testQueuePath
+      });
+
+      const migratedDb = new BetterSQLite(dbPath);
+      const cols = (migratedDb.prepare('PRAGMA table_info(local_approvals)').all() as any[]).map(c => c.name);
+      expect(cols).toContain('envelope_json');
+      const keyTable = migratedDb.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='endpoint_keys'").get();
+      expect(keyTable).not.toBeNull();
+      migratedDb.close();
+    });
+
+    it('throws clear prerequisite error on fresh DB when requireExistingProfile is set', async () => {
+      const dbPath = path.join(testTmpDir, 'strict-profile.db');
+      const mockWatchlist = {
+        watchlist_id: "trm:watchlist:google-sam", competitor_name: "Google SAM",
+        last_monitored_at: "2026-08-01T00:00:00Z",
+        targets: [{ target_id: "sam-repo", url: "https://github.com/google/sam", type: "git_repo", hash_baseline: "0".repeat(64) }],
+        memory_alignment: { layer2_wiki_path: "wiki-baseline.md", status: "stable", delta_rules: { trigger_comparison: true } }
+      };
+      fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
+
+      await expect(monitorCompetitorWatchlist(testWatchlistPath, {
+        dbPath, forceMock: true, wikiRoot: testTmpDir, requireExistingProfile: true
+      })).rejects.toThrow(/DB_PREREQUISITE/);
+    });
   });
 
   describe('6. Live Transport & Fail-Closed Guardrails', () => {
