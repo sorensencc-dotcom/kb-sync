@@ -18,7 +18,7 @@ const hash = (value) => crypto.createHash('sha256').update(value).digest('hex');
 function validWatchlist(overrides = {}) {
   return {
     watchlist_id: 'trm:watchlist:test-watch', competitor_name: 'Test competitor',
-    targets: [{ target_id: 'test-target', url: 'https://example.test/source', type: 'documentation_page', hash_baseline: hash('baseline') }],
+    targets: [{ target_id: 'test-target', url: 'https://example.com/source', type: 'documentation_page', hash_baseline: hash('baseline') }],
     memory_alignment: { layer2_wiki_path: 'research/test.md', status: 'stable', delta_rules: { trigger_comparison: true } },
     ...overrides
   };
