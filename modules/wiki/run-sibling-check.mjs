@@ -63,20 +63,57 @@ async function main() {
         for (const warn of warnings) {
           console.log(`  - Code modified: ${COLOR.cyan}${warn.file}${COLOR.reset}`);
           console.log(`  - Missing wiki sibling update: ${COLOR.yellow}${warn.wikiSibling}${COLOR.reset}\n`);
-          
-          // Generate TODO item
-          const taskLine = `- [ ] **kb-sync documentation drift remediation** — Sibling wiki file "${warn.wikiSibling}" out of sync with code changes in "${warn.file}". Update wiki.`;
-          const signatureKey = `sibling wiki file "${warn.wikiSibling}" out of sync`;
-          
-          appendDriftTodo(repoRoot, taskLine, signatureKey);
         }
-        console.log(`${COLOR.green}[✓] Staged a drift remediation TODO task in TODOS.md.${COLOR.reset}`);
+
+        // Generate consolidated TODO item rather than flooding TODOS.md with per-file items
+        const today = new Date().toISOString().slice(0, 10);
+        const signatureKey = '**[P2] kb-sync documentation drift remediation (batch)**';
+        const taskLine = `- [ ] ${signatureKey} (created ${today}) — ${warnings.length} sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.`;
+
+        // Deduplication: compare the currently drifted file set against what is already open in TODOS.md.
+        // If the open item already covers these exact files (or a superset), skip writing — it's the same
+        // recurring drift, not a new event.
+        const driftedFiles = new Set(warnings.map(w => w.file));
+        const isRecurringDrift = (() => {
+          const possiblePaths = [
+            path.join(repoRoot, 'TODOS.md'),
+            path.resolve(repoRoot, '../TODOS.md'),
+            'C:/dev/TODOS.md',
+            'c:/dev/TODOS.md',
+          ];
+          for (const p of possiblePaths) {
+            if (!fs.existsSync(p)) continue;
+            const content = fs.readFileSync(p, 'utf8');
+            if (!content.includes(signatureKey)) break; // No open item yet; not recurring
+
+            // Extract the files mentioned in the existing open TODO item by matching
+            // the wiki sibling names (e.g. `watch-competitors-v2.mjs.md`)
+            const existingFiles = new Set(
+              [...content.matchAll(/wiki\/entities\/([\w.\-]+\.md)/g)].map(m => m[1].replace(/\.md$/, ''))
+            );
+            // Check if every currently-drifted file is already captured in the open item
+            const allCovered = [...driftedFiles].every(f => {
+              const base = path.basename(f);
+              return existingFiles.has(base) || content.includes(base);
+            });
+            return allCovered;
+          }
+          return false;
+        })();
+
+        if (isRecurringDrift) {
+          logInfo(`Recurring drift — open P2 item already covers these ${warnings.length} file(s). Skipping duplicate TODOS.md entry.`);
+        } else {
+          appendDriftTodo(repoRoot, taskLine, signatureKey);
+          console.log(`${COLOR.green}[✓] Staged consolidated drift remediation task in TODOS.md (${warnings.length} file(s)).${COLOR.reset}`);
+        }
         console.log(`${COLOR.green}[✓] Hook completed in fail-soft mode. Commit succeeded.${COLOR.reset}\n`);
       } else {
         logInfo('No documentation drift detected. Pre-commit check completed successfully.');
       }
       process.exit(0);
-    } 
+    }
+
     
     if (mode === 'pre-push') {
       // Rule 2: Interface Signature Drift (Fail-Closed)
