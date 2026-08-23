@@ -86,6 +86,8 @@
     "trm:watch": "node watch-competitors-v2.mjs",
     "trm:approvals": "node scripts/process-sigil-approvals.mjs",
     "test:watchlist": "node test-watchlist-run.mjs",
+    "wiki:publish": "node scripts/sync-github-wiki.mjs",
+    "wiki:sync": "node scripts/sync-github-wiki.mjs",
     "test:trm:watch": "node --test tests/watch-competitors-v2.test.mjs && npx vitest run tests/watch-competitors.test.ts"
   },
   "optionalDependencies": {
