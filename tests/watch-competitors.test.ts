@@ -208,7 +208,27 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
     });
   });
 
-  describe('6. Zero-Drift & State Preservation', () => {
+  describe('6. Live Transport & Fail-Closed Guardrails', () => {
+    it('successfully completes live HTTPS fetch with pinned DNS to public API', async () => {
+      // Integration test against live HTTPS endpoint with pinned DNS
+      const zen = await fetchTargetContent({
+        target_id: 'github-zen',
+        url: 'https://api.github.com/zen',
+        type: 'rest_api'
+      }, { forceMock: false });
+
+      expect(typeof zen).toBe('string');
+      expect(zen.length).toBeGreaterThan(0);
+    });
+
+    it('fails closed and throws error on unreachable live target when forceMock is false', async () => {
+      await expect(fetchTargetContent({
+        target_id: 'unreachable',
+        url: 'https://198.51.100.1/nonexistent-endpoint', // TEST-NET-2 unassigned public IP that times out/fails
+        type: 'rest_api'
+      }, { forceMock: false, timeoutMs: 500 })).rejects.toThrow(/LIVE_FETCH_FAILED/);
+    });
+
     it('creates no SQLite file during dry-run when dbPath is provided', async () => {
       const mockWatchlist = {
         watchlist_id: "trm:watchlist:test",
@@ -217,8 +237,8 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
         targets: [
           {
             target_id: "test-target",
-            url: "https://example.com/api",
-            type: "rest_api",
+            url: "https://github.com/google/sam",
+            type: "git_repo",
             hash_baseline: "0".repeat(64)
           }
         ],

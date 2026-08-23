@@ -68,8 +68,12 @@ test('filesystem dispatcher appends pending task with status and timestamp', asy
   const previous = process.cwd(); process.chdir(dir);
   try {
     dispatchSigilTask(null, { approval_id: 'app_test', action_hash: 'abc' });
-    const queue = JSON.parse(fs.readFileSync(path.join(dir, 'sigil-pending-tasks.json'), 'utf8'));
-    assert.equal(queue.length, 1); assert.equal(queue[0].status, 'pending'); assert.equal(queue[0].approval_id, 'app_test'); assert.match(queue[0].created_at, /^\d{4}-\d{2}-\d{2}T/);
+    const lines = fs.readFileSync(path.join(dir, 'sigil-queue.jsonl'), 'utf8').trim().split('\n');
+    assert.equal(lines.length, 1);
+    const envelope = JSON.parse(lines[0]);
+    assert.equal(envelope.approval.status, 'pending');
+    assert.equal(envelope.message_id, 'app_test');
+    assert.match(envelope.created_at, /^\d{4}-\d{2}-\d{2}T/);
   } finally { process.chdir(previous); }
 }));
 

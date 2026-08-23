@@ -146,6 +146,7 @@ export function validateTargetUrl(urlString, options = {}) {
 
 /**
  * Pins DNS resolution and performs anti-TOCTOU HTTP/HTTPS fetch with socket validation.
+ * Correctly supports both single and multiple address lookup callback signatures required by Node HTTPS.
  * @param {string} targetUrl
  * @param {object} [options]
  * @returns {Promise<string>}
@@ -174,6 +175,8 @@ export async function secureFetchWithPinnedDns(targetUrl, options = {}) {
   return new Promise((resolve, reject) => {
     const isHttps = parsed.protocol === 'https:';
     const client = isHttps ? https : http;
+    const fam = isIP(resolvedIp) || 4;
+
     const reqOptions = {
       protocol: parsed.protocol,
       hostname: cleanHost,
@@ -186,19 +189,22 @@ export async function secureFetchWithPinnedDns(targetUrl, options = {}) {
         'Accept': '*/*'
       },
       lookup: (hostname, opts, callback) => {
-        // Pin DNS lookup directly to validated IP address to eliminate TOCTOU rebinding
-        const fam = isIP(resolvedIp) || 4;
-        callback(null, resolvedIp, fam);
+        // Correctly handle opts.all requested by tls.connect / lookupAndConnectMultiple
+        if (opts && opts.all) {
+          callback(null, [{ address: resolvedIp, family: fam }]);
+        } else {
+          callback(null, resolvedIp, fam);
+        }
       },
-      timeout: options.timeoutMs || 5000
+      timeout: options.timeoutMs || 8000
     };
 
-    if (isHttps) {
-      reqOptions.servername = cleanHost; // Ensure TLS SNI matches expected hostname
+    if (isHttps && !isIP(cleanHost)) {
+      reqOptions.servername = cleanHost; // Ensure TLS SNI matches expected hostname (forbidden for raw IPs per RFC 6066)
     }
 
     const req = client.request(reqOptions, (res) => {
-      // Disallow all automatic redirects to prevent secondary SSRF bounces
+      // Disallow automatic redirects to prevent secondary SSRF bounces
       if (res.statusCode >= 300 && res.statusCode < 400) {
         req.destroy();
         return reject(new Error(`SSRF_REDIRECT_BLOCKED: HTTP redirects (${res.statusCode}) are forbidden.`));
@@ -419,7 +425,7 @@ export function verifySigilEnvelope(signedEnvelope, publicKeyPem) {
 }
 
 /**
- * Deterministic mock responses for testing and air-gapped runs.
+ * Deterministic mock responses for explicit air-gapped test modes.
  */
 export const STATIC_MOCK_TARGETS = {
   'google/sam': JSON.stringify({
@@ -447,7 +453,8 @@ export const STATIC_MOCK_TARGETS = {
 };
 
 /**
- * Fetches target content safely via secure anti-TOCTOU fetch with fallback to static mocks.
+ * Fetches target content safely via secure anti-TOCTOU live network fetch.
+ * Fails closed on network errors; only returns mock payloads when explicitly requested via forceMock/AIRGAP.
  * @param {object} target
  * @param {object} [options]
  * @returns {Promise<string>}
@@ -455,30 +462,27 @@ export const STATIC_MOCK_TARGETS = {
 export async function fetchTargetContent(target, options = {}) {
   validateTargetUrl(target.url, options);
 
-  if (process.env.AIRGAP !== 'true' && !options.forceMock) {
-    try {
-      return await secureFetchWithPinnedDns(target.url, options);
-    } catch (err) {
-      if (options.throwOnFetchError) {
-        throw new Error(`FETCH_FAILED: ${target.url} - ${err.message}`);
+  const isAirGap = process.env.AIRGAP === 'true' || options.forceMock === true;
+
+  if (isAirGap) {
+    for (const [key, payload] of Object.entries(STATIC_MOCK_TARGETS)) {
+      if (target.url.includes(key)) {
+        return payload;
       }
-      logWarn(`Live fetch failed for ${target.url} (${err.message}). Falling back to deterministic static baseline.`);
     }
+    throw new Error(`MOCK_UNAVAILABLE: Target "${target.url}" is not configured in static mock fixtures.`);
   }
 
-  for (const [key, payload] of Object.entries(STATIC_MOCK_TARGETS)) {
-    if (target.url.includes(key)) {
-      return payload;
-    }
+  // Live transport path — fails closed on any connection/HTTP error
+  try {
+    return await secureFetchWithPinnedDns(target.url, options);
+  } catch (err) {
+    throw new Error(`LIVE_FETCH_FAILED: Target "${target.url}" failed live transport: ${err.message}`);
   }
-
-  const tid = target.target_id || 'unknown-target';
-  return `STATIC_PAYLOAD_FOR_TARGET[${tid}]_URL[${target.url}]`;
 }
 
 /**
  * Performs local file diffing for Layer 2 Semantic Wiki vs the new payload.
- * Provides backwards-compatible string report and [NEW_CONCEPT] marker.
  * @param {string} localPath
  * @param {string} newPayload
  * @returns {string} Formatted difference report
@@ -606,6 +610,7 @@ export function performStructuredDiff(localPath, newPayload) {
 
 /**
  * Concurrency-safe, deduplicated JSONL queue dispatcher.
+ * Uses atomic read-check-append with locking semantics.
  * @param {object|null} db
  * @param {object} signedEnvelope
  * @param {string} [queuePath]
@@ -642,70 +647,67 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  // Idempotency check: verify whether message_id or idempotency_key is already present
-  if (fs.existsSync(resolvedPath)) {
-    const existingContent = fs.readFileSync(resolvedPath, 'utf8');
-    if (
-      existingContent.includes(`"message_id":"${signedEnvelope.message_id}"`) ||
-      (signedEnvelope.idempotency_key && existingContent.includes(`"idempotency_key":"${signedEnvelope.idempotency_key}"`))
-    ) {
-      logInfo(`  -> [IDEMPOTENT] Envelope ${signedEnvelope.message_id} already queued. Skipping duplicate.`);
-      return false;
+  // Atomic file lock / deduplication check
+  const lockFile = `${resolvedPath}.lock`;
+  let lockFd = null;
+  try {
+    // Acquire lock (wait up to 2 seconds if busy)
+    const startTime = Date.now();
+    while (!lockFd && Date.now() - startTime < 2000) {
+      try {
+        lockFd = fs.openSync(lockFile, 'wx');
+      } catch {
+        // Lock exists; short busy wait
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+      }
+    }
+
+    if (fs.existsSync(resolvedPath)) {
+      const existingContent = fs.readFileSync(resolvedPath, 'utf8');
+      if (
+        existingContent.includes(`"message_id":"${signedEnvelope.message_id}"`) ||
+        (signedEnvelope.idempotency_key && existingContent.includes(`"idempotency_key":"${signedEnvelope.idempotency_key}"`))
+      ) {
+        logInfo(`  -> [IDEMPOTENT] Envelope ${signedEnvelope.message_id} already queued. Skipping duplicate.`);
+        return false;
+      }
+    }
+
+    const line = JSON.stringify(signedEnvelope) + '\n';
+    fs.appendFileSync(resolvedPath, line, { encoding: 'utf8', flag: 'a' });
+    return true;
+  } finally {
+    if (lockFd !== null) {
+      fs.closeSync(lockFd);
+      try { fs.unlinkSync(lockFile); } catch {}
     }
   }
-
-  const line = JSON.stringify(signedEnvelope) + '\n';
-  fs.appendFileSync(resolvedPath, line, { encoding: 'utf8', flag: 'a' });
-  return true;
 }
 
 /**
- * Legacy task adapter writing atomic pending task records.
+ * Legacy task adapter routing into signed envelope dispatcher.
  * @param {object|null} db
  * @param {object} task
  * @param {string} [queuePath]
  */
 export function dispatchSigilTask(db, task, queuePath) {
-  if (db) {
-    const insertStatement = db.prepare(`
-      INSERT INTO local_approvals (
-        approval_id, profile_id, action_hash, capability, scope, requested_by, status
-      ) VALUES (?, ?, ?, ?, ?, ?, 'pending')
-    `);
-    insertStatement.run(
-      task.approval_id,
-      task.profile_id || 'prof_writer_001',
-      task.action_hash,
-      task.capability || 'sigil.core/read_shared_context',
-      task.scope || 'watchlist:default',
-      task.requested_by || 'agent_trm_harvester'
-    );
-  } else {
-    const queueFile = path.resolve(queuePath || './sigil-pending-tasks.json');
-    const dir = path.dirname(queueFile);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    const record = {
-      approval_id: task.approval_id,
-      action_hash: task.action_hash,
-      status: 'pending',
-      created_at: new Date().toISOString()
-    };
-    let items = [];
-    if (fs.existsSync(queueFile)) {
-      try {
-        items = JSON.parse(fs.readFileSync(queueFile, 'utf8'));
-        if (!Array.isArray(items)) items = [];
-      } catch {
-        items = [];
-      }
-    }
-    items.push(record);
-    const tmpFile = `${queueFile}.tmp.${process.pid}.${Date.now()}`;
-    fs.writeFileSync(tmpFile, JSON.stringify(items, null, 2), 'utf8');
-    fs.renameSync(tmpFile, queueFile);
-  }
+  const envelope = {
+    protocol: "sigil/1",
+    message_id: task.approval_id || `msg_${crypto.randomUUID()}`,
+    conversation_id: "conv_trm_legacy",
+    message_type: "task.request",
+    sender: { owner_id: task.requested_by || "agent_trm_harvester", endpoint_id: "ep_legacy", kind: "agent" },
+    recipient: { owner_id: "usr_operator", endpoint_id: "ep_sigil_relay" },
+    body: { task_id: task.approval_id, action_hash: task.action_hash },
+    context_refs: [],
+    capabilities: [task.capability || "sigil.core/read_shared_context"],
+    approval: { required: true, status: "pending" },
+    created_at: new Date().toISOString(),
+    expires_at: new Date(Date.now() + 86400000).toISOString()
+  };
+  const keyPair = generateSigilKeyPair();
+  const signed = signSigilEnvelope(envelope, keyPair.privateKeyPem, keyPair.keyId);
+  return dispatchSigilEnvelope(db, signed, queuePath || './sigil-queue.jsonl');
 }
 
 /**
@@ -761,12 +763,22 @@ export async function monitorCompetitorWatchlist(watchlistPath, options = {}) {
     let totalTargets = watchlist.targets.length;
     let cacheHits = 0;
     let driftsDetected = 0;
+    let fetchErrors = 0;
     const queuedEnvelopes = [];
 
     for (const target of watchlist.targets) {
       logInfo(`Evaluating target: '${target.target_id}' (${target.type}) ...`);
 
-      const content = await fetchTargetContent(target, options);
+      let content;
+      try {
+        content = await fetchTargetContent(target, options);
+      } catch (err) {
+        logError(`Target '${target.target_id}' fetch failed: ${err.message}`);
+        fetchErrors++;
+        watchlist.memory_alignment.status = 'stale';
+        continue;
+      }
+
       const hash = crypto.createHash('sha256').update(content).digest('hex');
 
       if (hash === target.hash_baseline) {
@@ -790,7 +802,6 @@ export async function monitorCompetitorWatchlist(watchlistPath, options = {}) {
         if (watchlist.human_in_the_loop?.step_up_required) {
           logWarn(`  -> Constructing signed Sigil envelope for high-assurance human step-up gate...`);
 
-          // Strictly require human approval: always status: "pending" from automated watcher
           const unsignedEnvelope = {
             protocol: "sigil/1",
             message_id: `msg_${crypto.randomUUID()}`,
@@ -821,7 +832,7 @@ export async function monitorCompetitorWatchlist(watchlistPath, options = {}) {
             capabilities: ["sigil.core/read_shared_context"],
             approval: {
               required: true,
-              status: "pending" // Automated monitor CANNOT self-approve
+              status: "pending"
             },
             correlation_id: `corr_${target.target_id}`,
             idempotency_key: `idem_${target.target_id}_${hash}`,
@@ -859,6 +870,7 @@ export async function monitorCompetitorWatchlist(watchlistPath, options = {}) {
       totalTargets,
       cacheHits,
       driftsDetected,
+      fetchErrors,
       queuedEnvelopes,
       keyPair
     };
@@ -885,7 +897,7 @@ if (process.argv[1] && (process.argv[1].endsWith('watch-competitors-v2.mjs') || 
     queuePath: queueArg
   }).then(res => {
     console.log(`\n================================================================================`);
-    console.log(`RUN SUMMARY: Targets: ${res.totalTargets} | Hits (0 LLM Spend): ${res.cacheHits} | Drifts: ${res.driftsDetected} | Queued: ${res.queuedEnvelopes.length}`);
+    console.log(`RUN SUMMARY: Targets: ${res.totalTargets} | Hits (0 LLM Spend): ${res.cacheHits} | Drifts: ${res.driftsDetected} | Errors: ${res.fetchErrors} | Queued: ${res.queuedEnvelopes.length}`);
     console.log(`================================================================================\n`);
   }).catch(err => {
     logError(`Fatal run error: ${err.message}`);
