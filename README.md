@@ -13,7 +13,18 @@ The TRM pipeline ingests structured research payloads, enforces strict semantic 
 - **Output directories**: `wiki/research/`, `wiki/concepts/`, and `obsidian/vault/wiki/`
 - **Execution command**: `npm run kb:pipeline:trm`
 
-### 2. Local SQLite context cache
+### 2. Competitor Watchlist & Drift Monitoring (`watch-competitors-v2.mjs`)
+Automated daemon for monitoring competitor codebases and upstream specifications (e.g., Google SAM, Volcengine OpenViking) against local Layer 2 reference baselines.
+
+- **Security & SSRF mitigation**: Pins DNS queries directly to socket connections, blocking private IP ranges, cloud metadata endpoints, loopback addresses, and unauthorized schemes.
+- **Drift detection**: Performs SHA-256 target hash comparison, triggering zero token spend on cache hits and executing longest common subsequence (LCS) line diffs on drift.
+- **Sigil governance gate**: Constructs RFC 8785 canonicalized, Ed25519-signed Sigil v1.0.0 envelopes persisted into SQLite `local_approvals` for human-in-the-loop review.
+- **Execution commands**:
+  - Run monitor: `npm run trm:watch`
+  - Run integration validation: `npm run test:watchlist`
+  - Run test suite: `npm run test:trm:watch`
+
+### 3. Local SQLite context cache
 An embedded SQLite database utilizing `fts5` full-text search with BM25 ranking and Unicode tokenization. Provides sub-millisecond lexical search and snippet extraction without network latency.
 
 - **Database path**: `.kb_cache/knowledge.db`
@@ -22,7 +33,7 @@ An embedded SQLite database utilizing `fts5` full-text search with BM25 ranking 
   - `kb_fts`: Virtual FTS5 table synchronized via database triggers (`AFTER INSERT`, `AFTER UPDATE`, and `AFTER DELETE`).
 - **Sync script**: `npm run kb:cache:sync`
 
-### 3. Model Context Protocol (MCP) server
+### 4. Model Context Protocol (MCP) server
 Exposes the local SQLite context cache directly to interactive coding agents (e.g., Antigravity, Claude Desktop, Cursor) via stdio JSON-RPC.
 
 - **Server entrypoint**: `scripts/mcp-memory-server.mjs`
@@ -34,6 +45,18 @@ Exposes the local SQLite context cache directly to interactive coding agents (e.
 ---
 
 ## Operating commands
+
+### Competitor watchlist monitoring
+```bash
+# Monitor competitor targets and evaluate drift
+npm run trm:watch
+
+# Execute SQLite foreign-key and Sigil approval integration test
+npm run test:watchlist
+
+# Run complete watcher unit & vitest suites
+npm run test:trm:watch
+```
 
 ### Cache management & MCP server
 ```bash
