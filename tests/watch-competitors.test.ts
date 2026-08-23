@@ -273,6 +273,26 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
       expect(() => dispatchSigilEnvelope(null, env, testQueuePath)).toThrow(/KEY_REGISTRY_REQUIRED/);
     });
 
+    it('rejects file-queue dispatch when supplied publicKeyPem does not match envelope signature', () => {
+      const keyPair1 = generateSigilKeyPair();
+      const keyPair2 = generateSigilKeyPair(); // Wrong key pair
+
+      const env = signSigilEnvelope({
+        protocol: "sigil/1", message_id: "msg_mismatch_key_test", conversation_id: "conv_mismatch",
+        message_type: "task.request",
+        sender: { owner_id: "usr_1", endpoint_id: "ep_1", kind: "agent" },
+        recipient: { owner_id: "usr_2", endpoint_id: "ep_2" },
+        body: { task_id: "mismatch_key" }, context_refs: [], capabilities: [],
+        approval: { required: false, status: "none" },
+        created_at: "2026-08-23T12:00:00Z", expires_at: "2026-08-24T12:00:00Z"
+      }, keyPair1.privateKeyPem, keyPair1.keyId);
+
+      // Attempting to dispatch with keyPair2's public key should be rejected as KEY_MISMATCH
+      expect(() => dispatchSigilEnvelope(null, env, testQueuePath, undefined, { publicKeyPem: keyPair2.publicKeyPem }))
+        .toThrow(/KEY_MISMATCH/);
+    });
+
+
     it('fails closed when lock cannot be acquired (simulated stale lock)', () => {
       const staleLockPath = `${testQueuePath}.lock`;
       fs.writeFileSync(staleLockPath, 'locked', 'utf8');

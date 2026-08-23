@@ -757,6 +757,12 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
     );
   }
 
+  // Cryptographic binding validation: ensure supplied public key actually verifies the envelope signature
+  if (!verifySigilEnvelope(signedEnvelope, keyOpts.publicKeyPem)) {
+    throw new Error(`KEY_MISMATCH: Provided publicKeyPem does not verify signature for envelope "${signedEnvelope.message_id}".`);
+  }
+
+
   const resolvedPath = path.resolve(queuePath);
   const dir = path.dirname(resolvedPath);
   if (!fs.existsSync(dir)) {
