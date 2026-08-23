@@ -622,23 +622,54 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
       .update(canonicalizeJson(signedEnvelope.body))
       .digest('hex');
 
-    const stmt = db.prepare(`
-      INSERT OR IGNORE INTO local_approvals (
-        approval_id, profile_id, action_hash, capability, scope, requested_by, status, envelope_json
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+    // Resolve profile_id from connector_profiles or fallback
+    let profileId = 'prof_writer_001';
+    try {
+      const pRow = db.prepare("SELECT profile_id FROM connector_profiles LIMIT 1").get();
+      if (pRow && pRow.profile_id) {
+        profileId = pRow.profile_id;
+      }
+    } catch {
+      // Table absent or simple schema
+    }
 
-    const res = stmt.run(
-      signedEnvelope.message_id,
-      signedEnvelope.sender.endpoint_id,
-      actionHash,
-      signedEnvelope.capabilities[0] || 'sigil.core/read_shared_context',
-      `watchlist:${signedEnvelope.body.watchlist_id}`,
-      signedEnvelope.sender.owner_id,
-      signedEnvelope.approval.status,
-      JSON.stringify(signedEnvelope)
-    );
-    return res.changes > 0;
+    const tableInfo = db.prepare("PRAGMA table_info(local_approvals)").all();
+    const hasEnvelopeJson = tableInfo.some(col => col.name === 'envelope_json');
+
+    if (hasEnvelopeJson) {
+      const stmt = db.prepare(`
+        INSERT OR IGNORE INTO local_approvals (
+          approval_id, profile_id, action_hash, capability, scope, requested_by, status, envelope_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `);
+      const res = stmt.run(
+        signedEnvelope.message_id,
+        profileId,
+        actionHash,
+        signedEnvelope.capabilities?.[0] || 'sigil.core/read_shared_context',
+        `watchlist:${signedEnvelope.body?.watchlist_id || 'default'}`,
+        signedEnvelope.sender?.owner_id || 'usr_system',
+        signedEnvelope.approval?.status || 'pending',
+        JSON.stringify(signedEnvelope)
+      );
+      return res.changes > 0;
+    } else {
+      const stmt = db.prepare(`
+        INSERT OR IGNORE INTO local_approvals (
+          approval_id, profile_id, action_hash, capability, scope, requested_by, status
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      `);
+      const res = stmt.run(
+        signedEnvelope.message_id,
+        profileId,
+        actionHash,
+        signedEnvelope.capabilities?.[0] || 'sigil.core/read_shared_context',
+        `watchlist:${signedEnvelope.body?.watchlist_id || 'default'}`,
+        signedEnvelope.sender?.owner_id || 'usr_system',
+        signedEnvelope.approval?.status || 'pending'
+      );
+      return res.changes > 0;
+    }
   }
 
   const resolvedPath = path.resolve(queuePath);
@@ -715,11 +746,21 @@ export function dispatchSigilTask(db, task, queuePath) {
  * @param {string} watchlistPath
  * @param {object} [options]
  */
-export async function monitorCompetitorWatchlist(watchlistPath, options = {}) {
+export async function monitorCompetitorWatchlist(watchlistPath, optionsOrDbPath = {}, maybeSchemaPath = null) {
   logInfo(`Initializing Competitor Watchlist Monitor using target config: ${watchlistPath}...`);
 
   if (!fs.existsSync(watchlistPath)) {
     throw new Error(`FILE_NOT_FOUND: Watchlist configuration at '${watchlistPath}' does not exist.`);
+  }
+
+  let options = {};
+  if (typeof optionsOrDbPath === 'string') {
+    options = { dbPath: optionsOrDbPath, schemaPath: maybeSchemaPath };
+  } else if (optionsOrDbPath && typeof optionsOrDbPath === 'object') {
+    options = { ...optionsOrDbPath };
+    if (maybeSchemaPath && typeof maybeSchemaPath === 'string' && !options.schemaPath) {
+      options.schemaPath = maybeSchemaPath;
+    }
   }
 
   const isDryRun = process.env.DRY_RUN === 'true' || options.dryRun === true;
