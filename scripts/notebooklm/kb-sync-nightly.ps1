@@ -165,7 +165,26 @@ if ($NodeCmd) {
         Send-WebhookNotification -Title "Stage 2 Artifact Exception" -Message "Stage 2 threw exception: $_" -Level "WARN"
     }
 } else {
-    Write-LogWarn "node.exe not found in PATH. Stage 2 skipped."
+# --- STAGE 3: SYNC TO GITHUB WIKI ---
+Write-Host ""
+Write-LogInfo "================================================================================"
+Write-LogInfo "STAGE 3: Synchronizing documentation to remote GitHub Wiki"
+Write-LogInfo "================================================================================"
+
+$WikiSyncScript = Join-Path $RepoRoot "scripts\sync-github-wiki.mjs"
+if (Test-Path $WikiSyncScript) {
+    try {
+        & node "$WikiSyncScript"
+        if ($LASTEXITCODE -eq 0) {
+            Write-LogInfo "Stage 3 completed: GitHub Wiki synchronized."
+        } else {
+            Write-LogWarn "Stage 3 GitHub Wiki sync exited with code $LASTEXITCODE."
+        }
+    } catch {
+        Write-LogWarn "Stage 3 GitHub Wiki sync threw exception: $_"
+    }
+} else {
+    Write-LogWarn "sync-github-wiki.mjs not found. Stage 3 skipped."
 }
 
 Write-Host ""
