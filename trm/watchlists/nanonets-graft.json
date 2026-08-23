@@ -1,0 +1,25 @@
+{
+  "watchlist_id": "trm:watchlist:nanonets-graft",
+  "competitor_name": "NanoNets Graft Graph Engine",
+  "last_monitored_at": "2026-08-23T12:00:00.000Z",
+  "targets": [
+    {
+      "target_id": "nanonets-graft-core",
+      "url": "https://github.com/nanonets/graft",
+      "type": "git_repo",
+      "hash_baseline": "382f6e9196b0ee6b4d3257321e050cebfb603848b598ee7ce8df77c0f1c93a02"
+    }
+  ],
+  "memory_alignment": {
+    "layer2_wiki_path": "research/nanonets-graft.md",
+    "status": "stable",
+    "delta_rules": {
+      "trigger_comparison": true,
+      "diff_sensitivity": "high"
+    }
+  },
+  "human_in_the_loop": {
+    "step_up_required": true,
+    "assurance_level_gate": "high"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "watchlist_id": "trm:watchlist:volcengine-openviking",
+  "competitor_name": "ByteDance Volcengine OpenViking",
+  "last_monitored_at": "2026-08-23T12:00:00.000Z",
+  "targets": [
+    {
+      "target_id": "openviking-repo-protocol",
+      "url": "https://github.com/volcengine/OpenViking",
+      "type": "git_repo",
+      "hash_baseline": "70327f2c82ffef817c1bf2092101007297e68dbb5f9aa9beecfdfdcab18683db"
+    }
+  ],
+  "memory_alignment": {
+    "layer2_wiki_path": "research/volcengine-openviking.md",
+    "status": "stable",
+    "delta_rules": {
+      "trigger_comparison": true,
+      "diff_sensitivity": "high"
+    }
+  },
+  "human_in_the_loop": {
+    "step_up_required": true,
+    "assurance_level_gate": "high"
+  }
+}

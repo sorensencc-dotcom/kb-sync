@@ -84,6 +84,7 @@
     "test:trm-boundary": "node --test --experimental-strip-types tests/trm-cache-boundary.test.mjs",
     "trm:materialize-approved": "node scripts/materialize-approved-result.mjs",
     "trm:watch": "node watch-competitors-v2.mjs",
+    "trm:approvals": "node scripts/process-sigil-approvals.mjs",
     "test:trm:watch": "node --test tests/watch-competitors-v2.test.mjs && npx vitest run tests/watch-competitors.test.ts"
   },
   "optionalDependencies": {
