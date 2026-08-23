@@ -82,7 +82,9 @@
     "trm:triage": "node scripts/trm-triage.mjs",
     "test:trm:triage": "node --test --experimental-strip-types tests/trm-gap-triage.test.ts",
     "test:trm-boundary": "node --test --experimental-strip-types tests/trm-cache-boundary.test.mjs",
-    "trm:materialize-approved": "node scripts/materialize-approved-result.mjs"
+    "trm:materialize-approved": "node scripts/materialize-approved-result.mjs",
+    "trm:watch": "node watch-competitors-v2.mjs",
+    "test:trm:watch": "node --test tests/watch-competitors-v2.test.mjs && npx vitest run tests/watch-competitors.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
