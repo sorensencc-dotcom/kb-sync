@@ -609,17 +609,89 @@ export function performStructuredDiff(localPath, newPayload) {
 }
 
 /**
+ * Returns the canonical path for the file-queue key registry sidecar.
+ * Lives alongside the JSONL queue in the same directory.
+ * @param {string} queuePath - Resolved absolute path to the JSONL queue file.
+ * @returns {string}
+ */
+export function keyRegistryPath(queuePath) {
+  return path.join(path.dirname(path.resolve(queuePath)), 'sigil-key-registry.json');
+}
+
+/**
+ * Persists a public signing key into the file-queue key registry sidecar.
+ * Uses INSERT-OR-IGNORE semantics: an existing entry for `key_id` is never overwritten.
+ * Written atomically via a tmp-file rename to prevent partial reads by a relay.
+ *
+ * Key-distribution contract for file-queue deployments:
+ *   A relay process reads `sigil-key-registry.json` from the same directory as
+ *   `sigil-queue.jsonl`. It looks up `signature.key_id` from each queued envelope
+ *   to retrieve the corresponding `public_key_pem` and verify the signature.
+ *   Both files must be shared (shared mount, rsync replica, or S3 object prefix)
+ *   with the relay before verification is possible.
+ *
+ * @param {{ keyId: string, publicKeyPem: string, algorithm?: string, expiresAt?: string }} keyEntry
+ * @param {string} queuePath - Path to the JSONL queue file (used to locate the registry).
+ * @returns {boolean} True if a new key was registered, false if already present.
+ */
+export function persistKeyToFileRegistry(keyEntry, queuePath) {
+  const registryPath = keyRegistryPath(queuePath);
+  const dir = path.dirname(registryPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  let registry = {};
+  if (fs.existsSync(registryPath)) {
+    try {
+      registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+    } catch {
+      registry = {}; // Corrupt file; start fresh
+    }
+  }
+
+  if (registry[keyEntry.keyId]) {
+    return false; // Already registered; INSERT-OR-IGNORE
+  }
+
+  registry[keyEntry.keyId] = {
+    key_id: keyEntry.keyId,
+    algorithm: keyEntry.algorithm || 'Ed25519',
+    public_key_pem: keyEntry.publicKeyPem,
+    created_at: new Date().toISOString(),
+    expires_at: keyEntry.expiresAt || new Date(Date.now() + 30 * 24 * 3600 * 1000).toISOString()
+  };
+
+  // Atomic write: write to a temp file then rename so the relay never reads a partial file
+  const tmpPath = `${registryPath}.tmp.${process.pid}`;
+  fs.writeFileSync(tmpPath, JSON.stringify(registry, null, 2), 'utf8');
+  fs.renameSync(tmpPath, registryPath);
+  return true;
+}
+
+/**
  * Concurrency-safe, deduplicated JSONL queue dispatcher.
  * Uses atomic read-check-append with locking semantics.
+ *
+ * Key lifecycle:
+ *   - SQLite mode (`db` non-null): signing key is registered in `endpoint_keys` by the caller
+ *     before dispatch. The relay shares or reads the same database.
+ *   - File-queue mode (`db` null): caller supplies `opts.publicKeyPem` so the public key can
+ *     be written to the `sigil-key-registry.json` sidecar alongside the queue file.
+ *     Omitting `opts.publicKeyPem` is rejected to prevent unverifiable queue entries.
+ *
  * @param {object|null} db
  * @param {object} signedEnvelope
  * @param {string} [queuePath]
  * @param {string} [profileId] - Explicit profile_id for the approval row. Must match an existing
  *   connector_profiles row when `db` is provided. Passing null/undefined falls back to
  *   'prof_trm_system', but callers should always supply this explicitly.
+ * @param {{ publicKeyPem?: string, algorithm?: string, expiresAt?: string }} [keyOpts]
+ *   Required in file-queue mode. `publicKeyPem` is the Ed25519 public key corresponding to
+ *   `signedEnvelope.signature.key_id`.
  * @returns {boolean} True if appended, false if deduplicated.
  */
-export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-queue.jsonl', profileId) {
+export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-queue.jsonl', profileId, keyOpts = {}) {
   if (db) {
     const actionHash = crypto.createHash('sha256')
       .update(canonicalizeJson(signedEnvelope.body))
@@ -675,10 +747,36 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
     }
   }
 
+  // File-queue mode: require publicKeyPem so the relay can verify queued envelopes.
+  // Without it the signature.key_id in the envelope is a dead reference.
+  if (!keyOpts.publicKeyPem) {
+    throw new Error(
+      `KEY_REGISTRY_REQUIRED: dispatchSigilEnvelope() in file-queue mode requires opts.publicKeyPem ` +
+      `so the signing public key can be persisted to the key registry sidecar alongside the queue. ` +
+      `Pass the Ed25519 public key (PEM) that matches signature.key_id="${signedEnvelope.signature?.key_id}".`
+    );
+  }
+
   const resolvedPath = path.resolve(queuePath);
   const dir = path.dirname(resolvedPath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
+  }
+
+  // Persist public key to the key registry sidecar before writing the envelope.
+  // This ensures the relay always finds the key even if the process crashes after
+  // the queue append but before any other persistence.
+  const keyId = signedEnvelope.signature?.key_id;
+  if (keyId) {
+    const registered = persistKeyToFileRegistry({
+      keyId,
+      publicKeyPem: keyOpts.publicKeyPem,
+      algorithm: keyOpts.algorithm,
+      expiresAt: keyOpts.expiresAt
+    }, resolvedPath);
+    if (registered) {
+      logInfo(`  -> Public key ${keyId} registered in file key registry.`);
+    }
   }
 
   // Atomic file lock / deduplication check — fail closed if lock is unavailable
@@ -751,8 +849,9 @@ export function dispatchSigilTask(db, task, queuePath, profileId) {
   const keyPair = generateSigilKeyPair();
   const signed = signSigilEnvelope(envelope, keyPair.privateKeyPem, keyPair.keyId);
   const resolvedProfile = profileId || task.profile_id || 'prof_trm_system';
-  return dispatchSigilEnvelope(db, signed, queuePath || './sigil-queue.jsonl', resolvedProfile);
+  return dispatchSigilEnvelope(db, signed, queuePath || './sigil-queue.jsonl', resolvedProfile, { publicKeyPem: keyPair.publicKeyPem });
 }
+
 
 /**
  * Main monitor execution engine.
@@ -1005,7 +1104,7 @@ export async function monitorCompetitorWatchlist(watchlistPath, optionsOrDbPath 
           }
 
           if (!isDryRun) {
-            const queued = dispatchSigilEnvelope(db, signedEnvelope, options.queuePath, options._systemProfileId);
+            const queued = dispatchSigilEnvelope(db, signedEnvelope, options.queuePath, options._systemProfileId, { publicKeyPem: keyPair.publicKeyPem });
             if (queued) {
               logInfo(`  -> ✓ Signed Sigil envelope [ID: ${signedEnvelope.message_id}] persisted.`);
             }

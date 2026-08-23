@@ -15,7 +15,9 @@ import {
   STATIC_MOCK_TARGETS,
   dispatchSigilEnvelope,
   dispatchSigilTask,
-  monitorCompetitorWatchlist
+  monitorCompetitorWatchlist,
+  keyRegistryPath,
+  persistKeyToFileRegistry
 } from '../watch-competitors-v2.mjs';
 
 describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
@@ -197,14 +199,78 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
         expires_at: "2026-08-24T12:00:00Z"
       }, keyPair.privateKeyPem, keyPair.keyId);
 
-      const firstAdd = dispatchSigilEnvelope(null, env, testQueuePath);
-      const secondAdd = dispatchSigilEnvelope(null, env, testQueuePath);
+      const keyOpts = { publicKeyPem: keyPair.publicKeyPem };
+      const firstAdd = dispatchSigilEnvelope(null, env, testQueuePath, undefined, keyOpts);
+      const secondAdd = dispatchSigilEnvelope(null, env, testQueuePath, undefined, keyOpts);
 
       expect(firstAdd).toBe(true);
       expect(secondAdd).toBe(false); // Deduplicated
 
       const lines = fs.readFileSync(testQueuePath, 'utf8').trim().split('\n');
       expect(lines.length).toBe(1);
+
+      // Key registry sidecar must be written alongside the queue
+      const registryFile = keyRegistryPath(testQueuePath);
+      expect(fs.existsSync(registryFile)).toBe(true);
+      const registry = JSON.parse(fs.readFileSync(registryFile, 'utf8'));
+      expect(registry[keyPair.keyId]).toBeDefined();
+      expect(registry[keyPair.keyId].public_key_pem).toMatch(/BEGIN PUBLIC KEY/);
+    });
+
+    it('allows a relay to verify file-queued envelopes via the sidecar key registry', async () => {
+      const mockWatchlist = {
+        watchlist_id: "trm:watchlist:google-sam", competitor_name: "Google SAM",
+        last_monitored_at: "2026-08-01T00:00:00Z",
+        targets: [{ target_id: "sam-repo", url: "https://github.com/google/sam", type: "git_repo", hash_baseline: "0".repeat(64) }],
+        memory_alignment: { layer2_wiki_path: "wiki-baseline.md", status: "stable", delta_rules: { trigger_comparison: true } },
+        human_in_the_loop: { step_up_required: true }
+      };
+      fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
+
+      const fileQueuePath = path.join(testTmpDir, 'file-relay-test-queue.jsonl');
+      const result = await monitorCompetitorWatchlist(testWatchlistPath, {
+        dbPath: null, forceMock: true, wikiRoot: testTmpDir, queuePath: fileQueuePath
+      });
+
+      expect(result.queuedEnvelopes.length).toBeGreaterThan(0);
+      expect(fs.existsSync(fileQueuePath)).toBe(true);
+
+      // Verify sidecar key registry exists alongside file queue
+      const registryFile = keyRegistryPath(fileQueuePath);
+      expect(fs.existsSync(registryFile)).toBe(true);
+      const registry = JSON.parse(fs.readFileSync(registryFile, 'utf8'));
+
+      // Simulate file-queue relay: read JSONL line by line, fetch public key from sidecar registry, and verify
+      const queueLines = fs.readFileSync(fileQueuePath, 'utf8').trim().split('\n');
+      expect(queueLines.length).toBeGreaterThan(0);
+
+      for (const line of queueLines) {
+        const envelope = JSON.parse(line);
+        const keyId = envelope.signature?.key_id;
+        expect(keyId).toBeTruthy();
+
+        const keyEntry = registry[keyId];
+        expect(keyEntry).toBeDefined();
+        expect(keyEntry.public_key_pem).toMatch(/BEGIN PUBLIC KEY/);
+
+        const isValid = verifySigilEnvelope(envelope, keyEntry.public_key_pem);
+        expect(isValid).toBe(true);
+      }
+    });
+
+    it('rejects file-queue dispatch when publicKeyPem is not supplied', () => {
+      const keyPair = generateSigilKeyPair();
+      const env = signSigilEnvelope({
+        protocol: "sigil/1", message_id: "msg_no_key_test", conversation_id: "conv_nokey",
+        message_type: "task.request",
+        sender: { owner_id: "usr_1", endpoint_id: "ep_1", kind: "agent" },
+        recipient: { owner_id: "usr_2", endpoint_id: "ep_2" },
+        body: { task_id: "no_key" }, context_refs: [], capabilities: [],
+        approval: { required: false, status: "none" },
+        created_at: "2026-08-23T12:00:00Z", expires_at: "2026-08-24T12:00:00Z"
+      }, keyPair.privateKeyPem, keyPair.keyId);
+
+      expect(() => dispatchSigilEnvelope(null, env, testQueuePath)).toThrow(/KEY_REGISTRY_REQUIRED/);
     });
 
     it('fails closed when lock cannot be acquired (simulated stale lock)', () => {
@@ -221,10 +287,11 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
         created_at: "2026-08-23T12:00:00Z", expires_at: "2026-08-24T12:00:00Z"
       }, keyPair.privateKeyPem, keyPair.keyId);
 
-      expect(() => dispatchSigilEnvelope(null, env, testQueuePath)).toThrow(/QUEUE_LOCK_TIMEOUT/);
+      expect(() => dispatchSigilEnvelope(null, env, testQueuePath, undefined, { publicKeyPem: keyPair.publicKeyPem })).toThrow(/QUEUE_LOCK_TIMEOUT/);
       if (fs.existsSync(staleLockPath)) fs.unlinkSync(staleLockPath);
     });
   });
+
 
   describe('6a. SQLite Schema Provisioning & Migrations', () => {
     it('bootstraps fresh database with all required tables and auto-provisions system profile', async () => {
