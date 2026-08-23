@@ -306,6 +306,100 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
         dbPath, forceMock: true, wikiRoot: testTmpDir, requireExistingProfile: true
       })).rejects.toThrow(/DB_PREREQUISITE/);
     });
+
+    it('approval row uses the explicit system profile, not an arbitrary profile from LIMIT 1', async () => {
+      const dbPath = path.join(testTmpDir, 'multi-profile.db');
+      const { default: BetterSQLite } = await import('better-sqlite3');
+      const db = new BetterSQLite(dbPath);
+      // Seed schema and two profiles: a decoy first, the real system profile second
+      db.exec(`
+        CREATE TABLE schema_version (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')));
+        CREATE TABLE connector_profiles (
+          profile_id TEXT PRIMARY KEY, owner_id TEXT NOT NULL, endpoint_id TEXT NOT NULL UNIQUE,
+          display_name TEXT NOT NULL, relay_url TEXT NOT NULL, status TEXT DEFAULT 'active',
+          secure_key_reference TEXT NOT NULL, secure_token_reference TEXT NOT NULL,
+          created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+        );
+        CREATE TABLE local_approvals (
+          approval_id TEXT PRIMARY KEY, profile_id TEXT NOT NULL,
+          action_hash TEXT NOT NULL, capability TEXT NOT NULL, scope TEXT NOT NULL,
+          requested_by TEXT NOT NULL, status TEXT DEFAULT 'pending',
+          decision_signature TEXT, envelope_json TEXT,
+          created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')), decided_at TEXT
+        );
+        CREATE TABLE endpoint_keys (
+          key_id TEXT PRIMARY KEY, profile_id TEXT NOT NULL, algorithm TEXT NOT NULL DEFAULT 'Ed25519',
+          public_key_pem TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')), expires_at TEXT
+        );
+        INSERT INTO schema_version VALUES (3, strftime('%Y-%m-%dT%H:%M:%fZ','now'));
+        INSERT INTO connector_profiles VALUES ('prof_decoy_first','usr_other','ep_decoy','Decoy','sigil://relay/decoy','active','key_ref:none','token_ref:none',strftime('%Y-%m-%dT%H:%M:%fZ','now'));
+        INSERT INTO connector_profiles VALUES ('prof_trm_system','usr_system','ep_trm_watcher','TRM Watcher','sigil://relay/trm','active','key_ref:none','token_ref:none',strftime('%Y-%m-%dT%H:%M:%fZ','now'));
+      `);
+      db.close();
+
+      const mockWatchlist = {
+        watchlist_id: "trm:watchlist:google-sam", competitor_name: "Google SAM",
+        last_monitored_at: "2026-08-01T00:00:00Z",
+        targets: [{ target_id: "sam-repo", url: "https://github.com/google/sam", type: "git_repo", hash_baseline: "0".repeat(64) }],
+        memory_alignment: { layer2_wiki_path: "wiki-baseline.md", status: "stable", delta_rules: { trigger_comparison: true } },
+        human_in_the_loop: { step_up_required: true }
+      };
+      fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
+
+      await monitorCompetitorWatchlist(testWatchlistPath, {
+        dbPath, forceMock: true, wikiRoot: testTmpDir, queuePath: testQueuePath
+      });
+
+      const verifyDb = new BetterSQLite(dbPath);
+      const rows = verifyDb.prepare('SELECT profile_id FROM local_approvals').all() as any[];
+      verifyDb.close();
+
+      // Every approval row must use the system profile, never the decoy
+      expect(rows.length).toBeGreaterThan(0);
+      for (const row of rows) {
+        expect(row.profile_id).toBe('prof_trm_system');
+        expect(row.profile_id).not.toBe('prof_decoy_first');
+      }
+    });
+
+    it('relay key-distribution contract: endpoint_keys holds verifiable public key for every signed envelope', async () => {
+      // This test establishes the key-distribution contract: a relay process sharing or reading
+      // the same SQLite database can look up the public key by key_id and independently verify
+      // any signed envelope. This is the trust anchor — relay and watcher share this DB
+      // (or a replica) as the key store. No external key registry is required for the local relay model.
+      const dbPath = path.join(testTmpDir, 'relay-keycheck.db');
+      const mockWatchlist = {
+        watchlist_id: "trm:watchlist:google-sam", competitor_name: "Google SAM",
+        last_monitored_at: "2026-08-01T00:00:00Z",
+        targets: [{ target_id: "sam-repo", url: "https://github.com/google/sam", type: "git_repo", hash_baseline: "0".repeat(64) }],
+        memory_alignment: { layer2_wiki_path: "wiki-baseline.md", status: "stable", delta_rules: { trigger_comparison: true } },
+        human_in_the_loop: { step_up_required: true }
+      };
+      fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
+
+      const result = await monitorCompetitorWatchlist(testWatchlistPath, {
+        dbPath, forceMock: true, wikiRoot: testTmpDir, queuePath: testQueuePath
+      });
+
+      expect(result.queuedEnvelopes.length).toBeGreaterThan(0);
+
+      // Simulate relay: open the same DB, look up the key_id from the queued envelope, verify signature
+      const { default: BetterSQLite } = await import('better-sqlite3');
+      const relayDb = new BetterSQLite(dbPath, { readonly: true });
+      for (const envelope of result.queuedEnvelopes) {
+        const keyId = envelope.signature?.key_id;
+        expect(keyId).toBeTruthy();
+
+        const keyRow = relayDb.prepare('SELECT public_key_pem FROM endpoint_keys WHERE key_id = ?').get(keyId) as any;
+        expect(keyRow).not.toBeNull(); // key must be registered
+        expect(keyRow.public_key_pem).toMatch(/BEGIN PUBLIC KEY/);
+
+        // Relay verifies the envelope using the retrieved public key
+        const verified = verifySigilEnvelope(envelope, keyRow.public_key_pem);
+        expect(verified).toBe(true);
+      }
+      relayDb.close();
+    });
   });
 
   describe('6. Live Transport & Fail-Closed Guardrails', () => {

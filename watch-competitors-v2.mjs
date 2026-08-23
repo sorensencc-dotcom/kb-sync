@@ -614,26 +614,29 @@ export function performStructuredDiff(localPath, newPayload) {
  * @param {object|null} db
  * @param {object} signedEnvelope
  * @param {string} [queuePath]
+ * @param {string} [profileId] - Explicit profile_id for the approval row. Must match an existing
+ *   connector_profiles row when `db` is provided. Passing null/undefined falls back to
+ *   'prof_trm_system', but callers should always supply this explicitly.
  * @returns {boolean} True if appended, false if deduplicated.
  */
-export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-queue.jsonl') {
+export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-queue.jsonl', profileId) {
   if (db) {
     const actionHash = crypto.createHash('sha256')
       .update(canonicalizeJson(signedEnvelope.body))
       .digest('hex');
 
-    // Resolve profile_id from connector_profiles or fallback
-    let profileId = 'prof_writer_001';
-    try {
-      const pRow = db.prepare("SELECT profile_id FROM connector_profiles LIMIT 1").get();
-      if (pRow && pRow.profile_id) {
-        profileId = pRow.profile_id;
-      }
-    } catch {
-      // Table absent or simple schema
+    // Resolve profile_id: use the caller-supplied value, or look it up by the well-known
+    // system profile ID rather than letting LIMIT 1 pick an arbitrary row.
+    const resolvedProfileId = profileId || 'prof_trm_system';
+    const profileRow = db.prepare('SELECT profile_id FROM connector_profiles WHERE profile_id = ?').get(resolvedProfileId);
+    if (!profileRow) {
+      throw new Error(
+        `DISPATCH_PROFILE_MISSING: No connector_profiles row found for profile_id="${resolvedProfileId}". ` +
+        `Ensure the system profile is provisioned before dispatching envelopes.`
+      );
     }
 
-    const tableInfo = db.prepare("PRAGMA table_info(local_approvals)").all();
+    const tableInfo = db.prepare('PRAGMA table_info(local_approvals)').all();
     const hasEnvelopeJson = tableInfo.some(col => col.name === 'envelope_json');
 
     if (hasEnvelopeJson) {
@@ -644,7 +647,7 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
       `);
       const res = stmt.run(
         signedEnvelope.message_id,
-        profileId,
+        resolvedProfileId,
         actionHash,
         signedEnvelope.capabilities?.[0] || 'sigil.core/read_shared_context',
         `watchlist:${signedEnvelope.body?.watchlist_id || 'default'}`,
@@ -661,7 +664,7 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
       `);
       const res = stmt.run(
         signedEnvelope.message_id,
-        profileId,
+        resolvedProfileId,
         actionHash,
         signedEnvelope.capabilities?.[0] || 'sigil.core/read_shared_context',
         `watchlist:${signedEnvelope.body?.watchlist_id || 'default'}`,
@@ -727,8 +730,10 @@ export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-q
  * @param {object|null} db
  * @param {object} task
  * @param {string} [queuePath]
+ * @param {string} [profileId] - connector_profiles profile_id to attach the approval row to.
+ *   Defaults to task.profile_id when present, then 'prof_trm_system'.
  */
-export function dispatchSigilTask(db, task, queuePath) {
+export function dispatchSigilTask(db, task, queuePath, profileId) {
   const envelope = {
     protocol: "sigil/1",
     message_id: task.approval_id || `msg_${crypto.randomUUID()}`,
@@ -745,7 +750,8 @@ export function dispatchSigilTask(db, task, queuePath) {
   };
   const keyPair = generateSigilKeyPair();
   const signed = signSigilEnvelope(envelope, keyPair.privateKeyPem, keyPair.keyId);
-  return dispatchSigilEnvelope(db, signed, queuePath || './sigil-queue.jsonl');
+  const resolvedProfile = profileId || task.profile_id || 'prof_trm_system';
+  return dispatchSigilEnvelope(db, signed, queuePath || './sigil-queue.jsonl', resolvedProfile);
 }
 
 /**
@@ -999,7 +1005,7 @@ export async function monitorCompetitorWatchlist(watchlistPath, optionsOrDbPath 
           }
 
           if (!isDryRun) {
-            const queued = dispatchSigilEnvelope(db, signedEnvelope, options.queuePath);
+            const queued = dispatchSigilEnvelope(db, signedEnvelope, options.queuePath, options._systemProfileId);
             if (queued) {
               logInfo(`  -> ✓ Signed Sigil envelope [ID: ${signedEnvelope.message_id}] persisted.`);
             }
