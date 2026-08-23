@@ -1,0 +1,25 @@
+{
+  "watchlist_id": "trm:watchlist:google-sam",
+  "competitor_name": "Google Sovereign Agent Mesh",
+  "last_monitored_at": "2026-08-23T17:46:37.527Z",
+  "targets": [
+    {
+      "target_id": "sam-repo-p2p",
+      "url": "https://github.com/google/sam",
+      "type": "git_repo",
+      "hash_baseline": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "memory_alignment": {
+    "layer2_wiki_path": "research/google-sam-mesh.md",
+    "status": "drift_detected",
+    "delta_rules": {
+      "trigger_comparison": true,
+      "diff_sensitivity": "high"
+    }
+  },
+  "human_in_the_loop": {
+    "step_up_required": true,
+    "assurance_level_gate": "high"
+  }
+}
