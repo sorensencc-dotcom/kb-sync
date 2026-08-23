@@ -1,6 +1,8 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
+import * as https from 'node:https';
+import * as http from 'node:http';
 import * as dns from 'node:dns/promises';
 import { isIP } from 'node:net';
 
@@ -33,7 +35,7 @@ function logError(msg) {
 
 /**
  * Checks whether an IP address belongs to private, loopback, link-local, or reserved ranges.
- * Handles standard IPv4, IPv6, and IPv4-mapped IPv6 addresses (e.g. ::ffff:127.0.0.1).
+ * Handles standard IPv4, IPv6, and IPv4-mapped IPv6 addresses.
  * @param {string} ipAddress
  * @returns {boolean} True if the IP is private or blocked.
  */
@@ -45,7 +47,6 @@ export function isPrivateOrBlockedIp(ipAddress) {
   if (mappedMatch) {
     cleanIp = mappedMatch[1];
   } else if (cleanIp.startsWith('::ffff:')) {
-    // Hex IPv4-mapped notation like ::ffff:7f00:0001
     const hexPart = cleanIp.slice(7);
     const hexTokens = hexPart.split(':');
     if (hexTokens.length === 2) {
@@ -144,40 +145,94 @@ export function validateTargetUrl(urlString, options = {}) {
 }
 
 /**
- * Resolves a hostname against DNS and verifies all resulting IPs against SSRF rules.
- * @param {string} hostname
+ * Pins DNS resolution and performs anti-TOCTOU HTTP/HTTPS fetch with socket validation.
+ * @param {string} targetUrl
  * @param {object} [options]
+ * @returns {Promise<string>}
  */
-export async function verifyDnsSafety(hostname, options = {}) {
-  const cleanHost = hostname.replace(/^\[|\]$/g, '').toLowerCase();
-  if (options.allowTestTld && cleanHost.endsWith('.test')) {
-    return true;
-  }
-  if (isIP(cleanHost)) {
-    if (isPrivateOrBlockedIp(cleanHost)) {
-      throw new Error(`SSRF_REJECTED: Literal IP ${cleanHost} is private or blocked.`);
-    }
-    return true;
-  }
+export async function secureFetchWithPinnedDns(targetUrl, options = {}) {
+  validateTargetUrl(targetUrl, options);
+  const parsed = new URL(targetUrl);
+  const cleanHost = parsed.hostname.replace(/^\[|\]$/g, '').toLowerCase();
 
-  try {
+  let resolvedIp = cleanHost;
+  if (!isIP(cleanHost)) {
     const records = await dns.lookup(cleanHost, { all: true });
-    for (const record of records) {
-      if (isPrivateOrBlockedIp(record.address)) {
-        throw new Error(`DNS_REBINDING_BLOCKED: Hostname "${cleanHost}" resolved to private/blocked IP ${record.address}.`);
+    if (!records || records.length === 0) {
+      throw new Error(`DNS_ERROR: No DNS records returned for ${cleanHost}`);
+    }
+    for (const rec of records) {
+      if (isPrivateOrBlockedIp(rec.address)) {
+        throw new Error(`SSRF_REJECTED: Hostname "${cleanHost}" resolved to private/blocked IP ${rec.address}.`);
       }
     }
-  } catch (err) {
-    if (err.message.includes('DNS_REBINDING_BLOCKED')) {
-      throw err;
-    }
-    if (options.allowUnresolvedDns) {
-      return true;
-    }
-    throw new Error(`DNS_RESOLUTION_FAILED: Could not safely resolve host "${cleanHost}": ${err.message}`);
+    resolvedIp = records[0].address;
+  } else if (isPrivateOrBlockedIp(cleanHost)) {
+    throw new Error(`SSRF_REJECTED: Literal IP ${cleanHost} is private or blocked.`);
   }
 
-  return true;
+  return new Promise((resolve, reject) => {
+    const isHttps = parsed.protocol === 'https:';
+    const client = isHttps ? https : http;
+    const reqOptions = {
+      protocol: parsed.protocol,
+      hostname: cleanHost,
+      port: parsed.port || (isHttps ? 443 : 80),
+      path: parsed.pathname + parsed.search,
+      method: 'GET',
+      headers: {
+        'Host': cleanHost,
+        'User-Agent': 'TRM-Competitor-Watcher/2.0',
+        'Accept': '*/*'
+      },
+      lookup: (hostname, opts, callback) => {
+        // Pin DNS lookup directly to validated IP address to eliminate TOCTOU rebinding
+        const fam = isIP(resolvedIp) || 4;
+        callback(null, resolvedIp, fam);
+      },
+      timeout: options.timeoutMs || 5000
+    };
+
+    if (isHttps) {
+      reqOptions.servername = cleanHost; // Ensure TLS SNI matches expected hostname
+    }
+
+    const req = client.request(reqOptions, (res) => {
+      // Disallow all automatic redirects to prevent secondary SSRF bounces
+      if (res.statusCode >= 300 && res.statusCode < 400) {
+        req.destroy();
+        return reject(new Error(`SSRF_REDIRECT_BLOCKED: HTTP redirects (${res.statusCode}) are forbidden.`));
+      }
+
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        req.destroy();
+        return reject(new Error(`HTTP_ERROR: Target returned status ${res.statusCode} ${res.statusMessage}`));
+      }
+
+      let data = '';
+      res.setEncoding('utf8');
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => resolve(data.trim()));
+    });
+
+    req.on('socket', (socket) => {
+      socket.on('connect', () => {
+        const peer = socket.remoteAddress;
+        if (peer && isPrivateOrBlockedIp(peer)) {
+          req.destroy();
+          reject(new Error(`SSRF_BLOCKED: Connected socket peer ${peer} is in a private address range.`));
+        }
+      });
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error(`TIMEOUT: Request to ${targetUrl} timed out.`));
+    });
+
+    req.on('error', err => reject(err));
+    req.end();
+  });
 }
 
 /**
@@ -252,7 +307,6 @@ export function validateWatchlist(data, options = {}) {
   if (!alignment || !alignment.layer2_wiki_path || typeof alignment.layer2_wiki_path !== 'string') {
     throw new Error('INVALID_WATCHLIST: memory_alignment.layer2_wiki_path is required.');
   }
-  // Validate path traversal
   resolveSafeWikiPath(options.wikiRoot || '.', alignment.layer2_wiki_path);
 
   const validStatuses = ['stable', 'drift_detected', 'under_review', 'stale'];
@@ -268,8 +322,6 @@ export function validateWatchlist(data, options = {}) {
 
 /**
  * Strict RFC 8785 JSON Canonicalization Scheme (JCS) serializer.
- * Produces deterministic, lexicographically sorted UTF-8 representations.
- * Rejects non-finite numbers, undefined/functions, and non-representable values.
  * @param {any} val
  * @returns {string} Canonical JSON string
  */
@@ -302,7 +354,6 @@ export function canonicalizeJson(val) {
   }
   if (t === 'object') {
     const keys = Object.keys(val).filter(k => val[k] !== undefined && typeof val[k] !== 'symbol' && typeof val[k] !== 'function');
-    // Sort UTF-16 code units lexicographically
     keys.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
     const entries = keys.map(k => JSON.stringify(k) + ':' + canonicalizeJson(val[k]));
     return '{' + entries.join(',') + '}';
@@ -396,7 +447,7 @@ export const STATIC_MOCK_TARGETS = {
 };
 
 /**
- * Fetches target content safely via live HTTP with fallback to static deterministic mocks.
+ * Fetches target content safely via secure anti-TOCTOU fetch with fallback to static mocks.
  * @param {object} target
  * @param {object} [options]
  * @returns {Promise<string>}
@@ -405,26 +456,13 @@ export async function fetchTargetContent(target, options = {}) {
   validateTargetUrl(target.url, options);
 
   if (process.env.AIRGAP !== 'true' && !options.forceMock) {
-    const parsed = new URL(target.url);
-    await verifyDnsSafety(parsed.hostname, options);
-
     try {
-      const response = await fetch(target.url, {
-        headers: {
-          'User-Agent': 'TRM-Competitor-Watcher/2.0',
-          'Accept': target.type === 'rest_api' ? 'application/json' : '*/*'
-        },
-        redirect: 'error', // Block automatic redirects to prevent SSRF rebound redirects
-        signal: AbortSignal.timeout(options.timeoutMs || 5000)
-      });
-      if (response.ok) {
-        return (await response.text()).trim();
-      }
+      return await secureFetchWithPinnedDns(target.url, options);
     } catch (err) {
       if (options.throwOnFetchError) {
         throw new Error(`FETCH_FAILED: ${target.url} - ${err.message}`);
       }
-      logWarn(`Live fetch failed for ${target.url}. Falling back to deterministic static baseline.`);
+      logWarn(`Live fetch failed for ${target.url} (${err.message}). Falling back to deterministic static baseline.`);
     }
   }
 
@@ -567,11 +605,67 @@ export function performStructuredDiff(localPath, newPayload) {
 }
 
 /**
- * Concurrency-safe atomic file queue dispatcher.
+ * Concurrency-safe, deduplicated JSONL queue dispatcher.
+ * @param {object|null} db
+ * @param {object} signedEnvelope
+ * @param {string} [queuePath]
+ * @returns {boolean} True if appended, false if deduplicated.
+ */
+export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-queue.jsonl') {
+  if (db) {
+    const actionHash = crypto.createHash('sha256')
+      .update(canonicalizeJson(signedEnvelope.body))
+      .digest('hex');
+
+    const stmt = db.prepare(`
+      INSERT OR IGNORE INTO local_approvals (
+        approval_id, profile_id, action_hash, capability, scope, requested_by, status, envelope_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const res = stmt.run(
+      signedEnvelope.message_id,
+      signedEnvelope.sender.endpoint_id,
+      actionHash,
+      signedEnvelope.capabilities[0] || 'sigil.core/read_shared_context',
+      `watchlist:${signedEnvelope.body.watchlist_id}`,
+      signedEnvelope.sender.owner_id,
+      signedEnvelope.approval.status,
+      JSON.stringify(signedEnvelope)
+    );
+    return res.changes > 0;
+  }
+
+  const resolvedPath = path.resolve(queuePath);
+  const dir = path.dirname(resolvedPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  // Idempotency check: verify whether message_id or idempotency_key is already present
+  if (fs.existsSync(resolvedPath)) {
+    const existingContent = fs.readFileSync(resolvedPath, 'utf8');
+    if (
+      existingContent.includes(`"message_id":"${signedEnvelope.message_id}"`) ||
+      (signedEnvelope.idempotency_key && existingContent.includes(`"idempotency_key":"${signedEnvelope.idempotency_key}"`))
+    ) {
+      logInfo(`  -> [IDEMPOTENT] Envelope ${signedEnvelope.message_id} already queued. Skipping duplicate.`);
+      return false;
+    }
+  }
+
+  const line = JSON.stringify(signedEnvelope) + '\n';
+  fs.appendFileSync(resolvedPath, line, { encoding: 'utf8', flag: 'a' });
+  return true;
+}
+
+/**
+ * Legacy task adapter writing atomic pending task records.
  * @param {object|null} db
  * @param {object} task
+ * @param {string} [queuePath]
  */
-export function dispatchSigilTask(db, task) {
+export function dispatchSigilTask(db, task, queuePath) {
   if (db) {
     const insertStatement = db.prepare(`
       INSERT INTO local_approvals (
@@ -587,7 +681,7 @@ export function dispatchSigilTask(db, task) {
       task.requested_by || 'agent_trm_harvester'
     );
   } else {
-    const queueFile = path.resolve('./sigil-pending-tasks.json');
+    const queueFile = path.resolve(queuePath || './sigil-pending-tasks.json');
     const dir = path.dirname(queueFile);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -615,44 +709,6 @@ export function dispatchSigilTask(db, task) {
 }
 
 /**
- * Concurrency-safe task dispatcher supporting SQLite and atomic JSONL queueing.
- * @param {object|null} db
- * @param {object} signedEnvelope
- * @param {string} [queuePath]
- */
-export function dispatchSigilEnvelope(db, signedEnvelope, queuePath = './sigil-queue.jsonl') {
-  if (db) {
-    const stmt = db.prepare(`
-      INSERT INTO local_approvals (
-        approval_id, profile_id, action_hash, capability, scope, requested_by, status, envelope_json
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-    const actionHash = crypto.createHash('sha256')
-      .update(canonicalizeJson(signedEnvelope.body))
-      .digest('hex');
-
-    stmt.run(
-      signedEnvelope.message_id,
-      signedEnvelope.sender.endpoint_id,
-      actionHash,
-      signedEnvelope.capabilities[0] || 'sigil.core/read_shared_context',
-      `watchlist:${signedEnvelope.body.watchlist_id}`,
-      signedEnvelope.sender.owner_id,
-      signedEnvelope.approval.status,
-      JSON.stringify(signedEnvelope)
-    );
-  } else {
-    const resolvedPath = path.resolve(queuePath);
-    const dir = path.dirname(resolvedPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    const line = JSON.stringify(signedEnvelope) + '\n';
-    fs.appendFileSync(resolvedPath, line, { encoding: 'utf8', flag: 'a' });
-  }
-}
-
-/**
  * Main monitor execution engine.
  * @param {string} watchlistPath
  * @param {object} [options]
@@ -672,162 +728,159 @@ export async function monitorCompetitorWatchlist(watchlistPath, options = {}) {
   logInfo(`✓ Watchlist schema validated (<= 30 targets cap enforced).`);
 
   let db = null;
-  if (options.dbPath && !isDryRun) {
-    if (!Database) {
-      throw new Error(`SQLITE_UNAVAILABLE: better-sqlite3 module could not be loaded for requested dbPath: ${options.dbPath}`);
-    }
-    const dbDir = path.dirname(path.resolve(options.dbPath));
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
-    db = new Database(options.dbPath);
-    db.pragma('foreign_keys = ON');
+  try {
+    if (options.dbPath && !isDryRun) {
+      if (!Database) {
+        throw new Error(`SQLITE_UNAVAILABLE: better-sqlite3 module could not be loaded for requested dbPath: ${options.dbPath}`);
+      }
+      const dbDir = path.dirname(path.resolve(options.dbPath));
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
+      db = new Database(options.dbPath);
+      db.pragma('foreign_keys = ON');
 
-    // Ensure table structure exists
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS local_approvals (
-        approval_id TEXT PRIMARY KEY,
-        profile_id TEXT NOT NULL,
-        action_hash TEXT NOT NULL,
-        capability TEXT NOT NULL,
-        scope TEXT NOT NULL,
-        requested_by TEXT NOT NULL,
-        status TEXT NOT NULL,
-        envelope_json TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-  }
-
-  const keyPair = options.keyPair || generateSigilKeyPair();
-
-  let totalTargets = watchlist.targets.length;
-  let cacheHits = 0;
-  let driftsDetected = 0;
-  const queuedEnvelopes = [];
-
-  for (const target of watchlist.targets) {
-    logInfo(`Evaluating target: '${target.target_id}' (${target.type}) ...`);
-
-    const content = await fetchTargetContent(target, options);
-    const hash = crypto.createHash('sha256').update(content).digest('hex');
-
-    if (hash === target.hash_baseline) {
-      logInfo(`  -> Cache Hit for '${target.target_id}' [SHA-256 MATCH]. No semantic drift, 0 LLM token spend.`);
-      cacheHits++;
-      continue;
+      // Ensure table structure exists with unique index on approval_id
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS local_approvals (
+          approval_id TEXT PRIMARY KEY,
+          profile_id TEXT NOT NULL,
+          action_hash TEXT NOT NULL,
+          capability TEXT NOT NULL,
+          scope TEXT NOT NULL,
+          requested_by TEXT NOT NULL,
+          status TEXT NOT NULL,
+          envelope_json TEXT,
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+      `);
     }
 
-    const previousBaseline = target.hash_baseline;
-    logWarn(`  -> Drift Detected on target '${target.target_id}'! (Baseline: ${previousBaseline.slice(0, 8)}..., Current: ${hash.slice(0, 8)}...)`);
-    driftsDetected++;
-    watchlist.memory_alignment.status = 'drift_detected';
+    const keyPair = options.keyPair || generateSigilKeyPair();
 
-    if (options.acceptDrift) {
-      logInfo(`  -> [ACCEPT-DRIFT] Promoting observed hash as new baseline.`);
-      target.hash_baseline = hash;
-      watchlist.memory_alignment.status = 'stable';
-    }
+    let totalTargets = watchlist.targets.length;
+    let cacheHits = 0;
+    let driftsDetected = 0;
+    const queuedEnvelopes = [];
 
-    if (watchlist.memory_alignment.delta_rules.trigger_comparison) {
-      const wikiRoot = options.wikiRoot || process.env.OBSIDIAN_VAULT_ROOT || process.env.WORKSPACE_ROOT || './wiki';
-      const localWikiFile = resolveSafeWikiPath(wikiRoot, watchlist.memory_alignment.layer2_wiki_path);
+    for (const target of watchlist.targets) {
+      logInfo(`Evaluating target: '${target.target_id}' (${target.type}) ...`);
 
-      logInfo(`  -> Executing structured diffing against local baseline: ${localWikiFile}...`);
-      const diffResult = performStructuredDiff(localWikiFile, content);
+      const content = await fetchTargetContent(target, options);
+      const hash = crypto.createHash('sha256').update(content).digest('hex');
 
-      if (watchlist.human_in_the_loop?.step_up_required) {
-        logWarn(`  -> Constructing signed Sigil envelope for high-assurance human step-up gate...`);
+      if (hash === target.hash_baseline) {
+        logInfo(`  -> Cache Hit for '${target.target_id}' [SHA-256 MATCH]. No semantic drift, 0 LLM token spend.`);
+        cacheHits++;
+        continue;
+      }
 
-        const unsignedEnvelope = {
-          protocol: "sigil/1",
-          message_id: `msg_${crypto.randomUUID()}`,
-          conversation_id: `conv_trm_${watchlist.watchlist_id.replace(/^trm:watchlist:/, '')}`,
-          message_type: "task.request",
-          sender: {
-            owner_id: "usr_system",
-            endpoint_id: "ep_trm_watcher",
-            kind: "agent"
-          },
-          recipient: {
-            owner_id: "usr_operator",
-            endpoint_id: "ep_sigil_relay"
-          },
-          body: {
-            instruction: "Review detected competitor payload drift and approve promotion to Layer 2 reference wiki.",
-            task_id: `task_${target.target_id}_${Date.now()}`,
-            watchlist_id: watchlist.watchlist_id,
-            target_id: target.target_id,
-            baseline_hash: previousBaseline, // Preserves true historical baseline
-            observed_hash: hash,
-            diff_summary: diffResult
-          },
-          context_refs: [
-            `trm:ref:${target.target_id}:${previousBaseline}`,
-            `trm:ref:${target.target_id}:${hash}`
-          ],
-          capabilities: ["sigil.core/read_shared_context"],
-          approval: {
-            required: true,
-            status: options.acceptDrift ? "approved" : "pending"
-          },
-          correlation_id: `corr_${target.target_id}`,
-          idempotency_key: `idem_${target.target_id}_${hash}`,
-          created_at: new Date().toISOString(),
-          expires_at: new Date(Date.now() + 86400000).toISOString() // 24h validity
-        };
+      const previousBaseline = target.hash_baseline;
+      logWarn(`  -> Drift Detected on target '${target.target_id}'! (Baseline: ${previousBaseline.slice(0, 8)}..., Current: ${hash.slice(0, 8)}...)`);
+      driftsDetected++;
+      watchlist.memory_alignment.status = 'drift_detected';
 
-        const signedEnvelope = signSigilEnvelope(unsignedEnvelope, keyPair.privateKeyPem, keyPair.keyId);
-        const isValid = verifySigilEnvelope(signedEnvelope, keyPair.publicKeyPem);
-        if (!isValid) {
-          throw new Error('ENVELOPE_INTEGRITY_FAILURE: Generated Sigil envelope failed cryptographic self-verification.');
+      if (watchlist.memory_alignment.delta_rules.trigger_comparison) {
+        const wikiRoot = options.wikiRoot || process.env.OBSIDIAN_VAULT_ROOT || process.env.WORKSPACE_ROOT || './wiki';
+        const localWikiFile = resolveSafeWikiPath(wikiRoot, watchlist.memory_alignment.layer2_wiki_path);
+
+        logInfo(`  -> Executing structured diffing against local baseline: ${localWikiFile}...`);
+        const diffResult = performStructuredDiff(localWikiFile, content);
+
+        if (watchlist.human_in_the_loop?.step_up_required) {
+          logWarn(`  -> Constructing signed Sigil envelope for high-assurance human step-up gate...`);
+
+          // Strictly require human approval: always status: "pending" from automated watcher
+          const unsignedEnvelope = {
+            protocol: "sigil/1",
+            message_id: `msg_${crypto.randomUUID()}`,
+            conversation_id: `conv_trm_${watchlist.watchlist_id.replace(/^trm:watchlist:/, '')}`,
+            message_type: "task.request",
+            sender: {
+              owner_id: "usr_system",
+              endpoint_id: "ep_trm_watcher",
+              kind: "agent"
+            },
+            recipient: {
+              owner_id: "usr_operator",
+              endpoint_id: "ep_sigil_relay"
+            },
+            body: {
+              instruction: "Review detected competitor payload drift and approve promotion to Layer 2 reference wiki.",
+              task_id: `task_${target.target_id}_${Date.now()}`,
+              watchlist_id: watchlist.watchlist_id,
+              target_id: target.target_id,
+              baseline_hash: previousBaseline,
+              observed_hash: hash,
+              diff_summary: diffResult
+            },
+            context_refs: [
+              `trm:ref:${target.target_id}:${previousBaseline}`,
+              `trm:ref:${target.target_id}:${hash}`
+            ],
+            capabilities: ["sigil.core/read_shared_context"],
+            approval: {
+              required: true,
+              status: "pending" // Automated monitor CANNOT self-approve
+            },
+            correlation_id: `corr_${target.target_id}`,
+            idempotency_key: `idem_${target.target_id}_${hash}`,
+            created_at: new Date().toISOString(),
+            expires_at: new Date(Date.now() + 86400000).toISOString()
+          };
+
+          const signedEnvelope = signSigilEnvelope(unsignedEnvelope, keyPair.privateKeyPem, keyPair.keyId);
+          const isValid = verifySigilEnvelope(signedEnvelope, keyPair.publicKeyPem);
+          if (!isValid) {
+            throw new Error('ENVELOPE_INTEGRITY_FAILURE: Generated Sigil envelope failed cryptographic self-verification.');
+          }
+
+          if (!isDryRun) {
+            const queued = dispatchSigilEnvelope(db, signedEnvelope, options.queuePath);
+            if (queued) {
+              logInfo(`  -> ✓ Signed Sigil envelope [ID: ${signedEnvelope.message_id}] persisted.`);
+            }
+          } else {
+            logInfo(`  -> [DRY-RUN] Skipped persistence for envelope ${signedEnvelope.message_id}.`);
+          }
+
+          queuedEnvelopes.push(signedEnvelope);
         }
-
-        if (!isDryRun) {
-          dispatchSigilEnvelope(db, signedEnvelope, options.queuePath);
-          logInfo(`  -> ✓ Signed Sigil envelope [ID: ${signedEnvelope.message_id}] persisted.`);
-        } else {
-          logInfo(`  -> [DRY-RUN] Skipped persistence for envelope ${signedEnvelope.message_id}.`);
-        }
-
-        queuedEnvelopes.push(signedEnvelope);
       }
     }
+
+    watchlist.last_monitored_at = new Date().toISOString();
+
+    if (!isDryRun && driftsDetected > 0) {
+      fs.writeFileSync(watchlistPath, JSON.stringify(watchlist, null, 2), 'utf8');
+    }
+
+    return {
+      totalTargets,
+      cacheHits,
+      driftsDetected,
+      queuedEnvelopes,
+      keyPair
+    };
+  } finally {
+    if (db) {
+      db.close();
+    }
   }
-
-  watchlist.last_monitored_at = new Date().toISOString();
-
-  if (!isDryRun && (options.acceptDrift || driftsDetected > 0)) {
-    fs.writeFileSync(watchlistPath, JSON.stringify(watchlist, null, 2), 'utf8');
-  }
-
-  if (db) db.close();
-
-  return {
-    totalTargets,
-    cacheHits,
-    driftsDetected,
-    queuedEnvelopes,
-    keyPair
-  };
 }
 
-// CLI boundary
+// Production CLI boundary
 if (process.argv[1] && (process.argv[1].endsWith('watch-competitors-v2.mjs') || process.argv[1].endsWith('watch-competitors.mjs'))) {
   const args = process.argv.slice(2);
   const targetWatchlist = args.find(a => !a.startsWith('--')) || './trm/watchlists/google-sam.json';
   const dryRun = args.includes('--dry-run');
-  const acceptDrift = args.includes('--accept-drift');
   const allowInsecure = args.includes('--allow-insecure-http');
-  const allowTest = args.includes('--allow-test-tld');
   const dbArg = args.find(a => a.startsWith('--db='))?.split('=')[1];
   const queueArg = args.find(a => a.startsWith('--queue='))?.split('=')[1] || './sigil-queue.jsonl';
 
   monitorCompetitorWatchlist(targetWatchlist, {
     dryRun,
-    acceptDrift,
     allowInsecureHttp: allowInsecure,
-    allowTestTld: allowTest,
     dbPath: dbArg,
     queuePath: queueArg
   }).then(res => {

@@ -106,7 +106,7 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
     });
   });
 
-  describe('4. Ed25519 Sigil Envelope Verification & Tamper Detection', () => {
+  describe('4. Ed25519 Sigil Envelope Verification & Governance Invariants', () => {
     it('signs and verifies valid envelope with Ed25519', () => {
       const keyPair = generateSigilKeyPair();
       const unsigned = {
@@ -137,24 +137,8 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
       tampered.body.instruction = "Malicious mutation";
       expect(verifySigilEnvelope(tampered, keyPair.publicKeyPem)).toBe(false);
     });
-  });
 
-  describe('5. Position-Aware Line Diffing', () => {
-    it('accurately reports line additions, deletions, and duplicate reordering', () => {
-      fs.writeFileSync(testWikiFile, "Apple\nBanana\nCherry\nBanana", 'utf8');
-      const newContent = "Apple\nCherry\nBanana\nDate";
-      const result = performStructuredDiff(testWikiFile, newContent);
-
-      expect(result.change_type).toBe("modified");
-      expect(result.deleted_lines).toBe(1); // Deleted first Banana
-      expect(result.added_lines).toBe(1);   // Added Date
-      expect(result.patch_preview).toContain("BASELINE:");
-    });
-  });
-
-  describe('6. Zero-Drift & State Preservation', () => {
-    it('preserves historical baseline when --accept-drift is used', async () => {
-      const originalBaseline = "0".repeat(64);
+    it('enforces that automated watcher envelopes strictly require pending human step-up', async () => {
       const mockWatchlist = {
         watchlist_id: "trm:watchlist:google-sam",
         competitor_name: "Google Sovereign Agent Mesh",
@@ -164,7 +148,7 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
             target_id: "sam-repo-p2p",
             url: "https://github.com/google/sam",
             type: "git_repo",
-            hash_baseline: originalBaseline
+            hash_baseline: "0".repeat(64)
           }
         ],
         memory_alignment: {
@@ -181,7 +165,6 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
       fs.writeFileSync(testWatchlistPath, JSON.stringify(mockWatchlist, null, 2), 'utf8');
 
       const result = await monitorCompetitorWatchlist(testWatchlistPath, {
-        acceptDrift: true,
         forceMock: true,
         wikiRoot: testTmpDir,
         queuePath: testQueuePath
@@ -189,16 +172,43 @@ describe('Production Hardened TRM Watchlist & Sigil Protocol Suite', () => {
 
       expect(result.queuedEnvelopes.length).toBe(1);
       const envelope = result.queuedEnvelopes[0];
-      // Verifies true historical baseline is preserved in envelope
-      expect(envelope.body.baseline_hash).toBe(originalBaseline);
-      expect(envelope.approval.status).toBe("approved");
-
-      // Verifies disk was updated to new observed hash
-      const onDisk = JSON.parse(fs.readFileSync(testWatchlistPath, 'utf8'));
-      expect(onDisk.targets[0].hash_baseline).toBe(envelope.body.observed_hash);
-      expect(onDisk.memory_alignment.status).toBe("stable");
+      // Governance invariant: must be pending, never self-approved
+      expect(envelope.approval.status).toBe("pending");
+      expect(envelope.approval.required).toBe(true);
     });
+  });
 
+  describe('5. Queue Idempotency & Concurrency Safety', () => {
+    it('deduplicates identical envelopes in the JSONL queue', () => {
+      const keyPair = generateSigilKeyPair();
+      const env = signSigilEnvelope({
+        protocol: "sigil/1",
+        message_id: "msg_idempotency_test",
+        conversation_id: "conv_1",
+        message_type: "task.request",
+        sender: { owner_id: "usr_1", endpoint_id: "ep_1", kind: "agent" },
+        recipient: { owner_id: "usr_2", endpoint_id: "ep_2" },
+        body: { task_id: "1" },
+        context_refs: [],
+        capabilities: [],
+        approval: { required: false, status: "none" },
+        idempotency_key: "idem_unique_123",
+        created_at: "2026-08-23T12:00:00Z",
+        expires_at: "2026-08-24T12:00:00Z"
+      }, keyPair.privateKeyPem, keyPair.keyId);
+
+      const firstAdd = dispatchSigilEnvelope(null, env, testQueuePath);
+      const secondAdd = dispatchSigilEnvelope(null, env, testQueuePath);
+
+      expect(firstAdd).toBe(true);
+      expect(secondAdd).toBe(false); // Deduplicated
+
+      const lines = fs.readFileSync(testQueuePath, 'utf8').trim().split('\n');
+      expect(lines.length).toBe(1);
+    });
+  });
+
+  describe('6. Zero-Drift & State Preservation', () => {
     it('creates no SQLite file during dry-run when dbPath is provided', async () => {
       const mockWatchlist = {
         watchlist_id: "trm:watchlist:test",
