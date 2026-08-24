@@ -51,6 +51,21 @@ export function mapSourceToWikiSibling(sourceFile, obsidianConfig) {
   if (!sourceFile) return null;
   const normalizedSource = sourceFile.replace(/\\/g, '/');
   
+  // Exclude documentation, wiki files, vault internal directories, and markdown files
+  if (
+    normalizedSource.startsWith('wiki/') ||
+    normalizedSource.startsWith('obsidian/') ||
+    normalizedSource.startsWith('.obsidian/') ||
+    normalizedSource.startsWith('docs/') ||
+    normalizedSource.startsWith('_kb-sync-staging/') ||
+    normalizedSource.startsWith('_status-feed/') ||
+    normalizedSource.startsWith('.context/') ||
+    normalizedSource.startsWith('.ijfw/') ||
+    normalizedSource.endsWith('.md')
+  ) {
+    return null;
+  }
+
   const rules = obsidianConfig.mapping_rules || [];
   const wikiDir = obsidianConfig.wiki_dir || 'wiki';
 
@@ -84,9 +99,15 @@ export function mapSourceToWikiSibling(sourceFile, obsidianConfig) {
     }
   }
 
-  // Generic fallback if no mapping rule matches
-  const base = path.basename(sourceFile);
-  return path.join(wikiDir, 'entities', `${base}.md`).replace(/\\/g, '/');
+  // Generic fallback if no mapping rule matches (only for code source files)
+  const ext = path.extname(sourceFile).toLowerCase();
+  const codeExts = ['.js', '.mjs', '.ts', '.sh', '.ps1', '.py', '.go', '.rs', '.c', '.cpp', '.h'];
+  if (codeExts.includes(ext)) {
+    const base = path.basename(sourceFile);
+    return path.join(wikiDir, 'entities', `${base}.md`).replace(/\\/g, '/');
+  }
+
+  return null;
 }
 
 /**
@@ -167,8 +188,24 @@ export function isStructuralSignatureChange(relativePath, repoRoot) {
   }
 }
 
+export function groupTodoLines(content, { groupMarker, line, legacy }) {
+  const lines = content.split(/\r?\n/);
+  const openStart = lines.findIndex(item => /^## Open\s*$/.test(item));
+  if (openStart < 0) return content;
+  const completedStart = lines.findIndex((item, index) => index > openStart && /^## Completed\s*$/.test(item));
+  const openEnd = completedStart < 0 ? lines.length : completedStart;
+  const openLines = lines.slice(openStart + 1, openEnd);
+  const isGroup = item => item.includes(groupMarker);
+  const kept = openLines.filter(item => !legacy.test(item) && !isGroup(item));
+  const hadLegacy = openLines.some(item => legacy.test(item));
+  if (!hadLegacy && openLines.some(isGroup)) return content;
+  kept.unshift(`${line} ${groupMarker}`);
+  const updated = [...lines.slice(0, openStart + 1), '', ...kept, ...lines.slice(openEnd)];
+  return updated.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
 /**
- * Appends a documentation drift warning to TODOS.md, enforcing strict deduplication.
+ * Appends a documentation drift warning to TODOS.md, enforcing strict deduplication and grouping.
  * @param {string} repoRoot 
  * @param {string} taskLine 
  * @param {string} signatureKey 
@@ -201,8 +238,27 @@ export function appendDriftTodo(repoRoot, taskLine, signatureKey) {
 
   try {
     const content = fs.readFileSync(targetPath, 'utf8');
-    // Deduplication check: if signatureKey or taskLine already exists, ignore
-    if (content.includes(signatureKey) || content.includes(taskLine)) {
+    const groupedContent = groupTodoLines(content, {
+      groupMarker: '<!-- todo-group: kb-sync-documentation-drift -->',
+      line: taskLine,
+      legacy: /^- \[ \] \*\*kb-sync documentation drift remediation\*\*/
+    });
+    if (groupedContent !== content) {
+      fs.writeFileSync(targetPath, groupedContent, 'utf8');
+      return;
+    }
+    
+    // If the batch signature already exists in Open section, update the line in place
+    if (content.includes(signatureKey)) {
+      const regex = new RegExp(`- \\[ \\] \\*\\*\\[P2\\] kb-sync documentation drift remediation \\(batch\\)\\*\\*.*\\r?\\n?`);
+      if (regex.test(content)) {
+        const updated = content.replace(regex, `${taskLine}\n`);
+        fs.writeFileSync(targetPath, updated, 'utf8');
+      }
+      return;
+    }
+    
+    if (content.includes(taskLine)) {
       return;
     }
     

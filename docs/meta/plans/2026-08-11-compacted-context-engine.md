@@ -1,3 +1,9 @@
+---
+title: "2026 08 11 compacted context engine"
+category: "wiki"
+status: "active"
+---
+
 # Compacted Context Engine Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

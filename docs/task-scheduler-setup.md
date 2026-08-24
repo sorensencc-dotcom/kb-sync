@@ -8,7 +8,7 @@ status: "active"
 
 **Purpose**: Schedule kb-sync pipeline stages as native Windows tasks to avoid bash environment constraints and improve reliability.
 
-**Status**: Implementation-ready  
+**Status**: Implementation-ready
 **Maintainer**: Chris (Architect — Tier 1)
 
 ---

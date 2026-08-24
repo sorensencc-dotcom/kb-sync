@@ -645,3 +645,47 @@ New staging includes 3 additional files compared to previous snapshot (85 files 
   - `wiki/kb-sync/wiki/.SyncStatus.md`
   - `wiki/kb-sync/wiki/.Catalog.md`
   - `wiki/Index.md`
+
+## [2026-08-22 14:49] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `a27e266df9ef61bc`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260822-104839`
+- Proposals Accepted: 35 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/DbSchema.md`
+  - `wiki/kb-sync/wiki/SyncCache.md`
+  - `wiki/kb-sync/wiki/GapTriageEngine.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/McpMemoryServer.md`
+  - `wiki/kb-sync/wiki/SyncKbCache.md`
+  - `wiki/kb-sync/wiki/TrmTriage.md`
+  - `wiki/kb-sync/wiki/ContextCache.Test.md`
+  - `wiki/kb-sync/wiki/KbSyncCliIntegration.Test.md`
+  - `wiki/kb-sync/wiki/TrmCacheBoundary.Test.md`
+  - `wiki/kb-sync/wiki/TrmCacheE2ePipeline.Test.md`
+  - `wiki/kb-sync/wiki/TrmGapTriage.Test.md`
+  - `wiki/kb-sync/wiki/TrmResearchGaps.md`
+  - `wiki/kb-sync/wiki/RfcGap01WillowRunVideosUnderSourc.md`
+  - `wiki/kb-sync/wiki/RfcGap01FailSoftRecoveryDuringConc.md`
+  - `wiki/kb-sync/wiki/RfcGap02WillowRunVideosOpenContra.md`
+  - `wiki/kb-sync/wiki/RfcGap02CrossPlatformPathNormalizat.md`
+  - `wiki/kb-sync/wiki/RfcGap03DeterministicAstParsingAnd.md`
+  - `wiki/kb-sync/wiki/RfcGap04DodgeBrothersVsHenryFordG.md`
+  - `wiki/kb-sync/wiki/RfcGap05HarryBennettServiceDepartme.md`
+  - `wiki/kb-sync/wiki/RfcGap06WillowRunB24KnockDownKit.md`
+  - `wiki/kb-sync/wiki/RfcGap07Ford5DayWageIncreaseImpac.md`
+  - `wiki/Index.md`

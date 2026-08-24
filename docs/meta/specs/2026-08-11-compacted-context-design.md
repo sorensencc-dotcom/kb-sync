@@ -1,3 +1,9 @@
+---
+title: "2026 08 11 compacted context design"
+category: "wiki"
+status: "active"
+---
+
 # Design Specification: Compacted Context Engine (Token-Aware Sync Pipeline)
 
 **Document Status:** Draft (In Review)  

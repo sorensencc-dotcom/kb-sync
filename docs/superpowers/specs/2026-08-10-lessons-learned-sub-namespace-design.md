@@ -1,3 +1,9 @@
+---
+title: "2026 08 10 lessons learned sub namespace design"
+category: "wiki"
+status: "active"
+---
+
 # Lessons Learned Sub-Namespace Design (Sealed Contract v4)
 
 **Date:** 2026-08-10  

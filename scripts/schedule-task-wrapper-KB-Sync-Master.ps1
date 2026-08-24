@@ -52,9 +52,16 @@ Write-LogInfo "=================================================================
 try {
     Write-LogInfo "Staging Obsidian sources..."
     & cmd /c "npm run kb:sync:obsidian" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogError "Obsidian staging failed with exit code $LASTEXITCODE"
+        $OverallStatus = 1
+    }
 
     Write-LogInfo "Validating staging documentation..."
     & cmd /c "npm run wiki:validate-staging" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogWarn "Staging validation reported schema/frontmatter warnings with exit code $LASTEXITCODE (non-fatal, continuing)"
+    }
 } catch {
     Write-LogError "Stage 1 encountered error: $_"
     $OverallStatus = 1
@@ -83,10 +90,12 @@ try {
         Write-LogInfo "Executing NotebookLM Nightly pipeline..."
         & pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "$NightlyScript" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
         if ($LASTEXITCODE -ne 0) {
-            Write-LogWarn "NotebookLM Nightly pipeline exited with code $LASTEXITCODE"
+            Write-LogError "NotebookLM Nightly pipeline exited with code $LASTEXITCODE"
+            $OverallStatus = 1
         }
     } else {
-        Write-LogWarn "Nightly script not found at $NightlyScript"
+        Write-LogError "Nightly script not found at $NightlyScript"
+        $OverallStatus = 1
     }
 } catch {
     Write-LogError "Stage 3 NotebookLM pipeline failed: $_"

@@ -130,6 +130,10 @@ async function main() {
     unique_urls_tracked: brokenLinks.length,
     total_url_references: totalReferences,
     notebook_id: process.env.NOTEBOOK_ID || "unknown",
+    // Derived, not hardcoded: this script runs as stage 2 after the bash
+    // pipeline produced .nlm_pack, so a successful run proves both stages.
+    // Previously these were literal `true`s that persisted through the bash
+    // telemetry merge and masked later FAILED runs.
     stage1_success: true,
     stage2_success: true
   };

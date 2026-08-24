@@ -1,11 +1,19 @@
 {
-  "timestamp": "2026-08-24T03:26:05.031Z",
+  "timestamp": "2026-08-24T18:48:55.531Z",
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
       "repo": "kb-sync",
+      "file": "scripts/notebooklm/kb-sync-nightly.ps1",
+      "last_code_commit": "2026-08-23T23:28:36-04:00",
+      "last_wiki_sync": "2026-08-23T23:08:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/kb-sync-nightly.ps1"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/schedule-task-wrapper-KB-Sync-Master.ps1",
-      "last_code_commit": "2026-08-24T03:23:34.152Z",
+      "last_code_commit": "2026-08-23T23:28:36-04:00",
       "last_wiki_sync": "2026-08-23T23:08:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/schedule-task-wrapper-KB-Sync-Master.ps1"
@@ -13,7 +21,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/setup-master-schedule.ps1",
-      "last_code_commit": "2026-08-24T03:23:37.637Z",
+      "last_code_commit": "2026-08-23T23:28:36-04:00",
       "last_wiki_sync": "2026-08-23T23:08:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/setup-master-schedule.ps1"
@@ -21,6 +29,6 @@
   ],
   "summary": {
     "total_sources_checked": 154,
-    "stale_pages_count": 2
+    "stale_pages_count": 3
   }
 }

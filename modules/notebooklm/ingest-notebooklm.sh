@@ -48,6 +48,15 @@ write_sync_telemetry() {
     existing.duration_ms = Number(durationMs);
     existing.purged_sources = Number(purged);
     existing.uploaded_chunks = Number(uploaded);
+    if (status !== "SUCCESS") {
+      // Stage booleans / notebook_id are written by generate-kb-sync-artifact.mjs
+      // on successful runs and persist through the merge below. Left untouched,
+      // a FAILED run would advertise stage1/stage2 success from a prior run --
+      // monitors keying on these booleans would report health during an outage.
+      existing.stage1_success = false;
+      existing.stage2_success = false;
+      existing.notebook_id = "unknown";
+    }
     if (lastError) {
       existing.last_error = lastError;
     } else if (status === "SUCCESS") {

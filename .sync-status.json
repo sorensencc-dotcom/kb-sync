@@ -1,17 +1,12 @@
 {
-  "last_sync_timestamp": "2026-08-24T03:08:23.530Z",
-  "status": "FAILED",
-  "file_count": 1488,
-  "pack_files_count": 8,
-  "pack_size_bytes": 14198717,
+  "last_sync_timestamp": "2026-08-24T18:48:47.014Z",
+  "status": "SUCCESS",
+  "file_count": 1489,
+  "pack_files_count": 5,
+  "pack_size_bytes": 4774059,
   "unique_urls_tracked": 100,
   "total_url_references": 260,
   "notebook_id": "unknown",
   "stage1_success": true,
-  "stage2_success": true,
-  "target": "notebooklm",
-  "timestamp": "2026-08-24T03:26:00Z",
-  "duration_ms": 7399,
-  "purged_sources": 0,
-  "uploaded_chunks": 0
+  "stage2_success": true
 }

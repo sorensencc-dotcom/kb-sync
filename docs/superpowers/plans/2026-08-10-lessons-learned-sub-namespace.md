@@ -1,3 +1,9 @@
+---
+title: "2026 08 10 lessons learned sub namespace"
+category: "wiki"
+status: "active"
+---
+
 # Lessons Learned Sub-Namespace Implementation Plan (Sealed Contract v4)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

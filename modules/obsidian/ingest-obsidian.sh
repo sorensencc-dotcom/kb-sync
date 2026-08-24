@@ -302,7 +302,7 @@ Next step: Run a Claude Code session to ingest staged sources into your wiki.
 2. Reference this schema document: docs/targets/obsidian.md
 3. Point it to your staging directory:
 
-   STAGING_PATH: STAGING_PATH_PLACEHOLDER
+   STAGING_PATH: ${STAGING_PATH}
 
 4. Let Claude (or you, manually) follow the schema doc to:
    - Read staged source files

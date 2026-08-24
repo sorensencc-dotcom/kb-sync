@@ -50,6 +50,32 @@ function getConfigValue(file, key) {
   return match[1].replace(/#.*$/, '').trim().replace(/^['"]|['"]$/g, '');
 }
 
+// Load simple KEY=VALUE pairs from the repo-root .env file.
+// Returns a plain object without mutating process.env. Required because the
+// bash ingest modules source .env while scheduler entry points may launch
+// this validator without it -- consulting only process.env made the two
+// layers resolve OBSIDIAN_VAULT_ROOT differently (the vault-root split-brain
+// that routed findLatestStaging() at the stale yaml-fallback snapshot).
+function loadDotEnvValues(root) {
+  const values = {};
+  const envFile = path.join(root, '.env');
+  if (!fs.existsSync(envFile)) return values;
+  for (const rawLine of fs.readFileSync(envFile, 'utf8').split('\n')) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+    const eq = line.indexOf('=');
+    if (eq <= 0) continue;
+    const key = line.slice(0, eq).trim();
+    let value = line.slice(eq + 1).trim();
+    if (!value.startsWith('"') && !value.startsWith("'")) {
+      value = value.replace(/\s+#.*$/, ''); // strip inline comment (unquoted values only)
+    }
+    value = value.replace(/^["']|["']$/g, '');
+    if (key) values[key] = value;
+  }
+  return values;
+}
+
 function findLatestStaging(vaultRoot, stagingDir) {
   const base = path.join(vaultRoot, stagingDir, 'kb-sync');
   if (!fs.existsSync(base)) return null;
@@ -433,7 +459,7 @@ function validateFile(file, registry, repoRootPath) {
 
   for (const match of scanContent.matchAll(MD_LINK_RE)) {
     let target = match[1].trim();
-    if (!target || /^(https?:|mailto:|#)/i.test(target)) continue;
+    if (!target || /^(https?:|mailto:|file:|#)/i.test(target)) continue;
     target = target.split('#')[0].trim();
     if (!target) continue;
     const decoded = safeDecode(target);
@@ -458,13 +484,28 @@ function main() {
     process.exit(1);
   }
 
-  const vaultRoot = process.env.OBSIDIAN_VAULT_ROOT || getConfigValue(configFile, 'vault_root');
+  // Vault root resolution: process env > repo .env > configs/obsidian.yaml.
+  // Mirrors the bash modules (which source .env) so scheduler-launched runs
+  // resolve the same vault root as interactive runs. The source is logged so
+  // validation output proves which layer supplied the path.
+  const dotenvValues = loadDotEnvValues(root);
+  let vaultRootSource = 'configs/obsidian.yaml';
+  let vaultRoot = process.env.OBSIDIAN_VAULT_ROOT;
+  if (vaultRoot) {
+    vaultRootSource = 'process env';
+  } else if (dotenvValues.OBSIDIAN_VAULT_ROOT) {
+    vaultRoot = dotenvValues.OBSIDIAN_VAULT_ROOT;
+    vaultRootSource = '.env';
+  } else {
+    vaultRoot = getConfigValue(configFile, 'vault_root');
+  }
   const stagingDir = getConfigValue(configFile, 'staging_dir');
   const wikiDir = getConfigValue(configFile, 'wiki_dir');
   if (!vaultRoot || !stagingDir || !wikiDir) {
     logError('vault_root / staging_dir / wiki_dir missing from configs/obsidian.yaml');
     process.exit(1);
   }
+  logInfo(`Vault root resolved from ${vaultRootSource}: ${vaultRoot}`);
 
   const isDiffMode = process.argv.includes('--diff');
   const isBatchMode = process.argv.includes('--batch');

@@ -1,3 +1,9 @@
+---
+title: "TRM INGESTION PIPELINE SPEC"
+category: "wiki"
+status: "active"
+---
+
 # Engineering Specification: Topic Research Mining (TRM) Ingestion Pipeline
 
 | Metadata | Specification Detail |
