@@ -1,9 +1,26 @@
 {
-  "timestamp": "2026-08-21T14:09:17.635Z",
-  "status": "NO_DRIFT",
-  "drifted_sources": [],
+  "timestamp": "2026-08-24T03:26:05.031Z",
+  "status": "DRIFT_DETECTED",
+  "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "scripts/schedule-task-wrapper-KB-Sync-Master.ps1",
+      "last_code_commit": "2026-08-24T03:23:34.152Z",
+      "last_wiki_sync": "2026-08-23T23:08:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/schedule-task-wrapper-KB-Sync-Master.ps1"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/setup-master-schedule.ps1",
+      "last_code_commit": "2026-08-24T03:23:37.637Z",
+      "last_wiki_sync": "2026-08-23T23:08:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/setup-master-schedule.ps1"
+    }
+  ],
   "summary": {
-    "total_sources_checked": 126,
-    "stale_pages_count": 0
+    "total_sources_checked": 154,
+    "stale_pages_count": 2
   }
 }

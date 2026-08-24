@@ -165,6 +165,9 @@ if ($NodeCmd) {
         Send-WebhookNotification -Title "Stage 2 Artifact Exception" -Message "Stage 2 threw exception: $_" -Level "WARN"
     }
 } else {
+    Write-LogWarn "node.exe not found. Stage 2 artifact generation skipped."
+}
+
 # --- STAGE 3: SYNC TO GITHUB WIKI ---
 Write-Host ""
 Write-LogInfo "================================================================================"
@@ -172,7 +175,7 @@ Write-LogInfo "STAGE 3: Synchronizing documentation to remote GitHub Wiki"
 Write-LogInfo "================================================================================"
 
 $WikiSyncScript = Join-Path $RepoRoot "scripts\sync-github-wiki.mjs"
-if (Test-Path $WikiSyncScript) {
+if ($NodeCmd -and (Test-Path $WikiSyncScript)) {
     try {
         & node "$WikiSyncScript"
         if ($LASTEXITCODE -eq 0) {
@@ -184,7 +187,7 @@ if (Test-Path $WikiSyncScript) {
         Write-LogWarn "Stage 3 GitHub Wiki sync threw exception: $_"
     }
 } else {
-    Write-LogWarn "sync-github-wiki.mjs not found. Stage 3 skipped."
+    Write-LogWarn "sync-github-wiki.mjs not found or node missing. Stage 3 skipped."
 }
 
 Write-Host ""
@@ -192,3 +195,4 @@ Write-LogInfo "=================================================================
 Write-LogInfo "KB Sync Nightly Pipeline Completed"
 Write-LogInfo "================================================================================"
 exit 0
+

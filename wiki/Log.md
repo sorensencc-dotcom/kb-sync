@@ -201,3 +201,13 @@ Synthesized documentation node for wiki/Log.md
   - `wiki/kb-sync/wiki/.SyncStatus.md`
   - `wiki/kb-sync/wiki/.Catalog.md`
   - `wiki/Index.md`
+
+- [2026-08-23T02:17:42.874Z] TRM-CLOSED-LOOP: Mined and resolved 2 research gaps (mobile-websocket-heartbeats, historical-revocation-verification). Added to Layer 2 wiki.
+- [2026-08-23T02:19:45.928Z] TRM-CLOSED-LOOP: Mined and resolved 2 research gaps (mobile-websocket-heartbeats, historical-revocation-verification). Added to Layer 2 wiki.
+
+## [2026-08-23 23:08 UTC] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Staging Path: `c:/dev/_kb-sync-staging/kb-sync/20260823-230800`
+- Proposals Accepted: 19 (0 rejected)
+- Synthesized and cleared documentation drift across modules/wiki, scripts, and tests.
