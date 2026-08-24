@@ -44,6 +44,16 @@ Set-Location $RepoRoot
 
 $OverallStatus = 0
 
+# Use the same auth wrapper and CLI dialect as the NotebookLM ingest stage.
+Write-LogInfo "Running pre-flight authentication check..."
+& cmd /c "npm run kb:sync:notebooklm -- --check-auth-only" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+$AuthCheckExitCode = $LASTEXITCODE
+if ($AuthCheckExitCode -eq 0) {
+    Write-LogInfo "Pre-flight auth check passed."
+} else {
+    Write-LogWarn "Pre-flight auth check requires recovery; Stage 3 will run the same recovery path."
+}
+
 # --- STAGE 1: OBSIDIAN STAGING & VALIDATION ---
 Write-LogInfo "================================================================================"
 Write-LogInfo "STAGE 1: Obsidian Staging & Validation"
@@ -60,7 +70,8 @@ try {
     Write-LogInfo "Validating staging documentation..."
     & cmd /c "npm run wiki:validate-staging" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
     if ($LASTEXITCODE -ne 0) {
-        Write-LogWarn "Staging validation reported schema/frontmatter warnings with exit code $LASTEXITCODE (non-fatal, continuing)"
+        Write-LogError "Staging validation failed with exit code $LASTEXITCODE"
+        $OverallStatus = 1
     }
 } catch {
     Write-LogError "Stage 1 encountered error: $_"

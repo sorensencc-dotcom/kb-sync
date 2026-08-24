@@ -15,8 +15,15 @@ if (fs.existsSync(reportPath)) {
 }
 
 try {
-  execSync("node node_modules/tsx/dist/cli.mjs modules/wiki/detect-drift.ts", { cwd: REPO_ROOT, stdio: "ignore" });
+  const output = execSync("node node_modules/tsx/dist/cli.mjs modules/wiki/detect-drift.ts", {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  });
+  if (!output.includes("[KB-SYNC-DRIFT]") || !output.includes("stale_pages=")) {
+    throw new Error("Drift detection did not emit its summary");
+  }
 } catch (e: any) {
+  if (e.message === "Drift detection did not emit its summary") throw e;
   // Fail-soft test execution validation
 }
 

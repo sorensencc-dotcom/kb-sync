@@ -763,6 +763,10 @@ export function runDriftDetection(): DriftReport {
 
   const reportPath = path.join(REPO_ROOT, ".drift-report.json");
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), "utf8");
+  console.log(
+    `[KB-SYNC-DRIFT] status=${report.status} sources_checked=${report.summary.total_sources_checked} ` +
+      `stale_pages=${report.summary.stale_pages_count} report=${reportPath}`,
+  );
   return report;
 }
 
