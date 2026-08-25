@@ -22,6 +22,6 @@ generated_at: 2026-08-23T02:19:45.921Z
 
 ## Active Research Gaps
 
-- [/] [GAP-01] **Willow Run Videos (under-sourced)**: Some other answer.))))) (Drafted: [RFC](wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md))
+- [/] [GAP-01] **Willow Run Videos (under-sourced)**: Some other answer.)))))) (Drafted: [RFC](wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md))
 
-- [/] [GAP-02] **Willow Run Videos (open-contradictions)**: No source found for the 1943 production date.))))) (Drafted: [RFC](wiki/research/rfc-gap-02--willow-run-videos-open-contra.md))
+- [/] [GAP-02] **Willow Run Videos (open-contradictions)**: No source found for the 1943 production date.)))))) (Drafted: [RFC](wiki/research/rfc-gap-02--willow-run-videos-open-contra.md))

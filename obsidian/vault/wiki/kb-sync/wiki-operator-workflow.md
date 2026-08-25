@@ -24,7 +24,7 @@ Complete guide for running a wiki semantic ingest session via Claude Code. Cover
 
 ## Relationships
 
-- **Part of:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md)
+- **Part of:** [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
 - **Uses:** [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]], [[kb-sync/kb-sync/wiki-update-rules|Wiki Update Rules]]
 - **Depends on:** [Karpathy LLM-Wiki Pattern](../concepts/karpathy-llm-wiki-pattern.md)
 - **References:** [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]

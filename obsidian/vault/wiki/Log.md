@@ -689,3 +689,76 @@ New staging includes 3 additional files compared to previous snapshot (85 files 
   - `wiki/kb-sync/wiki/RfcGap06WillowRunB24KnockDownKit.md`
   - `wiki/kb-sync/wiki/RfcGap07Ford5DayWageIncreaseImpac.md`
   - `wiki/Index.md`
+
+## [2026-08-25 02:39] auto-synthesize (forced re-run)
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `860654f373eb62ad`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260824-223815`
+- Proposals Accepted: 41 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/Session20260819213209.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/Config.md`
+  - `wiki/kb-sync/wiki/MaterializeApprovedResult.md`
+  - `wiki/kb-sync/wiki/TrmSourceResolver.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/ConsolidatePack.md`
+  - `wiki/kb-sync/wiki/ProcessSigilApprovals.md`
+  - `wiki/kb-sync/wiki/RunClosedLoopResearch.md`
+  - `wiki/kb-sync/wiki/ScheduleTaskWrapperKBSyncMaster.md`
+  - `wiki/kb-sync/wiki/SetupMasterSchedule.md`
+  - `wiki/kb-sync/wiki/SyncGithubWiki.md`
+  - `wiki/kb-sync/wiki/ValidateChunks.md`
+  - `wiki/kb-sync/wiki/TestWatchlistRun.md`
+  - `wiki/kb-sync/wiki/MaterializeApprovedResultCli.Test.md`
+  - `wiki/kb-sync/wiki/MaterializeApprovedResult.Test.md`
+  - `wiki/kb-sync/wiki/TrmSourceResolver.Test.md`
+  - `wiki/kb-sync/wiki/WatchCompetitorsV2.Test.md`
+  - `wiki/kb-sync/wiki/WatchCompetitors.Test.md`
+  - `wiki/kb-sync/wiki/GoogleSam.md`
+  - `wiki/kb-sync/wiki/NanonetsGraft.md`
+  - `wiki/kb-sync/wiki/VolcengineOpenviking.md`
+  - `wiki/kb-sync/wiki/WatchCompetitorsV2.md`
+  - `wiki/kb-sync/wiki/WatchCompetitors.md`
+  - `wiki/kb-sync/wiki/TestWatchlistRun.Mjs.md`
+  - `wiki/kb-sync/wiki/WatchCompetitorsV2.Mjs.md`
+  - `wiki/kb-sync/wiki/WatchCompetitors.Mjs.md`
+  - `wiki/kb-sync/wiki/HistoricalRevocationVerification.md`
+  - `wiki/kb-sync/wiki/MobileWebsocketHeartbeats.md`
+  - `wiki/Index.md`
+
+## [2026-08-25 02:40] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `6539c58d8eb60e6f`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260824-223949`
+- Proposals Accepted: 14 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/Index.md`

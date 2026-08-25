@@ -331,6 +331,25 @@ async function main() {
 
   // 1. Resolve Vault & Config
   const repoRoot = normalizePath(path.resolve(process.cwd()));
+  const envPath = path.resolve(repoRoot, ".env");
+  if (fs.existsSync(envPath)) {
+    try {
+      const envLines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
+      for (const line of envLines) {
+        if (!line || line.startsWith("#") || !line.includes("=")) continue;
+        const idx = line.indexOf("=");
+        const key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim();
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1);
+        }
+        if (key && process.env[key] === undefined) {
+          process.env[key] = val;
+        }
+      }
+    } catch {}
+  }
+
   const configFile = cli.configPath || path.join(repoRoot, "configs", "obsidian.yaml");
 
   let vaultRoot = cli.vaultRoot || process.env.OBSIDIAN_VAULT_ROOT;
@@ -357,15 +376,25 @@ async function main() {
   // 3. Resolve Staging Path
   let stagingPath = cli.stagingPath;
   if (!stagingPath) {
-    const defaultStagingBase = path.join(vaultRoot, "_kb-sync-staging");
-    if (fs.existsSync(defaultStagingBase)) {
-      const timestampDirs = fs
-        .readdirSync(defaultStagingBase)
-        .filter((d) => /^\d{8}-\d{6}$/.test(d))
-        .sort()
-        .reverse();
-      if (timestampDirs.length > 0) {
-        stagingPath = path.join(defaultStagingBase, timestampDirs[0]);
+    const repoName = path.basename(repoRoot);
+    const candidateDirs = [
+      path.join(vaultRoot, "_kb-sync-staging", repoName),
+      path.join(vaultRoot, "_kb-sync-staging"),
+      path.join(repoRoot, "_kb-sync-staging", repoName),
+      path.join(repoRoot, "_kb-sync-staging"),
+    ];
+
+    for (const cand of candidateDirs) {
+      if (fs.existsSync(cand)) {
+        const timestampDirs = fs
+          .readdirSync(cand)
+          .filter((d) => /^\d{8}-\d{6}(-\d{3})?$/.test(d))
+          .sort()
+          .reverse();
+        if (timestampDirs.length > 0) {
+          stagingPath = path.join(cand, timestampDirs[0]);
+          break;
+        }
       }
     }
   }

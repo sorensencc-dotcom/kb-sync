@@ -27,7 +27,7 @@ Rules for creating, updating, and removing entity and concept pages during seman
 - **Used in:** [Wiki Operator Workflow](./wiki-operator-workflow.md) (Phases 1, 3, 4, 6)
 - **References:** [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]]
 - **Depends on:** [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
-- **Part of:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md)
+- **Part of:** [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
 
 ## Cross-References
 

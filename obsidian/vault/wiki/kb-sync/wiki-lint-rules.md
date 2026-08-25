@@ -27,7 +27,7 @@ Defines structural, referential, and semantic checks for wiki integrity. Enforce
 - **Used in:** [Wiki Operator Workflow](./wiki-operator-workflow.md) (Phase 2 and Phase 5)
 - **Validates:** [[kb-sync/kb-sync/wiki-schema|Wiki Schema]], wiki structure
 - **Depends on:** [[kb-sync/concepts/pack-based-knowledge-management|Pack-Based Knowledge Management]]
-- **Part of:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md)
+- **Part of:** [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]]
 
 ## Cross-References
 

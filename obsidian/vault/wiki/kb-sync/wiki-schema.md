@@ -24,7 +24,7 @@ Defines the three-layer Karpathy LLM-wiki pattern architecture for kb-sync Obsid
 
 ## Relationships
 
-- **Used in workflows:** [Wiki Ingest Workflow](./wiki-ingest-workflow.md), [Wiki Query Workflow](./wiki-query-workflow.md), [Wiki Lint Workflow](./wiki-lint-workflow.md)
+- **Used in workflows:** [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]], [[kb-sync/kb-sync/wiki-operator-workflow|Wiki Operator Workflow]], [[kb-sync/kb-sync/wiki-lint-rules|Wiki Lint Rules]]
 - **Depends on:** [Karpathy LLM-Wiki Pattern](../concepts/karpathy-llm-wiki-pattern.md), [Pack-Based Knowledge Management](../concepts/pack-based-knowledge-management.md)
 - **Referenced by:** [operator-workflow.md](#), [lint-rules.md](#), [update-rules.md](#)
 
