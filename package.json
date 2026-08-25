@@ -4,6 +4,8 @@
   "type": "module",
   "description": "CIC Knowledge Base Sync Pipeline",
   "scripts": {
+    "prepare": "node scripts/install-git-hooks.mjs",
+    "secret-scan": "node scripts/secret-scan.mjs",
     "kb:status": "node scripts/check-status.mjs",
     "kb:sync:status": "node scripts/check-status.mjs",
     "kb:dag": "node scripts/build-dag.mjs",

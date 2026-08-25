@@ -3,6 +3,11 @@ node_modules/
 .nlm_pack.backup.*/
 _integration/
 .env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
 .mock_cli_bin/
 dist/
 build/
