@@ -120,6 +120,14 @@ async function main() {
   // Write lightweight .sync-status.json telemetry endpoint file
   const STATUS_PATH = path.join(REPO_ROOT, ".sync-status.json");
   const packSizeBytes = packFiles.reduce((acc, f) => acc + fs.statSync(path.join(PACK_DIR, f)).size, 0);
+  let existingStatus = {};
+  if (fs.existsSync(STATUS_PATH)) {
+    try {
+      existingStatus = JSON.parse(fs.readFileSync(STATUS_PATH, "utf8"));
+    } catch (_) {
+      existingStatus = {};
+    }
+  }
 
   const statusData = {
     last_sync_timestamp: new Date().toISOString(),
@@ -129,7 +137,7 @@ async function main() {
     pack_size_bytes: packSizeBytes,
     unique_urls_tracked: brokenLinks.length,
     total_url_references: totalReferences,
-    notebook_id: process.env.NOTEBOOK_ID || "unknown",
+    notebook_id: process.env.NOTEBOOK_ID || existingStatus.notebook_id || "unknown",
     // Derived, not hardcoded: this script runs as stage 2 after the bash
     // pipeline produced .nlm_pack, so a successful run proves both stages.
     // Previously these were literal `true`s that persisted through the bash

@@ -227,7 +227,7 @@ if [ -f "$REPO_ROOT/.env" ]; then
   done < "$REPO_ROOT/.env"
 fi
 
-NOTEBOOK_ID="${NOTEBOOK_ID:-}"
+export NOTEBOOK_ID="${NOTEBOOK_ID:-}"
 
 # --- RESOLVE NOTEBOOKLM CLI RUNTIME ------------------------------------------
 NLM_MODE=""
@@ -447,7 +447,7 @@ verify_auth_or_die() {
   fi
 
   log_error "FATAL: All authentication recovery paths failed. Hard-stopping before purge/upload."
-  write_sync_telemetry "FAILED" 0 0
+  write_sync_telemetry "FAILED" 0 0 "All authentication recovery paths failed"
   exit 1
 }
 
@@ -512,7 +512,7 @@ run_preflight_drift_audit() {
   if [ "$count" -gt 1 ]; then
     log_warn "[AUDIT-DRIFT] Anomaly detected: Found $count matching knowledge pack sources (drift from interrupted prior run)."
     log_info "[AUDIT-DRIFT] Executing automated drift correction... Purging $((count - 1)) duplicate stale source(s)."
-    
+
     local purged=0
     for ((i=0; i<count-1; i++)); do
       local src_id="${PRE_EXISTING_SOURCES[i]}"
