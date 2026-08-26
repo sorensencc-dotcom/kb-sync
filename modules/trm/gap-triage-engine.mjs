@@ -52,14 +52,39 @@ export function parseGapItems(content) {
 
 /**
  * Triages a single gap item against the SQLite context cache.
+ * Uses cognitive query expansion when available, falling back to heuristic.
  *
  * @param {Object} dbInstance - SQLite Database instance
  * @param {Object} gap - Parsed gap object
  * @param {Object} [options]
- * @returns {{ gap: Object, matchedDocuments: Array, suggestedResolution: string, rfcContent: string }}
+ * @param {Function|null} [options.expandSearchQuery] - Query expander fn (async)
+ * @param {Object|null} [options.circuitBreaker] - Circuit breaker instance
+ * @param {Object} [options.expandOptions] - Options forwarded to expandSearchQuery
+ * @returns {Promise<{ gap: Object, matchedDocuments: Array, citations: Array, rfcContent: string, topicSlug: string }>}
  */
-export function triageGapAgainstCache(dbInstance, gap, options = {}) {
-  const query = `${gap.title} ${gap.description}`.replace(/[[\]()#*]/g, ' ').trim();
+export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
+  const { expandSearchQuery = null, circuitBreaker = null, expandOptions = {} } = options;
+
+  let query;
+  let expansionMethod = 'raw';
+
+  if (expandSearchQuery) {
+    try {
+      const result = await expandSearchQuery(gap, dbInstance, {
+        ...expandOptions,
+        circuitBreaker,
+      });
+      query = result.query;
+      expansionMethod = result.method;
+    } catch {
+      // Defensive: if expander throws unexpectedly, fall back to raw query
+      query = `${gap.title} ${gap.description}`.replace(/[[\]()#*]/g, ' ').trim();
+    }
+  } else {
+    // Legacy path: raw lexical concatenation (used when --no-expand is set)
+    query = `${gap.title} ${gap.description}`.replace(/[[\]()#*]/g, ' ').trim();
+  }
+
   const searchRes = handleQueryContextCache(dbInstance, {
     query,
     category: 'all',
@@ -94,6 +119,7 @@ topic: "${topicSlug}"
 gap_id: "${gap.id}"
 status: "draft"
 created_at: "${new Date().toISOString()}"
+expansion_method: "${expansionMethod}"
 citations: ${JSON.stringify(citations)}
 ---
 
@@ -128,19 +154,27 @@ ${evidenceList}
 /**
  * Runs the full gap triage cycle: reads gaps file, evaluates cache matches,
  * writes synthesized RFC notes to output directory, and updates gaps file with RFC links.
+ * Processes gaps concurrently (up to `options.concurrency` parallel tasks).
  *
  * @param {Object} options
  * @param {string} options.gapsFilePath - Path to trm-research-gaps.md
  * @param {string} options.outputDir - Output directory for synthesized RFCs (e.g. wiki/research/)
  * @param {string} [options.dbPath] - Path to SQLite database
  * @param {boolean} [options.dryRun=false] - Dry run mode
- * @returns {{ processed: number, rfcFiles: string[], updatedGapsContent: string }}
+ * @param {boolean} [options.noExpand=false] - Disable cognitive query expansion
+ * @param {string} [options.provider] - LLM provider override
+ * @param {string} [options.model] - LLM model override
+ * @param {number} [options.timeoutMs] - Provider timeout in ms
+ * @param {number} [options.concurrency] - Max parallel gap triage tasks
+ * @returns {Promise<{ processed: number, rfcFiles: string[], updatedGapsContent: string }>}
  */
-export function executeGapTriage(options = {}) {
+export async function executeGapTriage(options = {}) {
   const gapsPath = path.resolve(options.gapsFilePath);
   const outputDir = path.resolve(options.outputDir);
   const dbPath = options.dbPath || DEFAULT_DB_PATH;
   const dryRun = !!options.dryRun;
+  const noExpand = !!options.noExpand;
+  const concurrency = Number(process.env.TRM_EXPANDER_CONCURRENCY ?? options.concurrency ?? 3);
 
   if (!fs.existsSync(gapsPath)) {
     throw new Error(`Gaps file not found at: ${gapsPath}`);
@@ -149,34 +183,63 @@ export function executeGapTriage(options = {}) {
   const db = getDatabase(dbPath, { readonly: true });
   const rawContent = fs.readFileSync(gapsPath, 'utf8');
   const parsedGaps = parseGapItems(rawContent);
+  const pendingGaps = parsedGaps.filter((g) => g.status !== 'resolved');
 
   if (!fs.existsSync(outputDir) && !dryRun) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
+  // Lazy-load expander only if needed (avoids import cost when --no-expand)
+  let expandSearchQuery = null;
+  let circuitBreaker = null;
+  if (!noExpand) {
+    const expander = await import('./query-expander.mjs');
+    expandSearchQuery = expander.expandSearchQuery;
+    circuitBreaker = expander.createCircuitBreaker();
+  }
+
+  const expandOptions = {
+    provider: options.provider,
+    ollamaModel: options.model,
+    timeoutMs: options.timeoutMs,
+  };
+
   const rfcFiles = [];
   let updatedContent = rawContent;
   let processed = 0;
 
-  for (const gap of parsedGaps) {
-    if (gap.status === 'resolved') continue;
+  // Process gaps in bounded concurrency batches
+  for (let i = 0; i < pendingGaps.length; i += concurrency) {
+    const batch = pendingGaps.slice(i, i + concurrency);
+    const results = await Promise.all(
+      batch.map((gap) =>
+        triageGapAgainstCache(db, gap, {
+          expandSearchQuery,
+          circuitBreaker,
+          expandOptions,
+          limit: 3,
+        })
+      )
+    );
 
-    const triageResult = triageGapAgainstCache(db, gap);
-    const rfcFilename = `${triageResult.topicSlug}.md`;
-    const rfcFullPath = path.join(outputDir, rfcFilename);
+    for (const triageResult of results) {
+      const rfcFilename = `${triageResult.topicSlug}.md`;
+      const rfcFullPath = path.join(outputDir, rfcFilename);
 
-    if (!dryRun) {
-      fs.writeFileSync(rfcFullPath, triageResult.rfcContent, 'utf8');
+      if (!dryRun) {
+        fs.writeFileSync(rfcFullPath, triageResult.rfcContent, 'utf8');
+      }
+      rfcFiles.push(path.relative(process.cwd(), rfcFullPath).replace(/\\/g, '/'));
+      processed++;
+
+      // Update gap line in markdown with RFC backlink
+      const { gap } = triageResult;
+      const rfcRelativePath = path.relative(path.dirname(gapsPath), rfcFullPath).replace(/\\/g, '/');
+      const updatedLine = gap.title === gap.description
+        ? `- [/] [${gap.id}] ${gap.title} (Drafted: [RFC](${rfcRelativePath}))`
+        : `- [/] [${gap.id}] ${gap.title}: ${gap.description} (Drafted: [RFC](${rfcRelativePath}))`;
+      updatedContent = updatedContent.replace(gap.raw, updatedLine);
     }
-    rfcFiles.push(path.relative(process.cwd(), rfcFullPath).replace(/\\/g, '/'));
-    processed++;
-
-    // Update gap line in markdown with RFC backlink
-    const rfcRelativePath = path.relative(path.dirname(gapsPath), rfcFullPath).replace(/\\/g, '/');
-    const updatedLine = gap.title === gap.description
-      ? `- [/] [${gap.id}] ${gap.title} (Drafted: [RFC](${rfcRelativePath}))`
-      : `- [/] [${gap.id}] ${gap.title}: ${gap.description} (Drafted: [RFC](${rfcRelativePath}))`;
-    updatedContent = updatedContent.replace(gap.raw, updatedLine);
   }
 
   if (!dryRun && processed > 0) {
