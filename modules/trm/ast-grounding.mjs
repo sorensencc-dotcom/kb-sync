@@ -1,6 +1,18 @@
 import { execSync } from 'node:child_process';
 import path from 'node:path';
 
+/**
+ * ARCHITECTURE DESIGN RATIONALE:
+ * 1. Static AST Grounding (Path C):
+ *    - Uses the local Graft static analysis graph (`graft callers <symbol> --depth 2`)
+ *      to trace exact caller/callee trees and blast-radius spans.
+ * 
+ * 2. Fail-Soft Fallback Contract:
+ *    - If `graft` CLI is not found on PATH, times out (1500ms cap), or the symbol is unindexed,
+ *      `fetchSymbolAstGraph` catches the error and returns `null`.
+ *    - The pipeline renders a clean fallback banner without interrupting triage or throwing exceptions.
+ */
+
 const COMMON_STOP_SYMBOLS = new Set([
   'the', 'this', 'that', 'with', 'from', 'have', 'been', 'will', 'what', 'when',
   'where', 'which', 'their', 'there', 'about', 'would', 'could', 'should', 'other',
