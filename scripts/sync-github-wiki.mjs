@@ -28,7 +28,7 @@ function copyRecursive(src, dest) {
       if (entry.name === '.git' || entry.name === 'node_modules') continue;
       fs.mkdirSync(destPath, { recursive: true });
       copied += copyRecursive(srcPath, destPath);
-    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+    } else if (entry.isFile() && /\.(md|png|svg|jpg|jpeg|gif|mermaid)$/i.test(entry.name)) {
       fs.copyFileSync(srcPath, destPath);
       copied += 1;
     }
@@ -38,17 +38,18 @@ function copyRecursive(src, dest) {
 
 function generateSidebar(wikiDir) {
   let sidebarContent = `### Knowledge Base Sync (\`kb-sync\`)
-- [[Home]]
-- [[Index]]
-- [[Log]]
+- [Home](Home)
+- [Index](Index)
+- [Log](Log)
 
 #### Core Systems
-- [[Competitor Watchlist & Drift Engine|research/competitor-watchlist-drift-engine]]
-- [[WhichLLM Model Selection Evaluator|research/whichllm-model-selection-evaluator]]
-- [[Local Context Cache|concepts/local-context-cache]]
-- [[TRM Closed-Loop Research|concepts/trm-closed-loop-research]]
-- [[Fail-Soft Orchestration|concepts/fail-soft-orchestration]]
-- [[Deterministic Sync Pipeline|concepts/deterministic-sync-pipeline]]
+- [TRM Gap Triage & Hybrid Synthesis](research/rfc-gap-01--cic-daily-research-follow-up)
+- [Competitor Watchlist & Drift Engine](research/competitor-watchlist-drift-engine)
+- [WhichLLM Model Selection Evaluator](research/whichllm-model-selection-evaluator)
+- [Local Context Cache](concepts/local-context-cache)
+- [TRM Closed-Loop Research](concepts/trm-closed-loop-research)
+- [Fail-Soft Orchestration](concepts/fail-soft-orchestration)
+- [Deterministic Sync Pipeline](concepts/deterministic-sync-pipeline)
 
 #### Concepts
 `;
@@ -59,7 +60,7 @@ function generateSidebar(wikiDir) {
     for (const file of conceptFiles) {
       const name = file.replace(/\.md$/, '');
       const title = name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-      sidebarContent += `- [[${title}|concepts/${name}]]\n`;
+      sidebarContent += `- [${title}](concepts/${name})\n`;
     }
   }
 
@@ -69,7 +70,7 @@ function generateSidebar(wikiDir) {
     const entityFiles = fs.readdirSync(entitiesDir).filter(f => f.endsWith('.md')).slice(0, 15);
     for (const file of entityFiles) {
       const name = file.replace(/\.md$/, '');
-      sidebarContent += `- [[${name}|entities/${name}]]\n`;
+      sidebarContent += `- [${name}](entities/${name})\n`;
     }
     if (fs.readdirSync(entitiesDir).length > 15) {
       sidebarContent += `- _And ${fs.readdirSync(entitiesDir).length - 15} more entities..._\n`;
@@ -79,11 +80,11 @@ function generateSidebar(wikiDir) {
   sidebarContent += `\n#### Research & RFCs\n`;
   const researchDir = path.join(wikiDir, 'research');
   if (fs.existsSync(researchDir)) {
-    const researchFiles = fs.readdirSync(researchDir).filter(f => f.endsWith('.md')).slice(0, 10);
+    const researchFiles = fs.readdirSync(researchDir).filter(f => f.endsWith('.md')).slice(0, 12);
     for (const file of researchFiles) {
       const name = file.replace(/\.md$/, '');
       const title = name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-      sidebarContent += `- [[${title}|research/${name}]]\n`;
+      sidebarContent += `- [${title}](research/${name})\n`;
     }
   }
 
