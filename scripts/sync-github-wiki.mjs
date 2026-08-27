@@ -12,79 +12,82 @@ const value = (name, fallback = null) => { const i = args.indexOf(name); return 
 const wikiSourceDir = path.resolve(root, value('--source-dir', 'wiki'));
 const repoUrl = value('--repo-url', process.env.WIKI_REPO_URL || 'https://github.com/sorensencc-dotcom/kb-sync.wiki.git');
 const targetWikiDir = path.resolve(root, value('--target-dir', '.wiki-publish-temp'));
-const shouldPush = args.includes('--push') || process.env.AUTO_PUSH === 'true' || true; // Default to push when invoked
-const commitMessage = value('--commit-msg', 'docs(wiki): synchronize full kb-sync documentation, concepts, and sidebar');
+const shouldPush = args.includes('--push') || process.env.AUTO_PUSH === 'true' || true;
+const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all wiki pages, RFCs, and diagram assets');
 
-function copyRecursive(src, dest) {
-  if (!fs.existsSync(src)) return 0;
+function copyFlatAndPreserve(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return 0;
   let copied = 0;
-  const entries = fs.readdirSync(src, { withFileTypes: true });
 
-  for (const entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
+  function walk(currentDir) {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullSrc = path.join(currentDir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name === '.git' || entry.name === 'node_modules') continue;
+        walk(fullSrc);
+      } else if (entry.isFile() && /\.(md|png|svg|jpg|jpeg|gif|html|mermaid)$/i.test(entry.name)) {
+        // 1. Copy directly to root of wiki repo for flat GitHub Wiki URL routing
+        const flatDest = path.join(destDir, entry.name);
+        fs.copyFileSync(fullSrc, flatDest);
 
-    if (entry.isDirectory()) {
-      if (entry.name === '.git' || entry.name === 'node_modules') continue;
-      fs.mkdirSync(destPath, { recursive: true });
-      copied += copyRecursive(srcPath, destPath);
-    } else if (entry.isFile() && /\.(md|png|svg|jpg|jpeg|gif|mermaid)$/i.test(entry.name)) {
-      fs.copyFileSync(srcPath, destPath);
-      copied += 1;
+        // 2. Also preserve relative subfolder hierarchy
+        const relPath = path.relative(srcDir, fullSrc);
+        const nestedDest = path.join(destDir, relPath);
+        fs.mkdirSync(path.dirname(nestedDest), { recursive: true });
+        fs.copyFileSync(fullSrc, nestedDest);
+
+        copied += 1;
+      }
     }
   }
+
+  walk(srcDir);
   return copied;
 }
 
 function generateSidebar(wikiDir) {
   let sidebarContent = `### Knowledge Base Sync (\`kb-sync\`)
-- [Home](Home)
-- [Index](Index)
-- [Log](Log)
+- [[Home]]
+- [[Documentation Index|Index]]
+- [[Audit Log|Log]]
 
-#### Core Systems
-- [TRM Gap Triage & Hybrid Synthesis](research/rfc-gap-01--cic-daily-research-follow-up)
-- [Competitor Watchlist & Drift Engine](research/competitor-watchlist-drift-engine)
-- [WhichLLM Model Selection Evaluator](research/whichllm-model-selection-evaluator)
-- [Local Context Cache](concepts/local-context-cache)
-- [TRM Closed-Loop Research](concepts/trm-closed-loop-research)
-- [Fail-Soft Orchestration](concepts/fail-soft-orchestration)
-- [Deterministic Sync Pipeline](concepts/deterministic-sync-pipeline)
+#### Core Subsystems
+- [[TRM Gap Triage & Hybrid Synthesis|rfc-gap-01--cic-daily-research-follow-up]]
+- [[Competitor Watchlist & Drift Engine|competitor-watchlist-drift-engine]]
+- [[WhichLLM Model Selection Evaluator|whichllm-model-selection-evaluator]]
+- [[Local Context Cache|local-context-cache]]
+- [[TRM Closed-Loop Research|trm-closed-loop-research]]
+- [[Fail-Soft Orchestration|fail-soft-orchestration]]
+- [[Deterministic Sync Pipeline|deterministic-sync-pipeline]]
 
-#### Concepts
+#### Key Research RFCs
 `;
 
+  const researchDir = path.join(wikiDir, 'research');
+  if (fs.existsSync(researchDir)) {
+    const researchFiles = fs.readdirSync(researchDir).filter(f => f.endsWith('.md')).slice(0, 15);
+    for (const file of researchFiles) {
+      const slug = file.replace(/\.md$/, '');
+      const cleanTitle = slug
+        .replace(/^rfc-gap-/, 'RFC ')
+        .replace(/--/g, ' - ')
+        .replace(/-/g, ' ')
+        .split(' ')
+        .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+        .join(' ');
+      sidebarContent += `- [[${cleanTitle}|${slug}]]\n`;
+    }
+  }
+
+  sidebarContent += `\n#### Concepts & Architecture\n`;
   const conceptsDir = path.join(wikiDir, 'concepts');
   if (fs.existsSync(conceptsDir)) {
     const conceptFiles = fs.readdirSync(conceptsDir).filter(f => f.endsWith('.md'));
     for (const file of conceptFiles) {
-      const name = file.replace(/\.md$/, '');
-      const title = name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-      sidebarContent += `- [${title}](concepts/${name})\n`;
-    }
-  }
-
-  sidebarContent += `\n#### Entities\n`;
-  const entitiesDir = path.join(wikiDir, 'entities');
-  if (fs.existsSync(entitiesDir)) {
-    const entityFiles = fs.readdirSync(entitiesDir).filter(f => f.endsWith('.md')).slice(0, 15);
-    for (const file of entityFiles) {
-      const name = file.replace(/\.md$/, '');
-      sidebarContent += `- [${name}](entities/${name})\n`;
-    }
-    if (fs.readdirSync(entitiesDir).length > 15) {
-      sidebarContent += `- _And ${fs.readdirSync(entitiesDir).length - 15} more entities..._\n`;
-    }
-  }
-
-  sidebarContent += `\n#### Research & RFCs\n`;
-  const researchDir = path.join(wikiDir, 'research');
-  if (fs.existsSync(researchDir)) {
-    const researchFiles = fs.readdirSync(researchDir).filter(f => f.endsWith('.md')).slice(0, 12);
-    for (const file of researchFiles) {
-      const name = file.replace(/\.md$/, '');
-      const title = name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-      sidebarContent += `- [${title}](research/${name})\n`;
+      const slug = file.replace(/\.md$/, '');
+      const title = slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+      sidebarContent += `- [[${title}|${slug}]]\n`;
     }
   }
 
@@ -121,19 +124,25 @@ async function main() {
   console.log(`Cloning remote wiki git repository...`);
   execSync(`git clone "${repoUrl}" "${targetWikiDir}"`, { stdio: 'inherit' });
 
-  // 2. Copy markdown hierarchy
-  console.log(`Copying wiki markdown documents into publishing working tree...`);
-  const copiedCount = copyRecursive(wikiSourceDir, targetWikiDir);
-  console.log(`✓ Transferred ${copiedCount} markdown file(s).`);
+  // 2. Copy root diagram assets if present
+  const rootDiagramPng = path.join(root, 'trm-gap-triage-architecture.png');
+  if (fs.existsSync(rootDiagramPng)) {
+    fs.copyFileSync(rootDiagramPng, path.join(targetWikiDir, 'trm-gap-triage-architecture.png'));
+  }
 
-  // 3. Generate Home, Sidebar, and Footer
+  // 3. Copy markdown hierarchy (both flat and nested)
+  console.log(`Copying and flattening wiki documents and assets into publishing working tree...`);
+  const copiedCount = copyFlatAndPreserve(wikiSourceDir, targetWikiDir);
+  console.log(`✓ Transferred ${copiedCount} file(s).`);
+
+  // 4. Generate Home, Sidebar, and Footer
   console.log(`Generating Home.md, _Sidebar.md, and _Footer.md navigation assets...`);
   generateHome(targetWikiDir);
   generateSidebar(targetWikiDir);
   generateFooter(targetWikiDir);
   console.log(`✓ Navigation templates generated.`);
 
-  // 4. Commit and push
+  // 5. Commit and push
   if (shouldPush) {
     console.log(`Staging and checking status in target wiki...`);
     execSync('git add -A', { cwd: targetWikiDir, stdio: 'pipe' });
@@ -149,14 +158,9 @@ async function main() {
       console.log(`✓ GitHub Wiki working tree is already up to date with remote.`);
     }
   }
-
-  // Cleanup temp dir
-  try {
-    fs.rmSync(targetWikiDir, { recursive: true, force: true });
-  } catch {}
 }
 
-main().catch(err => {
-  console.error(`Fatal wiki publish failure: ${err.message}`);
+main().catch((err) => {
+  console.error(`❌ [KB-SYNC WIKI PUBLISHER] Failed:`, err);
   process.exit(1);
 });
