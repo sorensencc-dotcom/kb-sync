@@ -4,24 +4,25 @@ category: "research"
 topic: "rfc-gap-01--willow-run-videos-under-sourc"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-24T19:31:43.277Z"
-citations: ["docs/kb/notebooklm-sync/operator-rules.md","docs/kb/notebooklm-sync/pipeline.md","wiki/research/rfc-gap-01-fail-soft-recovery-during-conc.md"]
+created_at: "2026-08-27T03:17:41.421Z"
+expansion_method: "heuristic"
+citations: ["wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md","trm-research-gaps.md","wiki/research/.catalog.json"]
 ---
 
 # RFC: GAP-01 - **Willow Run Videos (under-sourced)**
 
 ## 1. Problem Statement & Context
-Some other answer.))))))
+Some other answer.))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:
 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`):
-  > ...Run command: ```bash npm run kb:sync ```  ### 2. Optional Git Post-Commit Hook Developers can opt-in to background sync on local commits by executing: ```bash npm run kb:sync:setup-hook...
-- **pipeline** (`docs/kb/notebooklm-sync/pipeline.md`):
-  > ...Trigger The process is explicitly initiated by executing: ```bash npm run kb:sync ``` This script calls `scripts/notebooklm/ingest-notebooklm.sh` and does not run in the background unless configured as an...
-- **rfc-gap-01-fail-soft-recovery-during-conc** (`wiki/research/rfc-gap-01-fail-soft-recovery-during-conc.md`):
-  > ...Open Questions & Residual Risk -   Are additional integration tests required to verify protocol compliance? -   Does this resolution introduce cross-platform drift across runtime targets?
+- **rfc-gap-01--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md`):
+  > ...GAP-01 - **Willow Run Videos under-sourced**  ## 1. Problem Statement & Context Some other answer.  ## 2. Evidence Grounding & Cache Findings The following related context nodes were retrieved from the local knowledge base:  - **rfc...
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`):
+  > ...Some other answer. Drafted: RFCwiki/research/rfc-gap-01--willow-run-videos-under-sourc.md  - / GAP-02 **Willow Run Videos open-contradictions**: No source found for the 1943 production date. Drafted...
+- **-catalog** (`wiki/research/.catalog.json`):
+  > {   "generated": "2026-08-22T01:52:02.931Z",   "files":      {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",       "title": "RFC: GAP-01 - **Willow Run Videos under...
 
 ## 3. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.
