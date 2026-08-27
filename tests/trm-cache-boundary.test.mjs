@@ -32,11 +32,11 @@ describe('TRM and local-cache boundary coverage', () => {
     assert.equal(gaps[0].description, 'Needs evidence');
   });
 
-  test('triageGapAgainstCache returns explicit no-match evidence', () => {
+  test('triageGapAgainstCache returns explicit no-match evidence', async () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-boundary-'));
     const db = getDatabase(path.join(root, 'cache.db'));
     try {
-      const result = triageGapAgainstCache(db, {
+      const result = await triageGapAgainstCache(db, {
         id: 'GAP-01',
         title: 'Unrepresented protocol',
         description: 'No document contains this phrase'
@@ -44,14 +44,16 @@ describe('TRM and local-cache boundary coverage', () => {
 
       assert.deepEqual(result.matchedDocuments, []);
       assert.deepEqual(result.citations, []);
-      assert.match(result.rfcContent, /No immediate lexical matches found/);
+      assert.match(result.rfcContent, /No immediate (?:lexical|context) matches found/);
     } finally {
       db.close();
-      fs.rmSync(root, { recursive: true, force: true });
+      try {
+        fs.rmSync(root, { recursive: true, force: true });
+      } catch {}
     }
   });
 
-  test('executeGapTriage dry-run does not create RFCs or mutate gaps', () => {
+  test('executeGapTriage dry-run does not create RFCs or mutate gaps', async () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-dry-run-'));
     const gapsPath = path.join(root, 'trm-research-gaps.md');
     const outputDir = path.join(root, 'wiki', 'research');
@@ -61,13 +63,15 @@ describe('TRM and local-cache boundary coverage', () => {
     db.close();
 
     try {
-      const result = executeGapTriage({ gapsFilePath: gapsPath, outputDir, dbPath, dryRun: true });
+      const result = await executeGapTriage({ gapsFilePath: gapsPath, outputDir, dbPath, dryRun: true });
 
       assert.equal(result.processed, 1);
       assert.equal(fs.readFileSync(gapsPath, 'utf8'), '- [ ] [GAP-01] Missing proof: Validate runtime path\n');
       assert.equal(fs.existsSync(outputDir), false);
     } finally {
-      fs.rmSync(root, { recursive: true, force: true });
+      try {
+        fs.rmSync(root, { recursive: true, force: true });
+      } catch {}
     }
   });
 

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { getDatabase, DEFAULT_DB_PATH } from './db-schema.mjs';
+import { storeVector, deterministicHeuristicVector } from './vector-store.mjs';
 
 /**
  * Computes sha256 of string content.
@@ -108,10 +109,14 @@ export function syncKnowledgeCache(options = {}) {
 
     if (!existing) {
       upsertStmt.run(id, category, topic, id, content, sha256);
+      const vec = deterministicHeuristicVector(`${topic} ${content.slice(0, 2000)}`);
+      storeVector(db, id, topic, vec);
       inserted++;
       if (verbose) console.log(`[kb-cache] Inserted: ${id}`);
     } else if (existing.sha256 !== sha256) {
       upsertStmt.run(id, category, topic, id, content, sha256);
+      const vec = deterministicHeuristicVector(`${topic} ${content.slice(0, 2000)}`);
+      storeVector(db, id, topic, vec);
       updated++;
       if (verbose) console.log(`[kb-cache] Updated: ${id}`);
     } else {

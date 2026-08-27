@@ -52,7 +52,7 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.equal(parsed[3].status, 'pending');
   });
 
-  test('TEST-02: Gap triage queries SQLite cache and synthesizes RFC with citations', () => {
+  test('TEST-02: Gap triage queries SQLite cache and synthesizes RFC with citations', async () => {
     const db = getDatabase(testDbPath);
 
     // Seed SQLite knowledge database with related documentation
@@ -77,7 +77,7 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
       raw: '- [ ] [GAP-01] Fail-soft orchestration: Need clarity on SQLite write locks during crash.'
     };
 
-    const triage = triageGapAgainstCache(db, gap);
+    const triage = await triageGapAgainstCache(db, gap);
 
     assert.ok(triage.topicSlug.startsWith('rfc-gap-01-fail-soft-orchestration'));
     assert.equal(triage.matchedDocuments.length, 1);
@@ -90,7 +90,7 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     db.close();
   });
 
-  test('TEST-03: End-to-end executeGapTriage writes RFC files and updates tracking file', () => {
+  test('TEST-03: End-to-end executeGapTriage writes RFC files and updates tracking file', async () => {
     const db = getDatabase(testDbPath);
     db.prepare(`
       INSERT INTO kb_documents (id, category, topic, file_path, content, sha256)
@@ -111,7 +111,7 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
 `;
     fs.writeFileSync(gapsFilePath, initialGapsContent, 'utf8');
 
-    const result = executeGapTriage({
+    const result = await executeGapTriage({
       gapsFilePath,
       outputDir,
       dbPath: testDbPath

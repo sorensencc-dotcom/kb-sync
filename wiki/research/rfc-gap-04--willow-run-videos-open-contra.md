@@ -4,30 +4,35 @@ category: "research"
 topic: "rfc-gap-04--willow-run-videos-open-contra"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-08-27T03:17:41.384Z"
+created_at: "2026-08-27T12:24:02.561Z"
 expansion_method: "heuristic"
-citations: ["trm-research-gaps.md","wiki/research/.catalog.json","wiki/research/rfc-gap-02--willow-run-videos-open-contra.md"]
+retrieval_mode: "hybrid-rrf"
+ast_grounded_symbols: []
+citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","trm-research-gaps.md","wiki/research/rfc-gap-02--willow-run-videos-open-contra.md"]
 ---
 
 # RFC: GAP-04 - **Willow Run Videos (open-contradictions)**
 
 ## 1. Problem Statement & Context
-### **The Aircraft Mismatch: B-17 Flying Fortress vs. B-24 Liberator** The most glaring, irreconcilable contradiction across your video transcripts is))))
+### **The Aircraft Mismatch: B-17 Flying Fortress vs. B-24 Liberator** The most glaring, irreconcilable contradiction across your video transcripts is)))))
 
 ## 2. Evidence Grounding & Cache Findings
-The following related context nodes were retrieved from the local knowledge base:
+The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`):
-  > ...Some other answer. Drafted: RFCwiki/research/rfc-gap-01--willow-run-videos-under-sourc.md  - / GAP-02 **Willow Run Videos open-contradictions**: No source found for the 1943 production date. Drafted...
-- **-catalog** (`wiki/research/.catalog.json`):
-  > ...GAP-02 - **Willow Run Videos open-contradictions**",       "description": null,       "tags": ,       "author": null,       "date": null,       "stats": {         "lines": 33,         "words": 244,         "headings": 5,         "links": 0       }     },     {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap...
-- **rfc-gap-02--willow-run-videos-open-contra** (`wiki/research/rfc-gap-02--willow-run-videos-open-contra.md`):
-  > ...GAP-02 - **Willow Run Videos open-contradictions**" category: "research" topic: "rfc-gap-02--willow-run-videos-open-contra" gap_id: "GAP-02" status: "draft" created_at: "2026-08-26T21:48:24.762Z...
+- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
+- **rfc-gap-02--willow-run-videos-open-contra** (`wiki/research/rfc-gap-02--willow-run-videos-open-contra.md`) [vector_only]:
+  > --- title: "RFC: GAP-02 - **Willow Run Videos open-contradictions**" category: "research" topic: "rfc-gap-02--willow-run-videos-open-contra" gap_id: "GAP-02" status: "draft" created_at: "2026-08-27T03:17:41.425Z" expansion_method: "heuristic" citatio
 
-## 3. Proposed Resolution & Protocol Decision
+### 3. AST Call-Graph & Blast Radius Analysis
+*No static call-graph symbols detected in target codebase for this item.*
+
+## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.
 - Maintain deterministic state across pipeline boundaries and fail-soft fallbacks.
 
-## 4. Open Questions & Residual Risk
+## 5. Open Questions & Residual Risk
 - [ ] Are additional integration tests required to verify protocol compliance?
 - [ ] Does this resolution introduce cross-platform drift across runtime targets?

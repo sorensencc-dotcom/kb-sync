@@ -31,12 +31,23 @@ END;
 
 CREATE TRIGGER IF NOT EXISTS trg_kb_docs_ad AFTER DELETE ON kb_documents BEGIN
   DELETE FROM kb_fts WHERE id = old.id;
+  DELETE FROM kb_vectors WHERE id = old.id;
 END;
 
 CREATE TRIGGER IF NOT EXISTS trg_kb_docs_au AFTER UPDATE ON kb_documents BEGIN
   DELETE FROM kb_fts WHERE id = old.id;
   INSERT INTO kb_fts(id, topic, content) VALUES (new.id, new.topic, new.content);
 END;
+
+-- Dense Vector Embedding Store for Hybrid Semantic Search (Path B)
+CREATE TABLE IF NOT EXISTS kb_vectors (
+  id TEXT PRIMARY KEY,
+  topic TEXT NOT NULL,
+  embedding BLOB NOT NULL,
+  dimensions INTEGER NOT NULL,
+  model TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 `;
 
 /**

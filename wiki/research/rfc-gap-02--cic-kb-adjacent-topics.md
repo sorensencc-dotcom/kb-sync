@@ -4,30 +4,35 @@ category: "research"
 topic: "rfc-gap-02--cic-kb-adjacent-topics"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-08-27T03:17:41.396Z"
+created_at: "2026-08-27T12:24:08.210Z"
 expansion_method: "heuristic"
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md","docs/kb/notebooklm-sync/architecture.md"]
+retrieval_mode: "hybrid-rrf"
+ast_grounded_symbols: []
+citations: ["wiki/research/rfc-gap-02--cic-kb-adjacent-topics.md","wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-02 - **CIC-KB (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The provided sources point to several adjacent architectural, operational, and functional topics that are designated as future roadmaps, deferred spec))))))
+The provided sources point to several adjacent architectural, operational, and functional topics that are designated as future roadmaps, deferred spec)))))))
 
 ## 2. Evidence Grounding & Cache Findings
-The following related context nodes were retrieved from the local knowledge base:
+The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`):
-  > ...GAP-02 **CIC - Daily Research adjacent-topics**: While our current tracks cover the main biographical and legal arcs of Charles E. Sorensen, the primary source materials point to several fascinating, Drafted: RFC...
-- **rfc-gap-02--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md`):
-  > ...heuristic" citations: "docs/kb/notebooklm-sync/architecture.md","docs/kb/notebooklm-sync/authentication.md","wiki/concepts/trm-closed-loop-research.md" ---  # RFC: GAP-02 - **CIC - Daily Research adjacent-topics**  ## 1. Problem Statement...
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`):
-  > --- title: "architecture" category: "wiki" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop between the Rewrite Labs / CIC monorepo and Google...
+- **rfc-gap-02--cic-kb-adjacent-topics** (`wiki/research/rfc-gap-02--cic-kb-adjacent-topics.md`) [hybrid]:
+  > 
+- **rfc-gap-02--cic-reddit-adjacent-topics** (`wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md`) [hybrid]:
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
 
-## 3. Proposed Resolution & Protocol Decision
+### 3. AST Call-Graph & Blast Radius Analysis
+*No static call-graph symbols detected in target codebase for this item.*
+
+## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.
 - Maintain deterministic state across pipeline boundaries and fail-soft fallbacks.
 
-## 4. Open Questions & Residual Risk
+## 5. Open Questions & Residual Risk
 - [ ] Are additional integration tests required to verify protocol compliance?
 - [ ] Does this resolution introduce cross-platform drift across runtime targets?

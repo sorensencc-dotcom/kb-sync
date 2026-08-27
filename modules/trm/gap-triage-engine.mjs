@@ -2,6 +2,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { getDatabase, DEFAULT_DB_PATH } from '../cache/db-schema.mjs';
 import { handleQueryContextCache, handleFetchTopicNote } from '../../scripts/mcp-memory-server.mjs';
+import {
+  generateEmbedding,
+  searchDenseVectors,
+  reciprocalRankFusion,
+} from '../cache/vector-store.mjs';
+import {
+  extractCodeSymbols,
+  fetchAstBlastRadius,
+  formatAstGroundingSection,
+} from './ast-grounding.mjs';
 
 /**
  * Parses markdown gap items from trm-research-gaps.md.
@@ -52,7 +62,7 @@ export function parseGapItems(content) {
 
 /**
  * Triages a single gap item against the SQLite context cache.
- * Uses cognitive query expansion when available, falling back to heuristic.
+ * Uses cognitive query expansion, hybrid vector search (RRF), and AST call-graph grounding.
  *
  * @param {Object} dbInstance - SQLite Database instance
  * @param {Object} gap - Parsed gap object
@@ -85,17 +95,66 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
     query = `${gap.title} ${gap.description}`.replace(/[[\]()#*]/g, ' ').trim();
   }
 
+  // 1. Lexical search via SQLite FTS5
   const searchRes = handleQueryContextCache(dbInstance, {
     query,
     category: 'all',
-    limit: options.limit || 3
+    limit: options.limit || 5
   });
 
-  let matchedDocuments = [];
+  let lexicalHits = [];
   if (!searchRes.isError && searchRes.content?.[0]?.text) {
     try {
-      matchedDocuments = JSON.parse(searchRes.content[0].text);
+      lexicalHits = JSON.parse(searchRes.content[0].text);
     } catch {}
+  }
+
+  // 2. Dense vector search & RRF blending (Path B)
+  let matchedDocuments = lexicalHits;
+  let retrievalMode = 'lexical';
+
+  try {
+    const rawGapText = `${gap.title} ${gap.description}`;
+    const embeddingRes = await generateEmbedding(rawGapText, {
+      provider: expandOptions.provider === 'offline' ? 'offline' : 'auto',
+      timeoutMs: 3000,
+    });
+
+    const vectorHits = searchDenseVectors(dbInstance, embeddingRes.vector, {
+      limit: options.limit || 5,
+    });
+
+    if (vectorHits.length > 0) {
+      matchedDocuments = reciprocalRankFusion(lexicalHits, vectorHits, {
+        k: 60,
+        limit: options.limit || 5,
+      });
+      retrievalMode = 'hybrid-rrf';
+    }
+  } catch {
+    // Fail-soft: continue with lexical hits if vector search fails
+    matchedDocuments = lexicalHits;
+  }
+
+  // 3. AST Call-Graph Grounding (Path C)
+  let astSection = '';
+  let groundedSymbols = [];
+  try {
+    const combinedSearchText = `${gap.title} ${gap.description} ${matchedDocuments.map(d => d.content || '').join(' ')}`;
+    const candidateSymbols = extractCodeSymbols(combinedSearchText);
+    if (candidateSymbols.length > 0) {
+      const astResults = fetchAstBlastRadius(candidateSymbols, { maxSymbols: 3 });
+      if (astResults.length > 0) {
+        astSection = formatAstGroundingSection(astResults);
+        groundedSymbols = astResults.map(r => r.symbol);
+      }
+    }
+  } catch {
+    // Fail-soft: continue without AST grounding if error occurs
+  }
+
+  if (!astSection) {
+    astSection = formatAstGroundingSection([]);
   }
 
   const topicSlug = `rfc-${gap.id.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${gap.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30)}`.replace(/-+$/, '');
@@ -103,14 +162,16 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
   const citations = matchedDocuments.map((doc) => doc.file_path || doc.id);
   const evidenceList = matchedDocuments.length > 0
     ? matchedDocuments.map((doc) => {
-        const cleanSnippet = (doc.snippet || '')
+        const cleanSnippet = (doc.snippet || doc.content || '')
           .replace(/\r?\n/g, ' ')
           .replace(/\[MATCH\]|\[\/MATCH\]/g, '')
           .replace(/[[\]()]/g, '')
+          .slice(0, 250)
           .trim();
-        return `- **${doc.topic}** (\`${doc.file_path}\`):\n  > ${cleanSnippet}`;
+        const modeTag = doc.retrieval_mode ? ` [${doc.retrieval_mode}]` : '';
+        return `- **${doc.topic}** (\`${doc.file_path}\`)${modeTag}:\n  > ${cleanSnippet}`;
       }).join('\n')
-    : '- *No immediate lexical matches found in local knowledge cache. External investigation required.*';
+    : '- *No immediate context matches found in local knowledge cache. External investigation required.*';
 
   const rfcContent = `---
 title: "RFC: ${gap.id} - ${gap.title}"
@@ -120,6 +181,8 @@ gap_id: "${gap.id}"
 status: "draft"
 created_at: "${new Date().toISOString()}"
 expansion_method: "${expansionMethod}"
+retrieval_mode: "${retrievalMode}"
+ast_grounded_symbols: ${JSON.stringify(groundedSymbols)}
 citations: ${JSON.stringify(citations)}
 ---
 
@@ -129,15 +192,16 @@ citations: ${JSON.stringify(citations)}
 ${gap.description || gap.title}
 
 ## 2. Evidence Grounding & Cache Findings
-The following related context nodes were retrieved from the local knowledge base:
+The following related context nodes were retrieved from the local knowledge base via ${retrievalMode} search:
 
 ${evidenceList}
 
-## 3. Proposed Resolution & Protocol Decision
+${astSection}
+## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.
 - Maintain deterministic state across pipeline boundaries and fail-soft fallbacks.
 
-## 4. Open Questions & Residual Risk
+## 5. Open Questions & Residual Risk
 - [ ] Are additional integration tests required to verify protocol compliance?
 - [ ] Does this resolution introduce cross-platform drift across runtime targets?
 `;

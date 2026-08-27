@@ -4,30 +4,35 @@ category: "research"
 topic: "rfc-gap-04--cic-reddit-open-contradiction"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-08-27T03:17:41.353Z"
+created_at: "2026-08-27T12:23:45.418Z"
 expansion_method: "heuristic"
-citations: ["trm-research-gaps.md","wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-03--cic-daily-research-under-sour.md"]
+retrieval_mode: "hybrid-rrf"
+ast_grounded_symbols: []
+citations: ["wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md","trm-research-gaps.md","wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md"]
 ---
 
 # RFC: GAP-04 - **CIC-Reddit (open-contradictions)**
 
 ## 1. Problem Statement & Context
-Since our last look at this—and especially building on your recent visit to the Michigan flight museum and our newly imported research—the web of cont
+Since our last look at this—and especially building on your recent visit to the Michigan flight museum and our newly imported research—the web of cont)
 
 ## 2. Evidence Grounding & Cache Findings
-The following related context nodes were retrieved from the local knowledge base:
+The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`):
-  > ...research files reveals several major claims that are either **single-s Drafted: RFCwiki/research/rfc-gap-03--cic-daily-research-under-sour.md  - / GAP-04 **CIC - Daily Research open-contradictions**: Cross...
-- **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`):
-  > ...WebSocket Heartbeats Specification & Analysis" repository: "CIC Architecture & Research Archive - Accession 65, Box 69" document_date: "2026-08-23" verification_status: "verified" category: "willow-run" topic: mobile-websocket-heartbeats status: active last_updated...
-- **rfc-gap-03--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03--cic-daily-research-under-sour.md`):
-  > ...GAP-03 - **CIC - Daily Research under-sourced**  ## 1. Problem Statement & Context A close look at your primary oral histories, declassified records, and internal research files reveals several major claims that are either...
+- **rfc-gap-04--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+  > 
+- **rfc-gap-01--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md`) [lexical_only]:
+  > 
 
-## 3. Proposed Resolution & Protocol Decision
+### 3. AST Call-Graph & Blast Radius Analysis
+*No static call-graph symbols detected in target codebase for this item.*
+
+## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.
 - Maintain deterministic state across pipeline boundaries and fail-soft fallbacks.
 
-## 4. Open Questions & Residual Risk
+## 5. Open Questions & Residual Risk
 - [ ] Are additional integration tests required to verify protocol compliance?
 - [ ] Does this resolution introduce cross-platform drift across runtime targets?
