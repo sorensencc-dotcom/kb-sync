@@ -125,9 +125,26 @@ try {
     Write-LogWarn "Stage 4 drift detection encountered error: $_"
 }
 
-# --- STAGE 5: ARCHIVE & LOG CLEANUP ---
+# --- STAGE 5: TRM GAP TRIAGE & SYNTHESIS ---
 Write-LogInfo "================================================================================"
-Write-LogInfo "STAGE 5: Archive & Log Cleanup"
+Write-LogInfo "STAGE 5: TRM Gap Triage & Synthesis"
+Write-LogInfo "================================================================================"
+
+try {
+    Write-LogInfo "Running automated TRM gap triage with cognitive query expansion..."
+    & cmd /c "npm run trm:triage -- --provider=auto" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogWarn "TRM gap triage finished with exit code $LASTEXITCODE"
+    } else {
+        Write-LogInfo "TRM gap triage completed successfully."
+    }
+} catch {
+    Write-LogWarn "Stage 5 TRM gap triage encountered warning: $_"
+}
+
+# --- STAGE 6: ARCHIVE & LOG CLEANUP ---
+Write-LogInfo "================================================================================"
+Write-LogInfo "STAGE 6: Archive & Log Cleanup"
 Write-LogInfo "================================================================================"
 
 try {
@@ -137,7 +154,7 @@ try {
     Write-LogInfo "Cleaning up old log files..."
     & cmd /c "npm run logs:cleanup" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
 } catch {
-    Write-LogWarn "Stage 5 cleanup encountered warning: $_"
+    Write-LogWarn "Stage 6 cleanup encountered warning: $_"
 }
 
 $EndTime = Get-Date
