@@ -104,6 +104,11 @@ function generateHome(wikiDir) {
   let homeContent = '';
   if (fs.existsSync(readmePath)) {
     homeContent = fs.readFileSync(readmePath, 'utf8');
+    // Replace relative diagram image links with absolute raw wiki CDN paths
+    homeContent = homeContent.replace(
+      /!\[([^\]]*)\]\(trm-gap-triage-architecture\.png\)/g,
+      '![$1](https://raw.githubusercontent.com/wiki/sorensencc-dotcom/kb-sync/trm-gap-triage-architecture.png)'
+    );
   } else {
     homeContent = `# Knowledge Base Sync (\`kb-sync\`) Wiki\n\nWelcome to the official documentation wiki for **kb-sync**.`;
   }
