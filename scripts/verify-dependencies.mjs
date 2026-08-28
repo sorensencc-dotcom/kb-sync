@@ -3,7 +3,18 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 export const REQUIRED = Object.freeze({ typescript: '5.4.5', 'js-tiktoken': '1.0.21' });
 
-export async function verifyDependencies(root, { runNpmCi = false } = {}) {
+async function readInstalledVersion(root, name) {
+  const packageJson = path.join(root, 'node_modules', ...name.split('/'), 'package.json');
+  try {
+    const installed = JSON.parse(await fs.readFile(packageJson, 'utf8'));
+    return installed.version;
+  } catch (error) {
+    if (error.code === 'ENOENT') return undefined;
+    throw new Error(`Could not read installed ${name} package metadata: ${error.message}`);
+  }
+}
+
+export async function verifyDependencies(root) {
   const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
   const lock = JSON.parse(await fs.readFile(path.join(root, 'package-lock.json'), 'utf8'));
   const rootPackage = lock.packages?.[''];
@@ -12,6 +23,8 @@ export async function verifyDependencies(root, { runNpmCi = false } = {}) {
     const declared = pkg.dependencies?.[name] ?? pkg.devDependencies?.[name];
     const locked = rootPackage.dependencies?.[name] ?? rootPackage.devDependencies?.[name];
     if (declared !== expected || locked !== expected) throw new Error(`${name} must be pinned to ${expected} (manifest: ${declared ?? 'missing'}, lockfile: ${locked ?? 'missing'})`);
+    const installed = await readInstalledVersion(root, name);
+    if (installed !== expected) throw new Error(`${name} must be installed at ${expected} (installed: ${installed ?? 'missing'})`);
   }
   return { root, required: REQUIRED, checked: true };
 }
