@@ -73,6 +73,7 @@
     "deps:verify": "node scripts/verify-dependencies.mjs",
     "cross-audit": "node scripts/cross-audit.mjs",
     "test:cross-audit": "node --test tests/cross-audit.test.mjs",
+    "test:repair-audit": "node --test --experimental-strip-types modules/healing/repair-audit-gate.test.ts",
     "kb:pipeline:full": "npm run wiki:ingest && npm run wiki:validate-staging && npm run wiki:validate-contract && npm run wiki:cleanup-archives",
     "wiki:weekly": "powershell.exe -ExecutionPolicy Bypass -File scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1",
     "logs:cleanup": "node scripts/cleanup-logs-and-backups.mjs",
