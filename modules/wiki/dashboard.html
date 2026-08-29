@@ -85,8 +85,8 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 3rem;
     }
 
@@ -127,12 +127,133 @@
       color: var(--ember);
     }
 
+    .value.healed {
+      color: var(--brass);
+    }
+
     .timestamp {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.65rem;
       letter-spacing: 0.2em;
       color: var(--ash);
       margin-top: 0.5rem;
+    }
+
+    .autoheal-section {
+      margin-bottom: 4rem;
+    }
+
+    .autoheal-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      border-bottom: 1px solid;
+      border-image: linear-gradient(to right, transparent, rgba(196, 80, 26, 0.4), transparent) 1;
+      padding-bottom: 1rem;
+    }
+
+    .autoheal-details {
+      background: rgba(26, 20, 16, 0.6);
+      border: 1px solid rgba(154, 144, 136, 0.12);
+      padding: 1.5rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .autoheal-details:hover {
+      border-color: rgba(196, 80, 26, 0.4);
+    }
+
+    .autoheal-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.12);
+    }
+
+    .autoheal-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .autoheal-stat .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 700;
+    }
+
+    .autoheal-stat .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .repairs-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brass);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .repairs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .repair-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: rgba(44, 36, 32, 0.4);
+      border: 1px solid rgba(154, 144, 136, 0.08);
+      border-left: 3px solid var(--brass);
+      gap: 1rem;
+    }
+
+    .repair-file {
+      font-family: 'Barlow Condensed', monospace;
+      font-size: 0.85rem;
+      color: var(--bone);
+      word-break: break-all;
+    }
+
+    .repair-fixes {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .fix-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(184, 146, 42, 0.4);
+      background: rgba(184, 146, 42, 0.1);
+      color: var(--brass);
+    }
+
+    .autoheal-empty {
+      background: rgba(26, 20, 16, 0.6);
+      border: 1px solid rgba(154, 144, 136, 0.12);
+      padding: 2rem;
+      text-align: center;
+      color: var(--ash);
     }
 
     .snapshots {
@@ -364,6 +485,15 @@
         grid-template-columns: 1fr;
       }
 
+      .autoheal-stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .repair-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       body {
         padding: 1rem;
       }
@@ -389,19 +519,23 @@
     <div class="summary" id="summary">
       <div class="card">
         <div class="metric">Total Files</div>
-        <div class="value">-</div>
+        <div class="value" id="valTotalFiles">-</div>
       </div>
       <div class="card">
         <div class="metric">Errors</div>
-        <div class="value error">-</div>
+        <div class="value error" id="valErrors">-</div>
       </div>
       <div class="card">
         <div class="metric">Warnings</div>
-        <div class="value warning">-</div>
+        <div class="value warning" id="valWarnings">-</div>
+      </div>
+      <div class="card">
+        <div class="metric">Autohealed Files</div>
+        <div class="value" id="valAutohealed">-</div>
       </div>
       <div class="card">
         <div class="metric">Duration</div>
-        <div class="value">-</div>
+        <div class="value" id="valDuration">-</div>
       </div>
     </div>
 
@@ -409,6 +543,15 @@
       <button type="button" onclick="loadReport()">Refresh</button>
       <button type="button" onclick="downloadJSON()">Export JSON</button>
       <button type="button" onclick="clearCache()">Clear Cache</button>
+    </div>
+
+    <div class="autoheal-section" id="autohealSection">
+      <h2>Autohealing Telemetry</h2>
+      <div id="autohealDetailsContainer">
+        <div class="autoheal-empty">
+          <p class="empty-desc">No autohealing telemetry available. Run validation to generate report data.</p>
+        </div>
+      </div>
     </div>
 
     <div class="snapshots">
@@ -431,6 +574,7 @@
 
   <script>
     const REPORT_FILE = '../../.validation-report.json';
+    const AUTOHEAL_FILE = '../../.autoheal-report.json';
     const CACHE_KEY = 'kb-sync-report-cache';
 
     async function loadReport() {
@@ -439,6 +583,20 @@
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const data = await response.json();
+
+        // If autohealSummary is not present in validation report, try loading autoheal report
+        if (!data.autohealSummary) {
+          try {
+            const autohealRes = await fetch(AUTOHEAL_FILE, { cache: 'no-store' });
+            if (autohealRes.ok) {
+              const autohealData = await autohealRes.json();
+              data.autohealSummary = autohealData;
+            }
+          } catch {
+            // Optional fallback fails silently
+          }
+        }
+
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         renderReport(data);
       } catch (error) {
@@ -455,20 +613,50 @@
     function renderReport(data) {
       const summary = data.summary || {};
       const results = data.results || [];
+      const autoheal = data.autohealSummary || null;
       const timestamp = data.timestamp ? new Date(data.timestamp) : null;
 
       // Update summary cards
-      const cards = document.querySelectorAll('.card');
-      cards[0].querySelector('.value').textContent = summary.files || 0;
-      cards[1].querySelector('.value').textContent = summary.errors || 0;
-      cards[2].querySelector('.value').textContent = summary.warnings || 0;
-      cards[3].querySelector('.value').textContent = formatDuration(data.duration || 0);
+      const totalFilesEl = document.getElementById('valTotalFiles');
+      const errorsEl = document.getElementById('valErrors');
+      const warningsEl = document.getElementById('valWarnings');
+      const autohealedEl = document.getElementById('valAutohealed');
+      const durationEl = document.getElementById('valDuration');
 
-      // Update timestamp
-      if (timestamp) {
+      if (totalFilesEl) totalFilesEl.textContent = summary.files !== undefined ? summary.files : '-';
+      if (errorsEl) errorsEl.textContent = summary.errors !== undefined ? summary.errors : '-';
+      if (warningsEl) warningsEl.textContent = summary.warnings !== undefined ? summary.warnings : '-';
+      if (autohealedEl) {
+        const healedCount = autoheal ? (autoheal.filesHealed ?? 0) : 0;
+        autohealedEl.textContent = healedCount;
+        if (healedCount > 0) {
+          autohealedEl.classList.add('healed');
+        } else {
+          autohealedEl.classList.remove('healed');
+        }
+      }
+      if (durationEl) durationEl.textContent = formatDuration(data.duration || 0);
+
+      // Support index-based card references for backwards compatibility
+      const cards = document.querySelectorAll('.summary .card');
+      if (cards.length >= 5) {
+        cards[0].querySelector('.value').textContent = summary.files !== undefined ? summary.files : '-';
+        cards[1].querySelector('.value').textContent = summary.errors !== undefined ? summary.errors : '-';
+        cards[2].querySelector('.value').textContent = summary.warnings !== undefined ? summary.warnings : '-';
+        cards[3].querySelector('.value').textContent = autoheal ? (autoheal.filesHealed ?? 0) : 0;
+        cards[4].querySelector('.value').textContent = formatDuration(data.duration || 0);
+      }
+
+      // Update timestamp in first card
+      const existingTimestamp = document.querySelector('.card .timestamp');
+      if (existingTimestamp) existingTimestamp.remove();
+      if (timestamp && cards[0]) {
         cards[0].querySelector('.value').insertAdjacentHTML('afterend',
           `<div class="timestamp">${timestamp.toLocaleString()}</div>`);
       }
+
+      // Render autohealing details
+      renderAutohealTelemetry(autoheal);
 
       // Render snapshots
       const grid = document.getElementById('snapshotGrid');
@@ -477,7 +665,7 @@
         return;
       }
 
-      grid.innerHTML = results.map((snap, idx) => {
+      grid.innerHTML = results.map((snap) => {
         const name = snap.target.split('\\').pop() || snap.target;
         const hasErrors = snap.errors > 0;
         const hasWarnings = snap.warnings > 0;
@@ -485,7 +673,7 @@
         return `
           <div class="snapshot-card">
             <div class="snapshot-header">
-              <div class="snapshot-name" title="${snap.target}">${name}</div>
+              <div class="snapshot-name" title="${escapeHtml(snap.target)}">${escapeHtml(name)}</div>
               <div class="snapshot-status">
                 ${hasErrors ? '<div class="status-badge error">ERRORS</div>' : ''}
                 ${hasWarnings && !hasErrors ? '<div class="status-badge warning">WARNINGS</div>' : ''}
@@ -507,12 +695,94 @@
               </div>
               <div class="stat-item">
                 <span class="stat-label">Details</span>
-                <span class="stat-value">${snap.target.split('\\').slice(-2).join('\\')}</span>
+                <span class="stat-value">${escapeHtml(snap.target.split('\\').slice(-2).join('\\'))}</span>
               </div>
             </div>
           </div>
         `;
       }).join('');
+    }
+
+    function renderAutohealTelemetry(autoheal) {
+      const container = document.getElementById('autohealDetailsContainer');
+      if (!container) return;
+
+      if (!autoheal) {
+        container.innerHTML = `
+          <div class="autoheal-empty">
+            <p class="empty-desc">No autohealing telemetry available for this run.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const filesScanned = autoheal.filesScanned ?? 0;
+      const filesHealed = autoheal.filesHealed ?? 0;
+      const repairs = autoheal.repairs || [];
+      const totalFixes = repairs.reduce((acc, r) => acc + (r.fixes ? r.fixes.length : 0), 0);
+
+      let repairsHtml = '';
+      if (repairs.length > 0) {
+        repairsHtml = `
+          <div class="repairs-title">Repaired Staging Documents (${repairs.length})</div>
+          <div class="repairs-list">
+            ${repairs.map(r => `
+              <div class="repair-row">
+                <div class="repair-file">${escapeHtml(r.file)}</div>
+                <div class="repair-fixes">
+                  ${(r.fixes || []).map(f => `<span class="fix-badge">${escapeHtml(formatFixName(f))}</span>`).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        repairsHtml = `
+          <div class="autoheal-empty">
+            <p class="empty-desc">Zero defects detected. All scanned staging files conform to contract specifications without requiring repairs.</p>
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div class="autoheal-details">
+          <div class="autoheal-stats-grid">
+            <div class="autoheal-stat">
+              <span class="stat-label">Files Scanned</span>
+              <span class="stat-value">${filesScanned}</span>
+            </div>
+            <div class="autoheal-stat">
+              <span class="stat-label">Files Healed</span>
+              <span class="stat-value${filesHealed > 0 ? ' warning-text' : ''}">${filesHealed}</span>
+            </div>
+            <div class="autoheal-stat">
+              <span class="stat-label">Total Repairs</span>
+              <span class="stat-value">${totalFixes}</span>
+            </div>
+            <div class="autoheal-stat">
+              <span class="stat-label">Autoheal Status</span>
+              <span class="stat-value" style="font-size: 1.2rem; margin-top: 0.3rem;">
+                ${filesHealed > 0 ? '<span style="color: var(--brass)">HEALED</span>' : '<span style="color: var(--bone)">CLEAN</span>'}
+              </span>
+            </div>
+          </div>
+          ${repairsHtml}
+        </div>
+      `;
+    }
+
+    function formatFixName(fix) {
+      return fix.replace(/_/g, ' ');
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     function formatDuration(ms) {
@@ -524,7 +794,7 @@
       document.getElementById('snapshotGrid').innerHTML = `
         <div class="empty">
           <p class="empty-title">Report Error</p>
-          <p class="empty-desc">${message}</p>
+          <p class="empty-desc">${escapeHtml(message)}</p>
         </div>
       `;
     }
