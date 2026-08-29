@@ -76,22 +76,24 @@ Performs deterministic, idempotent repairs on staged markdown documents prior to
 - **Frontmatter injection**:
   - Checks if content begins with `---`.
   - If missing, derives title from filename base, assigns category `wiki`, status `draft`, and source repository `kb-sync`.
-  - If frontmatter exists but misses required fields (`title`, `category`, `status`), injects defaults while preserving custom properties.
+  - If frontmatter exists but misses required fields (`title`, `category`, `status`, `sourceRepository`), injects missing default properties while strictly preserving existing custom attributes.
 - **Enum normalization**:
-  - Categories: Lowercases and converts spaces to dashes. Validates against the contract whitelist; unknown categories map to `wiki` (or `research` for files inside research folders).
+  - Categories: Lowercases and converts spaces to dashes. Validates against canonical categories imported from `toolforge-kbsync-contract.json`; unknown categories map to `wiki` (or `research` for files inside research folders).
   - Statuses: Lowercases and maps synonyms (`WIP` -> `draft`, `Review` -> `proposed`). Allowed values: `active`, `beta`, `archived`, `draft`, and `proposed`.
 - **Manifest-aware wikilink rewriting**:
   - Scans existing vault notes to build a target path index: `{ [noteBaseName]: relativeVaultPath }`.
-  - Matches un-namespaced links: `(?<!\[\[)(?<=\[\[)(?!kb-sync\/|toolforge\/|rewrite-docs\/|trm\/|cic-ingestion\/)([^\]|]+)(.*?)(?=\]\])`.
-  - If target basename exists in vault index, rewrites to `[[kb-sync/wiki/<category>/<TargetNote>]]`.
-  - If target basename does not exist in vault index, rewrites to fallback research path: `[[kb-sync/wiki/research/<TargetNote>]]`.
-  - Ignores links within fenced code blocks.
-- **Audit report generation**:
+  - Matches un-namespaced links, separating targets from alias labels (e.g. `[[TargetNote|Display Label]]` splits into target `TargetNote` and label `Display Label`):
+    - Target: checked against index.
+    - If target basename exists in vault index: rewrites to `[[kb-sync/wiki/<category>/<TargetNote>|Display Label]]` (or `[[kb-sync/wiki/<category>/<TargetNote>]]`).
+    - If target basename does not exist in vault index: rewrites to fallback research path `[[kb-sync/wiki/research/<TargetNote>|Display Label]]`.
+  - Ignores links within fenced code blocks and links that already carry repository prefixes (`kb-sync/`, `toolforge/`, `rewrite-docs/`, `trm/`, `cic-ingestion/`).
+- **Audit report generation & dashboard integration**:
   - Writes summary to `.autoheal-report.json` detailing scanned count, modified count, and per-file mutation records.
+  - Integrates autohealing telemetry into the [KB-Sync Validation Dashboard](file:///C:/dev/kb-sync/modules/wiki/dashboard.html) (`http://127.0.0.1:8080/modules/wiki/dashboard.html`), exposing a dedicated "Autohealing & Pre-Pass Telemetry" metrics card (Files Healed, Headers Injected, Links Rewritten, Enum Normalizations).
 
 ### 3. Schema contract update: `modules/wiki/toolforge-kbsync-contract.json`
 
-Expands contract whitelists to accommodate TRM and research documents.
+Expands contract whitelists to accommodate TRM and research documents, serving as the single source of truth for validation constants.
 
 - **`sourceRepository` enum**:
   ```json
@@ -134,12 +136,13 @@ Expands contract whitelists to accommodate TRM and research documents.
   ]
   ```
 
-### 4. Integration into validation gates
+### 4. Integration into validation gates & dashboard
 
-Updates [`modules/wiki/validate-staging-docs.mjs`](file:///C:/dev/kb-sync/modules/wiki/validate-staging-docs.mjs) and [`modules/wiki/gated-climb-repair.mjs`](file:///C:/dev/kb-sync/modules/wiki/gated-climb-repair.mjs) to:
+Updates [`modules/wiki/validate-staging-docs.mjs`](file:///C:/dev/kb-sync/modules/wiki/validate-staging-docs.mjs), [`modules/wiki/gated-climb-repair.mjs`](file:///C:/dev/kb-sync/modules/wiki/gated-climb-repair.mjs), and [`modules/wiki/dashboard.html`](file:///C:/dev/kb-sync/modules/wiki/dashboard.html) to:
 1. Import `resolveVaultPaths` and `sweepStagingVault`.
 2. Execute the autoheal sweep over staging notes before invoking contract checks.
 3. Validate sanitized notes with zero-tolerance contract rules.
+4. Merge autoheal metrics into `.validation-report.json` so the [Validation Dashboard](http://127.0.0.1:8080/modules/wiki/dashboard.html) displays real-time autohealing status alongside validation results.
 
 ## Verification plan
 
@@ -150,10 +153,11 @@ Updates [`modules/wiki/validate-staging-docs.mjs`](file:///C:/dev/kb-sync/module
    - Verify environment variable override (`VAULT_ROOT`).
    - Verify fallback directory generation.
 2. **Unit tests (`tests/modules/wiki/autoheal-sweeper.test.mjs`)**:
-   - Frontmatter injection on raw markdown.
+   - Frontmatter injection on raw markdown with default `sourceRepository: "kb-sync"`.
    - Preservation of existing custom frontmatter attributes.
    - Normalization of irregular category and status enums.
-   - Wikilink resolution against an index of known basenames vs unknown fallbacks.
+   - Wikilink resolution with alias preservation (`[[Target|Label]]` -> `[[kb-sync/wiki/.../Target|Label]]`).
+   - Resolution against an index of known basenames vs unknown fallbacks.
    - Code fence link preservation.
 3. **Contract test (`tests/modules/wiki/validate-contract.test.mjs`)**:
    - Confirm contract validation passes on output of `autoheal-sweeper.mjs`.
@@ -162,4 +166,5 @@ Updates [`modules/wiki/validate-staging-docs.mjs`](file:///C:/dev/kb-sync/module
 
 1. Run `node modules/wiki/autoheal-sweeper.mjs --vault-root=C:\dev\kb-sync --fix` on staging files.
 2. Run `node scripts/wiki-contract-backfill.mjs --dry-run` to confirm zero contract violations.
-3. Run `npm run test:trm` to verify complete test suite execution.
+3. Refresh `http://127.0.0.1:8080/modules/wiki/dashboard.html` to confirm autohealing telemetry renders.
+4. Run `npm run test:trm` to verify complete test suite execution.
