@@ -23,6 +23,7 @@
     "sourceRepository": {
       "type": "string",
       "enum": [
+        "trm",
         "toolforge",
         "kb-sync",
         "rewrite-docs",
@@ -65,7 +66,7 @@
                   },
                   "status": { 
                     "type": "string",
-                    "enum": ["active", "beta", "archived", "draft"]
+                    "enum": ["proposed", "active", "beta", "archived", "draft"]
                   },
                   "version": { "type": "string" }
                 },
