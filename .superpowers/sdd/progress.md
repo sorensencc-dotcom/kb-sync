@@ -1,8 +1,13 @@
-# SDD Progress Ledger — Compacted Context Engine
+# Subagent-Driven Development Progress Ledger
 
-Plan: `docs/superpowers/plans/2026-08-11-compacted-context-engine.md`
-Base commit: `2d4ca70`
+Plan: docs/superpowers/plans/2026-08-29-wiki-autoheal-pipeline.md
+Branch: main
 
-- [x] Task 1: Exact Dependency Locking & Clean Lockfile Verification (commit `a1b3b55`)
-- [x] Task 2: Adversarial Security, Git Rename/Copy Fixture & Failure-Injection Tests (commit `b9677d0`)
-- [x] Task 3: Configuration Setup, Stage 2 Pipeline Integration & Success/Fallback/Failure Tests (commit `e3f8902`)
+## Tasks
+
+- [x] Task 1: Contract Schema Whitelist Updates & Shared Constants (commit e6750a7)
+- [x] Task 2: Path Resolver Utility (`modules/wiki/config-loader.mjs`) (commit 7f57c68)
+- [x] Task 3: Manifest-Aware Autohealing Engine & Sweeper (`modules/wiki/autoheal-sweeper.mjs`) (commit 376217a, 6992298)
+- [x] Task 4: Validation Gate Integration (`modules/wiki/validate-staging-docs.mjs` & `modules/wiki/gated-climb-repair.mjs`) (commit dcaf166)
+- [x] Task 5: Dashboard Telemetry Integration (`modules/wiki/dashboard.html`) (commit 1f22cab)
+- [x] Task 6: Live Staging Backfill Verification & End-to-End Run (completed & verified)
