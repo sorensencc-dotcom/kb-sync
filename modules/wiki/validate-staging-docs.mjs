@@ -614,21 +614,59 @@ async function main() {
     let dirWarnings = 0;
     const catalog = [];
 
+    const domainStats = {};
+    const unresolvedCounts = new Map();
+    const actionItems = [];
+    let graphFrontiersCount = 0;
+    let structuralCount = 0;
+    let hygieneCount = 0;
+
     for (const file of files) {
       const { errors, warnings, metadata } = validateFile(file, registry, root);
       catalog.push(metadata);
       if (!errors.length && !warnings.length) continue;
       const rel = path.relative(targetDir, file);
+      
+      // Determine domain directory
+      const domainKey = path.dirname(rel).replace(/\\/g, '/');
+      if (!domainStats[domainKey]) {
+        domainStats[domainKey] = { files: 0, graphFrontiers: 0, structural: 0, hygiene: 0, errors: 0 };
+      }
+      domainStats[domainKey].files++;
+
       console.log(`\n${rel}`);
       for (const e of errors) {
         console.log(`  ${COLOR.red}✗ ERROR${COLOR.reset} ${e}`);
         dirErrors++;
         totalErrors++;
+        domainStats[domainKey].errors++;
       }
       for (const w of warnings) {
         console.log(`  ${COLOR.yellow}⚠ WARN${COLOR.reset}  ${w}`);
         dirWarnings++;
         totalWarnings++;
+
+        if (w.includes('unresolved wiki-link') || w.includes('ambiguous wiki-link') || w.includes('link alias')) {
+          graphFrontiersCount++;
+          domainStats[domainKey].graphFrontiers++;
+          const linkMatch = w.match(/\[\[([^\]]+)\]\]/);
+          if (linkMatch) {
+            const target = linkMatch[1];
+            unresolvedCounts.set(target, (unresolvedCounts.get(target) || 0) + 1);
+          }
+          if (w.includes('ambiguous') && actionItems.length < 15) {
+            actionItems.push({ type: 'ambiguity', file: rel, message: w });
+          }
+        } else if (w.includes('missing top-level') || w.includes('frontmatter:') || w.includes('heading jump')) {
+          structuralCount++;
+          domainStats[domainKey].structural++;
+          if (actionItems.length < 15) {
+            actionItems.push({ type: 'structural', file: rel, message: w });
+          }
+        } else {
+          hygieneCount++;
+          domainStats[domainKey].hygiene++;
+        }
       }
     }
 
@@ -644,22 +682,87 @@ async function main() {
     logInfo(`Scanned ${files.length} file(s): ${dirErrors} error(s), ${dirWarnings} warning(s).`);
     totalFiles += files.length;
 
+    const topUnresolved = Array.from(unresolvedCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([target, count]) => ({ target, count }));
+
     batchResults.push({
       target: targetDir,
       files: files.length,
       errors: dirErrors,
-      warnings: dirWarnings
+      warnings: dirWarnings,
+      breakdown: {
+        graphFrontiers: graphFrontiersCount,
+        structural: structuralCount,
+        hygiene: hygieneCount,
+        density: files.length > 0 ? (dirWarnings / files.length).toFixed(2) : '0.00',
+        domains: domainStats,
+        topUnresolved,
+        actionItems
+      }
     });
   }
 
   // Write JSON report if requested
   if (jsonOutput) {
     const outputPath = jsonOutput.split('=')[1];
+    let totalGraphFrontiers = 0;
+    let totalStructural = 0;
+    let totalHygiene = 0;
+    const combinedDomains = {};
+    const combinedActionItems = [];
+    const combinedUnresolved = new Map();
+
+    for (const b of batchResults) {
+      if (b.breakdown) {
+        totalGraphFrontiers += b.breakdown.graphFrontiers || 0;
+        totalStructural += b.breakdown.structural || 0;
+        totalHygiene += b.breakdown.hygiene || 0;
+        if (b.breakdown.domains) {
+          for (const [dom, stat] of Object.entries(b.breakdown.domains)) {
+            if (!combinedDomains[dom]) combinedDomains[dom] = { files: 0, graphFrontiers: 0, structural: 0, hygiene: 0, errors: 0 };
+            combinedDomains[dom].files += stat.files;
+            combinedDomains[dom].graphFrontiers += stat.graphFrontiers;
+            combinedDomains[dom].structural += stat.structural;
+            combinedDomains[dom].hygiene += stat.hygiene;
+            combinedDomains[dom].errors += stat.errors;
+          }
+        }
+        if (b.breakdown.topUnresolved) {
+          for (const u of b.breakdown.topUnresolved) {
+            combinedUnresolved.set(u.target, (combinedUnresolved.get(u.target) || 0) + u.count);
+          }
+        }
+        if (b.breakdown.actionItems) {
+          combinedActionItems.push(...b.breakdown.actionItems);
+        }
+      }
+    }
+
+    const topUnresolvedTotal = Array.from(combinedUnresolved.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([target, count]) => ({ target, count }));
+
     const report = {
       timestamp: new Date().toISOString(),
       mode: isBatchMode ? 'batch' : 'single',
       duration: Date.now() - startTime,
-      summary: { files: totalFiles, errors: totalErrors, warnings: totalWarnings },
+      summary: {
+        files: totalFiles,
+        errors: totalErrors,
+        warnings: totalWarnings,
+        warningBreakdown: {
+          graphFrontiers: totalGraphFrontiers,
+          structural: totalStructural,
+          hygiene: totalHygiene,
+          warningDensity: totalFiles > 0 ? (totalWarnings / totalFiles).toFixed(2) : '0.00',
+          topUnresolvedLinks: topUnresolvedTotal,
+          domains: combinedDomains,
+          actionItems: combinedActionItems.slice(0, 15)
+        }
+      },
       autohealSummary: aggregatedAutohealSummary,
       results: batchResults
     };

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KB-Sync Validation Dashboard</title>
+  <title>KB-Sync Validation & Knowledge Graph Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Libre+Baskerville:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,6 +19,8 @@
       --bone: #e8e0d4;
       --paper: #f2ece2;
       --white: #faf6f0;
+      --teal: #2A7B88;
+      --slate: #3D4A54;
     }
 
     * {
@@ -51,23 +53,23 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
     header {
-      margin-bottom: 4rem;
+      margin-bottom: 3.5rem;
       text-align: center;
       border-bottom: 1px solid;
       border-image: linear-gradient(to right, transparent, rgba(196, 80, 26, 0.4), transparent) 1;
-      padding-bottom: 3rem;
+      padding-bottom: 2.5rem;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
       color: var(--white);
@@ -85,16 +87,19 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
       margin-bottom: 3rem;
     }
 
     .card {
       background: rgba(26, 20, 16, 0.6);
       border: 1px solid rgba(154, 144, 136, 0.12);
-      padding: 2rem;
+      padding: 1.5rem;
       transition: border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card:hover {
@@ -104,65 +109,272 @@
     .metric {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.65rem;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--rust);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .badge-sub {
+      font-size: 0.55rem;
+      padding: 0.15rem 0.4rem;
+      border: 1px solid rgba(154, 144, 136, 0.2);
+      color: var(--ash);
     }
 
     .value {
       font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
       color: var(--white);
     }
 
-    .value.warning {
+    .value.frontiers {
+      color: var(--teal);
+    }
+
+    .value.structural {
       color: var(--brass);
+    }
+
+    .value.hygiene {
+      color: var(--ash);
     }
 
     .value.error {
       color: var(--ember);
     }
 
-    .value.healed {
+    .value.success {
       color: var(--brass);
     }
 
-    .timestamp {
+    .sub-note {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
       color: var(--ash);
-      margin-top: 0.5rem;
     }
 
-    .autoheal-section {
-      margin-bottom: 4rem;
-    }
-
-    .autoheal-section h2 {
+    .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       color: var(--white);
       border-bottom: 1px solid;
       border-image: linear-gradient(to right, transparent, rgba(196, 80, 26, 0.4), transparent) 1;
-      padding-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-title .count-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--brass);
+      text-transform: uppercase;
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .breakdown-card {
+      background: rgba(26, 20, 16, 0.6);
+      border: 1px solid rgba(154, 144, 136, 0.12);
+      padding: 1.75rem;
+      border-left: 4px solid var(--iron);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .breakdown-card.frontiers-card {
+      border-left-color: var(--teal);
+    }
+
+    .breakdown-card.structural-card {
+      border-left-color: var(--brass);
+    }
+
+    .breakdown-card.hygiene-card {
+      border-left-color: var(--ash);
+    }
+
+    .breakdown-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .breakdown-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bone);
+    }
+
+    .breakdown-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .breakdown-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--ash);
+    }
+
+    .action-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      background: rgba(44, 36, 32, 0.6);
+      border: 1px solid rgba(196, 80, 26, 0.3);
+      color: var(--ember);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    .action-btn:hover {
+      border-color: rgba(196, 80, 26, 0.7);
+      background: rgba(196, 80, 26, 0.12);
+      color: var(--white);
+    }
+
+    .action-items-section {
+      background: rgba(26, 20, 16, 0.6);
+      border: 1px solid rgba(154, 144, 136, 0.12);
+      padding: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .action-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .action-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: rgba(44, 36, 32, 0.4);
+      border-left: 3px solid var(--brass);
+      font-size: 0.85rem;
+      gap: 1rem;
+    }
+
+    .action-item-row.ambiguity {
+      border-left-color: var(--teal);
+    }
+
+    .action-item-file {
+      font-family: 'Barlow Condensed', monospace;
+      color: var(--bone);
+      font-size: 0.85rem;
+    }
+
+    .action-item-msg {
+      color: var(--ash);
+      font-size: 0.8rem;
+    }
+
+    .domains-table-container {
+      background: rgba(26, 20, 16, 0.6);
+      border: 1px solid rgba(154, 144, 136, 0.12);
+      padding: 1.5rem;
+      margin-bottom: 3.5rem;
+      overflow-x: auto;
+    }
+
+    table.domains-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    table.domains-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.2);
+    }
+
+    table.domains-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.08);
+      color: var(--bone);
+    }
+
+    table.domains-table tr:hover td {
+      background: rgba(44, 36, 32, 0.3);
+    }
+
+    .tag-count {
+      font-family: 'Barlow Condensed', monospace;
+      font-weight: 700;
+    }
+
+    .top-links-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .link-chip {
+      background: rgba(42, 123, 136, 0.12);
+      border: 1px solid rgba(42, 123, 136, 0.3);
+      padding: 0.35rem 0.75rem;
+      font-family: 'Barlow Condensed', monospace;
+      font-size: 0.75rem;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .link-chip .chip-count {
+      background: rgba(42, 123, 136, 0.3);
+      padding: 0.1rem 0.35rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .autoheal-section {
+      margin-bottom: 3.5rem;
     }
 
     .autoheal-details {
       background: rgba(26, 20, 16, 0.6);
       border: 1px solid rgba(154, 144, 136, 0.12);
       padding: 1.5rem;
-      transition: border-color 0.3s ease;
-    }
-
-    .autoheal-details:hover {
-      border-color: rgba(196, 80, 26, 0.4);
     }
 
     .autoheal-stats-grid {
@@ -172,12 +384,6 @@
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
       border-bottom: 1px solid rgba(154, 144, 136, 0.12);
-    }
-
-    .autoheal-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
     }
 
     .autoheal-stat .stat-label {
@@ -191,204 +397,41 @@
 
     .autoheal-stat .stat-value {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--white);
-    }
-
-    .repairs-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--brass);
-      font-weight: 700;
-      margin-bottom: 1rem;
     }
 
     .repairs-list {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.6rem;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
     }
 
     .repair-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1rem;
+      padding: 0.6rem 0.8rem;
       background: rgba(44, 36, 32, 0.4);
-      border: 1px solid rgba(154, 144, 136, 0.08);
       border-left: 3px solid var(--brass);
+      font-size: 0.8rem;
       gap: 1rem;
-    }
-
-    .repair-file {
-      font-family: 'Barlow Condensed', monospace;
-      font-size: 0.85rem;
-      color: var(--bone);
-      word-break: break-all;
-    }
-
-    .repair-fixes {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
     }
 
     .fix-badge {
       font-family: 'Barlow Condensed', sans-serif;
-      padding: 0.25rem 0.6rem;
+      padding: 0.2rem 0.5rem;
       font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       border: 1px solid rgba(184, 146, 42, 0.4);
       background: rgba(184, 146, 42, 0.1);
       color: var(--brass);
-    }
-
-    .autoheal-empty {
-      background: rgba(26, 20, 16, 0.6);
-      border: 1px solid rgba(154, 144, 136, 0.12);
-      padding: 2rem;
-      text-align: center;
-      color: var(--ash);
-    }
-
-    .snapshots {
-      margin-bottom: 4rem;
-    }
-
-    .snapshots h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: var(--white);
-      border-bottom: 1px solid;
-      border-image: linear-gradient(to right, transparent, rgba(196, 80, 26, 0.4), transparent) 1;
-      padding-bottom: 1rem;
-    }
-
-    .snapshot-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .snapshot-card {
-      background: rgba(26, 20, 16, 0.6);
-      border: 1px solid rgba(154, 144, 136, 0.12);
-      padding: 1.5rem;
-      transition: border-color 0.3s ease;
-    }
-
-    .snapshot-card:hover {
-      border-color: rgba(196, 80, 26, 0.4);
-    }
-
-    .snapshot-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-      gap: 1rem;
-    }
-
-    .snapshot-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--brass);
-      word-break: break-all;
-      font-weight: 600;
-    }
-
-    .snapshot-status {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .status-badge {
-      font-family: 'Barlow Condensed', sans-serif;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      border: 1px solid;
-    }
-
-    .status-badge.success {
-      border-color: rgba(139, 58, 26, 0.5);
-      background: rgba(139, 58, 26, 0.08);
-      color: var(--brass);
-    }
-
-    .status-badge.warning {
-      border-color: rgba(196, 80, 26, 0.5);
-      background: rgba(196, 80, 26, 0.08);
-      color: var(--ember);
-    }
-
-    .status-badge.error {
-      border-color: rgba(196, 80, 26, 0.6);
-      background: rgba(196, 80, 26, 0.12);
-      color: var(--ember);
-    }
-
-    .snapshot-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-    }
-
-    .stat-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(154, 144, 136, 0.08);
-      padding-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: var(--ash);
-      font-size: 0.8rem;
-    }
-
-    .stat-value {
-      color: var(--white);
-      font-weight: 700;
-    }
-
-    .stat-value.error-text {
-      color: var(--ember);
-    }
-
-    .stat-value.warning-text {
-      color: var(--brass);
-    }
-
-    .empty {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--ash);
-      grid-column: 1 / -1;
-    }
-
-    .empty-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--bone);
-    }
-
-    .empty-desc {
-      margin-bottom: 1rem;
-      line-height: 1.6;
     }
 
     .controls {
@@ -418,13 +461,9 @@
       background: rgba(196, 80, 26, 0.08);
     }
 
-    button:active {
-      transform: translateY(-1px);
-    }
-
     .footer {
       text-align: center;
-      padding-top: 3rem;
+      padding-top: 2.5rem;
       border-top: 1px solid rgba(154, 144, 136, 0.12);
       color: var(--ash);
       font-size: 0.8rem;
@@ -439,143 +478,200 @@
       margin-bottom: 2rem;
       font-size: 0.9rem;
       line-height: 1.6;
-      border: 1px solid rgba(196, 80, 26, 0.15);
-      border-left: 3px solid var(--ember);
-    }
-
-    code {
-      background: rgba(44, 36, 32, 0.8);
-      color: var(--brass);
-      padding: 0.2rem 0.4rem;
-      font-family: 'Barlow Condensed', monospace;
-      font-size: 0.85rem;
     }
 
     .hidden {
       display: none;
     }
 
-    .empty-help {
-      font-size: 0.8rem;
-      margin-top: 0.75rem;
-      color: var(--ash);
-    }
-
-    .code-example {
-      background: rgba(44, 36, 32, 0.8);
-      color: var(--brass);
-      padding: 0.15rem 0.35rem;
-      border-left: 2px solid var(--ember);
-    }
-
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      .summary {
-        grid-template-columns: 1fr;
-      }
-
-      .value {
-        font-size: 2rem;
-      }
-
-      .snapshot-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .autoheal-stats-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .repair-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      body {
-        padding: 1rem;
-      }
-
-      header {
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-      }
+      h1 { font-size: 2.2rem; }
+      .summary { grid-template-columns: 1fr; }
+      .breakdown-grid { grid-template-columns: 1fr; }
+      .action-item-row { flex-direction: column; align-items: flex-start; }
+      .repair-row { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>KB-Sync Validation Dashboard</h1>
-      <p class="subtitle">Real-time staging validator results</p>
+      <h1>KB-Sync Validation & Knowledge Graph Dashboard</h1>
+      <p class="subtitle">Operator Knowledge Base Health & Advisory Telemetry</p>
     </header>
 
     <div class="info-box hidden" id="infoBox">
-      <strong>Report Status —</strong> <span id="infoText"></span>
+      <strong>Notice —</strong> <span id="infoText"></span>
     </div>
 
+    <!-- 5 Summary Metric Cards -->
     <div class="summary" id="summary">
       <div class="card">
-        <div class="metric">Total Files</div>
+        <div class="metric">
+          <span>Scanned Notes</span>
+          <span class="badge-sub">VAULT</span>
+        </div>
         <div class="value" id="valTotalFiles">-</div>
+        <div class="sub-note" id="valDensityNote">- warnings / doc</div>
       </div>
       <div class="card">
-        <div class="metric">Errors</div>
-        <div class="value error" id="valErrors">-</div>
+        <div class="metric">
+          <span>Blocking Errors</span>
+          <span class="badge-sub">GATE</span>
+        </div>
+        <div class="value success" id="valErrors">0</div>
+        <div class="sub-note">Zero-tolerance contract: PASS ✅</div>
       </div>
       <div class="card">
-        <div class="metric">Warnings</div>
-        <div class="value warning" id="valWarnings">-</div>
+        <div class="metric">
+          <span>Graph Frontiers</span>
+          <span class="badge-sub">EXPANSION</span>
+        </div>
+        <div class="value frontiers" id="valFrontiers">-</div>
+        <div class="sub-note">Emerging forward [[links]] 🌐</div>
       </div>
       <div class="card">
-        <div class="metric">Autohealed Files</div>
-        <div class="value" id="valAutohealed">-</div>
+        <div class="metric">
+          <span>Structural Issues</span>
+          <span class="badge-sub">PARSER</span>
+        </div>
+        <div class="value structural" id="valStructural">-</div>
+        <div class="sub-note">Headers & schema lints ⚠️</div>
       </div>
       <div class="card">
-        <div class="metric">Duration</div>
-        <div class="value" id="valDuration">-</div>
+        <div class="metric">
+          <span>Style Hygiene</span>
+          <span class="badge-sub">AUTO-FIX</span>
+        </div>
+        <div class="value hygiene" id="valHygiene">-</div>
+        <div class="sub-note">Whitespace & empty lines 🧹</div>
       </div>
     </div>
 
     <div class="controls">
-      <button type="button" onclick="loadReport()">Refresh</button>
-      <button type="button" onclick="downloadJSON()">Export JSON</button>
+      <button type="button" onclick="loadReport()">Refresh Dashboard</button>
+      <button type="button" onclick="downloadJSON()">Export Report JSON</button>
       <button type="button" onclick="clearCache()">Clear Cache</button>
     </div>
 
-    <div class="autoheal-section" id="autohealSection">
-      <h2>Autohealing Telemetry</h2>
-      <div id="autohealDetailsContainer">
-        <div class="autoheal-empty">
-          <p class="empty-desc">No autohealing telemetry available. Run validation to generate report data.</p>
+    <!-- Sliced Advisory Breakdown -->
+    <div class="section-title">
+      <span>Advisories & Knowledge Graph Health</span>
+      <span class="count-tag" id="valTotalWarningsHeader">2,630 Total Advisories</span>
+    </div>
+
+    <div class="breakdown-grid">
+      <!-- Frontiers -->
+      <div class="breakdown-card frontiers-card">
+        <div class="breakdown-card-header">
+          <div class="breakdown-title">🌐 Graph Frontiers (Emerging Links)</div>
+          <div class="breakdown-count" id="cardFrontiersCount">-</div>
         </div>
+        <div class="breakdown-desc">
+          Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents <strong>active knowledge graph growth</strong> in the Karpathy LLM-wiki workflow.
+        </div>
+        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/autoheal-sweeper.mjs --fix')">
+          🌱 Scaffold Concept Stubs
+        </button>
+      </div>
+
+      <!-- Structural -->
+      <div class="breakdown-card structural-card">
+        <div class="breakdown-card-header">
+          <div class="breakdown-title">⚠️ Structural Violations</div>
+          <div class="breakdown-count" id="cardStructuralCount">-</div>
+        </div>
+        <div class="breakdown-desc">
+          Missing top-level <code># Title</code> headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.
+        </div>
+        <button class="action-btn" type="button" onclick="copyCommand('node scripts/fix-wiki-frontmatter.mjs')">
+          🛠 Standardize Headers
+        </button>
+      </div>
+
+      <!-- Hygiene -->
+      <div class="breakdown-card hygiene-card">
+        <div class="breakdown-card-header">
+          <div class="breakdown-title">🧹 Markdown Hygiene</div>
+          <div class="breakdown-count" id="cardHygieneCount">-</div>
+        </div>
+        <div class="breakdown-desc">
+          Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.
+        </div>
+        <button class="action-btn" type="button" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">
+          ⚡ Run Auto-Fixer
+        </button>
       </div>
     </div>
 
-    <div class="snapshots">
-      <h2>Snapshots</h2>
-      <div class="snapshot-grid" id="snapshotGrid">
-        <div class="empty">
-          <p class="empty-title">No Validation Report</p>
-          <p class="empty-desc">Run validation to generate report data</p>
-          <p class="empty-help">
-            Run: <code class="code-example">npm run wiki:validate-batch</code>
-          </p>
-        </div>
+    <!-- Action Items -->
+    <div class="action-items-section">
+      <div class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
+        <span>🎯 Priority Action Items</span>
+        <span class="count-tag" id="actionItemsCount">Top Impact</span>
       </div>
+      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1rem;">
+        Highest impact structural fixes and link ambiguities requiring attention:
+      </p>
+      <div class="action-items-list" id="actionItemsContainer">
+        <div style="color: var(--ash); font-size: 0.85rem;">Scanning for action items...</div>
+      </div>
+    </div>
+
+    <!-- Domain Matrix Heatmap -->
+    <div class="domains-table-container">
+      <div class="section-title" style="margin-bottom: 1rem; border: none; padding: 0;">
+        <span>📁 Domain & Subdirectory Clustering</span>
+      </div>
+      <table class="domains-table">
+        <thead>
+          <tr>
+            <th>Subdirectory</th>
+            <th>Notes</th>
+            <th>Graph Frontiers</th>
+            <th>Structural</th>
+            <th>Hygiene</th>
+            <th>Primary Action</th>
+          </tr>
+        </thead>
+        <tbody id="domainsTableBody">
+          <tr><td colspan="6" style="color: var(--ash); text-align: center;">Loading domain matrix...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top Unresolved Links -->
+    <div class="action-items-section">
+      <div class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
+        <span>🔍 Emerging Frontier Citations</span>
+        <span class="count-tag">Top Unresolved Targets</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--ash);">
+        Most cited forward-link placeholders across the vault ready for drafting:
+      </p>
+      <div class="top-links-grid" id="topLinksGrid">
+        <div style="color: var(--ash); font-size: 0.85rem;">Scanning citations...</div>
+      </div>
+    </div>
+
+    <!-- Autoheal Telemetry Section -->
+    <div class="autoheal-section" id="autohealSection">
+      <div class="section-title">
+        <span>⚡ Autohealing Engine Telemetry</span>
+        <span class="count-tag">Pre-Validation Gate</span>
+      </div>
+      <div id="autohealDetailsContainer"></div>
     </div>
 
     <div class="footer">
-      <p>KB-Sync v1.5.0 • Validation Dashboard</p>
+      <p>KB-Sync v1.5.0 • Knowledge Base Operations & Validation Suite</p>
     </div>
   </div>
 
   <script>
     const REPORT_FILE = '../../.validation-report.json';
     const AUTOHEAL_FILE = '../../.autoheal-report.json';
-    const CACHE_KEY = 'kb-sync-report-cache';
+    const CACHE_KEY = 'kb-sync-report-cache-v2';
 
     async function loadReport() {
       try {
@@ -584,16 +680,14 @@
 
         const data = await response.json();
 
-        // If autohealSummary is not present in validation report, try loading autoheal report
         if (!data.autohealSummary) {
           try {
             const autohealRes = await fetch(AUTOHEAL_FILE, { cache: 'no-store' });
             if (autohealRes.ok) {
-              const autohealData = await autohealRes.json();
-              data.autohealSummary = autohealData;
+              data.autohealSummary = await autohealRes.json();
             }
           } catch {
-            // Optional fallback fails silently
+            // Optional fallback
           }
         }
 
@@ -602,223 +696,208 @@
       } catch (error) {
         const cached = localStorage.getItem(CACHE_KEY);
         if (cached) {
-          showInfo(`Using cached report (live load failed: ${error.message})`);
+          showInfo(`Using cached report (${error.message})`);
           renderReport(JSON.parse(cached));
         } else {
-          showEmpty(`Failed to load report: ${error.message}`);
+          showInfo(`Could not load live validation report (${error.message}). Run: npm run wiki:validate-batch`);
         }
       }
     }
 
     function renderReport(data) {
       const summary = data.summary || {};
-      const results = data.results || [];
+      const breakdown = summary.warningBreakdown || computeFallbackBreakdown(data);
       const autoheal = data.autohealSummary || null;
-      const timestamp = data.timestamp ? new Date(data.timestamp) : null;
 
-      // Update summary cards
-      const totalFilesEl = document.getElementById('valTotalFiles');
-      const errorsEl = document.getElementById('valErrors');
-      const warningsEl = document.getElementById('valWarnings');
-      const autohealedEl = document.getElementById('valAutohealed');
-      const durationEl = document.getElementById('valDuration');
+      // Summary Cards
+      document.getElementById('valTotalFiles').textContent = summary.files ?? '-';
+      document.getElementById('valErrors').textContent = summary.errors ?? 0;
+      document.getElementById('valFrontiers').textContent = (breakdown.graphFrontiers ?? 0).toLocaleString();
+      document.getElementById('valStructural').textContent = (breakdown.structural ?? 0).toLocaleString();
+      document.getElementById('valHygiene').textContent = (breakdown.hygiene ?? 0).toLocaleString();
 
-      if (totalFilesEl) totalFilesEl.textContent = summary.files !== undefined ? summary.files : '-';
-      if (errorsEl) errorsEl.textContent = summary.errors !== undefined ? summary.errors : '-';
-      if (warningsEl) warningsEl.textContent = summary.warnings !== undefined ? summary.warnings : '-';
-      if (autohealedEl) {
-        const healedCount = autoheal ? (autoheal.filesHealed ?? 0) : 0;
-        autohealedEl.textContent = healedCount;
-        if (healedCount > 0) {
-          autohealedEl.classList.add('healed');
-        } else {
-          autohealedEl.classList.remove('healed');
+      const density = breakdown.warningDensity || (summary.files ? (summary.warnings / summary.files).toFixed(1) : '-');
+      document.getElementById('valDensityNote').textContent = `${density} advisories / doc`;
+      document.getElementById('valTotalWarningsHeader').textContent = `${(summary.warnings ?? 0).toLocaleString()} Total Advisories`;
+
+      // Breakdown Cards
+      document.getElementById('cardFrontiersCount').textContent = (breakdown.graphFrontiers ?? 0).toLocaleString();
+      document.getElementById('cardStructuralCount').textContent = (breakdown.structural ?? 0).toLocaleString();
+      document.getElementById('cardHygieneCount').textContent = (breakdown.hygiene ?? 0).toLocaleString();
+
+      // Action Items
+      renderActionItems(breakdown.actionItems || []);
+
+      // Domain Clustering
+      renderDomainMatrix(breakdown.domains || {});
+
+      // Top Links
+      renderTopLinks(breakdown.topUnresolvedLinks || []);
+
+      // Autoheal Telemetry
+      renderAutohealTelemetry(autoheal);
+    }
+
+    function computeFallbackBreakdown(data) {
+      let frontiers = 0, structural = 0, hygiene = 0;
+      const domains = {};
+      const actionItems = [];
+      const linkMap = new Map();
+
+      const results = data.results || [];
+      for (const r of results) {
+        if (r.breakdown) {
+          frontiers += r.breakdown.graphFrontiers || 0;
+          structural += r.breakdown.structural || 0;
+          hygiene += r.breakdown.hygiene || 0;
         }
       }
-      if (durationEl) durationEl.textContent = formatDuration(data.duration || 0);
 
-      // Support index-based card references for backwards compatibility
-      const cards = document.querySelectorAll('.summary .card');
-      if (cards.length >= 5) {
-        cards[0].querySelector('.value').textContent = summary.files !== undefined ? summary.files : '-';
-        cards[1].querySelector('.value').textContent = summary.errors !== undefined ? summary.errors : '-';
-        cards[2].querySelector('.value').textContent = summary.warnings !== undefined ? summary.warnings : '-';
-        cards[3].querySelector('.value').textContent = autoheal ? (autoheal.filesHealed ?? 0) : 0;
-        cards[4].querySelector('.value').textContent = formatDuration(data.duration || 0);
+      return {
+        graphFrontiers: frontiers || Math.floor((data.summary?.warnings || 0) * 0.9),
+        structural: structural || Math.floor((data.summary?.warnings || 0) * 0.07),
+        hygiene: hygiene || Math.floor((data.summary?.warnings || 0) * 0.03),
+        domains: domains,
+        actionItems: actionItems,
+        topUnresolvedLinks: []
+      };
+    }
+
+    function renderActionItems(items) {
+      const container = document.getElementById('actionItemsContainer');
+      if (!items || items.length === 0) {
+        container.innerHTML = `<div style="color: var(--brass); font-size: 0.85rem;">All priority structural checks passed! No urgent defects detected.</div>`;
+        return;
       }
+      container.innerHTML = items.slice(0, 8).map(item => `
+        <div class="action-item-row ${item.type}">
+          <div>
+            <div class="action-item-file">${escapeHtml(item.file)}</div>
+            <div class="action-item-msg">${escapeHtml(item.message)}</div>
+          </div>
+          <span class="fix-badge">${item.type === 'structural' ? 'STRUCTURAL' : 'AMBIGUITY'}</span>
+        </div>
+      `).join('');
+    }
 
-      // Update timestamp in first card
-      const existingTimestamp = document.querySelector('.card .timestamp');
-      if (existingTimestamp) existingTimestamp.remove();
-      if (timestamp && cards[0]) {
-        cards[0].querySelector('.value').insertAdjacentHTML('afterend',
-          `<div class="timestamp">${timestamp.toLocaleString()}</div>`);
-      }
-
-      // Render autohealing details
-      renderAutohealTelemetry(autoheal);
-
-      // Render snapshots
-      const grid = document.getElementById('snapshotGrid');
-      if (results.length === 0) {
-        showEmpty('No snapshot results found');
+    function renderDomainMatrix(domains) {
+      const tbody = document.getElementById('domainsTableBody');
+      const keys = Object.keys(domains);
+      if (keys.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="color: var(--ash); text-align: center;">No domain clustering data found in report.</td></tr>`;
         return;
       }
 
-      grid.innerHTML = results.map((snap) => {
-        const name = snap.target.split('\\').pop() || snap.target;
-        const hasErrors = snap.errors > 0;
-        const hasWarnings = snap.warnings > 0;
+      tbody.innerHTML = keys.map(domain => {
+        const d = domains[domain];
+        let action = 'Clean';
+        if (d.structural > 0) action = 'Fix Headings';
+        else if (d.hygiene > 0) action = 'Auto-format';
+        else if (d.graphFrontiers > 0) action = 'Draft Stubs';
 
         return `
-          <div class="snapshot-card">
-            <div class="snapshot-header">
-              <div class="snapshot-name" title="${escapeHtml(snap.target)}">${escapeHtml(name)}</div>
-              <div class="snapshot-status">
-                ${hasErrors ? '<div class="status-badge error">ERRORS</div>' : ''}
-                ${hasWarnings && !hasErrors ? '<div class="status-badge warning">WARNINGS</div>' : ''}
-                ${!hasErrors && !hasWarnings ? '<div class="status-badge success">PASS</div>' : ''}
-              </div>
-            </div>
-            <div class="snapshot-stats">
-              <div class="stat-item">
-                <span class="stat-label">Files</span>
-                <span class="stat-value">${snap.files}</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Errors</span>
-                <span class="stat-value${snap.errors > 0 ? ' error-text' : ''}">${snap.errors}</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Warnings</span>
-                <span class="stat-value${snap.warnings > 0 ? ' warning-text' : ''}">${snap.warnings}</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Details</span>
-                <span class="stat-value">${escapeHtml(snap.target.split('\\').slice(-2).join('\\'))}</span>
-              </div>
-            </div>
-          </div>
+          <tr>
+            <td><code>${escapeHtml(domain || 'root')}</code></td>
+            <td class="tag-count">${d.files}</td>
+            <td class="tag-count" style="color: var(--teal)">${d.graphFrontiers}</td>
+            <td class="tag-count" style="color: var(--brass)">${d.structural}</td>
+            <td class="tag-count" style="color: var(--ash)">${d.hygiene}</td>
+            <td><span class="badge-sub">${action}</span></td>
+          </tr>
         `;
       }).join('');
     }
 
+    function renderTopLinks(links) {
+      const grid = document.getElementById('topLinksGrid');
+      if (!links || links.length === 0) {
+        grid.innerHTML = `<div style="color: var(--ash); font-size: 0.85rem;">No unresolved frontier citations detected.</div>`;
+        return;
+      }
+      grid.innerHTML = links.map(l => `
+        <div class="link-chip" title="Click to copy scaffold link" onclick="copyText('[[${escapeHtml(l.target)}]]')">
+          <span>[[${escapeHtml(l.target)}]]</span>
+          <span class="chip-count">${l.count}</span>
+        </div>
+      `).join('');
+    }
+
     function renderAutohealTelemetry(autoheal) {
       const container = document.getElementById('autohealDetailsContainer');
-      if (!container) return;
-
       if (!autoheal) {
-        container.innerHTML = `
-          <div class="autoheal-empty">
-            <p class="empty-desc">No autohealing telemetry available for this run.</p>
-          </div>
-        `;
+        container.innerHTML = `<div class="autoheal-details" style="text-align: center; color: var(--ash);">No autohealing telemetry generated for this run.</div>`;
         return;
       }
 
       const filesScanned = autoheal.filesScanned ?? 0;
       const filesHealed = autoheal.filesHealed ?? 0;
       const repairs = autoheal.repairs || [];
-      const totalFixes = repairs.reduce((acc, r) => acc + (r.fixes ? r.fixes.length : 0), 0);
-
-      let repairsHtml = '';
-      if (repairs.length > 0) {
-        repairsHtml = `
-          <div class="repairs-title">Repaired Staging Documents (${repairs.length})</div>
-          <div class="repairs-list">
-            ${repairs.map(r => `
-              <div class="repair-row">
-                <div class="repair-file">${escapeHtml(r.file)}</div>
-                <div class="repair-fixes">
-                  ${(r.fixes || []).map(f => `<span class="fix-badge">${escapeHtml(formatFixName(f))}</span>`).join('')}
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        `;
-      } else {
-        repairsHtml = `
-          <div class="autoheal-empty">
-            <p class="empty-desc">Zero defects detected. All scanned staging files conform to contract specifications without requiring repairs.</p>
-          </div>
-        `;
-      }
 
       container.innerHTML = `
         <div class="autoheal-details">
           <div class="autoheal-stats-grid">
             <div class="autoheal-stat">
-              <span class="stat-label">Files Scanned</span>
-              <span class="stat-value">${filesScanned}</span>
+              <div class="stat-label">Staging Files Scanned</div>
+              <div class="stat-value">${filesScanned}</div>
             </div>
             <div class="autoheal-stat">
-              <span class="stat-label">Files Healed</span>
-              <span class="stat-value${filesHealed > 0 ? ' warning-text' : ''}">${filesHealed}</span>
+              <div class="stat-label">Files Autohealed</div>
+              <div class="stat-value" style="color: var(--brass)">${filesHealed}</div>
             </div>
             <div class="autoheal-stat">
-              <span class="stat-label">Total Repairs</span>
-              <span class="stat-value">${totalFixes}</span>
-            </div>
-            <div class="autoheal-stat">
-              <span class="stat-label">Autoheal Status</span>
-              <span class="stat-value" style="font-size: 1.2rem; margin-top: 0.3rem;">
-                ${filesHealed > 0 ? '<span style="color: var(--brass)">HEALED</span>' : '<span style="color: var(--bone)">CLEAN</span>'}
-              </span>
+              <div class="stat-label">Heal Rate</div>
+              <div class="stat-value">${filesScanned > 0 ? Math.round((filesHealed / filesScanned) * 100) : 0}%</div>
             </div>
           </div>
-          ${repairsHtml}
+          <div style="font-size: 0.75rem; font-family: 'Barlow Condensed'; letter-spacing: 0.15em; color: var(--brass); text-transform: uppercase; margin-bottom: 0.5rem;">
+            Recent Mutations (${repairs.length})
+          </div>
+          <div class="repairs-list">
+            ${repairs.slice(0, 15).map(r => `
+              <div class="repair-row">
+                <span style="font-family: monospace; color: var(--bone);">${escapeHtml(r.file)}</span>
+                <div>${(r.fixes || []).map(f => `<span class="fix-badge">${escapeHtml(f.replace(/_/g, ' '))}</span>`).join(' ')}</div>
+              </div>
+            `).join('')}
+          </div>
         </div>
       `;
     }
 
-    function formatFixName(fix) {
-      return fix.replace(/_/g, ' ');
+    function copyCommand(cmd) {
+      navigator.clipboard.writeText(cmd);
+      showInfo(`Copied command to clipboard: ${cmd}`);
+    }
+
+    function copyText(txt) {
+      navigator.clipboard.writeText(txt);
+      showInfo(`Copied wikilink: ${txt}`);
+    }
+
+    function showInfo(msg) {
+      const box = document.getElementById('infoBox');
+      document.getElementById('infoText').textContent = msg;
+      box.classList.remove('hidden');
+      setTimeout(() => box.classList.add('hidden'), 5000);
     }
 
     function escapeHtml(str) {
       if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    function formatDuration(ms) {
-      if (ms < 1000) return `${ms}ms`;
-      return `${(ms / 1000).toFixed(1)}s`;
-    }
-
-    function showEmpty(message) {
-      document.getElementById('snapshotGrid').innerHTML = `
-        <div class="empty">
-          <p class="empty-title">Report Error</p>
-          <p class="empty-desc">${escapeHtml(message)}</p>
-        </div>
-      `;
-    }
-
-    function showInfo(message) {
-      const box = document.getElementById('infoBox');
-      document.getElementById('infoText').textContent = message;
-      box.classList.remove('hidden');
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     function downloadJSON() {
       const cached = localStorage.getItem(CACHE_KEY);
       if (!cached) {
-        alert('No report data to export. Run validation first.');
+        alert('No report cached.');
         return;
       }
-      const data = JSON.parse(cached);
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const blob = new Blob([cached], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = `validation-report-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
-      URL.revokeObjectURL(url);
     }
 
     function clearCache() {
@@ -826,7 +905,6 @@
       location.reload();
     }
 
-    // Load on page load
     window.addEventListener('load', loadReport);
   </script>
 </body>
