@@ -123,27 +123,41 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
 }
 
 export async function sweepStagingVault(options = {}) {
-  const { vaultRoot, fix = false, dryRun = true, verbose = false } = options;
-  const paths = await resolveVaultPaths(vaultRoot);
+  const { vaultRoot, targetDir, fix = false, dryRun = false, verbose = false, index: customIndex } = options;
+  const rawArgs = vaultRoot ? [`--vault-root=${vaultRoot}`] : process.argv;
+  const paths = resolveVaultPaths(rawArgs);
   
   const report = {
+    timestamp: new Date().toISOString(),
     filesScanned: 0,
     filesHealed: 0,
     repairs: []
   };
 
-  let index = new Map();
-  try {
-    const manifestContent = await fs.readFile(paths.manifestPath, 'utf-8');
-    const manifest = JSON.parse(manifestContent);
-    if (manifest.index) {
-      for (const [k, v] of Object.entries(manifest.index)) {
-        index.set(k, v);
+  let index = customIndex || new Map();
+  
+  // If no custom index, build index from existing wiki notes
+  if (index.size === 0 && paths.wikiDir) {
+    try {
+      async function indexDir(dir, prefix) {
+        const entries = await fs.readdir(dir, { withFileTypes: true });
+        for (const entry of entries) {
+          const full = path.join(dir, entry.name);
+          if (entry.isDirectory()) {
+            await indexDir(full, `${prefix}/${entry.name}`);
+          } else if (entry.name.endsWith('.md')) {
+            const base = path.parse(entry.name).name;
+            index.set(base, `${prefix}/${base}`);
+          }
+        }
       }
+      await indexDir(paths.wikiDir, 'kb-sync/wiki');
+    } catch (err) {
+      if (verbose) console.warn('Could not index wikiDir:', err.message);
     }
-  } catch (err) {
-    if (verbose) console.warn('Could not load manifest:', err.message);
   }
+
+  const scanRoot = targetDir || paths.stagingDir || paths.wikiDir;
 
   async function walk(dir) {
     try {
@@ -155,12 +169,12 @@ export async function sweepStagingVault(options = {}) {
         } else if (entry.name.endsWith('.md')) {
           report.filesScanned++;
           const content = await fs.readFile(fullPath, 'utf-8');
-          const relPath = path.relative(paths.stagingRoot, fullPath);
-          const result = await autohealMetadata(relPath, content, { index });
+          const relPath = path.relative(scanRoot, fullPath);
+          const result = await autohealMetadata(fullPath, content, { index });
           
           if (result.repairs.length > 0) {
             report.filesHealed++;
-            report.repairs.push({ file: relPath, fixes: result.repairs });
+            report.repairs.push({ file: relPath || fullPath, fixes: result.repairs });
             
             if (fix && !dryRun) {
               await fs.writeFile(fullPath, result.content, 'utf-8');
@@ -173,9 +187,10 @@ export async function sweepStagingVault(options = {}) {
     }
   }
 
-  await walk(paths.stagingRoot || vaultRoot || '.');
+  await walk(scanRoot);
 
-  await fs.writeFile('.autoheal-report.json', JSON.stringify(report, null, 2), 'utf-8');
+  const reportPath = path.join(paths.vaultRoot, '.autoheal-report.json');
+  await fs.writeFile(reportPath, JSON.stringify(report, null, 2), 'utf-8');
   return report;
 }
 

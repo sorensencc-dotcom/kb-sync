@@ -5,9 +5,12 @@ import path from 'path';
 
 vi.mock('fs/promises');
 vi.mock('../../../modules/wiki/config-loader.mjs', () => ({
-  resolveVaultPaths: vi.fn().mockResolvedValue({
-    stagingRoot: '/mock/staging',
-    manifestPath: '/mock/manifest.json'
+  resolveVaultPaths: vi.fn().mockReturnValue({
+    vaultRoot: '/mock/vault',
+    wikiDir: '/mock/vault/wiki',
+    stagingDir: '/mock/vault/_kb-sync-staging',
+    researchDir: '/mock/vault/wiki/research',
+    transactDir: '/mock/vault/.transact-123'
   })
 }));
 
