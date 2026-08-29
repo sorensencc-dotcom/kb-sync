@@ -5,6 +5,9 @@ import path from 'node:path';
 import os from 'node:os';
 import { getDatabase } from '../modules/cache/db-schema.mjs';
 import { parseGapItems, triageGapAgainstCache, executeGapTriage } from '../modules/trm/gap-triage-engine.mjs';
+import { expandSearchQuery } from '../modules/trm/query-expander.mjs';
+import { reciprocalRankFusion } from '../modules/cache/vector-store.mjs';
+import { handleQueryContextCache } from '../scripts/mcp-memory-server.mjs';
 
 describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
   let sandboxRoot: string;
@@ -131,5 +134,45 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.ok(updatedGapsContent.includes('- [/] [GAP-02]'));
     assert.ok(updatedGapsContent.includes('(Drafted: [RFC]('));
     assert.ok(updatedGapsContent.includes('- [x] [GAP-01] Resolved gap: Already done.'));
+  });
+
+  test('TEST-04: Mobile WebSocket heartbeat gap expands to a valid lexical query', async () => {
+    const db = getDatabase(testDbPath);
+    const result = await expandSearchQuery({ title: 'Mobile WebSocket heartbeat', description: 'Keepalive timeout and reconnect after background suspension.' }, db, { provider: 'offline' });
+    assert.equal(result.method, 'heuristic');
+    assert.match(result.query, /"mobile"*/);
+    assert.match(result.query, /"websocket"*/);
+    assert.match(result.query, /"heartbeat"*/);
+    assert.doesNotThrow(() => db.prepare('SELECT rowid FROM kb_fts WHERE kb_fts MATCH ?').get(result.query));
+    db.close();
+  });
+
+  test('TEST-05: FTS5 lexical retrieval matches stemmed terms and excludes unrelated documents', () => {
+    const db = getDatabase(testDbPath);
+    const insert = db.prepare('INSERT INTO kb_documents (id, category, topic, file_path, content, sha256) VALUES (?, ?, ?, ?, ?, ?)');
+    insert.run('mobile-heartbeats', 'research', 'mobile-websocket-heartbeats', 'heartbeats.md', 'Mobile WebSocket heartbeat reconnects after background suspension.', 'hash-hb');
+    insert.run('sqlite-indexing', 'research', 'sqlite-indexing', 'sqlite.md', 'SQLite indexes improve unrelated lexical retrieval.', 'hash-sqlite');
+    const response = handleQueryContextCache(db, { query: '"heartbeat" AND "websocket"', category: 'all', limit: 5 });
+    const hits = JSON.parse(response.content[0].text);
+    assert.equal(response.isError, undefined);
+    assert.equal(hits.length, 1);
+    assert.equal(hits[0].id, 'mobile-heartbeats');
+    assert.equal(hits[0].topic, 'mobile-websocket-heartbeats');
+    db.close();
+  });
+
+  test('TEST-06: Hybrid RRF boosts documents returned by both lexical and vector lanes', () => {
+    const merged = reciprocalRankFusion([
+      { id: 'lexical-only', topic: 'lexical', file_path: 'lexical.md', content: 'lexical' },
+      { id: 'shared', topic: 'shared', file_path: 'shared.md', content: 'shared' }
+    ], [
+      { id: 'shared', topic: 'shared', file_path: 'shared.md', content: 'shared' },
+      { id: 'vector-only', topic: 'vector', file_path: 'vector.md', content: 'vector' }
+    ], { k: 60, limit: 3 });
+    assert.deepEqual(merged.map((hit) => hit.id), ['shared', 'lexical-only', 'vector-only']);
+    assert.equal(merged[0].retrieval_mode, 'hybrid');
+    assert.equal(merged[0].lexical_rank, 2);
+    assert.equal(merged[0].vector_rank, 1);
+    assert.ok(merged[0].rrf_score > merged[1].rrf_score);
   });
 });
