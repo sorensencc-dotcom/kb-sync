@@ -1,4 +1,10 @@
 ---
+title: Authentication
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsKbNotebooklmSyncAuthentication"
 category: "wiki"
 status: "active"

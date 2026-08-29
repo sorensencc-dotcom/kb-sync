@@ -1,4 +1,10 @@
 ---
+title: CleanupPackDir
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesNotebooklmCleanupPackDir"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: ObsidianVaultWikiCatalog
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiCatalog"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: WikiLintRules
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncWikiLintRules"
 category: "wiki"
 status: "active"

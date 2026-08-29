@@ -1,4 +1,10 @@
 ---
+title: ScheduleTaskWrapperKBSyncGeneratePrompt
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScheduleTaskWrapperKBSyncGeneratePrompt"
 category: "wiki"
 status: "active"

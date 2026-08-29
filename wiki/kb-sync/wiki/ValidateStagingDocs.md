@@ -1,4 +1,10 @@
 ---
+title: ValidateStagingDocs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiValidateStagingDocs"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: IjfwDreamStateV2
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "IjfwDreamStateV2"
 category: "wiki"
 status: "active"

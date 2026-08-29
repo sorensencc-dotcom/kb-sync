@@ -1,4 +1,10 @@
 ---
+title: Flatten
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CoreFlatten"
 category: "wiki"
 status: "active"

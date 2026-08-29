@@ -1,4 +1,10 @@
 ---
+title: rollback.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesRollbackSh"
 category: "wiki"
 status: "active"

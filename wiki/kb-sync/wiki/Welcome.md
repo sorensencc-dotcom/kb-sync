@@ -1,4 +1,10 @@
 ---
+title: Welcome
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultWelcome"
 category: "wiki"
 status: "active"

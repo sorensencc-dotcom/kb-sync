@@ -1,4 +1,10 @@
 ---
+title: ModulesObsidianProvidersOfflineTemplateProvider
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesObsidianProvidersOfflineTemplateProvider"
 category: "wiki"
 status: "active"

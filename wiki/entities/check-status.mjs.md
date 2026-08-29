@@ -1,4 +1,10 @@
 ---
+title: check-status.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesCheckStatusMjs"
 category: "wiki"
 status: "active"

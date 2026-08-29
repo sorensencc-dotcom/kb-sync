@@ -1,4 +1,10 @@
 ---
+title: ingest-obsidian.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesIngestObsidianSh"
 category: "wiki"
 status: "active"

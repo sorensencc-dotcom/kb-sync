@@ -1,4 +1,10 @@
 ---
+title: generate-delta-summary.ts
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesGenerateDeltaSummaryTs"
 category: "wiki"
 status: "active"

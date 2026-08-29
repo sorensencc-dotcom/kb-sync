@@ -1,4 +1,10 @@
 ---
+title: ModulesWikiRepairProvider
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiRepairProvider"
 category: "wiki"
 status: "active"

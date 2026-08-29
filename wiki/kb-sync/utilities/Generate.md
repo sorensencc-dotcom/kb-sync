@@ -1,4 +1,10 @@
 ---
+title: Generate
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesArtifactGeneratorGenerate"
 category: "wiki"
 status: "active"

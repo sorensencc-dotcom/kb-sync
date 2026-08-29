@@ -1,4 +1,10 @@
 ---
+title: Pyragify
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "Pyragify"
 category: "wiki"
 status: "active"

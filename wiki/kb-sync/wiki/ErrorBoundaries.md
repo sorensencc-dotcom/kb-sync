@@ -1,4 +1,10 @@
 ---
+title: ErrorBoundaries
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsKbNotebooklmSyncErrorBoundaries"
 category: "wiki"
 status: "active"

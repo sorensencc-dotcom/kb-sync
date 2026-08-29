@@ -1,4 +1,10 @@
 ---
+title: autofill-frontmatter.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesAutofillFrontmatterMjs"
 category: "wiki"
 status: "active"

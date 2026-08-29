@@ -1,4 +1,10 @@
 ---
+title: TestsBuildDagCliTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsBuildDagCliTest"
 category: "wiki"
 status: "active"

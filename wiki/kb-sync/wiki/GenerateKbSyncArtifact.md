@@ -1,4 +1,10 @@
 ---
+title: GenerateKbSyncArtifact
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsNotebooklmGenerateKbSyncArtifact"
 category: "wiki"
 status: "active"

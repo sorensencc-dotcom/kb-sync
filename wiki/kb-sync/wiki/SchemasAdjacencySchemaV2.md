@@ -1,4 +1,10 @@
 ---
+title: SchemasAdjacencySchemaV2
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "SchemasAdjacencySchemaV2"
 category: "wiki"
 status: "active"

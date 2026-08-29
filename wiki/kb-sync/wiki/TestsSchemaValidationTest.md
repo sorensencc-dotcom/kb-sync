@@ -1,4 +1,10 @@
 ---
+title: TestsSchemaValidationTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsSchemaValidationTest"
 category: "wiki"
 status: "active"

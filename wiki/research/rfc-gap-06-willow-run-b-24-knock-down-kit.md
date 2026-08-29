@@ -6,6 +6,7 @@ gap_id: "GAP-06"
 status: "draft"
 created_at: "2026-08-23T01:58:16.720Z"
 citations: ["wiki/research/rfc-gap-03-deterministic-ast-parsing-and.md","docs/kb/notebooklm-sync/pipeline.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-06 - Willow Run B-24 knock-down kit manufacturing and logistics

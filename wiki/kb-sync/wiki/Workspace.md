@@ -1,4 +1,10 @@
 ---
+title: Workspace
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianWorkspace"
 category: "wiki"
 status: "active"

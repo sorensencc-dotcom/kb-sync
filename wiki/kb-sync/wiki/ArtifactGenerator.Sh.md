@@ -1,4 +1,10 @@
 ---
+title: ArtifactGenerator.Sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncArtifactGeneratorSh"
 category: "wiki"
 status: "active"

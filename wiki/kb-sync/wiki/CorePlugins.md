@@ -1,4 +1,10 @@
 ---
+title: CorePlugins
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianCorePlugins"
 category: "wiki"
 status: "active"

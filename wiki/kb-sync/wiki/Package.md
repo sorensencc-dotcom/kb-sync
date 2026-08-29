@@ -1,4 +1,10 @@
 ---
+title: Package
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "Package"
 category: "wiki"
 status: "active"

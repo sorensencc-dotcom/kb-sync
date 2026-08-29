@@ -1,4 +1,10 @@
 ---
+title: validate-staging-docs.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesValidateStagingDocsMjs"
 category: "wiki"
 status: "active"

@@ -3,6 +3,7 @@ title: "WikiConceptsLocalContextCache"
 category: "wiki"
 status: "active"
 citations: ["wiki/concepts/local-context-cache.md"]
+sourceRepository: kb-sync
 ---
 
 # WikiConceptsLocalContextCache

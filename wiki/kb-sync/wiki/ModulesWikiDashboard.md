@@ -1,4 +1,10 @@
 ---
+title: ModulesWikiDashboard
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiDashboard"
 category: "wiki"
 status: "active"

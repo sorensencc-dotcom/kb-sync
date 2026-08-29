@@ -1,4 +1,10 @@
 ---
+title: post-commit-hook-example.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesPostCommitHookExampleSh"
 category: "wiki"
 status: "active"

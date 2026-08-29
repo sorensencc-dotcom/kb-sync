@@ -1,4 +1,10 @@
 ---
+title: Validate
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CoreValidate"
 category: "wiki"
 status: "active"

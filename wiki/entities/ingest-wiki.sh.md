@@ -1,4 +1,10 @@
 ---
+title: ingest-wiki.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesIngestWikiSh"
 category: "wiki"
 status: "active"

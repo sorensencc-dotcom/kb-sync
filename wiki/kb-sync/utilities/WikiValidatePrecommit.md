@@ -1,4 +1,10 @@
 ---
+title: WikiValidatePrecommit
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsWikiValidatePrecommit"
 category: "wiki"
 status: "active"

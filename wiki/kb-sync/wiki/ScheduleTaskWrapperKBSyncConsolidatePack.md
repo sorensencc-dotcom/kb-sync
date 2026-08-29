@@ -1,4 +1,10 @@
 ---
+title: ScheduleTaskWrapperKBSyncConsolidatePack
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScheduleTaskWrapperKBSyncConsolidatePack"
 category: "wiki"
 status: "active"

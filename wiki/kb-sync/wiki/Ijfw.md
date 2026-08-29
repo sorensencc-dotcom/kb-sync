@@ -1,4 +1,10 @@
 ---
+title: Ijfw
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "Ijfw"
 category: "wiki"
 status: "active"

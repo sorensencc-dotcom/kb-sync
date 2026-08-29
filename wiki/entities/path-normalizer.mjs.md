@@ -1,4 +1,10 @@
 ---
+title: path-normalizer.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesPathNormalizerMjs"
 category: "wiki"
 status: "active"

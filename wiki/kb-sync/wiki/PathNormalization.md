@@ -1,4 +1,10 @@
 ---
+title: PathNormalization
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncPathNormalization"
 category: "wiki"
 status: "active"

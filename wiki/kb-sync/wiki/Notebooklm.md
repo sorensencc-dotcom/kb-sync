@@ -1,4 +1,10 @@
 ---
+title: Notebooklm
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ConfigsNotebooklm"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: ObsidianKbSyncNightlyRun20260712
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianKbSyncNightlyRun20260712"
 category: "wiki"
 status: "active"

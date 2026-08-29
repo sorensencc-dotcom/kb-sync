@@ -1,4 +1,10 @@
 ---
+title: secret-scan-hook.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesSecretScanHookSh"
 category: "wiki"
 status: "active"

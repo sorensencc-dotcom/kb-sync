@@ -1,4 +1,10 @@
 ---
+title: ScheduleTaskWrapperKBSyncValidateStaging
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScheduleTaskWrapperKBSyncValidateStaging"
 category: "wiki"
 status: "active"

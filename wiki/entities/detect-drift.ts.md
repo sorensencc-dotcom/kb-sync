@@ -1,4 +1,10 @@
 ---
+title: detect-drift.ts
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesDetectDriftTs"
 category: "wiki"
 status: "active"

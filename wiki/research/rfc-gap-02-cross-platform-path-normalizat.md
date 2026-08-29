@@ -6,6 +6,7 @@ gap_id: "GAP-02"
 status: "draft"
 created_at: "2026-08-23T01:58:16.710Z"
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02-cross-platform-path-normalizat.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02 - Cross-platform path normalization for Windows and POSIX vault roots

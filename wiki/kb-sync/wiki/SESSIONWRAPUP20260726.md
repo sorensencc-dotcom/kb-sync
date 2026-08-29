@@ -1,4 +1,10 @@
 ---
+title: SESSIONWRAPUP20260726
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsSESSIONWRAPUP20260726"
 category: "wiki"
 status: "active"

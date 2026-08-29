@@ -7,6 +7,7 @@ category: "willow-run"
 topic: mobile-websocket-heartbeats
 status: active
 last_updated: 2026-08-23T02:19:45.926Z
+sourceRepository: kb-sync
 ---
 # Mobile Browser WebSocket Heartbeats
 

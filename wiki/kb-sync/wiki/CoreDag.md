@@ -1,4 +1,10 @@
 ---
+title: CoreDag
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CoreDag"
 category: "wiki"
 status: "active"

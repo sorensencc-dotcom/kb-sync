@@ -1,4 +1,10 @@
 ---
+title: ingest-notebooklm.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesIngestNotebooklmSh"
 category: "wiki"
 status: "active"

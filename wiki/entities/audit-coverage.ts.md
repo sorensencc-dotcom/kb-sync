@@ -1,4 +1,10 @@
 ---
+title: audit-coverage.ts
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesAuditCoverageTs"
 category: "wiki"
 status: "active"

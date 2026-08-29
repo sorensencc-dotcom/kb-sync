@@ -1,4 +1,10 @@
 ---
+title: VERSION
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "VERSION"
 category: "wiki"
 status: "active"

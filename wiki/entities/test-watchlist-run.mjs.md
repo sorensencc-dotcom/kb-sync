@@ -3,6 +3,7 @@ title: "WikiEntitiesTestWatchlistRunMjs"
 category: "wiki"
 status: "active"
 citations: ["kb-sync/test-watchlist-run.mjs"]
+sourceRepository: kb-sync
 ---
 
 # WikiEntitiesTestWatchlistRunMjs

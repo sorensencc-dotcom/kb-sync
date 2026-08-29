@@ -1,4 +1,10 @@
 ---
+title: Global
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ConfigsGlobal"
 category: "wiki"
 status: "active"

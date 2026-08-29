@@ -1,4 +1,10 @@
 ---
+title: CLAUDE
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CLAUDE"
 category: "wiki"
 status: "active"

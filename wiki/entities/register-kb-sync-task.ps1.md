@@ -1,4 +1,10 @@
 ---
+title: register-kb-sync-task.ps1
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesRegisterKbSyncTaskPs1"
 category: "wiki"
 status: "active"

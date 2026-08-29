@@ -1,4 +1,10 @@
 ---
+title: manifest-mode
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiConceptsManifestMode"
 category: "wiki"
 status: "active"

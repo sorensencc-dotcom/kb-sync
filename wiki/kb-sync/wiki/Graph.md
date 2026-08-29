@@ -1,4 +1,10 @@
 ---
+title: Graph
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianGraph"
 category: "wiki"
 status: "active"

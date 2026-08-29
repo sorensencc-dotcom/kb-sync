@@ -1,4 +1,10 @@
 ---
+title: DriftDetection.Test
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsDriftDetectionTest"
 category: "wiki"
 status: "active"

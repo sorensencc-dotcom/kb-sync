@@ -1,4 +1,10 @@
 ---
+title: deterministic-sync-pipeline
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiConceptsDeterministicSyncPipeline"
 category: "wiki"
 status: "active"

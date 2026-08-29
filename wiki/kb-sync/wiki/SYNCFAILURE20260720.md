@@ -1,4 +1,10 @@
 ---
+title: SYNCFAILURE20260720
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "SYNCFAILURE20260720"
 category: "wiki"
 status: "active"

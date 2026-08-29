@@ -6,6 +6,7 @@ gap_id: "GAP-07"
 status: "draft"
 created_at: "2026-08-23T01:58:16.723Z"
 citations: ["docs/kb/notebooklm-sync/authentication.md","docs/kb/notebooklm-sync/operator-rules.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output

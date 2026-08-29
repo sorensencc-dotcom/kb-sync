@@ -1,4 +1,10 @@
 ---
+title: PathNormalizer
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CorePathNormalizer"
 category: "wiki"
 status: "active"

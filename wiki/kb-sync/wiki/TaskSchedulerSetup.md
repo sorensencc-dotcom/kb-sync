@@ -1,4 +1,10 @@
 ---
+title: TaskSchedulerSetup
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsTaskSchedulerSetup"
 category: "wiki"
 status: "active"

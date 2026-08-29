@@ -1,4 +1,10 @@
 ---
+title: IjfwMetricsTranscriptCursor
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "IjfwMetricsTranscriptCursor"
 category: "wiki"
 status: "active"

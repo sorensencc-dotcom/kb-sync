@@ -1,4 +1,10 @@
 ---
+title: SetupScheduledTasks
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsSetupScheduledTasks"
 category: "wiki"
 status: "active"

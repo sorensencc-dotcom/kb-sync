@@ -1,4 +1,10 @@
 ---
+title: AuditCoverage
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiAuditCoverage"
 category: "wiki"
 status: "active"

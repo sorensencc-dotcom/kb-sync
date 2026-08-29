@@ -1,4 +1,10 @@
 ---
+title: LintRules
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiLintRules"
 category: "wiki"
 status: "active"

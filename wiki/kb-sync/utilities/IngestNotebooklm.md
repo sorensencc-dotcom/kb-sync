@@ -1,4 +1,10 @@
 ---
+title: IngestNotebooklm
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesNotebooklmIngestNotebooklm"
 category: "wiki"
 status: "active"

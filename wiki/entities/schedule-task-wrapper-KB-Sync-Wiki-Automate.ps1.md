@@ -1,4 +1,10 @@
 ---
+title: schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesScheduleTaskWrapperKBSyncWikiAutomatePs1"
 category: "wiki"
 status: "active"

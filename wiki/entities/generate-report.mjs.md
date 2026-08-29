@@ -1,4 +1,10 @@
 ---
+title: generate-report.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesGenerateReportMjs"
 category: "wiki"
 status: "active"

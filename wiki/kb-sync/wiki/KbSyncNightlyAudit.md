@@ -1,4 +1,10 @@
 ---
+title: KbSyncNightlyAudit
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsOperationsKbSyncNightlyAudit"
 category: "wiki"
 status: "active"

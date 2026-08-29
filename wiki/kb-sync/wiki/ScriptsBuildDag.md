@@ -1,4 +1,10 @@
 ---
+title: ScriptsBuildDag
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsBuildDag"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: KBVaultObsidianVaultConfiguration
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "KBVaultObsidianVaultConfiguration"
 category: "wiki"
 status: "active"

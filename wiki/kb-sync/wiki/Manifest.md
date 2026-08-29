@@ -1,4 +1,10 @@
 ---
+title: Manifest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianPluginsObsidianTasksPluginManifest"
 category: "wiki"
 status: "active"

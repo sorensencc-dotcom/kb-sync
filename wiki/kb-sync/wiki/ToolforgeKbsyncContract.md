@@ -1,4 +1,10 @@
 ---
+title: ToolforgeKbsyncContract
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiToolforgeKbsyncContract"
 category: "wiki"
 status: "active"

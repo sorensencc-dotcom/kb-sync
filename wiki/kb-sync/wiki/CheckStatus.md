@@ -1,4 +1,10 @@
 ---
+title: CheckStatus
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsCheckStatus"
 category: "wiki"
 status: "active"

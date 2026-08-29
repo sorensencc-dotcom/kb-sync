@@ -1,4 +1,10 @@
 ---
+title: KbSyncNightly20260717
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsOperationsKbSyncNightlyReportsKbSyncNightly20260717"
 category: "wiki"
 status: "active"

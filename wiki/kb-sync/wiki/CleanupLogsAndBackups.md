@@ -1,4 +1,10 @@
 ---
+title: CleanupLogsAndBackups
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsCleanupLogsAndBackups"
 category: "wiki"
 status: "active"

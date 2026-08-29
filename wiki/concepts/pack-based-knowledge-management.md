@@ -1,4 +1,10 @@
 ---
+title: pack-based-knowledge-management
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiConceptsPackBasedKnowledgeManagement"
 category: "wiki"
 status: "active"

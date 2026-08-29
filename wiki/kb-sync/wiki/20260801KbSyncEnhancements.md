@@ -1,4 +1,10 @@
 ---
+title: 20260801KbSyncEnhancements
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsSuperpowersPlans20260801KbSyncEnhancements"
 category: "wiki"
 status: "active"

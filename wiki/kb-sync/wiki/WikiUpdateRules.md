@@ -1,4 +1,10 @@
 ---
+title: WikiUpdateRules
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncWikiUpdateRules"
 category: "wiki"
 status: "active"

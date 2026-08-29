@@ -1,4 +1,10 @@
 ---
+title: wiki-validate-precommit.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesWikiValidatePrecommitSh"
 category: "wiki"
 status: "active"

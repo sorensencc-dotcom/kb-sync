@@ -1,4 +1,10 @@
 ---
+title: TestWslPathNormalization
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsTestWslPathNormalization"
 category: "wiki"
 status: "active"

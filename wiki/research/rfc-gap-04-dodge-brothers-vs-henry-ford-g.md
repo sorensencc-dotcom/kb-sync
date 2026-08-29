@@ -6,6 +6,7 @@ gap_id: "GAP-04"
 status: "draft"
 created_at: "2026-08-23T01:58:16.715Z"
 citations: ["docs/kb/notebooklm-sync/architecture.md","docs/kb/notebooklm-sync/pipeline.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment

@@ -1,4 +1,10 @@
 ---
+title: TestsGatedClimbPipelineTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsGatedClimbPipelineTest"
 category: "wiki"
 status: "active"

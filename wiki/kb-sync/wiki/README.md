@@ -1,4 +1,10 @@
 ---
+title: README
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsREADME"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: Rollback
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CoreRollback"
 category: "wiki"
 status: "active"

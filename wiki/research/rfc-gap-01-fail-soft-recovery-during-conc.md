@@ -6,6 +6,7 @@ gap_id: "GAP-01"
 status: "draft"
 created_at: "2026-08-23T01:58:16.707Z"
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01-fail-soft-recovery-during-conc.md","docs/kb/notebooklm-sync/operator-rules.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - Fail-soft recovery during concurrent WebSocket packet collision

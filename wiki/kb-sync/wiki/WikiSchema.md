@@ -1,4 +1,10 @@
 ---
+title: WikiSchema
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncWikiSchema"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: setup-auth.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesSetupAuthMjs"
 category: "wiki"
 status: "active"

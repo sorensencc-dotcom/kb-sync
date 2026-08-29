@@ -1,4 +1,10 @@
 ---
+title: Obsidian
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ConfigsObsidian"
 category: "wiki"
 status: "active"

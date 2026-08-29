@@ -1,4 +1,10 @@
 ---
+title: ArtifactGenerator
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ArtifactGenerator"
 category: "wiki"
 status: "active"

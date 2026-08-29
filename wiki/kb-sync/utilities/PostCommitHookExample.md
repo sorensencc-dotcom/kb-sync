@@ -1,4 +1,10 @@
 ---
+title: PostCommitHookExample
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsNotebooklmPostCommitHookExample"
 category: "wiki"
 status: "active"

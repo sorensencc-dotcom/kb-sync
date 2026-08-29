@@ -1,4 +1,10 @@
 ---
+title: VitestConfig
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "VitestConfig"
 category: "wiki"
 status: "active"

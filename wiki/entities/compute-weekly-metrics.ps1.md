@@ -1,4 +1,10 @@
 ---
+title: compute-weekly-metrics.ps1
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesComputeWeeklyMetricsPs1"
 category: "wiki"
 status: "active"

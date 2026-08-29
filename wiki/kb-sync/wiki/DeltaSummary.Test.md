@@ -1,4 +1,10 @@
 ---
+title: DeltaSummary.Test
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsDeltaSummaryTest"
 category: "wiki"
 status: "active"

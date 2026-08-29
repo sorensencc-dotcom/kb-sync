@@ -1,4 +1,10 @@
 ---
+title: TestsValidateContractJsonTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsValidateContractJsonTest"
 category: "wiki"
 status: "active"

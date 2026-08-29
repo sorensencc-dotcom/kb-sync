@@ -1,4 +1,10 @@
 ---
+title: Progress
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "SuperpowersSddProgress"
 category: "wiki"
 status: "active"

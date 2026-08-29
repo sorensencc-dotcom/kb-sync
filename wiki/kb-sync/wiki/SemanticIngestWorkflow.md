@@ -1,4 +1,10 @@
 ---
+title: SemanticIngestWorkflow
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiConceptsSemanticIngestWorkflow"
 category: "wiki"
 status: "active"

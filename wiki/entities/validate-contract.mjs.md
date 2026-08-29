@@ -1,4 +1,10 @@
 ---
+title: validate-contract.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesValidateContractMjs"
 category: "wiki"
 status: "active"

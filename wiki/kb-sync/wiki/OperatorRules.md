@@ -1,4 +1,10 @@
 ---
+title: OperatorRules
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsKbNotebooklmSyncOperatorRules"
 category: "wiki"
 status: "active"

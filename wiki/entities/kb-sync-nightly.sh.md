@@ -1,4 +1,10 @@
 ---
+title: kb-sync-nightly.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesKbSyncNightlySh"
 category: "wiki"
 status: "active"

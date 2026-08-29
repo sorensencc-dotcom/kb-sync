@@ -1,4 +1,10 @@
 ---
+title: SyncStatus
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "SyncStatus"
 category: "wiki"
 status: "active"

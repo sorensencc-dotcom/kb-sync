@@ -1,4 +1,10 @@
 ---
+title: run-all.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesRunAllSh"
 category: "wiki"
 status: "active"

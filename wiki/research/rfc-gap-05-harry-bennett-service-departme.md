@@ -6,6 +6,7 @@ gap_id: "GAP-05"
 status: "draft"
 created_at: "2026-08-23T01:58:16.717Z"
 citations: ["docs/kb/notebooklm-sync/authentication.md","wiki/research/rfc-gap-02-cross-platform-path-normalizat.md","docs/kb/notebooklm-sync/pipeline.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight

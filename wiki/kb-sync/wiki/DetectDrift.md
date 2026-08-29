@@ -1,4 +1,10 @@
 ---
+title: DetectDrift
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiDetectDrift"
 category: "wiki"
 status: "active"

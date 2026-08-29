@@ -1,4 +1,10 @@
 ---
+title: RegisterKbSyncTask
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsRegisterKbSyncTask"
 category: "wiki"
 status: "active"

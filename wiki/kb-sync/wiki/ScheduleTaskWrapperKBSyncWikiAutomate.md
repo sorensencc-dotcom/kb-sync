@@ -1,4 +1,10 @@
 ---
+title: ScheduleTaskWrapperKBSyncWikiAutomate
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsScheduleTaskWrapperKBSyncWikiAutomate"
 category: "wiki"
 status: "active"

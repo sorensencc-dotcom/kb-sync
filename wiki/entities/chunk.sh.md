@@ -1,4 +1,10 @@
 ---
+title: chunk.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesChunkSh"
 category: "wiki"
 status: "active"

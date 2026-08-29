@@ -1,4 +1,10 @@
 ---
+title: kb-sync-nightly.ps1
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesKbSyncNightlyPs1"
 category: "wiki"
 status: "active"

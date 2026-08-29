@@ -1,4 +1,10 @@
 ---
+title: Headless-Synthesis-Worker
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "HeadlessSynthesisWorker"
 category: "wiki"
 status: "active"

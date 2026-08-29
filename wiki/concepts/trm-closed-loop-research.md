@@ -3,6 +3,7 @@ title: "WikiConceptsTRMClosedLoopResearch"
 category: "wiki"
 status: "active"
 citations: ["wiki/concepts/trm-closed-loop-research.md"]
+sourceRepository: kb-sync
 ---
 
 # WikiConceptsTRMClosedLoopResearch

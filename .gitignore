@@ -18,7 +18,9 @@ logs/
 .test_*
 C*
 .validation-report.json
+.autoheal-report.json
 .performance-report.json
+.wiki-publish-temp/
 obsidian/vault/_kb-sync-staging/
 _kb-sync-staging/
 obsidian/vault/.obsidian/

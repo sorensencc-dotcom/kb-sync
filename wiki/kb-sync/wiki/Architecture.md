@@ -1,4 +1,10 @@
 ---
+title: Architecture
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsKbNotebooklmSyncArchitecture"
 category: "wiki"
 status: "active"

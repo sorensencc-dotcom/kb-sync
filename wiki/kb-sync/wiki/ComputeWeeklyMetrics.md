@@ -1,4 +1,10 @@
 ---
+title: ComputeWeeklyMetrics
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesReviewCapacityScriptsComputeWeeklyMetrics"
 category: "wiki"
 status: "active"

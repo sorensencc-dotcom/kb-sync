@@ -1,4 +1,10 @@
 ---
+title: WikiOperatorWorkflow
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncWikiOperatorWorkflow"
 category: "wiki"
 status: "active"

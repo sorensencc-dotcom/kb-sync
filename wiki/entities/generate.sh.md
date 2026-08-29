@@ -1,4 +1,10 @@
 ---
+title: generate.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesGenerateSh"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: Log
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiLog"
 category: "wiki"
 status: "active"

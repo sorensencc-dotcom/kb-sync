@@ -1,4 +1,10 @@
 ---
+title: SecretScanHook
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsSecretScanHook"
 category: "wiki"
 status: "active"

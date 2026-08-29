@@ -1,4 +1,10 @@
 ---
+title: WikiContractCleanupVerification
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsWikiContractCleanupVerification"
 category: "wiki"
 status: "active"

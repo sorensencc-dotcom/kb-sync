@@ -3,6 +3,7 @@ title: "WikiEntitiesWatchCompetitorsV2Mjs"
 category: "wiki"
 status: "active"
 citations: ["kb-sync/watch-competitors-v2.mjs"]
+sourceRepository: kb-sync
 ---
 
 # WikiEntitiesWatchCompetitorsV2Mjs

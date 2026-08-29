@@ -7,6 +7,7 @@ category: "ford-politics"
 topic: historical-revocation-verification
 status: active
 last_updated: 2026-08-23T02:19:45.926Z
+sourceRepository: kb-sync
 ---
 # Historical Revocation Verification
 

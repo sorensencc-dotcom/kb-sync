@@ -1,4 +1,10 @@
 ---
+title: SkillApprovalRules
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiGovernanceSkillApprovalRules"
 category: "wiki"
 status: "active"

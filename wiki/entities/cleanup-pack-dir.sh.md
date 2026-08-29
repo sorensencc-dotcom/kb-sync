@@ -1,4 +1,10 @@
 ---
+title: cleanup-pack-dir.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesCleanupPackDirSh"
 category: "wiki"
 status: "active"

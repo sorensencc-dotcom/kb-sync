@@ -1,4 +1,10 @@
 ---
+title: Appearance
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianAppearance"
 category: "wiki"
 status: "active"

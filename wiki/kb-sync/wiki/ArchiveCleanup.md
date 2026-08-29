@@ -1,4 +1,10 @@
 ---
+title: ArchiveCleanup
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsArchiveCleanup"
 category: "wiki"
 status: "active"

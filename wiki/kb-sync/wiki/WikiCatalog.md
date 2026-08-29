@@ -1,4 +1,10 @@
 ---
+title: WikiCatalog
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiCatalog"
 category: "wiki"
 status: "active"

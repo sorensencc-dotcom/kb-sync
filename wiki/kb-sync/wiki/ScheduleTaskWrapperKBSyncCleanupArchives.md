@@ -1,4 +1,10 @@
 ---
+title: ScheduleTaskWrapperKBSyncCleanupArchives
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScheduleTaskWrapperKBSyncCleanupArchives"
 category: "wiki"
 status: "active"

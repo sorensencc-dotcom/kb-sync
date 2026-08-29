@@ -1,4 +1,10 @@
 ---
+title: Main
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianPluginsObsidianTasksPluginMain"
 category: "wiki"
 status: "active"

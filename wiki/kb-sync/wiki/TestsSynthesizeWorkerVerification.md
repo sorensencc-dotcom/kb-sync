@@ -1,4 +1,10 @@
 ---
+title: TestsSynthesizeWorkerVerification
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsSynthesizeWorkerVerification"
 category: "wiki"
 status: "active"

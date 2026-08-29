@@ -1,4 +1,10 @@
 ---
+title: ModulesObsidianProvidersLocalProvider
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesObsidianProvidersLocalProvider"
 category: "wiki"
 status: "active"

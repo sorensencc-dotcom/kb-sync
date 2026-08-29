@@ -1,4 +1,10 @@
 ---
+title: Mkdocs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "Mkdocs"
 category: "wiki"
 status: "active"

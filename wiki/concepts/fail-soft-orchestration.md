@@ -1,4 +1,10 @@
 ---
+title: fail-soft-orchestration
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiConceptsFailSoftOrchestration"
 category: "wiki"
 status: "active"

@@ -4,17 +4,18 @@ category: "research"
 topic: "rfc-gap-01--cic-reddit-follow-up"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-27T12:23:45.401Z"
+created_at: "2026-08-29T00:30:11.471Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cic-reddit-follow-up.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-reddit-under-sourced.md"]
+citations: ["wiki/research/rfc-gap-01--cic-reddit-follow-up.md","trm-research-gaps.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **CIC-Reddit (follow-up)**
 
 ## 1. Problem Statement & Context
-To elevate the findings in your notebook from a collection of local history and community anecdotes into a highly rigorous, authoritative historical r)
+To truly elevate the findings in your notebook from a fascinating blend of local folklore and high-level summaries into a rigorously verified historic))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
@@ -23,7 +24,7 @@ The following related context nodes were retrieved from the local knowledge base
   > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-03--cic-reddit-under-sourced** (`wiki/research/rfc-gap-03--cic-reddit-under-sourced.md`) [lexical_only]:
+- **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

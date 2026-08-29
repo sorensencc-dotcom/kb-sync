@@ -1,4 +1,10 @@
 ---
+title: CoverageAudit.Test
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsCoverageAuditTest"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: CommunityPlugins
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianCommunityPlugins"
 category: "wiki"
 status: "active"

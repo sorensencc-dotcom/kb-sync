@@ -1,4 +1,10 @@
 ---
+title: flatten.sh
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesFlattenSh"
 category: "wiki"
 status: "active"

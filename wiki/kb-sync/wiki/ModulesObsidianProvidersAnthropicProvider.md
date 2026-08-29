@@ -1,4 +1,10 @@
 ---
+title: ModulesObsidianProvidersAnthropicProvider
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesObsidianProvidersAnthropicProvider"
 category: "wiki"
 status: "active"

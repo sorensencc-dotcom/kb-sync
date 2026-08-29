@@ -1,4 +1,10 @@
 ---
+title: CoreScriptsVerification
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsCoreScriptsVerification"
 category: "wiki"
 status: "active"

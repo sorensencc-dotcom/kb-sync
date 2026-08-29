@@ -1,4 +1,10 @@
 ---
+title: cleanup-logs-and-backups.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesCleanupLogsAndBackupsMjs"
 category: "wiki"
 status: "active"

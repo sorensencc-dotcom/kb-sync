@@ -1,4 +1,10 @@
 ---
+title: IngestWiki
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesObsidianIngestWiki"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: ThreeLayerVaultArchitecture
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiConceptsThreeLayerVaultArchitecture"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: GithubActionsSetup
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsGithubActionsSetup"
 category: "wiki"
 status: "active"

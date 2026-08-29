@@ -3,6 +3,7 @@ title: "TestsWeeklyReviewCapacityWorkflowTest"
 category: "wiki"
 status: "active"
 citations: ["tests/weekly-review-capacity-workflow.test.ts"]
+sourceRepository: kb-sync
 ---
 
 # TestsWeeklyReviewCapacityWorkflowTest

@@ -1,4 +1,10 @@
 ---
+title: cleanup-staging-archives.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesCleanupStagingArchivesMjs"
 category: "wiki"
 status: "active"

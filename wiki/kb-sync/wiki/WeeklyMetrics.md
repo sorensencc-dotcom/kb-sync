@@ -1,4 +1,10 @@
 ---
+title: WeeklyMetrics
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesReviewCapacityWeeklyMetrics"
 category: "wiki"
 status: "active"

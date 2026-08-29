@@ -1,4 +1,10 @@
 ---
+title: AutomationPolicy
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsGovernanceAutomationPolicy"
 category: "wiki"
 status: "active"

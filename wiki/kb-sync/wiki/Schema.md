@@ -1,4 +1,10 @@
 ---
+title: Schema
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiSchema"
 category: "wiki"
 status: "active"

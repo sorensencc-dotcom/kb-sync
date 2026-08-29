@@ -1,4 +1,10 @@
 ---
+title: TestsNormalizedDiffGuardTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsNormalizedDiffGuardTest"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: ExtractGithubPrs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesReviewCapacityScriptsExtractGithubPrs"
 category: "wiki"
 status: "active"

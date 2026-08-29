@@ -1,4 +1,10 @@
 ---
+title: Entity
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiTemplatesEntity"
 category: "wiki"
 status: "active"

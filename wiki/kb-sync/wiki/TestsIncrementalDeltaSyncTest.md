@@ -1,4 +1,10 @@
 ---
+title: TestsIncrementalDeltaSyncTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsIncrementalDeltaSyncTest"
 category: "wiki"
 status: "active"

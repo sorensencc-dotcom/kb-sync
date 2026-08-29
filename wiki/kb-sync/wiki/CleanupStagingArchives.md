@@ -1,4 +1,10 @@
 ---
+title: CleanupStagingArchives
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiCleanupStagingArchives"
 category: "wiki"
 status: "active"

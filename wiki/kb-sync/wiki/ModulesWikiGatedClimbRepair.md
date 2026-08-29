@@ -1,4 +1,10 @@
 ---
+title: ModulesWikiGatedClimbRepair
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiGatedClimbRepair"
 category: "wiki"
 status: "active"

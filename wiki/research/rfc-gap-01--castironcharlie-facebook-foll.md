@@ -4,26 +4,27 @@ category: "research"
 topic: "rfc-gap-01--castironcharlie-facebook-foll"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-27T12:23:46.033Z"
+created_at: "2026-08-29T00:30:15.589Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md","trm-research-gaps.md","wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **CastIronCharlie-Facebook (follow-up)**
 
 ## 1. Problem Statement & Context
-To most effectively strengthen our current findings—especially now that we have successfully resolved the **Sperry M-7 precision engineering** and the))
+To most effectively strengthen our current findings—especially now that we have successfully resolved the **Sperry M-7 precision engineering** and the)))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md`) [hybrid]:
   > 
-- **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-02--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

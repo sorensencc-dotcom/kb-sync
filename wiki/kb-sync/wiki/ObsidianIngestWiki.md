@@ -1,4 +1,10 @@
 ---
+title: ObsidianIngestWiki
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsSkillsObsidianIngestWiki"
 category: "wiki"
 status: "active"

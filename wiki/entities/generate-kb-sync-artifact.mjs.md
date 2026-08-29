@@ -1,4 +1,10 @@
 ---
+title: generate-kb-sync-artifact.mjs
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesGenerateKbSyncArtifactMjs"
 category: "wiki"
 status: "active"

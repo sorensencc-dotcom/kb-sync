@@ -1,4 +1,10 @@
 ---
+title: SetupAuth
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ScriptsNotebooklmSetupAuth"
 category: "wiki"
 status: "active"

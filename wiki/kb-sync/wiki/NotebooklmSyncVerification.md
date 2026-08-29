@@ -1,4 +1,10 @@
 ---
+title: NotebooklmSyncVerification
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsNotebooklmSyncVerification"
 category: "wiki"
 status: "active"

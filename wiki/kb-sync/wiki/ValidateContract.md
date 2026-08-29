@@ -1,4 +1,10 @@
 ---
+title: ValidateContract
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ModulesWikiValidateContract"
 category: "wiki"
 status: "active"

@@ -1,4 +1,10 @@
 ---
+title: Pipeline
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "DocsKbNotebooklmSyncPipeline"
 category: "wiki"
 status: "active"

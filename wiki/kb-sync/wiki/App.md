@@ -1,4 +1,10 @@
 ---
+title: App
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultKBVaultObsidianApp"
 category: "wiki"
 status: "active"

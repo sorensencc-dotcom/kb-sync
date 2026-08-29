@@ -1,4 +1,10 @@
 ---
+title: $TaskName
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "$TaskName"
 category: "wiki"
 status: "active"

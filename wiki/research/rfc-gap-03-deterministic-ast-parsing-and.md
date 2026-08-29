@@ -6,6 +6,7 @@ gap_id: "GAP-03"
 status: "draft"
 created_at: "2026-08-23T01:58:16.713Z"
 citations: ["wiki/research/rfc-gap-03-deterministic-ast-parsing-and.md","trm-research-gaps.md","docs/kb/notebooklm-sync/pipeline.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-03 - Deterministic AST parsing and chunk boundary calculation

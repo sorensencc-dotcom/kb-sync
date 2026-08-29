@@ -1,4 +1,10 @@
 ---
+title: extract-github-prs.ps1
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesExtractGithubPrsPs1"
 category: "wiki"
 status: "active"

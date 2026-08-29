@@ -1,4 +1,10 @@
 ---
+title: CreateALink
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CreateALink"
 category: "wiki"
 status: "active"

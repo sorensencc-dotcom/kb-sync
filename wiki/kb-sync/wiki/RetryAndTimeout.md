@@ -1,4 +1,10 @@
 ---
+title: RetryAndTimeout
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "ObsidianVaultWikiKbSyncRetryAndTimeout"
 category: "wiki"
 status: "active"

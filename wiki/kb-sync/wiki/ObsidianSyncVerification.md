@@ -1,4 +1,10 @@
 ---
+title: ObsidianSyncVerification
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsObsidianSyncVerification"
 category: "wiki"
 status: "active"

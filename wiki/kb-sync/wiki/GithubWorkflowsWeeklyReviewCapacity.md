@@ -1,4 +1,10 @@
 ---
+title: GithubWorkflowsWeeklyReviewCapacity
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "GithubWorkflowsWeeklyReviewCapacity"
 category: "wiki"
 status: "active"

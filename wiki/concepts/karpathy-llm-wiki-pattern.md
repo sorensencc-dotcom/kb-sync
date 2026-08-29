@@ -1,4 +1,10 @@
 ---
+title: karpathy-llm-wiki-pattern
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiConceptsKarpathyLlmWikiPattern"
 category: "wiki"
 status: "active"

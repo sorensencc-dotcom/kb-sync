@@ -4,17 +4,18 @@ category: "research"
 topic: "rfc-gap-03--cic-reddit-under-sourced"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-08-27T12:23:45.408Z"
+created_at: "2026-08-29T00:30:11.469Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--cic-reddit-under-sourced.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-03 - **CIC-Reddit (under-sourced)**
 
 ## 1. Problem Statement & Context
-The unique mix of formal historical documents, memoirs, and community forum threads across your 20 notebook sources creates several instances where po)
+When examining the historical record across your notebook’s 21 sources, there is a clear division between documented historical consensus and claims t))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
@@ -23,7 +24,7 @@ The following related context nodes were retrieved from the local knowledge base
   > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-reddit-adjacent-topics** (`wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md`) [lexical_only]:
+- **rfc-gap-02--cic-reddit-adjacent-topics** (`wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md`) [hybrid]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,4 +1,10 @@
 ---
+title: setup-scheduled-tasks.ps1
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "WikiEntitiesSetupScheduledTasksPs1"
 category: "wiki"
 status: "active"

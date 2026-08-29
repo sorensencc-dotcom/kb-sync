@@ -1,4 +1,10 @@
 ---
+title: TestsGatedClimbLockSecurityTest
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "TestsGatedClimbLockSecurityTest"
 category: "wiki"
 status: "active"

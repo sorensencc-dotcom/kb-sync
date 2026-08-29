@@ -1,4 +1,10 @@
 ---
+title: CHANGELOG
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "CHANGELOG"
 category: "wiki"
 status: "active"

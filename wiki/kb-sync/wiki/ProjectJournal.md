@@ -1,4 +1,10 @@
 ---
+title: ProjectJournal
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
+---
 title: "IjfwMemoryProjectJournal"
 category: "wiki"
 status: "active"
