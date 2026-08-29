@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { validateAllowedDiff } from './normalized-diff-guard.mjs';
 import { validateLessonSchema } from './validate-contract.mjs';
 import jsYaml from 'js-yaml';
+import { resolveVaultPaths } from './config-loader.mjs';
+import { sweepStagingVault } from './autoheal-sweeper.mjs';
 
 /**
  * Normalizes Windows drive letter and path separators.
@@ -219,6 +221,15 @@ export async function runGatedClimbRepair(options = {}) {
   const validatorScript = options.validatorScript || defaultValidatorScript;
 
   const lock = acquireLock(targetDir, options.lockOptions);
+
+  if (options.autoheal || options.fix) {
+    const paths = resolveVaultPaths([], { VAULT_ROOT: baseDir });
+    await sweepStagingVault({
+      vaultRoot: paths.vaultRoot,
+      targetDir: targetDir,
+      fix: true
+    });
+  }
 
   const originalContents = new Map();
   const latestRepairedContents = new Map();

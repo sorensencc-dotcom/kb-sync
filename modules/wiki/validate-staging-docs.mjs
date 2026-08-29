@@ -11,6 +11,8 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import https from 'node:https';
+import { resolveVaultPaths } from './config-loader.mjs';
+import { sweepStagingVault } from './autoheal-sweeper.mjs';
 
 const COLOR = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', reset: '\x1b[0m' };
 const logInfo = (msg) => console.error(`${COLOR.green}[VALIDATE-STAGING] [INFO]${COLOR.reset} ${msg}`);
@@ -475,7 +477,7 @@ function validateFile(file, registry, repoRootPath) {
   return { errors, warnings, metadata };
 }
 
-function main() {
+async function main() {
   const startTime = Date.now();
   const root = repoRoot();
   const configFile = path.join(root, 'configs', 'obsidian.yaml');
@@ -509,6 +511,7 @@ function main() {
 
   const isDiffMode = process.argv.includes('--diff');
   const isBatchMode = process.argv.includes('--batch');
+  const isAutoheal = process.argv.includes('--autoheal') || process.argv.includes('--fix');
   const jsonOutput = process.argv.find(arg => arg.startsWith('--json='));
   const webhookUrl = process.argv.find(arg => arg.startsWith('--webhook='))?.split('=')[1] || process.env.WEBHOOK_URL;
   const argTarget = process.argv.slice(2).find(arg => arg !== '--diff' && arg !== '--batch' && !arg.startsWith('--') && !arg.includes('='));
@@ -554,6 +557,7 @@ function main() {
   let totalErrors = 0;
   let totalWarnings = 0;
   let totalFiles = 0;
+  let aggregatedAutohealSummary = { filesScanned: 0, filesHealed: 0, repairs: [] };
 
   for (const target of targetDirs) {
     const isFile = fs.statSync(target).isFile();
@@ -561,6 +565,20 @@ function main() {
     const targetDir = isFile ? path.dirname(target) : target;
 
     logInfo(`Target: ${target}`);
+
+    if (isAutoheal) {
+      logInfo(`Running autoheal sweeper on ${targetDir}`);
+      const healReport = await sweepStagingVault({
+        vaultRoot,
+        targetDir: targetDir,
+        fix: true,
+        index: registry
+      });
+      aggregatedAutohealSummary.filesScanned += healReport.filesScanned;
+      aggregatedAutohealSummary.filesHealed += healReport.filesHealed;
+      if (healReport.repairs) aggregatedAutohealSummary.repairs.push(...healReport.repairs);
+      logInfo(`Autoheal healed ${healReport.filesHealed} of ${healReport.filesScanned} files scanned`);
+    }
 
     let files;
     if (isFile) {
@@ -642,6 +660,7 @@ function main() {
       mode: isBatchMode ? 'batch' : 'single',
       duration: Date.now() - startTime,
       summary: { files: totalFiles, errors: totalErrors, warnings: totalWarnings },
+      autohealSummary: aggregatedAutohealSummary,
       results: batchResults
     };
     fs.writeFileSync(outputPath, JSON.stringify(report, null, 2));
