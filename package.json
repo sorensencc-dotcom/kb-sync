@@ -74,6 +74,7 @@
     "cross-audit": "node scripts/cross-audit.mjs",
     "test:cross-audit": "node --test tests/cross-audit.test.mjs",
     "test:repair-audit": "node --test --experimental-strip-types modules/healing/repair-audit-gate.test.ts",
+    "visual:verify": "node --test --experimental-strip-types skills/html-visual-verify/tests/render-quality.test.ts",
     "kb:pipeline:full": "npm run wiki:ingest && npm run wiki:validate-staging && npm run wiki:validate-contract && npm run wiki:cleanup-archives",
     "wiki:weekly": "powershell.exe -ExecutionPolicy Bypass -File scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1",
     "logs:cleanup": "node scripts/cleanup-logs-and-backups.mjs",
@@ -112,7 +113,11 @@
     "@types/node": "^20.0.0",
     "js-tiktoken": "1.0.21",
     "js-yaml": "^4.1.0",
+    "playwright": "^1.62.1",
+    "pngjs": "^7.0.0",
     "tsx": "^4.0.0",
     "typescript": "5.4.5"
+    ,"playwright": "^1.55.0"
+    ,"pngjs": "^7.0.0"
   }
 }
