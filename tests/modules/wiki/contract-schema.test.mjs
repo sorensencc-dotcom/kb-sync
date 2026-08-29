@@ -35,4 +35,14 @@ describe('toolforge-kbsync-contract schema', () => {
       expect(statusEnum).toContain(status);
     }
   });
+
+  it('maintains parity with validate-contract.mjs exports', async () => {
+    const { ALLOWED_CATEGORIES, ALLOWED_STATUSES } = await import(
+      '../../../modules/wiki/validate-contract.mjs'
+    );
+    expect(ALLOWED_CATEGORIES.has('research')).toBe(true);
+    expect(ALLOWED_CATEGORIES.has('wiki')).toBe(true);
+    expect(ALLOWED_STATUSES.has('proposed')).toBe(true);
+    expect(ALLOWED_STATUSES.has('draft')).toBe(true);
+  });
 });

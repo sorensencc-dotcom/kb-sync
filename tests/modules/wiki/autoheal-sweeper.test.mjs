@@ -107,6 +107,41 @@ describe('autohealMetadata', () => {
     expect(result.content).toContain(content);
     expect(result.repairs).not.toContain('rewrote_wikilinks');
   });
+
+  it('rewrites wikilinks with section anchors and custom labels', async () => {
+    const content = 'See [[KnownTarget#architecture|Architecture Diagram]] and [[UnknownTarget#subheading]].';
+    const index = new Map([
+      ['KnownTarget', 'kb-sync/wiki/daemons/KnownTarget']
+    ]);
+    
+    const result = await autohealMetadata('test.md', content, { repoName: 'kb-sync', index });
+    
+    expect(result.content).toContain('[[kb-sync/wiki/daemons/KnownTarget#architecture|Architecture Diagram]]');
+    expect(result.content).toContain('[[kb-sync/wiki/research/UnknownTarget#subheading]]');
+    expect(result.repairs).toContain('rewrote_wikilinks');
+  });
+
+  it('handles CRLF line endings in frontmatter and body seamlessly', async () => {
+    const rawContent = '---\r\ntitle: CRLF Note\r\ncategory: Research\r\nstatus: Active\r\n---\r\n# CRLF Header\r\n\r\n[[Target]]\r\n';
+    const result = await autohealMetadata('wiki/research/crlf-note.md', rawContent, { repoName: 'kb-sync' });
+
+    expect(result.content).toContain('category: research');
+    expect(result.content).toContain('status: active');
+    expect(result.content).toContain('[[kb-sync/wiki/research/Target]]');
+    expect(result.repairs).toContain('normalized_category');
+    expect(result.repairs).toContain('rewrote_wikilinks');
+  });
+
+  it('handles empty files gracefully by injecting frontmatter defaults', async () => {
+    const rawContent = '';
+    const result = await autohealMetadata('wiki/research/empty-test.md', rawContent, { repoName: 'kb-sync' });
+
+    expect(result.content.startsWith('---')).toBe(true);
+    expect(result.content).toContain('title: empty-test');
+    expect(result.content).toContain('category: research');
+    expect(result.content).toContain('status: draft');
+    expect(result.repairs).toContain('injected_frontmatter');
+  });
 });
 
 describe('sweepStagingVault', () => {

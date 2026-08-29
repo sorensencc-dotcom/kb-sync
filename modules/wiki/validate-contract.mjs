@@ -20,9 +20,9 @@ const log = isJsonMode ? (...args) => console.error(...args) : (...args) => cons
 
 // Allowed values from our contract
 export const ALLOWED_CATEGORIES = new Set([
-  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "lessons"
+  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "research", "lessons"
 ]);
-export const ALLOWED_STATUSES = new Set(["active", "beta", "archived"]);
+export const ALLOWED_STATUSES = new Set(["active", "beta", "archived", "draft", "proposed"]);
 
 export function resolveCanonicalVaultPath(inputPath, config = { vault_root: process.cwd(), wiki_dir: "wiki", lessons_dir: "lessons" }) {
   const vaultRoot = config.vault_root || process.cwd();

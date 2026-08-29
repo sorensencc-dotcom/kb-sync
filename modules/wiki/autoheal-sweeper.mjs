@@ -22,17 +22,17 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   let frontmatter = {};
   let body = fileContent;
 
-  const fmRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const fmRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
   const match = fileContent.match(fmRegex);
   
   if (match) {
     body = match[2];
     const fmText = match[1];
-    fmText.split('\n').forEach(line => {
+    fmText.split(/\r?\n/).forEach(line => {
       const parts = line.split(':');
       if (parts.length >= 2) {
         const key = parts[0].trim();
-        const value = parts.slice(1).join(':').trim();
+        const value = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
         frontmatter[key] = value;
       }
     });
@@ -83,10 +83,11 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
     return placeholder;
   });
 
-  const wikilinkRegex = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+  const wikilinkRegex = /\[\[([^\]|#]+)(#[^\]|]+)?(?:\|([^\]]+))?\]\]/g;
   let linksRewritten = false;
 
-  tempBody = tempBody.replace(wikilinkRegex, (fullMatch, target, label) => {
+  tempBody = tempBody.replace(wikilinkRegex, (fullMatch, rawTarget, rawHash = '', rawLabel) => {
+    const target = rawTarget.trim();
     // Already prefixed
     if (target.includes('/')) return fullMatch;
 
@@ -96,10 +97,11 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
     }
 
     linksRewritten = true;
-    if (label) {
-      return `[[${newTarget}|${label}]]`;
+    const hash = rawHash || '';
+    if (rawLabel !== undefined && rawLabel !== null) {
+      return `[[${newTarget}${hash}|${rawLabel}]]`;
     }
-    return `[[${newTarget}]]`;
+    return `[[${newTarget}${hash}]]`;
   });
 
   if (linksRewritten) repairs.push('rewrote_wikilinks');

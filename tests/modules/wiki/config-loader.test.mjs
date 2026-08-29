@@ -53,4 +53,18 @@ describe('resolveVaultPaths', () => {
     expect(path.isAbsolute(paths.researchDir)).toBe(true);
     expect(path.isAbsolute(paths.transactDir)).toBe(true);
   });
+
+  it('correctly unquotes paths with spaces in --vault-root', () => {
+    const targetWithSpaces = 'C:\\dev\\my test sandbox\\vault';
+    const paths = resolveVaultPaths(['node', 'script.js', `--vault-root="${targetWithSpaces}"`], {});
+    expect(paths.vaultRoot).toBe(path.resolve(targetWithSpaces));
+    expect(paths.wikiDir).toBe(path.join(path.resolve(targetWithSpaces), 'wiki'));
+  });
+
+  it('resolves relative path arguments to absolute paths', () => {
+    const relativeTarget = './sandbox-folder';
+    const paths = resolveVaultPaths(['node', 'script.js', `--vault-root=${relativeTarget}`], {});
+    expect(paths.vaultRoot).toBe(path.resolve(relativeTarget));
+    expect(path.isAbsolute(paths.vaultRoot)).toBe(true);
+  });
 });
