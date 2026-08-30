@@ -1,0 +1,43 @@
+{
+  "version": "2026-08-29-1",
+  "updated_at": "2026-08-29T21:59:00Z",
+  "categories": {
+    "willow-run": {
+      "title": "CIC - Willow Run & Aviation Engineering",
+      "target": "6fd7c40b-df90-444b-9c7a-a64682925856",
+      "aliases": ["willow_run", "b24", "aviation"],
+      "status": "canonical"
+    },
+    "ford-politics": {
+      "title": "CIC - Ford Executive Dynamics & Politics",
+      "target": "0caf6707-f8f2-4d2a-acd2-020acead55ba",
+      "aliases": ["ford_politics", "politics", "executive"],
+      "status": "canonical"
+    },
+    "post-war": {
+      "title": "CIC - Post-War & Willys-Overland",
+      "target": "9c469910-a900-43a4-877c-a43c9f545b5f",
+      "aliases": ["willys-overland", "willys", "post_war", "overland"],
+      "status": "canonical"
+    },
+    "cuban-seizures": {
+      "title": "CIC - Cuban Seizures & Retired Assets",
+      "target": "c8360946-dbee-4a2c-b622-7f89b05695b0",
+      "aliases": ["cuba", "cuban-claims", "cuban_seizures", "cuban"],
+      "status": "canonical"
+    },
+    "master-kb": {
+      "title": "CIC-KB (Master Knowledge Base)",
+      "target": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
+      "aliases": ["master", "kb", "master_kb"],
+      "status": "canonical"
+    },
+    "daily": {
+      "title": "CIC - Daily Research",
+      "target": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "aliases": ["default", "daily_research"],
+      "status": "canonical"
+    }
+  },
+  "placeholders": {}
+}

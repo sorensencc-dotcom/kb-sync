@@ -1,0 +1,68 @@
+{
+  "version": "2026-08-29-1",
+  "category": "cuban-seizures",
+  "entities": {
+    "corporations": [
+      "United Fruit",
+      "ITT",
+      "International Telephone & Telegraph",
+      "Moa Bay Mining",
+      "Nicaro Nickel",
+      "American Sugar",
+      "Fajardo Sugar",
+      "Manati Sugar",
+      "Francisco Sugar",
+      "Tuinucu Sugar",
+      "Cuban Telephone Company",
+      "Cuban Electric Company",
+      "Compania Cubana de Electricidad",
+      "Banco Nacional de Cuba",
+      "Standard Oil of New Jersey",
+      "Texaco",
+      "Shell",
+      "Sinclair",
+      "Guantanamo Bay"
+    ],
+    "caselaw_and_statutes": [
+      "Sabbatino",
+      "Banco Nacional de Cuba v. Sabbatino",
+      "Bernstein exception",
+      "Act of State doctrine",
+      "Hickenlooper Amendment",
+      "Second Hickenlooper Amendment",
+      "FCSC",
+      "Foreign Claims Settlement Commission",
+      "LIBERTAD Act",
+      "Helms-Burton Act",
+      "Title III",
+      "Title IV",
+      "Trading with the Enemy Act",
+      "Cuban Assets Control Regulations",
+      "CACR",
+      "Law 851",
+      "Agrarian Reform Law"
+    ],
+    "key_figures_and_treaties": [
+      "Fidel Castro",
+      "Che Guevara",
+      "Raul Castro",
+      "Carlos Manuel de Cespedes",
+      "Philip Bonsal",
+      "FCSC Claim Decision",
+      "Treaty of Paris 1898",
+      "Platt Amendment"
+    ]
+  },
+  "patterns": [
+    "expropriat(e|ion|ed|ing)",
+    "confiscat(e|ion|ed|ing)",
+    "nationaliz(e|ation|ed|ing)",
+    "claim(s?)\\s+(against|involving)\\s+cuba",
+    "cuban\\s+seizure(s?)",
+    "seizure\\s+of\\s+assets",
+    "certified\\s+claim(s?)",
+    "property\\s+claims?\\s+in\\s+cuba",
+    "sugar\\s+mill(s?)",
+    "sugar\\s+estate(s?)"
+  ]
+}
