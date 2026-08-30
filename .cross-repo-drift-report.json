@@ -1,126 +1,134 @@
 {
-  "version": "1.0.0",
-  "timestamp": "2026-08-30T02:39:33.097Z",
-  "system_time_epoch_ms": 1788057573097,
-  "overall_status": "DRIFT_DETECTED",
+  "version": "1.1.0",
+  "timestamp": "2026-08-30T02:46:17.234Z",
+  "system_time_epoch_ms": 1788057977234,
+  "overall_status": "DEGRADED",
   "repositories": [
     {
       "repository": "kb-sync",
-      "path": "C:\\dev\\dev-sandbox\\kb-sync-drift-fix",
+      "path": "C:\\dev\\kb-sync",
+      "isCanonical": true,
       "exists": true,
-      "status": "DRIFT_DETECTED",
-      "telemetry_source": "DRIFT_REPORT",
-      "timestamp": "2026-08-30T02:38:03.487Z",
-      "system_time_epoch_ms": 1788057483487,
-      "sources_checked": 182,
-      "stale_pages_count": 49,
-      "dirty_worktree_count": 10,
+      "status": "NO_DRIFT",
+      "telemetry_source": "NATIVE_DRIFT_TELEMETRY",
+      "timestamp": "2026-08-30T00:01:58.455Z",
+      "system_time_epoch_ms": 1788048118455,
+      "sources_checked": 180,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 117,
       "violations": [
-        "DIRTY_WORKTREE (10 uncommitted/untracked files)"
+        "DIRTY_WORKTREE (117 uncommitted/untracked files)"
       ]
     },
     {
       "repository": "rewrite-docs",
       "path": "C:\\dev\\rewrite-docs",
+      "isCanonical": true,
       "exists": true,
-      "status": "NO_DRIFT",
-      "telemetry_source": "FALLBACK_GIT",
-      "timestamp": "2026-08-30T02:39:32.489Z",
-      "system_time_epoch_ms": 1788057572489,
+      "status": "DEGRADED",
+      "telemetry_source": "FALLBACK_GIT_INSPECTION",
+      "timestamp": "2026-08-30T02:46:16.747Z",
+      "system_time_epoch_ms": 1788057976747,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 0,
       "violations": [
-        "MISSING_DRIFT_TELEMETRY"
+        "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
     {
       "repository": "rewrite-mcp",
       "path": "C:\\dev\\rewrite-mcp",
+      "isCanonical": true,
       "exists": true,
-      "status": "PARTIAL",
-      "telemetry_source": "FALLBACK_GIT",
-      "timestamp": "2026-08-30T02:39:32.643Z",
-      "system_time_epoch_ms": 1788057572643,
+      "status": "DEGRADED",
+      "telemetry_source": "FALLBACK_GIT_INSPECTION",
+      "timestamp": "2026-08-30T02:46:16.857Z",
+      "system_time_epoch_ms": 1788057976857,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 307,
       "violations": [
         "DIRTY_WORKTREE (307 uncommitted/untracked files)",
-        "MISSING_DRIFT_TELEMETRY"
+        "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
     {
       "repository": "trm",
       "path": "C:\\dev\\trm",
+      "isCanonical": true,
       "exists": true,
-      "status": "PARTIAL",
-      "telemetry_source": "FALLBACK_GIT",
-      "timestamp": "2026-08-30T02:39:32.740Z",
-      "system_time_epoch_ms": 1788057572740,
+      "status": "DEGRADED",
+      "telemetry_source": "FALLBACK_GIT_INSPECTION",
+      "timestamp": "2026-08-30T02:46:16.938Z",
+      "system_time_epoch_ms": 1788057976938,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 37,
       "violations": [
         "DIRTY_WORKTREE (37 uncommitted/untracked files)",
-        "MISSING_DRIFT_TELEMETRY"
+        "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
     {
       "repository": "cic-ingestion",
       "path": "C:\\dev\\cic-ingestion",
+      "isCanonical": true,
       "exists": true,
-      "status": "PARTIAL",
-      "telemetry_source": "FALLBACK_GIT",
-      "timestamp": "2026-08-30T02:39:32.853Z",
-      "system_time_epoch_ms": 1788057572853,
+      "status": "DEGRADED",
+      "telemetry_source": "FALLBACK_GIT_INSPECTION",
+      "timestamp": "2026-08-30T02:46:17.029Z",
+      "system_time_epoch_ms": 1788057977029,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 36,
       "violations": [
         "DIRTY_WORKTREE (36 uncommitted/untracked files)",
-        "MISSING_DRIFT_TELEMETRY"
+        "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
     {
       "repository": "claude-skills",
       "path": "C:\\dev\\claude-skills",
+      "isCanonical": true,
       "exists": true,
-      "status": "PARTIAL",
-      "telemetry_source": "FALLBACK_GIT",
-      "timestamp": "2026-08-30T02:39:33.005Z",
-      "system_time_epoch_ms": 1788057573005,
+      "status": "DEGRADED",
+      "telemetry_source": "FALLBACK_GIT_INSPECTION",
+      "timestamp": "2026-08-30T02:46:17.154Z",
+      "system_time_epoch_ms": 1788057977154,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 312,
       "violations": [
         "DIRTY_WORKTREE (312 uncommitted/untracked files)",
-        "MISSING_DRIFT_TELEMETRY"
+        "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
     {
       "repository": "charlie-deep-research",
       "path": "C:\\dev\\charlie-deep-research",
+      "isCanonical": true,
       "exists": true,
-      "status": "PARTIAL",
-      "telemetry_source": "FALLBACK_GIT",
-      "timestamp": "2026-08-30T02:39:33.097Z",
-      "system_time_epoch_ms": 1788057573097,
+      "status": "DEGRADED",
+      "telemetry_source": "FALLBACK_GIT_INSPECTION",
+      "timestamp": "2026-08-30T02:46:17.234Z",
+      "system_time_epoch_ms": 1788057977234,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 51,
       "violations": [
         "DIRTY_WORKTREE (51 uncommitted/untracked files)",
-        "MISSING_DRIFT_TELEMETRY"
+        "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     }
   ],
   "summary": {
     "total_repositories": 7,
-    "clean_repositories": 0,
-    "drifted_repositories": 1,
+    "clean_repositories": 1,
+    "drifted_repositories": 0,
     "degraded_repositories": 6,
-    "total_stale_pages": 49,
-    "total_dirty_worktrees": 753
+    "total_stale_pages": 0,
+    "total_dirty_worktrees": 860,
+    "canonical_coverage_count": 7
   }
 }

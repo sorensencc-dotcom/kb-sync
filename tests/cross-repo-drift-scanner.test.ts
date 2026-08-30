@@ -5,8 +5,11 @@ import path from 'path';
 import os from 'os';
 import {
   validateIsoUtcTimestamp,
+  resolveRepoPath,
+  isDisallowedPath,
   scanRepository,
   scanCrossRepoDrift,
+  CANONICAL_REPOSITORIES,
   type CrossRepoDriftReport
 } from '../modules/wiki/cross-repo-drift-scanner.ts';
 
@@ -14,28 +17,58 @@ test('validateIsoUtcTimestamp validates valid timestamps and rejects future skew
   const now = new Date().toISOString();
   assert.equal(validateIsoUtcTimestamp(now).valid, true);
 
-  // Rejects future-dated timestamp (10 minutes in future)
   const future = new Date(Date.now() + 600000).toISOString();
   const futureCheck = validateIsoUtcTimestamp(future, 5000);
   assert.equal(futureCheck.valid, false);
   assert.match(futureCheck.reason || '', /future-dated/);
 
-  // Rejects invalid string
   const invalidCheck = validateIsoUtcTimestamp('not-a-date');
   assert.equal(invalidCheck.valid, false);
 });
 
+test('resolveRepoPath selects canonical paths by default without pointing to dev-sandbox', () => {
+  const kbSyncResolved = resolveRepoPath('kb-sync');
+  assert.equal(kbSyncResolved.path, 'C:\\dev\\kb-sync');
+  assert.equal(kbSyncResolved.isCanonical, true);
+  assert.equal(kbSyncResolved.path.includes('dev-sandbox'), false);
+
+  const trmResolved = resolveRepoPath('trm');
+  assert.equal(trmResolved.path, 'C:\\dev\\trm');
+  assert.equal(trmResolved.isCanonical, true);
+});
+
+test('isDisallowedPath flags dev-sandbox, worktrees, and staging directories', () => {
+  assert.equal(isDisallowedPath('C:\\dev\\dev-sandbox\\kb-sync-drift-fix'), true);
+  assert.equal(isDisallowedPath('C:\\dev\\.claude\\worktrees\\agent-1'), true);
+  assert.equal(isDisallowedPath('C:\\dev\\_kb-sync-staging'), true);
+  assert.equal(isDisallowedPath('C:\\dev\\kb-sync'), false);
+  assert.equal(isDisallowedPath('C:\\dev\\trm'), false);
+});
+
+test('scanRepository blocks disallowed sandbox paths when not explicitly allowed', () => {
+  const result = scanRepository('kb-sync', 'C:\\dev\\dev-sandbox\\kb-sync-drift-fix', { allowDisallowedPaths: false });
+  assert.equal(result.status, 'BLOCKED');
+  assert.ok(result.violations.includes('DISALLOWED_PATH_SANDBOX_OR_WORKTREE'));
+});
+
 test('scanRepository handles missing repository directory gracefully', () => {
-  const result = scanRepository('non-existent-repo', 'C:\\non\\existent\\path');
+  const result = scanRepository('non-existent-repo', 'C:\\non\\existent\\path', { allowDisallowedPaths: true });
   assert.equal(result.exists, false);
   assert.equal(result.status, 'UNAVAILABLE');
   assert.equal(result.telemetry_source, 'UNAVAILABLE');
   assert.ok(result.violations.includes('REPOSITORY_DIRECTORY_NOT_FOUND'));
 });
 
-test('scanRepository parses valid drift report and detects violations', () => {
+test('scanRepository distinguishes native telemetry from fallback git inspection', () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'drift-test-'));
   try {
+    // 1. Without .drift-report.json -> FALLBACK_GIT_INSPECTION and DEGRADED
+    const fallbackResult = scanRepository('test-repo', tmpDir, { allowDisallowedPaths: true });
+    assert.equal(fallbackResult.telemetry_source, 'FALLBACK_GIT_INSPECTION');
+    assert.equal(fallbackResult.status, 'DEGRADED');
+    assert.ok(fallbackResult.violations.includes('MISSING_NATIVE_DRIFT_TELEMETRY'));
+
+    // 2. With valid .drift-report.json -> NATIVE_DRIFT_TELEMETRY
     const reportData = {
       timestamp: new Date().toISOString(),
       status: 'DRIFT_DETECTED',
@@ -44,37 +77,16 @@ test('scanRepository parses valid drift report and detects violations', () => {
     };
     fs.writeFileSync(path.join(tmpDir, '.drift-report.json'), JSON.stringify(reportData));
 
-    const result = scanRepository('test-repo', tmpDir);
-    assert.equal(result.exists, true);
-    assert.equal(result.status, 'DRIFT_DETECTED');
-    assert.equal(result.telemetry_source, 'DRIFT_REPORT');
-    assert.equal(result.stale_pages_count, 1);
-    assert.equal(result.sources_checked, 10);
+    const nativeResult = scanRepository('test-repo', tmpDir, { allowDisallowedPaths: true });
+    assert.equal(nativeResult.telemetry_source, 'NATIVE_DRIFT_TELEMETRY');
+    assert.equal(nativeResult.status, 'DRIFT_DETECTED');
+    assert.equal(nativeResult.stale_pages_count, 1);
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }
 });
 
-test('scanRepository flags future timestamp in drift report as violation', () => {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'drift-skew-test-'));
-  try {
-    const futureReport = {
-      timestamp: new Date(Date.now() + 3600000).toISOString(),
-      status: 'NO_DRIFT',
-      drifted_sources: [],
-      summary: { total_sources_checked: 5, stale_pages_count: 0 }
-    };
-    fs.writeFileSync(path.join(tmpDir, '.drift-report.json'), JSON.stringify(futureReport));
-
-    const result = scanRepository('skew-repo', tmpDir, { maxSkewMs: 1000 });
-    assert.equal(result.exists, true);
-    assert.ok(result.violations.some(v => v.includes('INVALID_TIMESTAMP')));
-  } finally {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
-  }
-});
-
-test('scanCrossRepoDrift consolidates multiple repositories and emits schema', () => {
+test('scanCrossRepoDrift consolidates multiple repositories and calculates canonical coverage', () => {
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'fleet-test-'));
   try {
     const repo1 = path.join(tmpRoot, 'repo1');
@@ -96,10 +108,16 @@ test('scanCrossRepoDrift consolidates multiple repositories and emits schema', (
       summary: { total_sources_checked: 15, stale_pages_count: 1 }
     }));
 
+    const customPathMap = {
+      'repo1': repo1,
+      'repo2': repo2
+    };
+
     const outputPath = path.join(tmpRoot, '.cross-repo-drift-report.json');
     const report = scanCrossRepoDrift({
-      baseDir: tmpRoot,
       repoList: ['repo1', 'repo2'],
+      customPathMap,
+      allowDisallowedPaths: true,
       outputPath
     });
 

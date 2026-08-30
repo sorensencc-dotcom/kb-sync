@@ -7,12 +7,43 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '../..');
 
+export interface CanonicalRepoEntry {
+  name: string;
+  canonicalPath: string;
+  declaredDriftCommand?: string;
+}
+
+export const CANONICAL_REPOSITORIES: Record<string, CanonicalRepoEntry> = {
+  'kb-sync': { name: 'kb-sync', canonicalPath: 'C:\\dev\\kb-sync', declaredDriftCommand: 'kb:drift' },
+  'rewrite-docs': { name: 'rewrite-docs', canonicalPath: 'C:\\dev\\rewrite-docs' },
+  'rewrite-mcp': { name: 'rewrite-mcp', canonicalPath: 'C:\\dev\\rewrite-mcp' },
+  'trm': { name: 'trm', canonicalPath: 'C:\\dev\\trm' },
+  'cic-ingestion': { name: 'cic-ingestion', canonicalPath: 'C:\\dev\\cic-ingestion' },
+  'claude-skills': { name: 'claude-skills', canonicalPath: 'C:\\dev\\claude-skills' },
+  'charlie-deep-research': { name: 'charlie-deep-research', canonicalPath: 'C:\\dev\\charlie-deep-research' },
+};
+
+export const DISALLOWED_DIR_PATTERNS = [
+  'dev-sandbox',
+  '.claude/worktrees',
+  '.claude\\worktrees',
+  '_kb-sync-staging',
+  'node_modules',
+  '.tmp'
+];
+
+export function isDisallowedPath(targetPath: string): boolean {
+  const normalized = targetPath.replace(/\//g, '\\');
+  return DISALLOWED_DIR_PATTERNS.some(pat => normalized.includes(pat));
+}
+
 export interface RepoScanResult {
   repository: string;
   path: string;
+  isCanonical: boolean;
   exists: boolean;
-  status: 'NO_DRIFT' | 'DRIFT_DETECTED' | 'APPLIED' | 'PARTIAL' | 'BLOCKED' | 'UNAVAILABLE';
-  telemetry_source: 'DRIFT_REPORT' | 'FALLBACK_GIT' | 'UNAVAILABLE';
+  status: 'NO_DRIFT' | 'DRIFT_DETECTED' | 'APPLIED' | 'PARTIAL' | 'BLOCKED' | 'DEGRADED' | 'UNAVAILABLE';
+  telemetry_source: 'NATIVE_DRIFT_TELEMETRY' | 'FALLBACK_GIT_INSPECTION' | 'UNAVAILABLE';
   timestamp?: string;
   system_time_epoch_ms?: number;
   sources_checked: number;
@@ -34,12 +65,16 @@ export interface CrossRepoDriftReport {
     degraded_repositories: number;
     total_stale_pages: number;
     total_dirty_worktrees: number;
+    canonical_coverage_count: number;
   };
 }
 
 export interface ScannerOptions {
   baseDir?: string;
   repoList?: string[];
+  customPathMap?: Record<string, string>;
+  useSelfForKbSync?: boolean;
+  allowDisallowedPaths?: boolean;
   executeSubCommands?: boolean;
   maxSkewMs?: number;
   outputPath?: string;
@@ -59,14 +94,57 @@ export function validateIsoUtcTimestamp(timestamp: string, maxSkewMs: number = 6
   return { valid: true };
 }
 
+export function resolveRepoPath(repoName: string, options: ScannerOptions = {}): { path: string; isCanonical: boolean } {
+  if (options.customPathMap && options.customPathMap[repoName]) {
+    const custom = options.customPathMap[repoName];
+    return { path: custom, isCanonical: custom.toLowerCase() === CANONICAL_REPOSITORIES[repoName]?.canonicalPath.toLowerCase() };
+  }
+
+  if (repoName === 'kb-sync' && options.useSelfForKbSync) {
+    return { path: REPO_ROOT, isCanonical: false };
+  }
+
+  if (options.baseDir) {
+    const candidate = path.resolve(options.baseDir, repoName);
+    const isCanonical = candidate.toLowerCase() === CANONICAL_REPOSITORIES[repoName]?.canonicalPath.toLowerCase();
+    return { path: candidate, isCanonical };
+  }
+
+  if (CANONICAL_REPOSITORIES[repoName]) {
+    return { path: CANONICAL_REPOSITORIES[repoName].canonicalPath, isCanonical: true };
+  }
+
+  const fallback = path.resolve(REPO_ROOT, '..', repoName);
+  return { path: fallback, isCanonical: false };
+}
+
 export function scanRepository(repoName: string, repoPath: string, options: ScannerOptions = {}): RepoScanResult {
-  const { executeSubCommands = false, maxSkewMs = 60000 } = options;
+  const { executeSubCommands = false, maxSkewMs = 60000, allowDisallowedPaths = false } = options;
   const violations: string[] = [];
+  const canonicalEntry = CANONICAL_REPOSITORIES[repoName];
+  const isCanonical = canonicalEntry ? repoPath.toLowerCase() === canonicalEntry.canonicalPath.toLowerCase() : false;
+
+  if (!allowDisallowedPaths && isDisallowedPath(repoPath)) {
+    violations.push('DISALLOWED_PATH_SANDBOX_OR_WORKTREE');
+    return {
+      repository: repoName,
+      path: repoPath,
+      isCanonical: false,
+      exists: fs.existsSync(repoPath),
+      status: 'BLOCKED',
+      telemetry_source: 'UNAVAILABLE',
+      sources_checked: 0,
+      stale_pages_count: 0,
+      dirty_worktree_count: 0,
+      violations
+    };
+  }
 
   if (!fs.existsSync(repoPath)) {
     return {
       repository: repoName,
       path: repoPath,
+      isCanonical,
       exists: false,
       status: 'UNAVAILABLE',
       telemetry_source: 'UNAVAILABLE',
@@ -77,7 +155,7 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     };
   }
 
-  // Check dirty worktree
+  // Check dirty worktree via Git
   let dirtyWorktreeCount = 0;
   try {
     const gitStatus = execSync('git status --porcelain', { cwd: repoPath, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
@@ -90,7 +168,7 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     violations.push('GIT_UNAVAILABLE_OR_NOT_A_REPO');
   }
 
-  // Look for package.json and drift scripts
+  // Check declared drift command from package.json
   let driftScript: string | null = null;
   const pkgPath = path.join(repoPath, 'package.json');
   if (fs.existsSync(pkgPath)) {
@@ -115,7 +193,7 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     }
   }
 
-  // Check for .drift-report.json
+  // Check for native .drift-report.json
   const driftReportPath = path.join(repoPath, '.drift-report.json');
   if (fs.existsSync(driftReportPath)) {
     try {
@@ -142,9 +220,10 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
       return {
         repository: repoName,
         path: repoPath,
+        isCanonical,
         exists: true,
         status,
-        telemetry_source: 'DRIFT_REPORT',
+        telemetry_source: 'NATIVE_DRIFT_TELEMETRY',
         timestamp: rawReport.timestamp,
         system_time_epoch_ms: rawReport.system_time_epoch_ms || (rawReport.timestamp ? Date.parse(rawReport.timestamp) : undefined),
         sources_checked: sourcesChecked,
@@ -157,14 +236,15 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     }
   }
 
-  // Fallback telemetry when no .drift-report.json exists
-  violations.push('MISSING_DRIFT_TELEMETRY');
+  // Fallback Git inspection: clearly separate from native drift telemetry
+  violations.push('MISSING_NATIVE_DRIFT_TELEMETRY');
   return {
     repository: repoName,
     path: repoPath,
+    isCanonical,
     exists: true,
-    status: dirtyWorktreeCount > 0 ? 'PARTIAL' : 'NO_DRIFT',
-    telemetry_source: 'FALLBACK_GIT',
+    status: 'DEGRADED',
+    telemetry_source: 'FALLBACK_GIT_INSPECTION',
     timestamp: new Date().toISOString(),
     system_time_epoch_ms: Date.now(),
     sources_checked: 0,
@@ -175,9 +255,7 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
 }
 
 export function scanCrossRepoDrift(options: ScannerOptions = {}): CrossRepoDriftReport {
-  const baseDir = options.baseDir || path.resolve(REPO_ROOT, '..');
-  const defaultRepos = ['kb-sync', 'rewrite-docs', 'rewrite-mcp', 'trm', 'cic-ingestion', 'claude-skills', 'charlie-deep-research'];
-  const repoList = options.repoList || defaultRepos;
+  const repoList = options.repoList || Object.keys(CANONICAL_REPOSITORIES);
 
   const results: RepoScanResult[] = [];
   let totalStalePages = 0;
@@ -185,18 +263,23 @@ export function scanCrossRepoDrift(options: ScannerOptions = {}): CrossRepoDrift
   let cleanRepos = 0;
   let driftedRepos = 0;
   let degradedRepos = 0;
+  let blockedRepos = 0;
+  let canonicalCoverageCount = 0;
 
   for (const repoName of repoList) {
-    const repoPath = repoName === 'kb-sync' ? REPO_ROOT : path.join(baseDir, repoName);
-    const result = scanRepository(repoName, repoPath, options);
+    const { path: resolvedPath, isCanonical } = resolveRepoPath(repoName, options);
+    const result = scanRepository(repoName, resolvedPath, options);
     results.push(result);
 
+    if (result.isCanonical) canonicalCoverageCount++;
     totalStalePages += result.stale_pages_count;
     totalDirtyWorktrees += result.dirty_worktree_count;
 
     if (result.status === 'DRIFT_DETECTED') {
       driftedRepos++;
-    } else if (result.status === 'UNAVAILABLE' || result.violations.some(v => v.startsWith('INVALID_TIMESTAMP') || v === 'MISSING_DRIFT_TELEMETRY')) {
+    } else if (result.status === 'BLOCKED') {
+      blockedRepos++;
+    } else if (result.status === 'DEGRADED' || result.status === 'UNAVAILABLE' || result.violations.some(v => v.startsWith('INVALID_TIMESTAMP') || v.includes('MISSING_NATIVE_DRIFT_TELEMETRY'))) {
       degradedRepos++;
     } else if (result.status === 'NO_DRIFT' || result.status === 'APPLIED') {
       cleanRepos++;
@@ -204,7 +287,9 @@ export function scanCrossRepoDrift(options: ScannerOptions = {}): CrossRepoDrift
   }
 
   let overallStatus: CrossRepoDriftReport['overall_status'] = 'CLEAN';
-  if (driftedRepos > 0) {
+  if (blockedRepos > 0) {
+    overallStatus = 'BLOCKED';
+  } else if (driftedRepos > 0) {
     overallStatus = 'DRIFT_DETECTED';
   } else if (degradedRepos > 0) {
     overallStatus = 'DEGRADED';
@@ -212,7 +297,7 @@ export function scanCrossRepoDrift(options: ScannerOptions = {}): CrossRepoDrift
 
   const now = new Date();
   const report: CrossRepoDriftReport = {
-    version: '1.0.0',
+    version: '1.1.0',
     timestamp: now.toISOString(),
     system_time_epoch_ms: now.getTime(),
     overall_status: overallStatus,
@@ -223,7 +308,8 @@ export function scanCrossRepoDrift(options: ScannerOptions = {}): CrossRepoDrift
       drifted_repositories: driftedRepos,
       degraded_repositories: degradedRepos,
       total_stale_pages: totalStalePages,
-      total_dirty_worktrees: totalDirtyWorktrees
+      total_dirty_worktrees: totalDirtyWorktrees,
+      canonical_coverage_count: canonicalCoverageCount
     }
   };
 
@@ -242,8 +328,13 @@ if (process.argv[1] && process.argv[1].endsWith('cross-repo-drift-scanner.ts')) 
     executeSubCommands: false
   };
 
+  let exitZeroOnDrift = false;
+
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--execute-checks') options.executeSubCommands = true;
+    else if (args[i] === '--exit-zero' || args[i] === '--allow-drift') exitZeroOnDrift = true;
+    else if (args[i] === '--use-self') options.useSelfForKbSync = true;
+    else if (args[i] === '--allow-sandbox') options.allowDisallowedPaths = true;
     else if (args[i] === '--base-dir' && args[i + 1]) {
       options.baseDir = args[i + 1];
       i++;
@@ -254,8 +345,13 @@ if (process.argv[1] && process.argv[1].endsWith('cross-repo-drift-scanner.ts')) 
   }
 
   const report = scanCrossRepoDrift(options);
-  console.log(`[CROSS-REPO-DRIFT] overall_status=${report.overall_status} repos_checked=${report.summary.total_repositories} drifted=${report.summary.drifted_repositories} degraded=${report.summary.degraded_repositories} dirty_worktrees=${report.summary.total_dirty_worktrees}`);
+  console.log(`[CROSS-REPO-DRIFT] overall_status=${report.overall_status} repos_checked=${report.summary.total_repositories} canonical_coverage=${report.summary.canonical_coverage_count}/${report.summary.total_repositories} drifted=${report.summary.drifted_repositories} degraded=${report.summary.degraded_repositories} dirty_worktrees=${report.summary.total_dirty_worktrees}`);
+  
   if (args.includes('--json')) {
     console.log(JSON.stringify(report, null, 2));
+  }
+
+  if (!exitZeroOnDrift && report.overall_status !== 'CLEAN') {
+    process.exit(1);
   }
 }
