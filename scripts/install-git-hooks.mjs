@@ -53,6 +53,15 @@ REPORT_FILE=".drift-report.json"
 log_info() { printf '\\033[0;34m[KB-SYNC-HOOK] [INFO] %s\\033[0m\\n' "$*" >&2; }
 log_warn() { printf '\\033[0;33m[KB-SYNC-HOOK] [WARN] %s\\033[0m\\n' "$*" >&2; }
 
+# Skip during rebase / merge / cherry-pick replay: regenerating files mid-replay
+# collides with pending patches and breaks "git rebase --continue"/"--skip".
+GIT_DIR_PATH="$(git rev-parse --git-dir 2>/dev/null || echo .git)"
+if [ -d "$GIT_DIR_PATH/rebase-merge" ] || [ -d "$GIT_DIR_PATH/rebase-apply" ] || \
+   [ -f "$GIT_DIR_PATH/MERGE_HEAD" ] || [ -f "$GIT_DIR_PATH/CHERRY_PICK_HEAD" ]; then
+  log_info "Rebase/merge/cherry-pick in progress. Skipping drift autoheal."
+  exit 0
+fi
+
 [ -f "$DRIFT_SCRIPT" ] || exit 0
 
 log_info "Analyzing knowledge base for local documentation drift..."
