@@ -1,22 +1,35 @@
 {
   "version": "1.1.0",
-  "timestamp": "2026-08-30T02:48:57.248Z",
-  "system_time_epoch_ms": 1788058137248,
-  "overall_status": "DEGRADED",
+  "timestamp": "2026-08-30T03:24:45.124Z",
+  "system_time_epoch_ms": 1788060285124,
+  "overall_status": "DRIFT_DETECTED",
   "repositories": [
     {
       "repository": "kb-sync",
       "path": "C:\\dev\\kb-sync",
       "isCanonical": true,
       "exists": true,
-      "status": "NO_DRIFT",
+      "status": "DRIFT_DETECTED",
       "telemetry_source": "NATIVE_DRIFT_TELEMETRY",
-      "timestamp": "2026-08-30T00:01:58.455Z",
-      "system_time_epoch_ms": 1788048118455,
-      "sources_checked": 180,
-      "stale_pages_count": 0,
-      "dirty_worktree_count": 0,
-      "violations": []
+      "timestamp": "2026-08-30T02:59:06.259Z",
+      "system_time_epoch_ms": 1788058746259,
+      "sources_checked": 187,
+      "stale_pages_count": 8,
+      "dirty_worktree_count": 187,
+      "remote_sync_status": "SYNCHRONIZED",
+      "remote_sync_receipt": {
+        "repository": "kb-sync",
+        "remote_wiki_url": "git@github.com:sorensencc-dotcom/kb-sync.wiki.git",
+        "local_code_head": "86637408ae85f33a86710ab51c6ef97a3ef00dcd",
+        "remote_wiki_head": "115f170c319b961033591768cb8e8704b7eb6e03",
+        "verified_at": "2026-08-30T03:13:16.768Z",
+        "system_time_epoch_ms": 1788059596768,
+        "total_pages_published": 435,
+        "sync_status": "SYNCHRONIZED"
+      },
+      "violations": [
+        "DIRTY_WORKTREE (187 uncommitted/untracked files)"
+      ]
     },
     {
       "repository": "rewrite-docs",
@@ -25,12 +38,15 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:48:56.710Z",
-      "system_time_epoch_ms": 1788058136712,
+      "timestamp": "2026-08-30T03:24:43.495Z",
+      "system_time_epoch_ms": 1788060283496,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 0,
+      "dirty_worktree_count": 1,
+      "remote_sync_status": "WIKI_UNAVAILABLE",
       "violations": [
+        "DIRTY_WORKTREE (1 uncommitted/untracked files)",
+        "WIKI_REMOTE_NOT_INITIALIZED_OR_UNAVAILABLE",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -41,13 +57,24 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:48:56.838Z",
-      "system_time_epoch_ms": 1788058136838,
+      "timestamp": "2026-08-30T03:24:43.594Z",
+      "system_time_epoch_ms": 1788060283595,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 307,
+      "dirty_worktree_count": 309,
+      "remote_sync_status": "SYNCHRONIZED",
+      "remote_sync_receipt": {
+        "repository": "rewrite-mcp",
+        "remote_wiki_url": "git@github.com:sorensencc-dotcom/rewrite-mcp.wiki.git",
+        "local_code_head": "f18b8fa0dda1a7350dbcfbc6eb02d76e41b4dcbb",
+        "remote_wiki_head": "081105413dfabd74c8260118e69841b81f35ff63",
+        "verified_at": "2026-08-30T03:14:11.683Z",
+        "system_time_epoch_ms": 1788059651683,
+        "total_pages_published": 166,
+        "sync_status": "SYNCHRONIZED"
+      },
       "violations": [
-        "DIRTY_WORKTREE (307 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (309 uncommitted/untracked files)",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -58,13 +85,24 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:48:56.927Z",
-      "system_time_epoch_ms": 1788058136927,
+      "timestamp": "2026-08-30T03:24:43.653Z",
+      "system_time_epoch_ms": 1788060283653,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 37,
+      "dirty_worktree_count": 39,
+      "remote_sync_status": "SYNCHRONIZED",
+      "remote_sync_receipt": {
+        "repository": "trm",
+        "remote_wiki_url": "git@github.com:sorensencc-dotcom/TRM.wiki.git",
+        "local_code_head": "17cd1b0daca89d727ba48b037c98329c4751278e",
+        "remote_wiki_head": "423caaadef909808a36ae74b71067770df6186e1",
+        "verified_at": "2026-08-30T03:14:26.855Z",
+        "system_time_epoch_ms": 1788059666855,
+        "total_pages_published": 189,
+        "sync_status": "SYNCHRONIZED"
+      },
       "violations": [
-        "DIRTY_WORKTREE (37 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (39 uncommitted/untracked files)",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -75,13 +113,24 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:48:57.015Z",
-      "system_time_epoch_ms": 1788058137015,
+      "timestamp": "2026-08-30T03:24:43.742Z",
+      "system_time_epoch_ms": 1788060283742,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 36,
+      "dirty_worktree_count": 38,
+      "remote_sync_status": "SYNCHRONIZED",
+      "remote_sync_receipt": {
+        "repository": "cic-ingestion",
+        "remote_wiki_url": "git@github.com:sorensencc-dotcom/cic-ingestion.wiki.git",
+        "local_code_head": "c255b74556dbdfd1aa128cac4508a83fecf8bd54",
+        "remote_wiki_head": "e7faf07e77022ad628724c69866ca2dbce692c0a",
+        "verified_at": "2026-08-30T03:14:53.204Z",
+        "system_time_epoch_ms": 1788059693204,
+        "total_pages_published": 374,
+        "sync_status": "SYNCHRONIZED"
+      },
       "violations": [
-        "DIRTY_WORKTREE (36 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (38 uncommitted/untracked files)",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -92,13 +141,15 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:48:57.154Z",
-      "system_time_epoch_ms": 1788058137154,
+      "timestamp": "2026-08-30T03:24:44.463Z",
+      "system_time_epoch_ms": 1788060284463,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 312,
+      "dirty_worktree_count": 313,
+      "remote_sync_status": "WIKI_UNAVAILABLE",
       "violations": [
-        "DIRTY_WORKTREE (312 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (313 uncommitted/untracked files)",
+        "WIKI_REMOTE_NOT_INITIALIZED_OR_UNAVAILABLE",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -109,24 +160,26 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:48:57.248Z",
-      "system_time_epoch_ms": 1788058137248,
+      "timestamp": "2026-08-30T03:24:45.124Z",
+      "system_time_epoch_ms": 1788060285124,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 51,
+      "dirty_worktree_count": 52,
+      "remote_sync_status": "WIKI_UNAVAILABLE",
       "violations": [
-        "DIRTY_WORKTREE (51 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (52 uncommitted/untracked files)",
+        "WIKI_REMOTE_NOT_INITIALIZED_OR_UNAVAILABLE",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     }
   ],
   "summary": {
     "total_repositories": 7,
-    "clean_repositories": 1,
-    "drifted_repositories": 0,
+    "clean_repositories": 0,
+    "drifted_repositories": 1,
     "degraded_repositories": 6,
-    "total_stale_pages": 0,
-    "total_dirty_worktrees": 743,
+    "total_stale_pages": 8,
+    "total_dirty_worktrees": 939,
     "canonical_coverage_count": 7
   }
 }
