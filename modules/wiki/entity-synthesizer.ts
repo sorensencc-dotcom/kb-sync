@@ -121,10 +121,6 @@ export function synthesizeAllEntities(options: { repoName?: string; repoRoot?: s
   const wikiDir = options.targetWikiDir || path.join(repoRoot, 'wiki');
   const entitiesDir = path.join(wikiDir, 'entities');
 
-  if (!fs.existsSync(entitiesDir)) {
-    fs.mkdirSync(entitiesDir, { recursive: true });
-  }
-
   const scanDirs = ['core', 'modules', 'scripts', 'tests', 'src'];
   const sourceFiles: string[] = [];
 
@@ -147,6 +143,10 @@ export function synthesizeAllEntities(options: { repoName?: string; repoRoot?: s
 
   for (const d of scanDirs) {
     collect(d);
+  }
+
+  if (sourceFiles.length > 0 && !fs.existsSync(entitiesDir)) {
+    fs.mkdirSync(entitiesDir, { recursive: true });
   }
 
   let generated = 0;

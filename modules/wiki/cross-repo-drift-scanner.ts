@@ -219,7 +219,16 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
       }
     } catch {}
   } else {
-    violations.push('MISSING_REMOTE_WIKI_RECEIPT');
+    // Check if remote wiki exists or is unavailable
+    try {
+      const remoteWikiUrl = `git@github.com:sorensencc-dotcom/${repoName}.wiki.git`;
+      execSync(`git ls-remote "${remoteWikiUrl}"`, { stdio: ['pipe', 'pipe', 'ignore'], timeout: 5000 });
+      violations.push('MISSING_REMOTE_WIKI_RECEIPT');
+      remoteSyncStatus = 'UNKNOWN';
+    } catch {
+      remoteSyncStatus = 'WIKI_UNAVAILABLE';
+      violations.push('WIKI_REMOTE_NOT_INITIALIZED_OR_UNAVAILABLE');
+    }
   }
 
   // Check for native .drift-report.json

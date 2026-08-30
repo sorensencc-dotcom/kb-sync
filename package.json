@@ -104,7 +104,9 @@
     "test:cross-repo:drift": "node --test --experimental-strip-types tests/cross-repo-drift-scanner.test.ts",
     "cross-repo:drift": "npx tsx modules/wiki/cross-repo-drift-scanner.ts",
     "fleet:wiki:reconcile": "npx tsx modules/wiki/fleet-wiki-reconciler.ts",
-    "test:fleet-reconciler": "node --test --experimental-strip-types tests/fleet-wiki-reconciler.test.ts"
+    "test:fleet-reconciler": "node --test --experimental-strip-types tests/fleet-wiki-reconciler.test.ts",
+    "wiki:validate-links": "npx tsx modules/wiki/link-sanitizer.ts wiki",
+    "test:link-sanitizer": "node --test --experimental-strip-types tests/link-sanitizer.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

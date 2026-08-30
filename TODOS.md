@@ -2,6 +2,8 @@
 
 ## Open
 
+- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30) — 1 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
+
 - [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30) — 8 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
 
 - [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-29) — 3 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.

@@ -1,75 +1,32 @@
 {
   "version": "1.0.0",
-  "timestamp": "2026-08-30T03:07:03.290Z",
-  "system_time_epoch_ms": 1788059223290,
-  "overall_status": "PARTIAL",
+  "timestamp": "2026-08-30T03:23:42.235Z",
+  "system_time_epoch_ms": 1788060222235,
+  "overall_status": "FAILED",
   "repositories": [
     {
-      "repository": "kb-sync",
-      "repoPath": "C:\\dev\\kb-sync",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/kb-sync.wiki.git",
-      "status": "SYNCHRONIZED",
-      "filesPublished": 289,
-      "remoteWikiHead": "e3a7a34ae275290aaabfb4aa5a0c8cf5cafff607",
-      "localCodeHead": "86637408ae85f33a86710ab51c6ef97a3ef00dcd"
-    },
-    {
-      "repository": "rewrite-docs",
-      "repoPath": "C:\\dev\\rewrite-docs",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/rewrite-docs.wiki.git",
+      "repository": "non-existent-1",
+      "repoPath": "C:\\dev\\dev-sandbox\\non-existent-1",
+      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/non-existent-1.wiki.git",
       "status": "FAILED",
       "filesPublished": 0,
-      "error": "Command failed: git clone \"git@github.com:sorensencc-dotcom/rewrite-docs.wiki.git\" \"C:\\dev\\rewrite-docs\\.wiki-publish-temp\""
+      "error": "Repository directory does not exist"
     },
     {
-      "repository": "rewrite-mcp",
-      "repoPath": "C:\\dev\\rewrite-mcp",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/rewrite-mcp.wiki.git",
-      "status": "SYNCHRONIZED",
-      "filesPublished": 129,
-      "remoteWikiHead": "b1084f7a35aa03c44949ac1dd019e1b0a3d2893b",
-      "localCodeHead": "f18b8fa0dda1a7350dbcfbc6eb02d76e41b4dcbb"
-    },
-    {
-      "repository": "trm",
-      "repoPath": "C:\\dev\\trm",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/TRM.wiki.git",
-      "status": "SYNCHRONIZED",
-      "filesPublished": 13,
-      "remoteWikiHead": "3309b92c3b30e4f76cbbe2fcdc9e1e93c427c378",
-      "localCodeHead": "17cd1b0daca89d727ba48b037c98329c4751278e"
-    },
-    {
-      "repository": "cic-ingestion",
-      "repoPath": "C:\\dev\\cic-ingestion",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/cic-ingestion.wiki.git",
-      "status": "SYNCHRONIZED",
-      "filesPublished": 56,
-      "remoteWikiHead": "e50fabf1907437783d6fde6f62199ecd302c5bab",
-      "localCodeHead": "c255b74556dbdfd1aa128cac4508a83fecf8bd54"
-    },
-    {
-      "repository": "claude-skills",
-      "repoPath": "C:\\dev\\claude-skills",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/claude-skills.wiki.git",
+      "repository": "non-existent-2",
+      "repoPath": "C:\\dev\\dev-sandbox\\non-existent-2",
+      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/non-existent-2.wiki.git",
       "status": "FAILED",
       "filesPublished": 0,
-      "error": "Command failed: git clone \"git@github.com:sorensencc-dotcom/claude-skills.wiki.git\" \"C:\\dev\\claude-skills\\.wiki-publish-temp\""
-    },
-    {
-      "repository": "charlie-deep-research",
-      "repoPath": "C:\\dev\\charlie-deep-research",
-      "remoteWikiUrl": "git@github.com:sorensencc-dotcom/charlie-deep-research.wiki.git",
-      "status": "SKIPPED_NO_DOCS",
-      "filesPublished": 0
+      "error": "Repository directory does not exist"
     }
   ],
   "summary": {
-    "total_repositories": 7,
-    "synchronized_count": 4,
+    "total_repositories": 2,
+    "synchronized_count": 0,
     "up_to_date_count": 0,
-    "skipped_count": 1,
+    "skipped_count": 0,
     "failed_count": 2,
-    "total_files_published": 487
+    "total_files_published": 0
   }
 }
