@@ -249,7 +249,15 @@ export async function sweepStagingVault(options = {}) {
     }
   }
 
-  const scanRoot = targetDir || paths.stagingDir || paths.wikiDir;
+  let scanRoot = targetDir;
+  if (!scanRoot) {
+    try {
+      await fs.stat(paths.stagingDir);
+      scanRoot = paths.stagingDir;
+    } catch {
+      scanRoot = paths.wikiDir;
+    }
+  }
 
   async function walk(dir) {
     try {
@@ -344,6 +352,7 @@ if (process.argv[1] && process.argv[1].endsWith('autoheal-sweeper.mjs')) {
     dryRun: true,
     verbose: false,
     vaultRoot: null,
+    targetDir: null,
     allowDirty: false,
     allowSemantic: true
   };
@@ -354,9 +363,16 @@ if (process.argv[1] && process.argv[1].endsWith('autoheal-sweeper.mjs')) {
     else if (args[i] === '--verbose') options.verbose = true;
     else if (args[i] === '--allow-dirty') options.allowDirty = true;
     else if (args[i] === '--no-semantic') options.allowSemantic = false;
-    else if (args[i] === '--vault-root' && args[i+1]) {
+    else if (args[i] === '--target-dir' && args[i+1]) {
+      options.targetDir = args[i+1];
+      i++;
+    } else if (args[i].startsWith('--target-dir=')) {
+      options.targetDir = args[i].slice('--target-dir='.length);
+    } else if (args[i] === '--vault-root' && args[i+1]) {
       options.vaultRoot = args[i+1];
       i++;
+    } else if (args[i].startsWith('--vault-root=')) {
+      options.vaultRoot = args[i].slice('--vault-root='.length);
     }
   }
   
