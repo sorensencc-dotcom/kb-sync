@@ -834,3 +834,92 @@ New staging includes 3 additional files compared to previous snapshot (85 files 
   - `wiki/kb-sync/wiki/.SyncStatus.md`
   - `wiki/kb-sync/wiki/.Catalog.md`
   - `wiki/Index.md`
+
+## [2026-08-29 22:25] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `99a7a3f27919979a`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260829-182541`
+- Proposals Accepted: 80 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/TODOS.md`
+  - `wiki/kb-sync/wiki/CicGovernance.Config.md`
+  - `wiki/kb-sync/wiki/20260829WikiAutohealPipeline.md`
+  - `wiki/kb-sync/wiki/20260829WikiAutohealPipelineDesign.md`
+  - `wiki/kb-sync/wiki/VectorStore.md`
+  - `wiki/kb-sync/wiki/RepairAuditGate.Test.md`
+  - `wiki/kb-sync/wiki/RepairAuditGate.md`
+  - `wiki/kb-sync/wiki/AstGrounding.md`
+  - `wiki/kb-sync/wiki/QueryExpander.md`
+  - `wiki/kb-sync/wiki/AutohealSweeper.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/CrossAudit.md`
+  - `wiki/kb-sync/wiki/EnsureDashboardServer.md`
+  - `wiki/kb-sync/wiki/RegisterDashboardServerTask.md`
+  - `wiki/kb-sync/wiki/RegisterTrmTriageTask.md`
+  - `wiki/kb-sync/wiki/ScheduleTaskWrapperTRMTriage.md`
+  - `wiki/kb-sync/wiki/VerifyDependencies.md`
+  - `wiki/kb-sync/wiki/VerifyDependencies.Test.md`
+  - `wiki/kb-sync/wiki/RenderQuality.md`
+  - `wiki/kb-sync/wiki/RenderQuality.Test.md`
+  - `wiki/kb-sync/wiki/AstGrounding.Test.md`
+  - `wiki/kb-sync/wiki/CrossAudit.Test.md`
+  - `wiki/kb-sync/wiki/AutohealSweeper.Test.md`
+  - `wiki/kb-sync/wiki/ConfigLoader.Test.md`
+  - `wiki/kb-sync/wiki/ContractSchema.Test.md`
+  - `wiki/kb-sync/wiki/ValidationGateAutoheal.Test.md`
+  - `wiki/kb-sync/wiki/QueryExpander.Test.md`
+  - `wiki/kb-sync/wiki/VectorStore.Test.md`
+  - `wiki/kb-sync/wiki/WikiDriftHookAutoheal.Test.md`
+  - `wiki/kb-sync/wiki/Dashboard.Html.md`
+  - `wiki/kb-sync/wiki/VerifyDependencies.Mjs.md`
+  - `wiki/kb-sync/wiki/VerifyDependencies.Test.Mjs.md`
+  - `wiki/kb-sync/wiki/RfcGap01CastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap01CastironcharlieFacebookAdja.md`
+  - `wiki/kb-sync/wiki/RfcGap01CastironcharlieFacebookFoll.md`
+  - `wiki/kb-sync/wiki/RfcGap01CicDailyResearchFollowUp.md`
+  - `wiki/kb-sync/wiki/RfcGap01CicKbAdjacentTopics.md`
+  - `wiki/kb-sync/wiki/RfcGap01CicKbFollowUp.md`
+  - `wiki/kb-sync/wiki/RfcGap01CicRedditFollowUp.md`
+  - `wiki/kb-sync/wiki/RfcGap01TheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap01WillowRunVideosFollowUp.md`
+  - `wiki/kb-sync/wiki/RfcGap02CastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap02CastironcharlieFacebookAdja.md`
+  - `wiki/kb-sync/wiki/RfcGap02CastironcharlieFacebookUnde.md`
+  - `wiki/kb-sync/wiki/RfcGap02CicDailyResearchAdjacentT.md`
+  - `wiki/kb-sync/wiki/RfcGap02CicKbAdjacentTopics.md`
+  - `wiki/kb-sync/wiki/RfcGap02CicKbOpenContradictions.md`
+  - `wiki/kb-sync/wiki/RfcGap02CicKbUnderSourced.md`
+  - `wiki/kb-sync/wiki/RfcGap02CicRedditAdjacentTopics.md`
+  - `wiki/kb-sync/wiki/RfcGap02TheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap02WillowRunVideosAdjacentTo.md`
+  - `wiki/kb-sync/wiki/RfcGap03CastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap03CastironcharlieFacebookUnde.md`
+  - `wiki/kb-sync/wiki/RfcGap03CicDailyResearchUnderSour.md`
+  - `wiki/kb-sync/wiki/RfcGap03CicKbOpenContradictions.md`
+  - `wiki/kb-sync/wiki/RfcGap03CicKbUnderSourced.md`
+  - `wiki/kb-sync/wiki/RfcGap03CicRedditUnderSourced.md`
+  - `wiki/kb-sync/wiki/RfcGap03TheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap03WillowRunVideosUnderSourc.md`
+  - `wiki/kb-sync/wiki/RfcGap04CastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap04CastironcharlieFacebookOpen.md`
+  - `wiki/kb-sync/wiki/RfcGap04CicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap04CicKbOpenContradictions.md`
+  - `wiki/kb-sync/wiki/RfcGap04CicRedditOpenContradiction.md`
+  - `wiki/kb-sync/wiki/RfcGap04TheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap04WillowRunVideosOpenContra.md`
+  - `wiki/kb-sync/wiki/RfcGap05WebsocketHeartbeatThrottling.md`
+  - `wiki/Index.md`

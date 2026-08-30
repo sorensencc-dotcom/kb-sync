@@ -4,18 +4,17 @@ category: "research"
 topic: "rfc-gap-01--willow-run-videos-follow-up"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-29T00:30:13.981Z"
+created_at: "2026-08-30T00:30:05.814Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--willow-run-videos-follow-up.md","trm-research-gaps.md","wiki/research/.catalog.json"]
-sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **Willow Run Videos (follow-up)**
 
 ## 1. Problem Statement & Context
-Our recent investigation into **Albert Kahn's L-Bend** successfully demystified the architectural and tax battle of the county line, proving that airp))))))))))))
+Our recent investigation into **Albert Kahn's L-Bend** successfully demystified the architectural and tax battle of the county line, proving that airp))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
