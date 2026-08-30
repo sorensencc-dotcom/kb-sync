@@ -1,10 +1,4 @@
 ---
-title: Log
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
 title: "WikiLog"
 category: "wiki"
 status: "active"
@@ -12,9 +6,6 @@ citations: ["wiki/Log.md"]
 ---
 
 # WikiLog
-
-## Summary
-Synthesized documentation node for wiki/Log.md
 
 ## Source Citations
 - Staged: `wiki/Log.md`
