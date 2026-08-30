@@ -3,47 +3,60 @@ title: Pack-Based Knowledge Management
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
 ---
 
 # Pack-Based Knowledge Management
 
-Pack-Based Knowledge Management is the foundational distribution and encapsulation model used across the **KB-Sync** and **Cast Iron Charlie** ecosystems. It packages heterogeneous raw research documents, transcripts, schema definitions, and vector embeddings into self-contained, offline-first knowledge packs (`.nlm_pack/`, `topic.pack.v1`).
+**Type:** Core Architecture Specification
+**Domain:** kb-sync | storage | packing | distribution
+**Status:** Active
+**Last Updated:** 2026-08-30
 
 ---
 
-## 📐 Core Architecture & Pack Lifecycle
+## Overview & Definition
 
-A Knowledge Pack is a hermetic directory or bundle that packages source documents along with structural metadata, audit rules, and task specifications.
+**Pack-Based Knowledge Management** is the hermetic distribution and encapsulation architecture used across the **KB-Sync** and **Cast Iron Charlie (CIC)** ecosystems. It organizes heterogeneous raw research corpora, audio transcripts, structural schemas, and vector embeddings into standardized, self-contained, offline-first knowledge packs (`.nlm_pack/`, `topic.pack.v1`).
+
+---
+
+## ⚡ Architecture Diagram
+
+![Pack-Based Knowledge Management Architecture](pack-based-knowledge-management.png)
+
+<details>
+<summary>Mermaid source (kept for editing — the image above is what renders on the wiki)</summary>
 
 ```mermaid
 flowchart TD
-    classDef rawStyle fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#f8fafc;
+    classDef inputStyle fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#f8fafc;
     classDef packStyle fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     classDef targetStyle fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#f8fafc;
 
-    subgraph Inputs["1. Raw Multi-Source Ingestion"]
-        RAW_DOCS["PDFs, Audio, Transcripts, Web Extracts"]:::rawStyle
-        SRC_REG["Source Registry & SHA-256 Hashes"]:::rawStyle
+    subgraph Ingestion["1. Multi-Source Ingestion & Pinning"]
+        RAW_DOCS["Raw Corpora & Transcripts<br/>(PDF, Audio, Media, HTML)"]:::inputStyle
+        SRC_REG["Source Registry & SHA-256 Digest Pinning"]:::inputStyle
+        STAGING["_kb-sync-staging/<br/>(Write-once immutable state)"]:::inputStyle
         RAW_DOCS --> SRC_REG
+        SRC_REG --> STAGING
     end
 
-    subgraph Packaging["2. Pack Generation (topic.pack.v1)"]
-        MANIFEST["topic.manifest.json<br/>(Domain, Version, Schema)"]:::packStyle
-        TASKS["specs/task-*.json<br/>(research.task.v1)"]:::packStyle
-        AUDIT["config/audit_rules.json<br/>(Temporal Bounds & Assertions)"]:::packStyle
-        CATALOG["corpus/source_catalog.json<br/>(Immutable Hashes)"]:::packStyle
-        
-        SRC_REG --> MANIFEST
+    subgraph Packaging["2. Knowledge Pack Compilation (topic.pack.v1)"]
+        MANIFEST["topic.manifest.json<br/>(Domain, Hierarchy & Version)"]:::packStyle
+        TASKS["specs/task-*.json<br/>(research.task.v1 work items)"]:::packStyle
+        AUDIT["config/audit_rules.json<br/>(Adversarial verification rules)"]:::packStyle
+        CATALOG["corpus/source_catalog.json<br/>(Cryptographic source registry)"]:::packStyle
+
+        STAGING --> MANIFEST
         MANIFEST --> TASKS
         MANIFEST --> AUDIT
         MANIFEST --> CATALOG
     end
 
-    subgraph Distribution["3. Target Distribution & Synthesis"]
+    subgraph Distribution["3. Distribution Targets"]
         NOTEBOOKLM["Google NotebookLM Ingestion (.nlm_pack)"]:::targetStyle
-        OBSIDIAN["Obsidian Markdown Vault"]:::targetStyle
-        SQLITE_VEC["Local SQLite Context Cache (BM25 + Vec)"]:::targetStyle
+        OBSIDIAN["Obsidian Vault (Interlinked semantic notes)"]:::targetStyle
+        SQLITE_VEC["Local SQLite Context Cache (fts5 BM25 + Embeddings)"]:::targetStyle
         WIKI["Remote GitHub Documentation Wiki"]:::targetStyle
 
         Packaging --> NOTEBOOKLM
@@ -53,9 +66,13 @@ flowchart TD
     end
 ```
 
+</details>
+
 ---
 
-## 📦 Key Pack Specifications
+## 📦 Core Pack Specifications
+
+A standardized topic pack contains three mandatory specification surfaces:
 
 ### 1. `topic.manifest.json`
 Declares the root identity, parent-child topic hierarchy, and version contract:
@@ -82,7 +99,7 @@ Cryptographic catalog of all raw documents in the pack, recording:
 
 ---
 
-## ⚡ Operational Advantages
+## 🔒 Operational Guarantees
 
 1. **Hermetic Reproducibility:** Every extraction, summary, or gap triage finding can be traced back to the exact byte-level SHA-256 hash of its source document in the pack.
 2. **Offline-First Resilience:** Knowledge packs can be synced, queried, and verified without external network access.
@@ -90,7 +107,8 @@ Cryptographic catalog of all raw documents in the pack, recording:
 
 ---
 
-## 🔗 Related Concepts
-- [[deterministic-sync-pipeline]] — Strict SHA-256 state tracking and staging
-- [[karpathy-llm-wiki-pattern]] — LLM distillation of raw pack sources
-- [[local-context-cache]] — Zero-cloud local embedding substrate
+## 🔗 Related Architecture Guides
+- [[deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Strict SHA-256 state tracking and staging
+- [[karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — LLM distillation of raw pack sources
+- [[local-context-cache|Local Context Cache]] — Zero-cloud local embedding substrate
+- [[fail-soft-orchestration|Fail-Soft Orchestration]] — Tiered governance and safety gates

@@ -1,5 +1,5 @@
 {
-  "last_sync_timestamp": "2026-08-30T03:26:00.673Z",
+  "last_sync_timestamp": "2026-08-30T03:29:07.600Z",
   "status": "SUCCESS",
   "file_count": 1615,
   "pack_files_count": 5,
@@ -10,8 +10,8 @@
   "stage1_success": true,
   "stage2_success": true,
   "target": "notebooklm",
-  "timestamp": "2026-08-30T03:24:34Z",
-  "duration_ms": 97,
+  "timestamp": "2026-08-30T03:26:08Z",
+  "duration_ms": 141,
   "purged_sources": 0,
   "uploaded_chunks": 0
 }
