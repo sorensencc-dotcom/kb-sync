@@ -28,8 +28,19 @@ if (fs.existsSync(envPath)) {
   } catch {}
 }
 
+export function validateIsoUtcTimestamp(timestamp: string, maxSkewMs: number = 60000): boolean {
+  if (!timestamp || typeof timestamp !== "string") return false;
+  const parsed = Date.parse(timestamp);
+  if (isNaN(parsed)) return false;
+  if (parsed > Date.now() + maxSkewMs) return false;
+  return true;
+}
+
 export interface DriftReport {
+  version?: string;
+  repository?: string;
   timestamp: string;
+  system_time_epoch_ms?: number;
   status: "NO_DRIFT" | "DRIFT_DETECTED";
   drifted_sources: Array<{
     repo: string;
@@ -42,6 +53,7 @@ export interface DriftReport {
   summary: {
     total_sources_checked: number;
     stale_pages_count: number;
+    untracked_paths_count?: number;
   };
 }
 
@@ -667,6 +679,7 @@ function appendToTodos(taskLine: string, signatureKey: string) {
 }
 
 export function runDriftDetection(): DriftReport {
+  const repoName = "kb-sync";
   const lastSync = getWikiSyncTimestamp();
 
   let mappingRules: MappingRule[] = [];
@@ -746,13 +759,24 @@ export function runDriftDetection(): DriftReport {
     }
   }
 
+  let untrackedPathsCount = 0;
+  try {
+    const gitStatus = execSync("git status --porcelain", { cwd: REPO_ROOT, encoding: "utf8" });
+    untrackedPathsCount = gitStatus.split(/\r?\n/).filter((line: string) => line.trim().length > 0).length;
+  } catch {}
+
+  const now = new Date();
   const report: DriftReport = {
-    timestamp: new Date().toISOString(),
+    version: "1.0.0",
+    repository: repoName,
+    timestamp: now.toISOString(),
+    system_time_epoch_ms: now.getTime(),
     status: driftedSources.length > 0 ? "DRIFT_DETECTED" : "NO_DRIFT",
     drifted_sources: driftedSources,
     summary: {
       total_sources_checked: sourceFiles.length,
       stale_pages_count: driftedSources.length,
+      untracked_paths_count: untrackedPathsCount,
     },
   };
 

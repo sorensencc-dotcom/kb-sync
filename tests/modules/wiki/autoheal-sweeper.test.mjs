@@ -175,5 +175,28 @@ describe('sweepStagingVault', () => {
       expect.any(String),
       'utf-8'
     );
+    expect(fs.writeFile).toHaveBeenCalledWith(
+      expect.stringContaining('.repair-manifest.json'),
+      expect.any(String),
+      'utf-8'
+    );
+    expect(report.status).toBe('PARTIAL');
+  });
+
+  it('reports APPLIED status and generates manifest entries when fix is true', async () => {
+    fs.readdir.mockResolvedValue([
+      { name: 'test1.md', isDirectory: () => false }
+    ]);
+    
+    fs.readFile.mockImplementation(async () => '# Title\n[[Target]]');
+    fs.writeFile.mockResolvedValue(undefined);
+
+    const report = await sweepStagingVault({ fix: true, dryRun: false, allowDirty: true });
+    
+    expect(report.status).toBe('APPLIED');
+    expect(report.manifestEntries.length).toBe(1);
+    expect(report.manifestEntries[0].status).toBe('APPLIED');
+    expect(report.manifestEntries[0].beforeSha256).toBeDefined();
+    expect(report.manifestEntries[0].afterSha256).toBeDefined();
   });
 });

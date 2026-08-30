@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-08-30T02:39:33.097Z",
+  "system_time_epoch_ms": 1788057573097,
+  "overall_status": "DRIFT_DETECTED",
+  "repositories": [
+    {
+      "repository": "kb-sync",
+      "path": "C:\\dev\\dev-sandbox\\kb-sync-drift-fix",
+      "exists": true,
+      "status": "DRIFT_DETECTED",
+      "telemetry_source": "DRIFT_REPORT",
+      "timestamp": "2026-08-30T02:38:03.487Z",
+      "system_time_epoch_ms": 1788057483487,
+      "sources_checked": 182,
+      "stale_pages_count": 49,
+      "dirty_worktree_count": 10,
+      "violations": [
+        "DIRTY_WORKTREE (10 uncommitted/untracked files)"
+      ]
+    },
+    {
+      "repository": "rewrite-docs",
+      "path": "C:\\dev\\rewrite-docs",
+      "exists": true,
+      "status": "NO_DRIFT",
+      "telemetry_source": "FALLBACK_GIT",
+      "timestamp": "2026-08-30T02:39:32.489Z",
+      "system_time_epoch_ms": 1788057572489,
+      "sources_checked": 0,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 0,
+      "violations": [
+        "MISSING_DRIFT_TELEMETRY"
+      ]
+    },
+    {
+      "repository": "rewrite-mcp",
+      "path": "C:\\dev\\rewrite-mcp",
+      "exists": true,
+      "status": "PARTIAL",
+      "telemetry_source": "FALLBACK_GIT",
+      "timestamp": "2026-08-30T02:39:32.643Z",
+      "system_time_epoch_ms": 1788057572643,
+      "sources_checked": 0,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 307,
+      "violations": [
+        "DIRTY_WORKTREE (307 uncommitted/untracked files)",
+        "MISSING_DRIFT_TELEMETRY"
+      ]
+    },
+    {
+      "repository": "trm",
+      "path": "C:\\dev\\trm",
+      "exists": true,
+      "status": "PARTIAL",
+      "telemetry_source": "FALLBACK_GIT",
+      "timestamp": "2026-08-30T02:39:32.740Z",
+      "system_time_epoch_ms": 1788057572740,
+      "sources_checked": 0,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 37,
+      "violations": [
+        "DIRTY_WORKTREE (37 uncommitted/untracked files)",
+        "MISSING_DRIFT_TELEMETRY"
+      ]
+    },
+    {
+      "repository": "cic-ingestion",
+      "path": "C:\\dev\\cic-ingestion",
+      "exists": true,
+      "status": "PARTIAL",
+      "telemetry_source": "FALLBACK_GIT",
+      "timestamp": "2026-08-30T02:39:32.853Z",
+      "system_time_epoch_ms": 1788057572853,
+      "sources_checked": 0,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 36,
+      "violations": [
+        "DIRTY_WORKTREE (36 uncommitted/untracked files)",
+        "MISSING_DRIFT_TELEMETRY"
+      ]
+    },
+    {
+      "repository": "claude-skills",
+      "path": "C:\\dev\\claude-skills",
+      "exists": true,
+      "status": "PARTIAL",
+      "telemetry_source": "FALLBACK_GIT",
+      "timestamp": "2026-08-30T02:39:33.005Z",
+      "system_time_epoch_ms": 1788057573005,
+      "sources_checked": 0,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 312,
+      "violations": [
+        "DIRTY_WORKTREE (312 uncommitted/untracked files)",
+        "MISSING_DRIFT_TELEMETRY"
+      ]
+    },
+    {
+      "repository": "charlie-deep-research",
+      "path": "C:\\dev\\charlie-deep-research",
+      "exists": true,
+      "status": "PARTIAL",
+      "telemetry_source": "FALLBACK_GIT",
+      "timestamp": "2026-08-30T02:39:33.097Z",
+      "system_time_epoch_ms": 1788057573097,
+      "sources_checked": 0,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 51,
+      "violations": [
+        "DIRTY_WORKTREE (51 uncommitted/untracked files)",
+        "MISSING_DRIFT_TELEMETRY"
+      ]
+    }
+  ],
+  "summary": {
+    "total_repositories": 7,
+    "clean_repositories": 0,
+    "drifted_repositories": 1,
+    "degraded_repositories": 6,
+    "total_stale_pages": 49,
+    "total_dirty_worktrees": 753
+  }
+}

@@ -15,7 +15,7 @@ if (fs.existsSync(reportPath)) {
 }
 
 try {
-  const output = execSync("node node_modules/tsx/dist/cli.mjs modules/wiki/detect-drift.ts", {
+  const output = execSync("npx tsx modules/wiki/detect-drift.ts", {
     cwd: REPO_ROOT,
     encoding: "utf8",
   });

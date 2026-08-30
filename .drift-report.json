@@ -1,5 +1,8 @@
 {
-  "timestamp": "2026-08-30T01:12:56.360Z",
+  "version": "1.0.0",
+  "repository": "kb-sync",
+  "timestamp": "2026-08-30T02:40:20.916Z",
+  "system_time_epoch_ms": 1788057620916,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -84,6 +87,14 @@
     },
     {
       "repo": "kb-sync",
+      "file": "modules/trm/trm-worker.mjs",
+      "last_code_commit": "2026-08-29T21:54:50-04:00",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/trm-worker.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "modules/wiki/autoheal-sweeper.mjs",
       "last_code_commit": "2026-08-29T09:50:43-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
@@ -97,6 +108,14 @@
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/config-loader.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/cross-repo-drift-scanner.ts",
+      "last_code_commit": "2026-08-30T02:38:40.526Z",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/cross-repo-drift-scanner.ts"
     },
     {
       "repo": "kb-sync",
@@ -141,7 +160,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/validate-staging-docs.mjs",
-      "last_code_commit": "2026-08-29T09:58:11-04:00",
+      "last_code_commit": "2026-08-29T21:54:50-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/validate-staging-docs.mjs"
@@ -228,6 +247,14 @@
     },
     {
       "repo": "kb-sync",
+      "file": "scripts/secret-scan-hook.sh",
+      "last_code_commit": "2026-08-29T21:54:50-04:00",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/secret-scan-hook.sh"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/secret-scan.mjs",
       "last_code_commit": "2026-08-25T10:28:21-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
@@ -252,6 +279,14 @@
     },
     {
       "repo": "kb-sync",
+      "file": "scripts/trm-trigger-research.sh",
+      "last_code_commit": "2026-08-29T21:54:50-04:00",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/trm-trigger-research.sh"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/verify-dependencies.mjs",
       "last_code_commit": "2026-08-28T18:57:07-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
@@ -268,6 +303,14 @@
     },
     {
       "repo": "kb-sync",
+      "file": "scripts/wiki-validate-precommit.sh",
+      "last_code_commit": "2026-08-29T21:54:50-04:00",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/wiki-validate-precommit.sh"
+    },
+    {
+      "repo": "kb-sync",
       "file": "tests/ast-grounding.test.mjs",
       "last_code_commit": "2026-08-27T08:24:23-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
@@ -281,6 +324,14 @@
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/cross-audit.test.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "tests/cross-repo-drift-scanner.test.ts",
+      "last_code_commit": "2026-08-30T02:38:50.845Z",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/cross-repo-drift-scanner.test.ts"
     },
     {
       "repo": "kb-sync",
@@ -364,7 +415,8 @@
     }
   ],
   "summary": {
-    "total_sources_checked": 180,
-    "stale_pages_count": 45
+    "total_sources_checked": 184,
+    "stale_pages_count": 51,
+    "untracked_paths_count": 10
   }
 }
