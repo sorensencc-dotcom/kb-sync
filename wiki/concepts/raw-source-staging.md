@@ -1,20 +1,25 @@
 ---
-title: raw-source-staging
-category: wiki
-status: draft
+title: Raw Source Staging
+category: concepts
+status: active
 sourceRepository: kb-sync
----
----
-title: "WikiConceptsRawSourceStaging"
-category: "wiki"
-status: "active"
-citations: ["wiki/concepts/raw-source-staging.md"]
+lastUpdated: "2026-08-30"
 ---
 
-# WikiConceptsRawSourceStaging
+# Raw Source Staging
 
-## Summary
-Synthesized documentation node for wiki/concepts/raw-source-staging.md
+**Raw Source Staging** is the initial data capture phase where unformatted external documents, declassified logs, audio transcripts, and media files are captured and assigned immutable source IDs before distillation.
 
-## Source Citations
-- Staged: `wiki/concepts/raw-source-staging.md`
+---
+
+## 📐 Ingestion Workflow
+
+1. **Source Capture:** Ingests external files into a standardized staging workspace.
+2. **Digest Computation:** Computes SHA-256 digests for every ingested artifact.
+3. **Catalog Registration:** Records source provenance, timestamp, and MIME types in `source_catalog.json`.
+
+---
+
+## 🔗 Related Concepts
+- [[immutable-staging]] — Immutable staging directory rules
+- [[pack-based-knowledge-management]] — Pack architecture
