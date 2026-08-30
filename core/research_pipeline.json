@@ -1,0 +1,34 @@
+{
+  "version": "2026-08-29-1",
+  "pipeline": [
+    "load_categories",
+    "scan_local_archives",
+    "run_web_harvester",
+    "extract_property_records",
+    "consolidate_packs",
+    "validate_packs"
+  ],
+  "steps": {
+    "run_web_harvester": {
+      "enabled": true,
+      "rate_limit_ms": 1000,
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff_seconds": 3
+      }
+    },
+    "extract_property_records": {
+      "enabled": true,
+      "min_confidence": 0.40,
+      "log_errors": true
+    },
+    "consolidate_packs": {
+      "enabled": true,
+      "warn_over_mb": 5.0
+    },
+    "validate_packs": {
+      "enabled": true,
+      "strict_provenance": true
+    }
+  }
+}

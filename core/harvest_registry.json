@@ -1,0 +1,32 @@
+{
+  "version": "2026-08-29-1",
+  "last_updated": "2026-08-30T02:27:21.713Z",
+  "processed_envelopes": {
+    "env-gap-fcsc-moa-bay": {
+      "envelope_id": "env-gap-fcsc-moa-bay",
+      "gap_id": "gap-fcsc-moa-bay",
+      "retrieved_at": "2026-08-30T02:26:48.501Z",
+      "hash_sha256": "2c199765e0e2b65f7e7530fe057a7d45a62ff918ed0a3b1bc23f039f1c34e1f9",
+      "status": "resolved"
+    },
+    "env-gap-fcsc-cuban-telephone": {
+      "envelope_id": "env-gap-fcsc-cuban-telephone",
+      "gap_id": "gap-fcsc-cuban-telephone",
+      "retrieved_at": "2026-08-30T02:26:49.507Z",
+      "hash_sha256": "8f56c9be6411c891cb0a7d9d71e43e96edc737307f63da38a8cc032d6691b75d",
+      "status": "resolved"
+    }
+  },
+  "gap_states": {
+    "gap-fcsc-moa-bay": {
+      "status": "resolved",
+      "resolved_at": "2026-08-30T02:26:48.505Z",
+      "envelope_id": "env-gap-fcsc-moa-bay"
+    },
+    "gap-fcsc-cuban-telephone": {
+      "status": "resolved",
+      "resolved_at": "2026-08-30T02:26:49.509Z",
+      "envelope_id": "env-gap-fcsc-cuban-telephone"
+    }
+  }
+}

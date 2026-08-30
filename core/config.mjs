@@ -16,14 +16,70 @@ export function loadCategoriesData() {
   } catch (err) {
     console.error(`[CONFIG] [ERROR] Failed to load categories.json: ${err.message}`);
   }
-  return { version: '1.0.0', categories: {}, placeholders: {} };
+  return { version: '2026-08-29-1', categories: {}, placeholders: {} };
+}
+
+export function validateCategoriesData(data) {
+  if (!data || typeof data !== 'object') {
+    throw new Error('CATEGORY_INVARIANT_VIOLATION: Data must be a non-null object');
+  }
+  if (!data.categories || typeof data.categories !== 'object') {
+    throw new Error('CATEGORY_INVARIANT_VIOLATION: Missing categories object');
+  }
+
+  const seenTargets = new Map();
+  const seenAliases = new Set();
+
+  for (const [key, catDef] of Object.entries(data.categories)) {
+    if (!catDef.target || typeof catDef.target !== 'string') {
+      throw new Error(`CATEGORY_INVARIANT_VIOLATION: Category '${key}' missing valid 'target' UUID`);
+    }
+    if (!catDef.title || typeof catDef.title !== 'string') {
+      throw new Error(`CATEGORY_INVARIANT_VIOLATION: Category '${key}' missing valid 'title' string`);
+    }
+    if (catDef.status !== 'canonical') {
+      throw new Error(`CATEGORY_INVARIANT_VIOLATION: Category '${key}' must have status 'canonical'`);
+    }
+
+    // Check alias collisions
+    if (Array.isArray(catDef.aliases)) {
+      for (const alias of catDef.aliases) {
+        const normAlias = alias.toLowerCase().trim();
+        if (seenAliases.has(normAlias) && seenTargets.get(normAlias) !== catDef.target) {
+          throw new Error(`CATEGORY_CONFLICT: Alias collision for '${normAlias}' across distinct categories`);
+        }
+        seenAliases.add(normAlias);
+      }
+    }
+  }
+
+  // Validate placeholders if present
+  if (data.placeholders && typeof data.placeholders === 'object') {
+    for (const [pKey, pVal] of Object.entries(data.placeholders)) {
+      if (!pKey.startsWith('placeholder::')) {
+        throw new Error(`CATEGORY_INVARIANT_VIOLATION: Placeholder key '${pKey}' must start with 'placeholder::'`);
+      }
+      const validStatuses = ['unmapped', 'mapped', 'merged', 'retired'];
+      if (!validStatuses.includes(pVal.status)) {
+        throw new Error(`CATEGORY_INVARIANT_VIOLATION: Placeholder '${pKey}' invalid status '${pVal.status}'`);
+      }
+    }
+  }
+
+  return true;
 }
 
 export function saveCategoriesData(data) {
+  validateCategoriesData(data);
+  const tmpPath = `${CATEGORIES_PATH}.tmp`;
   try {
-    fs.writeFileSync(CATEGORIES_PATH, JSON.stringify(data, null, 2), 'utf8');
+    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf8');
+    fs.renameSync(tmpPath, CATEGORIES_PATH);
   } catch (err) {
-    console.error(`[CONFIG] [ERROR] Failed to save categories.json: ${err.message}`);
+    if (fs.existsSync(tmpPath)) {
+      try { fs.unlinkSync(tmpPath); } catch (_) {}
+    }
+    throw new Error(`Failed to atomically save categories.json: ${err.message}`);
   }
 }
 
@@ -47,7 +103,6 @@ export function resolveNotebookId(category, options = {}) {
   if (!category) return NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
   const normalized = String(category).toLowerCase().trim();
   
-  // Re-read map in case runtime additions occurred
   const currentTargets = buildNotebookTargetMap();
   if (currentTargets[normalized]) {
     return currentTargets[normalized];
@@ -67,7 +122,8 @@ export function resolveNotebookId(category, options = {}) {
       slug: normalized,
       created_at: new Date().toISOString(),
       source: options.source || 'runtime',
-      status: 'unmapped', // unmapped | mapped | merged | retired
+      status: 'unmapped',
+      candidate_files: options.candidateFiles || 1,
       fallback_notebook_id: currentTargets['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8',
       operator_required: true
     };
@@ -81,5 +137,3 @@ export function resolveNotebookId(category, options = {}) {
 
   return currentTargets['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
 }
-
-

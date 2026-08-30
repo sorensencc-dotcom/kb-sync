@@ -1,0 +1,45 @@
+{
+  "version": "2026-08-29-1",
+  "errors": {
+    "HARVEST_SOURCE_UNAVAILABLE": {
+      "code": "HARVEST_001",
+      "description": "Source endpoint or archive service not reachable or timed out",
+      "severity": "RETRYABLE"
+    },
+    "HARVEST_PARSE_FAILURE": {
+      "code": "HARVEST_002",
+      "description": "Unable to parse source payload or raw envelope schema invalid",
+      "severity": "FATAL_FOR_RECORD"
+    },
+    "HARVEST_RATE_LIMITED": {
+      "code": "HARVEST_003",
+      "description": "Upstream rate limit or politeness policy triggered",
+      "severity": "BACKOFF_RETRY"
+    },
+    "EXTRACT_FIELD_MISSING": {
+      "code": "EXTRACT_001",
+      "description": "Required field not found in document or dossier",
+      "severity": "WARNING"
+    },
+    "EXTRACT_UNSUPPORTED_MODALITY": {
+      "code": "EXTRACT_002",
+      "description": "Input format/modality not supported without OCR preprocessing",
+      "severity": "REJECTED"
+    },
+    "CATEGORY_INVARIANT_VIOLATION": {
+      "code": "CATEGORY_001",
+      "description": "Category schema invariant violated (e.g. missing notebook_id or duplicate entry)",
+      "severity": "TRANSACTION_ABORTED"
+    },
+    "CATEGORY_CONFLICT": {
+      "code": "CATEGORY_002",
+      "description": "Category or alias collision detected across canonical categories",
+      "severity": "FATAL"
+    },
+    "PACK_VALIDATION_FAILED": {
+      "code": "PACK_001",
+      "description": "Knowledge pack failed schema, provenance, or target verification rules",
+      "severity": "REJECTED"
+    }
+  }
+}
