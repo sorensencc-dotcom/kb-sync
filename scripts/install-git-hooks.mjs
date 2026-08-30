@@ -43,7 +43,7 @@ fs.writeFileSync(hookPath, hookBody, { mode: 0o755 });
 
 const driftHookBody = `#!/usr/bin/env bash
 # Installed by scripts/install-git-hooks.mjs
-# Fail-soft documentation drift autoheal for post-merge/post-checkout.
+# Fail-soft documentation drift autoheal for post-commit/post-merge/post-checkout.
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$REPO_ROOT" || exit 0
 
@@ -93,8 +93,12 @@ if [ "$STATUS" = "DRIFT_DETECTED" ]; then
 fi
 `;
 
-for (const name of ['post-merge', 'post-checkout']) {
+// post-commit closes the coverage gap: ordinary local commits that edit
+// core/*.json between scheduled pipeline runs would otherwise drift the wiki
+// with nothing to heal it until the next merge/checkout. The drift script
+// never commits, so this cannot re-trigger itself.
+for (const name of ['post-commit', 'post-merge', 'post-checkout']) {
   fs.writeFileSync(path.join(hooksDir, name), driftHookBody, { mode: 0o755 });
 }
 
-console.log('Installed pre-commit secret-scan hook and post-merge/post-checkout wiki drift autoheal hooks.');
+console.log('Installed pre-commit secret-scan hook and post-commit/post-merge/post-checkout wiki drift autoheal hooks.');
