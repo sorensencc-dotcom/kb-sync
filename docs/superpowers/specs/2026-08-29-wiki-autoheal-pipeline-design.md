@@ -1,3 +1,9 @@
+---
+title: "2026 08 29 wiki autoheal pipeline design"
+category: "wiki"
+status: "active"
+---
+
 # Wiki autohealing sweeper and path-isolated pipeline design
 
 ## Overview

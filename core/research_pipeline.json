@@ -1,0 +1,54 @@
+{
+  "version": "2026-08-29-1",
+  "pipeline": [
+    "load_categories",
+    "scan_local_archives",
+    "run_web_harvester",
+    "extract_property_records",
+    "consolidate_packs",
+    "validate_packs",
+    "sync_notebooklm"
+  ],
+  "tor_proxy": {
+    "enabled": true,
+    "endpoint": "socks5h://127.0.0.1:9050",
+    "http_fallback": "http://127.0.0.1:9080",
+    "circuit_rotation_interval_reqs": 10,
+    "fail_soft_to_direct": true,
+    "timeout_ms": 12000,
+    "health_probe_interval_ms": 30000,
+    "operator_override": false,
+    "metrics": {
+      "record_circuit_failures": true,
+      "record_fallback_usage": true
+    }
+  },
+  "steps": {
+    "run_web_harvester": {
+      "enabled": true,
+      "rate_limit_ms": 1000,
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff_seconds": 3
+      }
+    },
+    "extract_property_records": {
+      "enabled": true,
+      "min_confidence": 0.40,
+      "log_errors": true
+    },
+    "consolidate_packs": {
+      "enabled": true,
+      "warn_over_mb": 5.0
+    },
+    "validate_packs": {
+      "enabled": true,
+      "strict_provenance": true
+    },
+    "sync_notebooklm": {
+      "enabled": true,
+      "max_retries": 3,
+      "backoff_ms": 5000
+    }
+  }
+}

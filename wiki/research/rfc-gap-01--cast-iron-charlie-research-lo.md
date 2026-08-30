@@ -4,18 +4,17 @@ category: "research"
 topic: "rfc-gap-01--cast-iron-charlie-research-lo"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-29T00:30:13.823Z"
+created_at: "2026-08-30T00:30:05.802Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**
 
 ## 1. Problem Statement & Context
-To turn your current documentary leads into historically rigorous proof, your research logs outline several highly targeted, actionable follow-up inve)))))))))))
+To turn your current documentary leads into historically rigorous proof, your research logs outline several highly targeted, actionable follow-up inve)))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

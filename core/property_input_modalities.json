@@ -1,0 +1,15 @@
+{
+  "version": "2026-08-29-1",
+  "supported_modalities": [
+    "pdf_text",
+    "ocr_text",
+    "markdown",
+    "json_envelope",
+    "html"
+  ],
+  "unsupported_modalities": [
+    "image_without_ocr",
+    "binary_unparsed",
+    "audio_untranscribed"
+  ]
+}

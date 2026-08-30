@@ -1,0 +1,58 @@
+{
+  "version": "2026-08-29-1",
+  "category": "cuban-seizures",
+  "owners": {
+    "Freeport Sulphur Company": {
+      "aliases": ["Freeport Sulphur", "Freeport", "Moa Bay Mining Company"],
+      "type": "corporation",
+      "jurisdiction": "USA / Delaware"
+    },
+    "United Fruit Company": {
+      "aliases": ["United Fruit", "UFCO", "Chiquita Brands"],
+      "type": "corporation",
+      "jurisdiction": "USA / New Jersey"
+    },
+    "International Telephone & Telegraph": {
+      "aliases": ["ITT", "Cuban Telephone Company", "Compania Telefonica"],
+      "type": "utility",
+      "jurisdiction": "USA / New York"
+    },
+    "American Sugar Refining Company": {
+      "aliases": ["American Sugar", "Amstar", "Domino Sugar"],
+      "type": "corporation",
+      "jurisdiction": "USA / New York"
+    },
+    "Nicaro Nickel Company": {
+      "aliases": ["Nicaro Nickel", "Cuban Nickel Company"],
+      "type": "corporation",
+      "jurisdiction": "USA / GSA"
+    },
+    "Standard Oil of New Jersey": {
+      "aliases": ["Standard Oil", "Esso", "Exxon"],
+      "type": "petroleum",
+      "jurisdiction": "USA / New Jersey"
+    },
+    "Texaco": {
+      "aliases": ["Texas Company", "Texaco Inc."],
+      "type": "petroleum",
+      "jurisdiction": "USA / Delaware"
+    }
+  },
+  "decrees": {
+    "Law 851": {
+      "aliases": ["Nationalization Law 851", "Ley 851", "Decree 851"],
+      "date": "1960-07-06",
+      "scope": "Total expropriation of US national property and enterprises"
+    },
+    "Agrarian Reform Law": {
+      "aliases": ["First Agrarian Reform Law", "Ley de Reforma Agraria"],
+      "date": "1959-05-17",
+      "scope": "Expropriation of agricultural estates over 30 caballerias (995 acres)"
+    },
+    "Executive Resolution 1": {
+      "aliases": ["Resolution 1 Law 851", "Resolucion 1"],
+      "date": "1960-08-06",
+      "scope": "Confiscation of 36 US sugar mills and utility infrastructure"
+    }
+  }
+}

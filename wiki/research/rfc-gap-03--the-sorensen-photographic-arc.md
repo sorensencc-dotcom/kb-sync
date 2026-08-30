@@ -4,18 +4,17 @@ category: "research"
 topic: "rfc-gap-03--the-sorensen-photographic-arc"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-08-29T00:30:13.811Z"
+created_at: "2026-08-30T00:30:05.792Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md","trm-research-gaps.md","wiki/research/rfc-gap-02--the-sorensen-photographic-arc.md"]
-sourceRepository: kb-sync
 ---
 
 # RFC: GAP-03 - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions)**: The introduction of your second source, **"TRM Research Gaps & Synthesis"** [1], adds a new layer to our project. Instead of analyzing just the photo))))))))))
+Industrial Giants at Willow Run (open-contradictions)**: The introduction of your second source, **"TRM Research Gaps & Synthesis"** [1], adds a new layer to our project. Instead of analyzing just the photo))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

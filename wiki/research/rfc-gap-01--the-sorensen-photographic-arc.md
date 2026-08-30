@@ -4,18 +4,17 @@ category: "research"
 topic: "rfc-gap-01--the-sorensen-photographic-arc"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-29T00:30:16.319Z"
+created_at: "2026-08-30T00:30:09.653Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md","trm-research-gaps.md","wiki/research/rfc-gap-04--the-sorensen-photographic-arc.md"]
-sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up)**: To transform the minimalist index of photograph captions into a thorough, narrative-driven history of Willow Run, follow-up research should target thr))))))))))))))))))))))
+Industrial Giants at Willow Run (follow-up)**: To transform the minimalist index of photograph captions into a thorough, narrative-driven history of Willow Run, follow-up research should target thr))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

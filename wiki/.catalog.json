@@ -1,32 +1,4036 @@
 {
-  "generated": "2026-07-14T22:14:38.254Z",
+  "generated": "2026-08-29T13:57:51.848Z",
   "files": [
     {
       "file": "C:\\dev\\kb-sync\\wiki\\Index.md",
-      "title": null,
+      "title": "Wiki Index",
       "description": null,
       "tags": [],
       "author": null,
       "date": null,
       "stats": {
-        "lines": 46,
-        "words": 163,
-        "headings": 6,
-        "links": 1
+        "lines": 34,
+        "words": 84,
+        "headings": 3,
+        "links": 21
       }
     },
     {
       "file": "C:\\dev\\kb-sync\\wiki\\Log.md",
+      "title": "Log",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 219,
+        "words": 493,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\historical-revocation-verification.md",
       "title": null,
       "description": null,
       "tags": [],
       "author": null,
       "date": null,
       "stats": {
-        "lines": 27,
-        "words": 95,
+        "lines": 17,
+        "words": 82,
+        "headings": 1,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\mobile-websocket-heartbeats.md",
+      "title": null,
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 19,
+        "words": 100,
+        "headings": 1,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--cast-iron-charlie-research-lo.md",
+      "title": "RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 186,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--castironcharlie-facebook-adja.md",
+      "title": "RFC: GAP-01 - **CastIronCharlie-Facebook (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 177,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--castironcharlie-facebook-foll.md",
+      "title": "RFC: GAP-01 - **CastIronCharlie-Facebook (follow-up)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 176,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--cic-daily-research-follow-up.md",
+      "title": "RFC: GAP-01 - **CIC - Daily Research (follow-up)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 184,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--cic-kb-adjacent-topics.md",
+      "title": "RFC: GAP-01 - **CIC-KB (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 174,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--cic-kb-follow-up.md",
+      "title": "RFC: GAP-01 - **CIC-KB (follow-up)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 175,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--cic-reddit-follow-up.md",
+      "title": "RFC: GAP-01 - **CIC-Reddit (follow-up)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 179,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--the-sorensen-photographic-arc.md",
+      "title": "RFC: GAP-01 - **The Sorensen Photographic Archive",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 187,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-follow-up.md",
+      "title": "RFC: GAP-01 - **Willow Run Videos (follow-up)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 181,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",
+      "title": "RFC: GAP-01 - **Willow Run Videos (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 163,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01-fail-soft-recovery-during-conc.md",
+      "title": "RFC: GAP-01 - Fail-soft recovery during concurrent WebSocket packet collision",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 237,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--cast-iron-charlie-research-lo.md",
+      "title": "RFC: GAP-02 - **Cast Iron Charlie - Research Logs (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 187,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--castironcharlie-facebook-adja.md",
+      "title": "RFC: GAP-02 - **CastIronCharlie-Facebook (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 175,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--castironcharlie-facebook-unde.md",
+      "title": "RFC: GAP-02 - **CastIronCharlie-Facebook (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 175,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--cic-daily-research-adjacent-t.md",
+      "title": "RFC: GAP-02 - **CIC - Daily Research (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 183,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--cic-kb-adjacent-topics.md",
+      "title": "RFC: GAP-02 - **CIC-KB (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 176,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--cic-kb-open-contradictions.md",
+      "title": "RFC: GAP-02 - **CIC-KB (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 174,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--cic-kb-under-sourced.md",
+      "title": "RFC: GAP-02 - **CIC-KB (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 174,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--cic-reddit-adjacent-topics.md",
+      "title": "RFC: GAP-02 - **CIC-Reddit (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 180,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--the-sorensen-photographic-arc.md",
+      "title": "RFC: GAP-02 - **The Sorensen Photographic Archive",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 187,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--willow-run-videos-adjacent-to.md",
+      "title": "RFC: GAP-02 - **Willow Run Videos (adjacent-topics)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 179,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02--willow-run-videos-open-contra.md",
+      "title": "RFC: GAP-02 - **Willow Run Videos (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 168,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-02-cross-platform-path-normalizat.md",
+      "title": "RFC: GAP-02 - Cross-platform path normalization for Windows and POSIX vault roots",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 240,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--cast-iron-charlie-research-lo.md",
+      "title": "RFC: GAP-03 - **Cast Iron Charlie - Research Logs (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 188,
+        "headings": 7,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--castironcharlie-facebook-unde.md",
+      "title": "RFC: GAP-03 - **CastIronCharlie-Facebook (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 179,
+        "headings": 7,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--cic-daily-research-under-sour.md",
+      "title": "RFC: GAP-03 - **CIC - Daily Research (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 182,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--cic-kb-open-contradictions.md",
+      "title": "RFC: GAP-03 - **CIC-KB (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 174,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--cic-kb-under-sourced.md",
+      "title": "RFC: GAP-03 - **CIC-KB (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 175,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--cic-reddit-under-sourced.md",
+      "title": "RFC: GAP-03 - **CIC-Reddit (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 178,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--the-sorensen-photographic-arc.md",
+      "title": "RFC: GAP-03 - **The Sorensen Photographic Archive",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 191,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03--willow-run-videos-under-sourc.md",
+      "title": "RFC: GAP-03 - **Willow Run Videos (under-sourced)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 182,
+        "headings": 7,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-03-deterministic-ast-parsing-and.md",
+      "title": "RFC: GAP-03 - Deterministic AST parsing and chunk boundary calculation",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 230,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--cast-iron-charlie-research-lo.md",
+      "title": "RFC: GAP-04 - **Cast Iron Charlie - Research Logs (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 188,
+        "headings": 7,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--castironcharlie-facebook-open.md",
+      "title": "RFC: GAP-04 - **CastIronCharlie-Facebook (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 174,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--cic-daily-research-open-contr.md",
+      "title": "RFC: GAP-04 - **CIC - Daily Research (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 181,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--cic-kb-open-contradictions.md",
+      "title": "RFC: GAP-04 - **CIC-KB (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 175,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--cic-reddit-open-contradiction.md",
+      "title": "RFC: GAP-04 - **CIC-Reddit (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 180,
+        "headings": 7,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--the-sorensen-photographic-arc.md",
+      "title": "RFC: GAP-04 - **The Sorensen Photographic Archive",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 211,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04--willow-run-videos-open-contra.md",
+      "title": "RFC: GAP-04 - **Willow Run Videos (open-contradictions)**",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 185,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-04-dodge-brothers-vs-henry-ford-g.md",
+      "title": "RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 238,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-05-harry-bennett-service-departme.md",
+      "title": "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 238,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-05-websocket-heartbeat-throttling.md",
+      "title": "RFC: GAP-05 - WebSocket Heartbeat Throttling",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 40,
+        "words": 199,
+        "headings": 6,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-06-willow-run-b-24-knock-down-kit.md",
+      "title": "RFC: GAP-06 - Willow Run B-24 knock-down kit manufacturing and logistics",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 226,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-07-ford-5-day-wage-increase-impac.md",
+      "title": "RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 34,
+        "words": 254,
+        "headings": 5,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\$TaskName.md",
+      "title": "$TaskName",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 32,
         "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.Catalog.md",
+      "title": ".Catalog",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
         "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.CoverageReport.md",
+      "title": ".CoverageReport",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.DreamState.md",
+      "title": ".DreamState",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.DreamStateV2.md",
+      "title": ".DreamStateV2",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.DriftReport.md",
+      "title": ".DriftReport",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.Gitattributes.md",
+      "title": ".Gitattributes",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.Gitignore.md",
+      "title": ".Gitignore",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.SessionCounter.md",
+      "title": ".SessionCounter",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.SessionCounterId.md",
+      "title": ".SessionCounterId",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.SessionMarkerTs.md",
+      "title": ".SessionMarkerTs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.SyncStatus.md",
+      "title": ".SyncStatus",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\.TranscriptCursor.md",
+      "title": ".TranscriptCursor",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 54,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\202607152134.md",
+      "title": "202607152134",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\202607211.md",
+      "title": "202607211",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\202608011.md",
+      "title": "202608011",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\20260801KbSyncCoverageRemediation.md",
+      "title": "DocsSuperpowersPlans20260801KbSyncCoverageRemediation",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 16,
+        "words": 28,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\20260801KbSyncEnhancements.md",
+      "title": "20260801KbSyncEnhancements",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\20260801KbSyncEnhancementsDesign.md",
+      "title": "20260801KbSyncEnhancementsDesign",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\App.md",
+      "title": "App",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Appearance.md",
+      "title": "Appearance",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Architecture.md",
+      "title": "Architecture",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ArchiveCleanup.md",
+      "title": "ArchiveCleanup",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ArtifactGenerator.md",
+      "title": "ArtifactGenerator",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 29,
+        "words": 62,
+        "headings": 5,
+        "links": 1
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ArtifactGenerator.Sh.md",
+      "title": "ArtifactGenerator.Sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\AuditCoverage.md",
+      "title": "AuditCoverage",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Authentication.md",
+      "title": "Authentication",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\AutofillFrontmatter.md",
+      "title": "AutofillFrontmatter",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\AutomationPolicy.md",
+      "title": "AutomationPolicy",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CHANGELOG.md",
+      "title": "CHANGELOG",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CheckStatus.md",
+      "title": "CheckStatus",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CLAUDE.md",
+      "title": "CLAUDE",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CleanupLogsAndBackups.md",
+      "title": "CleanupLogsAndBackups",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CleanupStagingArchives.md",
+      "title": "CleanupStagingArchives",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CommunityPlugins.md",
+      "title": "CommunityPlugins",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ComputeWeeklyMetrics.md",
+      "title": "ComputeWeeklyMetrics",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Concept.md",
+      "title": "Concept",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CoreDag.md",
+      "title": "CoreDag",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CorePlugins.md",
+      "title": "CorePlugins",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CoreScriptsVerification.md",
+      "title": "CoreScriptsVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CoverageAudit.Test.md",
+      "title": "CoverageAudit.Test",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CoverageReport.md",
+      "title": "CoverageReport",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CreateALink.md",
+      "title": "CreateALink",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 31,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CROSSPLATFORMTESTCHECKLIST.md",
+      "title": "CROSSPLATFORMTESTCHECKLIST",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\CROSSPLATFORMTESTING.md",
+      "title": "CROSSPLATFORMTESTING",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\DeltaSummary.Test.md",
+      "title": "DeltaSummary.Test",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\DetectDrift.md",
+      "title": "DetectDrift",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\DriftDetection.Test.md",
+      "title": "DriftDetection.Test",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\DriftReport.md",
+      "title": "DriftReport",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Entity.md",
+      "title": "Entity",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Env.md",
+      "title": "Env",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ErrorBoundaries.md",
+      "title": "ErrorBoundaries",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ExtractGithubPrs.md",
+      "title": "ExtractGithubPrs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\GenerateDeltaSummary.md",
+      "title": "GenerateDeltaSummary",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\GenerateKbSyncArtifact.md",
+      "title": "GenerateKbSyncArtifact",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\GenerateReport.md",
+      "title": "GenerateReport",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\GithubActionsSetup.md",
+      "title": "GithubActionsSetup",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\GithubWorkflowsTestSuite.md",
+      "title": "GithubWorkflowsTestSuite",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\GithubWorkflowsWeeklyReviewCapacity.md",
+      "title": "GithubWorkflowsWeeklyReviewCapacity",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Global.md",
+      "title": "Global",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Graph.md",
+      "title": "Graph",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Headless-Synthesis-Worker.md",
+      "title": "Headless-Synthesis-Worker",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 22,
+        "words": 45,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Ijfw.md",
+      "title": "Ijfw",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\IjfwDreamState.md",
+      "title": "IjfwDreamState",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\IjfwDreamStateV2.md",
+      "title": "IjfwDreamStateV2",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\IjfwMetricsSessions.md",
+      "title": "IjfwMetricsSessions",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\IjfwMetricsTranscriptCursor.md",
+      "title": "IjfwMetricsTranscriptCursor",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\IMPLEMENTATIONRECORDKBSYNCTIMEOUTPOLICY20260722.md",
+      "title": "IMPLEMENTATIONRECORDKBSYNCTIMEOUTPOLICY20260722",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Index.md",
+      "title": "Wiki Index",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 23,
+        "words": 41,
+        "headings": 2,
+        "links": 12
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KbSyncNightly.md",
+      "title": "KbSyncNightly",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KbSyncNightly20260717.md",
+      "title": "KbSyncNightly20260717",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KbSyncNightly20260717FINAL.md",
+      "title": "KbSyncNightly20260717FINAL",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KbSyncNightly20260723EXECUTIONBLOCKED.md",
+      "title": "KbSyncNightly20260723EXECUTIONBLOCKED",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KbSyncNightlyAudit.md",
+      "title": "KbSyncNightlyAudit",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KBSyncOrchestration.md",
+      "title": "KBSyncOrchestration",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\KBVaultObsidianVaultConfiguration.md",
+      "title": "KBVaultObsidianVaultConfiguration",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 42,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\LintRules.md",
+      "title": "LintRules",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Main.md",
+      "title": "Main",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Manifest.md",
+      "title": "Manifest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Mkdocs.md",
+      "title": "Mkdocs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesObsidianProvidersAnthropicProvider.md",
+      "title": "ModulesObsidianProvidersAnthropicProvider",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesObsidianProvidersLocalProvider.md",
+      "title": "ModulesObsidianProvidersLocalProvider",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesObsidianProvidersOfflineTemplateProvider.md",
+      "title": "ModulesObsidianProvidersOfflineTemplateProvider",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesObsidianSynthesizeWiki.md",
+      "title": "ModulesObsidianSynthesizeWiki",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesReviewCapacityReviewCapacityBaseline.md",
+      "title": "ModulesReviewCapacityReviewCapacityBaseline",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesWikiDashboard.md",
+      "title": "ModulesWikiDashboard",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesWikiGatedClimbRepair.md",
+      "title": "ModulesWikiGatedClimbRepair",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesWikiNormalizedDiffGuard.md",
+      "title": "ModulesWikiNormalizedDiffGuard",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ModulesWikiRepairProvider.md",
+      "title": "ModulesWikiRepairProvider",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Notebooklm.md",
+      "title": "Notebooklm",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\NotebooklmPs1Verification.Test.md",
+      "title": "NotebooklmPs1Verification.Test",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\NotebooklmSyncVerification.md",
+      "title": "NotebooklmSyncVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Obsidian.md",
+      "title": "Obsidian",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ObsidianIngestWiki.md",
+      "title": "ObsidianIngestWiki",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ObsidianKbSyncNightlyRun20260712.md",
+      "title": "ObsidianKbSyncNightlyRun20260712",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ObsidianKbSyncNightlyRun20260719.md",
+      "title": "ObsidianKbSyncNightlyRun20260719",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ObsidianSyncVerification.md",
+      "title": "ObsidianSyncVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ObsidianVaultKBVaultObsidianPluginsObsidianTasksPluginStyles.md",
+      "title": "ObsidianVaultKBVaultObsidianPluginsObsidianTasksPluginStyles",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ObsidianVaultWikiCatalog.md",
+      "title": "ObsidianVaultWikiCatalog",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\OperatorRules.md",
+      "title": "OperatorRules",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\OperatorWorkflow.md",
+      "title": "OperatorWorkflow",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Package.md",
+      "title": "Package",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\PackageLock.md",
+      "title": "PackageLock",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\PathNormalization.md",
+      "title": "PathNormalization",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\PathNormalizer.md",
+      "title": "PathNormalizer",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\PathNormalizerVerification.md",
+      "title": "PathNormalizerVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\PerformanceBenchmark.md",
+      "title": "PerformanceBenchmark",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Pipeline.md",
+      "title": "Pipeline",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\PIPELINEEXECUTIONREPORT.md",
+      "title": "PIPELINEEXECUTIONREPORT",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Progress.md",
+      "title": "Progress",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ProjectJournal.md",
+      "title": "ProjectJournal",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Pyragify.md",
+      "title": "Pyragify",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\README.md",
+      "title": "README",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\RegisterKbSyncTask.md",
+      "title": "RegisterKbSyncTask",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\RepairProvider.Mjs.md",
+      "title": "RepairProvider.Mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 43,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\RetryAndTimeout.md",
+      "title": "RetryAndTimeout",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\REVIEW.md",
+      "title": "REVIEW",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ReviewCapacity.Test.md",
+      "title": "ReviewCapacity.Test",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\RoadmapSync20260719.md",
+      "title": "RoadmapSync20260719",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScheduleTaskWrapperKBSyncCleanupArchives.md",
+      "title": "ScheduleTaskWrapperKBSyncCleanupArchives",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScheduleTaskWrapperKBSyncConsolidatePack.md",
+      "title": "ScheduleTaskWrapperKBSyncConsolidatePack",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScheduleTaskWrapperKBSyncGeneratePrompt.md",
+      "title": "ScheduleTaskWrapperKBSyncGeneratePrompt",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScheduleTaskWrapperKBSyncStageSources.md",
+      "title": "ScheduleTaskWrapperKBSyncStageSources",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScheduleTaskWrapperKBSyncValidateStaging.md",
+      "title": "ScheduleTaskWrapperKBSyncValidateStaging",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScheduleTaskWrapperKBSyncWikiAutomate.md",
+      "title": "ScheduleTaskWrapperKBSyncWikiAutomate",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Schema.md",
+      "title": "Schema",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SchemasAdjacencySchemaV2.md",
+      "title": "SchemasAdjacencySchemaV2",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SchemasDagSchemaV2.md",
+      "title": "SchemasDagSchemaV2",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ScriptsBuildDag.md",
+      "title": "ScriptsBuildDag",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SemanticIngestWorkflow.md",
+      "title": "SemanticIngestWorkflow",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Session20260723010038.md",
+      "title": "Session20260723010038",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Session20260726020004.md",
+      "title": "Session20260726020004",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Session20260730231936.md",
+      "title": "Session20260730231936",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SESSIONWRAPUP20260726.md",
+      "title": "SESSIONWRAPUP20260726",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SetupAuth.md",
+      "title": "SetupAuth",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SetupScheduledTasks.md",
+      "title": "SetupScheduledTasks",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SkillApprovalRules.md",
+      "title": "SkillApprovalRules",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SYNCFAILURE20260720.md",
+      "title": "SYNCFAILURE20260720",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\SyncStatus.md",
+      "title": "SyncStatus",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TaskSchedulerSetup.md",
+      "title": "TaskSchedulerSetup",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsBuildDagCliTest.md",
+      "title": "TestsBuildDagCliTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsDagBuilderTest.md",
+      "title": "TestsDagBuilderTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsDagCoreTest.md",
+      "title": "TestsDagCoreTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsGatedClimbLockSecurityTest.md",
+      "title": "TestsGatedClimbLockSecurityTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsGatedClimbPipelineTest.md",
+      "title": "TestsGatedClimbPipelineTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsHarnessSafeguardsVerification.md",
+      "title": "TestsHarnessSafeguardsVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsIncrementalDeltaSyncTest.md",
+      "title": "TestsIncrementalDeltaSyncTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsModulesTestNotebooklmIngest.md",
+      "title": "TestsModulesTestNotebooklmIngest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsNormalizedDiffGuardTest.md",
+      "title": "TestsNormalizedDiffGuardTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsSchemaValidationTest.md",
+      "title": "TestsSchemaValidationTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsSynthesizeWorkerVerification.md",
+      "title": "TestsSynthesizeWorkerVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\TestsValidateContractJsonTest.md",
+      "title": "TestsValidateContractJsonTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ThreeLayerVaultArchitecture.md",
+      "title": "ThreeLayerVaultArchitecture",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ToolforgeKbsyncContract.md",
+      "title": "ToolforgeKbsyncContract",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\UpdateRules.md",
+      "title": "UpdateRules",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ValidateContract.md",
+      "title": "ValidateContract",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ValidateStaging.md",
+      "title": "ValidateStaging",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ValidateStagingDocs.md",
+      "title": "ValidateStagingDocs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\ValidateStagingV12Features.md",
+      "title": "ValidateStagingV12Features",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\VERSION.md",
+      "title": "VERSION",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\VitestConfig.md",
+      "title": "VitestConfig",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Webhooks.md",
+      "title": "Webhooks",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WeeklyMetrics.md",
+      "title": "WeeklyMetrics",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WeeklyReviewCapacityWorkflow.Test.md",
+      "title": "TestsWeeklyReviewCapacityWorkflowTest",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 16,
+        "words": 28,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Welcome.md",
+      "title": "Welcome",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiCatalog.md",
+      "title": "WikiCatalog",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiContractBackfill.md",
+      "title": "WikiContractBackfill",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 31,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiContractCleanupVerification.md",
+      "title": "WikiContractCleanupVerification",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiLintRules.md",
+      "title": "WikiLintRules",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiOperatorWorkflow.md",
+      "title": "WikiOperatorWorkflow",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiSchema.md",
+      "title": "WikiSchema",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\WikiUpdateRules.md",
+      "title": "WikiUpdateRules",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Workspace.md",
+      "title": "Workspace",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\wiki\\Core\\PathNormalizer.Mjs.md",
+      "title": "PathNormalizer.Mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\Chunk.md",
+      "title": "Chunk",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\CleanupPackDir.md",
+      "title": "CleanupPackDir",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\Flatten.md",
+      "title": "Flatten",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\Generate.md",
+      "title": "Generate",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\IngestNotebooklm.md",
+      "title": "IngestNotebooklm",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\IngestObsidian.md",
+      "title": "IngestObsidian",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\IngestWiki.md",
+      "title": "IngestWiki",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\PostCommitHookExample.md",
+      "title": "PostCommitHookExample",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\Rollback.md",
+      "title": "Rollback",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\RunAll.md",
+      "title": "RunAll",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\SecretScanHook.md",
+      "title": "SecretScanHook",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\TestWslPathNormalization.md",
+      "title": "TestWslPathNormalization",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\Validate.md",
+      "title": "Validate",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\kb-sync\\utilities\\WikiValidatePrecommit.md",
+      "title": "WikiValidatePrecommit",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\audit-coverage.ts.md",
+      "title": "audit-coverage.ts",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\autofill-frontmatter.mjs.md",
+      "title": "autofill-frontmatter.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\check-status.mjs.md",
+      "title": "check-status.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\chunk.sh.md",
+      "title": "chunk.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\cleanup-logs-and-backups.mjs.md",
+      "title": "cleanup-logs-and-backups.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\cleanup-pack-dir.sh.md",
+      "title": "cleanup-pack-dir.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\cleanup-staging-archives.mjs.md",
+      "title": "cleanup-staging-archives.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\compute-weekly-metrics.ps1.md",
+      "title": "compute-weekly-metrics.ps1",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\dashboard.html.md",
+      "title": "WikiEntitiesDashboardHtml",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 20,
+        "words": 68,
+        "headings": 4,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\detect-drift.ts.md",
+      "title": "detect-drift.ts",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\extract-github-prs.ps1.md",
+      "title": "extract-github-prs.ps1",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\flatten.sh.md",
+      "title": "flatten.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\generate-delta-summary.ts.md",
+      "title": "generate-delta-summary.ts",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\generate-kb-sync-artifact.js.md",
+      "title": "generate-kb-sync-artifact.js",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\generate-kb-sync-artifact.mjs.md",
+      "title": "generate-kb-sync-artifact.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\generate-kb-sync-artifact.ts.md",
+      "title": "generate-kb-sync-artifact.ts",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\generate-report.mjs.md",
+      "title": "generate-report.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\generate.sh.md",
+      "title": "generate.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\ingest-notebooklm.sh.md",
+      "title": "ingest-notebooklm.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\ingest-obsidian.sh.md",
+      "title": "ingest-obsidian.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\ingest-wiki.sh.md",
+      "title": "ingest-wiki.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\kb-sync-nightly.ps1.md",
+      "title": "kb-sync-nightly.ps1",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\kb-sync-nightly.sh.md",
+      "title": "kb-sync-nightly.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\path-normalizer-verification.ts.md",
+      "title": "path-normalizer-verification.ts",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\path-normalizer.mjs.md",
+      "title": "path-normalizer.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\post-commit-hook-example.sh.md",
+      "title": "post-commit-hook-example.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\register-kb-sync-task.ps1.md",
+      "title": "register-kb-sync-task.ps1",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\rollback.sh.md",
+      "title": "rollback.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\run-all.sh.md",
+      "title": "run-all.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md",
+      "title": "schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\secret-scan-hook.sh.md",
+      "title": "secret-scan-hook.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\setup-auth.mjs.md",
+      "title": "setup-auth.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\setup-scheduled-tasks.ps1.md",
+      "title": "setup-scheduled-tasks.ps1",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\test-watchlist-run.mjs.md",
+      "title": "WikiEntitiesTestWatchlistRunMjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 74,
+        "headings": 4,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\validate-contract.mjs.md",
+      "title": "validate-contract.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\validate-staging-docs.mjs.md",
+      "title": "validate-staging-docs.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\validate.sh.md",
+      "title": "validate.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\verify-dependencies.mjs.md",
+      "title": "WikiEntitiesVerifyDependenciesMjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 19,
+        "words": 66,
+        "headings": 4,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\verify-dependencies.test.mjs.md",
+      "title": "WikiEntitiesVerifyDependenciesTestMjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 19,
+        "words": 51,
+        "headings": 4,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\watch-competitors-v2.mjs.md",
+      "title": "WikiEntitiesWatchCompetitorsV2Mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 156,
+        "headings": 4,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\watch-competitors.mjs.md",
+      "title": "WikiEntitiesWatchCompetitorsMjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 16,
+        "words": 46,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\wiki-contract-backfill.mjs.md",
+      "title": "wiki-contract-backfill.mjs",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\entities\\wiki-validate-precommit.sh.md",
+      "title": "wiki-validate-precommit.sh",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\deterministic-sync-pipeline.md",
+      "title": "deterministic-sync-pipeline",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\fail-soft-orchestration.md",
+      "title": "fail-soft-orchestration",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\immutable-staging.md",
+      "title": "immutable-staging",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\karpathy-llm-wiki-pattern.md",
+      "title": "karpathy-llm-wiki-pattern",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\local-context-cache.md",
+      "title": "WikiConceptsLocalContextCache",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 23,
+        "words": 85,
+        "headings": 5,
+        "links": 2
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\manifest-mode.md",
+      "title": "manifest-mode",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\pack-based-knowledge-management.md",
+      "title": "pack-based-knowledge-management",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\raw-source-staging.md",
+      "title": "raw-source-staging",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 21,
+        "words": 36,
+        "headings": 3,
+        "links": 0
+      }
+    },
+    {
+      "file": "C:\\dev\\kb-sync\\wiki\\concepts\\trm-closed-loop-research.md",
+      "title": "WikiConceptsTRMClosedLoopResearch",
+      "description": null,
+      "tags": [],
+      "author": null,
+      "date": null,
+      "stats": {
+        "lines": 24,
+        "words": 85,
+        "headings": 5,
+        "links": 3
       }
     }
   ]
