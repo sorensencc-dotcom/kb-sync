@@ -183,17 +183,24 @@ function walkMarkdownFiles(dir, ignorePatterns = []) {
   return results;
 }
 
-// Maps lowercased basename -> array of relative paths (usually length 1;
-// length > 1 means the name is ambiguous and callers should flag it rather
-// than silently resolving to whichever file happened to be seen first).
+// Maps lowercased basename, kebab-case slug, and relative paths -> array of relative paths
 function buildWikiRegistry(wikiRoot) {
   const registry = new Map();
   if (!fs.existsSync(wikiRoot)) return registry;
   for (const file of walkMarkdownFiles(wikiRoot)) {
-    const name = path.basename(file, '.md').toLowerCase();
-    const relPath = path.relative(wikiRoot, file);
-    if (!registry.has(name)) registry.set(name, [relPath]);
-    else registry.get(name).push(relPath);
+    const base = path.basename(file, '.md');
+    const name = base.toLowerCase();
+    const kebab = base.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const strippedDot = name.replace(/^\./, '');
+    const relPath = path.relative(wikiRoot, file).replace(/\\/g, '/');
+    const relPathLower = relPath.toLowerCase().replace(/\.md$/, '');
+    const keys = new Set([name, kebab, strippedDot, relPathLower, relPath.toLowerCase()]);
+
+    for (const key of keys) {
+      if (!key) continue;
+      if (!registry.has(key)) registry.set(key, [relPath]);
+      else if (!registry.get(key).includes(relPath)) registry.get(key).push(relPath);
+    }
   }
   return registry;
 }
@@ -273,7 +280,7 @@ function detectAliasDisambiguation(content, registry) {
 
 // Extract frontmatter from markdown (YAML between --- delimiters)
 function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n/);
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
   if (!match) return null;
   const yaml = match[1];
   const result = {};
@@ -452,7 +459,8 @@ function validateFile(file, registry, repoRootPath) {
     warnings.push(`lint: ${issue}`);
   }
 
-  const firstLines = content.split(/\r?\n/).slice(0, 10);
+  const bodyWithoutFm = content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+  const firstLines = bodyWithoutFm.trimStart().split(/\r?\n/).slice(0, 10);
   if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
     warnings.push('missing top-level "# Heading"');
   }
@@ -463,18 +471,21 @@ function validateFile(file, registry, repoRootPath) {
   }
 
   for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
-    const name = match[1].trim();
-    const hit = registry.get(name.toLowerCase());
+    const rawTarget = match[1].trim();
+    const name = rawTarget.toLowerCase();
+    const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
+    const baseName = path.basename(rawTarget, '.md').toLowerCase();
+    const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
     if (!hit) {
       const suggestions = findSuggestions(name, registry);
-      let msg = `unresolved wiki-link [[${name}]] (no matching page in wiki registry)`;
+      let msg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
       if (suggestions.length > 0) {
         const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
         msg += `. Did you mean: ${suggStr}?`;
       }
       warnings.push(msg);
     } else if (hit.length > 1) {
-      warnings.push(`ambiguous wiki-link [[${name}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+      warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
     }
   }
 

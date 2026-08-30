@@ -1,4 +1,5 @@
 ---
+title: "Mobile Browser WebSocket Heartbeats Specification & Analysis"
 source_title: "Mobile Browser WebSocket Heartbeats Specification & Analysis"
 repository: "CIC Architecture & Research Archive - Accession 65, Box 69"
 document_date: "2026-08-23"
