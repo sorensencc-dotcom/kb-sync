@@ -4,8 +4,8 @@ category: sync-tools
 status: active
 sourceRepository: kb-sync-drift-fix
 sourceFile: core/config.mjs
-sha256: 2fb18654ba920ca997f2c0648827062c816696783432a13af512c5844d899e16
-lastCommit: 2026-08-22T22:27:29-04:00
+sha256: 7ff76245e84f6cbccdf7b441f8703189f9030b1072acbf4138ad62f0b8078f3d
+lastCommit: 2026-08-29T22:27:32-04:00
 ---
 
 # config.mjs
@@ -14,11 +14,15 @@ lastCommit: 2026-08-22T22:27:29-04:00
 Synthesized entity documentation for `core/config.mjs` in **kb-sync-drift-fix**.
 
 - **File Path:** `core/config.mjs`
-- **Lines of Code:** 16
-- **Last Modified:** `2026-08-22T22:27:29-04:00`
-- **SHA-256:** `2fb18654ba920ca997f2c0648827062c816696783432a13af512c5844d899e16`
+- **Lines of Code:** 140
+- **Last Modified:** `2026-08-29T22:27:32-04:00`
+- **SHA-256:** `7ff76245e84f6cbccdf7b441f8703189f9030b1072acbf4138ad62f0b8078f3d`
 
 ## Exported Symbols & API
+- `loadCategoriesData`
+- `validateCategoriesData`
+- `saveCategoriesData`
+- `buildNotebookTargetMap`
 - `NOTEBOOK_TARGETS`
 - `resolveNotebookId`
 

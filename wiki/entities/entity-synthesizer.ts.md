@@ -5,7 +5,7 @@ status: active
 sourceRepository: kb-sync-drift-fix
 sourceFile: modules/wiki/entity-synthesizer.ts
 sha256: e04c5b4dcf5c0a34f1bf8fe92817d7d0ef2d835b8ef4802705e776e0e15f6186
-lastCommit: 2026-08-30T02:59:35.247Z
+lastCommit: 2026-08-29T23:01:31-04:00
 ---
 
 # entity-synthesizer.ts
@@ -15,7 +15,7 @@ Synthesized entity documentation for `modules/wiki/entity-synthesizer.ts` in **k
 
 - **File Path:** `modules/wiki/entity-synthesizer.ts`
 - **Lines of Code:** 192
-- **Last Modified:** `2026-08-30T02:59:35.247Z`
+- **Last Modified:** `2026-08-29T23:01:31-04:00`
 - **SHA-256:** `e04c5b4dcf5c0a34f1bf8fe92817d7d0ef2d835b8ef4802705e776e0e15f6186`
 
 ## Exported Symbols & API

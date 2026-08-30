@@ -4,8 +4,8 @@ category: wiki
 status: active
 sourceRepository: kb-sync-drift-fix
 sourceFile: modules/wiki/detect-drift.ts
-sha256: 56c23ad998f30a80627d1a188949a2feedf7b30444f064ccf2de55ffe89042c1
-lastCommit: 2026-08-29T22:42:31-04:00
+sha256: 592dc2b1d203e4b09924bf94b2207f383b733a1e18aa03a198da1b446607cb26
+lastCommit: 2026-08-29T23:01:31-04:00
 ---
 
 # detect-drift.ts
@@ -14,9 +14,9 @@ lastCommit: 2026-08-29T22:42:31-04:00
 Synthesized entity documentation for `modules/wiki/detect-drift.ts` in **kb-sync-drift-fix**.
 
 - **File Path:** `modules/wiki/detect-drift.ts`
-- **Lines of Code:** 840
-- **Last Modified:** `2026-08-29T22:42:31-04:00`
-- **SHA-256:** `56c23ad998f30a80627d1a188949a2feedf7b30444f064ccf2de55ffe89042c1`
+- **Lines of Code:** 849
+- **Last Modified:** `2026-08-29T23:01:31-04:00`
+- **SHA-256:** `592dc2b1d203e4b09924bf94b2207f383b733a1e18aa03a198da1b446607cb26`
 
 ## Exported Symbols & API
 - `validateIsoUtcTimestamp`
