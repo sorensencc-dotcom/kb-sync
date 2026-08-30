@@ -3,6 +3,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { CANONICAL_REPOSITORIES } from './cross-repo-drift-scanner.ts';
+import { synthesizeAllEntities } from './entity-synthesizer.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -81,6 +82,17 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
   const remoteWikiUrl = deriveRepoWikiUrl(repoPath, repoName);
   const tempPublishDir = path.join(repoPath, '.wiki-publish-temp');
 
+  // Auto-synthesize entity documentation for the repository
+  try {
+    synthesizeAllEntities({
+      repoName,
+      repoRoot: repoPath,
+      targetWikiDir: path.join(repoPath, 'wiki')
+    });
+  } catch (err) {
+    console.error(`[FLEET-RECONCILER] Entity synthesis warning for ${repoName}:`, err);
+  }
+
   let docSourceDir = path.join(repoPath, 'wiki');
   if (!fs.existsSync(docSourceDir)) {
     const altDocs = path.join(repoPath, 'docs');
@@ -112,28 +124,35 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
 
     const filesCopied = copyFlatAndPreserve(docSourceDir, tempPublishDir);
 
-    // Navigation templates
-    const homePath = path.join(tempPublishDir, 'Home.md');
-    if (!fs.existsSync(homePath)) {
-      const readmePath = path.join(repoPath, 'README.md');
-      const homeContent = fs.existsSync(readmePath)
-        ? fs.readFileSync(readmePath, 'utf8')
-        : `# ${repoName} Documentation Wiki\n\nWelcome to the official documentation for **${repoName}**.`;
-      fs.writeFileSync(homePath, homeContent, 'utf8');
+    // Also copy docs/ if wiki/ was primary
+    const docsExtra = path.join(repoPath, 'docs');
+    if (docSourceDir !== docsExtra && fs.existsSync(docsExtra)) {
+      copyFlatAndPreserve(docsExtra, tempPublishDir);
     }
 
-    const sidebarPath = path.join(tempPublishDir, '_Sidebar.md');
-    if (!fs.existsSync(sidebarPath)) {
-      let sidebar = `### ${repoName} Wiki\n- [[Home]]\n\n#### Navigation\n`;
-      const entries = fs.readdirSync(docSourceDir, { withFileTypes: true });
-      for (const e of entries) {
-        if (e.isFile() && e.name.endsWith('.md') && e.name !== 'Home.md') {
-          const title = e.name.replace(/\.md$/, '');
-          sidebar += `- [[${title}]]\n`;
-        }
-      }
-      fs.writeFileSync(sidebarPath, sidebar, 'utf8');
+    // Always generate/overwrite Home.md with fresh README and timestamp
+    const homePath = path.join(tempPublishDir, 'Home.md');
+    const readmePath = path.join(repoPath, 'README.md');
+    let homeContent = '';
+    if (fs.existsSync(readmePath)) {
+      homeContent = fs.readFileSync(readmePath, 'utf8');
+    } else {
+      homeContent = `# ${repoName} Documentation Wiki\n\nWelcome to the official documentation for **${repoName}**.`;
     }
+    homeContent += `\n\n---\n*Last Synchronized: ${new Date().toISOString()} • Fleet Reconciler*\n`;
+    fs.writeFileSync(homePath, homeContent, 'utf8');
+
+    // Always generate/overwrite _Sidebar.md with all pages
+    const sidebarPath = path.join(tempPublishDir, '_Sidebar.md');
+    let sidebar = `### ${repoName} Wiki\n- [[Home]]\n\n#### Documentation & Entities\n`;
+    const files = fs.readdirSync(tempPublishDir)
+      .filter((f: string) => f.endsWith('.md') && !f.startsWith('_') && f !== 'Home.md')
+      .sort();
+    for (const f of files) {
+      const title = f.replace(/\.md$/, '');
+      sidebar += `- [[${title}]]\n`;
+    }
+    fs.writeFileSync(sidebarPath, sidebar, 'utf8');
 
     const footerPath = path.join(tempPublishDir, '_Footer.md');
     fs.writeFileSync(footerPath, `---\n*Automated Fleet Wiki Sync • Generated at ${new Date().toISOString()}*`, 'utf8');
