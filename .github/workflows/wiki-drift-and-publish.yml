@@ -48,8 +48,10 @@ jobs:
       - name: Publish to GitHub Wiki (Main / Scheduled)
         if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
-          WIKI_REPO_URL: "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
+          WIKI_REPO_URL: "https://x-access-token:${{ secrets.WIKI_SYNC_PAT || secrets.GH_PAT || secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           node scripts/sync-github-wiki.mjs --repo-url "$WIKI_REPO_URL"
 
       - name: Verify cryptographic sync receipt

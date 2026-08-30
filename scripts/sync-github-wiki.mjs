@@ -176,6 +176,14 @@ export async function publishWiki(customOptions = {}) {
     const status = execSync('git status --porcelain', { cwd: currentTarget, encoding: 'utf8' }).trim();
 
     if (status) {
+      console.log(`Configuring git author for wiki publisher...`);
+      try {
+        execSync('git config user.name', { cwd: currentTarget, stdio: 'pipe' });
+      } catch {
+        execSync('git config user.name "github-actions[bot]"', { cwd: currentTarget });
+        execSync('git config user.email "github-actions[bot]@users.noreply.github.com"', { cwd: currentTarget });
+      }
+
       console.log(`Committing wiki updates...`);
       execSync(`git commit -m "${commitMessage}"`, { cwd: currentTarget, stdio: 'inherit' });
       console.log(`Pushing to ${currentUrl}...`);
