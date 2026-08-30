@@ -1,20 +1,23 @@
 ---
 title: wiki-validate-precommit.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesWikiValidatePrecommitSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/wiki-validate-precommit.sh.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/wiki-validate-precommit.sh
+sha256: f596acab6f08155f8294934762d3385270f78ad97b4aa15766205207e40a9c84
+lastCommit: 2026-08-29T21:54:50-04:00
 ---
 
-# WikiEntitiesWikiValidatePrecommitSh
+# wiki-validate-precommit.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/wiki-validate-precommit.sh.md
+## Overview
+Synthesized entity documentation for `scripts/wiki-validate-precommit.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/wiki-validate-precommit.sh`
+- **Lines of Code:** 88
+- **Last Modified:** `2026-08-29T21:54:50-04:00`
+- **SHA-256:** `f596acab6f08155f8294934762d3385270f78ad97b4aa15766205207e40a9c84`
 
 ## Source Citations
-- Staged: `wiki/entities/wiki-validate-precommit.sh.md`
+- Source: `scripts/wiki-validate-precommit.sh`
+- Repository: `kb-sync-drift-fix`

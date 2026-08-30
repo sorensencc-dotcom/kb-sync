@@ -1,20 +1,23 @@
 ---
 title: autofill-frontmatter.mjs
 category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesAutofillFrontmatterMjs"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/autofill-frontmatter.mjs.md"]
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: modules/wiki/autofill-frontmatter.mjs
+sha256: a0d55eed4205034ce7e351ea9caeddb782d865992be9bd8e28da8759c723427e
+lastCommit: 2026-07-21T15:52:50-04:00
 ---
 
-# WikiEntitiesAutofillFrontmatterMjs
+# autofill-frontmatter.mjs
 
-## Summary
-Synthesized documentation node for wiki/entities/autofill-frontmatter.mjs.md
+## Overview
+Synthesized entity documentation for `modules/wiki/autofill-frontmatter.mjs` in **kb-sync-drift-fix**.
+
+- **File Path:** `modules/wiki/autofill-frontmatter.mjs`
+- **Lines of Code:** 35
+- **Last Modified:** `2026-07-21T15:52:50-04:00`
+- **SHA-256:** `a0d55eed4205034ce7e351ea9caeddb782d865992be9bd8e28da8759c723427e`
 
 ## Source Citations
-- Staged: `wiki/entities/autofill-frontmatter.mjs.md`
+- Source: `modules/wiki/autofill-frontmatter.mjs`
+- Repository: `kb-sync-drift-fix`

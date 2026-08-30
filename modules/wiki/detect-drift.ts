@@ -586,8 +586,13 @@ function parseWikiLogTimestamp(): string | null {
 }
 
 function getWikiSyncTimestamp(): string {
-  const logTimestamp = parseWikiLogTimestamp();
-  if (logTimestamp) return logTimestamp;
+  const receiptPath = path.join(REPO_ROOT, ".wiki-sync-receipt.json");
+  if (fs.existsSync(receiptPath)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(receiptPath, "utf8"));
+      if (data.verified_at) return data.verified_at;
+    } catch {}
+  }
 
   const syncStatusPath = path.join(REPO_ROOT, ".sync-status.json");
   if (fs.existsSync(syncStatusPath)) {
@@ -596,6 +601,10 @@ function getWikiSyncTimestamp(): string {
       if (data.last_sync_timestamp) return data.last_sync_timestamp;
     } catch {}
   }
+
+  const logTimestamp = parseWikiLogTimestamp();
+  if (logTimestamp) return logTimestamp;
+
   return new Date(0).toISOString();
 }
 

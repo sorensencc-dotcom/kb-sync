@@ -1,20 +1,23 @@
 ---
 title: setup-auth.mjs
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesSetupAuthMjs"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/setup-auth.mjs.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/notebooklm/setup-auth.mjs
+sha256: ffb0fbfc99f931cd9908a76bfb064eacf614a1615872b7f3e843c7a5bca01fa5
+lastCommit: 2026-07-25T00:43:50-04:00
 ---
 
-# WikiEntitiesSetupAuthMjs
+# setup-auth.mjs
 
-## Summary
-Synthesized documentation node for wiki/entities/setup-auth.mjs.md
+## Overview
+Synthesized entity documentation for `scripts/notebooklm/setup-auth.mjs` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/notebooklm/setup-auth.mjs`
+- **Lines of Code:** 97
+- **Last Modified:** `2026-07-25T00:43:50-04:00`
+- **SHA-256:** `ffb0fbfc99f931cd9908a76bfb064eacf614a1615872b7f3e843c7a5bca01fa5`
 
 ## Source Citations
-- Staged: `wiki/entities/setup-auth.mjs.md`
+- Source: `scripts/notebooklm/setup-auth.mjs`
+- Repository: `kb-sync-drift-fix`

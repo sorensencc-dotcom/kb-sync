@@ -1,0 +1,10 @@
+{
+  "repository": "kb-sync-drift-fix",
+  "remote_wiki_url": "git@github.com:sorensencc-dotcom/kb-sync.wiki.git",
+  "local_code_head": "38d2f326e1326f718dcf8e582bc67534ef8411f8",
+  "remote_wiki_head": "ebcb01e69d42ea314b021e0b6ab7f07e2ee71358",
+  "verified_at": "2026-08-30T03:00:41.979Z",
+  "system_time_epoch_ms": 1788058841979,
+  "total_pages_published": 436,
+  "sync_status": "SYNCHRONIZED"
+}

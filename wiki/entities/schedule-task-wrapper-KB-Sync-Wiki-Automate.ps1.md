@@ -1,20 +1,23 @@
 ---
 title: schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesScheduleTaskWrapperKBSyncWikiAutomatePs1"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
+sha256: 02322dac3e6437a3558cb4ed678fdbea17b3f8d49ec1091aaceee0fa8e10cfb0
+lastCommit: 2026-07-25T20:51:28-04:00
 ---
 
-# WikiEntitiesScheduleTaskWrapperKBSyncWikiAutomatePs1
+# schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
 
-## Summary
-Synthesized documentation node for wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md
+## Overview
+Synthesized entity documentation for `scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1`
+- **Lines of Code:** 46
+- **Last Modified:** `2026-07-25T20:51:28-04:00`
+- **SHA-256:** `02322dac3e6437a3558cb4ed678fdbea17b3f8d49ec1091aaceee0fa8e10cfb0`
 
 ## Source Citations
-- Staged: `wiki/entities/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1.md`
+- Source: `scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1`
+- Repository: `kb-sync-drift-fix`

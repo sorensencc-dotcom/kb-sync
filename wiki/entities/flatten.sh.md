@@ -1,20 +1,23 @@
 ---
 title: flatten.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesFlattenSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/flatten.sh.md"]
+category: sync-tools
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: core/flatten.sh
+sha256: ce4d75d8a1a924c71f82177261301e5d9aa102ea3b39c23318cf2e17e9642eea
+lastCommit: 2026-08-21T10:19:51-04:00
 ---
 
-# WikiEntitiesFlattenSh
+# flatten.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/flatten.sh.md
+## Overview
+Synthesized entity documentation for `core/flatten.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `core/flatten.sh`
+- **Lines of Code:** 261
+- **Last Modified:** `2026-08-21T10:19:51-04:00`
+- **SHA-256:** `ce4d75d8a1a924c71f82177261301e5d9aa102ea3b39c23318cf2e17e9642eea`
 
 ## Source Citations
-- Staged: `wiki/entities/flatten.sh.md`
+- Source: `core/flatten.sh`
+- Repository: `kb-sync-drift-fix`

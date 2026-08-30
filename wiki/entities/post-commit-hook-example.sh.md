@@ -1,20 +1,23 @@
 ---
 title: post-commit-hook-example.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesPostCommitHookExampleSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/post-commit-hook-example.sh.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/notebooklm/post-commit-hook-example.sh
+sha256: d1e293f739d9cd7febc92184fe63ac4ad54b8a53da24eb9f4996051752b029a0
+lastCommit: 2026-08-06T09:29:21-04:00
 ---
 
-# WikiEntitiesPostCommitHookExampleSh
+# post-commit-hook-example.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/post-commit-hook-example.sh.md
+## Overview
+Synthesized entity documentation for `scripts/notebooklm/post-commit-hook-example.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/notebooklm/post-commit-hook-example.sh`
+- **Lines of Code:** 28
+- **Last Modified:** `2026-08-06T09:29:21-04:00`
+- **SHA-256:** `d1e293f739d9cd7febc92184fe63ac4ad54b8a53da24eb9f4996051752b029a0`
 
 ## Source Citations
-- Staged: `wiki/entities/post-commit-hook-example.sh.md`
+- Source: `scripts/notebooklm/post-commit-hook-example.sh`
+- Repository: `kb-sync-drift-fix`

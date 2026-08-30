@@ -1,20 +1,23 @@
 ---
 title: kb-sync-nightly.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesKbSyncNightlySh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/kb-sync-nightly.sh.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/notebooklm/kb-sync-nightly.sh
+sha256: 18b19d89dec73979078371aae4a4ce09aeb21afef973638d487c965ee4f8c67b
+lastCommit: 2026-08-22T22:27:29-04:00
 ---
 
-# WikiEntitiesKbSyncNightlySh
+# kb-sync-nightly.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/kb-sync-nightly.sh.md
+## Overview
+Synthesized entity documentation for `scripts/notebooklm/kb-sync-nightly.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/notebooklm/kb-sync-nightly.sh`
+- **Lines of Code:** 107
+- **Last Modified:** `2026-08-22T22:27:29-04:00`
+- **SHA-256:** `18b19d89dec73979078371aae4a4ce09aeb21afef973638d487c965ee4f8c67b`
 
 ## Source Citations
-- Staged: `wiki/entities/kb-sync-nightly.sh.md`
+- Source: `scripts/notebooklm/kb-sync-nightly.sh`
+- Repository: `kb-sync-drift-fix`

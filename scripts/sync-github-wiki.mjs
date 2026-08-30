@@ -188,6 +188,20 @@ export async function publishWiki(customOptions = {}) {
     try {
       remoteHeadSha = execSync('git rev-parse HEAD', { cwd: currentTarget, encoding: 'utf8' }).trim();
     } catch {}
+
+    // Update .sync-status.json
+    const syncStatusPath = path.join(currentRoot, '.sync-status.json');
+    try {
+      let syncStatusData = {};
+      if (fs.existsSync(syncStatusPath)) {
+        syncStatusData = JSON.parse(fs.readFileSync(syncStatusPath, 'utf8'));
+      }
+      syncStatusData.last_sync_timestamp = new Date().toISOString();
+      syncStatusData.status = 'SUCCESS';
+      syncStatusData.stage1_success = true;
+      syncStatusData.stage2_success = true;
+      fs.writeFileSync(syncStatusPath, JSON.stringify(syncStatusData, null, 2), 'utf8');
+    } catch {}
   }
 
   // Write cryptographic proof receipt

@@ -1,20 +1,23 @@
 ---
 title: validate.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesValidateSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/validate.sh.md"]
+category: sync-tools
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: core/validate.sh
+sha256: 73879f1d47810b7bc7133f45446363ef840502dfebc4606ca8b1c826c98f3b9b
+lastCommit: 2026-08-16T10:51:53-04:00
 ---
 
-# WikiEntitiesValidateSh
+# validate.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/validate.sh.md
+## Overview
+Synthesized entity documentation for `core/validate.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `core/validate.sh`
+- **Lines of Code:** 105
+- **Last Modified:** `2026-08-16T10:51:53-04:00`
+- **SHA-256:** `73879f1d47810b7bc7133f45446363ef840502dfebc4606ca8b1c826c98f3b9b`
 
 ## Source Citations
-- Staged: `wiki/entities/validate.sh.md`
+- Source: `core/validate.sh`
+- Repository: `kb-sync-drift-fix`

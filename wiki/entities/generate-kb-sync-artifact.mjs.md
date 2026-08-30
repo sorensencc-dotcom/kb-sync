@@ -1,20 +1,23 @@
 ---
 title: generate-kb-sync-artifact.mjs
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesGenerateKbSyncArtifactMjs"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/generate-kb-sync-artifact.mjs.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/notebooklm/generate-kb-sync-artifact.mjs
+sha256: 837ac808a857646f76ef8451d0b6678db5d49437b403d163d682ec7e7d2f5dbc
+lastCommit: 2026-08-26T08:56:58-04:00
 ---
 
-# WikiEntitiesGenerateKbSyncArtifactMjs
+# generate-kb-sync-artifact.mjs
 
-## Summary
-Synthesized documentation node for wiki/entities/generate-kb-sync-artifact.mjs.md
+## Overview
+Synthesized entity documentation for `scripts/notebooklm/generate-kb-sync-artifact.mjs` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/notebooklm/generate-kb-sync-artifact.mjs`
+- **Lines of Code:** 434
+- **Last Modified:** `2026-08-26T08:56:58-04:00`
+- **SHA-256:** `837ac808a857646f76ef8451d0b6678db5d49437b403d163d682ec7e7d2f5dbc`
 
 ## Source Citations
-- Staged: `wiki/entities/generate-kb-sync-artifact.mjs.md`
+- Source: `scripts/notebooklm/generate-kb-sync-artifact.mjs`
+- Repository: `kb-sync-drift-fix`

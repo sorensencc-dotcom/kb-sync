@@ -1,20 +1,23 @@
 ---
 title: kb-sync-nightly.ps1
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesKbSyncNightlyPs1"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/kb-sync-nightly.ps1.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: scripts/notebooklm/kb-sync-nightly.ps1
+sha256: 97175b1b9f8dc9e4e2dd228a5897ee1ed867fd2bcd03cfe3a4f743b2a62c29b3
+lastCommit: 2026-08-23T23:28:36-04:00
 ---
 
-# WikiEntitiesKbSyncNightlyPs1
+# kb-sync-nightly.ps1
 
-## Summary
-Synthesized documentation node for wiki/entities/kb-sync-nightly.ps1.md
+## Overview
+Synthesized entity documentation for `scripts/notebooklm/kb-sync-nightly.ps1` in **kb-sync-drift-fix**.
+
+- **File Path:** `scripts/notebooklm/kb-sync-nightly.ps1`
+- **Lines of Code:** 199
+- **Last Modified:** `2026-08-23T23:28:36-04:00`
+- **SHA-256:** `97175b1b9f8dc9e4e2dd228a5897ee1ed867fd2bcd03cfe3a4f743b2a62c29b3`
 
 ## Source Citations
-- Staged: `wiki/entities/kb-sync-nightly.ps1.md`
+- Source: `scripts/notebooklm/kb-sync-nightly.ps1`
+- Repository: `kb-sync-drift-fix`

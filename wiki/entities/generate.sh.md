@@ -1,20 +1,23 @@
 ---
 title: generate.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesGenerateSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/generate.sh.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: modules/artifact-generator/generate.sh
+sha256: f382060155394ca8071fee8b131068c6ffd26860aee8c44eea0df9e5485902a4
+lastCommit: 2026-08-06T09:29:21-04:00
 ---
 
-# WikiEntitiesGenerateSh
+# generate.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/generate.sh.md
+## Overview
+Synthesized entity documentation for `modules/artifact-generator/generate.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `modules/artifact-generator/generate.sh`
+- **Lines of Code:** 104
+- **Last Modified:** `2026-08-06T09:29:21-04:00`
+- **SHA-256:** `f382060155394ca8071fee8b131068c6ffd26860aee8c44eea0df9e5485902a4`
 
 ## Source Citations
-- Staged: `wiki/entities/generate.sh.md`
+- Source: `modules/artifact-generator/generate.sh`
+- Repository: `kb-sync-drift-fix`

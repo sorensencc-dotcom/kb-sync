@@ -1,20 +1,23 @@
 ---
 title: extract-github-prs.ps1
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesExtractGithubPrsPs1"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/extract-github-prs.ps1.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: modules/review-capacity/scripts/extract-github-prs.ps1
+sha256: 326738a87f1e7bbe1e44c0dc313f4dfa445b4bd7b124bd025afd5998fb957094
+lastCommit: 2026-08-22T09:18:56-04:00
 ---
 
-# WikiEntitiesExtractGithubPrsPs1
+# extract-github-prs.ps1
 
-## Summary
-Synthesized documentation node for wiki/entities/extract-github-prs.ps1.md
+## Overview
+Synthesized entity documentation for `modules/review-capacity/scripts/extract-github-prs.ps1` in **kb-sync-drift-fix**.
+
+- **File Path:** `modules/review-capacity/scripts/extract-github-prs.ps1`
+- **Lines of Code:** 146
+- **Last Modified:** `2026-08-22T09:18:56-04:00`
+- **SHA-256:** `326738a87f1e7bbe1e44c0dc313f4dfa445b4bd7b124bd025afd5998fb957094`
 
 ## Source Citations
-- Staged: `wiki/entities/extract-github-prs.ps1.md`
+- Source: `modules/review-capacity/scripts/extract-github-prs.ps1`
+- Repository: `kb-sync-drift-fix`

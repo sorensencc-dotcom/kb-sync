@@ -1,20 +1,23 @@
 ---
 title: path-normalizer-verification.ts
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesPathNormalizerVerificationTs"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/path-normalizer-verification.ts.md"]
+category: scaffolds
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: tests/path-normalizer-verification.ts
+sha256: 01f5773f3aa5be98a24cae49c45b001b3e75e410d4845d6124a283f0fd95f6c9
+lastCommit: 2026-07-25T20:59:40-04:00
 ---
 
-# WikiEntitiesPathNormalizerVerificationTs
+# path-normalizer-verification.ts
 
-## Summary
-Synthesized documentation node for wiki/entities/path-normalizer-verification.ts.md
+## Overview
+Synthesized entity documentation for `tests/path-normalizer-verification.ts` in **kb-sync-drift-fix**.
+
+- **File Path:** `tests/path-normalizer-verification.ts`
+- **Lines of Code:** 37
+- **Last Modified:** `2026-07-25T20:59:40-04:00`
+- **SHA-256:** `01f5773f3aa5be98a24cae49c45b001b3e75e410d4845d6124a283f0fd95f6c9`
 
 ## Source Citations
-- Staged: `wiki/entities/path-normalizer-verification.ts.md`
+- Source: `tests/path-normalizer-verification.ts`
+- Repository: `kb-sync-drift-fix`

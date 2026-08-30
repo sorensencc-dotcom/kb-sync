@@ -1,20 +1,23 @@
 ---
 title: rollback.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesRollbackSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/rollback.sh.md"]
+category: sync-tools
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: core/rollback.sh
+sha256: b385026861db1d8092d9fba17e4c740474d683b32b9bde2e09c5bf4b72f2b957
+lastCommit: 2026-08-06T09:29:21-04:00
 ---
 
-# WikiEntitiesRollbackSh
+# rollback.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/rollback.sh.md
+## Overview
+Synthesized entity documentation for `core/rollback.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `core/rollback.sh`
+- **Lines of Code:** 163
+- **Last Modified:** `2026-08-06T09:29:21-04:00`
+- **SHA-256:** `b385026861db1d8092d9fba17e4c740474d683b32b9bde2e09c5bf4b72f2b957`
 
 ## Source Citations
-- Staged: `wiki/entities/rollback.sh.md`
+- Source: `core/rollback.sh`
+- Repository: `kb-sync-drift-fix`

@@ -1,20 +1,23 @@
 ---
 title: cleanup-pack-dir.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesCleanupPackDirSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/cleanup-pack-dir.sh.md"]
+category: adapters
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: modules/notebooklm/cleanup-pack-dir.sh
+sha256: 8530adafd6bd7d5ab360d68e343822df8a3200cb4ce6627cc587b123f6a3cccb
+lastCommit: 2026-08-06T09:29:21-04:00
 ---
 
-# WikiEntitiesCleanupPackDirSh
+# cleanup-pack-dir.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/cleanup-pack-dir.sh.md
+## Overview
+Synthesized entity documentation for `modules/notebooklm/cleanup-pack-dir.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `modules/notebooklm/cleanup-pack-dir.sh`
+- **Lines of Code:** 26
+- **Last Modified:** `2026-08-06T09:29:21-04:00`
+- **SHA-256:** `8530adafd6bd7d5ab360d68e343822df8a3200cb4ce6627cc587b123f6a3cccb`
 
 ## Source Citations
-- Staged: `wiki/entities/cleanup-pack-dir.sh.md`
+- Source: `modules/notebooklm/cleanup-pack-dir.sh`
+- Repository: `kb-sync-drift-fix`

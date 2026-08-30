@@ -1,20 +1,23 @@
 ---
 title: generate-report.mjs
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesGenerateReportMjs"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/generate-report.mjs.md"]
+category: utilities
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: modules/artifact-generator/generate-report.mjs
+sha256: f957580d332e67c29219a60d583125f6a7302daca43056a09e125a127714fbe3
+lastCommit: 2026-07-21T15:52:50-04:00
 ---
 
-# WikiEntitiesGenerateReportMjs
+# generate-report.mjs
 
-## Summary
-Synthesized documentation node for wiki/entities/generate-report.mjs.md
+## Overview
+Synthesized entity documentation for `modules/artifact-generator/generate-report.mjs` in **kb-sync-drift-fix**.
+
+- **File Path:** `modules/artifact-generator/generate-report.mjs`
+- **Lines of Code:** 437
+- **Last Modified:** `2026-07-21T15:52:50-04:00`
+- **SHA-256:** `f957580d332e67c29219a60d583125f6a7302daca43056a09e125a127714fbe3`
 
 ## Source Citations
-- Staged: `wiki/entities/generate-report.mjs.md`
+- Source: `modules/artifact-generator/generate-report.mjs`
+- Repository: `kb-sync-drift-fix`

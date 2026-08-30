@@ -1,20 +1,23 @@
 ---
 title: chunk.sh
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesChunkSh"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/chunk.sh.md"]
+category: sync-tools
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: core/chunk.sh
+sha256: 455d77f40be3cf790384afc256c63edfe6e4d2156c049e9ad8ffbe14f8c70bb8
+lastCommit: 2026-08-12T22:28:55-04:00
 ---
 
-# WikiEntitiesChunkSh
+# chunk.sh
 
-## Summary
-Synthesized documentation node for wiki/entities/chunk.sh.md
+## Overview
+Synthesized entity documentation for `core/chunk.sh` in **kb-sync-drift-fix**.
+
+- **File Path:** `core/chunk.sh`
+- **Lines of Code:** 126
+- **Last Modified:** `2026-08-12T22:28:55-04:00`
+- **SHA-256:** `455d77f40be3cf790384afc256c63edfe6e4d2156c049e9ad8ffbe14f8c70bb8`
 
 ## Source Citations
-- Staged: `wiki/entities/chunk.sh.md`
+- Source: `core/chunk.sh`
+- Repository: `kb-sync-drift-fix`

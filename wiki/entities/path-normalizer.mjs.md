@@ -1,20 +1,29 @@
 ---
 title: path-normalizer.mjs
-category: wiki
-status: draft
-sourceRepository: kb-sync
----
----
-title: "WikiEntitiesPathNormalizerMjs"
-category: "wiki"
-status: "active"
-citations: ["wiki/entities/path-normalizer.mjs.md"]
+category: sync-tools
+status: active
+sourceRepository: kb-sync-drift-fix
+sourceFile: core/path-normalizer.mjs
+sha256: 5515ce6f3677747f3f350a8861f50059c73b903efb739099f434016aa151f95f
+lastCommit: 2026-07-25T20:59:40-04:00
 ---
 
-# WikiEntitiesPathNormalizerMjs
+# path-normalizer.mjs
 
-## Summary
-Synthesized documentation node for wiki/entities/path-normalizer.mjs.md
+## Overview
+Synthesized entity documentation for `core/path-normalizer.mjs` in **kb-sync-drift-fix**.
+
+- **File Path:** `core/path-normalizer.mjs`
+- **Lines of Code:** 59
+- **Last Modified:** `2026-07-25T20:59:40-04:00`
+- **SHA-256:** `5515ce6f3677747f3f350a8861f50059c73b903efb739099f434016aa151f95f`
+
+## Exported Symbols & API
+- `toPosixPath`
+- `toWindowsPath`
+- `toWslPath`
+- `normalizeNativePath`
 
 ## Source Citations
-- Staged: `wiki/entities/path-normalizer.mjs.md`
+- Source: `core/path-normalizer.mjs`
+- Repository: `kb-sync-drift-fix`
