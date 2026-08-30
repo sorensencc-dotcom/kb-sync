@@ -37,6 +37,17 @@ export function isDisallowedPath(targetPath: string): boolean {
   return DISALLOWED_DIR_PATTERNS.some(pat => normalized.includes(pat));
 }
 
+export interface WikiSyncReceipt {
+  repository: string;
+  remote_wiki_url: string;
+  local_code_head?: string;
+  remote_wiki_head?: string;
+  verified_at: string;
+  system_time_epoch_ms?: number;
+  total_pages_published: number;
+  sync_status: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'FAILED';
+}
+
 export interface RepoScanResult {
   repository: string;
   path: string;
@@ -49,6 +60,8 @@ export interface RepoScanResult {
   sources_checked: number;
   stale_pages_count: number;
   dirty_worktree_count: number;
+  remote_sync_status?: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'NOT_SYNCED' | 'FAILED';
+  remote_sync_receipt?: WikiSyncReceipt;
   violations: string[];
 }
 
@@ -193,6 +206,22 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     }
   }
 
+  let remoteSyncStatus: RepoScanResult['remote_sync_status'] = 'NOT_SYNCED';
+  let remoteSyncReceipt: WikiSyncReceipt | undefined;
+  const receiptPath = path.join(repoPath, '.wiki-sync-receipt.json');
+  if (fs.existsSync(receiptPath)) {
+    try {
+      remoteSyncReceipt = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
+      if (remoteSyncReceipt?.sync_status === 'SYNCHRONIZED' || remoteSyncReceipt?.sync_status === 'UP_TO_DATE') {
+        remoteSyncStatus = remoteSyncReceipt.sync_status;
+      } else {
+        remoteSyncStatus = 'FAILED';
+      }
+    } catch {}
+  } else {
+    violations.push('MISSING_REMOTE_WIKI_RECEIPT');
+  }
+
   // Check for native .drift-report.json
   const driftReportPath = path.join(repoPath, '.drift-report.json');
   if (fs.existsSync(driftReportPath)) {
@@ -229,6 +258,8 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
         sources_checked: sourcesChecked,
         stale_pages_count: stalePages,
         dirty_worktree_count: dirtyWorktreeCount,
+        remote_sync_status: remoteSyncStatus,
+        remote_sync_receipt: remoteSyncReceipt,
         violations
       };
     } catch {
@@ -250,6 +281,8 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     sources_checked: 0,
     stale_pages_count: 0,
     dirty_worktree_count: dirtyWorktreeCount,
+    remote_sync_status: remoteSyncStatus,
+    remote_sync_receipt: remoteSyncReceipt,
     violations
   };
 }

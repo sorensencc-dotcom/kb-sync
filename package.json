@@ -102,7 +102,9 @@
     "wiki:publish": "node scripts/sync-github-wiki.mjs",
     "wiki:sync": "node scripts/sync-github-wiki.mjs",
     "test:cross-repo:drift": "node --test --experimental-strip-types tests/cross-repo-drift-scanner.test.ts",
-    "cross-repo:drift": "npx tsx modules/wiki/cross-repo-drift-scanner.ts"
+    "cross-repo:drift": "npx tsx modules/wiki/cross-repo-drift-scanner.ts",
+    "fleet:wiki:reconcile": "npx tsx modules/wiki/fleet-wiki-reconciler.ts",
+    "test:fleet-reconciler": "node --test --experimental-strip-types tests/fleet-wiki-reconciler.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

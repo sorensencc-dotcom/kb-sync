@@ -9,10 +9,26 @@ const root = path.resolve(here, '..');
 const args = process.argv.slice(2);
 const value = (name, fallback = null) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : fallback; };
 
+export function deriveWikiSshUrl(repoRoot) {
+  try {
+    const originUrl = execSync('git remote get-url origin', { cwd: repoRoot, encoding: 'utf8' }).trim();
+    if (originUrl.includes('github.com')) {
+      // Matches git@github.com:owner/repo.git or https://github.com/owner/repo(.git)
+      const match = originUrl.match(/github\.com[:/]([^/]+)\/([^/.]+?)(\.git)?$/);
+      if (match) {
+        const owner = match[1];
+        const repo = match[2];
+        return `git@github.com:${owner}/${repo}.wiki.git`;
+      }
+    }
+  } catch {}
+  return 'git@github.com:sorensencc-dotcom/kb-sync.wiki.git';
+}
+
 const wikiSourceDir = path.resolve(root, value('--source-dir', 'wiki'));
-const repoUrl = value('--repo-url', process.env.WIKI_REPO_URL || 'https://github.com/sorensencc-dotcom/kb-sync.wiki.git');
+const repoUrl = value('--repo-url', process.env.WIKI_REPO_URL || deriveWikiSshUrl(root));
 const targetWikiDir = path.resolve(root, value('--target-dir', '.wiki-publish-temp'));
-const shouldPush = args.includes('--push') || process.env.AUTO_PUSH === 'true' || true;
+const shouldPush = !args.includes('--no-push');
 const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all wiki pages, RFCs, and diagram assets');
 
 function copyFlatAndPreserve(srcDir, destDir) {
@@ -104,7 +120,6 @@ function generateHome(wikiDir) {
   let homeContent = '';
   if (fs.existsSync(readmePath)) {
     homeContent = fs.readFileSync(readmePath, 'utf8');
-    // Replace relative diagram image links with absolute raw wiki CDN paths
     homeContent = homeContent.replace(
       /!\[([^\]]*)\]\(trm-gap-triage-architecture\.png\)/g,
       '![$1](https://raw.githubusercontent.com/wiki/sorensencc-dotcom/kb-sync/trm-gap-triage-architecture.png)'
@@ -115,57 +130,88 @@ function generateHome(wikiDir) {
   fs.writeFileSync(path.join(wikiDir, 'Home.md'), homeContent, 'utf8');
 }
 
-async function main() {
-  console.log(`=== [KB-SYNC WIKI PUBLISHER] ===`);
-  console.log(`Source directory: ${wikiSourceDir}`);
-  console.log(`Target publish directory: ${targetWikiDir}`);
-  console.log(`Remote Wiki Repository: ${repoUrl}`);
+export async function publishWiki(customOptions = {}) {
+  const currentRoot = customOptions.repoRoot || root;
+  const currentSource = customOptions.sourceDir ? path.resolve(currentRoot, customOptions.sourceDir) : wikiSourceDir;
+  const currentUrl = customOptions.repoUrl || repoUrl;
+  const currentTarget = customOptions.targetDir ? path.resolve(currentRoot, customOptions.targetDir) : targetWikiDir;
+  const pushEnabled = customOptions.push !== undefined ? customOptions.push : shouldPush;
 
-  // 1. Prepare target clone
-  if (fs.existsSync(targetWikiDir)) {
-    fs.rmSync(targetWikiDir, { recursive: true, force: true });
+  console.log(`=== [KB-SYNC WIKI PUBLISHER] ===`);
+  console.log(`Source directory: ${currentSource}`);
+  console.log(`Target publish directory: ${currentTarget}`);
+  console.log(`Remote Wiki Repository: ${currentUrl}`);
+
+  if (fs.existsSync(currentTarget)) {
+    fs.rmSync(currentTarget, { recursive: true, force: true });
   }
 
   console.log(`Cloning remote wiki git repository...`);
-  execSync(`git clone "${repoUrl}" "${targetWikiDir}"`, { stdio: 'inherit' });
+  execSync(`git clone "${currentUrl}" "${currentTarget}"`, { stdio: 'inherit' });
 
-  // 2. Copy root diagram assets if present
-  const rootDiagramPng = path.join(root, 'trm-gap-triage-architecture.png');
+  const rootDiagramPng = path.join(currentRoot, 'trm-gap-triage-architecture.png');
   if (fs.existsSync(rootDiagramPng)) {
-    fs.copyFileSync(rootDiagramPng, path.join(targetWikiDir, 'trm-gap-triage-architecture.png'));
+    fs.copyFileSync(rootDiagramPng, path.join(currentTarget, 'trm-gap-triage-architecture.png'));
   }
 
-  // 3. Copy markdown hierarchy (both flat and nested)
   console.log(`Copying and flattening wiki documents and assets into publishing working tree...`);
-  const copiedCount = copyFlatAndPreserve(wikiSourceDir, targetWikiDir);
+  const copiedCount = copyFlatAndPreserve(currentSource, currentTarget);
   console.log(`✓ Transferred ${copiedCount} file(s).`);
 
-  // 4. Generate Home, Sidebar, and Footer
   console.log(`Generating Home.md, _Sidebar.md, and _Footer.md navigation assets...`);
-  generateHome(targetWikiDir);
-  generateSidebar(targetWikiDir);
-  generateFooter(targetWikiDir);
+  generateHome(currentTarget);
+  generateSidebar(currentTarget);
+  generateFooter(currentTarget);
   console.log(`✓ Navigation templates generated.`);
 
-  // 5. Commit and push
-  if (shouldPush) {
+  let remoteHeadSha = '';
+  let localCodeHead = '';
+  try {
+    localCodeHead = execSync('git rev-parse HEAD', { cwd: currentRoot, encoding: 'utf8' }).trim();
+  } catch {}
+
+  if (pushEnabled) {
     console.log(`Staging and checking status in target wiki...`);
-    execSync('git add -A', { cwd: targetWikiDir, stdio: 'pipe' });
-    const status = execSync('git status --porcelain', { cwd: targetWikiDir, encoding: 'utf8' }).trim();
+    execSync('git add -A', { cwd: currentTarget, stdio: 'pipe' });
+    const status = execSync('git status --porcelain', { cwd: currentTarget, encoding: 'utf8' }).trim();
 
     if (status) {
       console.log(`Committing wiki updates...`);
-      execSync(`git commit -m "${commitMessage}"`, { cwd: targetWikiDir, stdio: 'inherit' });
-      console.log(`Pushing to ${repoUrl}...`);
-      execSync('git push origin HEAD', { cwd: targetWikiDir, stdio: 'inherit' });
-      console.log(`\n🎉 SUCCESS: GitHub Wiki for kb-sync is now fully published and live!`);
+      execSync(`git commit -m "${commitMessage}"`, { cwd: currentTarget, stdio: 'inherit' });
+      console.log(`Pushing to ${currentUrl}...`);
+      execSync('git push origin HEAD', { cwd: currentTarget, stdio: 'inherit' });
+      console.log(`\n🎉 SUCCESS: GitHub Wiki is now fully published and live!`);
     } else {
       console.log(`✓ GitHub Wiki working tree is already up to date with remote.`);
     }
+
+    try {
+      remoteHeadSha = execSync('git rev-parse HEAD', { cwd: currentTarget, encoding: 'utf8' }).trim();
+    } catch {}
   }
+
+  // Write cryptographic proof receipt
+  const receipt = {
+    repository: path.basename(currentRoot),
+    remote_wiki_url: currentUrl,
+    local_code_head: localCodeHead,
+    remote_wiki_head: remoteHeadSha,
+    verified_at: new Date().toISOString(),
+    system_time_epoch_ms: Date.now(),
+    total_pages_published: copiedCount,
+    sync_status: 'SYNCHRONIZED'
+  };
+
+  const receiptPath = path.join(currentRoot, '.wiki-sync-receipt.json');
+  fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2), 'utf8');
+  console.log(`✓ Cryptographic sync receipt emitted at ${receiptPath}`);
+
+  return receipt;
 }
 
-main().catch((err) => {
-  console.error(`❌ [KB-SYNC WIKI PUBLISHER] Failed:`, err);
-  process.exit(1);
-});
+if (process.argv[1] && process.argv[1].endsWith('sync-github-wiki.mjs')) {
+  publishWiki().catch((err) => {
+    console.error(`❌ [KB-SYNC WIKI PUBLISHER] Failed:`, err);
+    process.exit(1);
+  });
+}

@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-08-30T02:46:28.624Z",
-  "system_time_epoch_ms": 1788057988624,
+  "timestamp": "2026-08-30T02:56:34.453Z",
+  "system_time_epoch_ms": 1788058594453,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -112,7 +112,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/cross-repo-drift-scanner.ts",
-      "last_code_commit": "2026-08-29T22:42:31-04:00",
+      "last_code_commit": "2026-08-29T22:46:36-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/cross-repo-drift-scanner.ts"
@@ -132,6 +132,14 @@
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/detect-drift.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/fleet-wiki-reconciler.ts",
+      "last_code_commit": "2026-08-30T02:55:36.423Z",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/fleet-wiki-reconciler.ts"
     },
     {
       "repo": "kb-sync",
@@ -336,7 +344,7 @@
     {
       "repo": "kb-sync",
       "file": "tests/cross-repo-drift-scanner.test.ts",
-      "last_code_commit": "2026-08-29T22:42:31-04:00",
+      "last_code_commit": "2026-08-29T22:46:36-04:00",
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/cross-repo-drift-scanner.test.ts"
@@ -348,6 +356,14 @@
       "last_wiki_sync": "2026-08-25T02:38:00.000Z",
       "status": "STALE",
       "wiki_page": "entities/drift-detection.test.ts"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "tests/fleet-wiki-reconciler.test.ts",
+      "last_code_commit": "2026-08-30T02:56:21.072Z",
+      "last_wiki_sync": "2026-08-25T02:38:00.000Z",
+      "status": "STALE",
+      "wiki_page": "entities/fleet-wiki-reconciler.test.ts"
     },
     {
       "repo": "kb-sync",
@@ -431,8 +447,8 @@
     }
   ],
   "summary": {
-    "total_sources_checked": 184,
-    "stale_pages_count": 53,
-    "untracked_paths_count": 5
+    "total_sources_checked": 186,
+    "stale_pages_count": 55,
+    "untracked_paths_count": 9
   }
 }

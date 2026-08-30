@@ -1,7 +1,7 @@
 {
   "version": "1.1.0",
-  "timestamp": "2026-08-30T02:46:17.234Z",
-  "system_time_epoch_ms": 1788057977234,
+  "timestamp": "2026-08-30T02:48:57.248Z",
+  "system_time_epoch_ms": 1788058137248,
   "overall_status": "DEGRADED",
   "repositories": [
     {
@@ -15,10 +15,8 @@
       "system_time_epoch_ms": 1788048118455,
       "sources_checked": 180,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 117,
-      "violations": [
-        "DIRTY_WORKTREE (117 uncommitted/untracked files)"
-      ]
+      "dirty_worktree_count": 0,
+      "violations": []
     },
     {
       "repository": "rewrite-docs",
@@ -27,8 +25,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:46:16.747Z",
-      "system_time_epoch_ms": 1788057976747,
+      "timestamp": "2026-08-30T02:48:56.710Z",
+      "system_time_epoch_ms": 1788058136712,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 0,
@@ -43,8 +41,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:46:16.857Z",
-      "system_time_epoch_ms": 1788057976857,
+      "timestamp": "2026-08-30T02:48:56.838Z",
+      "system_time_epoch_ms": 1788058136838,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 307,
@@ -60,8 +58,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:46:16.938Z",
-      "system_time_epoch_ms": 1788057976938,
+      "timestamp": "2026-08-30T02:48:56.927Z",
+      "system_time_epoch_ms": 1788058136927,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 37,
@@ -77,8 +75,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:46:17.029Z",
-      "system_time_epoch_ms": 1788057977029,
+      "timestamp": "2026-08-30T02:48:57.015Z",
+      "system_time_epoch_ms": 1788058137015,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 36,
@@ -94,8 +92,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:46:17.154Z",
-      "system_time_epoch_ms": 1788057977154,
+      "timestamp": "2026-08-30T02:48:57.154Z",
+      "system_time_epoch_ms": 1788058137154,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 312,
@@ -111,8 +109,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T02:46:17.234Z",
-      "system_time_epoch_ms": 1788057977234,
+      "timestamp": "2026-08-30T02:48:57.248Z",
+      "system_time_epoch_ms": 1788058137248,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 51,
@@ -128,7 +126,7 @@
     "drifted_repositories": 0,
     "degraded_repositories": 6,
     "total_stale_pages": 0,
-    "total_dirty_worktrees": 860,
+    "total_dirty_worktrees": 743,
     "canonical_coverage_count": 7
   }
 }

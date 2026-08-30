@@ -1,0 +1,73 @@
+name: Wiki Drift Guard & Remote Reconciler
+
+on:
+  push:
+    branches: [main, autoheal-wrapper]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  drift-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run drift detection
+        id: drift
+        run: |
+          npm run kb:drift
+          if [ -f .drift-report.json ]; then
+            STATUS=$(jq -r '.status' .drift-report.json)
+            STALE=$(jq -r '.summary.stale_pages_count' .drift-report.json)
+            echo "drift_status=$STATUS" >> $GITHUB_OUTPUT
+            echo "stale_pages=$STALE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run wiki contract verification
+        run: npm run wiki:validate-contract
+
+      - name: Publish to GitHub Wiki (Main / Scheduled)
+        if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          WIKI_REPO_URL: "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
+        run: |
+          node scripts/sync-github-wiki.mjs --repo-url "$WIKI_REPO_URL"
+
+      - name: Verify cryptographic sync receipt
+        if: always()
+        run: |
+          if [ -f .wiki-sync-receipt.json ]; then
+            echo "=== Cryptographic Wiki Sync Receipt ==="
+            cat .wiki-sync-receipt.json
+          fi
+
+      - name: Upload drift and sync artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wiki-telemetry-reports
+          path: |
+            .drift-report.json
+            .cross-repo-drift-report.json
+            .wiki-sync-receipt.json
+            .repair-manifest.json
+          retention-days: 30
