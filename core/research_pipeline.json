@@ -6,8 +6,23 @@
     "run_web_harvester",
     "extract_property_records",
     "consolidate_packs",
-    "validate_packs"
+    "validate_packs",
+    "sync_notebooklm"
   ],
+  "tor_proxy": {
+    "enabled": true,
+    "endpoint": "socks5h://127.0.0.1:9050",
+    "http_fallback": "http://127.0.0.1:9080",
+    "circuit_rotation_interval_reqs": 10,
+    "fail_soft_to_direct": true,
+    "timeout_ms": 12000,
+    "health_probe_interval_ms": 30000,
+    "operator_override": false,
+    "metrics": {
+      "record_circuit_failures": true,
+      "record_fallback_usage": true
+    }
+  },
   "steps": {
     "run_web_harvester": {
       "enabled": true,
@@ -29,6 +44,11 @@
     "validate_packs": {
       "enabled": true,
       "strict_provenance": true
+    },
+    "sync_notebooklm": {
+      "enabled": true,
+      "max_retries": 3,
+      "backoff_ms": 5000
     }
   }
 }
