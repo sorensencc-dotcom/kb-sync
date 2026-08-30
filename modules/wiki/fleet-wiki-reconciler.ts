@@ -130,29 +130,41 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       copyFlatAndPreserve(docsExtra, tempPublishDir);
     }
 
-    // Always generate/overwrite Home.md with fresh README and timestamp
+    // Preserve curated Home.md if present, else fallback to README
     const homePath = path.join(tempPublishDir, 'Home.md');
-    const readmePath = path.join(repoPath, 'README.md');
-    let homeContent = '';
-    if (fs.existsSync(readmePath)) {
-      homeContent = fs.readFileSync(readmePath, 'utf8');
-    } else {
-      homeContent = `# ${repoName} Documentation Wiki\n\nWelcome to the official documentation for **${repoName}**.`;
+    if (!fs.existsSync(homePath)) {
+      const sourceHome = path.join(docSourceDir, 'Home.md');
+      const readmePath = path.join(repoPath, 'README.md');
+      let homeContent = '';
+      if (fs.existsSync(sourceHome)) {
+        homeContent = fs.readFileSync(sourceHome, 'utf8');
+      } else if (fs.existsSync(readmePath)) {
+        homeContent = fs.readFileSync(readmePath, 'utf8');
+      } else {
+        homeContent = `# ${repoName} Documentation Wiki\n\nWelcome to the official documentation for **${repoName}**.`;
+      }
+      homeContent += `\n\n---\n*Last Synchronized: ${new Date().toISOString()} • Fleet Reconciler*\n`;
+      fs.writeFileSync(homePath, homeContent, 'utf8');
     }
-    homeContent += `\n\n---\n*Last Synchronized: ${new Date().toISOString()} • Fleet Reconciler*\n`;
-    fs.writeFileSync(homePath, homeContent, 'utf8');
 
-    // Always generate/overwrite _Sidebar.md with all pages
+    // Preserve curated _Sidebar.md if present, else generate default category index
     const sidebarPath = path.join(tempPublishDir, '_Sidebar.md');
-    let sidebar = `### ${repoName} Wiki\n- [[Home]]\n\n#### Documentation & Entities\n`;
-    const files = fs.readdirSync(tempPublishDir)
-      .filter((f: string) => f.endsWith('.md') && !f.startsWith('_') && f !== 'Home.md')
-      .sort();
-    for (const f of files) {
-      const title = f.replace(/\.md$/, '');
-      sidebar += `- [[${title}]]\n`;
+    if (!fs.existsSync(sidebarPath)) {
+      const sourceSidebar = path.join(docSourceDir, '_Sidebar.md');
+      if (fs.existsSync(sourceSidebar)) {
+        fs.copyFileSync(sourceSidebar, sidebarPath);
+      } else {
+        let sidebar = `### **${repoName} Wiki**\n\n* [[Home]]\n\n---\n\n### **Documentation**\n`;
+        const files = fs.readdirSync(tempPublishDir)
+          .filter((f: string) => f.endsWith('.md') && !f.startsWith('_') && f !== 'Home.md')
+          .sort();
+        for (const f of files) {
+          const title = f.replace(/\.md$/, '');
+          sidebar += `* [[${title}]]\n`;
+        }
+        fs.writeFileSync(sidebarPath, sidebar, 'utf8');
+      }
     }
-    fs.writeFileSync(sidebarPath, sidebar, 'utf8');
 
     const footerPath = path.join(tempPublishDir, '_Footer.md');
     fs.writeFileSync(footerPath, `---\n*Automated Fleet Wiki Sync • Generated at ${new Date().toISOString()}*`, 'utf8');
