@@ -24,22 +24,41 @@ const SKIP_DIRS = new Set(['.git', 'node_modules']);
 const IGNORE_FILES = ['.cicignore', '.gitignore'];
 
 function repoRoot() {
-  try {
-    return execSync('git rev-parse --show-toplevel', { cwd: SCRIPT_DIR }).toString().trim();
-  } catch (err) {
-    logError(`Not inside a git repository (or git not on PATH): ${err.message.trim()}`);
-    process.exit(1);
+  if (process.env.REPO_ROOT && fs.existsSync(path.join(process.env.REPO_ROOT, 'configs', 'obsidian.yaml'))) {
+    return process.env.REPO_ROOT;
   }
+  if (fs.existsSync(path.join(process.cwd(), 'configs', 'obsidian.yaml'))) {
+    return process.cwd();
+  }
+  const candidateFromScript = path.resolve(SCRIPT_DIR, '..', '..');
+  if (fs.existsSync(path.join(candidateFromScript, 'configs', 'obsidian.yaml'))) {
+    return candidateFromScript;
+  }
+  const tryCommands = ['git.exe rev-parse --show-toplevel', 'git rev-parse --show-toplevel'];
+  for (const cmd of tryCommands) {
+    try {
+      let out = execSync(cmd, { cwd: SCRIPT_DIR, stdio: ['pipe', 'pipe', 'ignore'] }).toString().trim();
+      if (out) {
+        if (process.platform !== 'win32' && /^[A-Za-z]:\//.test(out)) {
+          const drive = out[0].toLowerCase();
+          out = `/mnt/${drive}${out.slice(2)}`;
+        }
+        return out;
+      }
+    } catch {}
+  }
+  return process.cwd();
 }
 
 // Get changed files relative to HEAD (for --diff mode)
 function getChangedFiles(targetDir) {
-  try {
-    const output = execSync('git diff --name-only HEAD', { cwd: targetDir, encoding: 'utf8' });
-    return new Set(output.split('\n').filter(f => f.trim()).map(f => f.replace(/\\/g, '/')));
-  } catch {
-    return new Set();
+  for (const cmd of ['git.exe diff --name-only HEAD', 'git diff --name-only HEAD']) {
+    try {
+      const output = execSync(cmd, { cwd: targetDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+      return new Set(output.split('\n').filter(f => f.trim()).map(f => f.replace(/\\/g, '/')));
+    } catch {}
   }
+  return new Set();
 }
 
 // Mirrors ingest-wiki.sh's get_config_value: tolerant of "key: value" / "key=value",
@@ -506,6 +525,10 @@ async function main() {
   if (!vaultRoot || !stagingDir || !wikiDir) {
     logError('vault_root / staging_dir / wiki_dir missing from configs/obsidian.yaml');
     process.exit(1);
+  }
+  if (process.platform !== 'win32' && typeof vaultRoot === 'string' && /^[A-Za-z]:[/\\]/.test(vaultRoot)) {
+    const drive = vaultRoot[0].toLowerCase();
+    vaultRoot = `/mnt/${drive}${vaultRoot.slice(2).replace(/\\/g, '/')}`;
   }
   logInfo(`Vault root resolved from ${vaultRootSource}: ${vaultRoot}`);
 

@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 ### Pre-commit hook v2: validate changed repo markdown for broken relative links,
 ### enforce wiki contract rules, and perform Graft-enhanced sibling pattern checks.
-set -e
-REPO_ROOT=$(git rev-parse --show-toplevel)
+if command -v git.exe >/dev/null 2>&1; then
+  GIT_BIN="git.exe"
+else
+  GIT_BIN="git"
+fi
+
+REPO_ROOT=$($GIT_BIN rev-parse --show-toplevel)
+if [[ "$REPO_ROOT" =~ ^[A-Za-z]:/ ]]; then
+  DRIVE_LETTER=$(echo "$REPO_ROOT" | cut -c1 | tr '[:upper:]' '[:lower:]')
+  REST_OF_PATH=$(echo "$REPO_ROOT" | cut -c3-)
+  WSL_ROOT="/mnt/${DRIVE_LETTER}${REST_OF_PATH}"
+  if [ -d "$WSL_ROOT" ]; then
+    REPO_ROOT="$WSL_ROOT"
+  fi
+fi
 cd "$REPO_ROOT"
 
 VALIDATOR="modules/wiki/validate-staging-docs.mjs"
@@ -16,7 +29,7 @@ fi
 ### Staged markdown files (added/copied/modified). Exclude vault staging tree
 ### and human wiki (obsidian/vault), which have a separate lifecycle.
 CHANGED_MD=$(
-  git diff --cached --name-only --diff-filter=ACM \
+  $GIT_BIN diff --cached --name-only --diff-filter=ACM \
     | grep -E '\.md$' \
     | grep -vE '^obsidian/vault/' \
     | grep -vE '_kb-sync-staging/' \
@@ -25,7 +38,7 @@ CHANGED_MD=$(
 
 ### Staged scripts/modules (js, mjs, ts, sh)
 CHANGED_CODE=$(
-  git diff --cached --name-only --diff-filter=ACM \
+  $GIT_BIN diff --cached --name-only --diff-filter=ACM \
     | grep -E '\.(js|mjs|ts|sh)$' \
     || true
 )
@@ -38,11 +51,13 @@ if [ -n "$CHANGED_MD" ]; then
   while IFS= read -r file; do
     [ -n "$file" ] || continue
     [ -f "$file" ] || continue
-    if node "$VALIDATOR" "$file" > /dev/null 2>&1; then
+    VAL_OUT=$(node "$VALIDATOR" "$file" 2>&1)
+    VAL_STATUS=$?
+    if [ $VAL_STATUS -eq 0 ]; then
       echo "[WIKI-VALIDATE] ✓ $file (link structure)"
     else
-      echo "[WIKI-VALIDATE] ✗ $file has broken relative link(s):"
-      node "$VALIDATOR" "$file" 2>&1 | grep -E 'broken relative link|✗ ERROR' || true
+      echo "[WIKI-VALIDATE] ✗ $file validation failed (exit $VAL_STATUS):"
+      echo "$VAL_OUT"
       FAILED=1
     fi
   done <<< "$CHANGED_MD"
