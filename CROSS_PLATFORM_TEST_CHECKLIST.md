@@ -1,3 +1,9 @@
+---
+title: KB Sync Cross-Platform Testing Checklist
+description: Cross-platform checklist for WSL drive letter generalization, error handling, and Linux/macOS compatibility.
+tags: [testing, cross-platform, wsl, checklist]
+---
+
 # KB Sync Cross-Platform Testing Checklist
 
 **Date:** 2026-07-12  

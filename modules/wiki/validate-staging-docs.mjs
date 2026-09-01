@@ -384,12 +384,21 @@ function formatSlackMessage(summary, batchResults, durationMs) {
 function lintMarkdown(content) {
   const issues = [];
   const lines = content.split(/\r?\n/);
+  let inCodeBlock = false;
+  let lastHeadingLevel = null;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    const trimmed = line.trim();
+
+    // Check fenced code block boundaries
+    if (/^(`{3,}|~{3,})/.test(trimmed)) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
 
     // Trailing whitespace
-    if (/\s+$/.test(line) && line.trim()) {
+    if (/\s+$/.test(line) && trimmed) {
       issues.push(`line ${i + 1}: trailing whitespace`);
     }
 
@@ -398,16 +407,13 @@ function lintMarkdown(content) {
       issues.push(`line ${i + 1}: double blank line`);
     }
 
-    // Heading hierarchy (don't jump levels: # -> ### is bad, # -> ## ok)
-    if (/^##+ /.test(line) && i > 0) {
-      const prevHeading = lines.slice(0, i).reverse().find(l => /^#+\s/.test(l));
-      if (prevHeading) {
-        const prevLevel = prevHeading.match(/^#+/)[0].length;
-        const currLevel = line.match(/^#+/)[0].length;
-        if (currLevel > prevLevel + 1) {
-          issues.push(`line ${i + 1}: heading jump from h${prevLevel} to h${currLevel}`);
-        }
+    // Heading hierarchy (don't jump levels: # -> ### is bad, # -> ## ok; skip code blocks)
+    if (!inCodeBlock && /^#+\s+\S/.test(line)) {
+      const currLevel = line.match(/^#+/)[0].length;
+      if (lastHeadingLevel !== null && currLevel > lastHeadingLevel + 1) {
+        issues.push(`line ${i + 1}: heading jump from h${lastHeadingLevel} to h${currLevel}`);
       }
+      lastHeadingLevel = currLevel;
     }
   }
 
