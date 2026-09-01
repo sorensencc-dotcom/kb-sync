@@ -271,13 +271,22 @@ function detectAliasDisambiguation(content, registry) {
   for (const match of content.matchAll(ALIAS_LINK_RE)) {
     const page = match[1].trim();
     const alias = match[2].trim();
-    const pageLower = page.toLowerCase();
-    const aliasLower = alias.toLowerCase();
+    const pageLower = page.toLowerCase().replace(/\.md$/, '');
+    const aliasLower = alias.toLowerCase().replace(/\.md$/, '');
+    const targetPaths = registry.get(pageLower) || registry.get(pageLower.replace(/^kb-sync\/(?:wiki\/)?/, '')) || [];
 
     // Check if alias could resolve to a different page
     const candidates = [];
+    const aliasAlnum = aliasLower.replace(/[^a-z0-9]/g, '');
     for (const [regName, paths] of registry) {
       if (regName === pageLower) continue;
+      // If this registry entry points to the same underlying file, it's not a conflict
+      const isSameFile = targetPaths.length > 0 && paths.some(p => targetPaths.includes(p));
+      if (isSameFile) continue;
+
+      // If the alias is the human-formatted version of this target's own slug, it's not a conflict
+      if (regName.replace(/[^a-z0-9]/g, '') === aliasAlnum) continue;
+
       if (levenshteinDistance(aliasLower, regName) <= LEVENSHTEIN_THRESHOLD) {
         candidates.push(regName);
       }
@@ -472,9 +481,9 @@ function validateFile(file, registry, repoRootPath) {
   const baseName = path.basename(file);
   const isNavOrTemplate = baseName === '_Sidebar.md' || baseName === '_Footer.md' || file.includes('templates') || baseName === 'Welcome.md' || baseName === 'create a link.md';
 
-  // Illustrative [[Links]] and (paths) inside fenced code examples (common in
-  // templates/lint-rules docs) aren't real references — don't scan them.
-  const scanContent = content.replace(/```[\s\S]*?```/g, '');
+  // Illustrative [[Links]] and (paths) inside fenced code examples or inline code spans
+  // (common in templates/lint-rules docs) aren't real references — don't scan them.
+  const scanContent = content.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, '');
 
   const frontmatter = parseFrontmatter(content);
   const fmErrors = validateFrontmatter(frontmatter, FRONTMATTER_SCHEMA);
@@ -495,32 +504,34 @@ function validateFile(file, registry, repoRootPath) {
     }
   }
 
-  const aliasDisambigs = detectAliasDisambiguation(scanContent, registry);
-  for (const disambig of aliasDisambigs) {
-    warnings.push(`link alias ${disambig.alias} may conflict with: ${disambig.conflicts.join(', ')}`);
-  }
+  if (!isNavOrTemplate) {
+    const aliasDisambigs = detectAliasDisambiguation(scanContent, registry);
+    for (const disambig of aliasDisambigs) {
+      warnings.push(`link alias ${disambig.alias} may conflict with: ${disambig.conflicts.join(', ')}`);
+    }
 
-  for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
-    const rawTarget = match[1].trim();
-    const name = rawTarget.toLowerCase().replace(/\.md$/, '');
-    const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
-    const baseName = path.basename(rawTarget, '.md').toLowerCase();
-    const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
-    if (!hit) {
-      const suggestions = findSuggestions(name, registry);
-      let msg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
-      if (suggestions.length > 0) {
-        const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
-        msg += `. Did you mean: ${suggStr}?`;
-      }
-      warnings.push(msg);
-    } else if (hit.length > 1) {
-      const exactMatch = hit.find(h => {
-        const hLower = h.toLowerCase().replace(/\.md$/, '');
-        return hLower === cleanTarget || hLower === name || hLower.endsWith('/' + cleanTarget);
-      });
-      if (!exactMatch) {
-        warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+    for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
+      const rawTarget = match[1].trim();
+      const name = rawTarget.toLowerCase().replace(/\.md$/, '');
+      const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
+      const baseName = path.basename(rawTarget, '.md').toLowerCase();
+      const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
+      if (!hit) {
+        const suggestions = findSuggestions(name, registry);
+        let msg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
+        if (suggestions.length > 0) {
+          const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
+          msg += `. Did you mean: ${suggStr}?`;
+        }
+        warnings.push(msg);
+      } else if (hit.length > 1) {
+        const exactMatch = hit.find(h => {
+          const hLower = h.toLowerCase().replace(/\.md$/, '');
+          return hLower === cleanTarget || hLower === name || hLower.endsWith('/' + cleanTarget);
+        });
+        if (!exactMatch) {
+          warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+        }
       }
     }
   }
