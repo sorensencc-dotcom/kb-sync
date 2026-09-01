@@ -184,22 +184,38 @@ function walkMarkdownFiles(dir, ignorePatterns = []) {
 }
 
 // Maps lowercased basename, kebab-case slug, and relative paths -> array of relative paths
-function buildWikiRegistry(wikiRoot) {
+function buildWikiRegistry(...wikiRoots) {
   const registry = new Map();
-  if (!fs.existsSync(wikiRoot)) return registry;
-  for (const file of walkMarkdownFiles(wikiRoot)) {
-    const base = path.basename(file, '.md');
-    const name = base.toLowerCase();
-    const kebab = base.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    const strippedDot = name.replace(/^\./, '');
-    const relPath = path.relative(wikiRoot, file).replace(/\\/g, '/');
-    const relPathLower = relPath.toLowerCase().replace(/\.md$/, '');
-    const keys = new Set([name, kebab, strippedDot, relPathLower, relPath.toLowerCase()]);
+  const seenFiles = new Set();
 
-    for (const key of keys) {
-      if (!key) continue;
-      if (!registry.has(key)) registry.set(key, [relPath]);
-      else if (!registry.get(key).includes(relPath)) registry.get(key).push(relPath);
+  for (const root of wikiRoots.flat()) {
+    if (!root || !fs.existsSync(root)) continue;
+    for (const file of walkMarkdownFiles(root)) {
+      if (seenFiles.has(file)) continue;
+      seenFiles.add(file);
+
+      const base = path.basename(file, '.md');
+      const name = base.toLowerCase();
+      const kebab = base.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      const strippedDot = name.replace(/^\./, '');
+      const relPath = path.relative(root, file).replace(/\\/g, '/');
+      const relPathLower = relPath.toLowerCase().replace(/\.md$/, '');
+      const keys = new Set([
+        name,
+        kebab,
+        strippedDot,
+        relPathLower,
+        relPath.toLowerCase(),
+        `kb-sync/${relPathLower}`,
+        `kb-sync/wiki/${relPathLower}`,
+        `wiki/${relPathLower}`
+      ]);
+
+      for (const key of keys) {
+        if (!key) continue;
+        if (!registry.has(key)) registry.set(key, [relPath]);
+        else if (!registry.get(key).includes(relPath)) registry.get(key).push(relPath);
+      }
     }
   }
   return registry;
@@ -486,7 +502,7 @@ function validateFile(file, registry, repoRootPath) {
 
   for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
     const rawTarget = match[1].trim();
-    const name = rawTarget.toLowerCase();
+    const name = rawTarget.toLowerCase().replace(/\.md$/, '');
     const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
     const baseName = path.basename(rawTarget, '.md').toLowerCase();
     const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
@@ -499,7 +515,13 @@ function validateFile(file, registry, repoRootPath) {
       }
       warnings.push(msg);
     } else if (hit.length > 1) {
-      warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+      const exactMatch = hit.find(h => {
+        const hLower = h.toLowerCase().replace(/\.md$/, '');
+        return hLower === cleanTarget || hLower === name || hLower.endsWith('/' + cleanTarget);
+      });
+      if (!exactMatch) {
+        warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+      }
     }
   }
 
@@ -597,9 +619,15 @@ async function main() {
     process.exit(1);
   }
 
-  const registry = buildWikiRegistry(path.join(vaultRoot, wikiDir));
+  const candidateWikiRoots = [
+    path.join(vaultRoot, wikiDir),
+    path.join(root, wikiDir),
+    path.join(vaultRoot, 'obsidian', 'vault', 'wiki'),
+    path.join(root, 'obsidian', 'vault', 'wiki')
+  ].filter((p, i, arr) => arr.indexOf(p) === i);
+  const registry = buildWikiRegistry(candidateWikiRoots);
   const totalPages = [...registry.values()].reduce((sum, arr) => sum + arr.length, 0);
-  logInfo(`Wiki registry: ${totalPages} page(s), ${registry.size} unique name(s), loaded from ${path.join(vaultRoot, wikiDir)}`);
+  logInfo(`Wiki registry: ${totalPages} page(s), ${registry.size} unique name(s), loaded from ${candidateWikiRoots.filter(r => fs.existsSync(r)).join(', ')}`);
 
   const batchResults = [];
   let totalErrors = 0;
