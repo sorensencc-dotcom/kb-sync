@@ -157,7 +157,10 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
 
   // Markdown Hygiene Formatting (outside code blocks)
   const origBody = tempBody;
-  const cleanedLines = tempBody.split(/\r?\n/).map(line => line.replace(/\s+$/, ''));
+  const cleanedLines = tempBody.split(/\r?\n/).map(line => {
+    if (/[^\s]  $/.test(line)) return line;
+    return line.replace(/\s+$/, '');
+  });
   tempBody = cleanedLines.join('\n').replace(/\n{3,}/g, '\n\n');
   if (tempBody !== origBody) {
     repairs.push('cleaned_hygiene');

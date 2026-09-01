@@ -397,13 +397,16 @@ function lintMarkdown(content) {
       continue;
     }
 
-    // Trailing whitespace
-    if (/\s+$/.test(line) && trimmed) {
-      issues.push(`line ${i + 1}: trailing whitespace`);
+    // Trailing whitespace (allow intentional markdown hard break: exactly 2 spaces after non-space)
+    if (!inCodeBlock && /\s+$/.test(line) && trimmed) {
+      const isHardLineBreak = /[^\s]  $/.test(line);
+      if (!isHardLineBreak) {
+        issues.push(`line ${i + 1}: trailing whitespace`);
+      }
     }
 
     // Double blank lines
-    if (i > 0 && line === '' && lines[i - 1] === '') {
+    if (!inCodeBlock && i > 0 && line === '' && lines[i - 1] === '') {
       issues.push(`line ${i + 1}: double blank line`);
     }
 
@@ -450,6 +453,9 @@ function validateFile(file, registry, repoRootPath) {
   const warnings = [];
   const content = fs.readFileSync(file, 'utf8');
   const dir = path.dirname(file);
+  const baseName = path.basename(file);
+  const isNavOrTemplate = baseName === '_Sidebar.md' || baseName === '_Footer.md' || file.includes('templates') || baseName === 'Welcome.md' || baseName === 'create a link.md';
+
   // Illustrative [[Links]] and (paths) inside fenced code examples (common in
   // templates/lint-rules docs) aren't real references — don't scan them.
   const scanContent = content.replace(/```[\s\S]*?```/g, '');
@@ -465,10 +471,12 @@ function validateFile(file, registry, repoRootPath) {
     warnings.push(`lint: ${issue}`);
   }
 
-  const bodyWithoutFm = content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
-  const firstLines = bodyWithoutFm.trimStart().split(/\r?\n/).slice(0, 10);
-  if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
-    warnings.push('missing top-level "# Heading"');
+  if (!isNavOrTemplate) {
+    const bodyWithoutFm = content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+    const firstLines = bodyWithoutFm.trimStart().split(/\r?\n/).slice(0, 10);
+    if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
+      warnings.push('missing top-level "# Heading"');
+    }
   }
 
   const aliasDisambigs = detectAliasDisambiguation(scanContent, registry);
