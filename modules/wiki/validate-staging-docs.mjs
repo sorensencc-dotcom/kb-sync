@@ -612,7 +612,8 @@ async function main() {
         vaultRoot,
         targetDir: targetDir,
         fix: true,
-        index: registry
+        index: registry,
+        allowDirty: true
       });
       aggregatedAutohealSummary.filesScanned += healReport.filesScanned;
       aggregatedAutohealSummary.filesHealed += healReport.filesHealed;
