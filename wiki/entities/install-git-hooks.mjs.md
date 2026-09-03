@@ -2,22 +2,22 @@
 title: install-git-hooks.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: scripts/install-git-hooks.mjs
-sha256: dd1061c37f23c069cac24a0ea7739b96021ed14b3d453bbc4ea6c2b4f89ff354
-lastCommit: 2026-08-26T10:05:48-04:00
+sha256: 7ab3dc5f680bfc965b6e380b45031f83318f2796b8954ad202a0663c8c3fa973
+lastCommit: 2026-08-30T09:56:08-04:00
 ---
 
 # install-git-hooks.mjs
 
 ## Overview
-Synthesized entity documentation for `scripts/install-git-hooks.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `scripts/install-git-hooks.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/install-git-hooks.mjs`
-- **Lines of Code:** 101
-- **Last Modified:** `2026-08-26T10:05:48-04:00`
-- **SHA-256:** `dd1061c37f23c069cac24a0ea7739b96021ed14b3d453bbc4ea6c2b4f89ff354`
+- **Lines of Code:** 114
+- **Last Modified:** `2026-08-30T09:56:08-04:00`
+- **SHA-256:** `7ab3dc5f680bfc965b6e380b45031f83318f2796b8954ad202a0663c8c3fa973`
 
 ## Source Citations
 - Source: `scripts/install-git-hooks.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`
