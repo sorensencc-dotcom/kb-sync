@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-03T01:36:29.736Z",
-  "system_time_epoch_ms": 1788399389736,
+  "timestamp": "2026-09-03T02:04:41.669Z",
+  "system_time_epoch_ms": 1788401081669,
   "status": "NO_DRIFT",
   "drifted_sources": [],
   "summary": {
     "total_sources_checked": 197,
     "stale_pages_count": 0,
-    "untracked_paths_count": 5
+    "untracked_paths_count": 6
   }
 }

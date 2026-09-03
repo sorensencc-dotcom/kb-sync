@@ -184,22 +184,38 @@ function walkMarkdownFiles(dir, ignorePatterns = []) {
 }
 
 // Maps lowercased basename, kebab-case slug, and relative paths -> array of relative paths
-function buildWikiRegistry(wikiRoot) {
+function buildWikiRegistry(...wikiRoots) {
   const registry = new Map();
-  if (!fs.existsSync(wikiRoot)) return registry;
-  for (const file of walkMarkdownFiles(wikiRoot)) {
-    const base = path.basename(file, '.md');
-    const name = base.toLowerCase();
-    const kebab = base.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    const strippedDot = name.replace(/^\./, '');
-    const relPath = path.relative(wikiRoot, file).replace(/\\/g, '/');
-    const relPathLower = relPath.toLowerCase().replace(/\.md$/, '');
-    const keys = new Set([name, kebab, strippedDot, relPathLower, relPath.toLowerCase()]);
+  const seenFiles = new Set();
 
-    for (const key of keys) {
-      if (!key) continue;
-      if (!registry.has(key)) registry.set(key, [relPath]);
-      else if (!registry.get(key).includes(relPath)) registry.get(key).push(relPath);
+  for (const root of wikiRoots.flat()) {
+    if (!root || !fs.existsSync(root)) continue;
+    for (const file of walkMarkdownFiles(root)) {
+      if (seenFiles.has(file)) continue;
+      seenFiles.add(file);
+
+      const base = path.basename(file, '.md');
+      const name = base.toLowerCase();
+      const kebab = base.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      const strippedDot = name.replace(/^\./, '');
+      const relPath = path.relative(root, file).replace(/\\/g, '/');
+      const relPathLower = relPath.toLowerCase().replace(/\.md$/, '');
+      const keys = new Set([
+        name,
+        kebab,
+        strippedDot,
+        relPathLower,
+        relPath.toLowerCase(),
+        `kb-sync/${relPathLower}`,
+        `kb-sync/wiki/${relPathLower}`,
+        `wiki/${relPathLower}`
+      ]);
+
+      for (const key of keys) {
+        if (!key) continue;
+        if (!registry.has(key)) registry.set(key, [relPath]);
+        else if (!registry.get(key).includes(relPath)) registry.get(key).push(relPath);
+      }
     }
   }
   return registry;
@@ -255,13 +271,22 @@ function detectAliasDisambiguation(content, registry) {
   for (const match of content.matchAll(ALIAS_LINK_RE)) {
     const page = match[1].trim();
     const alias = match[2].trim();
-    const pageLower = page.toLowerCase();
-    const aliasLower = alias.toLowerCase();
+    const pageLower = page.toLowerCase().replace(/\.md$/, '');
+    const aliasLower = alias.toLowerCase().replace(/\.md$/, '');
+    const targetPaths = registry.get(pageLower) || registry.get(pageLower.replace(/^kb-sync\/(?:wiki\/)?/, '')) || [];
 
     // Check if alias could resolve to a different page
     const candidates = [];
+    const aliasAlnum = aliasLower.replace(/[^a-z0-9]/g, '');
     for (const [regName, paths] of registry) {
       if (regName === pageLower) continue;
+      // If this registry entry points to the same underlying file, it's not a conflict
+      const isSameFile = targetPaths.length > 0 && paths.some(p => targetPaths.includes(p));
+      if (isSameFile) continue;
+
+      // If the alias is the human-formatted version of this target's own slug, it's not a conflict
+      if (regName.replace(/[^a-z0-9]/g, '') === aliasAlnum) continue;
+
       if (levenshteinDistance(aliasLower, regName) <= LEVENSHTEIN_THRESHOLD) {
         candidates.push(regName);
       }
@@ -384,30 +409,39 @@ function formatSlackMessage(summary, batchResults, durationMs) {
 function lintMarkdown(content) {
   const issues = [];
   const lines = content.split(/\r?\n/);
+  let inCodeBlock = false;
+  let lastHeadingLevel = null;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    const trimmed = line.trim();
 
-    // Trailing whitespace
-    if (/\s+$/.test(line) && line.trim()) {
-      issues.push(`line ${i + 1}: trailing whitespace`);
+    // Check fenced code block boundaries
+    if (/^(`{3,}|~{3,})/.test(trimmed)) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+
+    // Trailing whitespace (allow intentional markdown hard break: exactly 2 spaces after non-space)
+    if (!inCodeBlock && /\s+$/.test(line) && trimmed) {
+      const isHardLineBreak = /[^\s]  $/.test(line);
+      if (!isHardLineBreak) {
+        issues.push(`line ${i + 1}: trailing whitespace`);
+      }
     }
 
     // Double blank lines
-    if (i > 0 && line === '' && lines[i - 1] === '') {
+    if (!inCodeBlock && i > 0 && line === '' && lines[i - 1] === '') {
       issues.push(`line ${i + 1}: double blank line`);
     }
 
-    // Heading hierarchy (don't jump levels: # -> ### is bad, # -> ## ok)
-    if (/^##+ /.test(line) && i > 0) {
-      const prevHeading = lines.slice(0, i).reverse().find(l => /^#+\s/.test(l));
-      if (prevHeading) {
-        const prevLevel = prevHeading.match(/^#+/)[0].length;
-        const currLevel = line.match(/^#+/)[0].length;
-        if (currLevel > prevLevel + 1) {
-          issues.push(`line ${i + 1}: heading jump from h${prevLevel} to h${currLevel}`);
-        }
+    // Heading hierarchy (don't jump levels: # -> ### is bad, # -> ## ok; skip code blocks)
+    if (!inCodeBlock && /^#+\s+\S/.test(line)) {
+      const currLevel = line.match(/^#+/)[0].length;
+      if (lastHeadingLevel !== null && currLevel > lastHeadingLevel + 1) {
+        issues.push(`line ${i + 1}: heading jump from h${lastHeadingLevel} to h${currLevel}`);
       }
+      lastHeadingLevel = currLevel;
     }
   }
 
@@ -439,14 +473,17 @@ function extractMetadata(file, content) {
   };
 }
 
-function validateFile(file, registry, repoRootPath) {
+function validateFile(file, registry, repoRootPath, targetDir = null) {
   const errors = [];
   const warnings = [];
   const content = fs.readFileSync(file, 'utf8');
   const dir = path.dirname(file);
-  // Illustrative [[Links]] and (paths) inside fenced code examples (common in
-  // templates/lint-rules docs) aren't real references — don't scan them.
-  const scanContent = content.replace(/```[\s\S]*?```/g, '');
+  const baseName = path.basename(file);
+  const isNavOrTemplate = baseName === '_Sidebar.md' || baseName === '_Footer.md' || file.includes('templates') || baseName === 'Welcome.md' || baseName === 'create a link.md';
+
+  // Illustrative [[Links]] and (paths) inside fenced code examples or inline code spans
+  // (common in templates/lint-rules docs) aren't real references — don't scan them.
+  const scanContent = content.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, '');
 
   const frontmatter = parseFrontmatter(content);
   const fmErrors = validateFrontmatter(frontmatter, FRONTMATTER_SCHEMA);
@@ -459,33 +496,43 @@ function validateFile(file, registry, repoRootPath) {
     warnings.push(`lint: ${issue}`);
   }
 
-  const bodyWithoutFm = content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
-  const firstLines = bodyWithoutFm.trimStart().split(/\r?\n/).slice(0, 10);
-  if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
-    warnings.push('missing top-level "# Heading"');
+  if (!isNavOrTemplate) {
+    const bodyWithoutFm = content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+    const firstLines = bodyWithoutFm.trimStart().split(/\r?\n/).slice(0, 10);
+    if (!firstLines.some((line) => /^#\s+\S/.test(line))) {
+      warnings.push('missing top-level "# Heading"');
+    }
   }
 
-  const aliasDisambigs = detectAliasDisambiguation(scanContent, registry);
-  for (const disambig of aliasDisambigs) {
-    warnings.push(`link alias ${disambig.alias} may conflict with: ${disambig.conflicts.join(', ')}`);
-  }
+  if (!isNavOrTemplate) {
+    const aliasDisambigs = detectAliasDisambiguation(scanContent, registry);
+    for (const disambig of aliasDisambigs) {
+      warnings.push(`link alias ${disambig.alias} may conflict with: ${disambig.conflicts.join(', ')}`);
+    }
 
-  for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
-    const rawTarget = match[1].trim();
-    const name = rawTarget.toLowerCase();
-    const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
-    const baseName = path.basename(rawTarget, '.md').toLowerCase();
-    const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
-    if (!hit) {
-      const suggestions = findSuggestions(name, registry);
-      let msg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
-      if (suggestions.length > 0) {
-        const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
-        msg += `. Did you mean: ${suggStr}?`;
+    for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
+      const rawTarget = match[1].trim();
+      const name = rawTarget.toLowerCase().replace(/\.md$/, '');
+      const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
+      const baseName = path.basename(rawTarget, '.md').toLowerCase();
+      const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
+      if (!hit) {
+        const suggestions = findSuggestions(name, registry);
+        let msg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
+        if (suggestions.length > 0) {
+          const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
+          msg += `. Did you mean: ${suggStr}?`;
+        }
+        warnings.push(msg);
+      } else if (hit.length > 1) {
+        const exactMatch = hit.find(h => {
+          const hLower = h.toLowerCase().replace(/\.md$/, '');
+          return hLower === cleanTarget || hLower === name || hLower.endsWith('/' + cleanTarget);
+        });
+        if (!exactMatch) {
+          warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+        }
       }
-      warnings.push(msg);
-    } else if (hit.length > 1) {
-      warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
     }
   }
 
@@ -499,6 +546,24 @@ function validateFile(file, registry, repoRootPath) {
       ? path.resolve(repoRootPath, decoded.replace(/^\/+/, ''))
       : path.resolve(dir, decoded);
     if (!fs.existsSync(resolved)) {
+      // If the target is an image/media asset excluded from staging bundles, check source repo
+      if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(decoded)) {
+        const relToSnapshot = targetDir ? path.relative(targetDir, dir) : '';
+        const sourceDirResolved = path.resolve(repoRootPath, relToSnapshot, decoded);
+        const sourceRootResolved = path.resolve(repoRootPath, decoded);
+        const sourceWikiResolved = path.resolve(repoRootPath, 'wiki', decoded);
+        if (fs.existsSync(sourceDirResolved) || fs.existsSync(sourceRootResolved) || fs.existsSync(sourceWikiResolved)) {
+          continue;
+        }
+      }
+      // If scanning a staging snapshot directory, check if the referenced file exists in source repo
+      if (targetDir && resolved.startsWith(targetDir)) {
+        const relToSnapshot = path.relative(targetDir, resolved);
+        const sourceFileResolved = path.resolve(repoRootPath, relToSnapshot);
+        if (fs.existsSync(sourceFileResolved)) {
+          continue;
+        }
+      }
       errors.push(`broken relative link -> "${target}" (resolved: ${resolved})`);
     }
   }
@@ -583,9 +648,15 @@ async function main() {
     process.exit(1);
   }
 
-  const registry = buildWikiRegistry(path.join(vaultRoot, wikiDir));
+  const candidateWikiRoots = [
+    path.join(vaultRoot, wikiDir),
+    path.join(root, wikiDir),
+    path.join(vaultRoot, 'obsidian', 'vault', 'wiki'),
+    path.join(root, 'obsidian', 'vault', 'wiki')
+  ].filter((p, i, arr) => arr.indexOf(p) === i);
+  const registry = buildWikiRegistry(candidateWikiRoots);
   const totalPages = [...registry.values()].reduce((sum, arr) => sum + arr.length, 0);
-  logInfo(`Wiki registry: ${totalPages} page(s), ${registry.size} unique name(s), loaded from ${path.join(vaultRoot, wikiDir)}`);
+  logInfo(`Wiki registry: ${totalPages} page(s), ${registry.size} unique name(s), loaded from ${candidateWikiRoots.filter(r => fs.existsSync(r)).join(', ')}`);
 
   const batchResults = [];
   let totalErrors = 0;
@@ -606,7 +677,8 @@ async function main() {
         vaultRoot,
         targetDir: targetDir,
         fix: true,
-        index: registry
+        index: registry,
+        allowDirty: true
       });
       aggregatedAutohealSummary.filesScanned += healReport.filesScanned;
       aggregatedAutohealSummary.filesHealed += healReport.filesHealed;
@@ -656,7 +728,7 @@ async function main() {
     let hygieneCount = 0;
 
     for (const file of files) {
-      const { errors, warnings, metadata } = validateFile(file, registry, root);
+      const { errors, warnings, metadata } = validateFile(file, registry, root, targetDir);
       catalog.push(metadata);
       if (!errors.length && !warnings.length) continue;
       const rel = path.relative(targetDir, file);
