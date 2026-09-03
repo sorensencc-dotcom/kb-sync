@@ -1,13 +1,30 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-03T02:04:41.669Z",
-  "system_time_epoch_ms": 1788401081669,
-  "status": "NO_DRIFT",
-  "drifted_sources": [],
+  "timestamp": "2026-09-03T02:05:19.144Z",
+  "system_time_epoch_ms": 1788401119144,
+  "status": "DRIFT_DETECTED",
+  "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "core/flatten.sh",
+      "last_code_commit": "2026-09-02T22:05:10-04:00",
+      "last_wiki_sync": "2026-09-03T00:02:17.902Z",
+      "status": "STALE",
+      "wiki_page": "entities/flatten.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/validate-staging-docs.mjs",
+      "last_code_commit": "2026-09-02T22:05:10-04:00",
+      "last_wiki_sync": "2026-09-03T00:02:17.902Z",
+      "status": "STALE",
+      "wiki_page": "entities/validate-staging-docs.mjs"
+    }
+  ],
   "summary": {
     "total_sources_checked": 197,
-    "stale_pages_count": 0,
-    "untracked_paths_count": 6
+    "stale_pages_count": 2,
+    "untracked_paths_count": 1
   }
 }

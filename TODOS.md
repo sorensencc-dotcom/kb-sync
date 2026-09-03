@@ -2,6 +2,8 @@
 
 ## Open
 
+- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-09-03) — 2 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate. <!-- todo-group: kb-sync-documentation-drift -->
+
 ## Completed
 
 - [x] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30, resolved 2026-09-02) — Synthesized wiki and cleared documentation drift across workspace (`kb:drift` status: `NO_DRIFT`, 0 stale pages). <!-- todo-group: kb-sync-documentation-drift -->
