@@ -12,6 +12,7 @@ import {
   fetchAstBlastRadius,
   formatAstGroundingSection,
 } from './ast-grounding.mjs';
+import { searchWebFallback } from './web-search-fallback.mjs';
 
 /**
  * Parses markdown gap items from trm-research-gaps.md.
@@ -134,6 +135,23 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
   } catch {
     // Fail-soft: continue with lexical hits if vector search fails
     matchedDocuments = lexicalHits;
+  }
+
+  // 2b. Live Web Fallback (Path D: Parallel / TinyFish) if local cache has 0 matches
+  const allowWebFallback = options.webFallback ?? (process.env.TRM_WEB_FALLBACK === '1');
+  if (matchedDocuments.length === 0 && allowWebFallback) {
+    try {
+      const webHits = searchWebFallback(`${gap.title} ${gap.description}`, {
+        limit: options.limit || 3,
+        timeoutMs: 8000,
+      });
+      if (webHits.length > 0) {
+        matchedDocuments = webHits;
+        retrievalMode = webHits[0].retrieval_mode || 'web-fallback';
+      }
+    } catch {
+      // Fail-soft: continue if web fallback encounters errors
+    }
   }
 
   // 3. AST Call-Graph Grounding (Path C)
@@ -281,6 +299,7 @@ export async function executeGapTriage(options = {}) {
           expandSearchQuery,
           circuitBreaker,
           expandOptions,
+          webFallback: options.webFallback,
           limit: 3,
         })
       )
