@@ -2,7 +2,7 @@
 title: entity.md
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/templates/entity.md
 sha256: 9a7cd50e045fc482097814c5176105ce27383024c6edfb0d73a96ff26ca1d6a3
 lastCommit: 2026-07-11T07:40:52-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-07-11T07:40:52-04:00
 # entity.md
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/templates/entity.md` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/templates/entity.md` in **kb-sync**.
 
 - **File Path:** `modules/wiki/templates/entity.md`
 - **Lines of Code:** 92
@@ -20,4 +20,4 @@ Synthesized entity documentation for `modules/wiki/templates/entity.md` in **kb-
 
 ## Source Citations
 - Source: `modules/wiki/templates/entity.md`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

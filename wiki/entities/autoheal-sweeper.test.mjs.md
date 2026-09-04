@@ -2,7 +2,7 @@
 title: autoheal-sweeper.test.mjs
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/modules/wiki/autoheal-sweeper.test.mjs
 sha256: c7ae118de9d96c0f424995df86ed7556db911572fee4dbaac86dbc7b959da3b7
 lastCommit: 2026-08-29T22:42:31-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-29T22:42:31-04:00
 # autoheal-sweeper.test.mjs
 
 ## Overview
-Synthesized entity documentation for `tests/modules/wiki/autoheal-sweeper.test.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/modules/wiki/autoheal-sweeper.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/modules/wiki/autoheal-sweeper.test.mjs`
 - **Lines of Code:** 203
@@ -20,4 +20,4 @@ Synthesized entity documentation for `tests/modules/wiki/autoheal-sweeper.test.m
 
 ## Source Citations
 - Source: `tests/modules/wiki/autoheal-sweeper.test.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

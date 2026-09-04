@@ -2,7 +2,7 @@
 title: vector-store.mjs
 category: sync-tools
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/cache/vector-store.mjs
 sha256: 9899addcc11d0f5c618f41e17736d97c76dfa741d6014b4c19b4940619885ccc
 lastCommit: 2026-08-27T09:20:46-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-27T09:20:46-04:00
 # vector-store.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/cache/vector-store.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/cache/vector-store.mjs` in **kb-sync**.
 
 - **File Path:** `modules/cache/vector-store.mjs`
 - **Lines of Code:** 376
@@ -33,4 +33,4 @@ Synthesized entity documentation for `modules/cache/vector-store.mjs` in **kb-sy
 
 ## Source Citations
 - Source: `modules/cache/vector-store.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-04--willow-run-videos-open-contra"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-08-30T00:30:08.082Z"
+created_at: "2026-09-04T00:30:58.279Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","trm-research-gaps.md","wiki/research/rfc-gap-01--willow-run-videos-follow-up.md"]
+citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","trm-research-gaps.md","wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md"]
 ---
 
 # RFC: GAP-04 - **Willow Run Videos (open-contradictions)**
 
 ## 1. Problem Statement & Context
-Based on **The Sorensen Records** [1] and your newly imported **Research Report on the L-Bend** [2], we now have the primary source evidence to **defi))))))))))))))
+Based on **The Sorensen Records** [1] and your newly imported **Research Report on the L-Bend** [2], we now have the primary source evidence to **defi))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-01--willow-run-videos-follow-up** (`wiki/research/rfc-gap-01--willow-run-videos-follow-up.md`) [lexical_only]:
-  > 
+- **rfc-gap-03--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md`) [vector_only]:
+  > --- title: "RFC: GAP-03 - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-03--the-sorensen-photographic-arc" gap_id: "GAP-03" status: "draft" created_at: "2026-09-04T00:02:10.607Z" expansion_method: "heuristic" retrieval_mod
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

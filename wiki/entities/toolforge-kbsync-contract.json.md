@@ -2,7 +2,7 @@
 title: toolforge-kbsync-contract.json
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/toolforge-kbsync-contract.json
 sha256: 764523eb61424ff92aa8075c38ae6c650030aa2774190d25c1fefa77a2e25cd8
 lastCommit: 2026-08-29T09:34:28-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-29T09:34:28-04:00
 # toolforge-kbsync-contract.json
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/toolforge-kbsync-contract.json` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/toolforge-kbsync-contract.json` in **kb-sync**.
 
 - **File Path:** `modules/wiki/toolforge-kbsync-contract.json`
 - **Lines of Code:** 124
@@ -20,4 +20,4 @@ Synthesized entity documentation for `modules/wiki/toolforge-kbsync-contract.jso
 
 ## Source Citations
 - Source: `modules/wiki/toolforge-kbsync-contract.json`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

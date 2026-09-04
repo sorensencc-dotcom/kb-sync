@@ -2,21 +2,21 @@
 title: sync-github-wiki.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: scripts/sync-github-wiki.mjs
-sha256: beaa29158356b4b6889c4fa8d4b3bc959dc03d7e2c9aa8179ac610eeeeaeb1d6
-lastCommit: 2026-08-29T23:01:31-04:00
+sha256: 6e7b07890e408be4e42ef163bd6036bf9be5c4dae8444332f2afbe48674c4719
+lastCommit: 2026-08-30T18:14:33-04:00
 ---
 
 # sync-github-wiki.mjs
 
 ## Overview
-Synthesized entity documentation for `scripts/sync-github-wiki.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `scripts/sync-github-wiki.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/sync-github-wiki.mjs`
-- **Lines of Code:** 232
-- **Last Modified:** `2026-08-29T23:01:31-04:00`
-- **SHA-256:** `beaa29158356b4b6889c4fa8d4b3bc959dc03d7e2c9aa8179ac610eeeeaeb1d6`
+- **Lines of Code:** 240
+- **Last Modified:** `2026-08-30T18:14:33-04:00`
+- **SHA-256:** `6e7b07890e408be4e42ef163bd6036bf9be5c4dae8444332f2afbe48674c4719`
 
 ## Exported Symbols & API
 - `deriveWikiSshUrl`
@@ -24,4 +24,4 @@ Synthesized entity documentation for `scripts/sync-github-wiki.mjs` in **kb-sync
 
 ## Source Citations
 - Source: `scripts/sync-github-wiki.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

@@ -2,7 +2,7 @@
 title: ast-grounding.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/trm/ast-grounding.mjs
 sha256: 11320cabf59a1697a3deb1a3128df9f84841db750d9e0d86074b0235b7db2f78
 lastCommit: 2026-08-27T09:20:46-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-27T09:20:46-04:00
 # ast-grounding.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/trm/ast-grounding.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/trm/ast-grounding.mjs` in **kb-sync**.
 
 - **File Path:** `modules/trm/ast-grounding.mjs`
 - **Lines of Code:** 195
@@ -26,4 +26,4 @@ Synthesized entity documentation for `modules/trm/ast-grounding.mjs` in **kb-syn
 
 ## Source Citations
 - Source: `modules/trm/ast-grounding.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

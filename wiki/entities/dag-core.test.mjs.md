@@ -2,22 +2,22 @@
 title: dag-core.test.mjs
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/dag-core.test.mjs
-sha256: e918fb9226ae95687fe151498f22bb8dbed97ac3b7e4d46d5a1d02088e34932c
+sha256: e8e10ed6119c821035999e80c6c5ea845d0016b5bed595e02db7bddca9c9d50a
 lastCommit: 2026-08-08T14:22:31-04:00
 ---
 
 # dag-core.test.mjs
 
 ## Overview
-Synthesized entity documentation for `tests/dag-core.test.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/dag-core.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/dag-core.test.mjs`
 - **Lines of Code:** 194
 - **Last Modified:** `2026-08-08T14:22:31-04:00`
-- **SHA-256:** `e918fb9226ae95687fe151498f22bb8dbed97ac3b7e4d46d5a1d02088e34932c`
+- **SHA-256:** `e8e10ed6119c821035999e80c6c5ea845d0016b5bed595e02db7bddca9c9d50a`
 
 ## Source Citations
 - Source: `tests/dag-core.test.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

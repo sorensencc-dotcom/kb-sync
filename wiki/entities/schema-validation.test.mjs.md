@@ -2,22 +2,22 @@
 title: schema-validation.test.mjs
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/schema-validation.test.mjs
-sha256: 33a36a92bd6c70d538f0efe4bb2623dd8330a68e27dfa4a7122f231f662ef2b0
+sha256: 1c2e12600a09459acaab975d68d7e2336158fc94353b8869ea6e7e7994e65139
 lastCommit: 2026-08-08T10:38:17-04:00
 ---
 
 # schema-validation.test.mjs
 
 ## Overview
-Synthesized entity documentation for `tests/schema-validation.test.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/schema-validation.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/schema-validation.test.mjs`
 - **Lines of Code:** 11
 - **Last Modified:** `2026-08-08T10:38:17-04:00`
-- **SHA-256:** `33a36a92bd6c70d538f0efe4bb2623dd8330a68e27dfa4a7122f231f662ef2b0`
+- **SHA-256:** `1c2e12600a09459acaab975d68d7e2336158fc94353b8869ea6e7e7994e65139`
 
 ## Source Citations
 - Source: `tests/schema-validation.test.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

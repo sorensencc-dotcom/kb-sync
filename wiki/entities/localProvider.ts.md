@@ -2,25 +2,25 @@
 title: localProvider.ts
 category: adapters
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/obsidian/providers/localProvider.ts
-sha256: 0bbebff8a3dc5ede6f54ecd88f6e0f372505741b0b1d95fd993b7badf69b1575
+sha256: c62f78c0fa5c5723350109cdb0f42ea63377379862d8b829a15f0b1205da84e7
 lastCommit: 2026-08-11T08:05:07-04:00
 ---
 
 # localProvider.ts
 
 ## Overview
-Synthesized entity documentation for `modules/obsidian/providers/localProvider.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/obsidian/providers/localProvider.ts` in **kb-sync**.
 
 - **File Path:** `modules/obsidian/providers/localProvider.ts`
 - **Lines of Code:** 344
 - **Last Modified:** `2026-08-11T08:05:07-04:00`
-- **SHA-256:** `0bbebff8a3dc5ede6f54ecd88f6e0f372505741b0b1d95fd993b7badf69b1575`
+- **SHA-256:** `c62f78c0fa5c5723350109cdb0f42ea63377379862d8b829a15f0b1205da84e7`
 
 ## Exported Symbols & API
 - `LocalProvider`
 
 ## Source Citations
 - Source: `modules/obsidian/providers/localProvider.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

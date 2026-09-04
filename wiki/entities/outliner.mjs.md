@@ -2,7 +2,7 @@
 title: outliner.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/compactor/outliner.mjs
 sha256: 2aaf56fee6e049d298479f73ea41681a1cf7d41714ce2ea47897dd9e6e12f30e
 lastCommit: 2026-08-12T09:55:26-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-12T09:55:26-04:00
 # outliner.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/compactor/outliner.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/compactor/outliner.mjs` in **kb-sync**.
 
 - **File Path:** `modules/compactor/outliner.mjs`
 - **Lines of Code:** 50
@@ -25,4 +25,4 @@ Synthesized entity documentation for `modules/compactor/outliner.mjs` in **kb-sy
 
 ## Source Citations
 - Source: `modules/compactor/outliner.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

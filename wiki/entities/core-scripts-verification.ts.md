@@ -2,21 +2,21 @@
 title: core-scripts-verification.ts
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/core-scripts-verification.ts
-sha256: ba53caf9a1fde0b2f7dd202edf112cec07703fe1382f9990123ef8817d7d1433
+sha256: 372d05b72e644814d6d572889af521733874bedd4b77db3ab931eaaf92ed5454
 lastCommit: 2026-08-06T23:46:00-04:00
 ---
 
 # core-scripts-verification.ts
 
 ## Overview
-Synthesized entity documentation for `tests/core-scripts-verification.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/core-scripts-verification.ts` in **kb-sync**.
 
 - **File Path:** `tests/core-scripts-verification.ts`
 - **Lines of Code:** 529
 - **Last Modified:** `2026-08-06T23:46:00-04:00`
-- **SHA-256:** `ba53caf9a1fde0b2f7dd202edf112cec07703fe1382f9990123ef8817d7d1433`
+- **SHA-256:** `372d05b72e644814d6d572889af521733874bedd4b77db3ab931eaaf92ed5454`
 
 ## Exported Symbols & API
 - `isBashAvailable`
@@ -25,4 +25,4 @@ Synthesized entity documentation for `tests/core-scripts-verification.ts` in **k
 
 ## Source Citations
 - Source: `tests/core-scripts-verification.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

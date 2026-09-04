@@ -2,21 +2,21 @@
 title: cross-repo-drift-scanner.ts
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/cross-repo-drift-scanner.ts
-sha256: 2ff21c5aba8a54e4b902d7b989039465987105ec39e49bf23c1c7b2f8a4f1e8b
-lastCommit: 2026-08-29T22:56:45-04:00
+sha256: 5c5b431244bb707934ebafa7315a2062ef7b43c96f9435bf49f6b8abb2840c5e
+lastCommit: 2026-08-29T23:24:06-04:00
 ---
 
 # cross-repo-drift-scanner.ts
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/cross-repo-drift-scanner.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/cross-repo-drift-scanner.ts` in **kb-sync**.
 
 - **File Path:** `modules/wiki/cross-repo-drift-scanner.ts`
-- **Lines of Code:** 391
-- **Last Modified:** `2026-08-29T22:56:45-04:00`
-- **SHA-256:** `2ff21c5aba8a54e4b902d7b989039465987105ec39e49bf23c1c7b2f8a4f1e8b`
+- **Lines of Code:** 400
+- **Last Modified:** `2026-08-29T23:24:06-04:00`
+- **SHA-256:** `5c5b431244bb707934ebafa7315a2062ef7b43c96f9435bf49f6b8abb2840c5e`
 
 ## Exported Symbols & API
 - `CanonicalRepoEntry`
@@ -34,4 +34,4 @@ Synthesized entity documentation for `modules/wiki/cross-repo-drift-scanner.ts` 
 
 ## Source Citations
 - Source: `modules/wiki/cross-repo-drift-scanner.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

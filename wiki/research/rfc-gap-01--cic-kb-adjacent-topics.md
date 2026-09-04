@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-01--cic-kb-adjacent-topics"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-08-30T00:30:08.107Z"
+created_at: "2026-09-04T00:31:05.230Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cic-kb-adjacent-topics.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-kb-adjacent-topics.md"]
+citations: ["wiki/research/rfc-gap-01--cic-kb-adjacent-topics.md","wiki/concepts/immutable-staging.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-01 - **CIC-KB (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The sources point to several highly specialized, adjacent architectural paradigms, deferred protocol specifications, and strategic integrations that a))))))))))))))))
+The sources point to several highly specialized, adjacent architectural paradigms, deferred protocol specifications, and strategic integrations that a))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01--cic-kb-adjacent-topics** (`wiki/research/rfc-gap-01--cic-kb-adjacent-topics.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-kb-adjacent-topics** (`wiki/research/rfc-gap-02--cic-kb-adjacent-topics.md`) [hybrid]:
+- **immutable-staging** (`wiki/concepts/immutable-staging.md`) [vector_only]:
+  > --- title: Immutable Staging category: concepts status: active sourceRepository: kb-sync lastUpdated: "2026-08-30" ---  # Immutable Staging  **Immutable Staging** is the filesystem isolation contract used by KB-Sync to separate active code trees from
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

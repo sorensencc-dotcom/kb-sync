@@ -2,7 +2,7 @@
 title: repair-audit-gate.test.ts
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/healing/repair-audit-gate.test.ts
 sha256: 655988f26f380c911ba7ebbc7d808e541640a76a27da149ec97e0715d517c313
 lastCommit: 2026-08-28T19:13:29-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-28T19:13:29-04:00
 # repair-audit-gate.test.ts
 
 ## Overview
-Synthesized entity documentation for `modules/healing/repair-audit-gate.test.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/healing/repair-audit-gate.test.ts` in **kb-sync**.
 
 - **File Path:** `modules/healing/repair-audit-gate.test.ts`
 - **Lines of Code:** 30
@@ -20,4 +20,4 @@ Synthesized entity documentation for `modules/healing/repair-audit-gate.test.ts`
 
 ## Source Citations
 - Source: `modules/healing/repair-audit-gate.test.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

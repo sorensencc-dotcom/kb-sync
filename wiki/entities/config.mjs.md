@@ -2,7 +2,7 @@
 title: config.mjs
 category: sync-tools
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: core/config.mjs
 sha256: 7ff76245e84f6cbccdf7b441f8703189f9030b1072acbf4138ad62f0b8078f3d
 lastCommit: 2026-08-29T22:27:32-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-29T22:27:32-04:00
 # config.mjs
 
 ## Overview
-Synthesized entity documentation for `core/config.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `core/config.mjs` in **kb-sync**.
 
 - **File Path:** `core/config.mjs`
 - **Lines of Code:** 140
@@ -28,4 +28,4 @@ Synthesized entity documentation for `core/config.mjs` in **kb-sync-drift-fix**.
 
 ## Source Citations
 - Source: `core/config.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

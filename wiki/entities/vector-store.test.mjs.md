@@ -2,7 +2,7 @@
 title: vector-store.test.mjs
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/vector-store.test.mjs
 sha256: 871da70ccc1ef69245a4ee8cffbb0296e7351e669b56759db2df5e9bb507a710
 lastCommit: 2026-08-27T08:24:23-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-27T08:24:23-04:00
 # vector-store.test.mjs
 
 ## Overview
-Synthesized entity documentation for `tests/vector-store.test.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/vector-store.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/vector-store.test.mjs`
 - **Lines of Code:** 189
@@ -20,4 +20,4 @@ Synthesized entity documentation for `tests/vector-store.test.mjs` in **kb-sync-
 
 ## Source Citations
 - Source: `tests/vector-store.test.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

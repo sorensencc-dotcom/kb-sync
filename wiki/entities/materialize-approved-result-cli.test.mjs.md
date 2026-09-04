@@ -2,7 +2,7 @@
 title: materialize-approved-result-cli.test.mjs
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/materialize-approved-result-cli.test.mjs
 sha256: c8145df158360cdb93c3aabb8cbbe6466252e06e48332c5f360deab18f7124b6
 lastCommit: 2026-08-23T00:44:03-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-23T00:44:03-04:00
 # materialize-approved-result-cli.test.mjs
 
 ## Overview
-Synthesized entity documentation for `tests/materialize-approved-result-cli.test.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/materialize-approved-result-cli.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/materialize-approved-result-cli.test.mjs`
 - **Lines of Code:** 366
@@ -20,4 +20,4 @@ Synthesized entity documentation for `tests/materialize-approved-result-cli.test
 
 ## Source Citations
 - Source: `tests/materialize-approved-result-cli.test.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

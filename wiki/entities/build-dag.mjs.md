@@ -2,21 +2,21 @@
 title: build-dag.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: scripts/build-dag.mjs
-sha256: 29becb66747826a8a5322c51be96f585d48c45f5ea4c0b414636b3640677d6e8
+sha256: 0d958410e66385af6c93f95b6abb6770cc38c8bf14b76e63a545883d7276fe37
 lastCommit: 2026-08-08T13:46:44-04:00
 ---
 
 # build-dag.mjs
 
 ## Overview
-Synthesized entity documentation for `scripts/build-dag.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `scripts/build-dag.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/build-dag.mjs`
 - **Lines of Code:** 340
 - **Last Modified:** `2026-08-08T13:46:44-04:00`
-- **SHA-256:** `29becb66747826a8a5322c51be96f585d48c45f5ea4c0b414636b3640677d6e8`
+- **SHA-256:** `0d958410e66385af6c93f95b6abb6770cc38c8bf14b76e63a545883d7276fe37`
 
 ## Exported Symbols & API
 - `getPaths`
@@ -30,4 +30,4 @@ Synthesized entity documentation for `scripts/build-dag.mjs` in **kb-sync-drift-
 
 ## Source Citations
 - Source: `scripts/build-dag.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

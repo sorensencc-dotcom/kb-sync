@@ -2,7 +2,7 @@
 title: query-expander.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/trm/query-expander.mjs
 sha256: 78d8827881ede63face9d5ef982b487e02cea7d571d004b4dd99286e895d9340
 lastCommit: 2026-08-26T17:38:38-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-26T17:38:38-04:00
 # query-expander.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/trm/query-expander.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/trm/query-expander.mjs` in **kb-sync**.
 
 - **File Path:** `modules/trm/query-expander.mjs`
 - **Lines of Code:** 376
@@ -26,4 +26,4 @@ Synthesized entity documentation for `modules/trm/query-expander.mjs` in **kb-sy
 
 ## Source Citations
 - Source: `modules/trm/query-expander.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

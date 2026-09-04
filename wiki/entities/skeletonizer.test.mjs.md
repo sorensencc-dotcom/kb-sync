@@ -2,7 +2,7 @@
 title: skeletonizer.test.mjs
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/skeletonizer.test.mjs
 sha256: 4e8ee179a22a78c1faef0e6c8994625fcd74bb172c06955468a077070f1e4f57
 lastCommit: 2026-08-11T18:34:22-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-11T18:34:22-04:00
 # skeletonizer.test.mjs
 
 ## Overview
-Synthesized entity documentation for `tests/skeletonizer.test.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/skeletonizer.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/skeletonizer.test.mjs`
 - **Lines of Code:** 70
@@ -23,4 +23,4 @@ Synthesized entity documentation for `tests/skeletonizer.test.mjs` in **kb-sync-
 
 ## Source Citations
 - Source: `tests/skeletonizer.test.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

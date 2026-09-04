@@ -2,7 +2,7 @@
 title: generate-kb-sync-artifact.ts
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: scripts/notebooklm/generate-kb-sync-artifact.ts
 sha256: d4fc2ef0fdface80184364f917d27c2374ef85faf1586118982e31243b5d0e86
 lastCommit: 2026-07-10T23:46:47-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-07-10T23:46:47-04:00
 # generate-kb-sync-artifact.ts
 
 ## Overview
-Synthesized entity documentation for `scripts/notebooklm/generate-kb-sync-artifact.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `scripts/notebooklm/generate-kb-sync-artifact.ts` in **kb-sync**.
 
 - **File Path:** `scripts/notebooklm/generate-kb-sync-artifact.ts`
 - **Lines of Code:** 475
@@ -20,4 +20,4 @@ Synthesized entity documentation for `scripts/notebooklm/generate-kb-sync-artifa
 
 ## Source Citations
 - Source: `scripts/notebooklm/generate-kb-sync-artifact.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

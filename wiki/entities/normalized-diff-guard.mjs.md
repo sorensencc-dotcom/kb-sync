@@ -2,21 +2,21 @@
 title: normalized-diff-guard.mjs
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/normalized-diff-guard.mjs
-sha256: 0c7878375e0cfb341db0d6bad1b699643c61e58deaa943a96060a4ad07c2cd02
+sha256: 20b66a07c9bd7f7a46f4ccccc4e70efeb8551657a182246075a5eb5c17efb04c
 lastCommit: 2026-08-11T00:43:58-04:00
 ---
 
 # normalized-diff-guard.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/normalized-diff-guard.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/normalized-diff-guard.mjs` in **kb-sync**.
 
 - **File Path:** `modules/wiki/normalized-diff-guard.mjs`
 - **Lines of Code:** 155
 - **Last Modified:** `2026-08-11T00:43:58-04:00`
-- **SHA-256:** `0c7878375e0cfb341db0d6bad1b699643c61e58deaa943a96060a4ad07c2cd02`
+- **SHA-256:** `20b66a07c9bd7f7a46f4ccccc4e70efeb8551657a182246075a5eb5c17efb04c`
 
 ## Exported Symbols & API
 - `ALLOWED_CATEGORIES`
@@ -26,4 +26,4 @@ Synthesized entity documentation for `modules/wiki/normalized-diff-guard.mjs` in
 
 ## Source Citations
 - Source: `modules/wiki/normalized-diff-guard.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

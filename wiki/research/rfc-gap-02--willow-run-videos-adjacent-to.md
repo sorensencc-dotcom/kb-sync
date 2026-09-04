@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-02--willow-run-videos-adjacent-to"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-08-30T00:30:08.069Z"
+created_at: "2026-09-04T00:30:52.985Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","trm-research-gaps.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
+citations: ["wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","trm-research-gaps.md","wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md"]
 ---
 
 # RFC: GAP-02 - **Willow Run Videos (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-Now that we have successfully translated the **George Selden Patent War** legal thriller into a production-ready script (`selden-patent-script.md` [1]))))))))))))))
+Now that we have successfully translated the **George Selden Patent War** legal thriller into a production-ready script (`selden-patent-script.md` [1]))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
-  > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
+- **rfc-gap-03--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md`) [vector_only]:
+  > --- title: "RFC: GAP-03 - **Willow Run Videos under-sourced**" category: "research" topic: "rfc-gap-03--willow-run-videos-under-sourc" gap_id: "GAP-03" status: "draft" created_at: "2026-09-04T00:02:21.639Z" expansion_method: "heuristic" retrieval_mod
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

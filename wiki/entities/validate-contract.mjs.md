@@ -2,7 +2,7 @@
 title: validate-contract.mjs
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/validate-contract.mjs
 sha256: 041268bc7ea2e8589f0c63984f6ff5d988c7090e0199bbd1755f10ce1c87cc1f
 lastCommit: 2026-08-29T09:50:43-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-29T09:50:43-04:00
 # validate-contract.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/validate-contract.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/validate-contract.mjs` in **kb-sync**.
 
 - **File Path:** `modules/wiki/validate-contract.mjs`
 - **Lines of Code:** 472
@@ -26,4 +26,4 @@ Synthesized entity documentation for `modules/wiki/validate-contract.mjs` in **k
 
 ## Source Citations
 - Source: `modules/wiki/validate-contract.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

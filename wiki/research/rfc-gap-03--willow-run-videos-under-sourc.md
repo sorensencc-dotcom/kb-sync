@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-03--willow-run-videos-under-sourc"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-08-30T00:30:08.081Z"
+created_at: "2026-09-04T00:30:55.379Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md","trm-research-gaps.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md"]
+citations: ["wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md","trm-research-gaps.md","wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md"]
 ---
 
 # RFC: GAP-03 - **Willow Run Videos (under-sourced)**
 
 ## 1. Problem Statement & Context
-### **The Boeing B-17 Flying Fortress Production Claim** *   **The Claim:** One highly detailed video transcript asserts that Boeing's **B-17 Flying F))))))))))))))
+### **The Boeing B-17 Flying Fortress Production Claim** *   **The Claim:** One highly detailed video transcript asserts that Boeing's **B-17 Flying F))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+- **rfc-gap-01--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md`) [vector_only]:
+  > --- title: "RFC: GAP-01 - **CastIronCharlie-Facebook follow-up**" category: "research" topic: "rfc-gap-01--castironcharlie-facebook-foll" gap_id: "GAP-01" status: "draft" created_at: "2026-09-04T00:02:35.633Z" expansion_method: "heuristic" retrieval_
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

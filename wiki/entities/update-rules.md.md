@@ -2,7 +2,7 @@
 title: update-rules.md
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/update-rules.md
 sha256: 621b7435740ea95b919012af8e5fc441a3fad2475f1f2076a229b1ebfe4665ab
 lastCommit: 2026-07-11T07:40:52-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-07-11T07:40:52-04:00
 # update-rules.md
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/update-rules.md` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/update-rules.md` in **kb-sync**.
 
 - **File Path:** `modules/wiki/update-rules.md`
 - **Lines of Code:** 227
@@ -20,4 +20,4 @@ Synthesized entity documentation for `modules/wiki/update-rules.md` in **kb-sync
 
 ## Source Citations
 - Source: `modules/wiki/update-rules.md`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

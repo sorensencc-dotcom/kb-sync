@@ -2,7 +2,7 @@
 title: delta-summary.test.ts
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/delta-summary.test.ts
 sha256: 557726a095b17105099de6116025822c066e996f166bdf369b4032d351771bf3
 lastCommit: 2026-08-01T18:05:29-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-01T18:05:29-04:00
 # delta-summary.test.ts
 
 ## Overview
-Synthesized entity documentation for `tests/delta-summary.test.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/delta-summary.test.ts` in **kb-sync**.
 
 - **File Path:** `tests/delta-summary.test.ts`
 - **Lines of Code:** 73
@@ -20,4 +20,4 @@ Synthesized entity documentation for `tests/delta-summary.test.ts` in **kb-sync-
 
 ## Source Citations
 - Source: `tests/delta-summary.test.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

@@ -2,7 +2,7 @@
 title: sync-cache.mjs
 category: sync-tools
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/cache/sync-cache.mjs
 sha256: 0405ed7bb2c3c1154d15f1b7275e425e364beb36bb5851396b6c71740c14d9ac
 lastCommit: 2026-08-27T08:24:23-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-27T08:24:23-04:00
 # sync-cache.mjs
 
 ## Overview
-Synthesized entity documentation for `modules/cache/sync-cache.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/cache/sync-cache.mjs` in **kb-sync**.
 
 - **File Path:** `modules/cache/sync-cache.mjs`
 - **Lines of Code:** 178
@@ -25,4 +25,4 @@ Synthesized entity documentation for `modules/cache/sync-cache.mjs` in **kb-sync
 
 ## Source Citations
 - Source: `modules/cache/sync-cache.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

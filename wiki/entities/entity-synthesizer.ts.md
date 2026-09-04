@@ -2,21 +2,21 @@
 title: entity-synthesizer.ts
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/entity-synthesizer.ts
-sha256: e04c5b4dcf5c0a34f1bf8fe92817d7d0ef2d835b8ef4802705e776e0e15f6186
-lastCommit: 2026-08-29T23:01:31-04:00
+sha256: 4b8da98ecce2f25169545427c65b4d27f6627f6a9cb620bbd516ec984c13b4d5
+lastCommit: 2026-08-29T23:24:06-04:00
 ---
 
 # entity-synthesizer.ts
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/entity-synthesizer.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/entity-synthesizer.ts` in **kb-sync**.
 
 - **File Path:** `modules/wiki/entity-synthesizer.ts`
 - **Lines of Code:** 192
-- **Last Modified:** `2026-08-29T23:01:31-04:00`
-- **SHA-256:** `e04c5b4dcf5c0a34f1bf8fe92817d7d0ef2d835b8ef4802705e776e0e15f6186`
+- **Last Modified:** `2026-08-29T23:24:06-04:00`
+- **SHA-256:** `4b8da98ecce2f25169545427c65b4d27f6627f6a9cb620bbd516ec984c13b4d5`
 
 ## Exported Symbols & API
 - `EntitySynthesisResult`
@@ -25,4 +25,4 @@ Synthesized entity documentation for `modules/wiki/entity-synthesizer.ts` in **k
 
 ## Source Citations
 - Source: `modules/wiki/entity-synthesizer.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

@@ -2,7 +2,7 @@
 title: concept.md
 category: wiki
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/wiki/templates/concept.md
 sha256: 675bfadfc200b1a074b78b12c711f894826018cd298578cabee28962cade7ef5
 lastCommit: 2026-07-11T07:40:52-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-07-11T07:40:52-04:00
 # concept.md
 
 ## Overview
-Synthesized entity documentation for `modules/wiki/templates/concept.md` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/wiki/templates/concept.md` in **kb-sync**.
 
 - **File Path:** `modules/wiki/templates/concept.md`
 - **Lines of Code:** 141
@@ -20,4 +20,4 @@ Synthesized entity documentation for `modules/wiki/templates/concept.md` in **kb
 
 ## Source Citations
 - Source: `modules/wiki/templates/concept.md`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

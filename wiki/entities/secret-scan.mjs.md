@@ -2,7 +2,7 @@
 title: secret-scan.mjs
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: scripts/secret-scan.mjs
 sha256: 0b62fd799dd33b852a9ecc711c0fb319bac38a8dcec9338266d08a1f979ae1cd
 lastCommit: 2026-08-25T10:28:21-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-25T10:28:21-04:00
 # secret-scan.mjs
 
 ## Overview
-Synthesized entity documentation for `scripts/secret-scan.mjs` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `scripts/secret-scan.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/secret-scan.mjs`
 - **Lines of Code:** 51
@@ -20,4 +20,4 @@ Synthesized entity documentation for `scripts/secret-scan.mjs` in **kb-sync-drif
 
 ## Source Citations
 - Source: `scripts/secret-scan.mjs`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

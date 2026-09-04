@@ -2,22 +2,22 @@
 title: compute-weekly-metrics.ps1
 category: utilities
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: modules/review-capacity/scripts/compute-weekly-metrics.ps1
-sha256: 4c05f63c76c1d0066135ec50fcaa0e09ea9f95b972d9f0b5c0303afb185a25bf
+sha256: 0280be6a1fa7470a05b954cea95d8318f1740d83f9d47ce213af923a7ded30ff
 lastCommit: 2026-08-08T23:55:00-04:00
 ---
 
 # compute-weekly-metrics.ps1
 
 ## Overview
-Synthesized entity documentation for `modules/review-capacity/scripts/compute-weekly-metrics.ps1` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `modules/review-capacity/scripts/compute-weekly-metrics.ps1` in **kb-sync**.
 
 - **File Path:** `modules/review-capacity/scripts/compute-weekly-metrics.ps1`
 - **Lines of Code:** 70
 - **Last Modified:** `2026-08-08T23:55:00-04:00`
-- **SHA-256:** `4c05f63c76c1d0066135ec50fcaa0e09ea9f95b972d9f0b5c0303afb185a25bf`
+- **SHA-256:** `0280be6a1fa7470a05b954cea95d8318f1740d83f9d47ce213af923a7ded30ff`
 
 ## Source Citations
 - Source: `modules/review-capacity/scripts/compute-weekly-metrics.ps1`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`

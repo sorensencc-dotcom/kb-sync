@@ -2,7 +2,7 @@
 title: context-cache.test.ts
 category: scaffolds
 status: active
-sourceRepository: kb-sync-drift-fix
+sourceRepository: kb-sync
 sourceFile: tests/context-cache.test.ts
 sha256: 39ac62e3bc0e9758311ebf22329ae13d4aa99a313e6e65d2ea40906e66883cff
 lastCommit: 2026-08-21T19:58:22-04:00
@@ -11,7 +11,7 @@ lastCommit: 2026-08-21T19:58:22-04:00
 # context-cache.test.ts
 
 ## Overview
-Synthesized entity documentation for `tests/context-cache.test.ts` in **kb-sync-drift-fix**.
+Synthesized entity documentation for `tests/context-cache.test.ts` in **kb-sync**.
 
 - **File Path:** `tests/context-cache.test.ts`
 - **Lines of Code:** 316
@@ -20,4 +20,4 @@ Synthesized entity documentation for `tests/context-cache.test.ts` in **kb-sync-
 
 ## Source Citations
 - Source: `tests/context-cache.test.ts`
-- Repository: `kb-sync-drift-fix`
+- Repository: `kb-sync`
