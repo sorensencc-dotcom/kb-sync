@@ -68,7 +68,7 @@ try {
     }
 
     Write-LogInfo "Validating staging documentation..."
-    & cmd /c "npm run wiki:validate-staging" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    & cmd /c "npm run wiki:validate-staging -- --json=./.validation-report.json" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-LogError "Staging validation failed with exit code $LASTEXITCODE"
         $OverallStatus = 1
