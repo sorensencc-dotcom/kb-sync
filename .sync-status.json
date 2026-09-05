@@ -10,8 +10,9 @@
   "stage1_success": false,
   "stage2_success": false,
   "target": "notebooklm",
-  "timestamp": "2026-09-05T03:15:04Z",
-  "duration_ms": 490,
+  "timestamp": "2026-09-05T03:17:41Z",
+  "duration_ms": 171001,
   "purged_sources": 0,
-  "uploaded_chunks": 0
+  "uploaded_chunks": 0,
+  "last_error": "Script terminated with error (exit code 1) at line 695: 'SIZE_STATUS=$(\"$CORE_DIR/validate.sh\" --file \"$PACK_FILE_PATH\" --global-config \"$GLOBAL_CONFIG\")'"
 }

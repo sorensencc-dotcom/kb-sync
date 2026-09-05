@@ -1,13 +1,70 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-04T22:41:05.109Z",
-  "system_time_epoch_ms": 1788561665109,
-  "status": "NO_DRIFT",
-  "drifted_sources": [],
+  "timestamp": "2026-09-05T03:22:11.368Z",
+  "system_time_epoch_ms": 1788578531368,
+  "status": "DRIFT_DETECTED",
+  "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "core/flatten.sh",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/flatten.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "core/harvest_registry.json",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/harvest_registry.json"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/notebooklm/ingest-notebooklm.sh",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/ingest-notebooklm.sh"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/autoheal-sweeper.mjs",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/autoheal-sweeper.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/dashboard.html",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/dashboard.html"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/validate-staging-docs.mjs",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/validate-staging-docs.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/schedule-task-wrapper-KB-Sync-Master.ps1",
+      "last_code_commit": "2026-09-04T23:18:14-04:00",
+      "last_wiki_sync": "2026-09-04T22:41:02.681Z",
+      "status": "STALE",
+      "wiki_page": "entities/schedule-task-wrapper-KB-Sync-Master.ps1"
+    }
+  ],
   "summary": {
     "total_sources_checked": 200,
-    "stale_pages_count": 0,
-    "untracked_paths_count": 274
+    "stale_pages_count": 7,
+    "untracked_paths_count": 69
   }
 }

@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-04--cic-post-war-willys-overland"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-09-05T03:12:40.873Z"
+created_at: "2026-09-05T03:17:49.471Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-04--cic-post-war-willys-overland.md","trm-res
 # RFC: GAP-04 - **CIC - Post-War & Willys-Overland (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An analysis of your notebook’s sources reveals several compelling open questions, explicit archival gaps, and even a few direct contradictions that ex))))))))))))))))))))))))
+An analysis of your notebook’s sources reveals several compelling open questions, explicit archival gaps, and even a few direct contradictions that ex)))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

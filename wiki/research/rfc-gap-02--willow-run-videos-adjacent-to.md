@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-02--willow-run-videos-adjacent-to"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-09-05T03:13:17.056Z"
+created_at: "2026-09-05T03:18:12.370Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","trm-re
 # RFC: GAP-02 - **Willow Run Videos (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-Now that we have successfully translated the **George Selden Patent War** legal thriller into a production-ready script (`selden-patent-script.md` [1]))))))))))))))))))))))))))))))))))))))))))))))))))
+Now that we have successfully translated the **George Selden Patent War** legal thriller into a production-ready script (`selden-patent-script.md` [1])))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

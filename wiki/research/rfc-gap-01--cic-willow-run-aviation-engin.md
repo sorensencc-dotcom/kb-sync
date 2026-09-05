@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--cic-willow-run-aviation-engin"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-05T03:12:40.884Z"
+created_at: "2026-09-05T03:17:49.472Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md","wiki/r
 # RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**
 
 ## 1. Problem Statement & Context
-To most effectively strengthen your current findings, follow-up research should target the specific **archival gaps** and **contested narratives** whe)))))))))))))))))))))))))
+To most effectively strengthen your current findings, follow-up research should target the specific **archival gaps** and **contested narratives** whe))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

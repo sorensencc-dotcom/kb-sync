@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-04--willow-run-videos-open-contra"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-09-05T03:13:19.904Z"
+created_at: "2026-09-05T03:18:15.023Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","trm-re
 # RFC: GAP-04 - **Willow Run Videos (open-contradictions)**
 
 ## 1. Problem Statement & Context
-Based on **The Sorensen Records** [1] and your newly imported **Research Report on the L-Bend** [2], we now have the primary source evidence to **defi))))))))))))))))))))))))))))))))))))))))))))))))))
+Based on **The Sorensen Records** [1] and your newly imported **Research Report on the L-Bend** [2], we now have the primary source evidence to **defi)))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

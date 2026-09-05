@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--cic-cuban-seizures-retired-as"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-05T03:12:41.015Z"
+created_at: "2026-09-05T03:17:49.520Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md","trm-re
 # RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets (follow-up)**
 
 ## 1. Problem Statement & Context
-To significantly strengthen our current findings and resolve the key contradictions and uncorroborated claims we have uncovered, follow-up research sh))))))))))))))))))))))))))
+To significantly strengthen our current findings and resolve the key contradictions and uncorroborated claims we have uncovered, follow-up research sh)))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

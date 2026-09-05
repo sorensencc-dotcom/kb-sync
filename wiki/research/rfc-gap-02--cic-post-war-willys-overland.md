@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-02--cic-post-war-willys-overland"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-09-05T03:12:40.742Z"
+created_at: "2026-09-05T03:17:49.443Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","trm-res
 # RFC: GAP-02 - **CIC - Post-War & Willys-Overland (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-While we have focused heavily on Sorensen's post-war years at Willys-Overland and his 1963 collaboration with Brooks Stevens, your sources point to se))))))))))))))))))))))))
+While we have focused heavily on Sorensen's post-war years at Willys-Overland and his 1963 collaboration with Brooks Stevens, your sources point to se)))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

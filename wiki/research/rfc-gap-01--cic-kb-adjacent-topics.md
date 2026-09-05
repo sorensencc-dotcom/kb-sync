@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--cic-kb-adjacent-topics"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-05T03:13:28.186Z"
+created_at: "2026-09-05T03:18:19.790Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--cic-kb-adjacent-topics.md","wiki/concepts
 # RFC: GAP-01 - **CIC-KB (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The sources point to several highly specialized, adjacent architectural paradigms, deferred protocol specifications, and strategic integrations that a))))))))))))))))))))))))))))))))))))))))))))))))))))
+The sources point to several highly specialized, adjacent architectural paradigms, deferred protocol specifications, and strategic integrations that a)))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

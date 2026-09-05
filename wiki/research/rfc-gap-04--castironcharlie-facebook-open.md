@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-04--castironcharlie-facebook-open"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-09-05T03:13:35.215Z"
+created_at: "2026-09-05T03:18:26.331Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","wiki/c
 # RFC: GAP-04 - **CastIronCharlie-Facebook (open-contradictions)**
 
 ## 1. Problem Statement & Context
-The historical files in your notebook reveal several deep-seated contradictions, unresolved narratives, and organizational tensions that complicate th)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+The historical files in your notebook reveal several deep-seated contradictions, unresolved narratives, and organizational tensions that complicate th))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

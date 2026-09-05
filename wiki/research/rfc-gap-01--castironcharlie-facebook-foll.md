@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--castironcharlie-facebook-foll"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-05T03:13:33.143Z"
+created_at: "2026-09-05T03:18:24.026Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md","trm-re
 # RFC: GAP-01 - **CastIronCharlie-Facebook (follow-up)**
 
 ## 1. Problem Statement & Context
-To most effectively strengthen our current findings—especially now that we have successfully resolved the **Sperry M-7 precision engineering** and the)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+To most effectively strengthen our current findings—especially now that we have successfully resolved the **Sperry M-7 precision engineering** and the))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

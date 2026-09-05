@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--cic-post-war-willys-overland"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-05T03:12:40.740Z"
+created_at: "2026-09-05T03:17:49.441Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--cic-post-war-willys-overland.md","trm-res
 # RFC: GAP-01 - **CIC - Post-War & Willys-Overland (follow-up)**
 
 ## 1. Problem Statement & Context
-To significantly strengthen the historical findings in your notebook and resolve current ambiguities, follow-up research should target several specifi))))))))))))))))))))))))
+To significantly strengthen the historical findings in your notebook and resolve current ambiguities, follow-up research should target several specifi)))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

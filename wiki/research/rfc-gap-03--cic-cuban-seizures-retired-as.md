@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-03--cic-cuban-seizures-retired-as"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-09-05T03:12:41.018Z"
+created_at: "2026-09-05T03:17:49.522Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","trm-re
 # RFC: GAP-03 - **CIC - Cuban Seizures & Retired Assets (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An analysis of the Foreign Claims Settlement Commission (FCSC) adjudications and the operational dossiers reveals several core **legal, methodological))))))))))))))))))))))))))
+An analysis of the Foreign Claims Settlement Commission (FCSC) adjudications and the operational dossiers reveals several core **legal, methodological)))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-02--castironcharlie-facebook-unde"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-09-05T03:12:56.638Z"
+created_at: "2026-09-05T03:17:58.967Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md","trm-re
 # RFC: GAP-02 - **CastIronCharlie-Facebook (under-sourced)**
 
 ## 1. Problem Statement & Context
-A close, critical reading of the expanded archives in your notebook reveals several major historical claims that—while compelling—are **single-sourced)))))))))))))))))))))))))))))))))))))))))))))))
+A close, critical reading of the expanded archives in your notebook reveals several major historical claims that—while compelling—are **single-sourced))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

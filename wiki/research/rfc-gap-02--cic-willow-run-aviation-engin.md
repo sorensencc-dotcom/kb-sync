@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-02--cic-willow-run-aviation-engin"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-09-05T03:12:40.970Z"
+created_at: "2026-09-05T03:17:49.496Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-re
 # RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The sources in your notebook point to several compelling adjacent topics—spanning post-war industrial reconversion, technical metallurgical innovation)))))))))))))))))))))))))
+The sources in your notebook point to several compelling adjacent topics—spanning post-war industrial reconversion, technical metallurgical innovation))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

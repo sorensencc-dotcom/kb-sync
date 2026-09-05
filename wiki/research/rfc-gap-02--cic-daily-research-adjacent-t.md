@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-02--cic-daily-research-adjacent-t"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-09-05T03:13:24.239Z"
+created_at: "2026-09-05T03:18:17.606Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md","trm-re
 # RFC: GAP-02 - **CIC - Daily Research (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The extensive primary source oral histories, private family papers, and local research logs point to **five highly compelling, unmapped adjacent stori)))))))))))))))))))))))))))))))))))))))))))))))))))
+The extensive primary source oral histories, private family papers, and local research logs point to **five highly compelling, unmapped adjacent stori))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

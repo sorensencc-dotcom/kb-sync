@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-04--cic-reddit-open-contradiction"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-09-05T03:12:45.428Z"
+created_at: "2026-09-05T03:17:52.704Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md","trm-re
 # RFC: GAP-04 - **CIC-Reddit (open-contradictions)**
 
 ## 1. Problem Statement & Context
-### **The Assembly Line's L-Shape and the "Tax Turn" Legend** A major structural and political contradiction lies in the physical layout of the Willow))))))))))))))))))))))))))))))))))))))))))))))
+### **The Assembly Line's L-Shape and the "Tax Turn" Legend** A major structural and political contradiction lies in the physical layout of the Willow)))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

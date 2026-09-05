@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--cic-kb-follow-up"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-05T03:13:39.438Z"
+created_at: "2026-09-05T03:18:30.732Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--cic-kb-follow-up.md","trm-research-gaps.m
 # RFC: GAP-01 - **CIC-KB (follow-up)**
 
 ## 1. Problem Statement & Context
-To systematically strengthen the architectural foundations, safety boundaries, and performance metrics of the **Cast Iron Charlie (CIC)** and **`kb-sy))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+To systematically strengthen the architectural foundations, safety boundaries, and performance metrics of the **Cast Iron Charlie (CIC)** and **`kb-sy)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
