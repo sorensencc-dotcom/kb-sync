@@ -85,6 +85,19 @@
       font-weight: 700;
     }
 
+    .timestamp-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bone);
+      margin-top: 0.8rem;
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      background: rgba(44, 36, 32, 0.6);
+      border: 1px solid rgba(196, 80, 26, 0.3);
+    }
+
     .summary {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -498,6 +511,7 @@
     <header>
       <h1>KB-Sync Validation & Knowledge Graph Dashboard</h1>
       <p class="subtitle">Operator Knowledge Base Health & Advisory Telemetry</p>
+      <div class="timestamp-badge" id="reportTimestamp">Report Generated: Loading...</div>
     </header>
 
     <div class="info-box hidden" id="infoBox">
@@ -557,7 +571,7 @@
     <!-- Sliced Advisory Breakdown -->
     <div class="section-title">
       <span>Advisories & Knowledge Graph Health</span>
-      <span class="count-tag" id="valTotalWarningsHeader">2,630 Total Advisories</span>
+      <span class="count-tag" id="valTotalWarningsHeader">- Total Advisories</span>
     </div>
 
     <div class="breakdown-grid">
@@ -708,6 +722,18 @@
       const summary = data.summary || {};
       const breakdown = summary.warningBreakdown || computeFallbackBreakdown(data);
       const autoheal = data.autohealSummary || null;
+
+      // Report Timestamp
+      const tsElem = document.getElementById('reportTimestamp');
+      if (tsElem) {
+        if (data.timestamp) {
+          const d = new Date(data.timestamp);
+          const formatted = isNaN(d.getTime()) ? data.timestamp : d.toLocaleString();
+          tsElem.textContent = `Report Generated: ${formatted}`;
+        } else {
+          tsElem.textContent = `Report Generated: Dynamic / Live`;
+        }
+      }
 
       // Summary Cards
       document.getElementById('valTotalFiles').textContent = summary.files ?? '-';

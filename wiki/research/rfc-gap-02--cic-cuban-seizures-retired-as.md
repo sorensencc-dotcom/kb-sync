@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-02--cic-cuban-seizures-retired-as"
 gap_id: "GAP-02"
 status: "draft"
-created_at: "2026-09-04T00:30:24.593Z"
+created_at: "2026-09-05T03:12:41.017Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/r
 # RFC: GAP-02 - **CIC - Cuban Seizures & Retired Assets (under-sourced)**
 
 ## 1. Problem Statement & Context
-The pre-settlement adjudication of claims under **Title V of the International Claims Settlement Act** required the Foreign Claims Settlement Commissi))))))))))))))))))))
+The pre-settlement adjudication of claims under **Title V of the International Claims Settlement Act** required the Foreign Claims Settlement Commissi))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

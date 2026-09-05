@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-04--cic-willow-run-aviation-engin"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-09-04T00:30:24.574Z"
+created_at: "2026-09-05T03:12:40.972Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","trm-re
 # RFC: GAP-04 - **CIC - Willow Run & Aviation Engineering (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An analysis of your notebook's canonical records, technical dossiers, and first-person accounts reveals several critical contradictions, historical my)))))))))))))))))))
+An analysis of your notebook's canonical records, technical dossiers, and first-person accounts reveals several critical contradictions, historical my)))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

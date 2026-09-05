@@ -2,14 +2,10 @@
 
 ## Open
 
-- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30) — 4 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate. <!-- todo-group: kb-sync-documentation-drift -->
+- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-09-04) — 4 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate. <!-- todo-group: kb-sync-documentation-drift -->
 
-- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30) — 1 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
+## Completed
 
-- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30) — 8 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
+- [x] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-30, resolved 2026-09-02) — Synthesized wiki and cleared documentation drift across workspace (`kb:drift` status: `NO_DRIFT`, 0 stale pages). <!-- todo-group: kb-sync-documentation-drift -->
+- [x] **[P2] kb-sync documentation drift remediation (scripts/install-git-hooks.mjs)** (created 2026-08-30, resolved 2026-09-02) — Re-synthesized entity documentation for `scripts/install-git-hooks.mjs` and cleaned autoheal working tree churn.
 
-- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-29) — 3 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
-
-- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-29) — 5 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
-
-- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-08-28) — 2 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.

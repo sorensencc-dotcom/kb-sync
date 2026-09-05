@@ -159,7 +159,8 @@ trap "rm -f $TEMP_FILE_LIST" EXIT
 # Build list of files to include, filtering by skip patterns and extensions
 {
   git -C "$REPO_ROOT" grep -I --name-only -e "" 2>/dev/null || true
-} | while read -r file; do
+  git -C "$REPO_ROOT" ls-files --others --exclude-standard 2>/dev/null || true
+} | sort -u | while read -r file; do
   # Skip patterns check
   skip=false
   for pattern in "${SKIP_PATTERNS[@]}"; do

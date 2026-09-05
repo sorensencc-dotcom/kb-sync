@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-04--cic-ford-executive-dynamics-p"
 gap_id: "GAP-04"
 status: "draft"
-created_at: "2026-09-04T00:30:18.338Z"
+created_at: "2026-09-05T03:12:36.200Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md","trm-re
 # RFC: GAP-04 - **CIC - Ford Executive Dynamics & Politics (open-contradictions)**
 
 ## 1. Problem Statement & Context
-Across your sources, several profound contradictions and open historical questions emerge regarding the inner workings of the Ford Motor Company, the)))))))))))))))))
+Across your sources, several profound contradictions and open historical questions emerge regarding the inner workings of the Ford Motor Company, the)))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

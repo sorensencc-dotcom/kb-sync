@@ -7,7 +7,8 @@ import { resolveVaultPaths } from './config-loader.mjs';
 export const DETERMINISTIC_RULES = new Set([
   'normalized_category',
   'normalized_status',
-  'rewrote_wikilinks'
+  'rewrote_wikilinks',
+  'cleaned_hygiene'
 ]);
 
 export const SEMANTIC_RULES = new Set([
@@ -153,6 +154,17 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   });
 
   if (linksRewritten) repairs.push('rewrote_wikilinks');
+
+  // Markdown Hygiene Formatting (outside code blocks)
+  const origBody = tempBody;
+  const cleanedLines = tempBody.split(/\r?\n/).map(line => {
+    if (/[^\s]  $/.test(line)) return line;
+    return line.replace(/\s+$/, '');
+  });
+  tempBody = cleanedLines.join('\n').replace(/\n{3,}/g, '\n\n');
+  if (tempBody !== origBody) {
+    repairs.push('cleaned_hygiene');
+  }
 
   // Restore code blocks
   blocks.forEach((block, i) => {

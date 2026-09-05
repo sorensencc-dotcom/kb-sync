@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "timestamp": "2026-08-30T03:32:26.222Z",
-  "system_time_epoch_ms": 1788060746222,
+  "timestamp": "2026-09-03T01:33:25.684Z",
+  "system_time_epoch_ms": 1788399205684,
   "overall_status": "FAILED",
   "repositories": [
     {
       "repository": "non-existent-1",
-      "repoPath": "C:\\dev\\dev-sandbox\\non-existent-1",
+      "repoPath": "C:\\dev\\non-existent-1",
       "remoteWikiUrl": "git@github.com:sorensencc-dotcom/non-existent-1.wiki.git",
       "status": "FAILED",
       "filesPublished": 0,
@@ -14,7 +14,7 @@
     },
     {
       "repository": "non-existent-2",
-      "repoPath": "C:\\dev\\dev-sandbox\\non-existent-2",
+      "repoPath": "C:\\dev\\non-existent-2",
       "remoteWikiUrl": "git@github.com:sorensencc-dotcom/non-existent-2.wiki.git",
       "status": "FAILED",
       "filesPublished": 0,

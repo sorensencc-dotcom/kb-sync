@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-01--cic-ford-executive-dynamics-p"
 gap_id: "GAP-01"
 status: "draft"
-created_at: "2026-09-04T00:30:18.279Z"
+created_at: "2026-09-05T03:12:36.138Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md","trm-re
 # RFC: GAP-01 - **CIC - Ford Executive Dynamics & Politics (follow-up)**
 
 ## 1. Problem Statement & Context
-To resolve the uncorroborated claims, archival gaps, and historical contradictions we have examined, follow-up research should be directed at **five t)))))))))))))))))
+To resolve the uncorroborated claims, archival gaps, and historical contradictions we have examined, follow-up research should be directed at **five t)))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

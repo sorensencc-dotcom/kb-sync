@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-03--cic-ford-executive-dynamics-p"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-09-04T00:30:18.292Z"
+created_at: "2026-09-05T03:12:36.125Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","trm-re
 # RFC: GAP-03 - **CIC - Ford Executive Dynamics & Politics (under-sourced)**
 
 ## 1. Problem Statement & Context
-The sources highlight several critical claims regarding the internal politics and innovations of the Ford Motor Company that are either single-sourced)))))))))))))))))
+The sources highlight several critical claims regarding the internal politics and innovations of the Ford Motor Company that are either single-sourced)))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

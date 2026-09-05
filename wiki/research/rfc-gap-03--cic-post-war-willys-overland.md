@@ -4,7 +4,7 @@ category: "research"
 topic: "rfc-gap-03--cic-post-war-willys-overland"
 gap_id: "GAP-03"
 status: "draft"
-created_at: "2026-09-04T00:30:21.429Z"
+created_at: "2026-09-05T03:12:40.869Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
@@ -14,7 +14,7 @@ citations: ["wiki/research/rfc-gap-03--cic-post-war-willys-overland.md","trm-res
 # RFC: GAP-03 - **CIC - Post-War & Willys-Overland (under-sourced)**
 
 ## 1. Problem Statement & Context
-An examination of the sources reveals several key claims that are either **single-sourced**, **under-corroborated**, or directly **contradicted** acro))))))))))))))))))
+An examination of the sources reveals several key claims that are either **single-sourced**, **under-corroborated**, or directly **contradicted** acro))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

@@ -289,7 +289,13 @@ run_nlm_cli() {
   if [ "$NLM_MODE" = "explicit" ]; then
     exec_with_timeout "$EXPLICIT_NLM_CLI" "$@"
   elif [ "$NLM_MODE" = "uv-project" ]; then
-    exec_with_timeout "${UV_EXEC:-uv}" --directory "$REPO_ROOT/notebooklm-mcp-cli" run nlm "$@"
+    local uv_dir="$REPO_ROOT/notebooklm-mcp-cli"
+    if command -v wslpath >/dev/null 2>&1; then
+      uv_dir="$(wslpath -w "$uv_dir")"
+    elif command -v cygpath >/dev/null 2>&1; then
+      uv_dir="$(cygpath -w "$uv_dir")"
+    fi
+    exec_with_timeout "${UV_EXEC:-uv}" --directory "$uv_dir" run nlm "$@"
   elif [ "$NLM_MODE" = "global" ]; then
     exec_with_timeout "$GLOBAL_NLM_EXEC" "$@"
   else
@@ -403,7 +409,13 @@ import_cookie_json() {
     local cookie_file
     cookie_file="$(mktemp)"
     printf '%s' "$auth_json" > "$cookie_file"
-    run_nlm_cli login --manual --file "$cookie_file" 2>/dev/null
+    local win_cookie_file="$cookie_file"
+    if command -v wslpath >/dev/null 2>&1; then
+      win_cookie_file="$(wslpath -w "$cookie_file")"
+    elif command -v cygpath >/dev/null 2>&1; then
+      win_cookie_file="$(cygpath -w "$cookie_file")"
+    fi
+    run_nlm_cli login --manual --file "$win_cookie_file" 2>/dev/null
     local status=$?
     rm -f "$cookie_file"
     return $status
@@ -580,9 +592,13 @@ if [ "$RUN_ROLLBACK" = true ]; then
   for file in "${UPLOAD_FILES[@]}"; do
     retry_count=0
     target_upload_path="$file"
-    if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+    if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "$NLM_MODE" == "uv-project" ]]; then
       abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-      target_upload_path="$(wslpath -w "$abs_file")"
+      if command -v wslpath >/dev/null 2>&1; then
+        target_upload_path="$(wslpath -w "$abs_file")"
+      elif command -v cygpath >/dev/null 2>&1; then
+        target_upload_path="$(cygpath -w "$abs_file")"
+      fi
     fi
 
     until nlm_source_add "$NOTEBOOK_ID" "$target_upload_path"; do
@@ -730,9 +746,13 @@ UPLOADED_COUNT=0
 for file in "${UPLOAD_FILES[@]}"; do
   retry_count=0
   target_upload_path="$file"
-  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe ]] && command -v wslpath >/dev/null 2>&1; then
+  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "$NLM_MODE" == "uv-project" ]]; then
     abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-    target_upload_path="$(wslpath -w "$abs_file")"
+    if command -v wslpath >/dev/null 2>&1; then
+      target_upload_path="$(wslpath -w "$abs_file")"
+    elif command -v cygpath >/dev/null 2>&1; then
+      target_upload_path="$(cygpath -w "$abs_file")"
+    fi
   fi
 
   until nlm_source_add "$NOTEBOOK_ID" "$target_upload_path"; do
