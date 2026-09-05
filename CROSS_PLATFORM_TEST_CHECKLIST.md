@@ -1,3 +1,10 @@
+---
+title: "Cross-Platform Testing Checklist"
+category: "testing"
+status: "active"
+date: "2026-07-12"
+---
+
 # KB Sync Cross-Platform Testing Checklist
 
 **Date:** 2026-07-12  

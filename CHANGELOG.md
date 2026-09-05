@@ -1,3 +1,9 @@
+---
+title: "Changelog"
+category: "changelog"
+status: "active"
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

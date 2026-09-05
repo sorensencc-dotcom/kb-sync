@@ -1,3 +1,9 @@
+---
+title: "Claude Code Guidelines"
+category: "guidelines"
+status: "active"
+---
+
 # kb-sync Project Context
 
 **Stack:** Node.js / TypeScript / Bash  

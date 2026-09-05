@@ -1,3 +1,10 @@
+---
+title: "Knowledge Base Sync Pipeline"
+description: "Automated knowledge management, synthesis, and real-time retrieval for engineering artifacts"
+category: "documentation"
+status: "active"
+---
+
 # Knowledge Base Sync Pipeline (`kb-sync`)
 
 The `kb-sync` pipeline provides automated knowledge management, synthesis, and real-time retrieval for engineering artifacts, architecture decision records, and deep research matrices across local workspaces and external targets.

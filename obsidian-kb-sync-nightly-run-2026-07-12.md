@@ -1,3 +1,10 @@
+---
+title: "Obsidian KB-Sync Nightly Run Report - 2026-07-12"
+category: "report"
+status: "archived"
+date: "2026-07-12"
+---
+
 # Obsidian KB-Sync Nightly Run Report
 **Date**: 2026-07-12  
 **Scheduled Task**: obsidian-kb-sync-nightly  
