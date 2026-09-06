@@ -175,4 +175,60 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.equal(merged[0].vector_rank, 1);
     assert.ok(merged[0].rrf_score > merged[1].rrf_score);
   });
+
+  test('TEST-07: executeGapTriage skips in-progress drafts unless force is set', async () => {
+    const db = getDatabase(testDbPath);
+    db.prepare(`
+      INSERT INTO kb_documents (id, category, topic, file_path, content, sha256)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+      'wiki/concepts/fail-soft-orchestration.md',
+      'research',
+      'fail-soft-orchestration',
+      'wiki/concepts/fail-soft-orchestration.md',
+      'Fail-soft orchestration ensures SQLite write locks recover safely on interrupted operations.',
+      'hash_fs'
+    );
+    db.close();
+
+    const initialGapsContent = `# Gaps Matrix
+- [ ] [GAP-10] Fresh pending: Needs first draft.
+- [/] [GAP-11] Already drafted: Has an RFC backlink. (Drafted: [RFC](wiki/research/existing.md))
+- [x] [GAP-12] Resolved gap: Already done.
+`;
+    fs.writeFileSync(gapsFilePath, initialGapsContent, 'utf8');
+
+    const first = await executeGapTriage({
+      gapsFilePath,
+      outputDir,
+      dbPath: testDbPath,
+    });
+    assert.equal(first.processed, 1, 'default run processes only pending gaps');
+    assert.equal(first.rfcFiles.length, 1);
+
+    const afterFirst = fs.readFileSync(gapsFilePath, 'utf8');
+    assert.ok(afterFirst.includes('- [/] [GAP-10]'));
+    assert.ok(afterFirst.includes('- [/] [GAP-11] Already drafted'));
+    assert.ok(afterFirst.includes('- [x] [GAP-12] Resolved gap'));
+
+    const second = await executeGapTriage({
+      gapsFilePath,
+      outputDir,
+      dbPath: testDbPath,
+    });
+    assert.equal(second.processed, 0, 'second default run skips drafted in-progress gaps');
+    assert.equal(second.rfcFiles.length, 0);
+
+    const forced = await executeGapTriage({
+      gapsFilePath,
+      outputDir,
+      dbPath: testDbPath,
+      force: true,
+    });
+    assert.equal(forced.processed, 2, 'force reprocesses in-progress gaps only');
+    assert.equal(forced.rfcFiles.length, 2);
+
+    const afterForce = fs.readFileSync(gapsFilePath, 'utf8');
+    assert.ok(afterForce.includes('- [x] [GAP-12] Resolved gap: Already done.'));
+  });
 });
