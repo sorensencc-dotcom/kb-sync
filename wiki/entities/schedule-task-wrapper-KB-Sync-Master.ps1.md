@@ -4,8 +4,8 @@ category: utilities
 status: active
 sourceRepository: kb-sync
 sourceFile: scripts/schedule-task-wrapper-KB-Sync-Master.ps1
-sha256: 842527a8cf1f4f629f855b1b52e72f3d6ccab97044b3fc7cc2c2c970e2114c07
-lastCommit: 2026-08-26T22:33:10-04:00
+sha256: fe10151b13dc4c00f79445afb8b3552442061fe7f1db2fafe20cdb8553769335
+lastCommit: 2026-09-05T03:18:14Z
 ---
 
 # schedule-task-wrapper-KB-Sync-Master.ps1
@@ -14,9 +14,9 @@ lastCommit: 2026-08-26T22:33:10-04:00
 Synthesized entity documentation for `scripts/schedule-task-wrapper-KB-Sync-Master.ps1` in **kb-sync**.
 
 - **File Path:** `scripts/schedule-task-wrapper-KB-Sync-Master.ps1`
-- **Lines of Code:** 167
-- **Last Modified:** `2026-08-26T22:33:10-04:00`
-- **SHA-256:** `842527a8cf1f4f629f855b1b52e72f3d6ccab97044b3fc7cc2c2c970e2114c07`
+- **Lines of Code:** 166
+- **Last Modified:** `2026-09-05T03:18:14Z`
+- **SHA-256:** `fe10151b13dc4c00f79445afb8b3552442061fe7f1db2fafe20cdb8553769335`
 
 ## Source Citations
 - Source: `scripts/schedule-task-wrapper-KB-Sync-Master.ps1`
