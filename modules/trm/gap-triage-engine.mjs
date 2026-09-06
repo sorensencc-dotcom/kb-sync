@@ -15,11 +15,37 @@ import {
 import { searchWebFallback } from './web-search-fallback.mjs';
 
 /**
+ * Derive a stable topic slug fragment from a gap title for namespaced gap IDs.
+ * Strips surrounding **, prefers text before ` (`, then slugifies.
+ *
+ * @param {string} title
+ * @returns {string}
+ */
+export function slugifyTopicKey(title) {
+  let text = String(title || '').trim();
+  text = text.replace(/^\*\*/, '').replace(/\*\*$/, '').trim();
+  const parenIdx = text.indexOf(' (');
+  if (parenIdx !== -1) {
+    text = text.slice(0, parenIdx).trim();
+  }
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 48)
+    .replace(/-+$/, '');
+}
+
+/**
  * Parses markdown gap items from trm-research-gaps.md.
  * Supports standard task list markdown: - [ ] [GAP-01] Title / Description
  *
+ * Canonical `id` is namespaced as `${localId}--${topicKey}` when topicKey is
+ * non-empty so reused local bracket IDs across topics do not collide in RFC
+ * gap_id / topicSlug prefixes. On-disk markdown keeps the local bracket id.
+ *
  * @param {string} content - Markdown file content
- * @returns {Array<{ id: string, title: string, description: string, status: string, line: string, raw: string }>}
+ * @returns {Array<{ id: string, localId: string, topicKey: string, title: string, description: string, status: string, line: string, raw: string }>}
  */
 export function parseGapItems(content) {
   const lines = content.split(/\r?\n/);
@@ -35,7 +61,7 @@ export function parseGapItems(content) {
       if (checkState === 'x') status = 'resolved';
       else if (checkState === '/') status = 'in-progress';
 
-      const gapId = match[2] || `GAP-${String(gaps.length + 1).padStart(2, '0')}`;
+      const localId = match[2] || `GAP-${String(gaps.length + 1).padStart(2, '0')}`;
       const rawText = match[3].trim();
       const fullText = rawText.replace(/\s*\(Drafted:[^)]*\)/g, '').trim();
       
@@ -47,8 +73,13 @@ export function parseGapItems(content) {
         description = fullText.slice(colonIdx + 1).trim();
       }
 
+      const topicKey = slugifyTopicKey(title);
+      const id = topicKey ? `${localId}--${topicKey}` : localId;
+
       gaps.push({
-        id: gapId,
+        id,
+        localId,
+        topicKey,
         title,
         description,
         status,
@@ -323,12 +354,13 @@ export async function executeGapTriage(options = {}) {
       rfcFiles.push(path.relative(process.cwd(), rfcFullPath).replace(/\\/g, '/'));
       processed++;
 
-      // Update gap line in markdown with RFC backlink
+      // Update gap line in markdown with RFC backlink (keep local bracket id on disk)
       const { gap } = triageResult;
+      const bracketId = gap.localId || gap.id;
       const rfcRelativePath = path.relative(path.dirname(gapsPath), rfcFullPath).replace(/\\/g, '/');
       const updatedLine = gap.title === gap.description
-        ? `- [/] [${gap.id}] ${gap.title} (Drafted: [RFC](${rfcRelativePath}))`
-        : `- [/] [${gap.id}] ${gap.title}: ${gap.description} (Drafted: [RFC](${rfcRelativePath}))`;
+        ? `- [/] [${bracketId}] ${gap.title} (Drafted: [RFC](${rfcRelativePath}))`
+        : `- [/] [${bracketId}] ${gap.title}: ${gap.description} (Drafted: [RFC](${rfcRelativePath}))`;
       updatedContent = updatedContent.replace(gap.raw, updatedLine);
     }
   }
