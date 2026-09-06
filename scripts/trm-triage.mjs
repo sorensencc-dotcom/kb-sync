@@ -21,6 +21,7 @@ const concurrency = process.argv.find((arg) => arg.startsWith('--concurrency='))
   ? Number(process.argv.find((arg) => arg.startsWith('--concurrency=')).split('=')[1])
   : undefined;
 const webFallback = process.argv.includes('--web-fallback') || process.env.TRM_WEB_FALLBACK === '1';
+const force = process.argv.includes('--force');
 
 console.log(`[trm-triage] Starting automated gap triage against local SQLite context cache...`);
 console.log(`  - Gaps file:   ${gapsFilePath}`);
@@ -29,6 +30,7 @@ console.log(`  - DB path:     ${dbPath}`);
 console.log(`  - Provider:    ${provider ?? process.env.TRM_LLM_PROVIDER ?? 'auto'}`);
 console.log(`  - Expansion:   ${noExpand ? 'disabled (--no-expand)' : 'enabled'}`);
 console.log(`  - Web fallback:${webFallback ? ' enabled (Parallel / TinyFish)' : ' disabled'}`);
+console.log(`  - Force:       ${force ? 'enabled (reprocess in-progress)' : 'disabled (skip drafted [/] gaps)'}`);
 if (dryRun) console.log('  - Mode:        DRY RUN (no files written)');
 
 if (!fs.existsSync(gapsFilePath)) {
@@ -48,6 +50,7 @@ try {
     timeoutMs,
     concurrency,
     webFallback,
+    force,
   });
 
   console.log(`\n[trm-triage] Triage completed successfully:`);

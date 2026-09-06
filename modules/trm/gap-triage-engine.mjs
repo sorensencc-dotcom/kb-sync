@@ -248,6 +248,7 @@ ${astSection}
  * @param {string} [options.model] - LLM model override
  * @param {number} [options.timeoutMs] - Provider timeout in ms
  * @param {number} [options.concurrency] - Max parallel gap triage tasks
+ * @param {boolean} [options.force=false] - Reprocess in-progress ([/]) drafted gaps
  * @returns {Promise<{ processed: number, rfcFiles: string[], updatedGapsContent: string }>}
  */
 export async function executeGapTriage(options = {}) {
@@ -265,7 +266,14 @@ export async function executeGapTriage(options = {}) {
   const db = getDatabase(dbPath, { readonly: true });
   const rawContent = fs.readFileSync(gapsPath, 'utf8');
   const parsedGaps = parseGapItems(rawContent);
-  const pendingGaps = parsedGaps.filter((g) => g.status !== 'resolved');
+  const force = !!options.force;
+  // Default: only pending ([ ]). Skip in-progress ([/]) drafts unless --force.
+  // Resolved ([x]) gaps are never reprocessed.
+  const pendingGaps = parsedGaps.filter((g) => {
+    if (g.status === 'resolved') return false;
+    if (g.status === 'in-progress') return force;
+    return g.status === 'pending';
+  });
 
   if (!fs.existsSync(outputDir) && !dryRun) {
     fs.mkdirSync(outputDir, { recursive: true });
