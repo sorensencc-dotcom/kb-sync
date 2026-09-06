@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { getDatabase } from '../modules/cache/db-schema.mjs';
-import { parseGapItems, triageGapAgainstCache, executeGapTriage } from '../modules/trm/gap-triage-engine.mjs';
+import { parseGapItems, triageGapAgainstCache, executeGapTriage, slugifyTopicKey } from '../modules/trm/gap-triage-engine.mjs';
 import { expandSearchQuery } from '../modules/trm/query-expander.mjs';
 import { reciprocalRankFusion } from '../modules/cache/vector-store.mjs';
 import { handleQueryContextCache } from '../scripts/mcp-memory-server.mjs';
@@ -40,18 +40,24 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     const parsed = parseGapItems(markdown);
     assert.equal(parsed.length, 4);
 
-    assert.equal(parsed[0].id, 'GAP-01');
+    assert.equal(parsed[0].localId, 'GAP-01');
+    assert.equal(parsed[0].topicKey, 'fail-soft-recovery');
+    assert.equal(parsed[0].id, 'GAP-01--fail-soft-recovery');
     assert.equal(parsed[0].status, 'pending');
     assert.equal(parsed[0].title, 'Fail-soft recovery');
     assert.equal(parsed[0].description, 'SQLite state verification under load.');
 
-    assert.equal(parsed[1].id, 'GAP-02');
+    assert.equal(parsed[1].localId, 'GAP-02');
+    assert.equal(parsed[1].id, 'GAP-02--path-normalization');
     assert.equal(parsed[1].status, 'in-progress');
 
-    assert.equal(parsed[2].id, 'GAP-03');
+    assert.equal(parsed[2].localId, 'GAP-03');
+    assert.equal(parsed[2].id, 'GAP-03--completed-task');
     assert.equal(parsed[2].status, 'resolved');
 
-    assert.equal(parsed[3].id, 'GAP-04');
+    assert.equal(parsed[3].localId, 'GAP-04');
+    assert.equal(parsed[3].topicKey, 'unlabeled-gap-item-without-explicit-id');
+    assert.equal(parsed[3].id, 'GAP-04--unlabeled-gap-item-without-explicit-id');
     assert.equal(parsed[3].status, 'pending');
   });
 
@@ -72,7 +78,9 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     );
 
     const gap = {
-      id: 'GAP-01',
+      id: 'GAP-01--fail-soft-orchestration',
+      localId: 'GAP-01',
+      topicKey: 'fail-soft-orchestration',
       title: 'Fail-soft orchestration',
       description: 'Need clarity on SQLite write locks during crash.',
       status: 'pending',
@@ -86,7 +94,8 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.equal(triage.matchedDocuments.length, 1);
     assert.equal(triage.matchedDocuments[0].topic, 'fail-soft-orchestration');
     assert.ok(triage.rfcContent.includes('---'));
-    assert.ok(triage.rfcContent.includes('title: "RFC: GAP-01 - Fail-soft orchestration"'));
+    assert.ok(triage.rfcContent.includes('title: "RFC: GAP-01--fail-soft-orchestration - Fail-soft orchestration"'));
+    assert.ok(triage.rfcContent.includes('gap_id: "GAP-01--fail-soft-orchestration"'));
     assert.ok(triage.rfcContent.includes('Evidence Grounding & Cache Findings'));
     assert.ok(triage.citations.includes('wiki/concepts/fail-soft-orchestration.md'));
 
@@ -122,14 +131,19 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
 
     assert.equal(result.processed, 1);
     assert.equal(result.rfcFiles.length, 1);
+    assert.ok(
+      path.basename(result.rfcFiles[0]).startsWith('rfc-gap-02-path-normalization'),
+      'RFC filename should use namespaced canonical gap id'
+    );
 
     // Verify generated RFC file on disk
     const generatedRfcPath = path.join(outputDir, path.basename(result.rfcFiles[0]));
     assert.ok(fs.existsSync(generatedRfcPath), 'RFC file must be written to disk');
     const rfcContent = fs.readFileSync(generatedRfcPath, 'utf8');
     assert.ok(rfcContent.includes('Path normalization'));
+    assert.ok(rfcContent.includes('gap_id: "GAP-02--path-normalization"'));
 
-    // Verify updated gaps tracking file
+    // Verify updated gaps tracking file keeps local bracket id
     const updatedGapsContent = fs.readFileSync(gapsFilePath, 'utf8');
     assert.ok(updatedGapsContent.includes('- [/] [GAP-02]'));
     assert.ok(updatedGapsContent.includes('(Drafted: [RFC]('));
@@ -230,5 +244,45 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
 
     const afterForce = fs.readFileSync(gapsFilePath, 'utf8');
     assert.ok(afterForce.includes('- [x] [GAP-12] Resolved gap: Already done.'));
+  });
+
+  test('TEST-08: Colliding local GAP-IDs across topics get unique canonical ids', async () => {
+    assert.equal(
+      slugifyTopicKey('**CIC - Ford Executive Dynamics & Politics (follow-up)**'),
+      'cic-ford-executive-dynamics-politics'
+    );
+
+    const markdown = `# Active Research Gaps
+- [ ] [GAP-01] **CIC - Ford Executive Dynamics & Politics (follow-up)**: Need org chart clarity.
+- [ ] [GAP-01] **Mobile WebSocket Heartbeat (adjacent)**: Keepalive after suspend.
+- [ ] Unlabeled colliding title twin.
+`;
+
+    const parsed = parseGapItems(markdown);
+    assert.equal(parsed.length, 3);
+
+    assert.equal(parsed[0].localId, 'GAP-01');
+    assert.equal(parsed[1].localId, 'GAP-01');
+    assert.equal(parsed[0].localId, parsed[1].localId);
+    assert.notEqual(parsed[0].id, parsed[1].id);
+    assert.equal(parsed[0].id, 'GAP-01--cic-ford-executive-dynamics-politics');
+    assert.equal(parsed[1].id, 'GAP-01--mobile-websocket-heartbeat');
+    assert.equal(parsed[0].topicKey, 'cic-ford-executive-dynamics-politics');
+    assert.equal(parsed[1].topicKey, 'mobile-websocket-heartbeat');
+
+    // Unlabeled auto-id still works and is namespaced by topic
+    assert.equal(parsed[2].localId, 'GAP-03');
+    assert.equal(parsed[2].id, 'GAP-03--unlabeled-colliding-title-twin');
+
+    const db = getDatabase(testDbPath);
+    const triageA = await triageGapAgainstCache(db, parsed[0], { expandSearchQuery: null });
+    const triageB = await triageGapAgainstCache(db, parsed[1], { expandSearchQuery: null });
+    db.close();
+
+    assert.notEqual(triageA.topicSlug, triageB.topicSlug);
+    assert.ok(triageA.topicSlug.includes('cic-ford-executive-dynamics'));
+    assert.ok(triageB.topicSlug.includes('mobile-websocket-heartbeat'));
+    assert.ok(triageA.rfcContent.includes(`gap_id: "${parsed[0].id}"`));
+    assert.ok(triageB.rfcContent.includes(`gap_id: "${parsed[1].id}"`));
   });
 });
