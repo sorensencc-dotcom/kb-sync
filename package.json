@@ -96,6 +96,7 @@
     "trm:triage:dry-run": "node scripts/trm-triage.mjs --dry-run",
     "trm:triage:daily": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/schedule-task-wrapper-TRM-Triage.ps1",
     "test:trm:triage": "node --test --experimental-strip-types tests/trm-gap-triage.test.ts",
+    "test:trm:web-search": "node --test tests/web-search-fallback.test.mjs",
     "trm:materialize-approved": "node scripts/materialize-approved-result.mjs",
     "trm:watch": "node watch-competitors-v2.mjs",
     "trm:approvals": "node scripts/process-sigil-approvals.mjs",
