@@ -49,6 +49,75 @@ export function inferDocumentMetadata(relPath, content) {
 }
 
 /**
+ * Automatically extracts or calculates a compact L0 abstract (<= 300 chars) for zero-hop resolution.
+ * @param {string} content - Document raw text
+ * @param {string} relPath - Relative file path
+ * @returns {string} L0 abstract
+ */
+export function extractL0Abstract(content, relPath = '') {
+  if (!content || typeof content !== 'string') return '';
+
+  // 1. Check YAML frontmatter for explicit summary/abstract fields
+  const frontmatterMatch = content.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/);
+  if (frontmatterMatch) {
+    const yaml = frontmatterMatch[1];
+    const summaryMatch = yaml.match(/(?:summary|abstract|description|tl;dr):\s*["']?([^"'\r\n]+)["']?/i);
+    if (summaryMatch && summaryMatch[1].trim()) {
+      return summaryMatch[1].trim().slice(0, 300);
+    }
+  }
+
+  // 2. Handle JSON documents
+  if (relPath.endsWith('.json') || content.trim().startsWith('{')) {
+    try {
+      const parsed = JSON.parse(content);
+      const candidate = parsed.summary || parsed.abstract || parsed.description || parsed.title || parsed.name;
+      if (typeof candidate === 'string' && candidate.trim()) {
+        return candidate.trim().slice(0, 300);
+      }
+    } catch {}
+  }
+
+  // 3. Extract first meaningful prose paragraph from Markdown/Text
+  const body = frontmatterMatch ? content.slice(frontmatterMatch[0].length) : content;
+  const lines = body.split(/\r?\n/);
+  let prose = '';
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line) continue;
+    // Skip headings, horizontal rules, code blocks, tables, lists, and quotes
+    if (line.startsWith('#') || line.startsWith('---') || line.startsWith('```') || line.startsWith('|') || line.startsWith('>')) {
+      continue;
+    }
+    // Clean markdown links, bold, italics, backticks
+    const cleaned = line
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*_`]/g, '')
+      .replace(/^-\s+/, '')
+      .trim();
+
+    if (cleaned.length >= 20) {
+      prose = cleaned;
+      break;
+    }
+  }
+
+  if (prose) {
+    if (prose.length > 280) {
+      const truncated = prose.slice(0, 277);
+      const lastSpace = truncated.lastIndexOf(' ');
+      return (lastSpace > 200 ? truncated.slice(0, lastSpace) : truncated) + '...';
+    }
+    return prose;
+  }
+
+  // 4. Fallback: clean topic / file basename
+  const fallback = path.basename(relPath, path.extname(relPath)).replace(/[-_]/g, ' ');
+  return `${fallback} overview document.`;
+}
+
+/**
  * Synchronizes directories and files into the SQLite cache.
  *
  * @param {Object} [options]
@@ -56,7 +125,7 @@ export function inferDocumentMetadata(relPath, content) {
  * @param {string} [options.repoRoot] - Root repository directory.
  * @param {string[]} [options.scanPaths] - Relative paths or globs to scan.
  * @param {boolean} [options.verbose=false] - Verbose log output.
- * @returns {{ inserted: number, updated: number, skipped: number, deleted: number, total: number }}
+ * @returns {{ inserted: number, updated: number, skipped: number, deleted: number, total: number, abstracts_injected: number }}
  */
 export function syncKnowledgeCache(options = {}) {
   const repoRoot = path.resolve(options.repoRoot || process.cwd());
@@ -75,7 +144,7 @@ export function syncKnowledgeCache(options = {}) {
   const db = getDatabase(dbPath);
 
   const existingDocs = new Map();
-  const selectStmt = db.prepare('SELECT id, file_path, sha256 FROM kb_documents');
+  const selectStmt = db.prepare('SELECT id, file_path, sha256, abstract FROM kb_documents');
   for (const row of selectStmt.all()) {
     existingDocs.set(row.id, row);
   }
@@ -84,18 +153,20 @@ export function syncKnowledgeCache(options = {}) {
   let inserted = 0;
   let updated = 0;
   let skipped = 0;
+  let abstractsInjected = 0;
 
   const upsertStmt = db.prepare(`
-    INSERT INTO kb_documents (id, category, topic, file_path, content, sha256, last_updated)
-    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    INSERT INTO kb_documents (id, category, topic, file_path, abstract, content, sha256, last_updated)
+    VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
     ON CONFLICT(id) DO UPDATE SET
       category = excluded.category,
       topic = excluded.topic,
       file_path = excluded.file_path,
+      abstract = excluded.abstract,
       content = excluded.content,
       sha256 = excluded.sha256,
       last_updated = CURRENT_TIMESTAMP
-    WHERE kb_documents.sha256 != excluded.sha256
+    WHERE kb_documents.sha256 != excluded.sha256 OR kb_documents.abstract IS NULL
   `);
 
   function processFile(absPath, relPath) {
@@ -103,22 +174,25 @@ export function syncKnowledgeCache(options = {}) {
     const sha256 = computeSha256(content);
     const { category, topic } = inferDocumentMetadata(relPath, content);
     const id = relPath.replace(/\\/g, '/');
+    const abstract = extractL0Abstract(content, relPath);
 
     foundDocIds.add(id);
     const existing = existingDocs.get(id);
 
     if (!existing) {
-      upsertStmt.run(id, category, topic, id, content, sha256);
-      const vec = deterministicHeuristicVector(`${topic} ${content.slice(0, 2000)}`);
+      upsertStmt.run(id, category, topic, id, abstract, content, sha256);
+      const vec = deterministicHeuristicVector(`${topic} ${abstract} ${content.slice(0, 2000)}`);
       storeVector(db, id, topic, vec);
       inserted++;
-      if (verbose) console.log(`[kb-cache] Inserted: ${id}`);
-    } else if (existing.sha256 !== sha256) {
-      upsertStmt.run(id, category, topic, id, content, sha256);
-      const vec = deterministicHeuristicVector(`${topic} ${content.slice(0, 2000)}`);
+      abstractsInjected++;
+      if (verbose) console.log(`[kb-cache] Inserted (L0 abstract injected): ${id}`);
+    } else if (existing.sha256 !== sha256 || !existing.abstract) {
+      upsertStmt.run(id, category, topic, id, abstract, content, sha256);
+      const vec = deterministicHeuristicVector(`${topic} ${abstract} ${content.slice(0, 2000)}`);
       storeVector(db, id, topic, vec);
       updated++;
-      if (verbose) console.log(`[kb-cache] Updated: ${id}`);
+      abstractsInjected++;
+      if (verbose) console.log(`[kb-cache] Updated (L0 abstract injected): ${id}`);
     } else {
       skipped++;
     }
@@ -173,5 +247,5 @@ export function syncKnowledgeCache(options = {}) {
   const total = inserted + updated + skipped;
   db.close();
 
-  return { inserted, updated, skipped, deleted, total };
+  return { inserted, updated, skipped, deleted, total, abstracts_injected: abstractsInjected };
 }

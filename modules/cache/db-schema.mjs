@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS kb_documents (
   category TEXT NOT NULL,         -- 'research', 'gap', 'audit', 'source'
   topic TEXT NOT NULL,            -- kebab-case topic identifier
   file_path TEXT NOT NULL,        -- path relative to repository root
+  abstract TEXT,                  -- L0 abstract / summary for zero-hop resolution
   content TEXT NOT NULL,          -- raw markdown or JSON payload
   sha256 TEXT NOT NULL,           -- content hash for cache invalidation
   last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -73,6 +74,13 @@ export function getDatabase(dbPath = DEFAULT_DB_PATH, options = {}) {
 
   if (!options.readonly) {
     db.exec(SCHEMA_SQL);
+    try {
+      const cols = db.prepare("PRAGMA table_info(kb_documents)").all();
+      const hasAbstract = cols.some((c) => c.name === 'abstract');
+      if (!hasAbstract) {
+        db.exec("ALTER TABLE kb_documents ADD COLUMN abstract TEXT");
+      }
+    } catch {}
   }
 
   return db;

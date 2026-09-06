@@ -18,11 +18,12 @@ try {
 
   const durationMs = Date.now() - startTime;
   console.log(`[kb-cache] Sync completed in ${durationMs}ms:`);
-  console.log(`  - Inserted: ${stats.inserted}`);
-  console.log(`  - Updated:  ${stats.updated}`);
-  console.log(`  - Skipped:  ${stats.skipped}`);
-  console.log(`  - Deleted:  ${stats.deleted}`);
-  console.log(`  - Total:    ${stats.total}`);
+  console.log(`  - Inserted:    ${stats.inserted}`);
+  console.log(`  - Updated:     ${stats.updated}`);
+  console.log(`  - L0 Injected: ${stats.abstracts_injected ?? 0}`);
+  console.log(`  - Skipped:     ${stats.skipped}`);
+  console.log(`  - Deleted:     ${stats.deleted}`);
+  console.log(`  - Total:       ${stats.total}`);
 } catch (err) {
   console.error(`[kb-cache] Sync failed:`, err);
   process.exit(1);
