@@ -5,7 +5,7 @@ status: active
 sourceRepository: kb-sync
 sourceFile: core/flatten.sh
 sha256: d7776a0e56266581b87c816a6ba4ea52678205ad82889d7852718f64bdc145d8
-lastCommit: 2026-08-21T10:19:51-04:00
+lastCommit: 2026-09-05T03:15:27Z
 ---
 
 # flatten.sh
@@ -14,8 +14,8 @@ lastCommit: 2026-08-21T10:19:51-04:00
 Synthesized entity documentation for `core/flatten.sh` in **kb-sync**.
 
 - **File Path:** `core/flatten.sh`
-- **Lines of Code:** 262
-- **Last Modified:** `2026-08-21T10:19:51-04:00`
+- **Lines of Code:** 261
+- **Last Modified:** `2026-09-05T03:15:27Z`
 - **SHA-256:** `d7776a0e56266581b87c816a6ba4ea52678205ad82889d7852718f64bdc145d8`
 
 ## Source Citations
