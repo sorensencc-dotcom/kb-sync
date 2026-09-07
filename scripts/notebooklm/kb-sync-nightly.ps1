@@ -49,6 +49,22 @@ function Send-WebhookNotification($Title, $Message, $Level = "ERROR") {
 Write-LogInfo "Initializing Native KB Sync Nightly Pipeline..."
 Write-LogInfo "REPO_ROOT: $RepoRoot"
 
+# --- PREFLIGHT: Toolforge node process janitor (fail-soft) ---
+# Always dry-runs; -Apply because this script IS the unattended nightly path.
+# Override path via TOOLFORGE_JANITOR_PS1 / JANITOR_PS1. Missing/errors: warn + continue.
+$JanitorHelper = Join-Path $RepoRoot "scripts\invoke-process-janitor.ps1"
+if (Test-Path -LiteralPath $JanitorHelper) {
+    try {
+        Write-LogInfo "Running process-janitor preflight (dry-run + Apply)..."
+        & $JanitorHelper -Apply
+    } catch {
+        Write-LogWarn "Process-janitor preflight failed: $_; continuing."
+    }
+} else {
+    Write-LogWarn "Process-janitor helper not found at $JanitorHelper; skipping."
+}
+
+
 $Stage1Script = Join-Path $RepoRoot "modules\notebooklm\ingest-notebooklm.sh"
 $Stage2Script = Join-Path $RepoRoot "scripts\notebooklm\generate-kb-sync-artifact.mjs"
 
