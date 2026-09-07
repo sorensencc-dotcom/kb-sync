@@ -2,6 +2,7 @@
 import readline from 'node:readline';
 import path from 'node:path';
 import { getDatabase, DEFAULT_DB_PATH } from '../modules/cache/db-schema.mjs';
+import { upsertDocumentToDiskAndCache } from '../modules/cache/vfs-upsert.mjs';
 
 const DB_PATH = process.env.KB_CACHE_DB || DEFAULT_DB_PATH;
 
@@ -58,8 +59,58 @@ const TOOL_DEFINITIONS = [
       },
       required: ['topic']
     }
+  },
+  {
+    name: 'vfs_upsert_document',
+    description:
+      'Writes a document to the physical workspace first, then upserts into the local SQLite knowledge cache and FTS5 indices so the note is immediately discoverable.',
+    inputSchema: {
+      type: 'object',
+      required: ['topic', 'category', 'content'],
+      properties: {
+        topic: { type: 'string', description: 'Canonical kebab-case topic id' },
+        category: {
+          type: 'string',
+          description: 'Namespace category e.g. research, concepts, utilities'
+        },
+        content: {
+          type: 'string',
+          description: 'Full markdown/code including optional YAML frontmatter'
+        },
+        file_path: {
+          type: 'string',
+          description: 'Optional relative path; default wiki/{category}/{topic}.md'
+        }
+      }
+    }
   }
 ];
+
+export function handleVfsUpsertDocument(dbInstance, args = {}, options = {}) {
+  const repoRoot = options.repoRoot || process.env.KB_REPO_ROOT || process.cwd();
+  try {
+    const result = upsertDocumentToDiskAndCache(dbInstance, {
+      topic: args.topic,
+      category: args.category,
+      content: args.content,
+      file_path: args.file_path,
+      repoRoot
+    });
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(result)
+        }
+      ]
+    };
+  } catch (err) {
+    return {
+      isError: true,
+      content: [{ type: 'text', text: `vfs_upsert_document failed: ${err.message}` }]
+    };
+  }
+}
 
 export function handleQueryContextCache(dbInstance, { query, category = 'all', limit = 5 }) {
   if (!query || typeof query !== 'string' || !query.trim()) {
@@ -252,6 +303,14 @@ export function processRpcMessage(dbInstance, message) {
       }
       if (name === 'fetch_topic_note') {
         const res = handleFetchTopicNote(dbInstance, args);
+        return {
+          jsonrpc: '2.0',
+          id,
+          result: res
+        };
+      }
+      if (name === 'vfs_upsert_document') {
+        const res = handleVfsUpsertDocument(dbInstance, args);
         return {
           jsonrpc: '2.0',
           id,

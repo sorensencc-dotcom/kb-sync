@@ -108,7 +108,8 @@
     "fleet:wiki:reconcile": "npx tsx modules/wiki/fleet-wiki-reconciler.ts",
     "test:fleet-reconciler": "node --test --experimental-strip-types tests/fleet-wiki-reconciler.test.ts",
     "wiki:validate-links": "npx tsx modules/wiki/link-sanitizer.ts wiki",
-    "test:link-sanitizer": "node --test --experimental-strip-types tests/link-sanitizer.test.ts"
+    "test:link-sanitizer": "node --test --experimental-strip-types tests/link-sanitizer.test.ts",
+    "test:vfs:write-through": "node --test --experimental-strip-types tests/vfs-write-through.test.ts"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

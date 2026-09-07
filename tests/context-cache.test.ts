@@ -208,9 +208,10 @@ Content here...`;
       params: {}
     });
     assert.equal(listRes?.id, 2);
-    assert.equal(listRes?.result.tools.length, 2);
+    assert.equal(listRes?.result.tools.length, 3);
     assert.equal(listRes?.result.tools[0].name, 'query_context_cache');
     assert.equal(listRes?.result.tools[1].name, 'fetch_topic_note');
+    assert.equal(listRes?.result.tools[2].name, 'vfs_upsert_document');
 
     // 3. Test tools/call query_context_cache
     const callRes = processRpcMessage(db, {
