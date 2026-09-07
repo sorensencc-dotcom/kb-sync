@@ -21,6 +21,7 @@
       --white: #faf6f0;
       --teal: #2A7B88;
       --slate: #3D4A54;
+      --label: #cbb8a8;
     }
 
     * {
@@ -67,13 +68,35 @@
       padding-bottom: 2.5rem;
     }
 
+    .skip-link {
+      position: absolute;
+      left: 0.75rem;
+      top: -3rem;
+      z-index: 10;
+      padding: 0.5rem 0.9rem;
+      background: var(--ember);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .skip-link:focus {
+      top: 0.75rem;
+    }
+
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
+      font-size: 2.4rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
       color: var(--white);
       letter-spacing: -0.02em;
+    }
+
+    h2.section-title {
+      font-size: 1.8rem;
     }
 
     .subtitle {
@@ -81,7 +104,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--rust);
+      color: var(--label);
       font-weight: 700;
     }
 
@@ -100,9 +123,24 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1.25rem;
       margin-bottom: 3rem;
+    }
+
+    .metric-card {
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      font: inherit;
+      color: inherit;
+      background: rgba(26, 20, 16, 0.6);
+      min-height: 0;
+    }
+
+    .metric-card[aria-pressed="true"] {
+      border-color: var(--ember);
+      box-shadow: inset 0 0 0 1px var(--ember);
     }
 
     .card {
@@ -124,7 +162,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--rust);
+      color: var(--label);
       margin-bottom: 0.75rem;
       font-weight: 700;
       display: flex;
@@ -256,13 +294,14 @@
       background: rgba(44, 36, 32, 0.6);
       border: 1px solid rgba(196, 80, 26, 0.3);
       color: var(--ember);
-      padding: 0.5rem 1rem;
+      padding: 0.65rem 1rem;
+      min-height: 44px;
       cursor: pointer;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
       align-self: flex-start;
       margin-top: auto;
     }
@@ -332,7 +371,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--rust);
+      color: var(--label);
       font-weight: 700;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid rgba(154, 144, 136, 0.2);
@@ -401,10 +440,10 @@
 
     .autoheal-stat .stat-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--rust);
+      color: var(--label);
       font-weight: 700;
     }
 
@@ -461,17 +500,79 @@
       border: 1px solid rgba(196, 80, 26, 0.3);
       color: var(--ember);
       padding: 0.75rem 1.5rem;
+      min-height: 44px;
       cursor: pointer;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      transition: all 0.3s ease;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
     }
 
     button:hover {
       border-color: rgba(196, 80, 26, 0.6);
       background: rgba(196, 80, 26, 0.08);
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button:focus-visible {
+      outline: 2px solid var(--ember);
+      outline-offset: 3px;
+    }
+
+    .btn-danger {
+      border-color: rgba(196, 80, 26, 0.55);
+    }
+
+    button.link-chip {
+      cursor: pointer;
+      min-height: 44px;
+      background: rgba(42, 123, 136, 0.12);
+      border: 1px solid rgba(42, 123, 136, 0.3);
+      color: var(--teal);
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .row-action {
+      min-height: 44px;
+      padding: 0.4rem 0.75rem;
+    }
+
+    .toast {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 20;
+      max-width: min(32rem, calc(100vw - 2rem));
+      padding: 0.9rem 1.1rem;
+      background: var(--iron);
+      border: 1px solid var(--ember);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.06em;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .path-list {
+      margin: 0.35rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--ash);
+      font-size: 0.8rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--ash);
+      padding: 1.25rem 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     .footer {
@@ -498,8 +599,8 @@
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 2.2rem; }
-      .summary { grid-template-columns: 1fr; }
+      h1 { font-size: 1.85rem; }
+      .summary { grid-template-columns: 1fr 1fr; }
       .breakdown-grid { grid-template-columns: 1fr; }
       .action-item-row { flex-direction: column; align-items: flex-start; }
       .repair-row { flex-direction: column; align-items: flex-start; }
@@ -507,123 +608,123 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
   <div class="container">
     <header>
       <h1>KB-Sync Validation & Knowledge Graph Dashboard</h1>
       <p class="subtitle">Operator Knowledge Base Health & Advisory Telemetry</p>
-      <div class="timestamp-badge" id="reportTimestamp">Report Generated: Loading...</div>
+      <div class="timestamp-badge" id="reportTimestamp">Report generated: loading…</div>
     </header>
 
-    <div class="info-box hidden" id="infoBox">
+    <main id="main">
+    <div class="info-box hidden" id="infoBox" role="status">
       <strong>Notice —</strong> <span id="infoText"></span>
     </div>
 
-    <!-- 5 Summary Metric Cards -->
     <div class="summary" id="summary">
-      <div class="card">
+      <button type="button" class="card metric-card" data-filter="all" aria-pressed="true" onclick="setFilter('all')">
         <div class="metric">
           <span>Scanned Notes</span>
           <span class="badge-sub">VAULT</span>
         </div>
         <div class="value" id="valTotalFiles">-</div>
         <div class="sub-note" id="valDensityNote">- warnings / doc</div>
-      </div>
-      <div class="card">
+      </button>
+      <button type="button" class="card metric-card" data-filter="errors" aria-pressed="false" onclick="setFilter('errors')">
         <div class="metric">
           <span>Blocking Errors</span>
           <span class="badge-sub">GATE</span>
         </div>
         <div class="value success" id="valErrors">0</div>
-        <div class="sub-note">Zero-tolerance contract: PASS ✅</div>
-      </div>
-      <div class="card">
+        <div class="sub-note" id="valErrorsNote">Zero-tolerance contract: PASS</div>
+      </button>
+      <button type="button" class="card metric-card" data-filter="frontiers" aria-pressed="false" onclick="setFilter('frontiers')">
         <div class="metric">
           <span>Graph Frontiers</span>
           <span class="badge-sub">EXPANSION</span>
         </div>
         <div class="value frontiers" id="valFrontiers">-</div>
-        <div class="sub-note">Emerging forward [[links]] 🌐</div>
-      </div>
-      <div class="card">
+        <div class="sub-note">Emerging forward [[links]]</div>
+      </button>
+      <button type="button" class="card metric-card" data-filter="structural" aria-pressed="false" onclick="setFilter('structural')">
         <div class="metric">
           <span>Structural Issues</span>
           <span class="badge-sub">PARSER</span>
         </div>
         <div class="value structural" id="valStructural">-</div>
-        <div class="sub-note">Headers & schema lints ⚠️</div>
-      </div>
-      <div class="card">
+        <div class="sub-note">Headers & schema lints</div>
+      </button>
+      <button type="button" class="card metric-card" data-filter="hygiene" aria-pressed="false" onclick="setFilter('hygiene')">
         <div class="metric">
           <span>Style Hygiene</span>
           <span class="badge-sub">AUTO-FIX</span>
         </div>
         <div class="value hygiene" id="valHygiene">-</div>
-        <div class="sub-note">Whitespace & empty lines 🧹</div>
-      </div>
+        <div class="sub-note">Whitespace & empty lines</div>
+      </button>
     </div>
 
     <div class="controls">
       <button type="button" onclick="loadReport()">Refresh Dashboard</button>
       <button type="button" onclick="downloadJSON()">Export Report JSON</button>
-      <button type="button" onclick="clearCache()">Clear Cache</button>
+      <button type="button" class="btn-danger" onclick="clearCache()">Clear Cache</button>
     </div>
 
-    <!-- Sliced Advisory Breakdown -->
-    <div class="section-title">
+    <h2 class="section-title">
       <span>Advisories & Knowledge Graph Health</span>
       <span class="count-tag" id="valTotalWarningsHeader">- Total Advisories</span>
-    </div>
+    </h2>
 
     <div class="breakdown-grid">
       <!-- Frontiers -->
       <div class="breakdown-card frontiers-card">
         <div class="breakdown-card-header">
-          <div class="breakdown-title">🌐 Graph Frontiers (Emerging Links)</div>
+          <div class="breakdown-title">Graph Frontiers (Emerging Links)</div>
           <div class="breakdown-count" id="cardFrontiersCount">-</div>
         </div>
         <div class="breakdown-desc">
           Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents <strong>active knowledge graph growth</strong> in the Karpathy LLM-wiki workflow.
         </div>
         <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/autoheal-sweeper.mjs --fix')">
-          🌱 Scaffold Concept Stubs
+          Scaffold Concept Stubs
         </button>
       </div>
 
       <!-- Structural -->
       <div class="breakdown-card structural-card">
         <div class="breakdown-card-header">
-          <div class="breakdown-title">⚠️ Structural Violations</div>
+          <div class="breakdown-title">Structural Violations</div>
           <div class="breakdown-count" id="cardStructuralCount">-</div>
         </div>
         <div class="breakdown-desc">
           Missing top-level <code># Title</code> headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.
         </div>
         <button class="action-btn" type="button" onclick="copyCommand('node scripts/fix-wiki-frontmatter.mjs')">
-          🛠 Standardize Headers
+          Standardize Headers
         </button>
       </div>
 
       <!-- Hygiene -->
       <div class="breakdown-card hygiene-card">
         <div class="breakdown-card-header">
-          <div class="breakdown-title">🧹 Markdown Hygiene</div>
+          <div class="breakdown-title">Markdown Hygiene</div>
           <div class="breakdown-count" id="cardHygieneCount">-</div>
         </div>
         <div class="breakdown-desc">
           Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.
         </div>
         <button class="action-btn" type="button" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">
-          ⚡ Run Auto-Fixer
+          Run Auto-Fixer
         </button>
       </div>
     </div>
 
     <!-- Action Items -->
     <div class="action-items-section">
-      <div class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
-        <span>🎯 Priority Action Items</span>
+      <h2 class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
+        <span>Priority Action Items</span>
         <span class="count-tag" id="actionItemsCount">Top Impact</span>
-      </div>
+      </h2>
       <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1rem;">
         Highest impact structural fixes and link ambiguities requiring attention:
       </p>
@@ -634,10 +735,11 @@
 
     <!-- Domain Matrix Heatmap -->
     <div class="domains-table-container">
-      <div class="section-title" style="margin-bottom: 1rem; border: none; padding: 0;">
-        <span>📁 Domain & Subdirectory Clustering</span>
-      </div>
+      <h2 class="section-title" style="margin-bottom: 1rem; border: none; padding: 0;">
+        <span>Domain & Subdirectory Clustering</span>
+      </h2>
       <table class="domains-table">
+        <caption class="hidden">Wiki advisory counts by subdirectory</caption>
         <thead>
           <tr>
             <th>Subdirectory</th>
@@ -656,10 +758,10 @@
 
     <!-- Top Unresolved Links -->
     <div class="action-items-section">
-      <div class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
-        <span>🔍 Emerging Frontier Citations</span>
+      <h2 class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
+        <span>Emerging Frontier Citations</span>
         <span class="count-tag">Top Unresolved Targets</span>
-      </div>
+      </h2>
       <p style="font-size: 0.85rem; color: var(--ash);">
         Most cited forward-link placeholders across the vault ready for drafting:
       </p>
@@ -670,22 +772,28 @@
 
     <!-- Autoheal Telemetry Section -->
     <div class="autoheal-section" id="autohealSection">
-      <div class="section-title">
-        <span>⚡ Autohealing Engine Telemetry</span>
+      <h2 class="section-title">
+        <span>Autohealing Engine Telemetry</span>
         <span class="count-tag">Pre-Validation Gate</span>
-      </div>
+      </h2>
       <div id="autohealDetailsContainer"></div>
     </div>
+    </main>
 
     <div class="footer">
       <p>KB-Sync v1.5.0 • Knowledge Base Operations & Validation Suite</p>
     </div>
   </div>
+  <div id="toast" class="toast hidden" role="status"></div>
 
   <script>
     const REPORT_FILE = '../../.validation-report.json';
     const AUTOHEAL_FILE = '../../.autoheal-report.json';
     const CACHE_KEY = 'kb-sync-report-cache-v2';
+    const NOISE_DIR = /(^|\/)(\.ijfw|node_modules|\.git)(\/|$)/i;
+
+    let lastReport = null;
+    let activeFilter = 'all';
 
     async function loadReport() {
       try {
@@ -719,25 +827,24 @@
     }
 
     function renderReport(data) {
+      lastReport = data;
       const summary = data.summary || {};
       const breakdown = summary.warningBreakdown || computeFallbackBreakdown(data);
       const autoheal = data.autohealSummary || null;
+      const errors = summary.errors ?? 0;
 
-      // Report Timestamp
       const tsElem = document.getElementById('reportTimestamp');
       if (tsElem) {
-        if (data.timestamp) {
-          const d = new Date(data.timestamp);
-          const formatted = isNaN(d.getTime()) ? data.timestamp : d.toLocaleString();
-          tsElem.textContent = `Report Generated: ${formatted}`;
-        } else {
-          tsElem.textContent = `Report Generated: Dynamic / Live`;
-        }
+        tsElem.textContent = formatReportTime(data.timestamp);
+        tsElem.title = data.timestamp ? String(data.timestamp) : '';
       }
 
-      // Summary Cards
       document.getElementById('valTotalFiles').textContent = summary.files ?? '-';
-      document.getElementById('valErrors').textContent = summary.errors ?? 0;
+      document.getElementById('valErrors').textContent = errors;
+      document.getElementById('valErrors').className = 'value ' + (errors > 0 ? 'error' : 'success');
+      document.getElementById('valErrorsNote').textContent = errors > 0
+        ? 'Zero-tolerance contract: FAIL'
+        : 'Zero-tolerance contract: PASS';
       document.getElementById('valFrontiers').textContent = (breakdown.graphFrontiers ?? 0).toLocaleString();
       document.getElementById('valStructural').textContent = (breakdown.structural ?? 0).toLocaleString();
       document.getElementById('valHygiene').textContent = (breakdown.hygiene ?? 0).toLocaleString();
@@ -746,22 +853,48 @@
       document.getElementById('valDensityNote').textContent = `${density} advisories / doc`;
       document.getElementById('valTotalWarningsHeader').textContent = `${(summary.warnings ?? 0).toLocaleString()} Total Advisories`;
 
-      // Breakdown Cards
       document.getElementById('cardFrontiersCount').textContent = (breakdown.graphFrontiers ?? 0).toLocaleString();
       document.getElementById('cardStructuralCount').textContent = (breakdown.structural ?? 0).toLocaleString();
       document.getElementById('cardHygieneCount').textContent = (breakdown.hygiene ?? 0).toLocaleString();
 
-      // Action Items
-      renderActionItems(breakdown.actionItems || []);
-
-      // Domain Clustering
-      renderDomainMatrix(breakdown.domains || {});
-
-      // Top Links
+      applyFilter();
       renderTopLinks(breakdown.topUnresolvedLinks || []);
-
-      // Autoheal Telemetry
       renderAutohealTelemetry(autoheal);
+    }
+
+    function formatReportTime(timestamp) {
+      if (!timestamp) return 'Report generated: live';
+      const d = new Date(timestamp);
+      if (isNaN(d.getTime())) return `Report generated: ${timestamp}`;
+      const sec = Math.max(0, (Date.now() - d.getTime()) / 1000);
+      let rel = 'just now';
+      if (sec >= 60 && sec < 3600) rel = `${Math.floor(sec / 60)}m ago`;
+      else if (sec >= 3600 && sec < 86400) rel = `${Math.floor(sec / 3600)}h ago`;
+      else if (sec >= 86400) rel = `${Math.floor(sec / 86400)}d ago`;
+      return `Generated ${rel} (${d.toLocaleString()})`;
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter === activeFilter ? 'all' : filter;
+      document.querySelectorAll('.metric-card').forEach((card) => {
+        card.setAttribute('aria-pressed', card.dataset.filter === activeFilter ? 'true' : 'false');
+      });
+      applyFilter();
+    }
+
+    function applyFilter() {
+      if (!lastReport) return;
+      const breakdown = lastReport.summary?.warningBreakdown || computeFallbackBreakdown(lastReport);
+      renderActionItems(breakdown.actionItems || []);
+      renderDomainMatrix(breakdown.domains || {});
+    }
+
+    function normalizePath(file) {
+      return String(file || '').replace(/\\/g, '/');
+    }
+
+    function isNoiseDomain(domain) {
+      return NOISE_DIR.test(normalizePath(domain));
     }
 
     function computeFallbackBreakdown(data) {
@@ -791,44 +924,90 @@
 
     function renderActionItems(items) {
       const container = document.getElementById('actionItemsContainer');
-      if (!items || items.length === 0) {
-        container.innerHTML = `<div style="color: var(--brass); font-size: 0.85rem;">All priority structural checks passed! No urgent defects detected.</div>`;
+      const countTag = document.getElementById('actionItemsCount');
+      let filtered = (items || []).filter((item) => {
+        if (activeFilter === 'frontiers') return item.type === 'ambiguity';
+        if (activeFilter === 'structural' || activeFilter === 'hygiene') return item.type === 'structural';
+        if (activeFilter === 'errors') return false;
+        return true;
+      });
+
+      if (!filtered.length) {
+        container.innerHTML = `<div class="empty-state">No priority items for this filter.</div>`;
+        if (countTag) countTag.textContent = '0 groups';
         return;
       }
-      container.innerHTML = items.slice(0, 8).map(item => `
-        <div class="action-item-row ${item.type}">
-          <div>
-            <div class="action-item-file">${escapeHtml(item.file)}</div>
-            <div class="action-item-msg">${escapeHtml(item.message)}</div>
+
+      const groups = new Map();
+      for (const item of filtered) {
+        const key = `${item.type}|${item.message}`;
+        if (!groups.has(key)) groups.set(key, { type: item.type, message: item.message, files: [] });
+        groups.get(key).files.push(normalizePath(item.file));
+      }
+      const grouped = [...groups.values()].slice(0, 8);
+      if (countTag) countTag.textContent = `${grouped.length} groups`;
+
+      container.innerHTML = grouped.map((group) => {
+        const filesAttr = encodeURIComponent(JSON.stringify(group.files));
+        const shown = group.files.slice(0, 3).map((f) => `<li>${escapeHtml(f)}</li>`).join('');
+        const extra = group.files.length > 3 ? `<li>+${group.files.length - 3} more</li>` : '';
+        return `
+          <div class="action-item-row ${group.type}">
+            <div>
+              <div class="action-item-msg">${escapeHtml(group.message)} (${group.files.length})</div>
+              <ul class="path-list">${shown}${extra}</ul>
+            </div>
+            <button type="button" class="row-action" data-files="${filesAttr}" onclick="copyPaths(this)">Copy paths</button>
           </div>
-          <span class="fix-badge">${item.type === 'structural' ? 'STRUCTURAL' : 'AMBIGUITY'}</span>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function renderDomainMatrix(domains) {
       const tbody = document.getElementById('domainsTableBody');
-      const keys = Object.keys(domains);
-      if (keys.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="color: var(--ash); text-align: center;">No domain clustering data found in report.</td></tr>`;
+      const keys = Object.keys(domains).filter((domain) => !isNoiseDomain(domain));
+      const filtered = keys.filter((domain) => {
+        const d = domains[domain];
+        if (activeFilter === 'frontiers') return (d.graphFrontiers || 0) > 0;
+        if (activeFilter === 'structural') return (d.structural || 0) > 0;
+        if (activeFilter === 'hygiene') return (d.hygiene || 0) > 0;
+        if (activeFilter === 'errors') return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="color: var(--ash); text-align: center;">No domain rows for this filter.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = keys.map(domain => {
+      tbody.innerHTML = filtered.map((domain) => {
         const d = domains[domain];
+        const path = normalizePath(domain || 'root');
         let action = 'Clean';
-        if (d.structural > 0) action = 'Fix Headings';
-        else if (d.hygiene > 0) action = 'Auto-format';
-        else if (d.graphFrontiers > 0) action = 'Draft Stubs';
+        let cmd = '';
+        if (d.structural > 0) {
+          action = 'Fix headings';
+          cmd = `# scope: ${path}\nnode scripts/fix-wiki-frontmatter.mjs`;
+        } else if (d.hygiene > 0) {
+          action = 'Auto-format';
+          cmd = `# scope: ${path}\nnpm run wiki:validate-batch -- --fix`;
+        } else if (d.graphFrontiers > 0) {
+          action = 'Draft stubs';
+          cmd = `# scope: ${path}\nnode modules/wiki/autoheal-sweeper.mjs --fix`;
+        }
+
+        const actionCell = cmd
+          ? `<button type="button" class="row-action" onclick="copyCommand(${JSON.stringify(cmd)})">${escapeHtml(action)}</button>`
+          : `<span class="badge-sub">${escapeHtml(action)}</span>`;
 
         return `
           <tr>
-            <td><code>${escapeHtml(domain || 'root')}</code></td>
+            <td><code>${escapeHtml(path)}</code></td>
             <td class="tag-count">${d.files}</td>
             <td class="tag-count" style="color: var(--teal)">${d.graphFrontiers}</td>
             <td class="tag-count" style="color: var(--brass)">${d.structural}</td>
             <td class="tag-count" style="color: var(--ash)">${d.hygiene}</td>
-            <td><span class="badge-sub">${action}</span></td>
+            <td>${actionCell}</td>
           </tr>
         `;
       }).join('');
@@ -837,21 +1016,25 @@
     function renderTopLinks(links) {
       const grid = document.getElementById('topLinksGrid');
       if (!links || links.length === 0) {
-        grid.innerHTML = `<div style="color: var(--ash); font-size: 0.85rem;">No unresolved frontier citations detected.</div>`;
+        grid.innerHTML = `<div class="empty-state">No unresolved frontier citations detected.</div>`;
         return;
       }
-      grid.innerHTML = links.map(l => `
-        <div class="link-chip" title="Click to copy scaffold link" onclick="copyText('[[${escapeHtml(l.target)}]]')">
+      grid.innerHTML = links.map((l) => `
+        <button type="button" class="link-chip" title="Copy scaffold wikilink" onclick="copyText('[[${escapeHtml(l.target)}]]')">
           <span>[[${escapeHtml(l.target)}]]</span>
           <span class="chip-count">${l.count}</span>
-        </div>
+        </button>
       `).join('');
     }
 
     function renderAutohealTelemetry(autoheal) {
       const container = document.getElementById('autohealDetailsContainer');
-      if (!autoheal) {
-        container.innerHTML = `<div class="autoheal-details" style="text-align: center; color: var(--ash);">No autohealing telemetry generated for this run.</div>`;
+      if (!autoheal || ((autoheal.filesScanned ?? 0) === 0 && (autoheal.filesHealed ?? 0) === 0 && !(autoheal.repairs || []).length)) {
+        container.innerHTML = `
+          <div class="autoheal-details empty-state">
+            <p>No autoheal run in this report.</p>
+            <button type="button" class="action-btn" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">Copy auto-fixer command</button>
+          </div>`;
         return;
       }
 
@@ -891,20 +1074,46 @@
     }
 
     function copyCommand(cmd) {
-      navigator.clipboard.writeText(cmd);
-      showInfo(`Copied command to clipboard: ${cmd}`);
+      navigator.clipboard.writeText(cmd).then(() => {
+        showToast(`Copied: ${cmd}`);
+      }).catch(() => {
+        showToast(`Could not copy: ${cmd}`);
+      });
     }
 
     function copyText(txt) {
-      navigator.clipboard.writeText(txt);
-      showInfo(`Copied wikilink: ${txt}`);
+      navigator.clipboard.writeText(txt).then(() => {
+        showToast(`Copied wikilink: ${txt}`);
+      }).catch(() => {
+        showToast(`Could not copy: ${txt}`);
+      });
     }
 
-    function showInfo(msg) {
+    function copyPaths(btn) {
+      try {
+        const files = JSON.parse(decodeURIComponent(btn.getAttribute('data-files') || '[]'));
+        copyCommand(files.join('\n'));
+      } catch {
+        showToast('Could not copy paths');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
       const box = document.getElementById('infoBox');
       document.getElementById('infoText').textContent = msg;
       box.classList.remove('hidden');
-      setTimeout(() => box.classList.add('hidden'), 5000);
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toast.classList.add('hidden');
+        box.classList.add('hidden');
+      }, 4000);
+    }
+
+    function showInfo(msg) {
+      showToast(msg);
     }
 
     function escapeHtml(str) {
@@ -927,6 +1136,9 @@
     }
 
     function clearCache() {
+      if (!window.confirm('Clear the cached validation report from this browser? The live JSON is unchanged.')) {
+        return;
+      }
       localStorage.removeItem(CACHE_KEY);
       location.reload();
     }
