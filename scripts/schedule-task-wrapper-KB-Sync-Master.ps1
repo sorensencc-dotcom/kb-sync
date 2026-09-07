@@ -40,6 +40,22 @@ function Write-LogError($Message) {
 
 Write-LogInfo "Starting KB Sync Master Pipeline..."
 Write-LogInfo "Repo Root: $RepoRoot"
+
+# --- PREFLIGHT: Toolforge node process janitor (fail-soft) ---
+# Always dry-runs; -Apply because this wrapper is unattended/scheduled.
+# Override path via TOOLFORGE_JANITOR_PS1 / JANITOR_PS1. Missing/errors: warn + continue.
+$JanitorHelper = Join-Path $RepoRoot "scripts\invoke-process-janitor.ps1"
+if (Test-Path -LiteralPath $JanitorHelper) {
+    try {
+        Write-LogInfo "Running process-janitor preflight (dry-run + Apply)..."
+        & $JanitorHelper -Apply
+    } catch {
+        Write-LogWarn "Process-janitor preflight failed: $_; continuing."
+    }
+} else {
+    Write-LogWarn "Process-janitor helper not found at $JanitorHelper; skipping."
+}
+
 Set-Location $RepoRoot
 
 $OverallStatus = 0
