@@ -108,7 +108,7 @@ Cryptographic catalog of all raw documents in the pack, recording:
 ---
 
 ## 🔗 Related Architecture Guides
-- [[deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Strict SHA-256 state tracking and staging
-- [[karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — LLM distillation of raw pack sources
-- [[local-context-cache|Local Context Cache]] — Zero-cloud local embedding substrate
-- [[fail-soft-orchestration|Fail-Soft Orchestration]] — Tiered governance and safety gates
+- [[concepts/deterministic-sync-pipeline.md|Deterministic Sync Pipeline]] — Strict SHA-256 state tracking and staging
+- [[concepts/karpathy-llm-wiki-pattern.md|Karpathy LLM-Wiki Pattern]] — LLM distillation of raw pack sources
+- [[concepts/local-context-cache.md|Local Context Cache]] — Zero-cloud local embedding substrate
+- [[concepts/fail-soft-orchestration.md|Fail-Soft Orchestration]] — Tiered governance and safety gates

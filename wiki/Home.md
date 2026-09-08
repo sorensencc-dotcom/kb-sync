@@ -1,3 +1,9 @@
+---
+title: Home
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
 # KB-Sync Knowledge Base & Operational Wiki
 
 Welcome to the canonical engineering, operational, and architectural documentation for **KB-Sync**.
@@ -9,24 +15,24 @@ KB-Sync is a deterministic, multi-channel knowledge synchronization and automate
 ## 🧭 Navigation & Knowledge Base Index
 
 ### 📐 Architecture & Core Principles
-* [[deterministic-sync-pipeline]] — Strict SHA-256 state tracking, staged manifests, and immutable snapshotting.
-* [[karpathy-llm-wiki-pattern]] — LLM-as-compiler distillation of raw source corpora into structured knowledge nodes.
-* [[local-context-cache]] — Zero-cloud local SQLite context cache with BM25 full-text indexing and embeddings.
-* [[fail-soft-orchestration]] — Tier 1/2/3 governance guardrails, boundary enforcement, and dirty-worktree protection.
-* [[pack-based-knowledge-management]] — Packing and distribution formats for offline intelligence substrates.
+* [[concepts/deterministic-sync-pipeline.md]] — Strict SHA-256 state tracking, staged manifests, and immutable snapshotting.
+* [[concepts/karpathy-llm-wiki-pattern.md]] — LLM-as-compiler distillation of raw source corpora into structured knowledge nodes.
+* [[concepts/local-context-cache.md]] — Zero-cloud local SQLite context cache with BM25 full-text indexing and embeddings.
+* [[concepts/fail-soft-orchestration.md]] — Tier 1/2/3 governance guardrails, boundary enforcement, and dirty-worktree protection.
+* [[concepts/pack-based-knowledge-management.md]] — Packing and distribution formats for offline intelligence substrates.
 
 ### 🔬 Research RFCs & Gap Triage
-* [[rfc-gap-01--cast-iron-charlie-research-lo]] — GAP-01: Research and chronological provenance extraction.
-* [[rfc-gap-02--cast-iron-charlie-research-lo]] — GAP-02: Under-sourced claims and contradictory evidence analysis.
-* [[rfc-gap-03--cast-iron-charlie-research-lo]] — GAP-03: Cuban land seizures and agricultural holdings claims.
-* [[rfc-gap-04--cast-iron-charlie-research-lo]] — GAP-04: Photographic archive cataloging and verification.
+* [[research/rfc-gap-01--cast-iron-charlie-research-lo.md]] — GAP-01: Research and chronological provenance extraction.
+* [[research/rfc-gap-02--cast-iron-charlie-research-lo.md]] — GAP-02: Under-sourced claims and contradictory evidence analysis.
+* [[research/rfc-gap-03--cast-iron-charlie-research-lo.md]] — GAP-03: Cuban land seizures and agricultural holdings claims.
+* [[research/rfc-gap-04--cast-iron-charlie-research-lo.md]] — GAP-04: Photographic archive cataloging and verification.
 
 ### 🛠️ Modules & Engine Subsystems
-* [[fleet-wiki-reconciler.ts]] — Multi-repository SSH wiki publisher and navigation engine.
-* [[cross-repo-drift-scanner.ts]] — Zero-tolerance cross-repository drift detector and telemetry analyzer.
-* [[autoheal-sweeper.mjs]] — Automated markdown healing sweeper with repair manifests and hash tracking.
-* [[entity-synthesizer.ts]] — Automated AST and code entity documentation generator.
-* [[detect-drift.ts]] — Local file modification, git commit date, and proof receipt validator.
+* [[entities/fleet-wiki-reconciler.ts.md]] — Multi-repository SSH wiki publisher and navigation engine.
+* [[entities/cross-repo-drift-scanner.ts.md]] — Zero-tolerance cross-repository drift detector and telemetry analyzer.
+* [[entities/autoheal-sweeper.mjs.md]] — Automated markdown healing sweeper with repair manifests and hash tracking.
+* [[entities/entity-synthesizer.ts.md]] — Automated AST and code entity documentation generator.
+* [[entities/detect-drift.ts.md]] — Local file modification, git commit date, and proof receipt validator.
 
 ---
 

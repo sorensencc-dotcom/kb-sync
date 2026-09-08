@@ -1,8 +1,9 @@
 ---
-title: "WikiLog"
-category: "wiki"
-status: "active"
+title: WikiLog
+category: wiki
+status: active
 citations: ["wiki/Log.md"]
+sourceRepository: kb-sync
 ---
 
 # WikiLog

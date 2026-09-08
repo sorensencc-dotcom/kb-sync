@@ -3,7 +3,7 @@ title: Karpathy LLM-Wiki Pattern
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Karpathy LLM-Wiki Pattern
@@ -47,6 +47,6 @@ flowchart TD
 ---
 
 ## 🔗 Related Concepts
-- [[pack-based-knowledge-management]] — Packaging source inputs
-- [[local-context-cache]] — Zero-cloud local embedding substrate
-- [[trm-closed-loop-research]] — Closed-loop research gap resolution
+- [[concepts/pack-based-knowledge-management.md]] — Packaging source inputs
+- [[concepts/local-context-cache.md]] — Zero-cloud local embedding substrate
+- [[concepts/trm-closed-loop-research.md]] — Closed-loop research gap resolution

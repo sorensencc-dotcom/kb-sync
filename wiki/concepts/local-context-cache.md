@@ -3,7 +3,7 @@ title: Local Context Cache
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Local Context Cache
@@ -40,5 +40,5 @@ flowchart LR
 ---
 
 ## 🔗 Related Concepts
-- [[deterministic-sync-pipeline]] — Deterministic sync pipeline
-- [[trm-closed-loop-research]] — TRM closed-loop research
+- [[concepts/deterministic-sync-pipeline.md]] — Deterministic sync pipeline
+- [[concepts/trm-closed-loop-research.md]] — TRM closed-loop research

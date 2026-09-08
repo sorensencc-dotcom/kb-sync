@@ -1,35 +1,41 @@
+---
+title: _Sidebar
+category: wiki
+status: draft
+sourceRepository: kb-sync
+---
 ### **KB-Sync Knowledge Base**
 
-* [[Home]]
+* [[kb-sync/wiki/research/Home]]
 
 ---
 
 ### **📐 Architecture & Concepts**
-* [[pack-based-knowledge-management|Pack-Based Knowledge Management]]
-* [[deterministic-sync-pipeline|Deterministic Sync Pipeline]]
-* [[karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]]
-* [[local-context-cache|Local Context Cache]]
-* [[fail-soft-orchestration|Fail-Soft Orchestration]]
-* [[immutable-staging|Immutable Staging]]
-* [[trm-closed-loop-research|TRM Closed-Loop Research]]
+* [[concepts/pack-based-knowledge-management.md|Pack-Based Knowledge Management]]
+* [[concepts/deterministic-sync-pipeline.md|Deterministic Sync Pipeline]]
+* [[concepts/karpathy-llm-wiki-pattern.md|Karpathy LLM-Wiki Pattern]]
+* [[concepts/local-context-cache.md|Local Context Cache]]
+* [[concepts/fail-soft-orchestration.md|Fail-Soft Orchestration]]
+* [[kb-sync/wiki/ImmutableStaging.md,concepts/immutable-staging.md|Immutable Staging]]
+* [[concepts/trm-closed-loop-research.md|TRM Closed-Loop Research]]
 
 ---
 
 ### **🔬 Research RFCs**
-* [[rfc-gap-01--cast-iron-charlie-research-lo|GAP-01 Provenance Extraction]]
-* [[rfc-gap-02--cast-iron-charlie-research-lo|GAP-02 Contradictory Claims]]
-* [[rfc-gap-03--cast-iron-charlie-research-lo|GAP-03 Cuban Land Seizures]]
-* [[rfc-gap-04--cast-iron-charlie-research-lo|GAP-04 Photographic Archive]]
+* [[research/rfc-gap-01--cast-iron-charlie-research-lo.md|GAP-01 Provenance Extraction]]
+* [[research/rfc-gap-02--cast-iron-charlie-research-lo.md|GAP-02 Contradictory Claims]]
+* [[research/rfc-gap-03--cast-iron-charlie-research-lo.md|GAP-03 Cuban Land Seizures]]
+* [[research/rfc-gap-04--cast-iron-charlie-research-lo.md|GAP-04 Photographic Archive]]
 
 ---
 
 ### **🛠️ Core Modules**
-* [[fleet-wiki-reconciler.ts|Fleet Wiki Reconciler]]
-* [[cross-repo-drift-scanner.ts|Cross-Repo Drift Scanner]]
-* [[autoheal-sweeper.mjs|Autoheal Sweeper]]
-* [[entity-synthesizer.ts|Entity Synthesizer]]
-* [[detect-drift.ts|Drift Detector]]
-* [[sync-github-wiki.mjs|GitHub Wiki Publisher]]
+* [[entities/fleet-wiki-reconciler.ts.md|Fleet Wiki Reconciler]]
+* [[entities/cross-repo-drift-scanner.ts.md|Cross-Repo Drift Scanner]]
+* [[entities/autoheal-sweeper.mjs.md|Autoheal Sweeper]]
+* [[entities/entity-synthesizer.ts.md|Entity Synthesizer]]
+* [[entities/detect-drift.ts.md|Drift Detector]]
+* [[entities/sync-github-wiki.mjs.md|GitHub Wiki Publisher]]
 
 ---
 

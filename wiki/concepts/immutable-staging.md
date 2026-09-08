@@ -3,7 +3,7 @@ title: Immutable Staging
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Immutable Staging
@@ -38,6 +38,6 @@ _kb-sync-staging/
 ---
 
 ## 🔗 Related Concepts
-- [[raw-source-staging]] — Ingestion of unformatted corpora
-- [[manifest-mode]] — Manifest-driven processing
-- [[deterministic-sync-pipeline]] — Pipeline execution rules
+- [[concepts/raw-source-staging.md]] — Ingestion of unformatted corpora
+- [[concepts/manifest-mode.md]] — Manifest-driven processing
+- [[concepts/deterministic-sync-pipeline.md]] — Pipeline execution rules

@@ -3,7 +3,7 @@ title: Fail-Soft Orchestration
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Fail-Soft Orchestration
@@ -44,5 +44,5 @@ flowchart TD
 ---
 
 ## 🔗 Related Concepts
-- [[deterministic-sync-pipeline]] — Deterministic pipeline invariants
-- [[karpathy-llm-wiki-pattern]] — Automated distillation workflows
+- [[concepts/deterministic-sync-pipeline.md]] — Deterministic pipeline invariants
+- [[concepts/karpathy-llm-wiki-pattern.md]] — Automated distillation workflows

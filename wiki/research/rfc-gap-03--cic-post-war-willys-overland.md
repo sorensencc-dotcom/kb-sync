@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-03 - **CIC - Post-War & Willys-Overland (under-sourced)**"
-category: "research"
-topic: "rfc-gap-03--cic-post-war-willys-overland"
-gap_id: "GAP-03"
-status: "draft"
-created_at: "2026-09-05T03:17:49.468Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-03 - **CIC - Post-War & Willys-Overland (under-sourced)**
+category: research
+topic: rfc-gap-03--cic-post-war-willys-overland
+gap_id: GAP-03
+status: draft
+created_at: 2026-09-08T00:30:25.568Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-04--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-03--cic-post-war-willys-overland.md","wiki/research/rfc-gap-02--cic-kb-open-contradictions.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-03 - **CIC - Post-War & Willys-Overland (under-sourced)**
 
 ## 1. Problem Statement & Context
-An examination of the sources reveals several key claims that are either **single-sourced**, **under-corroborated**, or directly **contradicted** acro)))))))))))))))))))))))))
+An examination of the sources reveals several key claims that are either **single-sourced**, **under-corroborated**, or directly **contradicted** acro))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-04--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
+- **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [vector_only]:
+  > --- title: "RFC: GAP-02 - **CIC-KB open-contradictions**" category: "research" topic: "rfc-gap-02--cic-kb-open-contradictions" gap_id: "GAP-02" status: "draft" created_at: "2026-09-08T00:09:20.525Z" expansion_method: "heuristic" retrieval_mode: "hybr
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

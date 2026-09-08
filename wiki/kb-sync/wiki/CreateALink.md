@@ -15,6 +15,5 @@ citations: ["modules/wiki/templates/concept.md"]
 
 ## Summary
 
-
 ## Source Citations
 - Staged: `modules/wiki/templates/concept.md`

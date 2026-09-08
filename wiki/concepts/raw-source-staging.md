@@ -3,7 +3,7 @@ title: Raw Source Staging
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Raw Source Staging
@@ -21,5 +21,5 @@ lastUpdated: "2026-08-30"
 ---
 
 ## 🔗 Related Concepts
-- [[immutable-staging]] — Immutable staging directory rules
-- [[pack-based-knowledge-management]] — Pack architecture
+- [[concepts/immutable-staging.md]] — Immutable staging directory rules
+- [[concepts/pack-based-knowledge-management.md]] — Pack architecture

@@ -15,6 +15,5 @@ citations: ["scripts/wiki-contract-backfill.mjs"]
 
 ## Summary
 
-
 ## Source Citations
 - Staged: `scripts/wiki-contract-backfill.mjs`

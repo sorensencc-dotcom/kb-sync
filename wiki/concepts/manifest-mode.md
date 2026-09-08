@@ -3,7 +3,7 @@ title: Manifest Mode
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Manifest Mode
@@ -21,5 +21,5 @@ lastUpdated: "2026-08-30"
 ---
 
 ## 🔗 Related Concepts
-- [[immutable-staging]] — Staging directory contracts
-- [[deterministic-sync-pipeline]] — Deterministic sync pipeline
+- [[concepts/immutable-staging.md]] — Staging directory contracts
+- [[concepts/deterministic-sync-pipeline.md]] — Deterministic sync pipeline

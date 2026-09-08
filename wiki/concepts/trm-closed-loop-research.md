@@ -3,7 +3,7 @@ title: TRM Closed-Loop Research
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # TRM Closed-Loop Research
@@ -42,5 +42,5 @@ flowchart TD
 ---
 
 ## 🔗 Related Concepts
-- [[local-context-cache]] — Embedded context retrieval
-- [[pack-based-knowledge-management]] — Knowledge pack structure
+- [[concepts/local-context-cache.md]] — Embedded context retrieval
+- [[concepts/pack-based-knowledge-management.md]] — Knowledge pack structure

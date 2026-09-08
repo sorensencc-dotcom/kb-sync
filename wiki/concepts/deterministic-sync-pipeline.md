@@ -3,7 +3,7 @@ title: Deterministic Sync Pipeline
 category: concepts
 status: active
 sourceRepository: kb-sync
-lastUpdated: "2026-08-30"
+lastUpdated: 2026-08-30
 ---
 
 # Deterministic Sync Pipeline
@@ -47,6 +47,6 @@ flowchart LR
 ---
 
 ## 🔗 Related Concepts
-- [[pack-based-knowledge-management]] — Hermetic knowledge packaging
-- [[fail-soft-orchestration]] — Tiered governance and safety gates
-- [[immutable-staging]] — Staging directory contracts
+- [[concepts/pack-based-knowledge-management.md]] — Hermetic knowledge packaging
+- [[concepts/fail-soft-orchestration.md]] — Tiered governance and safety gates
+- [[concepts/immutable-staging.md]] — Staging directory contracts

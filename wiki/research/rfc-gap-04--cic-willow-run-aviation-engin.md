@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-04 - **CIC - Willow Run & Aviation Engineering (open-contradictions)**"
-category: "research"
-topic: "rfc-gap-04--cic-willow-run-aviation-engin"
-gap_id: "GAP-04"
-status: "draft"
-created_at: "2026-09-05T03:17:49.499Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-04 - **CIC - Willow Run & Aviation Engineering (open-contradictions)**
+category: research
+topic: rfc-gap-04--cic-willow-run-aviation-engin
+gap_id: GAP-04
+status: draft
+created_at: 2026-09-08T00:30:33.875Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-04 - **CIC - Willow Run & Aviation Engineering (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An analysis of your notebook's canonical records, technical dossiers, and first-person accounts reveals several critical contradictions, historical my))))))))))))))))))))))))))
+An analysis of your notebook's canonical records, technical dossiers, and first-person accounts reveals several critical contradictions, historical my)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
+- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
