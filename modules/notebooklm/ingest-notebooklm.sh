@@ -135,8 +135,8 @@ get_config_value() {
 # --- PRE-FLIGHT CHECKS -------------------------------------------------------
 log_info "Initializing NotebookLM sync orchestrator..."
 
-# Verify we're in a git repo
-if [ -z "$REPO_ROOT" ] || [ ! -d "$REPO_ROOT/.git" ]; then
+# Verify we're in a git repo (worktrees have a .git file, not a directory)
+if [ -z "$REPO_ROOT" ] || ! git -C "$REPO_ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   log_error "Not inside a valid git repository."
   write_sync_telemetry "FAILED" 0 0
   exit 1

@@ -598,6 +598,26 @@
       display: none;
     }
 
+    .filter-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: -1rem 0 1.75rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 768px) {
       h1 { font-size: 1.85rem; }
       .summary { grid-template-columns: 1fr 1fr; }
@@ -613,7 +633,10 @@
     <header>
       <h1>KB-Sync Validation & Knowledge Graph Dashboard</h1>
       <p class="subtitle">Operator Knowledge Base Health & Advisory Telemetry</p>
-      <div class="timestamp-badge" id="reportTimestamp">Report generated: loading…</div>
+      <div class="header-actions">
+        <div class="timestamp-badge" id="reportTimestamp">Report generated: loading…</div>
+        <button type="button" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">Re-run validator</button>
+      </div>
     </header>
 
     <main id="main">
@@ -668,6 +691,10 @@
       <button type="button" onclick="loadReport()">Refresh Dashboard</button>
       <button type="button" onclick="downloadJSON()">Export Report JSON</button>
       <button type="button" class="btn-danger" onclick="clearCache()">Clear Cache</button>
+    </div>
+    <div id="filterBanner" class="filter-banner hidden" role="status">
+      <span id="filterBannerText">Filter: all</span>
+      <button type="button" onclick="setFilter('all')">Clear filter</button>
     </div>
 
     <h2 class="section-title">
@@ -886,6 +913,16 @@
 
     function applyFilter() {
       if (!lastReport) return;
+      const banner = document.getElementById('filterBanner');
+      const bannerText = document.getElementById('filterBannerText');
+      if (banner && bannerText) {
+        if (activeFilter === 'all') {
+          banner.classList.add('hidden');
+        } else {
+          banner.classList.remove('hidden');
+          bannerText.textContent = `Filter: ${activeFilter}`;
+        }
+      }
       const breakdown = lastReport.summary?.warningBreakdown || computeFallbackBreakdown(lastReport);
       renderActionItems(breakdown.actionItems || []);
       renderDomainMatrix(breakdown.domains || {});
@@ -929,8 +966,8 @@
       const countTag = document.getElementById('actionItemsCount');
       let filtered = (items || []).filter((item) => {
         if (activeFilter === 'frontiers') return item.type === 'ambiguity';
-        if (activeFilter === 'structural' || activeFilter === 'hygiene') return item.type === 'structural';
-        if (activeFilter === 'errors') return false;
+        if (activeFilter === 'structural') return item.type === 'structural';
+        if (activeFilter === 'hygiene' || activeFilter === 'errors') return false;
         return true;
       });
 
@@ -975,6 +1012,16 @@
         if (activeFilter === 'hygiene') return (d.hygiene || 0) > 0;
         if (activeFilter === 'errors') return false;
         return true;
+      }).sort((a, b) => {
+        const da = domains[a];
+        const db = domains[b];
+        const score = (d) => (d.structural || 0) + (d.hygiene || 0) + (d.graphFrontiers || 0);
+        const diff = score(db) - score(da);
+        if (diff !== 0) return diff;
+        const aRoot = !a || a === '.' || a === 'root';
+        const bRoot = !b || b === '.' || b === 'root';
+        if (aRoot !== bRoot) return aRoot ? 1 : -1;
+        return a.localeCompare(b);
       });
 
       if (filtered.length === 0) {
@@ -989,13 +1036,13 @@
         let cmd = '';
         if (d.structural > 0) {
           action = 'Fix headings';
-          cmd = `# scope: ${path}\nnode scripts/fix-wiki-frontmatter.mjs`;
+          cmd = `node scripts/fix-wiki-frontmatter.mjs ${path}`;
         } else if (d.hygiene > 0) {
           action = 'Auto-format';
-          cmd = `# scope: ${path}\nnpm run wiki:validate-batch -- --fix`;
+          cmd = `node modules/wiki/validate-staging-docs.mjs --fix ${path}`;
         } else if (d.graphFrontiers > 0) {
           action = 'Draft stubs';
-          cmd = `# scope: ${path}\nnode modules/wiki/autoheal-sweeper.mjs --fix`;
+          cmd = `node modules/wiki/autoheal-sweeper.mjs --fix --target-dir ${path}`;
         }
 
         const actionCell = cmd
@@ -1101,7 +1148,8 @@
     function copyPaths(btn) {
       try {
         const files = JSON.parse(decodeURIComponent(btn.getAttribute('data-files') || '[]'));
-        copyCommand(files.join('\n'));
+        const quoted = files.map((f) => `"${normalizePath(f)}"`).join(' ');
+        copyCommand(`code -g ${quoted}`);
       } catch {
         showToast('Could not copy paths');
       }

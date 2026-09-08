@@ -33,3 +33,17 @@ test("documentation drift hook refreshes staging before offline synthesis", () =
   assert.notEqual(synthesis, -1);
   assert.ok(staging < synthesis);
 });
+
+test("documentation drift hook prints ingest stderr tail on failure", () => {
+  assert.match(installerSource, /tail -n 20/);
+  assert.match(installerSource, /INGEST_LOG/);
+});
+
+test("obsidian ingest accepts git worktrees (.git file, not directory)", () => {
+  const ingest = fs.readFileSync(
+    path.join(repoRoot, "modules/obsidian/ingest-obsidian.sh"),
+    "utf8"
+  );
+  assert.match(ingest, /rev-parse --is-inside-work-tree/);
+  assert.doesNotMatch(ingest, /! -d "\$REPO_ROOT\/\.git"/);
+});

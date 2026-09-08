@@ -88,17 +88,22 @@ if [ "$STATUS" = "DRIFT_DETECTED" ]; then
   echo "========================================================================"
   echo ""
 
-  if ! bash modules/obsidian/ingest-obsidian.sh --incremental >/dev/null 2>&1; then
+  INGEST_LOG="$(mktemp 2>/dev/null || echo .kb-sync-ingest-hook.log)"
+  if ! bash modules/obsidian/ingest-obsidian.sh --incremental >"$INGEST_LOG" 2>&1; then
     log_warn "Incremental staging refresh failed. Skipping offline wiki autoheal."
+    tail -n 20 "$INGEST_LOG" >&2 || true
+    rm -f "$INGEST_LOG"
     exit 0
   fi
 
-  if bash modules/obsidian/ingest-wiki.sh --provider offline-template >/dev/null 2>&1; then
+  if bash modules/obsidian/ingest-wiki.sh --provider offline-template >"$INGEST_LOG" 2>&1; then
     log_info "✓ Offline wiki autoheal completed."
   else
     log_warn "Offline wiki autoheal failed. Manual fallback:"
     log_warn "  bash modules/obsidian/ingest-wiki.sh --provider offline-template"
+    tail -n 20 "$INGEST_LOG" >&2 || true
   fi
+  rm -f "$INGEST_LOG"
 fi
 `;
 

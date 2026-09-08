@@ -1,12 +1,15 @@
+import path from 'node:path';
 import { sweepStagingVault } from '../modules/wiki/autoheal-sweeper.mjs';
 import { resolveVaultPaths } from '../modules/wiki/config-loader.mjs';
 
 async function main() {
   const paths = resolveVaultPaths();
-  console.log('Running autoheal (frontmatter pass) on:', paths.wikiDir);
+  const extra = process.argv.slice(2).find((arg) => arg && !arg.startsWith('-'));
+  const targetDir = extra ? path.resolve(process.cwd(), extra) : paths.wikiDir;
+  console.log('Running autoheal (frontmatter pass) on:', targetDir);
   await sweepStagingVault({
     vaultRoot: paths.vaultRoot,
-    targetDir: paths.wikiDir,
+    targetDir,
     fix: true,
     verbose: true
   });
