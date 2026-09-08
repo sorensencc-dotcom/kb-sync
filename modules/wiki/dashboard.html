@@ -639,7 +639,7 @@
       <p class="subtitle">Operator Knowledge Base Health & Advisory Telemetry</p>
       <div class="header-actions">
         <div class="timestamp-badge" id="reportTimestamp">Report generated: loading…</div>
-        <button type="button" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">Re-run validator</button>
+        <button type="button" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --json=./.validation-report.json .')">Re-run validator</button>
       </div>
     </header>
 
@@ -716,7 +716,7 @@
         <div class="breakdown-desc">
           Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents <strong>active knowledge graph growth</strong> in the Karpathy LLM-wiki workflow.
         </div>
-        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/autoheal-sweeper.mjs --fix')">
+        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir wiki')">
           Scaffold Concept Stubs
         </button>
       </div>
@@ -730,7 +730,7 @@
         <div class="breakdown-desc">
           Missing top-level <code># Title</code> headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.
         </div>
-        <button class="action-btn" type="button" onclick="copyCommand('node scripts/fix-wiki-frontmatter.mjs')">
+        <button class="action-btn" type="button" onclick="copyCommand('node scripts/fix-wiki-frontmatter.mjs wiki --allow-dirty')">
           Standardize Headers
         </button>
       </div>
@@ -744,7 +744,7 @@
         <div class="breakdown-desc">
           Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.
         </div>
-        <button class="action-btn" type="button" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">
+        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix wiki')">
           Run Auto-Fixer
         </button>
       </div>
@@ -1040,13 +1040,13 @@
         let cmd = '';
         if (d.structural > 0) {
           action = 'Fix headings';
-          cmd = `node scripts/fix-wiki-frontmatter.mjs ${path}`;
+          cmd = `node scripts/fix-wiki-frontmatter.mjs ${path} --allow-dirty`;
         } else if (d.hygiene > 0) {
           action = 'Auto-format';
           cmd = `node modules/wiki/validate-staging-docs.mjs --fix ${path}`;
         } else if (d.graphFrontiers > 0) {
           action = 'Draft stubs';
-          cmd = `node modules/wiki/autoheal-sweeper.mjs --fix --target-dir ${path}`;
+          cmd = `node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir ${path}`;
         }
 
         const actionCell = cmd
@@ -1086,7 +1086,7 @@
         container.innerHTML = `
           <div class="autoheal-details empty-state">
             <p>No autoheal run in this report.</p>
-            <button type="button" class="action-btn" onclick="copyCommand('npm run wiki:validate-batch -- --fix')">Copy auto-fixer command</button>
+            <button type="button" class="action-btn" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix wiki')">Copy auto-fixer command</button>
           </div>`;
         return;
       }

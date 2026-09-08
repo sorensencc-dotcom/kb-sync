@@ -370,8 +370,10 @@ if (process.argv[1] && process.argv[1].endsWith('autoheal-sweeper.mjs')) {
   };
   
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--fix') options.fix = true;
-    else if (args[i] === '--dry-run') options.dryRun = true;
+    if (args[i] === '--fix') {
+      options.fix = true;
+      options.dryRun = false;
+    } else if (args[i] === '--dry-run') options.dryRun = true;
     else if (args[i] === '--verbose') options.verbose = true;
     else if (args[i] === '--allow-dirty') options.allowDirty = true;
     else if (args[i] === '--no-semantic') options.allowSemantic = false;
@@ -388,6 +390,10 @@ if (process.argv[1] && process.argv[1].endsWith('autoheal-sweeper.mjs')) {
     }
   }
   
+  if (options.targetDir && !path.isAbsolute(options.targetDir)) {
+    options.targetDir = path.resolve(process.cwd(), options.targetDir);
+  }
+
   sweepStagingVault(options).then(report => {
     if (options.verbose || !options.fix) console.log(JSON.stringify(report, null, 2));
   }).catch(err => {
