@@ -106,4 +106,4 @@ generated_at: 2026-08-23T02:19:45.921Z
 
 - [/] [GAP-01] **The Sorensen Photographic Archive: Industrial Giants at Willow Run (follow-up)**: To transform the minimalist index of photograph captions into a thorough, narrative-driven history of Willow Run, follow-up research should target thr))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) (Drafted: [RFC](wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md))
 
-- [/] [GAP-01] **CIC-KB (follow-up)**: To systematically strengthen the architectural foundations, safety boundaries, and performance metrics of the **Cast Iron Charlie (CIC)** and **`kb-sy))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) (Drafted: [RFC](wiki/research/rfc-gap-01--cic-kb-follow-up.md))
+- [/] [GAP-01] **CIC-KB (follow-up)**: To systematically strengthen the architectural foundations, safety boundaries, and performance metrics of the **Cast Iron Charlie (CIC)** master knowledge base and **`kb-sync`**, lock ingest contracts, fail-soft hook behavior, and wiki-health SLOs. (Drafted: [RFC](wiki/research/rfc-gap-01--cic-kb-follow-up.md))

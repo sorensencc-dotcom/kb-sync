@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-08T02:45:35.877Z",
+  "generated": "2026-09-08T02:57:05.588Z",
   "files": [
     {
       "file": "C:\\dev\\kb-sync\\wiki\\Home.md",
@@ -191,10 +191,10 @@
       "author": null,
       "date": null,
       "stats": {
-        "lines": 53,
-        "words": 354,
-        "headings": 7,
-        "links": 0
+        "lines": 51,
+        "words": 530,
+        "headings": 6,
+        "links": 2
       }
     },
     {
@@ -4111,9 +4111,9 @@
       "author": null,
       "date": null,
       "stats": {
-        "lines": 20,
-        "words": 68,
-        "headings": 4,
+        "lines": 32,
+        "words": 102,
+        "headings": 5,
         "links": 0
       }
     },
