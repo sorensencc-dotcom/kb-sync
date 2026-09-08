@@ -790,6 +790,8 @@
     const REPORT_FILE = '../../.validation-report.json';
     const AUTOHEAL_FILE = '../../.autoheal-report.json';
     const CACHE_KEY = 'kb-sync-report-cache-v2';
+    const REPO_ROOT = 'C:\\dev\\kb-sync';
+    const REPO_CD = 'cd ' + REPO_ROOT;
     const NOISE_DIR = /(^|\/)(\.ijfw|node_modules|\.git)(\/|$)/i;
 
     let lastReport = null;
@@ -1073,11 +1075,18 @@
       `;
     }
 
+    function withRepoCd(cmd) {
+      const body = String(cmd || '').replace(/^\s+/, '');
+      if (body.startsWith(REPO_CD)) return body;
+      return REPO_CD + '\n' + body;
+    }
+
     function copyCommand(cmd) {
-      navigator.clipboard.writeText(cmd).then(() => {
-        showToast(`Copied: ${cmd}`);
+      const payload = withRepoCd(cmd);
+      navigator.clipboard.writeText(payload).then(() => {
+        showToast(`Copied: ${payload}`);
       }).catch(() => {
-        showToast(`Could not copy: ${cmd}`);
+        showToast(`Could not copy: ${payload}`);
       });
     }
 
