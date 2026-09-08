@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-02 - **CIC-KB (under-sourced)**
-category: research
-topic: rfc-gap-02--cic-kb-under-sourced
-gap_id: GAP-02
-status: draft
-created_at: 2026-09-08T00:31:23.687Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-02 - **CIC-KB (under-sourced)**"
+category: "research"
+topic: "rfc-gap-02--cic-kb-under-sourced"
+gap_id: "GAP-02"
+status: "draft"
+created_at: "2026-09-05T03:18:22.055Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-kb-under-sourced.md","wiki/research/rfc-gap-03--cic-kb-under-sourced.md","wiki/research/rfc-gap-02--cic-kb-open-contradictions.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-02--cic-kb-under-sourced.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-kb-under-sourced.md"]
 ---
 
 # RFC: GAP-02 - **CIC-KB (under-sourced)**
 
 ## 1. Problem Statement & Context
-An audit of the multi-repository specifications, performance reviews, and active documentation reveals several prominent technical claims and baseline)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+Claims about ingest throughput, wiki page counts, and autoheal coverage are repeated across docs without a single measured baseline. Attach a dated `.validation-report.json` (file count, errors, warnings, duration) before citing those numbers.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-kb-under-sourced** (`wiki/research/rfc-gap-02--cic-kb-under-sourced.md`) [hybrid]:
   >
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+  >
 - **rfc-gap-03--cic-kb-under-sourced** (`wiki/research/rfc-gap-03--cic-kb-under-sourced.md`) [lexical_only]:
   >
-- **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [vector_only]:
-  > --- title: "RFC: GAP-02 - **CIC-KB open-contradictions**" category: "research" topic: "rfc-gap-02--cic-kb-open-contradictions" gap_id: "GAP-02" status: "draft" created_at: "2026-09-08T00:09:20.525Z" expansion_method: "heuristic" retrieval_mode: "hybr
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

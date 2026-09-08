@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-02 - **CastIronCharlie-Facebook (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-Beyond the high-level executive struggles and general assembly-line milestones, the historical files point directly to several highly technical, logis))))))))))))))))
+Beyond the high-level executive struggles and general assembly-line milestones, the historical files point directly to several highly technical. Adjacent topics remain unmapped until each is listed with a primary source.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

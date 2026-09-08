@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-05 - WebSocket Heartbeat Throttling
 
 ## 1. Problem Statement & Context
-Background timer throttling on mobile browsers requires Page Visibility API fallbacks and adaptive ping intervals)))))))))))))))))))))))
+Background timer throttling on mobile browsers requires Page Visibility API fallbacks and adaptive ping intervals. Record remaining claims only after primary-source corroboration.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

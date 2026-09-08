@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-02 - **CIC-KB (open-contradictions)**
-category: research
-topic: rfc-gap-02--cic-kb-open-contradictions
-gap_id: GAP-02
-status: draft
-created_at: 2026-09-08T00:31:21.738Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-02 - **CIC-KB (open-contradictions)**"
+category: "research"
+topic: "rfc-gap-02--cic-kb-open-contradictions"
+gap_id: "GAP-02"
+status: "draft"
+created_at: "2026-09-05T03:18:22.054Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-kb-open-contradictions.md","wiki/research/rfc-gap-04--cic-kb-open-contradictions.md","wiki/research/.catalog.json"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-02--cic-kb-open-contradictions.md","trm-research-gaps.md","wiki/concepts/immutable-staging.md"]
 ---
 
 # RFC: GAP-02 - **CIC-KB (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An analysis of your multi-repository specifications, performance reviews, and active documentation reveals several critical technical gaps, unvetted a))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+Specs, performance reviews, and run logs disagree on `vault_root`, whether autoheal is fail-soft or blocking, and whether the dashboard JSON is a full-repo snapshot or a scoped `wiki/` scan. Resolve each contradiction with one written contract.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [hybrid]:
   >
-- **rfc-gap-04--cic-kb-open-contradictions** (`wiki/research/rfc-gap-04--cic-kb-open-contradictions.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
-- **-catalog** (`wiki/research/.catalog.json`) [vector_only]:
-  > {   "generated": "2026-08-22T01:52:02.931Z",   "files":      {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",       "title": "RFC: GAP-01 - **Willow Run Videos under-sourced**",       "description": nu
+- **immutable-staging** (`wiki/concepts/immutable-staging.md`) [vector_only]:
+  > --- title: Immutable Staging category: concepts status: active sourceRepository: kb-sync lastUpdated: "2026-08-30" ---  # Immutable Staging  **Immutable Staging** is the filesystem isolation contract used by KB-Sync to separate active code trees from
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

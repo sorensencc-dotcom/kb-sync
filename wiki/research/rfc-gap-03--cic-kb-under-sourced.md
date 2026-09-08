@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-03 - **CIC-KB (under-sourced)**
 
 ## 1. Problem Statement & Context
-An audit of our active repositories, architectural specifications, and performance reviews reveals several prominent technical claims and baseline par)))))))))))))))))))))
+Performance and coverage claims in CIC-KB docs lack a dated artifact. Cite `.validation-report.json` and `.autoheal-report.json` (timestamp, files scanned, files healed) instead of unsourced baselines.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-03 - **CIC-KB (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An audit of the multi-repository ecosystem documents, architectural specifications, and codebase reviews reveals several critical technical gaps, unve)))))))))))
+Repository docs, architectural reviews, and hook logs contradict each other on worktree support, Phase 5 wiki-contract drift, and sibling-entity regeneration. Name the winning contract per issue and retire the losing copy.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

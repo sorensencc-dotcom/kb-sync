@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-06 - Willow Run B-24 knock-down kit manufacturing and logistics
 
 ## 1. Problem Statement & Context
-Investigate sub-assembly shipment schedules to Douglas and Consolidated aircraft assembly plants.))))))))))))))))))))))))))))))
+Investigate sub-assembly shipment schedules to Douglas and Consolidated aircraft assembly plants.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment
 
 ## 1. Problem Statement & Context
-Analyze legal conflicts and capital expenditure allocation between Ford Motor Company and minority shareholders.))))))))))))))))))))))))))))))
+Analyze legal conflicts and capital expenditure allocation between Ford Motor Company and minority shareholders.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

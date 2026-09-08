@@ -490,8 +490,22 @@
       display: flex;
       gap: 1rem;
       justify-content: center;
-      margin-bottom: 2rem;
+      margin-bottom: 0.75rem;
       flex-wrap: wrap;
+    }
+
+    .reload-hint {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: var(--label);
+      text-align: center;
+      margin: 0 0 2rem;
+    }
+
+    .reload-hint code {
+      font-family: ui-monospace, Consolas, monospace;
+      color: var(--bone);
     }
 
     button {
@@ -692,10 +706,11 @@
     </div>
 
     <div class="controls">
-      <button type="button" onclick="loadReport()">Refresh Dashboard</button>
+      <button type="button" onclick="loadReport()">Reload report JSON</button>
       <button type="button" onclick="downloadJSON()">Export Report JSON</button>
       <button type="button" class="btn-danger" onclick="clearCache()">Clear Cache</button>
     </div>
+    <p class="reload-hint">Reload re-reads <code>.validation-report.json</code>. It does not re-run validators. Auto-Fixer and Re-run validator write that file.</p>
     <div id="filterBanner" class="filter-banner hidden" role="status">
       <span id="filterBannerText">Filter: all</span>
       <button type="button" onclick="setFilter('all')">Clear filter</button>
@@ -744,7 +759,7 @@
         <div class="breakdown-desc">
           Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.
         </div>
-        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix wiki')">
+        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json wiki')">
           Run Auto-Fixer
         </button>
       </div>
@@ -835,15 +850,21 @@
 
         const data = await response.json();
 
-        if (!data.autohealSummary) {
-          try {
-            const autohealRes = await fetch(AUTOHEAL_FILE, { cache: 'no-store' });
-            if (autohealRes.ok) {
-              data.autohealSummary = await autohealRes.json();
+        try {
+          const autohealRes = await fetch(AUTOHEAL_FILE, { cache: 'no-store' });
+          if (autohealRes.ok) {
+            const autoheal = await autohealRes.json();
+            const existing = data.autohealSummary;
+            const empty = !existing
+              || ((existing.filesScanned ?? 0) === 0 && (existing.filesHealed ?? 0) === 0);
+            const autohealTs = Date.parse(autoheal.timestamp || '') || 0;
+            const reportTs = Date.parse(data.timestamp || '') || 0;
+            if (empty || autohealTs >= reportTs) {
+              data.autohealSummary = autoheal;
             }
-          } catch {
-            // Optional fallback
           }
+        } catch {
+          // Optional sidecar
         }
 
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
@@ -868,7 +889,14 @@
 
       const tsElem = document.getElementById('reportTimestamp');
       if (tsElem) {
-        tsElem.textContent = formatReportTime(data.timestamp);
+        const target = (data.results && data.results[0] && data.results[0].target)
+          ? String(data.results[0].target).replace(/\\/g, '/')
+          : '';
+        const shortTarget = target
+          ? target.replace(/^.*\/kb-sync\//i, '').replace(/^.*\\kb-sync\\/i, '')
+          : '';
+        const scope = [data.mode, shortTarget].filter(Boolean).join(' · ');
+        tsElem.textContent = formatReportTime(data.timestamp) + (scope ? ` · ${scope}` : '');
         tsElem.title = data.timestamp ? String(data.timestamp) : '';
       }
 
@@ -1043,7 +1071,7 @@
           cmd = `node scripts/fix-wiki-frontmatter.mjs ${path} --allow-dirty`;
         } else if (d.hygiene > 0) {
           action = 'Auto-format';
-          cmd = `node modules/wiki/validate-staging-docs.mjs --fix ${path}`;
+          cmd = `node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json ${path}`;
         } else if (d.graphFrontiers > 0) {
           action = 'Draft stubs';
           cmd = `node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir ${path}`;
@@ -1086,7 +1114,7 @@
         container.innerHTML = `
           <div class="autoheal-details empty-state">
             <p>No autoheal run in this report.</p>
-            <button type="button" class="action-btn" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix wiki')">Copy auto-fixer command</button>
+            <button type="button" class="action-btn" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json wiki')">Copy auto-fixer command</button>
           </div>`;
         return;
       }

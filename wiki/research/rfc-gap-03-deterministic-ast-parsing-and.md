@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-03 - Deterministic AST parsing and chunk boundary calculation
 
 ## 1. Problem Statement & Context
-Define optimal token chunk sizing for NotebookLM pack consolidation.)))))))))))))))))))))))))))))))
+Define optimal token chunk sizing for NotebookLM pack consolidation.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

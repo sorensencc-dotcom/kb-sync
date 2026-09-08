@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-02 - **Willow Run Videos (open-contradictions)**
 
 ## 1. Problem Statement & Context
-No source found for the 1943 production date.)))))))))))))))))))))))))))))))))
+No source found for the 1943 production date. Keep both sides of each contradiction cited from primary sources before resolving the narrative.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

@@ -1,29 +1,28 @@
 ---
-title: RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**
-category: research
-topic: rfc-gap-01--cic-willow-run-aviation-engin
-gap_id: GAP-01
-status: draft
-created_at: 2026-09-08T00:30:29.862Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**"
+category: "research"
+topic: "rfc-gap-01--cic-willow-run-aviation-engin"
+gap_id: "GAP-01"
+status: "draft"
+created_at: "2026-09-05T03:17:49.472Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02--cic-kb-open-contradictions.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**
 
 ## 1. Problem Statement & Context
-To most effectively strengthen your current findings, follow-up research should target the specific **archival gaps** and **contested narratives** whe)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+To most effectively strengthen the current findings, follow-up research should target the specific **archival gaps** and **contested narratives**. Follow-up research should pin primary sources, dates, and unresolved claims before those leads enter the documentary record.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-01--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md`) [hybrid]:
   >
-- **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [vector_only]:
-  > --- title: "RFC: GAP-02 - **CIC-KB open-contradictions**" category: "research" topic: "rfc-gap-02--cic-kb-open-contradictions" gap_id: "GAP-02" status: "draft" created_at: "2026-09-08T00:09:20.525Z" expansion_method: "heuristic" retrieval_mode: "hybr
+- **rfc-gap-01--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md`) [hybrid]:
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
 

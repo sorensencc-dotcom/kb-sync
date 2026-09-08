@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-01 - Fail-soft recovery during concurrent WebSocket packet collision
 
 ## 1. Problem Statement & Context
-Evaluate SQLite journal state when multiple worker threads acknowledge simultaneously under high concurrency.)))))))))))))))))))))))))))))))
+Evaluate SQLite journal state when multiple worker threads acknowledge simultaneously under high concurrency.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

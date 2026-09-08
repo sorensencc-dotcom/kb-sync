@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-04 - **CIC-KB (open-contradictions)**
 
 ## 1. Problem Statement & Context
-An audit of the provided repository documentation, architectural reviews, and run logs reveals several critical technical gaps, unvetted assumptions,)))))))))))))))))))))
+Operator docs, dashboard copy commands, and hook installer text still disagree on which command rewrites the live dashboard snapshot. The contract is: `validate-staging-docs.mjs` writes repo-root `.validation-report.json` on every run unless `--no-json` is passed.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

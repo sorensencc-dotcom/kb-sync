@@ -611,7 +611,12 @@ async function main() {
   const isDiffMode = process.argv.includes('--diff');
   const isBatchMode = process.argv.includes('--batch');
   const isAutoheal = process.argv.includes('--autoheal') || process.argv.includes('--fix');
-  const jsonOutput = process.argv.find(arg => arg.startsWith('--json='));
+  const jsonFlag = process.argv.find(arg => arg.startsWith('--json='));
+  // Dashboard reads repo-root .validation-report.json. Write it on every run
+  // unless the operator passed --json= (custom path) or --no-json.
+  const jsonOutput = process.argv.includes('--no-json')
+    ? null
+    : (jsonFlag || `--json=${path.join(root, '.validation-report.json')}`);
   const webhookUrl = process.argv.find(arg => arg.startsWith('--webhook='))?.split('=')[1] || process.env.WEBHOOK_URL;
   const argTarget = process.argv.slice(2).find(arg => arg !== '--diff' && arg !== '--batch' && !arg.startsWith('--') && !arg.includes('='));
 

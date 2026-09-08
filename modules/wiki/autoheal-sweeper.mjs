@@ -55,6 +55,29 @@ function slugify(text) {
   return text.toLowerCase().replace(/\s+/g, '-');
 }
 
+export function resolveWikiTarget(target, index) {
+  if (!target || !index || typeof index.get !== 'function') return null;
+  const hit = index.get(target);
+  if (!hit) return null;
+  const unique = [...new Set(
+    (Array.isArray(hit) ? hit : [hit])
+      .map((p) => String(p).replace(/\\/g, '/'))
+      .filter(Boolean)
+  )];
+  if (unique.length === 1) {
+    return unique[0].replace(/\.md$/i, '');
+  }
+  const slug = target.toLowerCase().replace(/\.md$/i, '');
+  const conceptHits = unique.filter((p) => {
+    const n = p.toLowerCase().replace(/\.md$/i, '');
+    return n === `concepts/${slug}` || n.endsWith(`/concepts/${slug}`);
+  });
+  if (conceptHits.length === 1) {
+    return conceptHits[0].replace(/\.md$/i, '');
+  }
+  return null;
+}
+
 function normalizeStatus(status) {
   if (!status) return 'draft';
   const s = status.toLowerCase();
@@ -140,10 +163,8 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
     // Already prefixed
     if (target.includes('/')) return fullMatch;
 
-    let newTarget = index.get(target);
-    if (!newTarget) {
-      newTarget = `kb-sync/wiki/research/${target}`;
-    }
+    const newTarget = resolveWikiTarget(target, index);
+    if (!newTarget || newTarget === target) return fullMatch;
 
     linksRewritten = true;
     const hash = rawHash || '';
@@ -344,8 +365,13 @@ export async function sweepStagingVault(options = {}) {
     manifestEntries: report.manifestEntries
   };
 
+  const reportJson = JSON.stringify(report, null, 2);
   const reportPath = path.join(paths.vaultRoot, '.autoheal-report.json');
-  await fs.writeFile(reportPath, JSON.stringify(report, null, 2), 'utf-8');
+  await fs.writeFile(reportPath, reportJson, 'utf-8');
+  const cwdReportPath = path.join(process.cwd(), '.autoheal-report.json');
+  if (path.resolve(reportPath) !== path.resolve(cwdReportPath)) {
+    await fs.writeFile(cwdReportPath, reportJson, 'utf-8');
+  }
 
   const manifestPath = path.join(paths.vaultRoot, '.repair-manifest.json');
   await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');

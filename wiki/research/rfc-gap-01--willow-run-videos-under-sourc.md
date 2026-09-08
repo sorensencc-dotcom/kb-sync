@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-01 - **Willow Run Videos (under-sourced)**
 
 ## 1. Problem Statement & Context
-Some other answer.)))))))))))))))))))))))))))))))))
+Some other answer. Treat remaining claims as single-sourced until a second independent source is attached.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

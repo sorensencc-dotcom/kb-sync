@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output
 
 ## 1. Problem Statement & Context
-Corroborate contemporary applicant records and turnover statistics with payroll archives.))))))))))))))))))))))))))))))
+Corroborate contemporary applicant records and turnover statistics with payroll archives.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

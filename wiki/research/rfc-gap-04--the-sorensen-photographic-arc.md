@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-04 - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions)**: As we have explored in our previous discussions, the minimalist nature of this photographic index means there are no explicit narrative conflicts, but)))))))))))))))))
+Industrial Giants at Willow Run (open-contradictions)**: the minimalist nature of this photographic index means there are no explicit narrative conflicts. Keep both sides of each contradiction cited from primary sources before resolving the narrative.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

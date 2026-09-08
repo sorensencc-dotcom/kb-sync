@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight
 
 ## 1. Problem Statement & Context
-Reconcile contradictory accounts of internal security enforcement versus Sorensen production authority at Willow Run.))))))))))))))))))))))))))))))
+Reconcile contradictory accounts of internal security enforcement versus Sorensen production authority at Willow Run.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

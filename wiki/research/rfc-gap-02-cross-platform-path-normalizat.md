@@ -12,7 +12,7 @@ sourceRepository: kb-sync
 # RFC: GAP-02 - Cross-platform path normalization for Windows and POSIX vault roots
 
 ## 1. Problem Statement & Context
-Standardize backslash stripping and UNC handling across staging tools.)))))))))))))))))))))))))))))))
+Standardize backslash stripping and UNC handling across staging tools.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base:

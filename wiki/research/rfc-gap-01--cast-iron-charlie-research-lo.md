@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**
-category: research
-topic: rfc-gap-01--cast-iron-charlie-research-lo
-gap_id: GAP-01
-status: draft
-created_at: 2026-09-08T00:30:59.965Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**"
+category: "research"
+topic: "rfc-gap-01--cast-iron-charlie-research-lo"
+gap_id: "GAP-01"
+status: "draft"
+created_at: "2026-09-05T03:17:59.008Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-kb-open-contradictions.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**
 
 ## 1. Problem Statement & Context
-To turn your current documentary leads into historically rigorous proof, your research logs outline several highly targeted, actionable follow-up inve)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+To turn the current documentary leads into historically rigorous proof, the research logs outline several highly targeted, actionable follow-up. Follow-up research should pin primary sources, dates, and unresolved claims before those leads enter the documentary record.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
+- **rfc-gap-02--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
-- **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [vector_only]:
-  > --- title: "RFC: GAP-02 - **CIC-KB open-contradictions**" category: "research" topic: "rfc-gap-02--cic-kb-open-contradictions" gap_id: "GAP-02" status: "draft" created_at: "2026-09-08T00:09:20.525Z" expansion_method: "heuristic" retrieval_mode: "hybr
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

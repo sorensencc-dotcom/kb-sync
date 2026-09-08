@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets (follow-up)**
-category: research
-topic: rfc-gap-01--cic-cuban-seizures-retired-as
-gap_id: GAP-01
-status: draft
-created_at: 2026-09-08T00:30:35.946Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets (follow-up)**"
+category: "research"
+topic: "rfc-gap-01--cic-cuban-seizures-retired-as"
+gap_id: "GAP-01"
+status: "draft"
+created_at: "2026-09-05T03:17:49.520Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-01--willow-run-videos-follow-up.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
 ---
 
 # RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets (follow-up)**
 
 ## 1. Problem Statement & Context
-To significantly strengthen our current findings and resolve the key contradictions and uncorroborated claims we have uncovered, follow-up research sh))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+To significantly strengthen the current findings and resolve the key contradictions and uncorroborated claims the record shows, follow-up research. Follow-up research should pin primary sources, dates, and unresolved claims before those leads enter the documentary record.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   >
-- **rfc-gap-01--willow-run-videos-follow-up** (`wiki/research/rfc-gap-01--willow-run-videos-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-01 - **Willow Run Videos follow-up**" category: "research" topic: "rfc-gap-01--willow-run-videos-follow-up" gap_id: "GAP-01" status: "draft" created_at: "2026-09-08T00:09:03.534Z" expansion_method: "heuristic" retrieval_mode: "hy
+- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

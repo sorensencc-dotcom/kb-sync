@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-03 - **CastIronCharlie-Facebook (under-sourced)**
 
 ## 1. Problem Statement & Context
-### **1. Edsel Ford's "Keelhauling" of Charles Sorensen** *   **The Assertion:** During a high-level meeting at the Willow Run bomber plant on Monday,))))))))))))))))
+During a high-level meeting at the Willow Run bomber plant on Monday,. Treat remaining claims as single-sourced until a second independent source is attached.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

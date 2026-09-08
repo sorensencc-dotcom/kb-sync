@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-02 - **CIC-KB (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The provided sources point to several adjacent architectural, operational, and functional topics that are designated as future roadmaps, deferred spec)))))))))))))))))))))
+CIC-KB adjacent work still sitting on the roadmap includes pack-based knowledge management, fail-soft orchestration, and manifest-mode staging. Those concepts exist as wiki pages; they are not yet the runtime contract for nightly ingest.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

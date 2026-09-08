@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-02 - **CIC - Daily Research (adjacent-topics)**
-category: research
-topic: rfc-gap-02--cic-daily-research-adjacent-t
-gap_id: GAP-02
-status: draft
-created_at: 2026-09-08T00:31:15.809Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-02 - **CIC - Daily Research (adjacent-topics)**"
+category: "research"
+topic: "rfc-gap-02--cic-daily-research-adjacent-t"
+gap_id: "GAP-02"
+status: "draft"
+created_at: "2026-09-05T03:18:17.606Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-kb-open-contradictions.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-daily-research-under-sour.md"]
 ---
 
 # RFC: GAP-02 - **CIC - Daily Research (adjacent-topics)**
 
 ## 1. Problem Statement & Context
-The extensive primary source oral histories, private family papers, and local research logs point to **five highly compelling, unmapped adjacent stori)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+The extensive primary source oral histories, private family papers, and local research logs point to **five highly compelling, unmapped adjacent. Adjacent topics remain unmapped until each is listed with a primary source.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   >
-- **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [vector_only]:
-  > --- title: "RFC: GAP-02 - **CIC-KB open-contradictions**" category: "research" topic: "rfc-gap-02--cic-kb-open-contradictions" gap_id: "GAP-02" status: "draft" created_at: "2026-09-08T00:09:20.525Z" expansion_method: "heuristic" retrieval_mode: "hybr
+- **rfc-gap-03--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03--cic-daily-research-under-sour.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
