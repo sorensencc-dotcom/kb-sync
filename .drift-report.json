@@ -1,10 +1,18 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-08T02:15:48.129Z",
-  "system_time_epoch_ms": 1788833748129,
+  "timestamp": "2026-09-09T01:52:22.741Z",
+  "system_time_epoch_ms": 1788918742741,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "core/harvest_registry.json",
+      "last_code_commit": "2026-09-04T23:15:27-04:00",
+      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/harvest_registry.json"
+    },
     {
       "repo": "kb-sync",
       "file": "modules/cache/vfs-upsert.mjs",
@@ -40,7 +48,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/autoheal-sweeper.mjs",
-      "last_code_commit": "2026-09-07T22:15:33-04:00",
+      "last_code_commit": "2026-09-07T23:23:51-04:00",
       "last_wiki_sync": "2026-09-06T23:48:12.099Z",
       "status": "HASH_MISMATCH",
       "wiki_page": "entities/autoheal-sweeper.mjs"
@@ -48,7 +56,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/dashboard.html",
-      "last_code_commit": "2026-09-07T22:15:33-04:00",
+      "last_code_commit": "2026-09-07T23:23:51-04:00",
       "last_wiki_sync": "2026-09-06T23:48:12.099Z",
       "status": "HASH_MISMATCH",
       "wiki_page": "entities/dashboard.html"
@@ -63,10 +71,18 @@
     },
     {
       "repo": "kb-sync",
+      "file": "modules/wiki/validate-staging-docs.mjs",
+      "last_code_commit": "2026-09-07T23:23:51-04:00",
+      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/validate-staging-docs.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/fix-wiki-frontmatter.mjs",
       "last_code_commit": "2026-09-07T22:15:33-04:00",
       "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
+      "status": "STALE",
       "wiki_page": "entities/fix-wiki-frontmatter.mjs"
     },
     {
@@ -103,6 +119,14 @@
     },
     {
       "repo": "kb-sync",
+      "file": "scripts/run-closed-loop-research.mjs",
+      "last_code_commit": "2026-08-22T22:27:29-04:00",
+      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/run-closed-loop-research.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/schedule-task-wrapper-KB-Sync-Master.ps1",
       "last_code_commit": "2026-09-07T11:51:13-04:00",
       "last_wiki_sync": "2026-09-06T23:48:12.099Z",
@@ -136,9 +160,9 @@
     {
       "repo": "kb-sync",
       "file": "tests/wiki-dashboard-cli.test.mjs",
-      "last_code_commit": "2026-09-07T22:15:33-04:00",
+      "last_code_commit": "2026-09-07T23:23:51-04:00",
       "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
+      "status": "HASH_MISMATCH",
       "wiki_page": "entities/wiki-dashboard-cli.test.mjs"
     },
     {
@@ -151,8 +175,8 @@
     }
   ],
   "summary": {
-    "total_sources_checked": 203,
-    "stale_pages_count": 18,
-    "untracked_paths_count": 4
+    "total_sources_checked": 204,
+    "stale_pages_count": 21,
+    "untracked_paths_count": 0
   }
 }
