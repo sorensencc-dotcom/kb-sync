@@ -8,6 +8,8 @@ status: "active"
 
 ## Open
 
+- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-09-10) — 2 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate. <!-- todo-group: kb-sync-documentation-drift -->
+
 - [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-09-08) — 4 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
 
 ## Completed

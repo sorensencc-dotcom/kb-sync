@@ -1,182 +1,30 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-09T01:52:22.741Z",
-  "system_time_epoch_ms": 1788918742741,
+  "timestamp": "2026-09-10T00:59:24.615Z",
+  "system_time_epoch_ms": 1789001964615,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
       "repo": "kb-sync",
-      "file": "core/harvest_registry.json",
-      "last_code_commit": "2026-09-04T23:15:27-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/harvest_registry.json"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/cache/vfs-upsert.mjs",
-      "last_code_commit": "2026-09-06T20:43:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
+      "file": "scripts/mcp-context-server.mjs",
+      "last_code_commit": "2026-09-09T20:59:14-04:00",
+      "last_wiki_sync": "2026-09-10T00:03:35.378Z",
       "status": "STALE",
-      "wiki_page": "entities/vfs-upsert.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/notebooklm/ingest-notebooklm.sh",
-      "last_code_commit": "2026-09-07T21:56:26-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/ingest-notebooklm.sh"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/obsidian/ingest-obsidian.sh",
-      "last_code_commit": "2026-09-07T21:56:26-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/ingest-obsidian.sh"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/obsidian/ingest-wiki.sh",
-      "last_code_commit": "2026-09-07T21:56:26-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/ingest-wiki.sh"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/autoheal-sweeper.mjs",
-      "last_code_commit": "2026-09-07T23:23:51-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/autoheal-sweeper.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/dashboard.html",
-      "last_code_commit": "2026-09-07T23:23:51-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/dashboard.html"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/ingest-wiki.sh",
-      "last_code_commit": "2026-09-07T21:56:26-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/ingest-wiki.sh"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/validate-staging-docs.mjs",
-      "last_code_commit": "2026-09-07T23:23:51-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/validate-staging-docs.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/fix-wiki-frontmatter.mjs",
-      "last_code_commit": "2026-09-07T22:15:33-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/fix-wiki-frontmatter.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/install-git-hooks.mjs",
-      "last_code_commit": "2026-09-07T21:56:26-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/install-git-hooks.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/invoke-process-janitor.ps1",
-      "last_code_commit": "2026-09-07T11:51:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/invoke-process-janitor.ps1"
+      "wiki_page": "entities/mcp-context-server.mjs"
     },
     {
       "repo": "kb-sync",
       "file": "scripts/mcp-memory-server.mjs",
-      "last_code_commit": "2026-09-06T20:43:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
+      "last_code_commit": "2026-09-09T20:59:14-04:00",
+      "last_wiki_sync": "2026-09-10T00:03:35.378Z",
+      "status": "HASH_MISMATCH",
       "wiki_page": "entities/mcp-memory-server.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/notebooklm/kb-sync-nightly.ps1",
-      "last_code_commit": "2026-09-07T11:51:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/kb-sync-nightly.ps1"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/run-closed-loop-research.mjs",
-      "last_code_commit": "2026-08-22T22:27:29-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/run-closed-loop-research.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/schedule-task-wrapper-KB-Sync-Master.ps1",
-      "last_code_commit": "2026-09-07T11:51:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/schedule-task-wrapper-KB-Sync-Master.ps1"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/sync-kb-cache.mjs",
-      "last_code_commit": "2026-09-07T11:51:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/sync-kb-cache.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "tests/context-cache.test.ts",
-      "last_code_commit": "2026-09-06T20:43:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/context-cache.test.ts"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "tests/vfs-write-through.test.ts",
-      "last_code_commit": "2026-09-06T20:43:13-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/vfs-write-through.test.ts"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "tests/wiki-dashboard-cli.test.mjs",
-      "last_code_commit": "2026-09-07T23:23:51-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/wiki-dashboard-cli.test.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "tests/wiki-drift-hook-autoheal.test.mjs",
-      "last_code_commit": "2026-09-07T21:56:26-04:00",
-      "last_wiki_sync": "2026-09-06T23:48:12.099Z",
-      "status": "STALE",
-      "wiki_page": "entities/wiki-drift-hook-autoheal.test.mjs"
     }
   ],
   "summary": {
-    "total_sources_checked": 204,
-    "stale_pages_count": 21,
-    "untracked_paths_count": 0
+    "total_sources_checked": 205,
+    "stale_pages_count": 2,
+    "untracked_paths_count": 31
   }
 }

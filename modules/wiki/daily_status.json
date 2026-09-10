@@ -1,0 +1,959 @@
+{
+  "generated_at": "2026-09-10T01:41:15.458690+00:00",
+  "sources_checked": [
+    "C:\\dev\\kb-sync\\.sync-status.json",
+    "C:\\dev\\kb-sync\\.drift-report.json",
+    "C:\\dev\\kb-sync\\.coverage-report.json",
+    "C:\\dev\\TODOS.md",
+    "C:\\dev\\memory\\MEMORY.md",
+    "C:\\dev\\charlie-deep-research\\treatment",
+    "C:\\Users\\soren\\trm-vault",
+    "C:\\dev\\kb-sync\\trm-research-gaps.md",
+    "C:\\dev\\docs\\reports\\daily",
+    "C:\\dev\\docs\\reports\\weekly",
+    "C:\\dev\\_status-feed\\claude-memory"
+  ],
+  "sources_missing": [
+    "C:\\dev\\.ijfw\\memory\\handoff.md"
+  ],
+  "kb_sync": {
+    "last_sync": "2026-09-10T00:03:35.378Z",
+    "last_sync_age_hours": 1.6,
+    "sync_status": "SUCCESS",
+    "file_count": 2094,
+    "drift_status": "DRIFT_DETECTED",
+    "drift_stale_pages": 2,
+    "drift_checked_at": "2026-09-10T00:59:24.615Z",
+    "drift_age_hours": 0.7,
+    "drifted_files": [
+      "scripts/mcp-context-server.mjs",
+      "scripts/mcp-memory-server.mjs"
+    ],
+    "coverage_pct": 100,
+    "coverage_checked_at": "2026-08-18T17:57:29.787Z",
+    "link_health_pct": 100
+  },
+  "todos": {
+    "total_open": 4,
+    "counts_by_priority": {
+      "P0": 0,
+      "P1": 1,
+      "P2": 3,
+      "P?": 0
+    },
+    "top_open": [
+      {
+        "priority": "P1",
+        "title": "Wave D full conformance gate",
+        "created": null,
+        "detail": "code-level PASS only. Needs provisioned PostgreSQL 15+, `npm run migrate`, live E2E rerun (5 scenarios), live load test (assert p99 <200ms on list/search/trending/ratings), trending scheduler install verified. Blocked on"
+      },
+      {
+        "priority": "P2",
+        "title": "TorqueQuery CIC observability hooks",
+        "created": null,
+        "detail": "(deferred, low priority) \u2014 TorqueQuery determinism verified 2026-07-17. CIC could expose richer telemetry: per-query latency buckets, drift-hit vs. drift-miss counters, query-shape histogram (prefix/fuzzy/exact), determi"
+      },
+      {
+        "priority": "P2",
+        "title": "xberg native build-out",
+        "created": null,
+        "detail": "(low priority) \u2014 `toolforge-pdf` plugin ran on a mock stub (`xberg-mock.exe`) that returned placeholder text regardless of input; swapped to real `pdf-parse` text-layer extraction 2026-07-16. Still open: OCR fallback for"
+      },
+      {
+        "priority": "P2",
+        "title": "Non-deterministic skillpack generators",
+        "created": "2026-09-02",
+        "detail": "`SKILLPACK-VALIDATION.md` (~6 lines), `SKILLPACK-DEPENDENCY-GRAPH.md` (~65 lines), and `audit/COWORK-*.md` (~100 lines each) reorder their warning/log lines on every regen, so each pre-commit run that touches `skills/` o"
+      }
+    ],
+    "closed_today": []
+  },
+  "memory": {
+    "path": "C:\\dev\\memory\\MEMORY.md",
+    "last_modified": "2026-09-09T02:12:08.497541+00:00",
+    "current_work": [
+      "**Healing Subsystem** (2026-08-15): TripwireMonitor, AdversarialAuditor modules under `modules/healing/`.",
+      "**NotebookLM CIC Ingestion/Mining Design** (2026-08-12): ingestion + mining design for CIC docs into NotebookLM.",
+      "**Sigil Governed-Mailbox Protocol Spec** (2026-08-12): spec for peer-to-peer agent mailbox protocol.",
+      "**Toolforge Marketplace Phase 8 Wave D**: still not shipped \u2014 `docs/meta/phase-8-toolforge-marketplace/SUCCESS.md` remains TEMPLATE FOR EXECUTION, unchecked, unsigned. Target date 2026-07-26 passed unmet. Treat as not started until signed.",
+      "**Retro Schema Canonical v1.0 Lock**: Retro files locked to canonical schema structure to ensure multi-week trend stability. Note: earliest retro (`2026-07-12-1.json`) had unit-scale + active_days bugs, fixed 2026-08-16.",
+      "**Pre-Flight Test Readiness**: ESLint configuration and dist exclusions locked to maintain clean test runs (`npm test`).",
+      "**Multi-Agent Handoff Protocol Spec** (2026-08-16 to 2026-08-17): handoff spec for cross-agent session continuity.",
+      "**Writing-Heuristics Skill** (2026-08-18 to 2026-08-19): Phase 1+2 complete \u2014 48 tests, 11-rule catalog.",
+      "**Retro-Audit Automation Restoration** (2026-08-18): automated retro-audit pipeline restored.",
+      "**CastIronCharlie-Facebook Notebook Ingest** (2026-08-19 to 2026-08-20): notebook ingestion for CastIronCharlie-Facebook data.",
+      "**TRM Thematic Routing** (2026-08-22): thematic routing added to TRM.",
+      "**Local GBrain Engine Setup** (2026-08-28): `gbrain v0.47.4.0` binary linked with local PGLite database engine at `~/.gbrain/brain.pglite`.",
+      "**TRM DevOps Sync & Triage Pipeline** (2026-08-28): `@toolforge/trm-devops` module with normalization, file locking, schema validator, Markdown queue reconciler, and `trm-devops-triage` skill (60/60 tests passing).",
+      "**Cross-Audit Adversarial Bridge** (2026-08-28): `scripts/cross-audit.mjs` with deterministic packet/verdict validation and non-consensus exit code handling.",
+      "**GitHub Wiki Autoheal Sweeper & Sync** (2026-08-28 to 2026-08-30): Automated autoheal sweep across 444 documentation nodes achieving 100% contract compliance (`wiki:validate-contract` PASS), with author identity reconciliation in CI.",
+      "**Security Advisory Remediations** (2026-08-30): Remediated GHSA-5p4m-2wfm-xmqj / CVE-2026-59870 via `js-yaml@4.3.2` patch; fixed GitGuardian false-positive secret patterns in tests via dynamic header construction.",
+      "**Toolforge Skill Health Check Remediations** (2026-08-30): Registered `trm-closed-loop-research`, `trm-devops-triage`, and `wiki-sync-recovery` in `manifest.json`; aligned versioning and initialized audit run logs across all 48 skills (100% health check pass).",
+      "**TinyFish search skill #27** (`86eabb48`): `tinyfish-search` skill \u2014 search + Markdown extract via `@tiny-fish/sdk`; spec review folded (`76ffd4d2`, `9799ce63`); dedicated wiki docs #29 (`46ad5fe8`, `fe29dd9f`).",
+      "**parallel-search skill** (`1f489f63`): registered in skillpack, metadata refreshed; regen no longer clobbers timestamps/EOLs (`935bdc5b`).",
+      "**Sigil cross-federation directory (federation #4)**: design spec (`7a80dd07`), Codex + caveman review passes (`3c471bed`, `b895b31d`), implementation plan (`d6596255`). Lives in `C:\\dev\\sigil-repo`; docs mirrored here.",
+      "**IronLedger Phase 1**: exit-gate approval recorded (`fdd92fd`). Repo home set to `C:\\dev\\IronLedger` (`b176ecb`), untracked in this monorepo.",
+      "**IronLedger Phase 2a**: dependency-posture + exit-gate evidence (`f4e9ae25`), exit-gate approval (`7d221b09`), spec/plan backfill (`373b44ed`).",
+      "**IronLedger Phase 2b**: review + categorization design (`6af4dfb0`), spec amended for migration-runner + audit-envelope (`009a76e6`), 15-task TDD plan (`da9007b3`), plan-eng-review findings folded (`82f602b3`), execution handoff / resume point (`3401e005`, `7016fd6c`). Execution deferred to a fresh session.",
+      "**TRM research gaps**: GAP-02 / GAP-03 / GAP-06 resolved with archival citations (`158b1095`); canonical RFCs synthesized for gaps 07 (`ba1e1b26`), 12\u201316 (`183a0c65`), 17\u201321 (`a13a062b`); deploy-script claim linter added (`e2d8e7c8`).",
+      "**Toolforge Herdr TRM integration #30** (`2609f81`): design (`35207ca4`) + implementation plan with schema versioning and test runbook (`0bb32074`, `38fc9f71`), merged to `main`.",
+      "**Viking Phase 3** (`67c61efb`): dynamic reporting + integrity check added to the harness.",
+      "**Cathryn Lavery diagram-design standard**: made mandatory in `AGENTS.md` (`00232dde`) and enforced across wiki diagram build scripts (`d3779f1e`).",
+      "**graft repo-context graph**: active for this repo (session-start hook + `graft/INDEX.md`); `graft-audit.yml` workflow present.",
+      "**Releases**: v2.61.1 \u2192 v2.63.0 cut over this window.",
+      "**Trend watch (retro, directional only)**: comparing `.context/retros/2026-07-12-1.json` to `2026-08-16-1.json` \u2014 `test_ratio_pct` and `feat_pct` down sharply, `fix_pct` and `docs_pct` up. Not a clean baseline: the 07-12 retro carried unit-scale + active_days bugs (fixed 2026-08-16) and the windows differ (1-day vs 7-day). Re-check on the next clean multi-week retro before acting."
+    ]
+  },
+  "handoff": {
+    "path": "C:\\dev\\.ijfw\\memory\\handoff.md",
+    "date": null,
+    "last_modified": null,
+    "next_steps": [],
+    "blockers": []
+  },
+  "trm_pipeline": {
+    "latest_report": "TRM_SYNC_REPORT_DRYRUN_all_20260909T103014_329d3774-82b3-4e9c-801a-6be0078b5246.md",
+    "run_at": "2026-09-09T10:30:14.050Z",
+    "run_age_hours": 15.2,
+    "partial_run": "false",
+    "fact_key_collisions": "0"
+  },
+  "trm_intelligence": {
+    "vault_path": "C:\\Users\\soren\\trm-vault",
+    "topics_total": 19,
+    "topics": [
+      {
+        "name": "charlie",
+        "modified": "2026-09-07T15:34:55.082618+00:00",
+        "age_hours": 58.1
+      },
+      {
+        "name": "charlie/b24-knockdown-logistics",
+        "modified": "2026-09-08T10:30:26.380598+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/benson-ford",
+        "modified": "2026-08-19T23:55:05.907636+00:00",
+        "age_hours": 505.8
+      },
+      {
+        "name": "charlie/bombard-memoir-delta",
+        "modified": "2026-09-08T10:30:28.271539+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/cuba",
+        "modified": "2026-08-22T00:28:25.689975+00:00",
+        "age_hours": 457.2
+      },
+      {
+        "name": "charlie/cuba-fcsc",
+        "modified": "2026-09-08T10:30:20.567327+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/death-date-1968",
+        "modified": "2026-09-08T10:30:21.583057+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/helene",
+        "modified": "2026-08-22T00:28:25.683590+00:00",
+        "age_hours": 457.2
+      },
+      {
+        "name": "charlie/helene-i",
+        "modified": "2026-08-20T00:04:57.840026+00:00",
+        "age_hours": 505.6
+      },
+      {
+        "name": "charlie/logan-miller-san-diego-1941",
+        "modified": "2026-09-08T10:30:25.417092+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/michigan-flight-museum",
+        "modified": "2026-08-22T00:28:25.689975+00:00",
+        "age_hours": 457.2
+      },
+      {
+        "name": "charlie/photo-archive-id-pass",
+        "modified": "2026-09-08T10:30:22.517207+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/retirement",
+        "modified": "2026-08-22T00:28:25.689975+00:00",
+        "age_hours": 457.2
+      },
+      {
+        "name": "charlie/studebaker-lcmv-1963",
+        "modified": "2026-09-08T10:30:24.468069+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/willow-run",
+        "modified": "2026-08-22T00:28:25.681077+00:00",
+        "age_hours": 457.2
+      },
+      {
+        "name": "charlie/willow-run-ingersoll-mill",
+        "modified": "2026-09-08T10:30:27.326625+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/willys-jeep-day-geography",
+        "modified": "2026-09-08T10:30:23.490756+00:00",
+        "age_hours": 39.2
+      },
+      {
+        "name": "charlie/willys-overland",
+        "modified": "2026-08-22T00:28:25.683590+00:00",
+        "age_hours": 457.2
+      },
+      {
+        "name": "cuba",
+        "modified": "2026-08-20T00:08:09.955268+00:00",
+        "age_hours": 505.6
+      }
+    ],
+    "topics_created": [],
+    "topics_deleted": [],
+    "questions_answered_total": 44,
+    "questions_answered": [
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "The research logs reveal several prominent open questions, factual gaps, and unresolved contradictions that must be addressed to ensure the historical accuracy of the *Cast Iron Charlie* documentary: ...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:open-contradictions:76420ee9fea2455f3ec60cb7f8dcf6ba58a742fba599d61e9ad95cdb3c6caf4a"
+      },
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "An analysis of your research logs reveals several key claims that are currently flagged as **single-sourced, under-corroborated, or relying entirely on unverified memory** rather than primary evidence...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:under-sourced:744ed1ce3d8b37bc3ada556513e72b583eeb9dd8b44ecdc690faa298aa698363"
+      },
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "Your research logs highlight several rich, adjacent topics that represent completely unexplored or undocumented territory\u2014often preserved as brief \"stubs\" or narrative place-holders\u2014which could add va...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:adjacent-topics:ad579660928a205fd2e6892a5384939950ee69f3bdfbb5bda45cefdf8cb9c1cf"
+      },
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To transition the *Cast Iron Charlie* documentary from unverified family memories into a historically rigorous production, the research logs prioritize several high-impact, targeted primary-source inv...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:follow-up:11e9fbb82d6d0c0af1410c4e3c103d17fd89ebf772ef3826a4eaeb73692d1366"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "With the five physical and empirical mysteries successfully verified and codified in the updated **Historiographical Audit (v2)**, the remaining sources still expose several deep **ideological, struct...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:open-contradictions:5c3ad8f26bdab2f1484befd16062c4c6b5a71a7aa9ad721710e8b031db1f5594"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "While your recent archival breakthroughs have successfully resolved the five core operational and administrative mysteries (GAP-12 through GAP-16), a critical evaluation of the remaining narratives ac...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:under-sourced:097cc35d6e4a7970ac585cc46fe3d7bfc1dfbc3e4940868bcc1c25d0b32fbfc7"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "Having codified your major archival resolutions into the updated report and explored the structural tensions of the factory line, your sources point directly to several other highly compelling, unexam...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:adjacent-topics:36921ca87803f072cc85c5d4c77310c23a8d026feb476552e101ba31edf1f812"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "Now that the five critical historical gaps (**GAP-12 through GAP-16**) have been resolved and permanently codified into your **Historiographical Audit (v2)**, our research baseline is exceptionally se...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:follow-up:630fc88c89efdaddf9907854100abb0c07665b26b6f9007ad6a4331446758403"
+      },
+      {
+        "notebook": "CIC - Cuban Seizures & Retired Assets",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "### 1. The Valuation Methodology Divergence: Going Concern vs. Book Value The FCSC operated under a statutory mandate to determine a valuation that was \"most appropriate to the property and equitable ...",
+        "date": "2026-09-07",
+        "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:86672e232b8909c07e22119166988e94eb4d410fe5bde499329e65f20c6efd47"
+      },
+      {
+        "notebook": "CIC - Cuban Seizures & Retired Assets",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "In the pre-settlement adjudication of claims under **Title V of the International Claims Settlement Act of 1949**, the Foreign Claims Settlement Commission (FCSC) frequently faced claims that lacked a...",
+        "date": "2026-09-07",
+        "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:bc39bd48d6bfe6c3d780da812361b211029ce5a8fed501b9055204c9bc6dd4fe"
+      },
+      {
+        "notebook": "CIC - Cuban Seizures & Retired Assets",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "While our newly generated brief, *Legal Contradictions and Valuation Gaps in the FCSC Cuban Claims Program*, successfully synthesizes many complex legal, corporate, and human rights themes, the FCSC\u2019s...",
+        "date": "2026-09-07",
+        "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:48e792f9474dc46c46456400fe5600a9c2c083e9ffd6c3f456f2a6460ae07119"
+      },
+      {
+        "notebook": "CIC - Cuban Seizures & Retired Assets",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To build directly upon our compiled brief, **\"Legal Contradictions and Valuation Gaps in the FCSC Cuban Claims Program,\"** four targeted avenues of follow-up research would most effectively strengthen...",
+        "date": "2026-09-07",
+        "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:2fdc77c1c798f4113896003737382eb90e493852c7f7a2fcf327a0201ad5c517"
+      },
+      {
+        "notebook": "CIC - Daily Research",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "A thorough cross-examination of the primary dictated oral histories, declassified court files, and historical research logs reveals that we can **definitively resolve almost every major open question ...",
+        "date": "2026-09-07",
+        "key": "1b4861a3-931f-4632-8fc1-343a8dd37df8:open-contradictions:e34f884a7d0d6da73f4cd12ed631680f33fab1bb381ca708fdae3ad7c774d7dd"
+      },
+      {
+        "notebook": "CIC - Daily Research",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "### 1. The Monobloc V-8 \"Secret\" Designers (Walters and Heime) *   **The Popular Claim:** In a 1996 *Automobile Quarterly* article titled *\"8 for the price of a 4: Ford's Fabulous Flathead,\"* Mike Mue...",
+        "date": "2026-09-07",
+        "key": "1b4861a3-931f-4632-8fc1-343a8dd37df8:under-sourced:e2550a17f4d0f44de5890b40c4ba238ea078221eac39032f1f2c52adecf4d1e6"
+      },
+      {
+        "notebook": "CIC - Daily Research",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "While your existing 29 artifacts comprehensively map Charles E. Sorensen's core industrial achievements, legal property recovery tracks, and cinematic screenplays, a cross-examination of the newly int...",
+        "date": "2026-09-07",
+        "key": "1b4861a3-931f-4632-8fc1-343a8dd37df8:adjacent-topics:6d865b9060e620c79e831ad598906bfeab3a1a10ad8fa87daf247ae32603b7ae"
+      },
+      {
+        "notebook": "CIC - Daily Research",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "Now that we have visited the Benson Ford Research Center, ingested the primary office files and oral histories [cite: 31, 34], and officially committed **`rfc-gap-07` (Danish Pipeline Transatlantic Te...",
+        "date": "2026-09-07",
+        "key": "1b4861a3-931f-4632-8fc1-343a8dd37df8:follow-up:57a3676725bc6340ade4d1b75218144b6952a4ceefbea2c6afb899d094ae5fba"
+      },
+      {
+        "notebook": "CIC - Ford Executive Dynamics & Politics",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "Analyzing the historical records, corporate legal dossiers, and oral history transcripts reveals several deep-seated contradictions and open questions. These tensions reflect the friction between poli...",
+        "date": "2026-09-07",
+        "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:e75c0aaba0c844c38524f26559e0f0759c11b2671ee2ee87f7250767183e01b6"
+      },
+      {
+        "notebook": "CIC - Ford Executive Dynamics & Politics",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "The sources identify several critical claims regarding the internal politics, personal showdowns, and industrial innovations of the Ford Motor Company that are asserted in memoirs, diaries, or third-p...",
+        "date": "2026-09-07",
+        "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:df3de3810b8ce75ba630ab455890b0e88aebe639d9345388f4900dec1e80aa16"
+      },
+      {
+        "notebook": "CIC - Ford Executive Dynamics & Politics",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "While the current focus has been on internal executive power struggles and the manufacturing scale of Willow Run, the sources in your notebook point directly to five highly distinct, unexamined adjace...",
+        "date": "2026-09-07",
+        "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:cf20803c91c15f0bbe8999893fa7da48aebc9e1615792f7d3f567b93a1046d6b"
+      },
+      {
+        "notebook": "CIC - Ford Executive Dynamics & Politics",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To resolve the uncorroborated legends, archival gaps, and historical contradictions identified across your dossiers, future study should be organized around **five targeted research tracks**.   By foc...",
+        "date": "2026-09-07",
+        "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:41d09fe3f35b3885bd2dc68161e7c58340a8335bfff1e28a932e48eca7e4a701"
+      },
+      {
+        "notebook": "CIC-KB",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "Based on a comprehensive audit of the specifications, declassified diplomatic archives, and active research dossiers in the master knowledge base, several critical open questions, unresolved contradic...",
+        "date": "2026-09-07",
+        "key": "679b8bab-2d87-42cb-a726-6dc54c83acc2:open-contradictions:02d4893b5cad405882ec294fb461f3e99d529d707a3fc423faf89de0675f906c"
+      },
+      {
+        "notebook": "CIC-KB",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "### **1. Archival & Historical Claims (Under-Corroborated or Sanitized)**  Historically, several major narratives within the Ford industrial empire were accepted as baseline truths but turned out to b...",
+        "date": "2026-09-07",
+        "key": "679b8bab-2d87-42cb-a726-6dc54c83acc2:under-sourced:a63f4a58588a17c972674ffeb24974de888cfb7a05bd777d906bc3eaf638ccda"
+      },
+      {
+        "notebook": "CIC-KB",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "An audit of your multi-repository specifications, active developer roadmaps, and declassified research archives highlights several highly specialized **adjacent topics, deferred protocol extensions, a...",
+        "date": "2026-09-07",
+        "key": "679b8bab-2d87-42cb-a726-6dc54c83acc2:adjacent-topics:e6db850b6b17b3c64c8982f6c0e8cdbd4d26f64fd424026c2b71687485f04585"
+      },
+      {
+        "notebook": "CIC-KB",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To systematically strengthen both your **Virtual Filesystem (VFS) / local engineering workspace** and the **archival integrity of your historical databases**, your multi-repository specifications and ...",
+        "date": "2026-09-07",
+        "key": "679b8bab-2d87-42cb-a726-6dc54c83acc2:follow-up:90eb79b3bc9eaece95dd737f67d15e95a27ac1c725a4f75c40c40b77fac9971c"
+      },
+      {
+        "notebook": "CIC - Post-War & Willys-Overland",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "An analysis of your notebook\u2019s sources reveals several compelling open questions, explicit archival gaps, and unresolved historical contradictions regarding Charles E. Sorensen's career.   These issue...",
+        "date": "2026-09-07",
+        "key": "9c469910-a900-43a4-877c-a43c9f545b5f:open-contradictions:43447ef1dbb13910dafdbb7f4eaf201790d6064dcb7421a435b6cd2487dd2313"
+      },
+      {
+        "notebook": "CIC - Post-War & Willys-Overland",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "A rigorous cross-examination of the notebook sources reveals several crucial historical claims regarding Charles E. Sorensen's career that are **directly contradicted**, **single-sourced**, or **unver...",
+        "date": "2026-09-07",
+        "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:494e5802d20d5486f5527c80b73a6c798697808203a6dbd5090f600aa25cc150"
+      },
+      {
+        "notebook": "CIC - Post-War & Willys-Overland",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "Your sources point to several highly intriguing, unmapped adjacent topics that expand Charles E. Sorensen's story far beyond post-war Willys-Overland:  ### 1. Soviet-American Industrial Cooperation & ...",
+        "date": "2026-09-07",
+        "key": "9c469910-a900-43a4-877c-a43c9f545b5f:adjacent-topics:e22d9cae4ff5365194ad03e7dcff1ed4b241cbd762a1a79964bdb4f428625c44"
+      },
+      {
+        "notebook": "CIC - Post-War & Willys-Overland",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To most effectively strengthen the current historical findings on Charles E. Sorensen's post-war career, future research should target several highly specific archival collections and legal registries...",
+        "date": "2026-09-07",
+        "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:24677ad8a075d98ffa8b0b58d2fb11b2a0754f8b26aa80d3aabcff33abb6a597"
+      },
+      {
+        "notebook": "CIC-Reddit",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "Analyzing the complete 24-source library of your notebook reveals several prominent open questions, historical paradoxes, and unresolved contradictions. These range from the physical layout of the B-2...",
+        "date": "2026-09-07",
+        "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:8b13eb161755e2596a9e33e33ed270349e2d017e906501b2ef8ed6d082a5d84f"
+      },
+      {
+        "notebook": "CIC-Reddit",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "Based on the full text of the 23 sources in your notebook, we can map out several major claims that are widely circulated or shared as \"fact\" but are actually **single-sourced, under-corroborated, or ...",
+        "date": "2026-09-07",
+        "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:12e78d421292202ac9909357c36084efe2bee728d511a082d7d85be81eabf6a5"
+      },
+      {
+        "notebook": "CIC-Reddit",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "The 23 sources in your notebook point directly to several rich, adjacent historical threads and fascinating \"blank spaces\" that have not yet been fully explored in our conversation. These topics bridg...",
+        "date": "2026-09-07",
+        "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:1d0b0886ef774e31581c3ba137b046f5650ed2a6de663be86f6c11453fb2c075"
+      },
+      {
+        "notebook": "CIC-Reddit",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To transform this notebook from a collection of local legends, community discussions, and high-level summaries into a highly rigorous, authoritative historical record, future investigation should focu...",
+        "date": "2026-09-07",
+        "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:7df7de723f993fce1a781c00e9a09bc8e4e3f5e5ca6105d84cc20a4a46ddb4a1"
+      },
+      {
+        "notebook": "CIC - Willow Run & Aviation Engineering",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "An analysis of the historical memoirs, technical registries, and academic archives in your project reveals several active contradictions, unresolved engineering gaps, and interpretive conflicts across...",
+        "date": "2026-09-07",
+        "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:e2ccd677b01d38b9903f0ee6ab96fe80f0e429095484df1d4b39286319495cf4"
+      },
+      {
+        "notebook": "CIC - Willow Run & Aviation Engineering",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "Several critical claims within your notebook's collection\u2014particularly those concerning executive power struggles, corporate oustings, and shop-floor logistics\u2014remain **single-sourced, contested, or l...",
+        "date": "2026-09-07",
+        "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:ac0665b6a2c8254bec2df0d2ad0850b194421e695ad33f7fb2f024b0579ec009"
+      },
+      {
+        "notebook": "CIC - Willow Run & Aviation Engineering",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "While your current reports capture the primary engineering, management, and housing crises of the B-24 era, your sources point to several highly detailed **adjacent storylines** that remain completely...",
+        "date": "2026-09-07",
+        "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:8fb7f9e36915f22e33d182a60a0afc3af6a09bc3114e309f189f05b594ccaec9"
+      },
+      {
+        "notebook": "CIC - Willow Run & Aviation Engineering",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To transform your current findings from a compelling narrative into an unassailable, publication-grade academic work, future research should target the specific **archival collections and box numbers*...",
+        "date": "2026-09-07",
+        "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:bb1437dbdc96cb614af05f9533efb84151fe178573d9c26f2cd895429453a691"
+      },
+      {
+        "notebook": "The Sorensen Photographic Archive: Industrial Giants at Willow Run",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "Across the selected sources in your notebook\u2014the original **\"Sorensen Photos\"** index [1, 2] and the **\"TRM Research Gaps & Synthesis\"** logs [3, 4]\u2014there are **no explicit narrative contradictions** ...",
+        "date": "2026-09-07",
+        "key": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a:open-contradictions:9788020e1944fdaa643a28fdefa731737d0ab8d2acc6755ea99784a3c4970582"
+      },
+      {
+        "notebook": "The Sorensen Photographic Archive: Industrial Giants at Willow Run",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "Because the original **\"Sorensen Photos\"** index consists entirely of minimalist, raw photo captions [1, 2] and the **\"TRM Research Gaps & Synthesis\"** logs serve only to track our ongoing research in...",
+        "date": "2026-09-07",
+        "key": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a:under-sourced:dafaeb0b8e0801d3e0c491c70422edec1555fba7f48e1e93db5db4cd9c9d0c7c"
+      },
+      {
+        "notebook": "The Sorensen Photographic Archive: Industrial Giants at Willow Run",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "The minimalist captions in the photographic archive and your compiled research synthesis point directly to several high-stakes historical narratives that are highlighted as critical research gaps [1]:...",
+        "date": "2026-09-07",
+        "key": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a:adjacent-topics:ff0dd5e46cc00184130a812618d3f1608a1d5d408b9c84978861cd6b5cce4ca9"
+      },
+      {
+        "notebook": "The Sorensen Photographic Archive: Industrial Giants at Willow Run",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To transform the minimalist index of photo captions [1, 2] and the tracking logs in the research synthesis [3, 4] into a fully realized, narrative-driven history of Willow Run, targeted follow-up rese...",
+        "date": "2026-09-07",
+        "key": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a:follow-up:486a9d1b3a0508ed698d7153d6d1d9a2d1e4ae3973990447b491595ae4ed3a2f"
+      },
+      {
+        "notebook": "Willow Run Videos",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "Across the 31 sources in your collection, a close reading reveals several prominent **historical contradictions, competing theories, and unresolved questions** [1-4]. Because these transcripts and doc...",
+        "date": "2026-09-07",
+        "key": "ef78168d-b7b9-4952-8e0f-fcb353a21181:open-contradictions:25dcc1ca7fe0bfb88c4bb738276642232b0b84e85b5d5fd8bced7009760a6ee9"
+      },
+      {
+        "notebook": "Willow Run Videos",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "A close reading of the 31 sources in your collection reveals a striking divide between verified industrial history and colorful, highly dramatic legends. Several of the most spectacular, technical, an...",
+        "date": "2026-09-07",
+        "key": "ef78168d-b7b9-4952-8e0f-fcb353a21181:under-sourced:e307ade804017a9d31be222b80d8b0aba6ab08fa8473e611ae94643097ba99d2"
+      },
+      {
+        "notebook": "Willow Run Videos",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "While your current catalog of **16 artifacts** covers the mechanical triumph of the assembly line, Albert Kahn's architectural design, the Selden Patent legal battle, and the hotel room sketch, your 3...",
+        "date": "2026-09-07",
+        "key": "ef78168d-b7b9-4952-8e0f-fcb353a21181:adjacent-topics:62ca0c8f55347a075417d5721ed32530a55a3e87f60b0a8f6cc7cda551d84bde"
+      },
+      {
+        "notebook": "Willow Run Videos",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To transform your channel's content into a historically bulletproof, premium documentary series, your follow-up research should target **six critical investigative areas**. These targeted archival ste...",
+        "date": "2026-09-07",
+        "key": "ef78168d-b7b9-4952-8e0f-fcb353a21181:follow-up:558d736fe10ac0a7d57f27286cad72956e6d42532a9b4e7efc4264daebca679f"
+      }
+    ],
+    "recent_answers": [
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "The research logs reveal several prominent open questions, factual gaps, and unresolved contradictions that must be addressed to ensure the historical accuracy of the *Cast Iron Charlie* documentary: ...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:open-contradictions:76420ee9fea2455f3ec60cb7f8dcf6ba58a742fba599d61e9ad95cdb3c6caf4a"
+      },
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "An analysis of your research logs reveals several key claims that are currently flagged as **single-sourced, under-corroborated, or relying entirely on unverified memory** rather than primary evidence...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:under-sourced:744ed1ce3d8b37bc3ada556513e72b583eeb9dd8b44ecdc690faa298aa698363"
+      },
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "Your research logs highlight several rich, adjacent topics that represent completely unexplored or undocumented territory\u2014often preserved as brief \"stubs\" or narrative place-holders\u2014which could add va...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:adjacent-topics:ad579660928a205fd2e6892a5384939950ee69f3bdfbb5bda45cefdf8cb9c1cf"
+      },
+      {
+        "notebook": "Cast Iron Charlie - Research Logs",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "To transition the *Cast Iron Charlie* documentary from unverified family memories into a historically rigorous production, the research logs prioritize several high-impact, targeted primary-source inv...",
+        "date": "2026-09-07",
+        "key": "b8bc161d-495f-42f9-a7d1-ed8692141f6b:follow-up:11e9fbb82d6d0c0af1410c4e3c103d17fd89ebf772ef3826a4eaeb73692d1366"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "With the five physical and empirical mysteries successfully verified and codified in the updated **Historiographical Audit (v2)**, the remaining sources still expose several deep **ideological, struct...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:open-contradictions:5c3ad8f26bdab2f1484befd16062c4c6b5a71a7aa9ad721710e8b031db1f5594"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "While your recent archival breakthroughs have successfully resolved the five core operational and administrative mysteries (GAP-12 through GAP-16), a critical evaluation of the remaining narratives ac...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:under-sourced:097cc35d6e4a7970ac585cc46fe3d7bfc1dfbc3e4940868bcc1c25d0b32fbfc7"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What adjacent topics do these sources point to that aren't covered yet?",
+        "excerpt": "Having codified your major archival resolutions into the updated report and explored the structural tensions of the factory line, your sources point directly to several other highly compelling, unexam...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:adjacent-topics:36921ca87803f072cc85c5d4c77310c23a8d026feb476552e101ba31edf1f812"
+      },
+      {
+        "notebook": "CastIronCharlie-Facebook",
+        "question": "What follow-up research would most strengthen current findings?",
+        "excerpt": "Now that the five critical historical gaps (**GAP-12 through GAP-16**) have been resolved and permanently codified into your **Historiographical Audit (v2)**, our research baseline is exceptionally se...",
+        "date": "2026-09-07",
+        "key": "0c8dc979-319f-4e6d-8136-22275932c236:follow-up:630fc88c89efdaddf9907854100abb0c07665b26b6f9007ad6a4331446758403"
+      },
+      {
+        "notebook": "CIC - Cuban Seizures & Retired Assets",
+        "question": "What open questions or unresolved contradictions exist across these sources?",
+        "excerpt": "### 1. The Valuation Methodology Divergence: Going Concern vs. Book Value The FCSC operated under a statutory mandate to determine a valuation that was \"most appropriate to the property and equitable ...",
+        "date": "2026-09-07",
+        "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:86672e232b8909c07e22119166988e94eb4d410fe5bde499329e65f20c6efd47"
+      },
+      {
+        "notebook": "CIC - Cuban Seizures & Retired Assets",
+        "question": "What claims are asserted but single-sourced or under-corroborated?",
+        "excerpt": "In the pre-settlement adjudication of claims under **Title V of the International Claims Settlement Act of 1949**, the Foreign Claims Settlement Commission (FCSC) frequently faced claims that lacked a...",
+        "date": "2026-09-07",
+        "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:bc39bd48d6bfe6c3d780da812361b211029ce5a8fed501b9055204c9bc6dd4fe"
+      }
+    ],
+    "matrix_gaps_total": 43,
+    "matrix_gaps_triaged": 43,
+    "matrix_gaps_open": 0,
+    "active_gaps": [
+      {
+        "target": "CIC - Ford Executive Dynamics & Politics (follow-up)",
+        "triaged": true,
+        "excerpt": "To resolve the uncorroborated claims, archival gaps, and historical contradictions the record shows, follow-up research should be. Follow-up research should pin primary sources, da",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md"
+      },
+      {
+        "target": "CIC - Ford Executive Dynamics & Politics (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "While the current conversation and artifacts focus heavily on the internal executive power struggles and the technical scale of Willow Run, the sources. Adjacent topics remain unma",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md"
+      },
+      {
+        "target": "CIC - Ford Executive Dynamics & Politics (under-sourced)",
+        "triaged": true,
+        "excerpt": "The sources highlight several critical claims regarding the internal politics and innovations of the Ford Motor Company that are either single-sourced. Treat remaining claims as si",
+        "rfc_link": "wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"
+      },
+      {
+        "target": "CIC - Ford Executive Dynamics & Politics (open-contradictions)",
+        "triaged": true,
+        "excerpt": "Across the sources, several profound contradictions and open historical questions emerge regarding the inner workings of the Ford Motor Company. Keep both sides of each contradicti",
+        "rfc_link": "wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md"
+      },
+      {
+        "target": "CIC - Post-War & Willys-Overland (follow-up)",
+        "triaged": true,
+        "excerpt": "To significantly strengthen the historical findings in the notebook and resolve current ambiguities, follow-up research. Follow-up research should pin primary sources, dates, and u",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-post-war-willys-overland.md"
+      },
+      {
+        "target": "CIC - Post-War & Willys-Overland (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "While the notebook focuses on Sorensen's post-war years at Willys-Overland and his 1963 collaboration with Brooks Stevens, the sources. Adjacent topics remain unmapped until each i",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-post-war-willys-overland.md"
+      },
+      {
+        "target": "CIC - Post-War & Willys-Overland (under-sourced)",
+        "triaged": true,
+        "excerpt": "An examination of the sources reveals several key claims that are either **single-sourced**, **under-corroborated**, or directly **contradicted**. Treat remaining claims as single-",
+        "rfc_link": "wiki/research/rfc-gap-03--cic-post-war-willys-overland.md"
+      },
+      {
+        "target": "CIC - Post-War & Willys-Overland (open-contradictions)",
+        "triaged": true,
+        "excerpt": "An analysis of the notebook sources reveals several compelling open questions, explicit archival gaps, and even a few direct contradictions. Keep both sides of each contradiction c",
+        "rfc_link": "wiki/research/rfc-gap-04--cic-post-war-willys-overland.md"
+      },
+      {
+        "target": "CIC - Willow Run & Aviation Engineering (follow-up)",
+        "triaged": true,
+        "excerpt": "To most effectively strengthen the current findings, follow-up research should target the specific **archival gaps** and **contested narratives**. Follow-up research should pin pri",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md"
+      },
+      {
+        "target": "CIC - Willow Run & Aviation Engineering (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "The sources in the notebook point to several compelling adjacent topics\u2014spanning post-war industrial reconversion, technical metallurgical innovation. Adjacent topics remain unmapp",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"
+      },
+      {
+        "target": "CIC - Willow Run & Aviation Engineering (under-sourced)",
+        "triaged": true,
+        "excerpt": "Across the notebook historical retrospectives, technical registries, and academic files, several major claims emerge as **single-sourced, disputed,. Treat remaining claims as singl",
+        "rfc_link": "wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md"
+      },
+      {
+        "target": "CIC - Willow Run & Aviation Engineering (open-contradictions)",
+        "triaged": true,
+        "excerpt": "An analysis of the notebook canonical records, technical dossiers, and first-person accounts reveals several critical contradictions, historical. Keep both sides of each contradict",
+        "rfc_link": "wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md"
+      },
+      {
+        "target": "CIC - Cuban Seizures & Retired Assets (follow-up)",
+        "triaged": true,
+        "excerpt": "To significantly strengthen the current findings and resolve the key contradictions and uncorroborated claims the record shows, follow-up research. Follow-up research should pin pr",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md"
+      },
+      {
+        "target": "CIC - Cuban Seizures & Retired Assets (under-sourced)",
+        "triaged": true,
+        "excerpt": "The pre-settlement adjudication of claims under **Title V of the International Claims Settlement Act** required the Foreign Claims Settlement Commissi. Treat remaining claims as si",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md"
+      },
+      {
+        "target": "CIC - Cuban Seizures & Retired Assets (open-contradictions)",
+        "triaged": true,
+        "excerpt": "An analysis of the Foreign Claims Settlement Commission (FCSC) adjudications and the operational dossiers reveals several core **legal, methodological. Keep both sides of each cont",
+        "rfc_link": "wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"
+      },
+      {
+        "target": "CIC-Reddit (follow-up)",
+        "triaged": true,
+        "excerpt": "To truly elevate the findings in the notebook from a fascinating blend of local folklore and high-level summaries into a rigorously verified historic. Follow-up research should pin",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-reddit-follow-up.md"
+      },
+      {
+        "target": "CIC-Reddit (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "Looking closely at the complete library of 21 sources [1, 21], there are several highly specific adjacent topics and historical threads. Adjacent topics remain unmapped until each ",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md"
+      },
+      {
+        "target": "CIC-Reddit (under-sourced)",
+        "triaged": true,
+        "excerpt": "When examining the historical record across the notebook 21 sources, there is a clear division between documented historical consensus and claims. Treat remaining claims as single-",
+        "rfc_link": "wiki/research/rfc-gap-03--cic-reddit-under-sourced.md"
+      },
+      {
+        "target": "CIC-Reddit (open-contradictions)",
+        "triaged": true,
+        "excerpt": "A major structural and political contradiction lies in the physical layout of Willow Run. Keep both sides of each contradiction cited from primary sources before resolving the narr",
+        "rfc_link": "wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md"
+      },
+      {
+        "target": "CastIronCharlie-Facebook (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "The expanded archives in the notebook point directly to several highly technical, logistical, and social adjacent histories that remain rich, untappe. Adjacent topics remain unmapp",
+        "rfc_link": "wiki/research/rfc-gap-01--castironcharlie-facebook-adja.md"
+      },
+      {
+        "target": "CastIronCharlie-Facebook (under-sourced)",
+        "triaged": true,
+        "excerpt": "A close, critical reading of the expanded archives in the notebook reveals several major historical claims that\u2014while compelling\u2014are. Treat remaining claims as single-sourced until",
+        "rfc_link": "wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md"
+      },
+      {
+        "target": "The Sorensen Photographic Archive: Industrial Giants at Willow Run (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "The minimalist captions in the photo log and the compiled research synthesis point directly to several major, high-stakes historical narratives. Adjacent topics remain unmapped unt",
+        "rfc_link": "wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md"
+      },
+      {
+        "target": "The Sorensen Photographic Archive: Industrial Giants at Willow Run (under-sourced)",
+        "triaged": true,
+        "excerpt": "Because the notebook contains only the minimalist catalog **\"Sorensen Photos\"** [1] and the **\"TRM Research Gaps & Synthesis\"** meta-log (which merel. Treat remaining claims as sin",
+        "rfc_link": "wiki/research/rfc-gap-02--the-sorensen-photographic-arc.md"
+      },
+      {
+        "target": "The Sorensen Photographic Archive: Industrial Giants at Willow Run (open-contradictions)",
+        "triaged": true,
+        "excerpt": "The introduction of the second source, **\"TRM Research Gaps & Synthesis\"** [1], adds a new layer to our project. Instead of analyzing just the photo. Keep both sides of each contra",
+        "rfc_link": "wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md"
+      },
+      {
+        "target": "Cast Iron Charlie - Research Logs (follow-up)",
+        "triaged": true,
+        "excerpt": "To turn the current documentary leads into historically rigorous proof, the research logs outline several highly targeted, actionable follow-up. Follow-up research should pin prima",
+        "rfc_link": "wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md"
+      },
+      {
+        "target": "Cast Iron Charlie - Research Logs (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "the research logs point to several rich, adjacent topics that represent completely unexplored or undocumented territory for the documentary: *. Adjacent topics remain unmapped unti",
+        "rfc_link": "wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md"
+      },
+      {
+        "target": "Cast Iron Charlie - Research Logs (under-sourced)",
+        "triaged": true,
+        "excerpt": "### 1. The Cuban Land Seizures & Holdings The dramatically significant claim that Fidel Castro's government seized. Treat remaining claims as single-sourced until a second independ",
+        "rfc_link": "wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md"
+      },
+      {
+        "target": "Cast Iron Charlie - Research Logs (open-contradictions)",
+        "triaged": true,
+        "excerpt": "### Biographical Contradictions & Discrepancies There is a direct historical conflict regarding the exact date. Keep both sides of each contradiction cited from primary sources bef",
+        "rfc_link": "wiki/research/rfc-gap-04--cast-iron-charlie-research-lo.md"
+      },
+      {
+        "target": "Willow Run Videos (follow-up)",
+        "triaged": true,
+        "excerpt": "Recent investigation into **Albert Kahn's L-Bend** successfully demystified the architectural and tax battle of the county line, proving that airp. Follow-up research should pin pr",
+        "rfc_link": "wiki/research/rfc-gap-01--willow-run-videos-follow-up.md"
+      },
+      {
+        "target": "Willow Run Videos (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "Now that prior notes record a translation of the **George Selden Patent War** legal thriller into a production-ready script (`selden-patent-script.md`. Adjacent topics remain unmap",
+        "rfc_link": "wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md"
+      },
+      {
+        "target": "Willow Run Videos (under-sourced)",
+        "triaged": true,
+        "excerpt": "One highly detailed video transcript asserts that Boeing's. Treat remaining claims as single-sourced until a second independent source is attached.",
+        "rfc_link": "wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md"
+      },
+      {
+        "target": "Willow Run Videos (open-contradictions)",
+        "triaged": true,
+        "excerpt": "Based on **The Sorensen Records** [1] and the newly imported **Research Report on the L-Bend** [2], we now have the primary source evidence. Keep both sides of each contradiction c",
+        "rfc_link": "wiki/research/rfc-gap-04--willow-run-videos-open-contra.md"
+      },
+      {
+        "target": "CIC - Daily Research (follow-up)",
+        "triaged": true,
+        "excerpt": "To push the documentary and legal asset recovery efforts to a professional finish, the next step is to turn the **unresolved contradictions**. Follow-up research should pin primary",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-daily-research-follow-up.md"
+      },
+      {
+        "target": "CIC - Daily Research (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "The extensive primary source oral histories, private family papers, and local research logs point to **five highly compelling, unmapped adjacent. Adjacent topics remain unmapped un",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md"
+      },
+      {
+        "target": "CIC - Daily Research (under-sourced)",
+        "triaged": true,
+        "excerpt": "Reviewing the primary dictated oral histories, declassified litigation files, and historical research logs reveals several prominent claims that are *. Treat remaining claims as si",
+        "rfc_link": "wiki/research/rfc-gap-03--cic-daily-research-under-sour.md"
+      },
+      {
+        "target": "CIC - Daily Research (open-contradictions)",
+        "triaged": true,
+        "excerpt": "A thorough cross-examination of the primary dictated oral histories, declassified court files, and historical research logs reveals several. Keep both sides of each contradiction c",
+        "rfc_link": "wiki/research/rfc-gap-04--cic-daily-research-open-contr.md"
+      },
+      {
+        "target": "CIC-KB (adjacent-topics)",
+        "triaged": true,
+        "excerpt": "The CIC-KB and `kb-sync` sources point to adjacent architectural work that is specified but not wired: immutable staging versus the live vault, dual wiki registries, offline-templa",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-kb-adjacent-topics.md"
+      },
+      {
+        "target": "CIC-KB (open-contradictions)",
+        "triaged": true,
+        "excerpt": "Specs, performance reviews, and run logs disagree on `vault_root`, whether autoheal is fail-soft or blocking, and whether the dashboard JSON is a full-repo snapshot or a scoped `wi",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-kb-open-contradictions.md"
+      },
+      {
+        "target": "CIC-KB (under-sourced)",
+        "triaged": true,
+        "excerpt": "Claims about ingest throughput, wiki page counts, and autoheal coverage are repeated across docs without a single measured baseline. Attach a dated `.validation-report.json` (file ",
+        "rfc_link": "wiki/research/rfc-gap-02--cic-kb-under-sourced.md"
+      },
+      {
+        "target": "CastIronCharlie-Facebook (follow-up)",
+        "triaged": true,
+        "excerpt": "To most effectively strengthen the current findings\u2014especially now that prior notes record as resolved the **Sperry M-7 precision engineering**. Follow-up research should pin prima",
+        "rfc_link": "wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md"
+      },
+      {
+        "target": "CastIronCharlie-Facebook (open-contradictions)",
+        "triaged": true,
+        "excerpt": "The historical files in the notebook reveal several deep-seated contradictions, unresolved narratives, and organizational tensions that. Keep both sides of each contradiction cited",
+        "rfc_link": "wiki/research/rfc-gap-04--castironcharlie-facebook-open.md"
+      },
+      {
+        "target": "The Sorensen Photographic Archive: Industrial Giants at Willow Run (follow-up)",
+        "triaged": true,
+        "excerpt": "To transform the minimalist index of photograph captions into a thorough, narrative-driven history of Willow Run, follow-up research Follow-up research should pin primary sources, ",
+        "rfc_link": "wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md"
+      },
+      {
+        "target": "CIC-KB (follow-up)",
+        "triaged": true,
+        "excerpt": "To systematically strengthen the architectural foundations, safety boundaries, and performance metrics of the **Cast Iron Charlie (CIC)** master knowledge base and **`kb-sync`**, l",
+        "rfc_link": "wiki/research/rfc-gap-01--cic-kb-follow-up.md"
+      }
+    ]
+  },
+  "automation_logs": {
+    "ci_pipeline": {
+      "latest": "ci-pipeline-2026-09-09_030001.log",
+      "age_hours": 18.7
+    },
+    "trm_sync_treatment": {
+      "latest": "trm-sync-treatment-2026-09-09.log",
+      "age_hours": 15.2
+    },
+    "retro_audit": {
+      "latest": "retro-audit-20260909.log",
+      "age_hours": 3.7
+    },
+    "daily_report_agent": {
+      "latest": "2026-09-09.md",
+      "age_hours": 3.7
+    },
+    "weekly_report_agent": {
+      "latest": "2026-W36.md",
+      "age_hours": 23.5
+    }
+  },
+  "claude_project_memory": {
+    "mirror_path": "C:\\dev\\_status-feed\\claude-memory",
+    "mirror_exists": true,
+    "files": [
+      {
+        "name": "MEMORY.md",
+        "last_modified": "2026-09-09T04:02:54.030957+00:00",
+        "age_hours": 21.6,
+        "excerpt": "# Memory Index  ## 2026-09-09 - [Session Wrap: Sigil FIX Session Layer Spec](session-wrap-2026-09-09-sigil-fix-session-layer-spec.md) \u2014 receiver-side seq gap-detection + resend (discharges conformance-gap \u00a710 backlog). Brainstorm + `/plan-eng-review` (SCOPE_REDUCED: A1 single-relay only, A2 async fulfilment, CQ1 generalized `relay_jobs` queue; NAK split to Plan 2) + `/plan-ceo-review` (SELECTIVE E"
+      },
+      {
+        "name": "session-wrap-2026-09-09-sigil-fix-session-layer-spec.md",
+        "last_modified": "2026-09-09T04:02:33.958836+00:00",
+        "age_hours": 21.6,
+        "excerpt": "--- name: session-wrap-2026-09-09-sigil-fix-session-layer-spec description: Sigil FIX session layer (receiver-side seq gap-detection + resend) \u2014 brainstorm + eng review + CEO review + design doc all done; spec committed unpushed; next step is writing-plans in a fresh session. metadata:    node_type: memory   type: project   originSessionId: cab98be3-f2b0-4910-a06c-bf137315d9f6   modified: 2026-09-"
+      },
+      {
+        "name": "session-wrap-2026-09-07-ironledger-phase-3-final-review-done.md",
+        "last_modified": "2026-09-09T02:12:08.484547+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-07-ironledger-phase-3-final-review-done description: \"IronLedger Phase 3 SDD \u2014 T14/T15 reviews clean, final whole-branch review done (merge WITH FIXES, no Critical), fix wave staged for fresh session\" metadata:    node_type: memory   type: project   originSessionId: 80a0f6a9-996a-4129-b754-46576913b6cd   modified: 2026-09-07T16:54:57.745Z ---  **ACTIVE.** IronLedger "
+      },
+      {
+        "name": "session-wrap-2026-09-07-ironledger-phase-3-fix-wave-done.md",
+        "last_modified": "2026-09-09T02:12:08.484547+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-07-ironledger-phase-3-fix-wave-done description: \"IronLedger Phase 3 \u2014 final-review fix wave shipped, SDD workspace torn down; branch-finish = keep-as-is (D-0 on main, no remote); deferred follow-ups listed\" metadata:    node_type: memory   type: project   originSessionId: 85d8c450-d628-4653-8680-70b5887a77fd   modified: 2026-09-08T03:36:07.712Z ---  **ACTIVE. Supers"
+      },
+      {
+        "name": "session-wrap-2026-09-07-sigil-fed4-sdd-started.md",
+        "last_modified": "2026-09-09T02:12:08.484547+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-07-sigil-fed4-sdd-started description: \"Sigil Fed #4 security SDD: Tasks 1-6 of 14 committed + review-clean; RESUME at Task 7 (ordering-locked)\" metadata:    node_type: memory   type: project   originSessionId: 15145dc2-b190-4746-b1c8-085b7a6a70a0   modified: 2026-09-08T00:48:55.621Z ---  Sigil cross-federation directory (#4) **security-hardening SDD: Tasks 1-6 of 14"
+      },
+      {
+        "name": "session-wrap-2026-09-07-sigil-fed4-security-plan-written.md",
+        "last_modified": "2026-09-09T02:12:08.484547+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-07-sigil-fed4-security-plan-written description: \"Sigil Fed #4 security-hardening TDD plan written (14 tasks), uncommitted; RESUME at /plan-eng-review then SDD\" metadata:    node_type: memory   type: project   originSessionId: a67ab42c-7f5c-4f2c-baf1-2ed7203048fd   modified: 2026-09-07T12:23:43.519Z ---  Sigil cross-federation directory (#4) **security-hardening TDD "
+      },
+      {
+        "name": "session-wrap-2026-09-08-trm-sync-treatment-auto.md",
+        "last_modified": "2026-09-09T02:12:08.484547+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-08-trm-sync-treatment-auto description: \"Automated daily trm sync-treatment run: 2026-09-08\" metadata:   type: project ---  Automated run of `trm sync-treatment` against C:\\Users\\soren\\trm-vault -> C:\\dev\\charlie-deep-research.  ### Automated TRM sync-treatment run: 2026-09-08  - New facts reconciled into treatment doc (real run committed), per topic:   - cuba-fcsc: "
+      },
+      {
+        "name": "session-wrap-2026-09-06-ironledger-phase-3-sdd-tasks-10-13.md",
+        "last_modified": "2026-09-09T02:12:08.482002+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-06-ironledger-phase-3-sdd-tasks-10-13 description: \"IronLedger Phase 3 SDD continuation \u2014 Tasks 10-13 shipped review-clean on main, stopped at 3.2h for handoff; RESUME at Task 14\" metadata:    node_type: memory   type: project   originSessionId: 448ef7b3-00bf-4301-8e74-70971ff5045a   modified: 2026-09-07T03:53:35.270Z ---  Continuation of [[session-wrap-2026-09-06-ir"
+      },
+      {
+        "name": "session-wrap-2026-09-06-ironledger-phase-3-spec.md",
+        "last_modified": "2026-09-09T02:12:08.482002+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-06-ironledger-phase-3-spec description: IronLedger Phase 3 (Beancount compiler + recovery journal) design spec written and committed; 8 decisions locked; next is writing-plans then plan-eng-review then SDD. metadata:    node_type: memory   type: project   originSessionId: 63beb24a-ffa5-47a9-b571-0fe1a565744a   modified: 2026-09-06T13:47:06.639Z ---  # Session Wrap: I"
+      },
+      {
+        "name": "session-wrap-2026-09-06-sigil-fed4-review-blockers.md",
+        "last_modified": "2026-09-09T02:12:08.482002+00:00",
+        "age_hours": 23.5,
+        "excerpt": "--- name: session-wrap-2026-09-06-sigil-fed4-review-blockers description: \"Sigil cross-federation-directory branch final review found 3 verified security blockers; NOT ship-ready, needs spec not patch\" metadata:    node_type: memory   type: project   originSessionId: 3d6fe746-2714-4ff0-8436-606373a236f8   modified: 2026-09-06T15:40:08.113Z ---  Session 6 of the Sigil federation #4 (cross-federatio"
+      }
+    ]
+  }
+}

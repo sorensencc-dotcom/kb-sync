@@ -1,21 +1,21 @@
 ---
-title: ".SessionCounterId"
+title: "McpContextServer"
 category: "wiki"
 status: "active"
 draft: true
 created: "2026-09-10T00:59:32.725Z"
 ---
 
-# .SessionCounterId
+# McpContextServer
 
 ## Summary
-Offline draft template for .SessionCounterId staged from .ijfw/.session-counter-id.
+Offline draft template for McpContextServer staged from scripts/mcp-context-server.mjs.
 
 ## Purpose & Scope
-Draft specification for .SessionCounterId. Synthesized via OfflineTemplateProvider.
+Draft specification for McpContextServer. Synthesized via OfflineTemplateProvider.
 
 ## Operations & Details
-- Source: `.ijfw/.session-counter-id`
+- Source: `scripts/mcp-context-server.mjs`
 - Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260909-205927`
 
 ## Related Pages
