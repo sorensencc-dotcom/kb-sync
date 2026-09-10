@@ -339,8 +339,7 @@ export function processRpcMessage(dbInstance, message) {
   }
 }
 
-// Start stdio interface if run directly
-if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(import.meta.url).pathname.replace(/^\/([a-zA-Z]:)/, '$1'))) {
+export function startStdioServer(dbInstance = db) {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -352,7 +351,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(im
     if (!trimmed) return;
     try {
       const req = JSON.parse(trimmed);
-      const res = processRpcMessage(db, req);
+      const res = processRpcMessage(dbInstance, req);
       if (res) {
         process.stdout.write(JSON.stringify(res) + '\n');
       }
@@ -367,4 +366,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(im
   });
 
   process.stderr.write(`[mcp-memory-server] Started on stdio with DB: ${DB_PATH}\n`);
+  return rl;
+}
+
+// Start stdio interface if run directly or via alias
+if (process.argv[1] && (process.argv[1].endsWith('mcp-memory-server.mjs') || process.argv[1].endsWith('mcp-context-server.mjs'))) {
+  startStdioServer();
 }
