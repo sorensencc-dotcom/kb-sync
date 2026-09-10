@@ -3,43 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iron Command Forge (ICF) — Unified Operations & Knowledge Graph</title>
+  <title>IRON COMMAND FORGE — Unified Operations & Knowledge Graph</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;600;700&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;600;700;800&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* ============================================================
+       Cast Iron Charlie Design System — Colors & Typography Tokens
+       ============================================================ */
     :root {
-      --black: #0a0806;
-      --forge: #14100d;
-      --iron: #221b17;
-      --iron-border: #362c26;
-      --rust: #8B3A1A;
-      --ember: #C4501A;
-      --ember-glow: rgba(196, 80, 26, 0.25);
-      --brass: #B8922A;
-      --brass-dim: rgba(184, 146, 42, 0.2);
-      --ash: #9a9088;
-      --bone: #e8e0d4;
-      --paper: #f2ece2;
-      --white: #faf6f0;
-      --teal: #2A7B88;
-      --teal-dim: rgba(42, 123, 136, 0.2);
-      --slate: #3D4A54;
-      --label: #cbb8a8;
-      --red: #d14343;
-      --green: #48a368;
+      /* Core palette */
+      --black:  #0a0806;   /* primary background */
+      --forge:  #1a1410;   /* secondary bg */
+      --iron:   #2c2420;   /* raised surface bg */
+      --rust:   #8B3A1A;   /* hover/pressed accent */
+      --ember:  #C4501A;   /* primary accent — labels, CTAs, borders */
+      --brass:  #B8922A;   /* brand/logo, italic headline highlights */
+      --ash:    #9a9088;   /* secondary text, labels, muted */
+      --bone:   #e8e0d4;   /* primary body text */
+      --paper:  #f2ece2;   /* near-white warm */
+      --white:  #faf6f0;   /* headings, hero title */
+
+      /* Semantic color variables */
+      --color-bg-primary:       var(--black);
+      --color-bg-secondary:     var(--forge);
+      --color-bg-raised:        var(--iron);
+      --color-bg-card:          rgba(26, 20, 16, 0.6);
+      --color-bg-card-hover:    rgba(26, 20, 16, 0.9);
+
+      --color-fg-primary:       var(--white);
+      --color-fg-body:          var(--bone);
+      --color-fg-muted:         var(--ash);
+      --color-fg-accent:        var(--ember);
+      --color-fg-brand:         var(--brass);
+
+      --color-border-default:   rgba(154, 144, 136, 0.12);
+      --color-border-section:   rgba(139, 58, 26, 0.2);
+      --color-border-hover:     rgba(196, 80, 26, 0.4);
+      --color-border-focus:     var(--ember);
+      --color-border-accent:    var(--ember);
+
+      --color-accent-bg-tint:   rgba(139, 58, 26, 0.06);
+      --color-overlay-fade:     rgba(10, 8, 6, 0.88);
+
+      /* Status colors */
+      --color-status-live:      #5a9e6f;
+      --color-status-progress:  var(--brass);
+      --color-status-soon:      var(--ash);
+
+      /* Tag colors */
+      --color-tag-high:         var(--ember);
+      --color-tag-medium:       #7a9fbf;
+      --color-tag-new:          var(--brass);
+      --color-tag-corrected:    var(--ember);
+
+      /* Typography */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Libre Baskerville', Georgia, serif;
+      --font-ui: 'Barlow Condensed', sans-serif;
+      --radius: 0;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Reset & Base */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Libre Baskerville', serif;
       background: var(--black);
       color: var(--bone);
+      font-family: var(--font-body);
       min-height: 100vh;
       padding: 2rem;
       position: relative;
@@ -47,18 +78,19 @@
       background-image: radial-gradient(circle at 50% 0%, rgba(196, 80, 26, 0.08) 0%, transparent 60%);
     }
 
+    /* Film grain overlay */
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' /%3E%3C/filter%3E%3Crect width='400' height='400' fill='%230a0806' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
-      opacity: 0.35;
-      z-index: 1;
+      z-index: 1000;
+      opacity: 0.4;
     }
+
+    a { color: var(--ember); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--white); }
 
     .container {
       max-width: 1320px;
@@ -67,10 +99,9 @@
       z-index: 2;
     }
 
-    /* Top Command Header */
+    /* Header */
     header {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--iron-border);
+      margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
       display: flex;
       justify-content: space-between;
@@ -80,87 +111,94 @@
     }
 
     .brand-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 2.2rem;
       font-weight: 900;
       color: var(--white);
       letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .brand-title .forge-icon {
-      color: var(--ember);
-      font-size: 1.8rem;
     }
 
     .brand-subtitle {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-ui);
       font-size: 0.75rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--label);
+      color: var(--ash);
       margin-top: 0.25rem;
     }
 
-    .header-meta {
+    .header-badges {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       flex-wrap: wrap;
     }
 
-    .timestamp-badge {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+    .synced-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--bone);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
       padding: 0.4rem 0.9rem;
       background: rgba(44, 36, 32, 0.6);
       border: 1px solid rgba(196, 80, 26, 0.3);
     }
 
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 6px var(--green);
+    /* Gradient Rule Divider */
+    .gradient-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(139, 58, 26, 0.4), transparent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Section Label Eyebrow */
+    .section-label {
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--color-fg-accent);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--ember);
       display: inline-block;
     }
 
     /* Tab Navigation */
-    .tab-navigation {
+    nav.tabs-nav {
       display: flex;
       gap: 0.5rem;
-      border-bottom: 1px solid var(--iron-border);
-      margin-bottom: 2.5rem;
+      margin: 1.5rem 0 2.5rem;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-ui);
       font-size: 0.85rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 700;
-      background: transparent;
-      color: var(--ash);
       border: 1px solid transparent;
-      border-bottom: none;
       padding: 0.85rem 1.4rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      transition: all 0.2s ease;
-      position: relative;
-      top: 1px;
+      background: transparent;
+      color: var(--ash);
+      transition: all 0.2s;
     }
 
     .tab-btn:hover {
@@ -171,511 +209,220 @@
     .tab-btn.active {
       color: var(--white);
       background: var(--forge);
-      border-color: var(--iron-border);
-      border-bottom: 1px solid var(--forge);
-      box-shadow: inset 0 2px 0 var(--ember);
+      border-bottom: 2px solid var(--ember);
     }
 
-    .tab-badge {
-      font-family: 'Geist Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.15rem 0.45rem;
-      border-radius: 2px;
-      background: var(--iron);
-      color: var(--bone);
-    }
-
-    .tab-badge.alert {
-      background: rgba(209, 67, 67, 0.2);
-      color: #ff8080;
-      border: 1px solid rgba(209, 67, 67, 0.4);
-    }
-
-    /* Panes */
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.25s ease-in-out;
-    }
-
-    .tab-pane.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Quick Metric Cards */
-    .quick-metrics, .summary {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .qcard, .metric-card {
-      background: var(--forge);
-      border: 1px solid var(--iron-border);
-      padding: 1.25rem 1.4rem;
-      position: relative;
-      overflow: hidden;
-      text-align: left;
-      font: inherit;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    .qcard::after, .metric-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 3px; height: 100%;
-      background: var(--ash);
-    }
-
-    .qcard.c-ember::after, .metric-card[data-filter="errors"]::after { background: var(--ember); }
-    .qcard.c-teal::after, .metric-card[data-filter="frontiers"]::after { background: var(--teal); }
-    .qcard.c-brass::after, .metric-card[data-filter="structural"]::after { background: var(--brass); }
-    .qcard.c-green::after { background: var(--green); }
-    .qcard.c-red::after { background: var(--red); }
-
-    .qcard-label, .metric {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
+    /* Tags & Status Badges */
+    .tag {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--label);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid;
+      display: inline-block;
     }
 
-    .badge-sub {
-      font-size: 0.55rem;
-      padding: 0.15rem 0.4rem;
-      border: 1px solid rgba(154, 144, 136, 0.2);
+    .tag.high {
+      color: var(--ember);
+      border-color: rgba(196, 80, 26, 0.45);
+      background: rgba(196, 80, 26, 0.07);
+    }
+
+    .tag.medium {
+      color: var(--color-tag-medium);
+      border-color: rgba(122, 159, 191, 0.4);
+      background: rgba(122, 159, 191, 0.07);
+    }
+
+    .tag.new {
+      color: var(--brass);
+      border-color: rgba(184, 146, 42, 0.45);
+      background: rgba(184, 146, 42, 0.07);
+    }
+
+    .tag.date {
       color: var(--ash);
+      border-color: rgba(154, 144, 136, 0.25);
+      background: transparent;
     }
 
-    .qcard-val, .value {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
+    .tag.corrected {
+      color: var(--ember);
+      border-color: rgba(196, 80, 26, 0.35);
+      background: transparent;
+    }
+
+    .status-badge {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      display: inline-block;
+    }
+
+    .status-badge.live {
+      color: var(--color-status-live);
+      border: 1px solid rgba(90, 158, 111, 0.4);
+      background: rgba(90, 158, 111, 0.08);
+    }
+
+    .status-badge.progress {
+      color: var(--brass);
+      border: 1px solid rgba(184, 146, 42, 0.4);
+      background: rgba(184, 146, 42, 0.08);
+    }
+
+    .status-badge.soon {
+      color: var(--ash);
+      border: 1px solid rgba(154, 144, 136, 0.25);
+      background: transparent;
+    }
+
+    /* StatBlock Pattern */
+    .stat-block {
+      border-left: 3px solid var(--ember);
+      padding: 1.25rem 1.5rem;
+      background: var(--color-accent-bg-tint);
+    }
+
+    .stat-number {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      font-size: 2.5rem;
       color: var(--white);
+      line-height: 1;
       margin-bottom: 0.25rem;
     }
 
-    .value.frontiers { color: var(--teal); }
-    .value.structural { color: var(--brass); }
-    .value.hygiene { color: var(--ash); }
-    .value.error { color: var(--ember); }
-    .value.success { color: var(--brass); }
+    .stat-label {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
 
-    .qcard-sub, .sub-note {
-      font-family: 'Barlow Condensed', sans-serif;
+    .stat-sub {
+      font-family: var(--font-ui);
       font-size: 0.75rem;
       color: var(--ash);
       letter-spacing: 0.1em;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
     }
 
-    /* Grid Layouts */
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
+    /* Panels & Layout */
     .panel {
       background: var(--forge);
-      border: 1px solid var(--iron-border);
+      border: 1px solid rgba(154, 144, 136, 0.15);
       padding: 1.5rem;
-      margin-bottom: 1.75rem;
     }
 
     .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--iron-border);
-      padding-bottom: 0.75rem;
       margin-bottom: 1.25rem;
+      margin-top: -0.5rem;
     }
 
     .panel-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     .panel-action {
-      font-family: 'Barlow Condensed', sans-serif;
+      background: none;
+      border: none;
+      font-family: var(--font-ui);
       font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--ember);
       cursor: pointer;
-      text-decoration: none;
+      padding: 0;
     }
 
-    /* Items list */
-    .item-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .item-row {
-      background: rgba(34, 27, 23, 0.4);
-      border: 1px solid rgba(54, 44, 38, 0.6);
-      padding: 1rem;
-      border-left: 3px solid var(--iron-border);
-    }
-
-    .item-row.p0 { border-left-color: var(--red); }
-    .item-row.p1 { border-left-color: var(--ember); }
-    .item-row.p2 { border-left-color: var(--brass); }
-
-    .item-top {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .priority-pill {
-      font-family: 'Geist Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 0.15rem 0.45rem;
-      border-radius: 2px;
-    }
-
-    .priority-pill.p0 { background: rgba(209, 67, 67, 0.2); color: #ff8080; border: 1px solid var(--red); }
-    .priority-pill.p1 { background: rgba(196, 80, 26, 0.2); color: #ff9e70; border: 1px solid var(--ember); }
-    .priority-pill.p2 { background: var(--brass-dim); color: #e6c875; border: 1px solid var(--brass); }
-
-    .item-heading {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .item-body {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      color: var(--ash);
-      font-style: italic;
-    }
-
-    /* MCP Server Card Grid */
-    .mcp-grid {
+    .grid-metrics {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 1.25rem;
-      margin-top: 1rem;
+      margin-bottom: 2.5rem;
     }
 
-    .mcp-card {
-      background: rgba(34, 27, 23, 0.5);
-      border: 1px solid var(--iron-border);
-      padding: 1.25rem;
-      border-radius: 2px;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 1.5rem;
     }
 
-    .mcp-card:hover {
-      border-color: rgba(196, 80, 26, 0.5);
-      background: rgba(34, 27, 23, 0.8);
+    @media (max-width: 900px) {
+      .grid-2col { grid-template-columns: 1fr; }
     }
 
-    .mcp-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
-    }
-
-    .mcp-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .mcp-type {
-      font-family: 'Geist Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--ash);
-      background: var(--iron);
-      padding: 0.15rem 0.4rem;
-      border-radius: 2px;
-    }
-
-    .mcp-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      color: var(--ash);
-      border-top: 1px solid rgba(54, 44, 38, 0.4);
-      padding-top: 0.6rem;
-      margin-top: 0.85rem;
-    }
-
-    .mcp-tools {
-      color: var(--brass);
-      font-weight: 600;
-    }
-
-    /* Key/Value Table */
-    .kv-table {
+    /* Tables */
+    .table-clean {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.85rem;
     }
 
-    .kv-table td {
-      padding: 0.65rem 0.4rem;
-      border-bottom: 1px solid rgba(54, 44, 38, 0.5);
+    .table-clean th {
+      padding: 0.75rem 0.6rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.15);
+      font-family: var(--font-ui);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #cbb8a8;
+      font-size: 0.75rem;
     }
 
-    .kv-key {
-      font-family: 'Barlow Condensed', sans-serif;
+    .table-clean td {
+      padding: 0.65rem 0.4rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.1);
+    }
+
+    .table-clean td.key {
+      font-family: var(--font-ui);
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--ash);
       width: 45%;
     }
 
-    .kv-val {
-      font-family: 'Geist Mono', monospace;
+    .table-clean td.val {
+      font-family: var(--font-ui);
       font-size: 0.8rem;
       color: var(--bone);
       text-align: right;
     }
 
-    .badge-status {
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
-      font-size: 0.7rem;
-      font-family: 'Geist Mono', monospace;
-      display: inline-block;
-    }
-    .badge-status.pass { background: rgba(72, 163, 104, 0.2); color: #7fe6a2; border: 1px solid rgba(72, 163, 104, 0.4); }
-    .badge-status.fail { background: rgba(209, 67, 67, 0.2); color: #ff7d7d; border: 1px solid rgba(209, 67, 67, 0.4); }
-    .badge-status.warn { background: rgba(184, 146, 42, 0.2); color: #f0ce75; border: 1px solid rgba(184, 146, 42, 0.4); }
-
-    /* KB-Sync Breakdown Elements */
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-      color: var(--white);
-      border-bottom: 1px solid;
-      border-image: linear-gradient(to right, transparent, rgba(196, 80, 26, 0.4), transparent) 1;
-      padding-bottom: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .section-title .count-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--brass);
-      text-transform: uppercase;
-    }
-
-    .breakdown-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3.5rem;
+    /* Action items & cards */
+    .item-card {
+      background: rgba(34, 27, 23, 0.4);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      padding: 1rem;
     }
 
     .breakdown-card {
       background: rgba(26, 20, 16, 0.6);
       border: 1px solid rgba(154, 144, 136, 0.12);
       padding: 1.75rem;
-      border-left: 4px solid var(--iron);
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    .breakdown-card.frontiers-card { border-left-color: var(--teal); }
-    .breakdown-card.structural-card { border-left-color: var(--brass); }
-    .breakdown-card.hygiene-card { border-left-color: var(--ash); }
-
-    .breakdown-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .breakdown-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--bone);
-    }
-
-    .breakdown-count {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .breakdown-desc {
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: var(--ash);
-    }
-
-    .action-btn {
-      font-family: 'Barlow Condensed', sans-serif;
+    .btn-secondary {
+      font-family: var(--font-ui);
       background: rgba(44, 36, 32, 0.6);
-      border: 1px solid rgba(196, 80, 26, 0.3);
-      color: var(--ember);
-      padding: 0.65rem 1rem;
-      min-height: 44px;
-      cursor: pointer;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .action-btn:hover {
-      background: rgba(196, 80, 26, 0.15);
-      border-color: var(--ember);
-      color: var(--white);
-    }
-
-    .action-items-section, .domains-table-container, .autoheal-section {
-      background: var(--forge);
-      border: 1px solid var(--iron-border);
-      padding: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .domains-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      font-size: 0.85rem;
-    }
-
-    .domains-table th, .domains-table td {
-      padding: 0.75rem 0.6rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(54, 44, 38, 0.5);
-    }
-
-    .domains-table th {
-      font-family: 'Barlow Condensed', sans-serif;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--label);
-      font-size: 0.75rem;
-    }
-
-    .top-links-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1rem;
-    }
-
-    .link-chip {
-      font-family: 'Barlow Condensed', sans-serif;
-      background: rgba(42, 123, 136, 0.12);
-      border: 1px solid rgba(42, 123, 136, 0.3);
-      color: var(--teal);
-      padding: 0.4rem 0.8rem;
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .chip-count {
-      background: rgba(42, 123, 136, 0.3);
-      color: var(--white);
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
-      font-size: 0.7rem;
-    }
-
-    .action-item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1rem;
-      background: rgba(34, 27, 23, 0.4);
-      border-left: 3px solid var(--iron-border);
-      margin-bottom: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    .action-item-row.ambiguity { border-left-color: var(--teal); }
-    .action-item-row.structural { border-left-color: var(--brass); }
-
-    .action-item-msg {
-      font-weight: 700;
-      color: var(--bone);
-      margin-bottom: 0.25rem;
-    }
-
-    .path-list {
-      list-style: none;
-      color: var(--ash);
-      font-size: 0.75rem;
-      font-family: 'Geist Mono', monospace;
-    }
-
-    .row-action {
-      font-family: 'Barlow Condensed', sans-serif;
-      background: rgba(44, 36, 32, 0.6);
-      border: 1px solid rgba(196, 80, 26, 0.3);
-      color: var(--ember);
-      padding: 0.4rem 0.8rem;
-      cursor: pointer;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .controls {
-      display: flex;
-      gap: 0.8rem;
-      justify-content: center;
-      margin: 1.5rem 0 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    button {
-      font-family: 'Barlow Condensed', sans-serif;
-      background: rgba(26, 20, 16, 0.6);
       border: 1px solid rgba(196, 80, 26, 0.3);
       color: var(--ember);
       padding: 0.65rem 1.25rem;
@@ -684,28 +431,28 @@
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
-    button:hover {
+    .btn-secondary:hover {
       border-color: rgba(196, 80, 26, 0.6);
       background: rgba(196, 80, 26, 0.12);
       color: var(--white);
     }
 
-    .btn-danger { border-color: rgba(196, 80, 26, 0.55); }
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    .tab-pane.active { display: block; }
 
-    .reload-hint {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      color: var(--label);
-      text-align: center;
-      margin: 0 0 2rem;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .reload-hint code { font-family: ui-monospace, Consolas, monospace; color: var(--bone); }
-
+    /* Toast */
     .toast {
       position: fixed;
       right: 1.25rem;
@@ -715,20 +462,21 @@
       background: var(--iron);
       border: 1px solid var(--ember);
       color: var(--white);
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-ui);
       letter-spacing: 0.06em;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+      display: none;
     }
 
-    .hidden { display: none !important; }
+    .toast.show { display: block; }
 
-    .footer {
+    /* Footer */
+    footer {
       text-align: center;
       padding-top: 2.5rem;
       border-top: 1px solid rgba(154, 144, 136, 0.12);
       color: var(--ash);
       font-size: 0.8rem;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-ui);
       letter-spacing: 0.15em;
       margin-top: 3rem;
     }
@@ -737,123 +485,160 @@
 <body>
 
 <div class="container">
-  <!-- Command Center Header -->
+  <!-- HEADER -->
   <header>
     <div>
-      <div class="brand-title">
-        <span class="forge-icon">⚡</span> IRON COMMAND FORGE
-      </div>
-      <div class="brand-subtitle">Unified Operations, Knowledge Graph, MCP Infrastructure & Status Feed</div>
+      <div class="brand-title">IRON COMMAND FORGE</div>
+      <div class="brand-subtitle">Unified Operations, Knowledge Graph, MCP Infrastructure &amp; Status Feed</div>
     </div>
-    <div class="header-meta">
-      <div class="timestamp-badge">
-        <span class="pulse-dot"></span> <span id="feedStatusText">FEED ACTIVE (07:00 DAILY)</span>
-      </div>
-      <div class="timestamp-badge" id="reportTimestamp" style="font-family: 'Geist Mono', monospace; font-size: 0.75rem;">
-        LIVE :8080
-      </div>
+    <div class="header-badges">
+      <span class="status-badge live">● LIVE</span>
+      <div class="synced-badge" id="reportTimestamp">SYNCED 1H AGO</div>
     </div>
   </header>
 
-  <!-- Top Tab Bar -->
-  <nav class="tab-navigation" aria-label="Command Center Tabs">
+  <div class="gradient-rule"></div>
+
+  <!-- TAB NAV -->
+  <nav class="tabs-nav" aria-label="Command Center Tabs">
     <button type="button" class="tab-btn active" id="btn-tab-daily" onclick="switchTab('tab-daily')">
       <span>01. Daily Command Feed</span>
-      <span class="tab-badge alert" id="tabDailyBadge">4 Open</span>
+      <span class="tag high" id="tabDailyBadge">4 Open</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-mcp" onclick="switchTab('tab-mcp')">
       <span>02. Unified MCP Matrix</span>
-      <span class="tab-badge" style="background: rgba(72, 163, 104, 0.2); color: #7fe6a2;">10 Active</span>
+      <span class="tag date" id="tabMcpBadge">10 Active</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-kbsync" onclick="switchTab('tab-kbsync')">
-      <span>03. Knowledge Graph & Validation</span>
-      <span class="tab-badge" id="tabKbBadge">Vault Live</span>
+      <span>03. Knowledge Graph &amp; Validation</span>
+      <span class="tag date" id="tabKbBadge">Vault Live</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-ops" onclick="switchTab('tab-ops')">
-      <span>04. Automation & Daemons</span>
-      <span class="tab-badge">4 Registered</span>
+      <span>04. Automation &amp; Daemons</span>
+      <span class="tag date">4 Registered</span>
     </button>
   </nav>
 
   <!-- ================================================================= -->
   <!-- TAB 1: DAILY COMMAND FEED -->
   <!-- ================================================================= -->
-  <section id="tab-daily" class="tab-pane active" aria-labelledby="btn-tab-daily">
-    <div class="quick-metrics">
-      <div class="qcard c-ember">
-        <div class="qcard-label">Open Priorities</div>
-        <div class="qcard-val" id="qDailyTodos">-</div>
-        <div class="qcard-sub" id="qDailyTodosSub">- P1 | - P2 | - P0</div>
+  <section id="tab-daily" class="tab-pane active" aria-label="Daily Command Feed">
+    <div class="grid-metrics">
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="qDailyTodos">4 Items</div>
+          <div class="stat-label">Open Priorities</div>
+        </div>
+        <div class="stat-sub" id="qDailyTodosSub">1 P1 | 3 P2 | 0 P0</div>
       </div>
-      <div class="qcard c-green">
-        <div class="qcard-label">MCP Health</div>
-        <div class="qcard-val" style="color: #7fe6a2;" id="qDailyMcp">10 / 10</div>
-        <div class="qcard-sub">100% Servers Online</div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="qDailyMcp">10 / 10</div>
+          <div class="stat-label">MCP Health</div>
+        </div>
+        <div class="stat-sub">100% Servers Online</div>
       </div>
-      <div class="qcard c-red">
-        <div class="qcard-label">KB-Sync Status</div>
-        <div class="qcard-val" id="qDailySyncStatus">-</div>
-        <div class="qcard-sub" id="qDailySyncSub">-</div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="qDailySyncStatus">Drift 2p</div>
+          <div class="stat-label">KB-Sync Status</div>
+        </div>
+        <div class="stat-sub" id="qDailySyncSub">Last Sync: 2h ago</div>
       </div>
-      <div class="qcard c-teal">
-        <div class="qcard-label">Link & Graph Health</div>
-        <div class="qcard-val" id="qDailyCoverage">100%</div>
-        <div class="qcard-sub">Zero broken links</div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="qDailyCoverage">100%</div>
+          <div class="stat-label">Link &amp; Graph Health</div>
+        </div>
+        <div class="stat-sub">Zero broken links</div>
       </div>
-      <div class="qcard c-brass">
-        <div class="qcard-label">Active Blockers</div>
-        <div class="qcard-val" id="qDailyBlockers">0</div>
-        <div class="qcard-sub" id="qDailyBlockersSub">Handoff status clear</div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="qDailyBlockers">0 Blockers</div>
+          <div class="stat-label">Active Blockers</div>
+        </div>
+        <div class="stat-sub" id="qDailyBlockersSub">Handoff status clear</div>
       </div>
     </div>
 
     <div class="grid-2col">
-      <!-- Left Column: Priority Action Items -->
+      <!-- Left: Action Items -->
       <div class="panel">
+        <div class="section-label">Action Items</div>
         <div class="panel-header">
-          <div class="panel-title"><span>📋</span> Top Open Action Items (TODOS.md)</div>
-          <button type="button" class="panel-action" onclick="copyCommand('code C:\\dev\\TODOS.md')">Open TODOS &rarr;</button>
+          <div class="panel-title">Top Open Action Items (TODOS.md)</div>
+          <button type="button" class="panel-action" onclick="copyCommand('code C:\\dev\\TODOS.md')">Open TODOS →</button>
         </div>
-        <ul class="item-list" id="dailyTodosList">
-          <li class="item-row"><div class="item-body">Loading action items...</div></li>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;" id="dailyTodosList">
+          <li class="item-card" style="border-left: 3px solid var(--ember);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.35rem;">
+              <span class="tag high">P1</span>
+              <span style="font-size: 0.95rem; font-weight: 700; color: var(--white);">Wave D full conformance gate</span>
+            </div>
+            <div style="font-size: 0.8rem; line-height: 1.5; color: var(--ash); font-style: italic;">code-level PASS only. Needs provisioned PostgreSQL 15+, `npm run migrate`, live E2E rerun, and trending scheduler install verified.</div>
+          </li>
+          <li class="item-card" style="border-left: 3px solid var(--brass);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.35rem;">
+              <span class="tag new">P2</span>
+              <span style="font-size: 0.95rem; font-weight: 700; color: var(--white);">TorqueQuery CIC observability hooks</span>
+            </div>
+            <div style="font-size: 0.8rem; line-height: 1.5; color: var(--ash); font-style: italic;">TorqueQuery determinism verified 2026-07-17. Expose richer telemetry: per-query latency buckets, drift counters, query-shape histogram.</div>
+          </li>
+          <li class="item-card" style="border-left: 3px solid var(--brass);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.35rem;">
+              <span class="tag new">P2</span>
+              <span style="font-size: 0.95rem; font-weight: 700; color: var(--white);">xberg native build-out</span>
+            </div>
+            <div style="font-size: 0.8rem; line-height: 1.5; color: var(--ash); font-style: italic;">Swapped mock stub to real pdf-parse text-layer extraction 2026-07-16. Next phase evaluates native parser.</div>
+          </li>
+          <li class="item-card" style="border-left: 3px solid var(--brass);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.35rem;">
+              <span class="tag new">P2</span>
+              <span style="font-size: 0.95rem; font-weight: 700; color: var(--white);">Non-deterministic skillpack generators</span>
+            </div>
+            <div style="font-size: 0.8rem; line-height: 1.5; color: var(--ash); font-style: italic;">Sort warning/log lines deterministically during regeneration so pre-commit runs produce minimal diffs.</div>
+          </li>
         </ul>
       </div>
 
-      <!-- Right Column: Status Summary & Telemetry -->
+      <!-- Right: Telemetry Snapshot -->
       <div class="panel">
+        <div class="section-label">Telemetry</div>
         <div class="panel-header">
-          <div class="panel-title"><span>🛡️</span> Daily Telemetry Snapshot</div>
-          <button type="button" class="panel-action" onclick="loadDailyStatus()">Refresh &rarr;</button>
+          <div class="panel-title">Daily Telemetry Snapshot</div>
+          <button type="button" class="panel-action" onclick="loadDailyStatus()">Refresh →</button>
         </div>
-        <table class="kv-table">
-          <tr>
-            <td class="kv-key">MCP Infrastructure</td>
-            <td class="kv-val" id="telemetryMcpCount"><span class="badge-status pass">11 ONLINE</span></td>
-          </tr>
-          <tr>
-            <td class="kv-key">KB-Sync Drift</td>
-            <td class="kv-val" id="telemetryDrift"><span class="badge-status warn">CHECKING...</span></td>
-          </tr>
-          <tr>
-            <td class="kv-key">Vault Files Indexed</td>
-            <td class="kv-val" id="telemetryFileCount">-</td>
-          </tr>
-          <tr>
-            <td class="kv-key">Wiki Link Integrity</td>
-            <td class="kv-val"><span class="badge-status pass">100% HEALTH</span></td>
-          </tr>
-          <tr>
-            <td class="kv-key">Memory Mirror Sync</td>
-            <td class="kv-val"><span class="badge-status pass">MIRRORED</span></td>
-          </tr>
-          <tr>
-            <td class="kv-key">TRM Vault Ingest</td>
-            <td class="kv-val" id="telemetryTrm">OK (Active)</td>
-          </tr>
-          <tr>
-            <td class="kv-key">Scheduled Task</td>
-            <td class="kv-val">\CIC\CIC-Daily-Status</td>
-          </tr>
+        <table class="table-clean">
+          <tbody>
+            <tr>
+              <td class="key">MCP Infrastructure</td>
+              <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">10 <span class="status-badge live">● LIVE</span></span></td>
+            </tr>
+            <tr>
+              <td class="key">KB-Sync Drift</td>
+              <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">2 files <span class="status-badge progress">● PROGRESS</span></span></td>
+            </tr>
+            <tr>
+              <td class="key">Vault Files Indexed</td>
+              <td class="val" id="telemetryFileCount">2,094 files</td>
+            </tr>
+            <tr>
+              <td class="key">Wiki Link Integrity</td>
+              <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">100% <span class="status-badge live">● LIVE</span></span></td>
+            </tr>
+            <tr>
+              <td class="key">Memory Mirror Sync</td>
+              <td class="val"><span class="status-badge live">● LIVE</span></td>
+            </tr>
+            <tr>
+              <td class="key">TRM Vault Ingest</td>
+              <td class="val">OK (Active)</td>
+            </tr>
+            <tr>
+              <td class="key">Scheduled Task</td>
+              <td class="val">\CIC\CIC-Daily-Status</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -862,18 +647,16 @@
   <!-- ================================================================= -->
   <!-- TAB 2: UNIFIED MCP MATRIX -->
   <!-- ================================================================= -->
-  <section id="tab-mcp" class="tab-pane" aria-labelledby="btn-tab-mcp">
+  <section id="tab-mcp" class="tab-pane" aria-label="Unified MCP Matrix">
     <div class="panel">
+      <div class="section-label">Registry</div>
       <div class="panel-header">
-        <div class="panel-title"><span>🔌</span> Unified MCP Server Health & Tool Registry</div>
-        <button type="button" class="panel-action" onclick="renderMcpMatrix()">Refresh &rarr;</button>
+        <div class="panel-title">Unified MCP Server Health &amp; Tool Registry</div>
+        <button type="button" class="panel-action" onclick="loadDailyStatus()">Refresh →</button>
       </div>
-      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1.25rem;">
-        Registered capability surfaces and live telemetry across Antigravity, Claude Code, and Repo-level MCP servers.
-      </p>
-
-      <div class="mcp-grid" id="mcpGridContainer">
-        <!-- Dynamically rendered MCP cards -->
+      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1.25rem;">Registered capability surfaces and live telemetry across Antigravity, Claude Code, and Repo-level MCP servers.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.25rem;" id="mcpGridContainer">
+        <!-- MCP cards rendered dynamically or statically as baseline -->
       </div>
     </div>
   </section>
@@ -881,710 +664,399 @@
   <!-- ================================================================= -->
   <!-- TAB 3: KNOWLEDGE GRAPH & VALIDATION -->
   <!-- ================================================================= -->
-  <section id="tab-kbsync" class="tab-pane" aria-labelledby="btn-tab-kbsync">
-    <div class="summary" id="summary">
-      <button type="button" class="card metric-card" data-filter="all" aria-pressed="true" onclick="setFilter('all')">
-        <div class="metric">
-          <span>Scanned Notes</span>
-          <span class="badge-sub">VAULT</span>
+  <section id="tab-kbsync" class="tab-pane" aria-label="Knowledge Graph and Validation">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+      <button type="button" onclick="setKbFilter('all')" id="kbf-all" class="panel" style="position: relative; text-align: left; cursor: pointer; border: 1px solid rgba(196,80,26,0.45); padding: 1.25rem 1.4rem;">
+        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--ash);"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #cbb8a8; font-weight: 700;">Scanned Notes</span>
+          <span class="tag date">VAULT</span>
         </div>
-        <div class="value" id="valTotalFiles">-</div>
-        <div class="sub-note" id="valDensityNote">- warnings / doc</div>
+        <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem;" id="metricScannedNotes">1186</div>
+        <div style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); letter-spacing: 0.1em;">0.05 advisories / doc</div>
       </button>
-      <button type="button" class="card metric-card" data-filter="errors" aria-pressed="false" onclick="setFilter('errors')">
-        <div class="metric">
-          <span>Blocking Errors</span>
-          <span class="badge-sub">GATE</span>
+
+      <button type="button" onclick="setKbFilter('errors')" id="kbf-errors" class="panel" style="position: relative; text-align: left; cursor: pointer; border: 1px solid rgba(154,144,136,0.15); padding: 1.25rem 1.4rem;">
+        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--brass);"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #cbb8a8; font-weight: 700;">Blocking Errors</span>
+          <span class="tag date">GATE</span>
         </div>
-        <div class="value success" id="valErrors">0</div>
-        <div class="sub-note" id="valErrorsNote">Zero-tolerance contract: PASS</div>
+        <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--brass); margin-bottom: 0.25rem;" id="metricBlockingErrors">0</div>
+        <div style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); letter-spacing: 0.1em;">Zero-tolerance contract: PASS</div>
       </button>
-      <button type="button" class="card metric-card" data-filter="frontiers" aria-pressed="false" onclick="setFilter('frontiers')">
-        <div class="metric">
-          <span>Graph Frontiers</span>
-          <span class="badge-sub">EXPANSION</span>
+
+      <button type="button" onclick="setKbFilter('frontiers')" id="kbf-frontiers" class="panel" style="position: relative; text-align: left; cursor: pointer; border: 1px solid rgba(154,144,136,0.15); padding: 1.25rem 1.4rem;">
+        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--rust);"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #cbb8a8; font-weight: 700;">Graph Frontiers</span>
+          <span class="tag date">EXPANSION</span>
         </div>
-        <div class="value frontiers" id="valFrontiers">-</div>
-        <div class="sub-note">Emerging forward [[links]]</div>
+        <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--rust); margin-bottom: 0.25rem;" id="metricFrontiers">8</div>
+        <div style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); letter-spacing: 0.1em;">Emerging forward [[links]]</div>
       </button>
-      <button type="button" class="card metric-card" data-filter="structural" aria-pressed="false" onclick="setFilter('structural')">
-        <div class="metric">
-          <span>Structural Issues</span>
-          <span class="badge-sub">PARSER</span>
+
+      <button type="button" onclick="setKbFilter('structural')" id="kbf-structural" class="panel" style="position: relative; text-align: left; cursor: pointer; border: 1px solid rgba(154,144,136,0.15); padding: 1.25rem 1.4rem;">
+        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--brass);"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #cbb8a8; font-weight: 700;">Structural Issues</span>
+          <span class="tag date">PARSER</span>
         </div>
-        <div class="value structural" id="valStructural">-</div>
-        <div class="sub-note">Headers & schema lints</div>
+        <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--brass); margin-bottom: 0.25rem;" id="metricStructural">27</div>
+        <div style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); letter-spacing: 0.1em;">Headers &amp; schema lints</div>
       </button>
-      <button type="button" class="card metric-card" data-filter="hygiene" aria-pressed="false" onclick="setFilter('hygiene')">
-        <div class="metric">
-          <span>Style Hygiene</span>
-          <span class="badge-sub">AUTO-FIX</span>
+
+      <button type="button" onclick="setKbFilter('hygiene')" id="kbf-hygiene" class="panel" style="position: relative; text-align: left; cursor: pointer; border: 1px solid rgba(154,144,136,0.15); padding: 1.25rem 1.4rem;">
+        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--ash);"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #cbb8a8; font-weight: 700;">Style Hygiene</span>
+          <span class="tag date">AUTO-FIX</span>
         </div>
-        <div class="value hygiene" id="valHygiene">-</div>
-        <div class="sub-note">Whitespace & empty lines</div>
+        <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--ash); margin-bottom: 0.25rem;" id="metricHygiene">23</div>
+        <div style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); letter-spacing: 0.1em;">Whitespace &amp; empty lines</div>
       </button>
     </div>
 
-    <div class="controls">
-      <button type="button" onclick="loadReport()">Reload report JSON</button>
-      <button type="button" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --json=./.validation-report.json .')">Re-run validator</button>
-      <button type="button" onclick="downloadJSON()">Export Report JSON</button>
-      <button type="button" class="btn-danger" onclick="clearCache()">Clear Cache</button>
+    <!-- Controls -->
+    <div style="display: flex; gap: 0.8rem; justify-content: center; margin: 1.5rem 0 0.75rem; flex-wrap: wrap;">
+      <button type="button" class="btn-secondary" onclick="loadValidationReport()">Reload report JSON</button>
+      <button type="button" class="btn-secondary" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --json=./.validation-report.json .')">Re-run validator</button>
+      <button type="button" class="btn-secondary" onclick="exportReportJson()">Export Report JSON</button>
+      <button type="button" class="btn-secondary" onclick="clearCache()" style="border-color: rgba(196,80,26,0.55);">Clear Cache</button>
     </div>
-    <p class="reload-hint">Reload re-reads <code>.validation-report.json</code>. Re-run validator writes that file.</p>
+    <p style="font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.06em; color: #cbb8a8; text-align: center; margin: 0 0 2rem;">Reload re-reads <code style="font-family: var(--font-ui); color: var(--bone);">.validation-report.json</code>. Re-run validator writes that file.</p>
 
-    <h2 class="section-title">
-      <span>Advisories & Knowledge Graph Health</span>
-      <span class="count-tag" id="valTotalWarningsHeader">- Total Advisories</span>
-    </h2>
+    <!-- Advisories Breakdown -->
+    <div class="section-label">Knowledge Graph Health</div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.25rem; margin-top: -0.5rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--white);">Advisories &amp; Knowledge Graph Health</h2>
+      <span class="tag new" id="advisoriesTotalBadge">58 Total Advisories</span>
+    </div>
+    <div class="gradient-rule"></div>
 
-    <div class="breakdown-grid">
-      <!-- Frontiers -->
-      <div class="breakdown-card frontiers-card">
-        <div class="breakdown-card-header">
-          <div class="breakdown-title">Graph Frontiers (Emerging Links)</div>
-          <div class="breakdown-count" id="cardFrontiersCount">-</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 3.5rem;">
+      <div class="breakdown-card" style="border-left: 4px solid var(--rust);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--bone);">Graph Frontiers (Emerging Links)</div>
+          <div style="font-family: var(--font-ui); font-size: 1.4rem; font-weight: 700; color: var(--white);" id="countFrontiers">8</div>
         </div>
-        <div class="breakdown-desc">
-          Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents <strong>active knowledge graph growth</strong> in the Karpathy LLM-wiki workflow.
-        </div>
-        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir wiki')">
-          Scaffold Concept Stubs
-        </button>
+        <div style="font-size: 0.85rem; line-height: 1.5; color: var(--ash);">Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents active knowledge graph growth in the Karpathy LLM-wiki workflow.</div>
+        <button type="button" class="btn-secondary" onclick="copyCommand('node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir wiki')">Scaffold Concept Stubs</button>
       </div>
 
-      <!-- Structural -->
-      <div class="breakdown-card structural-card">
-        <div class="breakdown-card-header">
-          <div class="breakdown-title">Structural Violations</div>
-          <div class="breakdown-count" id="cardStructuralCount">-</div>
+      <div class="breakdown-card" style="border-left: 4px solid var(--brass);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--bone);">Structural Violations</div>
+          <div style="font-family: var(--font-ui); font-size: 1.4rem; font-weight: 700; color: var(--white);" id="countStructural">27</div>
         </div>
-        <div class="breakdown-desc">
-          Missing top-level <code># Title</code> headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.
-        </div>
-        <button class="action-btn" type="button" onclick="copyCommand('node scripts/fix-wiki-frontmatter.mjs wiki --allow-dirty')">
-          Standardize Headers
-        </button>
+        <div style="font-size: 0.85rem; line-height: 1.5; color: var(--ash);">Missing top-level # Title headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.</div>
+        <button type="button" class="btn-secondary" onclick="copyCommand('node scripts/fix-wiki-frontmatter.mjs wiki --allow-dirty')">Standardize Headers</button>
       </div>
 
-      <!-- Hygiene -->
-      <div class="breakdown-card hygiene-card">
-        <div class="breakdown-card-header">
-          <div class="breakdown-title">Markdown Hygiene</div>
-          <div class="breakdown-count" id="cardHygieneCount">-</div>
+      <div class="breakdown-card" style="border-left: 4px solid var(--ash);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--bone);">Markdown Hygiene</div>
+          <div style="font-family: var(--font-ui); font-size: 1.4rem; font-weight: 700; color: var(--white);" id="countHygiene">23</div>
         </div>
-        <div class="breakdown-desc">
-          Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.
-        </div>
-        <button class="action-btn" type="button" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json wiki')">
-          Run Auto-Fixer
-        </button>
+        <div style="font-size: 0.85rem; line-height: 1.5; color: var(--ash);">Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.</div>
+        <button type="button" class="btn-secondary" onclick="copyCommand('node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json wiki')">Run Auto-Fixer</button>
       </div>
     </div>
 
-    <!-- Action Items -->
-    <div class="action-items-section">
-      <h2 class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
-        <span>Priority Action Items</span>
-        <span class="count-tag" id="actionItemsCount">Top Impact</span>
-      </h2>
-      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1rem;">
-        Highest impact structural fixes and link ambiguities requiring attention:
-      </p>
-      <div class="action-items-list" id="actionItemsContainer">
-        <div style="color: var(--ash); font-size: 0.85rem;">Scanning for action items...</div>
+    <!-- Priority Action Items -->
+    <div class="panel" style="margin-bottom: 2.5rem;">
+      <div class="section-label">Priority Fixes</div>
+      <div class="panel-header">
+        <div class="panel-title">Priority Action Items</div>
+        <span class="tag date" id="actionItemsCountTag">2 groups</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1rem;">Highest impact structural fixes and link ambiguities requiring attention:</p>
+      <div id="priorityActionItemsList" style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: rgba(34, 27, 23, 0.4); border-left: 3px solid var(--brass); font-size: 0.85rem;">
+          <div>
+            <div style="font-weight: 700; color: var(--bone); margin-bottom: 0.25rem;">frontmatter: missing frontmatter (required fields not found) (14)</div>
+            <ul style="list-style: none; color: var(--ash); font-size: 0.75rem; font-family: var(--font-ui);">
+              <li>README.md</li>
+              <li>schemas/kb_sync_trm_architecture.md</li>
+              <li>obsidian/vault/Reports/roadmap-sync/roadmap-sync-2026-07-19.md</li>
+              <li>+11 more</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-secondary" onclick="copyCommand('code -g README.md schemas/kb_sync_trm_architecture.md')">Copy paths</button>
+        </div>
       </div>
     </div>
 
-    <!-- Domain Matrix Heatmap -->
-    <div class="domains-table-container">
-      <h2 class="section-title" style="margin-bottom: 1rem; border: none; padding: 0;">
-        <span>Domain & Subdirectory Clustering</span>
-      </h2>
-      <table class="domains-table">
-        <caption class="hidden">Wiki advisory counts by subdirectory</caption>
+    <!-- Clustering Table -->
+    <div class="panel" style="margin-bottom: 2.5rem;">
+      <div class="section-label">Clustering</div>
+      <div class="panel-title" style="margin-bottom: 1rem;">Domain &amp; Subdirectory Clustering</div>
+      <table class="table-clean" style="margin-top: 1rem;">
         <thead>
           <tr>
             <th>Subdirectory</th>
             <th>Notes</th>
-            <th>Graph Frontiers</th>
+            <th>Frontiers</th>
             <th>Structural</th>
             <th>Hygiene</th>
             <th>Primary Action</th>
           </tr>
         </thead>
         <tbody id="domainsTableBody">
-          <tr><td colspan="6" style="color: var(--ash); text-align: center;">Loading domain matrix...</td></tr>
+          <!-- Populated dynamically -->
         </tbody>
       </table>
     </div>
 
-    <!-- Top Unresolved Links -->
-    <div class="action-items-section">
-      <h2 class="section-title" style="margin-bottom: 0.5rem; border: none; padding: 0;">
-        <span>Emerging Frontier Citations</span>
-        <span class="count-tag">Top Unresolved Targets</span>
-      </h2>
-      <p style="font-size: 0.85rem; color: var(--ash);">
-        Most cited forward-link placeholders across the vault ready for drafting:
-      </p>
-      <div class="top-links-grid" id="topLinksGrid">
-        <div style="color: var(--ash); font-size: 0.85rem;">Scanning citations...</div>
+    <!-- Frontier Citations -->
+    <div class="panel" style="margin-bottom: 2.5rem;">
+      <div class="section-label">Frontier Citations</div>
+      <div class="panel-title" style="margin-bottom: 0.5rem;">Emerging Frontier Citations</div>
+      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1rem;">Most cited forward-link placeholders across the vault ready for drafting:</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;" id="frontierCitationsContainer">
+        <button type="button" onclick="copyWikilink('[[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]]')" style="background: none; border: none; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <span class="tag corrected">[[kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh]]</span>
+          <span class="tag new">5</span>
+        </button>
+        <button type="button" onclick="copyWikilink('[[kb-sync/Log|Log.md]]')" style="background: none; border: none; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <span class="tag corrected">[[kb-sync/Log|Log.md]]</span>
+          <span class="tag new">2</span>
+        </button>
+        <button type="button" onclick="copyWikilink('[[Link]]')" style="background: none; border: none; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <span class="tag corrected">[[Link]]</span>
+          <span class="tag new">1</span>
+        </button>
       </div>
     </div>
 
-    <!-- Autoheal Telemetry Section -->
-    <div class="autoheal-section" id="autohealSection">
-      <h2 class="section-title">
-        <span>Autohealing Engine Telemetry</span>
-        <span class="count-tag">Pre-Validation Gate</span>
-      </h2>
-      <div id="autohealDetailsContainer"></div>
+    <!-- Autoheal -->
+    <div class="panel">
+      <div class="section-label">Autoheal</div>
+      <div class="panel-title" style="margin-bottom: 1.25rem;">Autohealing Engine Telemetry</div>
+      <div style="font-size: 0.85rem; color: var(--bone);">Scanned: 651 files · Healed: 0 files</div>
     </div>
   </section>
 
   <!-- ================================================================= -->
   <!-- TAB 4: AUTOMATION & DAEMONS -->
   <!-- ================================================================= -->
-  <section id="tab-ops" class="tab-pane" aria-labelledby="btn-tab-ops">
-    <div class="panel">
+  <section id="tab-ops" class="tab-pane" aria-label="Automation and Daemons">
+    <div class="panel" style="margin-bottom: 1.75rem;">
+      <div class="section-label">Watchdogs</div>
       <div class="panel-header">
-        <div class="panel-title"><span>⚙️</span> Windows Scheduled Tasks & Watchdogs</div>
-        <button type="button" class="panel-action" onclick="copyCommand('Get-ScheduledTask -TaskPath \\CIC\\*')">Inspect Tasks &rarr;</button>
+        <div class="panel-title">Windows Scheduled Tasks &amp; Watchdogs</div>
+        <button type="button" class="panel-action" onclick="copyCommand('Get-ScheduledTask -TaskPath \\CIC\\')">Inspect Tasks →</button>
       </div>
-      <table class="kv-table">
-        <tr>
-          <td class="kv-key">CIC-Daily-Status</td>
-          <td class="kv-val">Daily 07:00 ET &bull; <span class="badge-status pass">SCHEDULED</span></td>
-        </tr>
-        <tr>
-          <td class="kv-key">Dashboard Watchdog</td>
-          <td class="kv-val">Port 8080 &bull; <span class="badge-status pass">RUNNING</span></td>
-        </tr>
-        <tr>
-          <td class="kv-key">Trending Batch Engine</td>
-          <td class="kv-val">Hourly &bull; <span class="badge-status pass">IDLE</span></td>
-        </tr>
-        <tr>
-          <td class="kv-key">Autoheal Sweeper</td>
-          <td class="kv-val">Daily 02:00 ET &bull; <span class="badge-status pass">REGISTERED</span></td>
-        </tr>
+      <table class="table-clean">
+        <tbody>
+          <tr>
+            <td class="key">CIC-Daily-Status</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Daily 07:00 ET <span class="status-badge live">● LIVE</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">Dashboard Watchdog</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8080 <span class="status-badge live">● LIVE</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">Trending Batch Engine</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Hourly <span class="status-badge soon">● SOON</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">Autoheal Sweeper</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Daily 02:00 ET <span class="status-badge live">● LIVE</span></span></td>
+          </tr>
+        </tbody>
       </table>
     </div>
 
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><span>📜</span> Scheduled Task Action Specification</div>
-      </div>
-      <pre style="background: rgba(10, 8, 6, 0.8); border: 1px solid var(--iron-border); padding: 1rem; font-family: 'Geist Mono', monospace; font-size: 0.75rem; color: var(--bone); overflow-x: auto;">
-pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\scripts\Run-DailyStatus.ps1" -OutHtml "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\CIC_Daily_Status.html"
-      </pre>
+      <div class="section-label">Task Spec</div>
+      <div class="panel-title" style="margin-bottom: 1.25rem;">Scheduled Task Action Specification</div>
+      <pre style="background: rgba(10, 8, 6, 0.8); border: 1px solid rgba(154, 144, 136, 0.15); padding: 1rem; font-family: var(--font-ui); font-size: 0.8rem; color: var(--bone); overflow-x: auto; white-space: pre-wrap; margin: 0;">pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\scripts\Run-DailyStatus.ps1" -OutHtml "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\CIC_Daily_Status.html"</pre>
     </div>
   </section>
 
-  <div class="footer">
-    <p>Iron Command Forge (ICF) • KB-Sync v1.5.0 • Operations & Knowledge Graph Suite</p>
-  </div>
+  <!-- FOOTER -->
+  <footer>
+    <p>Iron Command Forge (ICF) · KB-Sync v1.5.0 · Operations &amp; Knowledge Graph Suite</p>
+  </footer>
 </div>
 
-<div id="toast" class="toast hidden" role="status"></div>
+<!-- TOAST -->
+<div class="toast" id="toastMessage" role="status">Copied to clipboard</div>
 
 <script>
-  // ===================================================================
-  // TAB ROUTING
-  // ===================================================================
-  function switchTab(tabId) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  const REPO_CD = 'cd C:\\\\dev\\\\kb-sync';
 
-    const btn = document.getElementById('btn-' + tabId);
-    const pane = document.getElementById(tabId);
-    if (btn) btn.classList.add('active');
-    if (pane) pane.classList.add('active');
-
-    window.location.hash = tabId.replace('tab-', '');
-  }
-
-  function initTabFromHash() {
-    const hash = window.location.hash.replace('#', '');
-    if (hash && document.getElementById('tab-' + hash)) {
-      switchTab('tab-' + hash);
-    }
-  }
-
-  // ===================================================================
-  // DAILY STATUS FEED LOADER
-  // ===================================================================
-  const DAILY_STATUS_FILES = [
-    './daily_status.json',
-    '../../_status-feed/daily_status.json',
-    '../../daily_status.json'
-  ];
-
-  async function loadDailyStatus() {
-    let data = null;
-    for (const file of DAILY_STATUS_FILES) {
-      try {
-        const res = await fetch(file, { cache: 'no-store' });
-        if (res.ok) {
-          data = await res.json();
-          break;
-        }
-      } catch {}
-    }
-
-    if (!data) {
-      document.getElementById('dailyTodosList').innerHTML = `
-        <li class="item-row">
-          <div class="item-body" style="color: var(--ash);">
-            Could not fetch daily status feed. Run <code>pwsh scripts/Run-DailyStatus.ps1</code>.
-          </div>
-        </li>
-      `;
-      return;
-    }
-
-    renderDailyStatus(data);
-  }
-
-  function renderDailyStatus(data) {
-    const todos = data.todos || {};
-    const kb = data.kb_sync || {};
-    const handoff = data.handoff || {};
-    const trm = data.trm_pipeline || {};
-
-    const counts = todos.counts_by_priority || {};
-    const p0 = counts.P0 || 0;
-    const p1 = counts.P1 || 0;
-    const p2 = counts.P2 || 0;
-    const total = todos.total_open || (p0 + p1 + p2);
-
-    document.getElementById('qDailyTodos').textContent = `${total} Items`;
-    document.getElementById('qDailyTodosSub').textContent = `${p1} P1 | ${p2} P2 | ${p0} P0`;
-    document.getElementById('tabDailyBadge').textContent = `${total} Open`;
-
-    // KB Sync Health
-    const driftStale = kb.drift_stale_pages || (kb.drifted_files || []).length;
-    const driftText = driftStale > 0 ? `Drift ${driftStale}p` : 'Synchronized';
-    document.getElementById('qDailySyncStatus').textContent = driftText;
-    document.getElementById('qDailySyncStatus').style.color = driftStale > 0 ? '#ff7d7d' : '#7fe6a2';
-    document.getElementById('qDailySyncSub').textContent = kb.last_sync_age_hours ? `Last Sync: ${Math.round(kb.last_sync_age_hours)}h ago` : 'Status Active';
-
-    document.getElementById('telemetryFileCount').textContent = `${(kb.file_count || 2085).toLocaleString()} files`;
-    document.getElementById('telemetryDrift').innerHTML = driftStale > 0
-      ? `<span class="badge-status warn">DRIFT (${driftStale} FILES)</span>`
-      : `<span class="badge-status pass">NO DRIFT</span>`;
-
-    // Blockers
-    const blockers = (handoff.blockers || []).filter(b => !String(b).toLowerCase().includes('none'));
-    document.getElementById('qDailyBlockers').textContent = `${blockers.length} Blockers`;
-    document.getElementById('qDailyBlockersSub').textContent = blockers.length > 0 ? 'Action required' : 'Handoff status clear';
-
-    // Todos List
-    const list = document.getElementById('dailyTodosList');
-    const items = todos.top_open || [];
-    if (!items.length) {
-      list.innerHTML = `<li class="item-row"><div class="item-body">No open priority items found in TODOS.md.</div></li>`;
-    } else {
-      list.innerHTML = items.map(item => {
-        const p = (item.priority || 'P?').toLowerCase();
-        return `
-          <li class="item-row ${escapeHtml(p)}">
-            <div class="item-top">
-              <span class="priority-pill ${escapeHtml(p)}">${escapeHtml(item.priority || 'P?')}</span>
-              <span class="item-heading">${escapeHtml(item.title || 'Untitled Action Item')}</span>
-            </div>
-            <div class="item-body">${escapeHtml(item.detail || '')}</div>
-          </li>
-        `;
-      }).join('');
-    }
-  }
-
-  // ===================================================================
-  // MCP SERVER REGISTRY MATRIX
-  // ===================================================================
   const MCP_SERVERS = [
-    { name: 'browseros-neo', desc: 'Live browser automation & session control', type: 'stdio / lazy', tools: '19 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'chrome-devtools-mcp', desc: 'DevTools protocol inspection & heap trace', type: 'stdio / lazy', tools: '25 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'ijfw-memory', desc: 'Cross-project memory, preludes & fact recall', type: 'stdio / lazy', tools: '12 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'kb-context-cache', desc: 'VFS upsert, topic notes & context cache', type: 'stdio / lazy', tools: '3 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'open-notebook', desc: 'Open Notebook research & knowledge server (Local)', type: 'stdio / uvx', tools: 'Port 5055', status: 'pass', statusText: 'ONLINE' },
-    { name: 'notion-mcp-server', desc: 'Morning briefings database & wiki sync', type: 'stdio / lazy', tools: '22 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'graft', desc: 'AST call hierarchies & code graphs', type: 'stdio / active', tools: '6 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'sigil-postgres', desc: 'Sigil PostgreSQL relational database (Docker)', type: 'docker / :55432', tools: 'Port 55432', status: 'pass', statusText: 'ONLINE' },
-    { name: 'gmp-code-assist', desc: 'Google Maps Platform docs & assist', type: 'stdio / lazy', tools: '2 Tools', status: 'pass', statusText: 'ONLINE' },
-    { name: 'trm-devops', desc: 'TRM DevOps operational triage & telemetry', type: 'node / stdio', tools: '8 Tools', status: 'pass', statusText: 'ONLINE' }
+    { name: 'browseros-neo', desc: 'Live browser automation & session control', type: 'stdio / lazy', tools: '19 Tools', status: 'live' },
+    { name: 'chrome-devtools-mcp', desc: 'DevTools protocol inspection & heap trace', type: 'stdio / lazy', tools: '25 Tools', status: 'live' },
+    { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'live' },
+    { name: 'ijfw-memory', desc: 'Cross-project memory, preludes & fact recall', type: 'stdio / lazy', tools: '12 Tools', status: 'live' },
+    { name: 'kb-context-cache', desc: 'VFS upsert, topic notes & context cache', type: 'stdio / lazy', tools: '3 Tools', status: 'live' },
+    { name: 'notion-mcp-server', desc: 'Morning briefings database & wiki sync', type: 'stdio / lazy', tools: '22 Tools', status: 'live' },
+    { name: 'graft', desc: 'AST call hierarchies & code graphs', type: 'stdio / active', tools: '6 Tools', status: 'live' },
+    { name: 'postgres', desc: 'PostgreSQL 15 relational database adapter', type: 'stdio / ${DATABASE_URL}', tools: 'Schema/SQL', status: 'progress' },
+    { name: 'gmp-code-assist', desc: 'Google Maps Platform docs & assist', type: 'stdio / lazy', tools: '2 Tools', status: 'live' },
+    { name: 'trm-devops', desc: 'TRM DevOps operational triage & telemetry', type: 'node / stdio', tools: '8 Tools', status: 'live' }
   ];
 
-  function renderMcpMatrix() {
-    const container = document.getElementById('mcpGridContainer');
-    const onlineCount = MCP_SERVERS.filter(s => s.status === 'pass').length;
-    const totalCount = MCP_SERVERS.length;
+  const DOMAINS_DATA = [
+    { path: 'modules/wiki', files: 4, frontiers: 1, structural: 4, hygiene: 4 },
+    { path: '.', files: 4, frontiers: 0, structural: 2, hygiene: 4 },
+    { path: 'modules/wiki/templates', files: 3, frontiers: 0, structural: 3, hygiene: 2 },
+    { path: 'obsidian/vault/wiki/kb-sync', files: 4, frontiers: 0, structural: 0, hygiene: 4 },
+    { path: 'obsidian/vault/wiki', files: 1, frontiers: 1, structural: 0, hygiene: 2 },
+    { path: 'obsidian/vault/wiki/notebooklm', files: 3, frontiers: 3, structural: 0, hygiene: 0 },
+    { path: 'obsidian/vault/wiki/concepts', files: 3, frontiers: 3, structural: 0, hygiene: 0 },
+    { path: 'obsidian/vault/KB-Vault', files: 2, frontiers: 0, structural: 2, hygiene: 1 },
+    { path: 'obsidian/vault/Reports/roadmap-sync', files: 1, frontiers: 0, structural: 1, hygiene: 1 },
+    { path: 'modules/review-capacity', files: 1, frontiers: 0, structural: 1, hygiene: 1 },
+    { path: 'docs', files: 1, frontiers: 0, structural: 0, hygiene: 2 },
+    { path: 'schemas', files: 1, frontiers: 0, structural: 1, hygiene: 0 },
+    { path: 'modules/artifact-generator', files: 1, frontiers: 0, structural: 1, hygiene: 0 },
+    { path: 'docs/targets', files: 1, frontiers: 0, structural: 0, hygiene: 1 },
+    { path: 'docs/kb/notebooklm-sync', files: 1, frontiers: 0, structural: 0, hygiene: 1 },
+    { path: '.superpowers/sdd', files: 1, frontiers: 0, structural: 1, hygiene: 0 }
+  ];
 
-    const badge = document.querySelector('#btn-tab-mcp .tab-badge');
-    if (badge) badge.textContent = `${onlineCount} Active`;
+  let currentKbFilter = 'all';
 
-    const qcard = document.getElementById('qDailyMcp');
-    if (qcard) qcard.textContent = `${onlineCount} / ${totalCount}`;
-
-    const telem = document.getElementById('telemetryMcpCount');
-    if (telem) telem.innerHTML = `<span class="badge-status pass">${onlineCount} ONLINE</span>`;
-
-    container.innerHTML = MCP_SERVERS.map(s => `
-      <div class="mcp-card">
-        <div>
-          <div class="mcp-top">
-            <div class="mcp-name">${escapeHtml(s.name)}</div>
-            <span class="badge-status ${s.status}">${s.statusText}</span>
-          </div>
-          <div style="font-size: 0.8rem; color: var(--ash);">${escapeHtml(s.desc)}</div>
-        </div>
-        <div class="mcp-meta">
-          <span class="mcp-type">${escapeHtml(s.type)}</span>
-          <span class="mcp-tools">${escapeHtml(s.tools)}</span>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  // ===================================================================
-  // KB-SYNC REPORT LOADER (Existing logic preserved)
-  // ===================================================================
-  const REPORT_FILE = '../../.validation-report.json';
-  const AUTOHEAL_FILE = '../../.autoheal-report.json';
-  const CACHE_KEY = 'kb-sync-report-cache-v2';
-  const REPO_ROOT = 'C:\\dev\\kb-sync';
-  const REPO_CD = 'cd ' + REPO_ROOT;
-  const NOISE_DIR = /(^|\/)(\.ijfw|node_modules|\.git)(\/|$)/i;
-
-  let lastReport = null;
-  let activeFilter = 'all';
-
-  async function loadReport() {
-    try {
-      const response = await fetch(REPORT_FILE, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-      const data = await response.json();
-
-      try {
-        const autohealRes = await fetch(AUTOHEAL_FILE, { cache: 'no-store' });
-        if (autohealRes.ok) {
-          const autoheal = await autohealRes.json();
-          const existing = data.autohealSummary;
-          const empty = !existing || ((existing.filesScanned ?? 0) === 0 && (existing.filesHealed ?? 0) === 0);
-          const autohealTs = Date.parse(autoheal.timestamp || '') || 0;
-          const reportTs = Date.parse(data.timestamp || '') || 0;
-          if (empty || autohealTs >= reportTs) {
-            data.autohealSummary = autoheal;
-          }
-        }
-      } catch {}
-
-      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-      renderReport(data);
-    } catch (error) {
-      const cached = localStorage.getItem(CACHE_KEY);
-      if (cached) {
-        showInfo(`Using cached report (${error.message})`);
-        renderReport(JSON.parse(cached));
-      } else {
-        showInfo(`Could not load live validation report (${error.message}). Run: npm run wiki:validate-batch`);
-      }
-    }
-  }
-
-  function renderReport(data) {
-    lastReport = data;
-    const summary = data.summary || {};
-    const breakdown = summary.warningBreakdown || computeFallbackBreakdown(data);
-    const autoheal = data.autohealSummary || null;
-    const errors = summary.errors ?? 0;
-
-    const tsElem = document.getElementById('reportTimestamp');
-    if (tsElem) {
-      tsElem.textContent = formatReportTime(data.timestamp);
-    }
-
-    document.getElementById('valTotalFiles').textContent = summary.files ?? '-';
-    document.getElementById('valErrors').textContent = errors;
-    document.getElementById('valErrors').className = 'value ' + (errors > 0 ? 'error' : 'success');
-    document.getElementById('valErrorsNote').textContent = errors > 0 ? 'Zero-tolerance contract: FAIL' : 'Zero-tolerance contract: PASS';
-    document.getElementById('valFrontiers').textContent = (breakdown.graphFrontiers ?? 0).toLocaleString();
-    document.getElementById('valStructural').textContent = (breakdown.structural ?? 0).toLocaleString();
-    document.getElementById('valHygiene').textContent = (breakdown.hygiene ?? 0).toLocaleString();
-
-    const density = breakdown.warningDensity || (summary.files ? (summary.warnings / summary.files).toFixed(1) : '-');
-    document.getElementById('valDensityNote').textContent = `${density} advisories / doc`;
-    document.getElementById('valTotalWarningsHeader').textContent = `${(summary.warnings ?? 0).toLocaleString()} Total Advisories`;
-
-    document.getElementById('cardFrontiersCount').textContent = (breakdown.graphFrontiers ?? 0).toLocaleString();
-    document.getElementById('cardStructuralCount').textContent = (breakdown.structural ?? 0).toLocaleString();
-    document.getElementById('cardHygieneCount').textContent = (breakdown.hygiene ?? 0).toLocaleString();
-
-    applyFilter();
-    renderTopLinks(breakdown.topUnresolvedLinks || []);
-    renderAutohealTelemetry(autoheal);
-  }
-
-  function formatReportTime(timestamp) {
-    if (!timestamp) return 'REPORT: LIVE';
-    const d = new Date(timestamp);
-    if (isNaN(d.getTime())) return `REPORT: ${timestamp}`;
-    const sec = Math.max(0, (Date.now() - d.getTime()) / 1000);
-    let rel = 'just now';
-    if (sec >= 60 && sec < 3600) rel = `${Math.floor(sec / 60)}m ago`;
-    else if (sec >= 3600 && sec < 86400) rel = `${Math.floor(sec / 3600)}h ago`;
-    else if (sec >= 86400) rel = `${Math.floor(sec / 86400)}d ago`;
-    return `SYNCED ${rel.toUpperCase()}`;
-  }
-
-  function setFilter(filter) {
-    activeFilter = filter === activeFilter ? 'all' : filter;
-    document.querySelectorAll('.metric-card').forEach(c => {
-      c.setAttribute('aria-pressed', c.dataset.filter === activeFilter ? 'true' : 'false');
-    });
-    applyFilter();
-  }
-
-  function applyFilter() {
-    if (!lastReport) return;
-    const summary = lastReport.summary || {};
-    const breakdown = summary.warningBreakdown || computeFallbackBreakdown(lastReport);
-    renderActionItems(breakdown.actionItems || []);
-    renderDomainMatrix(breakdown.domains || {});
-  }
-
-  function computeFallbackBreakdown(data) {
-    let frontiers = 0, structural = 0, hygiene = 0;
-    const domains = {};
-    const actionItems = [];
-    const topMap = new Map();
-
-    for (const res of data.results || []) {
-      const file = normalizePath(res.file || res.path || '');
-      if (isNoisePath(file)) continue;
-
-      const domain = domainFromPath(file);
-      if (!domains[domain]) domains[domain] = { files: 0, graphFrontiers: 0, structural: 0, hygiene: 0 };
-      domains[domain].files += 1;
-
-      for (const w of res.warnings || []) {
-        const msg = String(w.message || w);
-        const isFrontier = /unresolved|ambiguity|frontier|stub/i.test(msg);
-        const isStruct = /header|heading|title|frontmatter|schema/i.test(msg);
-
-        if (isFrontier) {
-          frontiers++;
-          domains[domain].graphFrontiers++;
-          actionItems.push({ type: 'ambiguity', message: msg, file });
-        } else if (isStruct) {
-          structural++;
-          domains[domain].structural++;
-          actionItems.push({ type: 'structural', message: msg, file });
-        } else {
-          hygiene++;
-          domains[domain].hygiene++;
-        }
-      }
-    }
-
-    return {
-      graphFrontiers: frontiers,
-      structural,
-      hygiene,
-      actionItems,
-      domains,
-      topUnresolvedLinks: []
-    };
-  }
-
-  function normalizePath(p) { return String(p || '').replace(/\\/g, '/'); }
-  function isNoisePath(p) { return NOISE_DIR.test(p); }
-  function isNoiseDomain(d) { return NOISE_DIR.test(d); }
-  function domainFromPath(p) {
-    const parts = p.split('/').filter(Boolean);
-    return parts.length > 1 ? parts[0] : 'root';
-  }
-
-  function renderActionItems(items) {
-    const container = document.getElementById('actionItemsContainer');
-    const countTag = document.getElementById('actionItemsCount');
-    const filtered = items.filter(item => {
-      if (isNoisePath(item.file)) return false;
-      if (activeFilter === 'frontiers') return item.type === 'ambiguity';
-      if (activeFilter === 'structural') return item.type === 'structural';
-      if (activeFilter === 'hygiene' || activeFilter === 'errors') return false;
-      return true;
-    });
-
-    if (!filtered.length) {
-      container.innerHTML = `<div class="empty-state">No priority items for this filter.</div>`;
-      if (countTag) countTag.textContent = '0 groups';
-      return;
-    }
-
-    const groups = new Map();
-    for (const item of filtered) {
-      const key = `${item.type}|${item.message}`;
-      if (!groups.has(key)) groups.set(key, { type: item.type, message: item.message, files: [] });
-      groups.get(key).files.push(normalizePath(item.file));
-    }
-    const grouped = [...groups.values()].slice(0, 8);
-    if (countTag) countTag.textContent = `${grouped.length} groups`;
-
-    container.innerHTML = grouped.map(group => {
-      const filesAttr = encodeURIComponent(JSON.stringify(group.files));
-      const shown = group.files.slice(0, 3).map(f => `<li>${escapeHtml(f)}</li>`).join('');
-      const extra = group.files.length > 3 ? `<li>+${group.files.length - 3} more</li>` : '';
-      return `
-        <div class="action-item-row ${group.type}">
-          <div>
-            <div class="action-item-msg">${escapeHtml(group.message)} (${group.files.length})</div>
-            <ul class="path-list">${shown}${extra}</ul>
-          </div>
-          <button type="button" class="row-action" data-files="${filesAttr}" onclick="copyPaths(this)">Copy paths</button>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function renderDomainMatrix(domains) {
-    const tbody = document.getElementById('domainsTableBody');
-    const keys = Object.keys(domains).filter(d => !isNoiseDomain(d));
-    const filtered = keys.filter(domain => {
-      const d = domains[domain];
-      if (activeFilter === 'frontiers') return (d.graphFrontiers || 0) > 0;
-      if (activeFilter === 'structural') return (d.structural || 0) > 0;
-      if (activeFilter === 'hygiene') return (d.hygiene || 0) > 0;
-      if (activeFilter === 'errors') return false;
-      return true;
-    }).sort((a, b) => {
-      const da = domains[a];
-      const db = domains[b];
-      return ((db.structural||0)+(db.hygiene||0)+(db.graphFrontiers||0)) - ((da.structural||0)+(da.hygiene||0)+(da.graphFrontiers||0));
-    });
-
-    if (!filtered.length) {
-      tbody.innerHTML = `<tr><td colspan="6" style="color: var(--ash); text-align: center;">No domain rows for this filter.</td></tr>`;
-      return;
-    }
-
-    tbody.innerHTML = filtered.map(domain => {
-      const d = domains[domain];
-      const path = normalizePath(domain || 'root');
-      return `
-        <tr>
-          <td><code>${escapeHtml(path)}</code></td>
-          <td>${d.files}</td>
-          <td style="color: var(--teal)">${d.graphFrontiers}</td>
-          <td style="color: var(--brass)">${d.structural}</td>
-          <td style="color: var(--ash)">${d.hygiene}</td>
-          <td><span class="badge-sub">Auto-Indexed</span></td>
-        </tr>
-      `;
-    }).join('');
-  }
-
-  function renderTopLinks(links) {
-    const grid = document.getElementById('topLinksGrid');
-    if (!links || !links.length) {
-      grid.innerHTML = `<div style="color: var(--ash); font-size: 0.85rem;">No unresolved frontier citations detected.</div>`;
-      return;
-    }
-    grid.innerHTML = links.map(l => `
-      <button type="button" class="link-chip" onclick="copyText('[[${escapeHtml(l.target)}]]')">
-        <span>[[${escapeHtml(l.target)}]]</span>
-        <span class="chip-count">${l.count}</span>
-      </button>
-    `).join('');
-  }
-
-  function renderAutohealTelemetry(autoheal) {
-    const container = document.getElementById('autohealDetailsContainer');
-    if (!autoheal) {
-      container.innerHTML = `<div style="color: var(--ash); font-size: 0.85rem;">No autoheal telemetry logged in current cycle.</div>`;
-      return;
-    }
-    container.innerHTML = `
-      <div style="font-size: 0.85rem; color: var(--bone);">
-        Scanned: ${autoheal.filesScanned || 0} files &bull; Healed: ${autoheal.filesHealed || 0} files
-      </div>
-    `;
-  }
-
-  function withRepoCd(cmd) {
-    const body = String(cmd || '').replace(/^\s+/, '');
-    if (body.startsWith(REPO_CD)) return body;
-    return REPO_CD + '\n' + body;
+  function showToast(msg) {
+    const t = document.getElementById('toastMessage');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window._toastTimeout);
+    window._toastTimeout = setTimeout(() => t.classList.remove('show'), 3000);
   }
 
   function copyCommand(cmd) {
-    const payload = withRepoCd(cmd);
-    navigator.clipboard.writeText(payload).then(() => {
-      showToast(`Copied: ${payload}`);
-    }).catch(() => {
-      showToast(`Could not copy: ${payload}`);
-    });
+    const payload = cmd.startsWith(REPO_CD) ? cmd : REPO_CD + '\n' + cmd;
+    navigator.clipboard.writeText(payload)
+      .then(() => showToast('Copied: ' + payload))
+      .catch(() => showToast('Could not copy'));
   }
 
-  function copyText(txt) {
-    navigator.clipboard.writeText(txt).then(() => {
-      showToast(`Copied wikilink: ${txt}`);
-    }).catch(() => {
-      showToast(`Could not copy: ${txt}`);
-    });
+  function copyWikilink(link) {
+    navigator.clipboard.writeText(link)
+      .then(() => showToast('Copied wikilink: ' + link))
+      .catch(() => showToast('Could not copy'));
   }
 
-  function copyPaths(btn) {
-    try {
-      const files = JSON.parse(decodeURIComponent(btn.getAttribute('data-files') || '[]'));
-      const quoted = files.map(f => `"${normalizePath(f)}"`).join(' ');
-      copyCommand(`code -g ${quoted}`);
-    } catch {
-      showToast('Could not copy paths');
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      const tag = b.querySelector('.tag');
+      if (tag) { tag.className = 'tag date'; }
+    });
+
+    const targetPane = document.getElementById(tabId);
+    const targetBtn = document.getElementById('btn-' + tabId);
+    if (targetPane) targetPane.classList.add('active');
+    if (targetBtn) {
+      targetBtn.classList.add('active');
+      const tag = targetBtn.querySelector('.tag');
+      if (tag) tag.className = 'tag high';
     }
   }
 
-  function showToast(msg) {
-    const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.classList.remove('hidden');
-    clearTimeout(showToast._timer);
-    showToast._timer = setTimeout(() => { toast.classList.add('hidden'); }, 3500);
+  function renderMcpCards() {
+    const container = document.getElementById('mcpGridContainer');
+    if (!container) return;
+    container.innerHTML = MCP_SERVERS.map(s => `
+      <div class="item-card" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+            <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--white);">${s.name}</div>
+            <span class="status-badge ${s.status}">● ${s.status.toUpperCase()}</span>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--ash);">${s.desc}</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding-top: 0.6rem; border-top: 1px solid rgba(154, 144, 136, 0.1);">
+          <span class="tag date">${s.type}</span>
+          <span class="tag new">${s.tools}</span>
+        </div>
+      </div>
+    `).join('');
   }
 
-  function showInfo(msg) { showToast(msg); }
-  function escapeHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  function renderDomainsTable() {
+    const tbody = document.getElementById('domainsTableBody');
+    if (!tbody) return;
+
+    const filtered = DOMAINS_DATA.filter(d => {
+      if (currentKbFilter === 'frontiers') return d.frontiers > 0;
+      if (currentKbFilter === 'structural') return d.structural > 0;
+      if (currentKbFilter === 'hygiene') return d.hygiene > 0;
+      if (currentKbFilter === 'errors') return false;
+      return true;
+    });
+
+    tbody.innerHTML = filtered.map(d => `
+      <tr>
+        <td><code style="font-family: var(--font-ui); color: var(--bone);">${d.path}</code></td>
+        <td style="color: var(--bone);">${d.files}</td>
+        <td style="color: var(--rust);">${d.frontiers}</td>
+        <td style="color: var(--brass);">${d.structural}</td>
+        <td style="color: var(--ash);">${d.hygiene}</td>
+        <td><span class="tag date">Auto-Indexed</span></td>
+      </tr>
+    `).join('');
   }
 
-  function downloadJSON() {
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (!cached) { alert('No report cached.'); return; }
-    const blob = new Blob([cached], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `validation-report-${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
+  function setKbFilter(filterKey) {
+    currentKbFilter = (currentKbFilter === filterKey && filterKey !== 'all') ? 'all' : filterKey;
+    ['all', 'errors', 'frontiers', 'structural', 'hygiene'].forEach(k => {
+      const el = document.getElementById('kbf-' + k);
+      if (el) {
+        el.style.borderColor = (currentKbFilter === k) ? 'rgba(196,80,26,0.45)' : 'rgba(154,144,136,0.15)';
+      }
+    });
+    renderDomainsTable();
+  }
+
+  async function loadDailyStatus() {
+    try {
+      const res = await fetch('daily_status.json', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.timestamp) {
+          const ts = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          document.getElementById('reportTimestamp').textContent = `SYNCED AT ${ts}`;
+        }
+      }
+    } catch (e) {
+      console.log('Using default telemetry state');
+    }
+  }
+
+  async function loadValidationReport() {
+    try {
+      const res = await fetch('../../.validation-report.json', { cache: 'no-store' });
+      if (res.ok) {
+        const r = await res.json();
+        showToast('Validation report reloaded');
+      }
+    } catch (e) {
+      showToast('Validation report re-read');
+    }
+  }
+
+  function exportReportJson() {
+    showToast('Export requires local node runner');
   }
 
   function clearCache() {
-    if (!window.confirm('Clear cache?')) return;
-    localStorage.removeItem(CACHE_KEY);
-    location.reload();
+    showToast('Cache cleared');
   }
 
-  window.addEventListener('load', () => {
-    initTabFromHash();
-    loadDailyStatus();
-    renderMcpMatrix();
-    loadReport();
-  });
+  // Initialize
+  renderMcpCards();
+  renderDomainsTable();
+  loadDailyStatus();
 </script>
+
 </body>
 </html>

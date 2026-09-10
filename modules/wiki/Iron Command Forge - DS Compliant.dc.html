@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/cast-iron-charlie-design-system-019de132-e506-71df-a7ae-fb03115c075e/colors_and_type.css">
+  <script src="_ds/cast-iron-charlie-design-system-019de132-e506-71df-a7ae-fb03115c075e/_ds_bundle.js"></script>
+  <style>
+    body{margin:0}
+    a{color:var(--ember)}
+    a:hover{color:var(--white)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</helmet>
+<div style="font-family:'Libre Baskerville',serif;background:var(--black);color:var(--bone);min-height:100vh;padding:2rem;background-image:radial-gradient(circle at 50% 0%, rgba(196,80,26,0.08) 0%, transparent 60%)">
+<div style="max-width:1320px;margin:0 auto">
+
+  <!-- HEADER -->
+  <header style="margin-bottom:1.5rem;padding-bottom:1.5rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--white);letter-spacing:-0.02em">IRON COMMAND FORGE</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ash);margin-top:0.25rem">Unified Operations, Knowledge Graph, MCP Infrastructure &amp; Status Feed</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.StatusBadge" status="live" hint-size="auto,30px"></x-import>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--bone);padding:0.4rem 0.9rem;background:rgba(44,36,32,0.6);border:1px solid rgba(196,80,26,0.3)">SYNCED 1H AGO</div>
+    </div>
+  </header>
+  <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.GradientRule" hint-size="100%,1px"></x-import>
+
+  <!-- TAB NAV -->
+  <nav aria-label="Command Center Tabs" style="display:flex;gap:0.5rem;margin:1.5rem 0 2.5rem;flex-wrap:wrap">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+      <button type="button" onclick="{{ t.onClick }}" style="{{ t.style }}font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;border:1px solid transparent;padding:0.85rem 1.4rem;cursor:pointer;display:flex;align-items:center;gap:0.6rem">
+        <span>{{ t.label }}</span>
+        <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="{{ t.tagVariant }}" hint-size="auto,20px">{{ t.badge }}</x-import>
+      </button>
+    </sc-for>
+  </nav>
+
+  <!-- TAB 1: DAILY -->
+  <sc-if value="{{ showDaily }}" hint-placeholder-val="{{ true }}">
+  <section aria-label="Daily Command Feed" data-screen-label="Daily Command Feed" style="animation:fadeIn 0.25s ease-in-out">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem;margin-bottom:2.5rem">
+      <sc-for list="{{ dailyMetrics }}" as="m" hint-placeholder-count="5">
+        <div style="display:flex;flex-direction:column;gap:0.5rem">
+          <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.StatBlock" number="{{ m.value }}" label="{{ m.label }}" hint-size="100%,110px"></x-import>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;color:var(--ash);letter-spacing:0.1em;padding-left:1.5rem">{{ m.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:1.5rem">
+      <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem">
+        <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Action Items</x-import>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;margin-top:-1.5rem">
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white)">Top Open Action Items (TODOS.md)</div>
+          <button type="button" onclick="{{ copyTodosCmd }}" style="background:none;border:none;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);cursor:pointer;padding:0">Open TODOS →</button>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;margin:0;padding:0">
+          <sc-for list="{{ dailyTodos }}" as="item" hint-placeholder-count="4">
+            <li style="background:rgba(34,27,23,0.4);border:1px solid rgba(154,144,136,0.15);padding:1rem;border-left:3px solid {{ item.borderColor }}">
+              <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.35rem">
+                <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="{{ item.tagVariant }}" hint-size="auto,20px">{{ item.priority }}</x-import>
+                <span style="font-size:0.95rem;font-weight:700;color:var(--white)">{{ item.heading }}</span>
+              </div>
+              <div style="font-size:0.8rem;line-height:1.5;color:var(--ash);font-style:italic">{{ item.body }}</div>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem">
+        <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Telemetry</x-import>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;margin-top:-1.5rem">
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white)">Daily Telemetry Snapshot</div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember)">Refresh →</span>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:0.85rem">
+          <tbody>
+            <sc-for list="{{ telemetryRows }}" as="row" hint-placeholder-count="7">
+              <tr>
+                <td style="padding:0.65rem 0.4rem;border-bottom:1px solid rgba(154,144,136,0.1);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.15em;color:var(--ash);width:45%">{{ row.key }}</td>
+                <td style="padding:0.65rem 0.4rem;border-bottom:1px solid rgba(154,144,136,0.1);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:var(--bone);text-align:right">
+                  <sc-if value="{{ row.badge }}" hint-placeholder-val="{{ false }}">
+                    <span style="display:inline-flex;align-items:center;gap:0.5rem">{{ row.prefix }}<x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.StatusBadge" status="{{ row.status }}" hint-size="auto,26px"></x-import></span>
+                  </sc-if>
+                  <sc-if value="{{ row.plain }}" hint-placeholder-val="{{ false }}">{{ row.val }}</sc-if>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- TAB 2: MCP MATRIX -->
+  <sc-if value="{{ showMcp }}" hint-placeholder-val="{{ false }}">
+  <section aria-label="Unified MCP Matrix" data-screen-label="Unified MCP Matrix" style="animation:fadeIn 0.25s ease-in-out">
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Registry</x-import>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;margin-top:-1.5rem">
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white)">Unified MCP Server Health &amp; Tool Registry</div>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember)">Refresh →</span>
+      </div>
+      <p style="font-size:0.85rem;color:var(--ash);margin-bottom:1.25rem">Registered capability surfaces and live telemetry across Antigravity, Claude Code, and Repo-level MCP servers.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.25rem">
+        <sc-for list="{{ mcpServers }}" as="s" hint-placeholder-count="10">
+          <div style="background:rgba(34,27,23,0.5);border:1px solid rgba(154,144,136,0.15);padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem">
+                <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white)">{{ s.name }}</div>
+                <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.StatusBadge" status="{{ s.status }}" hint-size="auto,26px"></x-import>
+              </div>
+              <div style="font-size:0.8rem;color:var(--ash)">{{ s.desc }}</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid rgba(154,144,136,0.1)">
+              <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="date" hint-size="auto,20px">{{ s.type }}</x-import>
+              <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="new" hint-size="auto,20px">{{ s.tools }}</x-import>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- TAB 3: KB-SYNC -->
+  <sc-if value="{{ showKbsync }}" hint-placeholder-val="{{ false }}">
+  <section aria-label="Knowledge Graph and Validation" data-screen-label="Knowledge Graph and Validation" style="animation:fadeIn 0.25s ease-in-out">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem;margin-bottom:2rem">
+      <sc-for list="{{ kbMetrics }}" as="m" hint-placeholder-count="5">
+        <button type="button" onclick="{{ m.onClick }}" aria-pressed="{{ m.active }}" style="background:var(--forge);border:1px solid {{ m.borderColor }};padding:1.25rem 1.4rem;position:relative;text-align:left;font:inherit;color:inherit;cursor:pointer">
+          <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:{{ m.accent }}"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:#cbb8a8;font-weight:700">{{ m.label }}</span>
+            <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="date" hint-size="auto,18px">{{ m.tag }}</x-import>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:{{ m.valueColor }};margin-bottom:0.25rem">{{ m.value }}</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;color:var(--ash);letter-spacing:0.1em">{{ m.note }}</div>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;gap:0.8rem;justify-content:center;margin:1.5rem 0 0.75rem;flex-wrap:wrap">
+      <button type="button" onclick="{{ noopCmd }}" style="font-family:'Barlow Condensed',sans-serif;background:rgba(26,20,16,0.6);border:1px solid rgba(196,80,26,0.3);color:var(--ember);padding:0.65rem 1.25rem;cursor:pointer;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase">Reload report JSON</button>
+      <button type="button" onclick="{{ copyValidateCmd }}" style="font-family:'Barlow Condensed',sans-serif;background:rgba(26,20,16,0.6);border:1px solid rgba(196,80,26,0.3);color:var(--ember);padding:0.65rem 1.25rem;cursor:pointer;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase">Re-run validator</button>
+      <button type="button" onclick="{{ noopCmd }}" style="font-family:'Barlow Condensed',sans-serif;background:rgba(26,20,16,0.6);border:1px solid rgba(196,80,26,0.3);color:var(--ember);padding:0.65rem 1.25rem;cursor:pointer;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase">Export Report JSON</button>
+      <button type="button" onclick="{{ noopCmd }}" style="font-family:'Barlow Condensed',sans-serif;background:rgba(26,20,16,0.6);border:1px solid rgba(196,80,26,0.55);color:var(--ember);padding:0.65rem 1.25rem;cursor:pointer;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase">Clear Cache</button>
+    </div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.06em;color:#cbb8a8;text-align:center;margin:0 0 2rem">Reload re-reads <code style="font-family:'Barlow Condensed',sans-serif;color:var(--bone)">.validation-report.json</code>. Re-run validator writes that file.</p>
+
+    <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Knowledge Graph Health</x-import>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin:-1.5rem 0 1.25rem;color:var(--white);display:flex;justify-content:space-between;align-items:flex-end">
+      <span>Advisories &amp; Knowledge Graph Health</span>
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="new" hint-size="auto,20px">58 Total Advisories</x-import>
+    </h2>
+    <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.GradientRule" hint-size="100%,1px"></x-import>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin:1.5rem 0 3.5rem">
+      <sc-for list="{{ breakdownCards }}" as="c" hint-placeholder-count="3">
+        <div style="background:rgba(26,20,16,0.6);border:1px solid rgba(154,144,136,0.12);padding:1.75rem;border-left:4px solid {{ c.accent }};display:flex;flex-direction:column;gap:1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--bone)">{{ c.title }}</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;color:var(--white)">{{ c.count }}</div>
+          </div>
+          <div style="font-size:0.85rem;line-height:1.5;color:var(--ash)">{{ c.desc }}</div>
+          <button type="button" onclick="{{ c.onClick }}" style="font-family:'Barlow Condensed',sans-serif;background:rgba(44,36,32,0.6);border:1px solid rgba(196,80,26,0.3);color:var(--ember);padding:0.65rem 1rem;min-height:44px;cursor:pointer;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;text-align:center">{{ c.btnLabel }}</button>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem;margin-bottom:2.5rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Priority Fixes</x-import>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin:-1.5rem 0 0.5rem;color:var(--white);display:flex;justify-content:space-between;align-items:flex-end">
+        <span>Priority Action Items</span>
+        <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="date" hint-size="auto,20px">{{ actionItemsCountLabel }}</x-import>
+      </h2>
+      <p style="font-size:0.85rem;color:var(--ash);margin-bottom:1rem">Highest impact structural fixes and link ambiguities requiring attention:</p>
+      <sc-if value="{{ hasActionItems }}" hint-placeholder-val="{{ true }}">
+        <sc-for list="{{ actionItemsFiltered }}" as="g" hint-placeholder-count="2">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:rgba(34,27,23,0.4);border-left:3px solid {{ g.accent }};margin-bottom:0.5rem;font-size:0.85rem">
+            <div>
+              <div style="font-weight:700;color:var(--bone);margin-bottom:0.25rem">{{ g.message }}</div>
+              <ul style="list-style:none;color:var(--ash);font-size:0.75rem;font-family:'Barlow Condensed',sans-serif;margin:0;padding:0">
+                <sc-for list="{{ g.files }}" as="f" hint-placeholder-count="2"><li>{{ f }}</li></sc-for>
+              </ul>
+            </div>
+            <button type="button" onclick="{{ g.onClick }}" style="font-family:'Barlow Condensed',sans-serif;background:rgba(44,36,32,0.6);border:1px solid rgba(196,80,26,0.3);color:var(--ember);padding:0.4rem 0.8rem;cursor:pointer;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase">Copy paths</button>
+          </div>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{ hasNoActionItems }}" hint-placeholder-val="{{ false }}">
+        <div style="color:var(--ash);font-size:0.85rem;padding:1rem 0">No priority items for this filter.</div>
+      </sc-if>
+    </div>
+
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem;margin-bottom:2.5rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Clustering</x-import>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin:-1.5rem 0 1rem;color:var(--white)">Domain &amp; Subdirectory Clustering</h2>
+      <table style="width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.85rem">
+        <thead>
+          <tr>
+            <th style="padding:0.75rem 0.6rem;text-align:left;border-bottom:1px solid rgba(154,144,136,0.15);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:#cbb8a8;font-size:0.75rem">Subdirectory</th>
+            <th style="padding:0.75rem 0.6rem;text-align:left;border-bottom:1px solid rgba(154,144,136,0.15);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:#cbb8a8;font-size:0.75rem">Notes</th>
+            <th style="padding:0.75rem 0.6rem;text-align:left;border-bottom:1px solid rgba(154,144,136,0.15);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:#cbb8a8;font-size:0.75rem">Frontiers</th>
+            <th style="padding:0.75rem 0.6rem;text-align:left;border-bottom:1px solid rgba(154,144,136,0.15);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:#cbb8a8;font-size:0.75rem">Structural</th>
+            <th style="padding:0.75rem 0.6rem;text-align:left;border-bottom:1px solid rgba(154,144,136,0.15);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:#cbb8a8;font-size:0.75rem">Hygiene</th>
+            <th style="padding:0.75rem 0.6rem;text-align:left;border-bottom:1px solid rgba(154,144,136,0.15);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:#cbb8a8;font-size:0.75rem">Primary Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ domainRowsFiltered }}" as="d" hint-placeholder-count="15">
+            <tr>
+              <td style="padding:0.75rem 0.6rem;border-bottom:1px solid rgba(154,144,136,0.1)"><code style="font-family:'Barlow Condensed',sans-serif;color:var(--bone)">{{ d.path }}</code></td>
+              <td style="padding:0.75rem 0.6rem;border-bottom:1px solid rgba(154,144,136,0.1);color:var(--bone)">{{ d.files }}</td>
+              <td style="padding:0.75rem 0.6rem;border-bottom:1px solid rgba(154,144,136,0.1);color:var(--rust)">{{ d.frontiers }}</td>
+              <td style="padding:0.75rem 0.6rem;border-bottom:1px solid rgba(154,144,136,0.1);color:var(--brass)">{{ d.structural }}</td>
+              <td style="padding:0.75rem 0.6rem;border-bottom:1px solid rgba(154,144,136,0.1);color:var(--ash)">{{ d.hygiene }}</td>
+              <td style="padding:0.75rem 0.6rem;border-bottom:1px solid rgba(154,144,136,0.1)"><x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="date" hint-size="auto,18px">Auto-Indexed</x-import></td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem;margin-bottom:2.5rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Frontier Citations</x-import>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin:-1.5rem 0 0.5rem;color:var(--white)">Emerging Frontier Citations</h2>
+      <p style="font-size:0.85rem;color:var(--ash);margin-bottom:1rem">Most cited forward-link placeholders across the vault ready for drafting:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.6rem">
+        <sc-for list="{{ topLinks }}" as="l" hint-placeholder-count="3">
+          <button type="button" onclick="{{ l.onClick }}" style="background:none;border:none;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:0.4rem">
+            <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="corrected" hint-size="auto,20px">{{ l.label }}</x-import>
+            <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.Tag" variant="new" hint-size="auto,20px">{{ l.count }}</x-import>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Autoheal</x-import>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin:-1.5rem 0 1.25rem;color:var(--white)">Autohealing Engine Telemetry</h2>
+      <div style="font-size:0.85rem;color:var(--bone)">Scanned: 651 files · Healed: 0 files</div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- TAB 4: OPS -->
+  <sc-if value="{{ showOps }}" hint-placeholder-val="{{ false }}">
+  <section aria-label="Automation and Daemons" data-screen-label="Automation and Daemons" style="animation:fadeIn 0.25s ease-in-out">
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem;margin-bottom:1.75rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Watchdogs</x-import>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;margin-top:-1.5rem">
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white)">Windows Scheduled Tasks &amp; Watchdogs</div>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember)">Inspect Tasks →</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.85rem">
+        <tbody>
+          <sc-for list="{{ opsTasks }}" as="t" hint-placeholder-count="4">
+            <tr>
+              <td style="padding:0.65rem 0.4rem;border-bottom:1px solid rgba(154,144,136,0.1);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.15em;color:var(--ash);width:45%">{{ t.name }}</td>
+              <td style="padding:0.65rem 0.4rem;border-bottom:1px solid rgba(154,144,136,0.1);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:var(--bone);text-align:right">
+                <span style="display:inline-flex;align-items:center;gap:0.5rem">{{ t.schedule }} <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.StatusBadge" status="{{ t.status }}" hint-size="auto,26px"></x-import></span>
+              </td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+    <div style="background:var(--forge);border:1px solid rgba(154,144,136,0.15);padding:1.5rem">
+      <x-import component-from-global-scope="CastIronCharlieDesignSystem_019de1.SectionLabel" hint-size="auto,30px">Task Spec</x-import>
+      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white);margin:-1.5rem 0 1.25rem">Scheduled Task Action Specification</div>
+      <pre style="background:rgba(10,8,6,0.8);border:1px solid rgba(154,144,136,0.15);padding:1rem;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:var(--bone);overflow-x:auto;white-space:pre-wrap;margin:0">pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\scripts\Run-DailyStatus.ps1" -OutHtml "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\CIC_Daily_Status.html"</pre>
+    </div>
+  </section>
+  </sc-if>
+
+  <div style="text-align:center;padding-top:2.5rem;border-top:1px solid rgba(154,144,136,0.12);color:var(--ash);font-size:0.8rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.15em;margin-top:3rem">
+    <p style="margin:0">Iron Command Forge (ICF) · KB-Sync v1.5.0 · Operations &amp; Knowledge Graph Suite</p>
+  </div>
+</div>
+
+<sc-if value="{{ toastVisible }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position:fixed;right:1.25rem;bottom:1.25rem;z-index:50;padding:0.9rem 1.2rem;background:var(--iron);border:1px solid var(--ember);color:var(--white);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em">{{ toastMsg }}</div>
+</sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const REPO_CD = 'cd C:\\dev\\kb-sync';
+
+const TODOS_RAW = [
+  { priority: 'P1', heading: 'Wave D full conformance gate', body: 'code-level PASS only. Needs provisioned PostgreSQL 15+, `npm run migrate`, live E2E rerun (5 scenarios), live load test (assert p99 <200ms on list/search/trending/ratings), trending scheduler install verified.' },
+  { priority: 'P2', heading: 'TorqueQuery CIC observability hooks', body: '(deferred, low priority) — TorqueQuery determinism verified 2026-07-17. CIC could expose richer telemetry: per-query latency buckets, drift-hit vs. drift-miss counters, query-shape histogram.' },
+  { priority: 'P2', heading: 'xberg native build-out', body: '(low priority) — `toolforge-pdf` plugin ran on a mock stub (`xberg-mock.exe`) that returned placeholder text regardless of input; swapped to real `pdf-parse` text-layer extraction 2026-07-16.' },
+  { priority: 'P2', heading: 'Non-deterministic skillpack generators', body: '`SKILLPACK-VALIDATION.md`, `SKILLPACK-DEPENDENCY-GRAPH.md`, and `audit/COWORK-*.md` reorder their warning/log lines on every regen, so each pre-commit run that touches `skills/` shows noisy diffs.' }
+];
+
+const MCP_SERVERS_RAW = [
+  { name: 'browseros-neo', desc: 'Live browser automation & session control', type: 'stdio / lazy', tools: '19 Tools', status: 'live' },
+  { name: 'chrome-devtools-mcp', desc: 'DevTools protocol inspection & heap trace', type: 'stdio / lazy', tools: '25 Tools', status: 'live' },
+  { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'live' },
+  { name: 'ijfw-memory', desc: 'Cross-project memory, preludes & fact recall', type: 'stdio / lazy', tools: '12 Tools', status: 'live' },
+  { name: 'kb-context-cache', desc: 'VFS upsert, topic notes & context cache', type: 'stdio / lazy', tools: '3 Tools', status: 'live' },
+  { name: 'notion-mcp-server', desc: 'Morning briefings database & wiki sync', type: 'stdio / lazy', tools: '22 Tools', status: 'live' },
+  { name: 'graft', desc: 'AST call hierarchies & code graphs', type: 'stdio / active', tools: '6 Tools', status: 'live' },
+  { name: 'postgres', desc: 'PostgreSQL 15 relational database adapter', type: 'stdio / ${DATABASE_URL}', tools: 'Schema/SQL', status: 'progress' },
+  { name: 'gmp-code-assist', desc: 'Google Maps Platform docs & assist', type: 'stdio / lazy', tools: '2 Tools', status: 'live' },
+  { name: 'trm-devops', desc: 'TRM DevOps operational triage & telemetry', type: 'node / stdio', tools: '8 Tools', status: 'live' }
+];
+
+const DOMAINS_RAW = [
+  { path: 'modules/wiki', files: 4, frontiers: 1, structural: 4, hygiene: 4 },
+  { path: '.', files: 4, frontiers: 0, structural: 2, hygiene: 4 },
+  { path: 'modules/wiki/templates', files: 3, frontiers: 0, structural: 3, hygiene: 2 },
+  { path: 'obsidian/vault/wiki/kb-sync', files: 4, frontiers: 0, structural: 0, hygiene: 4 },
+  { path: 'obsidian/vault/wiki', files: 1, frontiers: 1, structural: 0, hygiene: 2 },
+  { path: 'obsidian/vault/wiki/notebooklm', files: 3, frontiers: 3, structural: 0, hygiene: 0 },
+  { path: 'obsidian/vault/wiki/concepts', files: 3, frontiers: 3, structural: 0, hygiene: 0 },
+  { path: 'obsidian/vault/KB-Vault', files: 2, frontiers: 0, structural: 2, hygiene: 1 },
+  { path: 'obsidian/vault/Reports/roadmap-sync', files: 1, frontiers: 0, structural: 1, hygiene: 1 },
+  { path: 'modules/review-capacity', files: 1, frontiers: 0, structural: 1, hygiene: 1 },
+  { path: 'docs', files: 1, frontiers: 0, structural: 0, hygiene: 2 },
+  { path: 'schemas', files: 1, frontiers: 0, structural: 1, hygiene: 0 },
+  { path: 'modules/artifact-generator', files: 1, frontiers: 0, structural: 1, hygiene: 0 },
+  { path: 'docs/targets', files: 1, frontiers: 0, structural: 0, hygiene: 1 },
+  { path: 'docs/kb/notebooklm-sync', files: 1, frontiers: 0, structural: 0, hygiene: 1 },
+  { path: '.superpowers/sdd', files: 1, frontiers: 0, structural: 1, hygiene: 0 }
+];
+
+const ACTION_ITEMS_RAW = [
+  { type: 'structural', message: 'frontmatter: missing frontmatter (required fields not found) (14)', files: ['README.md', 'schemas/kb_sync_trm_architecture.md', 'obsidian/vault/Reports/roadmap-sync/roadmap-sync-2026-07-19.md', '+11 more'] },
+  { type: 'structural', message: 'frontmatter: missing required field: title (1)', files: ['trm-research-gaps.md'] }
+];
+
+const TOP_LINKS_RAW = [
+  { target: 'kb-sync/notebooklm/kb-sync-nightly.sh|kb-sync-nightly.sh', count: 5 },
+  { target: 'kb-sync/Log|Log.md', count: 2 },
+  { target: 'Link', count: 1 }
+];
+
+const OPS_TASKS_RAW = [
+  { name: 'CIC-Daily-Status', schedule: 'Daily 07:00 ET', status: 'live' },
+  { name: 'Dashboard Watchdog', schedule: 'Port 8080', status: 'live' },
+  { name: 'Trending Batch Engine', schedule: 'Hourly', status: 'soon' },
+  { name: 'Autoheal Sweeper', schedule: 'Daily 02:00 ET', status: 'live' }
+];
+
+const EMBER = 'var(--ember)', RUST = 'var(--rust)', BRASS = 'var(--brass)', ASH = 'var(--ash)', BONE = 'var(--bone)', WHITE = 'var(--white)';
+
+class Component extends DCLogic {
+  state = { activeTab: 'kbsync', activeFilter: 'all', toastVisible: false, toastMsg: '' };
+
+  toast(msg) {
+    this.setState({ toastVisible: true, toastMsg: msg });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ toastVisible: false }), 3000);
+  }
+
+  copyCmd(cmd) {
+    const payload = cmd.startsWith(REPO_CD) ? cmd : REPO_CD + '\n' + cmd;
+    navigator.clipboard.writeText(payload).then(() => this.toast('Copied: ' + payload)).catch(() => this.toast('Could not copy'));
+  }
+
+  copyText(txt) {
+    navigator.clipboard.writeText(txt).then(() => this.toast('Copied wikilink: ' + txt)).catch(() => this.toast('Could not copy'));
+  }
+
+  renderVals() {
+    const { activeTab, activeFilter } = this.state;
+    const tabDefs = [
+      { id: 'daily', label: '01. Daily Command Feed', badge: '4 Open' },
+      { id: 'mcp', label: '02. Unified MCP Matrix', badge: '10 Active' },
+      { id: 'kbsync', label: '03. Knowledge Graph & Validation', badge: 'Vault Live' },
+      { id: 'ops', label: '04. Automation & Daemons', badge: '4 Registered' }
+    ];
+
+    const tabs = tabDefs.map(t => {
+      const active = t.id === activeTab;
+      return {
+        label: t.label,
+        badge: t.badge,
+        tagVariant: active ? 'high' : 'date',
+        onClick: () => this.setState({ activeTab: t.id }),
+        style: active ? `color:${WHITE};background:var(--forge);border-bottom:2px solid ${EMBER};` : `color:var(--ash);background:transparent;`
+      };
+    });
+
+    const dailyMetrics = [
+      { label: 'Open Priorities', value: '4 Items', sub: '1 P1 | 3 P2 | 0 P0' },
+      { label: 'MCP Health', value: '10 / 10', sub: '100% Servers Online' },
+      { label: 'KB-Sync Status', value: 'Drift 2p', sub: 'Last Sync: 2h ago' },
+      { label: 'Link & Graph Health', value: '100%', sub: 'Zero broken links' },
+      { label: 'Active Blockers', value: '0 Blockers', sub: 'Handoff status clear' }
+    ];
+
+    const dailyTodos = TODOS_RAW.map(t => ({
+      priority: t.priority, heading: t.heading, body: t.body,
+      borderColor: t.priority === 'P1' ? EMBER : BRASS,
+      tagVariant: t.priority === 'P1' ? 'high' : 'new'
+    }));
+
+    const telemetryRows = [
+      { key: 'MCP Infrastructure', badge: true, prefix: '10 ', status: 'live' },
+      { key: 'KB-Sync Drift', badge: true, prefix: '2 files ', status: 'progress' },
+      { key: 'Vault Files Indexed', plain: true, val: '2,094 files' },
+      { key: 'Wiki Link Integrity', badge: true, prefix: '100% ', status: 'live' },
+      { key: 'Memory Mirror Sync', badge: true, prefix: '', status: 'live' },
+      { key: 'TRM Vault Ingest', plain: true, val: 'OK (Active)' },
+      { key: 'Scheduled Task', plain: true, val: '\\CIC\\CIC-Daily-Status' }
+    ];
+
+    const mcpServers = MCP_SERVERS_RAW;
+
+    const kbMetricDefs = [
+      { id: 'all', label: 'Scanned Notes', tag: 'VAULT', value: '1186', note: '0.05 advisories / doc', valueColor: WHITE, accent: ASH },
+      { id: 'errors', label: 'Blocking Errors', tag: 'GATE', value: '0', note: 'Zero-tolerance contract: PASS', valueColor: BRASS, accent: BRASS },
+      { id: 'frontiers', label: 'Graph Frontiers', tag: 'EXPANSION', value: '8', note: 'Emerging forward [[links]]', valueColor: RUST, accent: RUST },
+      { id: 'structural', label: 'Structural Issues', tag: 'PARSER', value: '27', note: 'Headers & schema lints', valueColor: BRASS, accent: BRASS },
+      { id: 'hygiene', label: 'Style Hygiene', tag: 'AUTO-FIX', value: '23', note: 'Whitespace & empty lines', valueColor: ASH, accent: ASH }
+    ];
+    const kbMetrics = kbMetricDefs.map(m => ({
+      ...m,
+      active: m.id === activeFilter,
+      borderColor: m.id === activeFilter ? 'rgba(196,80,26,0.45)' : 'rgba(154,144,136,0.15)',
+      onClick: () => this.setState({ activeFilter: activeFilter === m.id ? 'all' : m.id })
+    }));
+
+    const breakdownCards = [
+      { title: 'Graph Frontiers (Emerging Links)', count: 8, accent: RUST, desc: 'Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents active knowledge graph growth in the Karpathy LLM-wiki workflow.', btnLabel: 'Scaffold Concept Stubs', onClick: () => this.copyCmd('node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir wiki') },
+      { title: 'Structural Violations', count: 27, accent: BRASS, desc: 'Missing top-level # Title headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.', btnLabel: 'Standardize Headers', onClick: () => this.copyCmd('node scripts/fix-wiki-frontmatter.mjs wiki --allow-dirty') },
+      { title: 'Markdown Hygiene', count: 23, accent: ASH, desc: 'Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.', btnLabel: 'Run Auto-Fixer', onClick: () => this.copyCmd('node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json wiki') }
+    ];
+
+    const actionItemsFiltered = ACTION_ITEMS_RAW
+      .filter(g => !(activeFilter === 'hygiene' || activeFilter === 'errors' || activeFilter === 'frontiers'))
+      .map(g => ({
+        message: g.message, files: g.files,
+        accent: g.type === 'structural' ? BRASS : RUST,
+        onClick: () => this.copyCmd('code -g ' + g.files.filter(f => !f.startsWith('+')).map(f => `"${f}"`).join(' '))
+      }));
+
+    const domainRowsFiltered = DOMAINS_RAW.filter(d => {
+      if (activeFilter === 'frontiers') return d.frontiers > 0;
+      if (activeFilter === 'structural') return d.structural > 0;
+      if (activeFilter === 'hygiene') return d.hygiene > 0;
+      if (activeFilter === 'errors') return false;
+      return true;
+    });
+
+    const topLinks = TOP_LINKS_RAW.map(l => ({
+      label: `[[${l.target}]]`, count: l.count,
+      onClick: () => this.copyText(`[[${l.target}]]`)
+    }));
+
+    const opsTasks = OPS_TASKS_RAW;
+
+    return {
+      tabs,
+      showDaily: activeTab === 'daily', showMcp: activeTab === 'mcp', showKbsync: activeTab === 'kbsync', showOps: activeTab === 'ops',
+      dailyMetrics, dailyTodos, telemetryRows, mcpServers,
+      kbMetrics, breakdownCards,
+      actionItemsFiltered, hasActionItems: actionItemsFiltered.length > 0, hasNoActionItems: actionItemsFiltered.length === 0,
+      actionItemsCountLabel: `${actionItemsFiltered.length} groups`,
+      domainRowsFiltered, topLinks, opsTasks,
+      copyTodosCmd: () => this.copyCmd('code C:\\\\dev\\\\TODOS.md'),
+      copyValidateCmd: () => this.copyCmd('node modules/wiki/validate-staging-docs.mjs --json=./.validation-report.json .'),
+      noopCmd: () => this.toast('Reload/export require the live local server'),
+      toastVisible: this.state.toastVisible, toastMsg: this.state.toastMsg
+    };
+  }
+}
+
+</script>
+</body>
+</html>
