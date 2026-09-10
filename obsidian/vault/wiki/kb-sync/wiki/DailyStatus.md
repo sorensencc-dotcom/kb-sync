@@ -1,21 +1,21 @@
 ---
-title: ".SyncStatus"
+title: "DailyStatus"
 category: "wiki"
 status: "active"
 draft: true
 created: "2026-09-10T02:01:48.313Z"
 ---
 
-# .SyncStatus
+# DailyStatus
 
 ## Summary
-Offline draft template for .SyncStatus staged from .sync-status.json.
+Offline draft template for DailyStatus staged from modules/wiki/daily_status.json.
 
 ## Purpose & Scope
-Draft specification for .SyncStatus. Synthesized via OfflineTemplateProvider.
+Draft specification for DailyStatus. Synthesized via OfflineTemplateProvider.
 
 ## Operations & Details
-- Source: `.sync-status.json`
+- Source: `modules/wiki/daily_status.json`
 - Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260909-220142`
 
 ## Related Pages

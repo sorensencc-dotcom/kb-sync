@@ -828,7 +828,7 @@
         <table class="kv-table">
           <tr>
             <td class="kv-key">MCP Infrastructure</td>
-            <td class="kv-val"><span class="badge-status pass">10 ONLINE</span></td>
+            <td class="kv-val" id="telemetryMcpCount"><span class="badge-status pass">11 ONLINE</span></td>
           </tr>
           <tr>
             <td class="kv-key">KB-Sync Drift</td>
@@ -1210,6 +1210,7 @@ pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Docum
     { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'pass', statusText: 'ONLINE' },
     { name: 'ijfw-memory', desc: 'Cross-project memory, preludes & fact recall', type: 'stdio / lazy', tools: '12 Tools', status: 'pass', statusText: 'ONLINE' },
     { name: 'kb-context-cache', desc: 'VFS upsert, topic notes & context cache', type: 'stdio / lazy', tools: '3 Tools', status: 'pass', statusText: 'ONLINE' },
+    { name: 'open-notebook', desc: 'Open Notebook research & knowledge server (Local)', type: 'stdio / uvx', tools: 'Port 5055', status: 'pass', statusText: 'ONLINE' },
     { name: 'notion-mcp-server', desc: 'Morning briefings database & wiki sync', type: 'stdio / lazy', tools: '22 Tools', status: 'pass', statusText: 'ONLINE' },
     { name: 'graft', desc: 'AST call hierarchies & code graphs', type: 'stdio / active', tools: '6 Tools', status: 'pass', statusText: 'ONLINE' },
     { name: 'sigil-postgres', desc: 'Sigil PostgreSQL relational database (Docker)', type: 'docker / :55432', tools: 'Port 55432', status: 'pass', statusText: 'ONLINE' },
@@ -1219,6 +1220,18 @@ pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Docum
 
   function renderMcpMatrix() {
     const container = document.getElementById('mcpGridContainer');
+    const onlineCount = MCP_SERVERS.filter(s => s.status === 'pass').length;
+    const totalCount = MCP_SERVERS.length;
+
+    const badge = document.querySelector('#btn-tab-mcp .tab-badge');
+    if (badge) badge.textContent = `${onlineCount} Active`;
+
+    const qcard = document.getElementById('qDailyMcp');
+    if (qcard) qcard.textContent = `${onlineCount} / ${totalCount}`;
+
+    const telem = document.getElementById('telemetryMcpCount');
+    if (telem) telem.innerHTML = `<span class="badge-status pass">${onlineCount} ONLINE</span>`;
+
     container.innerHTML = MCP_SERVERS.map(s => `
       <div class="mcp-card">
         <div>

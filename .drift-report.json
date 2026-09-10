@@ -1,10 +1,34 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-10T00:59:24.615Z",
-  "system_time_epoch_ms": 1789001964615,
+  "timestamp": "2026-09-10T02:01:34.717Z",
+  "system_time_epoch_ms": 1789005694717,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
+    {
+      "repo": "kb-sync",
+      "file": "core/harvest_registry.json",
+      "last_code_commit": "2026-09-09T22:01:28-04:00",
+      "last_wiki_sync": "2026-09-10T00:03:35.378Z",
+      "status": "STALE",
+      "wiki_page": "entities/harvest_registry.json"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/daily_status.json",
+      "last_code_commit": "2026-09-09T22:01:28-04:00",
+      "last_wiki_sync": "2026-09-10T00:03:35.378Z",
+      "status": "STALE",
+      "wiki_page": "entities/daily_status.json"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/dashboard.html",
+      "last_code_commit": "2026-09-09T22:01:28-04:00",
+      "last_wiki_sync": "2026-09-10T00:03:35.378Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/dashboard.html"
+    },
     {
       "repo": "kb-sync",
       "file": "scripts/mcp-context-server.mjs",
@@ -18,13 +42,13 @@
       "file": "scripts/mcp-memory-server.mjs",
       "last_code_commit": "2026-09-09T20:59:14-04:00",
       "last_wiki_sync": "2026-09-10T00:03:35.378Z",
-      "status": "HASH_MISMATCH",
+      "status": "STALE",
       "wiki_page": "entities/mcp-memory-server.mjs"
     }
   ],
   "summary": {
-    "total_sources_checked": 205,
-    "stale_pages_count": 2,
-    "untracked_paths_count": 31
+    "total_sources_checked": 206,
+    "stale_pages_count": 5,
+    "untracked_paths_count": 0
   }
 }
