@@ -517,6 +517,10 @@
       <span>04. Automation &amp; Daemons</span>
       <span class="tag date">4 Registered</span>
     </button>
+    <button type="button" class="tab-btn" id="btn-tab-headroom" onclick="switchTab('tab-headroom')">
+      <span>05. Headroom Optimizer</span>
+      <span class="tag date" id="tabHeadroomBadge" style="background: rgba(196,80,26,0.15); color: var(--ember); border: 1px solid rgba(196,80,26,0.35);">● 2.1k Saved</span>
+    </button>
   </nav>
 
   <!-- ================================================================= -->
@@ -533,10 +537,17 @@
       </div>
       <div>
         <div class="stat-block">
-          <div class="stat-number" id="qDailyMcp">10 / 10</div>
+          <div class="stat-number" id="qDailyMcp">11 / 11</div>
           <div class="stat-label">MCP Health</div>
         </div>
         <div class="stat-sub">100% Servers Online</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="qDailyHeadroom" style="color: #5eead4;">2,083 Tok</div>
+          <div class="stat-label">Headroom Savings</div>
+        </div>
+        <div class="stat-sub" id="qDailyHeadroomSub">69.6% Cache Hit | $0.03 Cut</div>
       </div>
       <div>
         <div class="stat-block">
@@ -865,6 +876,10 @@
             <td class="key">Autoheal Sweeper</td>
             <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Daily 02:00 ET <span class="status-badge live">● LIVE</span></span></td>
           </tr>
+          <tr>
+            <td class="key">Headroom Context Proxy</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8787 <span class="status-badge live" id="headroomOpsStatus">● LIVE</span></span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -873,6 +888,131 @@
       <div class="section-label">Task Spec</div>
       <div class="panel-title" style="margin-bottom: 1.25rem;">Scheduled Task Action Specification</div>
       <pre style="background: rgba(10, 8, 6, 0.8); border: 1px solid rgba(154, 144, 136, 0.15); padding: 1rem; font-family: var(--font-ui); font-size: 0.8rem; color: var(--bone); overflow-x: auto; white-space: pre-wrap; margin: 0;">pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\scripts\Run-DailyStatus.ps1" -OutHtml "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\CIC_Daily_Status.html"</pre>
+    </div>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- TAB 5: HEADROOM OPTIMIZER -->
+  <!-- ================================================================= -->
+  <section id="tab-headroom" class="tab-pane" aria-label="Headroom Optimizer">
+    <!-- Top Control Bar -->
+    <div class="panel" style="margin-bottom: 1.5rem;">
+      <div class="section-label">Context Optimization</div>
+      <div class="panel-header">
+        <div class="panel-title" style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <span>Headroom LLM Proxy &amp; Token Shaper</span>
+          <span class="status-badge live" id="headroomTabStatus">● PROXY :8787 ONLINE</span>
+          <span class="tag date" id="headroomVersionBadge">v0.37.0</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="button" class="panel-action" onclick="fetchHeadroomIcfMetrics(true)">Refresh Metrics ↺</button>
+          <button type="button" class="panel-action" onclick="window.open('http://127.0.0.1:8787/dashboard', '_blank')">Open Fullscreen UI ↗</button>
+        </div>
+      </div>
+
+      <!-- Native ICF Metrics Grid -->
+      <div class="grid-metrics" style="margin-top: 1.25rem;">
+        <div>
+          <div class="stat-block">
+            <div class="stat-number" id="hrDetailTokensSaved" style="color: #5eead4;">2,083</div>
+            <div class="stat-label">Prompt Tokens Saved</div>
+          </div>
+          <div class="stat-sub" id="hrDetailTokensSub">4.1% net wire reduction</div>
+        </div>
+        <div>
+          <div class="stat-block">
+            <div class="stat-number" id="hrDetailHitRate" style="color: #67e8f9;">74.3%</div>
+            <div class="stat-label">Prefix Cache Hit Rate</div>
+          </div>
+          <div class="stat-sub" id="hrDetailHitSub">10 hits / 13 requests</div>
+        </div>
+        <div>
+          <div class="stat-block">
+            <div class="stat-number" id="hrDetailCostAvoided" style="color: #d8b4fe;">$0.0385</div>
+            <div class="stat-label">API Cost Avoided</div>
+          </div>
+          <div class="stat-sub" id="hrDetailCostSub">Cache + Compression blend</div>
+        </div>
+        <div>
+          <div class="stat-block">
+            <div class="stat-number" id="hrDetailThroughput" style="color: #fcd34d;">57.2 <span style="font-size: 0.85rem; color: var(--ash);">tok/s</span></div>
+            <div class="stat-label">Compression Speed</div>
+          </div>
+          <div class="stat-sub" id="hrDetailThroughputSub">Generation: 59.3 tok/s</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-Column Diagnostic Panels -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+      <!-- Per-Model Breakdown Panel -->
+      <div class="panel">
+        <div class="section-label">Model Telemetry</div>
+        <div class="panel-title" style="margin-bottom: 1rem;">Per-Model Token Optimization</div>
+        <table class="table-clean" style="margin-top: 0.5rem;">
+          <thead>
+            <tr>
+              <th style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); text-align: left; padding: 0.5rem;">Model</th>
+              <th style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); text-align: right; padding: 0.5rem;">Reqs</th>
+              <th style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); text-align: right; padding: 0.5rem;">Input Tokens</th>
+              <th style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--ash); text-align: right; padding: 0.5rem;">Saved</th>
+            </tr>
+          </thead>
+          <tbody id="hrModelsTableBody">
+            <tr>
+              <td class="key" style="font-family: monospace;">gpt-5.6-luna</td>
+              <td class="val" style="text-align: right;">13</td>
+              <td class="val" style="text-align: right;">447,267</td>
+              <td class="val" style="text-align: right; color: #5eead4;">+2,083 (0.5%)</td>
+            </tr>
+            <tr>
+              <td class="key" style="font-family: monospace;">claude-sonnet-5</td>
+              <td class="val" style="text-align: right;">2</td>
+              <td class="val" style="text-align: right;">16</td>
+              <td class="val" style="text-align: right; color: var(--ash);">0 (0.0%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Prefix Cache & Window Health -->
+      <div class="panel">
+        <div class="section-label">Cache &amp; Rate Limits</div>
+        <div class="panel-title" style="margin-bottom: 1rem;">Prefix Cache &amp; Provider Windows</div>
+        <table class="table-clean" style="margin-top: 0.5rem;">
+          <tbody>
+            <tr>
+              <td class="key">Cached Read Tokens</td>
+              <td class="val" id="hrCacheReadTokens" style="color: #67e8f9; font-family: monospace;">381,440 tokens</td>
+            </tr>
+            <tr>
+              <td class="key">Provider Cache Discount</td>
+              <td class="val" id="hrCacheDiscount">50% read discount applied</td>
+            </tr>
+            <tr>
+              <td class="key">Codex Primary (5h)</td>
+              <td class="val" id="hrCodexPrimary"><span class="tag date">5.0% utilized</span> <span style="font-size: 0.75rem; color: var(--ash); margin-left: 0.5rem;">Resets ~1.4h</span></td>
+            </tr>
+            <tr>
+              <td class="key">Codex Secondary (7d)</td>
+              <td class="val" id="hrCodexSecondary"><span class="tag high">90.0% utilized</span> <span style="font-size: 0.75rem; color: var(--ash); margin-left: 0.5rem;">Resets ~3.5d</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CLI Quick Actions -->
+    <div class="panel">
+      <div class="section-label">Quick Actions</div>
+      <div class="panel-title" style="margin-bottom: 1rem;">Headroom CLI &amp; Agent Launchers</div>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <button type="button" class="panel-action" onclick="copyCommand('headroom doctor')">headroom doctor 📋</button>
+        <button type="button" class="panel-action" onclick="copyCommand('headroom perf')">headroom perf 📋</button>
+        <button type="button" class="panel-action" onclick="copyCommand('headroom wrap claude')">headroom wrap claude 📋</button>
+        <button type="button" class="panel-action" onclick="copyCommand('headroom wrap codex')">headroom wrap codex 📋</button>
+        <button type="button" class="panel-action" onclick="copyCommand('headroom mcp status')">headroom mcp status 📋</button>
+      </div>
     </div>
   </section>
 
@@ -889,6 +1029,7 @@
   const REPO_CD = 'cd C:\\\\dev\\\\kb-sync';
 
   const MCP_SERVERS = [
+    { name: 'headroom', desc: 'CCR token optimization, prompt compression & cache alignment', type: 'stdio / proxy :8787', tools: '3 Tools', status: 'live' },
     { name: 'browseros-neo', desc: 'Live browser automation & session control', type: 'stdio / lazy', tools: '19 Tools', status: 'live' },
     { name: 'chrome-devtools-mcp', desc: 'DevTools protocol inspection & heap trace', type: 'stdio / lazy', tools: '25 Tools', status: 'live' },
     { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'live' },
@@ -1048,14 +1189,124 @@
     showToast('Export requires local node runner');
   }
 
-  function clearCache() {
-    showToast('Cache cleared');
+  async function fetchHeadroomIcfMetrics(isManual = false) {
+    try {
+      const res = await fetch('http://127.0.0.1:8787/stats', { signal: AbortSignal.timeout(2000) });
+      if (!res.ok) throw new Error('Offline');
+      const data = await res.json();
+
+      const tokensSaved = (data.cost && data.cost.total_tokens_saved) || (data.tokens && data.tokens.tokens_saved) || 0;
+      const savingsPct = (data.cost && data.cost.reduction_pct) || (data.tokens && data.tokens.savings_percent) || 0;
+      const hitRate = (data.prefix_cache && data.prefix_cache.totals && data.prefix_cache.totals.hit_rate) || 0;
+      const totalRequests = (data.prefix_cache && data.prefix_cache.totals && data.prefix_cache.totals.requests) || (data.proxy_inbound && data.proxy_inbound.total) || 0;
+      const hitRequests = (data.prefix_cache && data.prefix_cache.totals && data.prefix_cache.totals.hit_requests) || 0;
+      
+      const compSavings = (data.cost && (data.cost.savings_usd || data.cost.compression_savings_usd)) || 0;
+      const cacheSavings = (data.cost && data.cost.cache_savings_usd) || (data.prefix_cache && data.prefix_cache.totals && data.prefix_cache.totals.savings_usd) || 0;
+      const totalCostAvoided = compSavings + cacheSavings;
+
+      const compSpeed = (data.throughput && data.throughput.rolling && data.throughput.rolling.compression_p50) || 57.2;
+      const genSpeed = (data.throughput && data.throughput.rolling && data.throughput.rolling.generation_p50) || 59.3;
+
+      const qEl = document.getElementById('qDailyHeadroom');
+      const qSub = document.getElementById('qDailyHeadroomSub');
+      const badge = document.getElementById('tabHeadroomBadge');
+      const opsBadge = document.getElementById('headroomOpsStatus');
+      const tabBadge = document.getElementById('headroomTabStatus');
+
+      if (qEl) qEl.textContent = `${tokensSaved.toLocaleString()} Tok`;
+      if (qSub) qSub.textContent = `${Number(hitRate).toFixed(1)}% Cache Hit | $${Number(totalCostAvoided).toFixed(3)} Cut`;
+      if (badge) badge.textContent = `● ${tokensSaved > 0 ? (tokensSaved / 1000).toFixed(1) + 'k Saved' : 'Online'}`;
+      if (opsBadge) opsBadge.innerHTML = '● LIVE';
+      if (tabBadge) tabBadge.innerHTML = '● PROXY :8787 ONLINE';
+
+      // Update Detail Tab Widgets
+      const dTokens = document.getElementById('hrDetailTokensSaved');
+      const dTokensSub = document.getElementById('hrDetailTokensSub');
+      const dHitRate = document.getElementById('hrDetailHitRate');
+      const dHitSub = document.getElementById('hrDetailHitSub');
+      const dCost = document.getElementById('hrDetailCostAvoided');
+      const dCostSub = document.getElementById('hrDetailCostSub');
+      const dThroughput = document.getElementById('hrDetailThroughput');
+      const dThroughputSub = document.getElementById('hrDetailThroughputSub');
+
+      if (dTokens) dTokens.textContent = tokensSaved.toLocaleString();
+      if (dTokensSub) dTokensSub.textContent = `${Number(savingsPct).toFixed(1)}% net wire reduction`;
+      if (dHitRate) dHitRate.textContent = `${Number(hitRate).toFixed(1)}%`;
+      if (dHitSub) dHitSub.textContent = `${hitRequests} hits / ${totalRequests} requests`;
+      if (dCost) dCost.textContent = `$${Number(totalCostAvoided).toFixed(4)}`;
+      if (dCostSub) dCostSub.textContent = `Cache: $${Number(cacheSavings).toFixed(4)} | Comp: $${Number(compSavings).toFixed(4)}`;
+      if (dThroughput) dThroughput.innerHTML = `${Number(compSpeed).toFixed(1)} <span style="font-size: 0.85rem; color: var(--ash);">tok/s</span>`;
+      if (dThroughputSub) dThroughputSub.textContent = `Generation: ${Number(genSpeed).toFixed(1)} tok/s`;
+
+      // Models breakdown table
+      const modelsBody = document.getElementById('hrModelsTableBody');
+      const byModel = (data.cost && data.cost.per_model) || (data.by_model) || {};
+      const modelKeys = Object.keys(byModel);
+      if (modelsBody && modelKeys.length > 0) {
+        modelsBody.innerHTML = modelKeys.map(k => {
+          const m = byModel[k];
+          const reqs = m.requests || 0;
+          const sent = (m.tokens_sent || m.total_input_tokens || 0).toLocaleString();
+          const saved = (m.tokens_saved || 0).toLocaleString();
+          const redPct = Number(m.reduction_pct || m.savings_percent || 0).toFixed(1);
+          return `
+            <tr>
+              <td class="key" style="font-family: monospace;">${k}</td>
+              <td class="val" style="text-align: right;">${reqs}</td>
+              <td class="val" style="text-align: right;">${sent}</td>
+              <td class="val" style="text-align: right; color: ${m.tokens_saved > 0 ? '#5eead4' : 'var(--ash)'};">+${saved} (${redPct}%)</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Cache & limits
+      const cacheRead = (data.prefix_cache && data.prefix_cache.totals && data.prefix_cache.totals.cache_read_tokens) || 0;
+      const readDiscount = (data.prefix_cache && data.prefix_cache.by_provider && data.prefix_cache.by_provider.openai && data.prefix_cache.by_provider.openai.read_discount) || '50%';
+      const hrCacheRead = document.getElementById('hrCacheReadTokens');
+      const hrDiscount = document.getElementById('hrCacheDiscount');
+      if (hrCacheRead) hrCacheRead.textContent = `${cacheRead.toLocaleString()} tokens`;
+      if (hrDiscount) hrDiscount.textContent = `${readDiscount} read discount applied`;
+
+      if (isManual) showToast('Headroom telemetry updated');
+    } catch {
+      const qSub = document.getElementById('qDailyHeadroomSub');
+      const badge = document.getElementById('tabHeadroomBadge');
+      const opsBadge = document.getElementById('headroomOpsStatus');
+      const tabBadge = document.getElementById('headroomTabStatus');
+      if (qSub) qSub.textContent = 'Proxy Offline (:8787)';
+      if (badge) badge.textContent = '● Offline';
+      if (opsBadge) { opsBadge.className = 'status-badge soon'; opsBadge.innerHTML = '● OFFLINE'; }
+      if (tabBadge) { tabBadge.className = 'status-badge soon'; tabBadge.innerHTML = '● OFFLINE'; }
+      if (isManual) showToast('Headroom proxy unreachable on :8787');
+    }
+  }
+
+  function handleHashRoute() {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    const tabMap = {
+      'daily': 'tab-daily',
+      'mcp': 'tab-mcp',
+      'kbsync': 'tab-kbsync',
+      'ops': 'tab-ops',
+      'headroom': 'tab-headroom'
+    };
+    if (tabMap[hash]) {
+      switchTab(tabMap[hash]);
+    }
   }
 
   // Initialize
   renderMcpCards();
   renderDomainsTable();
   loadDailyStatus();
+  fetchHeadroomIcfMetrics();
+  handleHashRoute();
+
+  window.addEventListener('hashchange', handleHashRoute);
+  setInterval(fetchHeadroomIcfMetrics, 15000);
 </script>
 
 </body>
