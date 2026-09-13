@@ -508,7 +508,7 @@
     </button>
     <button type="button" class="tab-btn" id="btn-tab-mcp" onclick="switchTab('tab-mcp')">
       <span>02. Unified MCP Matrix</span>
-      <span class="tag date" id="tabMcpBadge">12 Active</span>
+      <span class="tag date" id="tabMcpBadge">13 Active</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-kbsync" onclick="switchTab('tab-kbsync')">
       <span>03. Knowledge Graph &amp; Validation</span>
@@ -550,7 +550,7 @@
       </div>
       <div>
         <div class="stat-block">
-          <div class="stat-number" id="qDailyMcp">12 / 12</div>
+          <div class="stat-number" id="qDailyMcp">13 / 13</div>
           <div class="stat-label">MCP Health</div>
         </div>
         <div class="stat-sub">100% Servers Online</div>
@@ -650,7 +650,7 @@
           <tbody>
             <tr>
               <td class="key">MCP Infrastructure</td>
-              <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">12 <span class="status-badge live">● LIVE</span></span></td>
+              <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">13 <span class="status-badge live">● LIVE</span></span></td>
             </tr>
             <tr>
               <td class="key">KB-Sync Drift</td>
@@ -1350,6 +1350,7 @@
   const MCP_SERVERS = [
     { name: 'headroom', desc: 'CCR token optimization, prompt compression & cache alignment', type: 'stdio / proxy :8787', tools: '3 Tools', status: 'live' },
     { name: 'ironledger', desc: 'Deterministic ledger queries, capital gains, tax lots & price feeds', type: 'stdio / http :8000', tools: '10 Tools', status: 'live' },
+    { name: 'notebooklm-mcp', desc: 'Google NotebookLM sources, notes, research & studio synthesis', type: 'stdio / active', tools: '32 Tools', status: 'live' },
     { name: 'browseros-neo', desc: 'Live browser automation & session control', type: 'stdio / lazy', tools: '19 Tools', status: 'live' },
     { name: 'chrome-devtools-mcp', desc: 'DevTools protocol inspection & heap trace', type: 'stdio / lazy', tools: '25 Tools', status: 'live' },
     { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'live' },

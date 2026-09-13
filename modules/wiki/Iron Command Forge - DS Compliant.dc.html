@@ -307,6 +307,7 @@ const TODOS_RAW = [
 const MCP_SERVERS_RAW = [
   { name: 'headroom', desc: 'CCR token optimization, prompt compression & cache alignment', type: 'stdio / proxy :8787', tools: '3 Tools', status: 'live' },
   { name: 'ironledger', desc: 'Deterministic ledger queries, capital gains, tax lots & price feeds', type: 'stdio / http :8000', tools: '10 Tools', status: 'live' },
+  { name: 'notebooklm-mcp', desc: 'Google NotebookLM sources, notes, research & studio synthesis', type: 'stdio / active', tools: '32 Tools', status: 'live' },
   { name: 'browseros-neo', desc: 'Live browser automation & session control', type: 'stdio / lazy', tools: '19 Tools', status: 'live' },
   { name: 'chrome-devtools-mcp', desc: 'DevTools protocol inspection & heap trace', type: 'stdio / lazy', tools: '25 Tools', status: 'live' },
   { name: 'github-mcp-server', desc: 'Repository PRs, issues, commits & reviews', type: 'stdio / lazy', tools: '34 Tools', status: 'live' },
@@ -380,7 +381,7 @@ class Component extends DCLogic {
     const { activeTab, activeFilter } = this.state;
     const tabDefs = [
       { id: 'daily', label: '01. Daily Command Feed', badge: '4 Open' },
-      { id: 'mcp', label: '02. Unified MCP Matrix', badge: '12 Active' },
+      { id: 'mcp', label: '02. Unified MCP Matrix', badge: '13 Active' },
       { id: 'kbsync', label: '03. Knowledge Graph & Validation', badge: 'Vault Live' },
       { id: 'ops', label: '04. Automation & Daemons', badge: '4 Registered' }
     ];
@@ -398,7 +399,7 @@ class Component extends DCLogic {
 
     const dailyMetrics = [
       { label: 'Open Priorities', value: '4 Items', sub: '1 P1 | 3 P2 | 0 P0' },
-      { label: 'MCP Health', value: '12 / 12', sub: '100% Servers Online' },
+      { label: 'MCP Health', value: '13 / 13', sub: '100% Servers Online' },
       { label: 'KB-Sync Status', value: 'Drift 2p', sub: 'Last Sync: 2h ago' },
       { label: 'Link & Graph Health', value: '100%', sub: 'Zero broken links' },
       { label: 'Active Blockers', value: '0 Blockers', sub: 'Handoff status clear' }
@@ -411,7 +412,7 @@ class Component extends DCLogic {
     }));
 
     const telemetryRows = [
-      { key: 'MCP Infrastructure', badge: true, prefix: '12 ', status: 'live' },
+      { key: 'MCP Infrastructure', badge: true, prefix: '13 ', status: 'live' },
       { key: 'KB-Sync Drift', badge: true, prefix: '2 files ', status: 'progress' },
       { key: 'Vault Files Indexed', plain: true, val: '2,094 files' },
       { key: 'Wiki Link Integrity', badge: true, prefix: '100% ', status: 'live' },
