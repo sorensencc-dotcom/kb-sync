@@ -73,6 +73,7 @@
     "kb:compact": "node modules/compactor/cli.mjs",
     "deps:verify": "node scripts/verify-dependencies.mjs",
     "cross-audit": "node scripts/cross-audit.mjs",
+    "wiki:drift-repair": "node scripts/wiki-drift-repair.mjs",
     "test:cross-audit": "node --test tests/cross-audit.test.mjs",
     "test:repair-audit": "node --test --experimental-strip-types modules/healing/repair-audit-gate.test.ts",
     "visual:verify": "node --test --experimental-strip-types skills/html-visual-verify/tests/render-quality.test.ts",
