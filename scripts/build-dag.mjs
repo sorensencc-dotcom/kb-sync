@@ -284,6 +284,16 @@ function runCli() {
   const { gensDir, pointerFile, docsFile } = getPaths();
   const statusFile = path.join(defaultRootDir, 'KB_SYNC_STATUS.md');
   const fileList = fs.existsSync(statusFile) ? ['KB_SYNC_STATUS.md', 'README.md'] : ['README.md'];
+  
+  const researchDir = path.join(defaultRootDir, 'wiki', 'research');
+  if (fs.existsSync(researchDir)) {
+    const rFiles = fs.readdirSync(researchDir)
+      .filter(f => f.endsWith('.md'))
+      .map(f => `wiki/research/${f}`);
+    fileList.push(...rFiles);
+  }
+  fileList.sort();
+
   const commitTimestamp = getDeterministicTimestamp(defaultRootDir, fileList);
 
   const { dag, adjacency, markdownDoc, genId } = buildDagGraph({

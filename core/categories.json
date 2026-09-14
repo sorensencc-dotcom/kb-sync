@@ -1,6 +1,6 @@
 {
-  "version": "2026-08-29-1",
-  "updated_at": "2026-08-29T21:59:00Z",
+  "version": "2026-09-13-1",
+  "updated_at": "2026-09-13T20:00:00Z",
   "categories": {
     "willow-run": {
       "title": "CIC - Willow Run & Aviation Engineering",
@@ -33,19 +33,40 @@
       ],
       "status": "canonical"
     },
-    "cuban-seizures": {
+    "cuba-claims": {
       "title": "CIC - Cuban Seizures & Retired Assets",
       "target": "c8360946-dbee-4a2c-b622-7f89b05695b0",
       "aliases": [
         "cuba",
-        "cuban-claims",
+        "cuban-seizures",
         "cuban_seizures",
         "cuban"
       ],
       "status": "canonical"
     },
+    "miami-estate": {
+      "title": "CIC - Miami Estate & Florida Retirement",
+      "target": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c",
+      "aliases": [
+        "miami_estate",
+        "miami",
+        "florida-retirement"
+      ],
+      "status": "canonical"
+    },
+    "assembly-line": {
+      "title": "CIC - Rouge, Model T & Moving Assembly Line",
+      "target": "70be0df3-c58a-4711-b4d3-1e4b8726faf7",
+      "aliases": [
+        "assembly_line",
+        "rouge",
+        "model-t",
+        "moving-assembly"
+      ],
+      "status": "canonical"
+    },
     "master-kb": {
-      "title": "CIC-KB (Master Knowledge Base)",
+      "title": "CIC-KB (Master Historical Pack Only)",
       "target": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
       "aliases": [
         "master",
@@ -55,16 +76,74 @@
       "status": "canonical"
     },
     "daily": {
-      "title": "CIC - Daily Research",
+      "title": "CIC - Daily Research (Buffer/Intake)",
       "target": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
       "aliases": [
         "default",
-        "daily_research",
-        "test-temp-topic-mtf6u6z0",
-        "test-temp-topic-mtf6v5qi",
-        "test-temp-topic-mtf6vbwy",
-        "test-temp-topic-mtf6vka4",
-        "test-temp-topic-mtf72d9i"
+        "daily_research"
+      ],
+      "status": "canonical"
+    },
+    "ironledger": {
+      "title": "IronLedger Architecture",
+      "target": "76e1932c-054a-4520-9e83-5e882dffc938",
+      "aliases": [
+        "financial-statement-and-docs",
+        "financial_docs",
+        "iron_ledger",
+        "ledger"
+      ],
+      "status": "canonical"
+    },
+    "sigil": {
+      "title": "Sigil Protocol & Federation",
+      "target": "26eacb85-2c97-443d-9d81-3bd99cc98412",
+      "aliases": [
+        "sigil_protocol",
+        "sigil-federation",
+        "fix-session"
+      ],
+      "status": "canonical"
+    },
+    "agent-harness": {
+      "title": "Agent Harnesses & Local Execution (Graft, SAM, Herdr)",
+      "target": "359b346c-6af7-4ba3-baef-b985c9e6e1af",
+      "aliases": [
+        "agent_harness",
+        "graft",
+        "sam",
+        "herdr"
+      ],
+      "status": "canonical"
+    },
+    "rewrite-labs": {
+      "title": "Rewrite Labs SSG/Redesign Platform",
+      "target": "140119ae-3496-45c9-bf0c-71c955136afc",
+      "aliases": [
+        "rewrite_labs",
+        "ssg",
+        "redesign"
+      ],
+      "status": "canonical"
+    },
+    "dev-triage": {
+      "title": "Open Dev Issues (CI/CD Triage Buffer)",
+      "target": "cb0498ce-1ea5-4668-9f65-ac368753404e",
+      "aliases": [
+        "dev_triage",
+        "ci_cd",
+        "triage"
+      ],
+      "status": "canonical"
+    },
+    "personal-os": {
+      "title": "Personal OS (Household, Utilities, Florida Logistics)",
+      "target": "9724e682-c5ea-4693-8e21-caf8de68611e",
+      "aliases": [
+        "personal_os",
+        "household",
+        "utilities",
+        "florida-logistics"
       ],
       "status": "canonical"
     }

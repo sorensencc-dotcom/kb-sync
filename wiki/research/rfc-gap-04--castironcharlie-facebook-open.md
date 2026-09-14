@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-04 - **CastIronCharlie-Facebook (open-contradictions)**"
-category: "research"
-topic: "rfc-gap-04--castironcharlie-facebook-open"
-gap_id: "GAP-04"
-status: "draft"
-created_at: "2026-09-05T03:18:26.331Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-04 - **CastIronCharlie-Facebook (open-contradictions)**
+category: research
+topic: rfc-gap-04--castironcharlie-facebook-open
+gap_id: GAP-04
+status: draft
+created_at: 2026-09-05T03:18:26.331Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","wiki/concepts/immutable-staging.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-04 - **CastIronCharlie-Facebook (open-contradictions)**

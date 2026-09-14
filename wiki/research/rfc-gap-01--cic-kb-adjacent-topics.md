@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-01 - **CIC-KB (adjacent-topics)**"
-category: "research"
-topic: "rfc-gap-01--cic-kb-adjacent-topics"
-gap_id: "GAP-01"
-status: "draft"
-created_at: "2026-09-05T03:18:19.790Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01 - **CIC-KB (adjacent-topics)**
+category: research
+topic: rfc-gap-01--cic-kb-adjacent-topics
+gap_id: GAP-01
+status: draft
+created_at: 2026-09-05T03:18:19.790Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--cic-kb-adjacent-topics.md","wiki/concepts/immutable-staging.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **CIC-KB (adjacent-topics)**

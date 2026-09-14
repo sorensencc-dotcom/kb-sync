@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics (adjacent-topics)**"
-category: "research"
-topic: "rfc-gap-02--cic-ford-executive-dynamics-p"
-gap_id: "GAP-02"
-status: "draft"
-created_at: "2026-09-05T03:17:44.749Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics (adjacent-topics)**
+category: research
+topic: rfc-gap-02--cic-ford-executive-dynamics-p
+gap_id: GAP-02
+status: draft
+created_at: 2026-09-05T03:17:44.749Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics (adjacent-topics)**

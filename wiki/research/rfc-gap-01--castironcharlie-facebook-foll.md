@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-01 - **CastIronCharlie-Facebook (follow-up)**"
-category: "research"
-topic: "rfc-gap-01--castironcharlie-facebook-foll"
-gap_id: "GAP-01"
-status: "draft"
-created_at: "2026-09-05T03:18:24.026Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01 - **CastIronCharlie-Facebook (follow-up)**
+category: research
+topic: rfc-gap-01--castironcharlie-facebook-foll
+gap_id: GAP-01
+status: draft
+created_at: 2026-09-05T03:18:24.026Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md","trm-research-gaps.md","wiki/research/rfc-gap-01--cic-kb-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **CastIronCharlie-Facebook (follow-up)**

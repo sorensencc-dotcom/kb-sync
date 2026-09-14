@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**"
-category: "research"
-topic: "rfc-gap-01--cic-willow-run-aviation-engin"
-gap_id: "GAP-01"
-status: "draft"
-created_at: "2026-09-05T03:17:49.472Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**
+category: research
+topic: rfc-gap-01--cic-willow-run-aviation-engin
+gap_id: GAP-01
+status: draft
+created_at: 2026-09-05T03:17:49.472Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering (follow-up)**

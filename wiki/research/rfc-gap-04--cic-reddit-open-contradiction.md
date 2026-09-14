@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-04 - **CIC-Reddit (open-contradictions)**"
-category: "research"
-topic: "rfc-gap-04--cic-reddit-open-contradiction"
-gap_id: "GAP-04"
-status: "draft"
-created_at: "2026-09-05T03:17:52.704Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-04 - **CIC-Reddit (open-contradictions)**
+category: research
+topic: rfc-gap-04--cic-reddit-open-contradiction
+gap_id: GAP-04
+status: draft
+created_at: 2026-09-05T03:17:52.704Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md","trm-research-gaps.md","wiki/research/.catalog.json"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-04 - **CIC-Reddit (open-contradictions)**

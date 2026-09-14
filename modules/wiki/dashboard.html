@@ -514,6 +514,10 @@
       <span>03. Knowledge Graph &amp; Validation</span>
       <span class="tag date" id="tabKbBadge">Vault Live</span>
     </button>
+    <button type="button" class="tab-btn" id="btn-tab-reporting" onclick="switchTab('tab-reporting')">
+      <span>04. Weekly Reporting</span>
+      <span class="tag date">Telemetry</span>
+    </button>
     <button type="button" class="tab-btn" id="btn-tab-ops" onclick="switchTab('tab-ops')">
       <span>04. Automation &amp; Daemons</span>
       <span class="tag date">4 Registered</span>
@@ -876,7 +880,19 @@
   </section>
 
   <!-- ================================================================= -->
-  <!-- TAB 4: AUTOMATION & DAEMONS -->
+  <!-- TAB 4: WEEKLY REPORTING -->
+  <section id="tab-reporting" class="tab-pane" aria-label="Weekly Retro Reporting">
+    <div class="panel">
+      <div class="section-label">Reporting</div>
+      <div class="panel-header">
+        <div class="panel-title">Weekly Retro Telemetry</div>
+        <button type="button" class="panel-action" onclick="document.querySelector('weekly-reporting-dashboard').load()">Refresh →</button>
+      </div>
+      <weekly-reporting-dashboard src="/api/reporting/weekly-retro"></weekly-reporting-dashboard>
+    </div>
+  </section>
+
+  <!-- TAB 5: AUTOMATION & DAEMONS -->
   <!-- ================================================================= -->
   <section id="tab-ops" class="tab-pane" aria-label="Automation and Daemons">
     <div class="panel" style="margin-bottom: 1.75rem;">
@@ -1344,7 +1360,8 @@
 <!-- TOAST -->
 <div class="toast" id="toastMessage" role="status">Copied to clipboard</div>
 
-<script>
+  <script type="module" src="/modules/wiki/weekly-reporting-dashboard.mjs"></script>
+  <script>
   const REPO_CD = 'cd C:\\\\dev\\\\kb-sync';
 
   const MCP_SERVERS = [

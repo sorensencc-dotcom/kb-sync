@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T01:41:15.458690+00:00",
+  "generated_at": "2026-09-13T11:00:03.473655+00:00",
   "sources_checked": [
     "C:\\dev\\kb-sync\\.sync-status.json",
     "C:\\dev\\kb-sync\\.drift-report.json",
@@ -17,17 +17,18 @@
     "C:\\dev\\.ijfw\\memory\\handoff.md"
   ],
   "kb_sync": {
-    "last_sync": "2026-09-10T00:03:35.378Z",
-    "last_sync_age_hours": 1.6,
+    "last_sync": "2026-09-13T00:04:32.603Z",
+    "last_sync_age_hours": 10.9,
     "sync_status": "SUCCESS",
-    "file_count": 2094,
+    "file_count": 2111,
     "drift_status": "DRIFT_DETECTED",
-    "drift_stale_pages": 2,
-    "drift_checked_at": "2026-09-10T00:59:24.615Z",
-    "drift_age_hours": 0.7,
+    "drift_stale_pages": 3,
+    "drift_checked_at": "2026-09-13T03:37:20.306Z",
+    "drift_age_hours": 7.4,
     "drifted_files": [
-      "scripts/mcp-context-server.mjs",
-      "scripts/mcp-memory-server.mjs"
+      "modules/wiki/dashboard.html",
+      "modules/wiki/Iron Command Forge - DS Compliant.dc.html",
+      "scripts/prune-studio-notes.mjs"
     ],
     "coverage_pct": 100,
     "coverage_checked_at": "2026-08-18T17:57:29.787Z",
@@ -113,9 +114,9 @@
     "blockers": []
   },
   "trm_pipeline": {
-    "latest_report": "TRM_SYNC_REPORT_DRYRUN_all_20260909T103014_329d3774-82b3-4e9c-801a-6be0078b5246.md",
-    "run_at": "2026-09-09T10:30:14.050Z",
-    "run_age_hours": 15.2,
+    "latest_report": "TRM_SYNC_REPORT_DRYRUN_all_20260913T103016_9c91de06-8cb1-42e3-bdac-24d9b5747d39.md",
+    "run_at": "2026-09-13T10:30:16.429Z",
+    "run_age_hours": 0.5,
     "partial_run": "false",
     "fact_key_collisions": "0"
   },
@@ -126,97 +127,97 @@
       {
         "name": "charlie",
         "modified": "2026-09-07T15:34:55.082618+00:00",
-        "age_hours": 58.1
+        "age_hours": 139.4
       },
       {
         "name": "charlie/b24-knockdown-logistics",
         "modified": "2026-09-08T10:30:26.380598+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/benson-ford",
         "modified": "2026-08-19T23:55:05.907636+00:00",
-        "age_hours": 505.8
+        "age_hours": 587.1
       },
       {
         "name": "charlie/bombard-memoir-delta",
         "modified": "2026-09-08T10:30:28.271539+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/cuba",
         "modified": "2026-08-22T00:28:25.689975+00:00",
-        "age_hours": 457.2
+        "age_hours": 538.5
       },
       {
         "name": "charlie/cuba-fcsc",
         "modified": "2026-09-08T10:30:20.567327+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/death-date-1968",
         "modified": "2026-09-08T10:30:21.583057+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/helene",
         "modified": "2026-08-22T00:28:25.683590+00:00",
-        "age_hours": 457.2
+        "age_hours": 538.5
       },
       {
         "name": "charlie/helene-i",
         "modified": "2026-08-20T00:04:57.840026+00:00",
-        "age_hours": 505.6
+        "age_hours": 586.9
       },
       {
         "name": "charlie/logan-miller-san-diego-1941",
         "modified": "2026-09-08T10:30:25.417092+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/michigan-flight-museum",
         "modified": "2026-08-22T00:28:25.689975+00:00",
-        "age_hours": 457.2
+        "age_hours": 538.5
       },
       {
         "name": "charlie/photo-archive-id-pass",
         "modified": "2026-09-08T10:30:22.517207+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/retirement",
         "modified": "2026-08-22T00:28:25.689975+00:00",
-        "age_hours": 457.2
+        "age_hours": 538.5
       },
       {
         "name": "charlie/studebaker-lcmv-1963",
         "modified": "2026-09-08T10:30:24.468069+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/willow-run",
         "modified": "2026-08-22T00:28:25.681077+00:00",
-        "age_hours": 457.2
+        "age_hours": 538.5
       },
       {
         "name": "charlie/willow-run-ingersoll-mill",
         "modified": "2026-09-08T10:30:27.326625+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/willys-jeep-day-geography",
         "modified": "2026-09-08T10:30:23.490756+00:00",
-        "age_hours": 39.2
+        "age_hours": 120.5
       },
       {
         "name": "charlie/willys-overland",
         "modified": "2026-08-22T00:28:25.683590+00:00",
-        "age_hours": 457.2
+        "age_hours": 538.5
       },
       {
         "name": "cuba",
         "modified": "2026-08-20T00:08:09.955268+00:00",
-        "age_hours": 505.6
+        "age_hours": 586.9
       }
     ],
     "topics_created": [],
@@ -870,24 +871,24 @@
   },
   "automation_logs": {
     "ci_pipeline": {
-      "latest": "ci-pipeline-2026-09-09_030001.log",
-      "age_hours": 18.7
+      "latest": "ci-pipeline-2026-09-13_030001.log",
+      "age_hours": 4.0
     },
     "trm_sync_treatment": {
-      "latest": "trm-sync-treatment-2026-09-09.log",
-      "age_hours": 15.2
+      "latest": "trm-sync-treatment-2026-09-13.log",
+      "age_hours": 0.5
     },
     "retro_audit": {
-      "latest": "retro-audit-20260909.log",
-      "age_hours": 3.7
+      "latest": "retro-audit-20260912.log",
+      "age_hours": 13.0
     },
     "daily_report_agent": {
-      "latest": "2026-09-09.md",
-      "age_hours": 3.7
+      "latest": "2026-09-12.md",
+      "age_hours": 13.0
     },
     "weekly_report_agent": {
       "latest": "2026-W36.md",
-      "age_hours": 23.5
+      "age_hours": 104.8
     }
   },
   "claude_project_memory": {
@@ -896,63 +897,63 @@
     "files": [
       {
         "name": "MEMORY.md",
-        "last_modified": "2026-09-09T04:02:54.030957+00:00",
-        "age_hours": 21.6,
-        "excerpt": "# Memory Index  ## 2026-09-09 - [Session Wrap: Sigil FIX Session Layer Spec](session-wrap-2026-09-09-sigil-fix-session-layer-spec.md) \u2014 receiver-side seq gap-detection + resend (discharges conformance-gap \u00a710 backlog). Brainstorm + `/plan-eng-review` (SCOPE_REDUCED: A1 single-relay only, A2 async fulfilment, CQ1 generalized `relay_jobs` queue; NAK split to Plan 2) + `/plan-ceo-review` (SELECTIVE E"
+        "last_modified": "2026-09-13T01:49:00.955181+00:00",
+        "age_hours": 9.2,
+        "excerpt": "# Memory Index  ## 2026-09-12 - [Feedback: Check Before Doubting Docs](feedback_check_before_doubting_docs.md) \u2014 flagged real WhichLLM system as possibly hallucinated without grepping first; scripts/artifacts existed exactly as documented. Grep before voicing skepticism.  ## 2026-09-09 - [Session Wrap: Sigil FIX Session Layer Spec](session-wrap-2026-09-09-sigil-fix-session-layer-spec.md) \u2014 receive"
+      },
+      {
+        "name": "feedback_check_before_doubting_docs.md",
+        "last_modified": "2026-09-13T01:46:41.104039+00:00",
+        "age_hours": 9.2,
+        "excerpt": "--- name: feedback_check_before_doubting_docs description: \"Voiced skepticism about a real, working WhichLLM system (called it possibly LLM-hallucinated) without grepping for the actual scripts/artifacts first \u2014 they existed exactly as documented.\" metadata:    node_type: memory   type: feedback   modified: 2026-09-13T01:46:41.098Z   originSessionId: 9db2ecc3-802c-4e47-9326-f1dcdbbb6aa9 ---  In th"
       },
       {
         "name": "session-wrap-2026-09-09-sigil-fix-session-layer-spec.md",
         "last_modified": "2026-09-09T04:02:33.958836+00:00",
-        "age_hours": 21.6,
+        "age_hours": 103.0,
         "excerpt": "--- name: session-wrap-2026-09-09-sigil-fix-session-layer-spec description: Sigil FIX session layer (receiver-side seq gap-detection + resend) \u2014 brainstorm + eng review + CEO review + design doc all done; spec committed unpushed; next step is writing-plans in a fresh session. metadata:    node_type: memory   type: project   originSessionId: cab98be3-f2b0-4910-a06c-bf137315d9f6   modified: 2026-09-"
       },
       {
         "name": "session-wrap-2026-09-07-ironledger-phase-3-final-review-done.md",
         "last_modified": "2026-09-09T02:12:08.484547+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-07-ironledger-phase-3-final-review-done description: \"IronLedger Phase 3 SDD \u2014 T14/T15 reviews clean, final whole-branch review done (merge WITH FIXES, no Critical), fix wave staged for fresh session\" metadata:    node_type: memory   type: project   originSessionId: 80a0f6a9-996a-4129-b754-46576913b6cd   modified: 2026-09-07T16:54:57.745Z ---  **ACTIVE.** IronLedger "
       },
       {
         "name": "session-wrap-2026-09-07-ironledger-phase-3-fix-wave-done.md",
         "last_modified": "2026-09-09T02:12:08.484547+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-07-ironledger-phase-3-fix-wave-done description: \"IronLedger Phase 3 \u2014 final-review fix wave shipped, SDD workspace torn down; branch-finish = keep-as-is (D-0 on main, no remote); deferred follow-ups listed\" metadata:    node_type: memory   type: project   originSessionId: 85d8c450-d628-4653-8680-70b5887a77fd   modified: 2026-09-08T03:36:07.712Z ---  **ACTIVE. Supers"
       },
       {
         "name": "session-wrap-2026-09-07-sigil-fed4-sdd-started.md",
         "last_modified": "2026-09-09T02:12:08.484547+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-07-sigil-fed4-sdd-started description: \"Sigil Fed #4 security SDD: Tasks 1-6 of 14 committed + review-clean; RESUME at Task 7 (ordering-locked)\" metadata:    node_type: memory   type: project   originSessionId: 15145dc2-b190-4746-b1c8-085b7a6a70a0   modified: 2026-09-08T00:48:55.621Z ---  Sigil cross-federation directory (#4) **security-hardening SDD: Tasks 1-6 of 14"
       },
       {
         "name": "session-wrap-2026-09-07-sigil-fed4-security-plan-written.md",
         "last_modified": "2026-09-09T02:12:08.484547+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-07-sigil-fed4-security-plan-written description: \"Sigil Fed #4 security-hardening TDD plan written (14 tasks), uncommitted; RESUME at /plan-eng-review then SDD\" metadata:    node_type: memory   type: project   originSessionId: a67ab42c-7f5c-4f2c-baf1-2ed7203048fd   modified: 2026-09-07T12:23:43.519Z ---  Sigil cross-federation directory (#4) **security-hardening TDD "
       },
       {
         "name": "session-wrap-2026-09-08-trm-sync-treatment-auto.md",
         "last_modified": "2026-09-09T02:12:08.484547+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-08-trm-sync-treatment-auto description: \"Automated daily trm sync-treatment run: 2026-09-08\" metadata:   type: project ---  Automated run of `trm sync-treatment` against C:\\Users\\soren\\trm-vault -> C:\\dev\\charlie-deep-research.  ### Automated TRM sync-treatment run: 2026-09-08  - New facts reconciled into treatment doc (real run committed), per topic:   - cuba-fcsc: "
       },
       {
         "name": "session-wrap-2026-09-06-ironledger-phase-3-sdd-tasks-10-13.md",
         "last_modified": "2026-09-09T02:12:08.482002+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-06-ironledger-phase-3-sdd-tasks-10-13 description: \"IronLedger Phase 3 SDD continuation \u2014 Tasks 10-13 shipped review-clean on main, stopped at 3.2h for handoff; RESUME at Task 14\" metadata:    node_type: memory   type: project   originSessionId: 448ef7b3-00bf-4301-8e74-70971ff5045a   modified: 2026-09-07T03:53:35.270Z ---  Continuation of [[session-wrap-2026-09-06-ir"
       },
       {
         "name": "session-wrap-2026-09-06-ironledger-phase-3-spec.md",
         "last_modified": "2026-09-09T02:12:08.482002+00:00",
-        "age_hours": 23.5,
+        "age_hours": 104.8,
         "excerpt": "--- name: session-wrap-2026-09-06-ironledger-phase-3-spec description: IronLedger Phase 3 (Beancount compiler + recovery journal) design spec written and committed; 8 decisions locked; next is writing-plans then plan-eng-review then SDD. metadata:    node_type: memory   type: project   originSessionId: 63beb24a-ffa5-47a9-b571-0fe1a565744a   modified: 2026-09-06T13:47:06.639Z ---  # Session Wrap: I"
-      },
-      {
-        "name": "session-wrap-2026-09-06-sigil-fed4-review-blockers.md",
-        "last_modified": "2026-09-09T02:12:08.482002+00:00",
-        "age_hours": 23.5,
-        "excerpt": "--- name: session-wrap-2026-09-06-sigil-fed4-review-blockers description: \"Sigil cross-federation-directory branch final review found 3 verified security blockers; NOT ship-ready, needs spec not patch\" metadata:    node_type: memory   type: project   originSessionId: 3d6fe746-2714-4ff0-8436-606373a236f8   modified: 2026-09-06T15:40:08.113Z ---  Session 6 of the Sigil federation #4 (cross-federatio"
       }
     ]
   }

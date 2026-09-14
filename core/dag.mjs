@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import { NOTEBOOK_TARGETS } from './targets.mjs';
 
 export function countNonTrivialSCCs(nodes, edges) {
   const orderedIds = nodes.map(n => n.id).sort((a, b) => a.localeCompare(b));
@@ -132,9 +133,26 @@ export function buildDagGraph({ chunks = [], backlinks = [], fileList = [], comm
     const srcNorm = b.source.toLowerCase().replace(/\\/g, '/');
     const tgtNorm = b.target.toLowerCase().replace(/\\/g, '/');
     const srcId = `node:file:${srcNorm}`;
-    const tgtId = `node:file:${tgtNorm}`;
+    
+    // Check if target is a partitioned domain or category
+    const cleanTgt = tgtNorm.replace(/^(domain:|category:|notebook:)/, '');
+    const isPartitionDomain = Boolean(NOTEBOOK_TARGETS[cleanTgt] || NOTEBOOK_TARGETS[tgtNorm]);
 
-    if (!nodesMap.has(tgtId)) {
+    let tgtId = `node:file:${tgtNorm}`;
+    if (isPartitionDomain) {
+      tgtId = `node:domain:${cleanTgt}`;
+      if (!nodesMap.has(tgtId)) {
+        nodesMap.set(tgtId, {
+          id: tgtId,
+          node_type: 'domain',
+          label: `domain:${cleanTgt}`,
+          path: `domain/${cleanTgt}`,
+          status: 'valid',
+          target_kind: 'partition',
+          tags: ['partition', cleanTgt]
+        });
+      }
+    } else if (!nodesMap.has(tgtId)) {
       nodesMap.set(tgtId, {
         id: tgtId,
         node_type: 'dangling',

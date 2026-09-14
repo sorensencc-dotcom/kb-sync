@@ -1,10 +1,10 @@
 {
   "repository": "kb-sync",
   "remote_wiki_url": "git@github.com:sorensencc-dotcom/kb-sync.wiki.git",
-  "local_code_head": "377d01eb0776e1a6083e5877f944f39aaabcd645",
-  "remote_wiki_head": "5763705dd1d5ee057ca36fed6ffd9dc249048369",
-  "verified_at": "2026-09-10T00:03:35.378Z",
-  "system_time_epoch_ms": 1788998615378,
+  "local_code_head": "a1d2b0589afdd0da9ca2c6e57543872dc4cf1785",
+  "remote_wiki_head": "a0fda3b7f01903e614bae6a7f2bef2bebfaed537",
+  "verified_at": "2026-09-14T00:07:46.963Z",
+  "system_time_epoch_ms": 1789344466963,
   "total_pages_published": 467,
   "sync_status": "SYNCHRONIZED"
 }

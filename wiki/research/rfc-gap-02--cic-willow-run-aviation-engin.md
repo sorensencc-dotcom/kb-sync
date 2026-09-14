@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering (adjacent-topics)**"
-category: "research"
-topic: "rfc-gap-02--cic-willow-run-aviation-engin"
-gap_id: "GAP-02"
-status: "draft"
-created_at: "2026-09-05T03:17:49.496Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering (adjacent-topics)**
+category: research
+topic: rfc-gap-02--cic-willow-run-aviation-engin
+gap_id: GAP-02
+status: draft
+created_at: 2026-09-05T03:17:49.496Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering (adjacent-topics)**

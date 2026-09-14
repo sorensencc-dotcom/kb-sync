@@ -1,15 +1,15 @@
 ---
-title: "RFC: GAP-01 - **CIC-KB (follow-up)**"
-category: "research"
-topic: "rfc-gap-01--cic-kb-follow-up"
-gap_id: "GAP-01"
-status: "draft"
-created_at: "2026-09-08T00:31:32.613Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01 - **CIC-KB (follow-up)**
+category: research
+topic: rfc-gap-01--cic-kb-follow-up
+gap_id: GAP-01
+status: draft
+created_at: 2026-09-08T00:31:32.613Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: ["scripts/notebooklm/ingest-notebooklm.sh"]
 citations: ["wiki/research/rfc-gap-01--cic-kb-follow-up.md","trm-research-gaps.md","docs/kb/notebooklm-sync/pipeline.md","wiki/concepts/fail-soft-orchestration.md"]
-sourceRepository: "kb-sync"
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **CIC-KB (follow-up)**
@@ -19,7 +19,7 @@ To systematically strengthen the architectural foundations, safety boundaries, a
 
 The CIC-KB notebook (`679b8bab-2d87-42cb-a726-6dc54c83acc2`, category `master-kb`) and the `kb-sync` repo are the ingest spine for later documentary research. The original GAP-01 follow-up text was cut mid-token at `` `kb-sy `` and padded with closing parentheses, so this RFC never recorded a complete question. The live gap is three-fold:
 
-1. **Architecture** — `vault_root`, repo `wiki/`, and the Obsidian vault wiki currently share one registry. Duplicate pages (for example `concepts/immutable-staging.md` vs a vault `ImmutableStaging.md`) make autoheal rewrite `[[immutable-staging]]` into an ambiguous comma-joined target.
+1. **Architecture** — `vault_root`, repo `wiki/`, and the Obsidian vault wiki currently share one registry. Duplicate pages (for example `concepts/immutable-staging.md` vs a vault `ImmutableStaging.md`) make autoheal rewrite `[[kb-sync/wiki/concepts/immutable-staging]]` into an ambiguous comma-joined target.
 2. **Safety** — post-commit offline autoheal is fail-soft: a Phase 5 contract miss must not block the commit, but it still leaves yellow hook noise and stale sibling entity pages.
 3. **Metrics** — the wiki dashboard only reflects `.validation-report.json`. Scoped `--fix` runs that skip that file look like no-ops after refresh.
 

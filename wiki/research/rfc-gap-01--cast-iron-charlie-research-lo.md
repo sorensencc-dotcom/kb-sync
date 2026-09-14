@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**"
-category: "research"
-topic: "rfc-gap-01--cast-iron-charlie-research-lo"
-gap_id: "GAP-01"
-status: "draft"
-created_at: "2026-09-05T03:17:59.008Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**
+category: research
+topic: rfc-gap-01--cast-iron-charlie-research-lo
+gap_id: GAP-01
+status: draft
+created_at: 2026-09-05T03:17:59.008Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01 - **Cast Iron Charlie - Research Logs (follow-up)**

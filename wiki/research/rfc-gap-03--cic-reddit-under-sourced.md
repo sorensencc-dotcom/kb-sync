@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-03 - **CIC-Reddit (under-sourced)**"
-category: "research"
-topic: "rfc-gap-03--cic-reddit-under-sourced"
-gap_id: "GAP-03"
-status: "draft"
-created_at: "2026-09-05T03:17:52.688Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-03 - **CIC-Reddit (under-sourced)**
+category: research
+topic: rfc-gap-03--cic-reddit-under-sourced
+gap_id: GAP-03
+status: draft
+created_at: 2026-09-05T03:17:52.688Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--cic-reddit-under-sourced.md","wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-03 - **CIC-Reddit (under-sourced)**

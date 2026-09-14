@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-02 - **CastIronCharlie-Facebook (under-sourced)**"
-category: "research"
-topic: "rfc-gap-02--castironcharlie-facebook-unde"
-gap_id: "GAP-02"
-status: "draft"
-created_at: "2026-09-05T03:17:58.967Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02 - **CastIronCharlie-Facebook (under-sourced)**
+category: research
+topic: rfc-gap-02--castironcharlie-facebook-unde
+gap_id: GAP-02
+status: draft
+created_at: 2026-09-05T03:17:58.967Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md","trm-research-gaps.md","wiki/concepts/immutable-staging.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02 - **CastIronCharlie-Facebook (under-sourced)**
