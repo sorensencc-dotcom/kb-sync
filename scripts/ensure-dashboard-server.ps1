@@ -6,13 +6,16 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$DashboardUrl = "http://127.0.0.1:$Port/dashboard.html"
-$Npx = (Get-Command npx.cmd -ErrorAction Stop).Source
+$DashboardUrl = "http://127.0.0.1:$Port/modules/wiki/dashboard.html"
+$ApiUrl = "http://127.0.0.1:$Port/api/reporting/weekly-retro"
+$Node = (Get-Command node.exe -ErrorAction Stop).Source
+$ServerScript = Join-Path $RepoRoot 'server.mjs'
 
 function Test-Dashboard {
     try {
         $response = Invoke-WebRequest -Uri $DashboardUrl -UseBasicParsing -TimeoutSec 3
-        return $response.StatusCode -eq 200
+        $api = Invoke-WebRequest -Uri $ApiUrl -UseBasicParsing -TimeoutSec 3
+        return $response.StatusCode -eq 200 -and $api.StatusCode -eq 200
     } catch {
         return $false
     }
@@ -26,13 +29,17 @@ if (Test-Dashboard) {
 Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue |
     ForEach-Object {
         $process = Get-CimInstance Win32_Process -Filter "ProcessId=$($_.OwningProcess)"
-        if ($process.CommandLine -like '*http-server*') {
+        if ($process.CommandLine -like '*http-server*' -or $process.CommandLine -like '*dashboard-server.py*' -or $process.CommandLine -like '*server.mjs*') {
             Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue
         }
     }
 
-Start-Process -FilePath $Npx `
-    -ArgumentList @('http-server', '.', '-p', $Port, '-o', 'modules/wiki/dashboard.html', '-c-1') `
+if (-not (Test-Path -LiteralPath $ServerScript -PathType Leaf)) {
+    throw "Dashboard server script not found: $ServerScript"
+}
+
+Start-Process -FilePath $Node `
+    -ArgumentList @($ServerScript) `
     -WorkingDirectory $RepoRoot `
     -WindowStyle Hidden
 
