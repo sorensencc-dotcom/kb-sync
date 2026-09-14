@@ -1,21 +1,21 @@
 ---
-title: ".SessionCounter"
+title: "Targets"
 category: "wiki"
 status: "active"
 draft: true
 created: "2026-09-14T02:15:54.910Z"
 ---
 
-# .SessionCounter
+# Targets
 
 ## Summary
-Offline draft template for .SessionCounter staged from .ijfw/.session-counter.
+Offline draft template for Targets staged from core/targets.mjs.
 
 ## Purpose & Scope
-Draft specification for .SessionCounter. Synthesized via OfflineTemplateProvider.
+Draft specification for Targets. Synthesized via OfflineTemplateProvider.
 
 ## Operations & Details
-- Source: `.ijfw/.session-counter`
+- Source: `core/targets.mjs`
 - Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260913-221546`
 
 ## Related Pages

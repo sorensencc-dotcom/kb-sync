@@ -1,0 +1,22 @@
+---
+title: "LocalFileAdapterTransport"
+category: "wiki"
+status: "active"
+draft: true
+created: "2026-09-14T02:15:54.910Z"
+---
+
+# LocalFileAdapterTransport
+
+## Summary
+Offline draft template for LocalFileAdapterTransport staged from modules/adapters/LocalFileAdapterTransport.mjs.
+
+## Purpose & Scope
+Draft specification for LocalFileAdapterTransport. Synthesized via OfflineTemplateProvider.
+
+## Operations & Details
+- Source: `modules/adapters/LocalFileAdapterTransport.mjs`
+- Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260913-221546`
+
+## Related Pages
+- [[kb-sync/wiki/Index]]
