@@ -30,3 +30,12 @@ export function resolveNotebookId(category) {
   const normalized = String(category).toLowerCase().trim();
   return NOTEBOOK_TARGETS[normalized] || NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
 }
+
+export function extractFrontmatterCategory(content) {
+  if (!content) return 'daily';
+  const match = content.match(/^category:\s*([^#\r\n]+)/m);
+  if (match && match[1]) {
+    return match[1].trim().replace(/^['"]|['"]$/g, '');
+  }
+  return 'daily';
+}
