@@ -1,3 +1,5 @@
+const escapeHtml = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+
 class WeeklyReportingDashboard extends HTMLElement {
   static observedAttributes = ['src'];
 
@@ -12,9 +14,12 @@ class WeeklyReportingDashboard extends HTMLElement {
   async load() {
     const src = this.getAttribute('src');
     if (!src) return this.renderError('No reporting endpoint configured.');
+    this.renderLoading();
     try {
       const response = await fetch(src, { headers: { Accept: 'application/json' } });
-      const payload = await response.json();
+      const text = await response.text();
+      let payload;
+      try { payload = JSON.parse(text); } catch { throw new Error('Reporting endpoint returned non-JSON content.'); }
       if (!response.ok || payload.status !== 'SUCCESS') {
         throw new Error(payload.error || `HTTP ${response.status}`);
       }
@@ -41,7 +46,8 @@ class WeeklyReportingDashboard extends HTMLElement {
     <div class="grid"><div class="panel"><h4>Work Distribution</h4><div class="bar"><i style="width:${pct(m.docs_pct)};background:#b8922a"></i><i style="width:${pct(m.feat_pct)};background:#4c9f70"></i><i style="width:${pct(m.chore_pct)};background:#8b6fb0"></i><i style="width:${pct(m.fix_pct)};background:#c4501a"></i><i style="width:${pct(m.test_pct)};background:#c97991"></i></div><div class="row"><span class="muted">Docs / Feat / Chore</span><span>${pct(m.docs_pct)} / ${pct(m.feat_pct)} / ${pct(m.chore_pct)}</span></div><div class="row"><span class="muted">Fix / Test</span><span>${pct(m.fix_pct)} / ${pct(m.test_pct)}</span></div></div><div class="panel"><h4>Session Pacing</h4><div class="row"><span class="muted">Active time</span><span>${m.total_active_minutes || 0} mins · ${m.active_days || 0} days</span></div><div class="row"><span class="muted">Sessions</span><span>${m.deep_sessions || 0} deep / ${m.medium_sessions || 0} med / ${m.micro_sessions || 0} micro</span></div><div class="row"><span class="muted">Focus</span><span>${m.focus_area || '(root)'} · ${m.focus_score || 0}</span></div></div><div class="panel"><h4>Health & Debt</h4><div class="row"><span class="muted">Backlog</span><span>${backlog.total_open || 0} open · ${backlog.p0_p1 || 0} P0/P1</span></div><div class="row"><span class="muted">Shortcut markers</span><span>${debt.markers_found || 0}</span></div><div class="row"><span class="muted">Tests touched</span><span>${health.test_files_changed || 0} / ${health.total_test_files || 0}</span></div></div><div class="panel"><h4>Anchor Commit</h4><div class="row"><span class="muted">Hash</span><span><code>${commit.hash || 'N/A'}</code> · ${commit.loc || 0} LOC</span></div><div class="row"><span class="muted">Subject</span><span>${commit.subject || 'N/A'}</span></div></div></div><div class="sub">${data.tweetable || 'No executive summary supplied.'}</div></div>`;
   }
 
-  renderError(message) { this.shadowRoot.innerHTML = `<style>:host{display:block}.error{border:1px solid #9b2c2c;background:#321717;color:#f0a0a0;padding:1rem;border-radius:6px;font:14px system-ui}</style><div class="error">⚠ ${message}</div>`; }
+  renderLoading() { this.shadowRoot.innerHTML = '<div role="status" aria-live="polite">Loading weekly retro reporting…</div>'; }
+  renderError(message) { this.shadowRoot.innerHTML = `<style>:host{display:block}.error{border:1px solid #9b2c2c;background:#321717;color:#f0a0a0;padding:1rem;border-radius:6px;font:14px system-ui}</style><div class="error" role="alert">⚠ ${escapeHtml(message)}</div>`; }
 }
 
 if (!customElements.get('weekly-reporting-dashboard')) customElements.define('weekly-reporting-dashboard', WeeklyReportingDashboard);
