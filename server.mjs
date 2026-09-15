@@ -50,6 +50,22 @@ const server = createServer(async (req, res) => {
     return;
   }
 
+  if (pathname.startsWith('/api/reporting/weekly-retro/') && req.method === 'GET') {
+    res.setHeader('Content-Type', 'application/json; charset=UTF-8');
+    const projection = pathname.slice('/api/reporting/weekly-retro/'.length);
+    if (!['categories', 'evidence', 'actions'].includes(projection)) {
+      res.writeHead(404); res.end(JSON.stringify({ status: 'NOT_FOUND', error: 'Reporting projection not found' })); return;
+    }
+    try {
+      const data = await retroTransport.fetch();
+      res.writeHead(200);
+      res.end(JSON.stringify({ status: 'SUCCESS', data: Array.isArray(data[projection]) ? data[projection] : [] }));
+    } catch (err) {
+      res.writeHead(503); res.end(JSON.stringify({ status: 'UNAVAILABLE', error: `Weekly retro projection unavailable: ${err.message}` }));
+    }
+    return;
+  }
+
   // 2. Static File Serving (with path traversal guard)
   let relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
   const safePath = normalize(join(ROOT, relativePath));
