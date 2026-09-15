@@ -1,94 +1,13 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-14T02:15:30.708Z",
-  "system_time_epoch_ms": 1789352130708,
-  "status": "DRIFT_DETECTED",
-  "drifted_sources": [
-    {
-      "repo": "kb-sync",
-      "file": "core/categories.json",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/categories.json"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "core/dag.mjs",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/dag.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "core/harvest_registry.json",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/harvest_registry.json"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "core/targets.mjs",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/targets.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/adapters/LocalFileAdapterTransport.mjs",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/LocalFileAdapterTransport.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/daily_status.json",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/daily_status.json"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/dashboard.html",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/dashboard.html"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "modules/wiki/weekly-reporting-dashboard.mjs",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/weekly-reporting-dashboard.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/build-dag.mjs",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "HASH_MISMATCH",
-      "wiki_page": "entities/build-dag.mjs"
-    },
-    {
-      "repo": "kb-sync",
-      "file": "scripts/prune-studio-notes.mjs",
-      "last_code_commit": "2026-09-13T22:14:44-04:00",
-      "last_wiki_sync": "2026-09-14T00:07:46.963Z",
-      "status": "STALE",
-      "wiki_page": "entities/prune-studio-notes.mjs"
-    }
-  ],
+  "timestamp": "2026-09-15T02:17:52.766Z",
+  "system_time_epoch_ms": 1789438672766,
+  "status": "NO_DRIFT",
+  "drifted_sources": [],
   "summary": {
-    "total_sources_checked": 217,
-    "stale_pages_count": 10,
-    "untracked_paths_count": 1
+    "total_sources_checked": 219,
+    "stale_pages_count": 0,
+    "untracked_paths_count": 56
   }
 }

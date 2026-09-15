@@ -1923,3 +1923,264 @@ New staging includes 3 additional files compared to previous snapshot (85 files 
   - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
   - `wiki/kb-sync/wiki/Server.md`
   - `wiki/Index.md`
+
+## [2026-09-14 02:25] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `f1950cc5156a0325`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260913-222533`
+- Proposals Accepted: 23 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/Index.md`
+
+## [2026-09-14 05:08] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `b2b31c7e0001dc16`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-010455`
+- Proposals Accepted: 23 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/Index.md`
+
+## [2026-09-14 05:27] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `e783c850f0967e3e`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-012633`
+- Proposals Accepted: 25 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/kb-sync/wiki/WikiDriftRepair.md`
+  - `wiki/kb-sync/wiki/WikiDriftRepair.Test.md`
+  - `wiki/Index.md`
+
+## [2026-09-14 17:03] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `29101c04076c425b`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-130251`
+- Proposals Accepted: 24 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/kb-sync/wiki/RfcGap01CicCubanSeizuresRetiredAssetsCicCubanSeizuresRetiredAs.md`
+  - `wiki/Index.md`
+
+## [2026-09-14 17:03] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `39f07827dd0144ab`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-130342`
+- Proposals Accepted: 24 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/kb-sync/wiki/Targets.Mjs.md`
+  - `wiki/Index.md`
+
+## [2026-09-14 19:56] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `b2f62d5546e6f5bd`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-155614`
+- Proposals Accepted: 23 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/Index.md`
+
+## [2026-09-15 02:15] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `1c188b468432c2ad`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-221457`
+- Proposals Accepted: 24 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/Session20260914220320.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/Index.md`
+
+## [2026-09-15 02:17] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `899c7ffdd78412c9`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260914-221642`
+- Proposals Accepted: 23 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/Index.md`

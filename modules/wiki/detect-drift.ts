@@ -138,6 +138,11 @@ export function resolveStagingPaths(options: StagingPathOptions = {}) {
       const match = repoRoot.match(/^\/([a-zA-Z])\/(.*)/);
       repoRoot = `${match![1].toUpperCase()}:/${match![2]}`;
     }
+  } else if (process.platform !== "win32" && repoRoot) {
+    const driveMatch = repoRoot.replace(/\\/g, "/").match(/^([A-Za-z]):\/(.*)/);
+    if (driveMatch) {
+      repoRoot = `/mnt/${driveMatch[1].toLowerCase()}/${driveMatch[2]}`;
+    }
   }
 
   const repoName = options.repoName || path.basename(repoRoot);
@@ -152,6 +157,11 @@ export function resolveStagingPaths(options: StagingPathOptions = {}) {
     } else if (/^\/([a-zA-Z])\/(.*)/.test(vaultRoot)) {
       const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
       vaultRoot = `${match![1].toUpperCase()}:/${match![2]}`;
+    }
+  } else if (process.platform !== "win32" && vaultRoot) {
+    const driveMatch = vaultRoot.replace(/\\/g, "/").match(/^([A-Za-z]):\/(.*)/);
+    if (driveMatch) {
+      vaultRoot = `/mnt/${driveMatch[1].toLowerCase()}/${driveMatch[2]}`;
     }
   }
 
@@ -180,6 +190,15 @@ export function resolveStagingPaths(options: StagingPathOptions = {}) {
       const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
       vaultRoot = `${match![1].toUpperCase()}:/${match![2]}`;
     }
+  } else if (process.platform !== "win32" && vaultRoot) {
+    const driveMatch = vaultRoot.replace(/\\/g, "/").match(/^([A-Za-z]):\/(.*)/);
+    if (driveMatch) {
+      vaultRoot = `/mnt/${driveMatch[1].toLowerCase()}/${driveMatch[2]}`;
+    }
+  }
+
+  if (!path.isAbsolute(vaultRoot)) {
+    vaultRoot = path.resolve(repoRoot, vaultRoot);
   }
 
   const stagingRoot = path.join(vaultRoot, stagingDirName, repoName);
@@ -647,18 +666,25 @@ function getLastCommitDate(relativeFilePath: string, commitMap: Map<string, stri
 function collectFiles(dirOrFile: string): string[] {
   const fullPath = path.join(REPO_ROOT, dirOrFile);
   if (!fs.existsSync(fullPath)) return [];
-  const stat = fs.statSync(fullPath);
-  if (stat.isFile()) return [dirOrFile.replace(/\\/g, "/")];
-  if (stat.isDirectory()) {
-    const results: string[] = [];
-    const entries = fs.readdirSync(fullPath);
-    for (const entry of entries) {
-      if (entry.startsWith(".") || entry === "node_modules") continue;
-      const subPath = path.join(dirOrFile, entry);
-      results.push(...collectFiles(subPath));
+  try {
+    const stat = fs.lstatSync(fullPath);
+    if (stat.isSymbolicLink()) return [];
+    if (stat.isFile()) return [dirOrFile.replace(/\\/g, "/")];
+    if (stat.isDirectory()) {
+      const results: string[] = [];
+      const entries = fs.readdirSync(fullPath);
+      for (const entry of entries) {
+        if (entry.startsWith(".") || entry === "node_modules") continue;
+        const subPath = path.join(dirOrFile, entry);
+        const subFullPath = path.join(REPO_ROOT, subPath);
+        try {
+          if (fs.lstatSync(subFullPath).isSymbolicLink()) continue;
+        } catch {}
+        results.push(...collectFiles(subPath));
+      }
+      return results;
     }
-    return results;
-  }
+  } catch {}
   return [];
 }
 

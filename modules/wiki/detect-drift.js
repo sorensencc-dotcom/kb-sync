@@ -9,6 +9,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "../..");
 
+const envPath = path.resolve(REPO_ROOT, ".env");
+if (fs.existsSync(envPath)) {
+  try {
+    const envLines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
+    for (const line of envLines) {
+      if (!line || line.startsWith("#") || !line.includes("=")) continue;
+      const idx = line.indexOf("=");
+      const key = line.slice(0, idx).trim();
+      let val = line.slice(idx + 1).trim();
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
+      if (key && process.env[key] === undefined) {
+        process.env[key] = val;
+      }
+    }
+  } catch {}
+}
+
 // -----------------------------------------------------------------------------
 // 1. SECURITY & PATH SANITIZATION
 // -----------------------------------------------------------------------------
@@ -60,6 +79,11 @@ export function resolveStagingPaths(options = {}) {
       const match = repoRoot.match(/^\/([a-zA-Z])\/(.*)/);
       repoRoot = `${match[1].toUpperCase()}:/${match[2]}`;
     }
+  } else if (process.platform !== "win32" && repoRoot) {
+    const driveMatch = repoRoot.replace(/\\/g, "/").match(/^([A-Za-z]):\/(.*)/);
+    if (driveMatch) {
+      repoRoot = `/mnt/${driveMatch[1].toLowerCase()}/${driveMatch[2]}`;
+    }
   }
 
   const repoName = options.repoName || path.basename(repoRoot);
@@ -74,6 +98,11 @@ export function resolveStagingPaths(options = {}) {
     } else if (/^\/([a-zA-Z])\/(.*)/.test(vaultRoot)) {
       const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
       vaultRoot = `${match[1].toUpperCase()}:/${match[2]}`;
+    }
+  } else if (process.platform !== "win32" && vaultRoot) {
+    const driveMatch = vaultRoot.replace(/\\/g, "/").match(/^([A-Za-z]):\/(.*)/);
+    if (driveMatch) {
+      vaultRoot = `/mnt/${driveMatch[1].toLowerCase()}/${driveMatch[2]}`;
     }
   }
 
@@ -102,6 +131,15 @@ export function resolveStagingPaths(options = {}) {
       const match = vaultRoot.match(/^\/([a-zA-Z])\/(.*)/);
       vaultRoot = `${match[1].toUpperCase()}:/${match[2]}`;
     }
+  } else if (process.platform !== "win32" && vaultRoot) {
+    const driveMatch = vaultRoot.replace(/\\/g, "/").match(/^([A-Za-z]):\/(.*)/);
+    if (driveMatch) {
+      vaultRoot = `/mnt/${driveMatch[1].toLowerCase()}/${driveMatch[2]}`;
+    }
+  }
+
+  if (!path.isAbsolute(vaultRoot)) {
+    vaultRoot = path.resolve(repoRoot, vaultRoot);
   }
 
   const stagingRoot = path.join(vaultRoot, stagingDirName, repoName);
@@ -462,36 +500,50 @@ export function materializeIncrementalStaging(options = {}) {
 // 6. ORIGINAL DRIFT DETECTION WORKFLOW (Preserved)
 // -----------------------------------------------------------------------------
 function parseWikiLogTimestamp() {
-  const logPath = path.join(REPO_ROOT, "wiki/Log.md");
-  if (!fs.existsSync(logPath)) return null;
+  const { vaultRoot } = resolveStagingPaths();
+  const possibleLogPaths = [
+    path.join(vaultRoot, "wiki/Log.md"),
+    path.join(REPO_ROOT, "wiki/Log.md"),
+  ];
 
-  try {
-    const content = fs.readFileSync(logPath, "utf8");
-    const matches = content.matchAll(/##\s*\[([^\]]+)\]/g);
-    let latestDate = null;
+  let latestDate = null;
 
-    for (const match of matches) {
-      let dateStr = match[1].trim();
-      if (dateStr.endsWith(" UTC")) {
-        dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
-      }
-      const d = new Date(dateStr);
-      if (!isNaN(d.getTime())) {
-        if (!latestDate || d > latestDate) {
-          latestDate = d;
+  for (const logPath of possibleLogPaths) {
+    if (!fs.existsSync(logPath)) continue;
+
+    try {
+      const content = fs.readFileSync(logPath, "utf8");
+      const matches = content.matchAll(/##\s*\[([^\]]+)\]/g);
+
+      for (const match of matches) {
+        let dateStr = match[1].trim();
+        if (dateStr.endsWith(" UTC")) {
+          dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
+        } else if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(dateStr)) {
+          dateStr = dateStr.replace(" ", "T") + ":00Z";
+        }
+        const d = new Date(dateStr);
+        if (!isNaN(d.getTime())) {
+          if (!latestDate || d > latestDate) {
+            latestDate = d;
+          }
         }
       }
-    }
+    } catch {}
+  }
 
-    if (latestDate) return latestDate.toISOString();
-  } catch {}
-
+  if (latestDate) return latestDate.toISOString();
   return null;
 }
 
 function getWikiSyncTimestamp() {
-  const logTimestamp = parseWikiLogTimestamp();
-  if (logTimestamp) return logTimestamp;
+  const receiptPath = path.join(REPO_ROOT, ".wiki-sync-receipt.json");
+  if (fs.existsSync(receiptPath)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(receiptPath, "utf8"));
+      if (data.verified_at) return data.verified_at;
+    } catch {}
+  }
 
   const syncStatusPath = path.join(REPO_ROOT, ".sync-status.json");
   if (fs.existsSync(syncStatusPath)) {
@@ -500,6 +552,10 @@ function getWikiSyncTimestamp() {
       if (data.last_sync_timestamp) return data.last_sync_timestamp;
     } catch {}
   }
+
+  const logTimestamp = parseWikiLogTimestamp();
+  if (logTimestamp) return logTimestamp;
+
   return new Date(0).toISOString();
 }
 
@@ -542,18 +598,25 @@ function getLastCommitDate(relativeFilePath, commitMap) {
 function collectFiles(dirOrFile) {
   const fullPath = path.join(REPO_ROOT, dirOrFile);
   if (!fs.existsSync(fullPath)) return [];
-  const stat = fs.statSync(fullPath);
-  if (stat.isFile()) return [dirOrFile.replace(/\\/g, "/")];
-  if (stat.isDirectory()) {
-    const results = [];
-    const entries = fs.readdirSync(fullPath);
-    for (const entry of entries) {
-      if (entry.startsWith(".") || entry === "node_modules") continue;
-      const subPath = path.join(dirOrFile, entry);
-      results.push(...collectFiles(subPath));
+  try {
+    const stat = fs.lstatSync(fullPath);
+    if (stat.isSymbolicLink()) return [];
+    if (stat.isFile()) return [dirOrFile.replace(/\\/g, "/")];
+    if (stat.isDirectory()) {
+      const results = [];
+      const entries = fs.readdirSync(fullPath);
+      for (const entry of entries) {
+        if (entry.startsWith(".") || entry === "node_modules") continue;
+        const subPath = path.join(dirOrFile, entry);
+        const subFullPath = path.join(REPO_ROOT, subPath);
+        try {
+          if (fs.lstatSync(subFullPath).isSymbolicLink()) continue;
+        } catch {}
+        results.push(...collectFiles(subPath));
+      }
+      return results;
     }
-    return results;
-  }
+  } catch {}
   return [];
 }
 

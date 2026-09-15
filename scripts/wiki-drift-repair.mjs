@@ -20,7 +20,7 @@ async function runCommand(command, stagingPath, timeoutMs = 60000) {
   };
   const [file, args] = commands[name];
   try {
-    const result = await execFileAsync(file, args, { cwd: repoRoot, timeout: timeoutMs, maxBuffer: 10 * 1024 * 1024 });
+    const result = await execFileAsync(file, args, { cwd: repoRoot, timeout: timeoutMs, maxBuffer: 10 * 1024 * 1024, shell: true });
     const stdout = name === 'detect' ? await fs.readFile(path.join(repoRoot, '.drift-report.json'), 'utf8') : `${result.stdout || ''}${result.stderr || ''}`;
     return { code: 0, stdout };
   } catch (error) { return { code: error.code ?? 1, stdout: `${error.stdout || ''}${error.stderr || ''}`, error }; }

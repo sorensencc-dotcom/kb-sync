@@ -1,34 +1,34 @@
 {
   "version": "1.1.0",
-  "timestamp": "2026-08-30T03:24:45.124Z",
-  "system_time_epoch_ms": 1788060285124,
-  "overall_status": "DRIFT_DETECTED",
+  "timestamp": "2026-09-15T02:08:09.812Z",
+  "system_time_epoch_ms": 1789438089812,
+  "overall_status": "DEGRADED",
   "repositories": [
     {
       "repository": "kb-sync",
       "path": "C:\\dev\\kb-sync",
       "isCanonical": true,
       "exists": true,
-      "status": "DRIFT_DETECTED",
+      "status": "NO_DRIFT",
       "telemetry_source": "NATIVE_DRIFT_TELEMETRY",
-      "timestamp": "2026-08-30T02:59:06.259Z",
-      "system_time_epoch_ms": 1788058746259,
-      "sources_checked": 187,
-      "stale_pages_count": 8,
-      "dirty_worktree_count": 187,
+      "timestamp": "2026-09-15T02:07:58.987Z",
+      "system_time_epoch_ms": 1789438078987,
+      "sources_checked": 2928,
+      "stale_pages_count": 0,
+      "dirty_worktree_count": 53,
       "remote_sync_status": "SYNCHRONIZED",
       "remote_sync_receipt": {
         "repository": "kb-sync",
         "remote_wiki_url": "git@github.com:sorensencc-dotcom/kb-sync.wiki.git",
-        "local_code_head": "86637408ae85f33a86710ab51c6ef97a3ef00dcd",
-        "remote_wiki_head": "115f170c319b961033591768cb8e8704b7eb6e03",
-        "verified_at": "2026-08-30T03:13:16.768Z",
-        "system_time_epoch_ms": 1788059596768,
-        "total_pages_published": 435,
+        "local_code_head": "9b676815904298d7a32828aeda08cf1369dec9fd",
+        "remote_wiki_head": "ef25b20165235761e40ad4d5ee46ebe292f21bc6",
+        "verified_at": "2026-09-15T00:03:05.297Z",
+        "system_time_epoch_ms": 1789430585297,
+        "total_pages_published": 469,
         "sync_status": "SYNCHRONIZED"
       },
       "violations": [
-        "DIRTY_WORKTREE (187 uncommitted/untracked files)"
+        "DIRTY_WORKTREE (53 uncommitted/untracked files)"
       ]
     },
     {
@@ -38,8 +38,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T03:24:43.495Z",
-      "system_time_epoch_ms": 1788060283496,
+      "timestamp": "2026-09-15T02:08:08.169Z",
+      "system_time_epoch_ms": 1789438088170,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 1,
@@ -57,11 +57,11 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T03:24:43.594Z",
-      "system_time_epoch_ms": 1788060283595,
+      "timestamp": "2026-09-15T02:08:08.284Z",
+      "system_time_epoch_ms": 1789438088284,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 309,
+      "dirty_worktree_count": 315,
       "remote_sync_status": "SYNCHRONIZED",
       "remote_sync_receipt": {
         "repository": "rewrite-mcp",
@@ -74,7 +74,7 @@
         "sync_status": "SYNCHRONIZED"
       },
       "violations": [
-        "DIRTY_WORKTREE (309 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (315 uncommitted/untracked files)",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -85,11 +85,11 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T03:24:43.653Z",
-      "system_time_epoch_ms": 1788060283653,
+      "timestamp": "2026-09-15T02:08:08.382Z",
+      "system_time_epoch_ms": 1789438088382,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 39,
+      "dirty_worktree_count": 113,
       "remote_sync_status": "SYNCHRONIZED",
       "remote_sync_receipt": {
         "repository": "trm",
@@ -102,7 +102,7 @@
         "sync_status": "SYNCHRONIZED"
       },
       "violations": [
-        "DIRTY_WORKTREE (39 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (113 uncommitted/untracked files)",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -113,11 +113,11 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T03:24:43.742Z",
-      "system_time_epoch_ms": 1788060283742,
+      "timestamp": "2026-09-15T02:08:08.482Z",
+      "system_time_epoch_ms": 1789438088482,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 38,
+      "dirty_worktree_count": 28,
       "remote_sync_status": "SYNCHRONIZED",
       "remote_sync_receipt": {
         "repository": "cic-ingestion",
@@ -130,7 +130,7 @@
         "sync_status": "SYNCHRONIZED"
       },
       "violations": [
-        "DIRTY_WORKTREE (38 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (28 uncommitted/untracked files)",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
     },
@@ -141,8 +141,8 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T03:24:44.463Z",
-      "system_time_epoch_ms": 1788060284463,
+      "timestamp": "2026-09-15T02:08:09.165Z",
+      "system_time_epoch_ms": 1789438089165,
       "sources_checked": 0,
       "stale_pages_count": 0,
       "dirty_worktree_count": 313,
@@ -160,14 +160,14 @@
       "exists": true,
       "status": "DEGRADED",
       "telemetry_source": "FALLBACK_GIT_INSPECTION",
-      "timestamp": "2026-08-30T03:24:45.124Z",
-      "system_time_epoch_ms": 1788060285124,
+      "timestamp": "2026-09-15T02:08:09.812Z",
+      "system_time_epoch_ms": 1789438089812,
       "sources_checked": 0,
       "stale_pages_count": 0,
-      "dirty_worktree_count": 52,
+      "dirty_worktree_count": 81,
       "remote_sync_status": "WIKI_UNAVAILABLE",
       "violations": [
-        "DIRTY_WORKTREE (52 uncommitted/untracked files)",
+        "DIRTY_WORKTREE (81 uncommitted/untracked files)",
         "WIKI_REMOTE_NOT_INITIALIZED_OR_UNAVAILABLE",
         "MISSING_NATIVE_DRIFT_TELEMETRY"
       ]
@@ -175,11 +175,11 @@
   ],
   "summary": {
     "total_repositories": 7,
-    "clean_repositories": 0,
-    "drifted_repositories": 1,
+    "clean_repositories": 1,
+    "drifted_repositories": 0,
     "degraded_repositories": 6,
-    "total_stale_pages": 8,
-    "total_dirty_worktrees": 939,
+    "total_stale_pages": 0,
+    "total_dirty_worktrees": 904,
     "canonical_coverage_count": 7
   }
 }

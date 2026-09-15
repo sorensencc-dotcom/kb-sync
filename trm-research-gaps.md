@@ -22,6 +22,8 @@ generated_at: 2026-08-23T02:19:45.921Z
 
 ## Active Research Gaps
 
+- [/] [GAP-01] **CIC - Cuban Seizures & Retired Assets (adjacent-topics)**: The source records point to several significant **legal, financial, and administrative topics** that extend beyond standard corporate nationalization (Drafted: [RFC](wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md))
+
 - [/] [GAP-01] **CIC - Ford Executive Dynamics & Politics (follow-up)**: To resolve the uncorroborated claims, archival gaps, and historical contradictions the record shows, follow-up research should be. Follow-up research should pin primary sources, dates, and unresolved claims before those leads enter the documentary record. (Drafted: [RFC](wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md))
 
 - [/] [GAP-02] **CIC - Ford Executive Dynamics & Politics (adjacent-topics)**: While the current conversation and artifacts focus heavily on the internal executive power struggles and the technical scale of Willow Run, the sources. Adjacent topics remain unmapped until each is listed with a primary source. (Drafted: [RFC](wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md))
