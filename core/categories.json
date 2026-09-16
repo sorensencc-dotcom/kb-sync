@@ -185,7 +185,7 @@
       "created_at": "2026-09-16T13:04:46.540Z",
       "source": "taxonomy-remediation",
       "status": "unmapped",
-      "candidate_files": 8,
+      "candidate_files": 9,
       "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
       "operator_required": true
     },
