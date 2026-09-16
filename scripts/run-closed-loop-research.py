@@ -5,6 +5,8 @@ import datetime
 import json
 import re
 
+_CORE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'core')
+
 # Ensure UTF-8 output encoding across platforms
 if hasattr(sys.stdout, 'reconfigure'):
     try:
@@ -17,15 +19,21 @@ if hasattr(sys.stderr, 'reconfigure'):
     except Exception:
         pass
 
-# Configuration: Thematic Notebook Targets
-NOTEBOOK_TARGETS = {
-    'willow-run': '6fd7c40b-df90-444b-9c7a-a64682925856', # CIC - Willow Run & Aviation Engineering
-    'ford-politics': '0caf6707-f8f2-4d2a-acd2-020acead55ba', # CIC - Ford Executive Dynamics & Politics
-    'post-war': '9c469910-a900-43a4-877c-a43c9f545b5f', # CIC - Post-War & Willys-Overland
-    'willys-overland': '9c469910-a900-43a4-877c-a43c9f545b5f', # CIC - Post-War & Willys-Overland (alias)
-    'master-kb': '679b8bab-2d87-42cb-a726-6dc54c83acc2', # CIC-KB
-    'daily': '1b4861a3-931f-4632-8fc1-343a8dd37df8' # CIC - Daily Research
-}
+# Notebook targets are loaded from core/categories.json, the same canonical
+# registry that core/targets.mjs (the JS-side source of truth) builds from.
+# Do not hardcode targets here -- add new domains to categories.json instead.
+def _load_notebook_targets() -> dict:
+    categories_path = os.path.join(_CORE_DIR, 'categories.json')
+    with open(categories_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    targets = {}
+    for key, cat_def in data.get('categories', {}).items():
+        targets[key.lower().strip()] = cat_def['target']
+        for alias in cat_def.get('aliases', []):
+            targets[alias.lower().strip()] = cat_def['target']
+    return targets
+
+NOTEBOOK_TARGETS = _load_notebook_targets()
 
 def resolve_notebook_id(category: str) -> str:
     if not category:
@@ -34,6 +42,8 @@ def resolve_notebook_id(category: str) -> str:
     return NOTEBOOK_TARGETS.get(norm, NOTEBOOK_TARGETS['daily'])
 
 def extract_frontmatter_category(content: str) -> str:
+    # Mirrors core/targets.mjs::extractFrontmatterCategory -- keep the regex
+    # identical to that canonical implementation.
     if not content:
         return 'daily'
     match = re.search(r'^category:\s*([^#\r\n]+)', content, re.MULTILINE)

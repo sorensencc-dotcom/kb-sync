@@ -107,6 +107,18 @@ export function consolidatePacks(options = {}) {
 
   logInfo(`Discovered ${candidateFiles.length} markdown source files.`);
 
+  // Domain 2 (Software) and Domain 3 (Personal OS) categories must never
+  // bundle into the historical master-kb pack (see docs/targets isolation
+  // invariant: software vs. historical isolation).
+  const NON_HISTORICAL_CATEGORIES = new Set([
+    'ironledger',
+    'sigil',
+    'agent-harness',
+    'rewrite-labs',
+    'dev-triage',
+    'personal-os'
+  ]);
+
   // Parse and organize files by category
   const categorized = {
     'willow-run': [],
@@ -133,8 +145,11 @@ export function consolidatePacks(options = {}) {
         categorized['willys-overland'].push(item);
       }
 
-      // Master KB includes all valid notes
-      categorized['master-kb'].push(item);
+      // Master KB includes all historical notes, excluding software and
+      // personal-os categories to preserve domain isolation.
+      if (!NON_HISTORICAL_CATEGORIES.has(cat)) {
+        categorized['master-kb'].push(item);
+      }
     } catch (err) {
       logWarn(`Could not read ${filePath}: ${err.message}`);
     }
