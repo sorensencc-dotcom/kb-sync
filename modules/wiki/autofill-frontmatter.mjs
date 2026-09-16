@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// DEPRECATED: this tool hardcodes `category: "wiki"` on every file it touches, which the
+// metadata-extraction ruleset's deterministic path/heading precedence is meant to replace.
+// Run `npm run wiki:verify-frontmatter` first -- it is non-mutating and reports what each
+// file's category/tags *should* be. This script's own mutation behavior is left unchanged
+// pending an operator decision on migrating consumers off the hardcoded fallback.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -23,6 +28,8 @@ function walk(dir) {
   }
   return count;
 }
+
+console.warn('[AUTOFILL-FRONTMATTER] Deprecated: hardcodes category: "wiki". Run `npm run wiki:verify-frontmatter` for the deterministic, non-mutating replacement.');
 
 const targetDir = process.argv[2] || path.join(process.cwd(), 'docs');
 if (fs.existsSync(targetDir)) {
