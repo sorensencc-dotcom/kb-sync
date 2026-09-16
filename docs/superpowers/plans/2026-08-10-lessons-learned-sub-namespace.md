@@ -1,6 +1,7 @@
 ---
 title: "2026 08 10 lessons learned sub namespace"
-category: "wiki"
+category: "superpowers"
+tags: ["plan"]
 status: "active"
 ---
 

@@ -28,16 +28,58 @@ const IGNORED_ROOT_SEGMENTS = new Set(['content', 'pages', 'posts', 'drafts', 's
 const MAX_CATEGORY_DEPTH = 2;
 
 const SEMVER_TOKEN_RE = /^v[0-9]+(?:\.[0-9]+)*$/i;
-const LOCALE_TOKEN_RE = /^[a-z]{2}(-[A-Z]{2})?$/;
+// A bare "any two lowercase letters" pattern false-positives on ordinary 2-letter
+// directory names ("kb", "ui", "qa", "db", ...) that aren't locale codes at all. Using the
+// complete ISO 639-1 set (not a hand-picked "common languages" subset) fixes that without
+// trading it for false negatives on real-but-less-common locales ("ro", "hu", "ca", ...):
+// "kb"/"ui"/"qa"/"db" simply aren't assigned codes, so they're correctly excluded either way.
+const LOCALE_CODES = new Set([
+  'aa', 'ab', 'ae', 'af', 'ak', 'am', 'an', 'ar', 'as', 'av', 'ay', 'az',
+  'ba', 'be', 'bg', 'bh', 'bi', 'bm', 'bn', 'bo', 'br', 'bs',
+  'ca', 'ce', 'ch', 'co', 'cr', 'cs', 'cu', 'cv', 'cy',
+  'da', 'de', 'dv', 'dz',
+  'ee', 'el', 'en', 'eo', 'es', 'et', 'eu',
+  'fa', 'ff', 'fi', 'fj', 'fo', 'fr', 'fy',
+  'ga', 'gd', 'gl', 'gn', 'gu', 'gv',
+  'ha', 'he', 'hi', 'ho', 'hr', 'ht', 'hu', 'hy', 'hz',
+  'ia', 'id', 'ie', 'ig', 'ii', 'ik', 'io', 'is', 'it', 'iu',
+  'ja', 'jv',
+  'ka', 'kg', 'ki', 'kj', 'kk', 'kl', 'km', 'kn', 'ko', 'kr', 'ks', 'ku', 'kv', 'kw', 'ky',
+  'la', 'lb', 'lg', 'li', 'ln', 'lo', 'lt', 'lu', 'lv',
+  'mg', 'mh', 'mi', 'mk', 'ml', 'mn', 'mr', 'ms', 'mt', 'my',
+  'na', 'nb', 'nd', 'ne', 'ng', 'nl', 'nn', 'no', 'nr', 'nv', 'ny',
+  'oc', 'oj', 'om', 'or', 'os',
+  'pa', 'pi', 'pl', 'ps', 'pt',
+  'qu',
+  'rm', 'rn', 'ro', 'ru', 'rw',
+  'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw',
+  'ta', 'te', 'tg', 'th', 'ti', 'tk', 'tl', 'tn', 'to', 'tr', 'ts', 'tt', 'tw', 'ty',
+  'ug', 'uk', 'ur', 'uz',
+  've', 'vi', 'vo',
+  'wa', 'wo',
+  'xh',
+  'yi', 'yo',
+  'za', 'zh', 'zu'
+]);
+const LOCALE_TOKEN_RE = /^([a-z]{2})(-[A-Z]{2})?$/;
 const HEADING_ANCHOR_RE = /^#{1,2}\s*\[([^\]]+)\]/;
+function isLocaleToken(seg) {
+  const m = LOCALE_TOKEN_RE.exec(seg);
+  return Boolean(m) && LOCALE_CODES.has(m[1]);
+}
 
 // Domain terms a naive trailing-`s` strip would mangle; left as-is. Starter list --
 // operators should extend this as they hit more false positives, same as the ruleset's
-// own "static mapping table for irregular forms" ask.
+// own "static mapping table for irregular forms" ask. Includes plural top-level doc
+// domain buckets (operations, modules, skills, targets, superpowers): singularizing a
+// directory-derived category name reintroduces the exact taxonomy-fragmentation problem
+// the whitelist exists to prevent whenever an operator has already used the plural form
+// elsewhere (e.g. an existing file already declares `category: "operations"`).
 const KEEP_AS_IS = new Set([
   'kubernetes', 'devops', 'nodejs', 'analytics', 'js', 'ios', 'os',
   'status', 'https', 'aws', 'iis', 'news', 'series', 'kb',
-  'postgres', 'redis', 'nginx', 'k8s'
+  'postgres', 'redis', 'nginx', 'k8s',
+  'operations', 'modules', 'skills', 'targets', 'superpowers'
 ]);
 // Irregular plural -> singular forms worth naming explicitly.
 const IRREGULAR_PLURALS = {
@@ -105,17 +147,29 @@ function loadTaxonomy() {
   return { rules, canonical };
 }
 
+// The delimiter must be a complete line ("---" alone, optionally with trailing
+// whitespace/CR), not merely a "---" prefix -- a document that starts with e.g.
+// "---draft embargo notice" is ordinary content, not a frontmatter block, and must not
+// be rejected as malformed. Only trailing whitespace/CR is trimmed, never leading: a real
+// delimiter starts at column 0, so an indented "  ---" (an indented Markdown thematic break
+// in the body, or one inside a YAML literal block scalar) must not be treated as one --
+// trimming leading whitespace would let it falsely open or close a block.
 function splitFrontmatter(content) {
-  if (!content.startsWith('---')) return { hasBlock: false, body: content, raw: null };
-  const end = content.indexOf('\n---', 3);
-  if (end === -1) {
-    // Leading `---` with no closing delimiter -- malformed, not "no frontmatter"; the
+  const lines = content.split('\n');
+  if (lines[0].trimEnd() !== '---') return { hasBlock: false, body: content, raw: null };
+
+  let closingIdx = -1;
+  for (let i = 1; i < lines.length; i++) {
+    if (lines[i].trimEnd() === '---') { closingIdx = i; break; }
+  }
+  if (closingIdx === -1) {
+    // Leading `---` with no closing delimiter line -- malformed, not "no frontmatter"; the
     // caller must not fall through to path/heading inference for this file.
     return { hasBlock: true, closed: false, body: content, raw: null };
   }
-  const raw = content.slice(3, end).trim();
-  const bodyStart = content.indexOf('\n', end + 1);
-  const body = bodyStart === -1 ? '' : content.slice(bodyStart + 1);
+
+  const raw = lines.slice(1, closingIdx).join('\n').trim();
+  const body = lines.slice(closingIdx + 1).join('\n');
   return { hasBlock: true, closed: true, body, raw }; // frontmatter parsed by caller (needs try/catch)
 }
 
@@ -140,7 +194,7 @@ function pathHeuristic(relPath) {
   const tokens = segments.filter((seg) => {
     if (IGNORED_ROOT_SEGMENTS.has(seg)) return false;
     if (SEMVER_TOKEN_RE.test(seg)) return false;
-    if (LOCALE_TOKEN_RE.test(seg)) return false;
+    if (isLocaleToken(seg)) return false;
     return seg.length > 0;
   });
   if (tokens.length === 0) return null;
@@ -233,22 +287,30 @@ function auditFile(absPath, relPath, taxonomy) {
   const resolved = resolveCategoryAndTags(fm, relPath, rawBody);
   const tags = dedupeTags(resolved.tags, resolved.category);
 
-  const unmapped =
-    resolved.category !== 'uncategorized' &&
-    !taxonomy.canonical.has(resolved.category);
+  // A normalized candidate (e.g. "personal-o", singularized from "personal-os") matching
+  // the whitelist only proves it maps to a canonical entry -- it is not itself a value the
+  // live routing (core/config.mjs's resolveNotebookId, exact-match on stored keys/aliases)
+  // can resolve. Report/compare the map's stored canonical key, not the normalized form,
+  // whenever one was found.
+  const proposedCanonicalKey = taxonomy.canonical.get(resolved.category);
+  const proposedCategory = proposedCanonicalKey || resolved.category;
+  const unmapped = resolved.category !== 'uncategorized' && !proposedCanonicalKey;
 
-  const currentCategory = fm && typeof fm.category === 'string' ? normalize(fm.category) : null;
+  const currentCategoryNorm = fm && typeof fm.category === 'string' ? normalize(fm.category) : null;
+  const currentCategory = currentCategoryNorm
+    ? taxonomy.canonical.get(currentCategoryNorm) || currentCategoryNorm
+    : null;
   const currentTags = Array.isArray(fm && fm.tags) ? fm.tags.map(normalize).filter(Boolean) : [];
   const changed =
     !hasBlock || // no frontmatter block at all
-    currentCategory !== resolved.category ||
+    currentCategory !== proposedCategory ||
     JSON.stringify([...currentTags].sort()) !== JSON.stringify([...tags].sort());
 
   if (!hasBlock) {
     return {
       file: relPath,
       kind: 'missing_frontmatter',
-      proposed: { category: resolved.category, tags, source: resolved.source },
+      proposed: { category: proposedCategory, tags, source: resolved.source },
       unmapped
     };
   }
@@ -261,7 +323,7 @@ function auditFile(absPath, relPath, taxonomy) {
     file: relPath,
     kind: unmapped ? 'unmapped_category' : 'proposed_change',
     current: { category: currentCategory, tags: currentTags },
-    proposed: { category: resolved.category, tags, source: resolved.source },
+    proposed: { category: proposedCategory, tags, source: resolved.source },
     unmapped
   };
 }

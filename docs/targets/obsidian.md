@@ -1,6 +1,6 @@
 ---
 title: "obsidian"
-category: "wiki"
+category: "targets"
 status: "active"
 ---
 

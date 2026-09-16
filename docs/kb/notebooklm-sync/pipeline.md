@@ -1,6 +1,7 @@
 ---
 title: "pipeline"
-category: "wiki"
+category: "master-kb"
+tags: ["notebooklm-sync"]
 status: "active"
 ---
 

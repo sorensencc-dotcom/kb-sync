@@ -1,6 +1,7 @@
 ---
 title: "2026 08 29 wiki autoheal pipeline design"
-category: "wiki"
+category: "superpowers"
+tags: ["spec"]
 status: "active"
 ---
 

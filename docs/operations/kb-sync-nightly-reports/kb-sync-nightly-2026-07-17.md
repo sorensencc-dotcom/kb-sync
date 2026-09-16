@@ -1,6 +1,7 @@
 ---
 title: "kb sync nightly 2026 07 17"
-category: "wiki"
+category: "operations"
+tags: ["kb-sync-nightly-report"]
 status: "active"
 ---
 

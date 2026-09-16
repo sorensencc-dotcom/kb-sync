@@ -1,6 +1,6 @@
 ---
 title: "skill approval rules"
-category: "wiki"
+category: "governance"
 status: "active"
 ---
 

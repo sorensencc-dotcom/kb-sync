@@ -1,6 +1,7 @@
 ---
 title: "2026 08 01 kb sync enhancements design"
-category: "wiki"
+category: "superpowers"
+tags: ["spec"]
 status: "active"
 ---
 
