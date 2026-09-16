@@ -29,11 +29,37 @@ const MAX_CATEGORY_DEPTH = 2;
 
 const SEMVER_TOKEN_RE = /^v[0-9]+(?:\.[0-9]+)*$/i;
 // A bare "any two lowercase letters" pattern false-positives on ordinary 2-letter
-// directory names ("kb", "ui", "qa", "db", ...) that aren't locale codes at all -- so this
-// matches against a curated set of common ISO 639-1 codes instead of a wildcard regex.
+// directory names ("kb", "ui", "qa", "db", ...) that aren't locale codes at all. Using the
+// complete ISO 639-1 set (not a hand-picked "common languages" subset) fixes that without
+// trading it for false negatives on real-but-less-common locales ("ro", "hu", "ca", ...):
+// "kb"/"ui"/"qa"/"db" simply aren't assigned codes, so they're correctly excluded either way.
 const LOCALE_CODES = new Set([
-  'en', 'es', 'fr', 'de', 'it', 'pt', 'nl', 'ru', 'ja', 'zh', 'ko', 'ar', 'hi',
-  'pl', 'tr', 'sv', 'da', 'fi', 'no', 'cs', 'el', 'he', 'th', 'vi', 'id', 'uk'
+  'aa', 'ab', 'ae', 'af', 'ak', 'am', 'an', 'ar', 'as', 'av', 'ay', 'az',
+  'ba', 'be', 'bg', 'bh', 'bi', 'bm', 'bn', 'bo', 'br', 'bs',
+  'ca', 'ce', 'ch', 'co', 'cr', 'cs', 'cu', 'cv', 'cy',
+  'da', 'de', 'dv', 'dz',
+  'ee', 'el', 'en', 'eo', 'es', 'et', 'eu',
+  'fa', 'ff', 'fi', 'fj', 'fo', 'fr', 'fy',
+  'ga', 'gd', 'gl', 'gn', 'gu', 'gv',
+  'ha', 'he', 'hi', 'ho', 'hr', 'ht', 'hu', 'hy', 'hz',
+  'ia', 'id', 'ie', 'ig', 'ii', 'ik', 'io', 'is', 'it', 'iu',
+  'ja', 'jv',
+  'ka', 'kg', 'ki', 'kj', 'kk', 'kl', 'km', 'kn', 'ko', 'kr', 'ks', 'ku', 'kv', 'kw', 'ky',
+  'la', 'lb', 'lg', 'li', 'ln', 'lo', 'lt', 'lu', 'lv',
+  'mg', 'mh', 'mi', 'mk', 'ml', 'mn', 'mr', 'ms', 'mt', 'my',
+  'na', 'nb', 'nd', 'ne', 'ng', 'nl', 'nn', 'no', 'nr', 'nv', 'ny',
+  'oc', 'oj', 'om', 'or', 'os',
+  'pa', 'pi', 'pl', 'ps', 'pt',
+  'qu',
+  'rm', 'rn', 'ro', 'ru', 'rw',
+  'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw',
+  'ta', 'te', 'tg', 'th', 'ti', 'tk', 'tl', 'tn', 'to', 'tr', 'ts', 'tt', 'tw', 'ty',
+  'ug', 'uk', 'ur', 'uz',
+  've', 'vi', 'vo',
+  'wa', 'wo',
+  'xh',
+  'yi', 'yo',
+  'za', 'zh', 'zu'
 ]);
 const LOCALE_TOKEN_RE = /^([a-z]{2})(-[A-Z]{2})?$/;
 const HEADING_ANCHOR_RE = /^#{1,2}\s*\[([^\]]+)\]/;
@@ -124,14 +150,17 @@ function loadTaxonomy() {
 // The delimiter must be a complete line ("---" alone, optionally with trailing
 // whitespace/CR), not merely a "---" prefix -- a document that starts with e.g.
 // "---draft embargo notice" is ordinary content, not a frontmatter block, and must not
-// be rejected as malformed.
+// be rejected as malformed. Only trailing whitespace/CR is trimmed, never leading: a real
+// delimiter starts at column 0, so an indented "  ---" (an indented Markdown thematic break
+// in the body, or one inside a YAML literal block scalar) must not be treated as one --
+// trimming leading whitespace would let it falsely open or close a block.
 function splitFrontmatter(content) {
   const lines = content.split('\n');
-  if (lines[0].trim() !== '---') return { hasBlock: false, body: content, raw: null };
+  if (lines[0].trimEnd() !== '---') return { hasBlock: false, body: content, raw: null };
 
   let closingIdx = -1;
   for (let i = 1; i < lines.length; i++) {
-    if (lines[i].trim() === '---') { closingIdx = i; break; }
+    if (lines[i].trimEnd() === '---') { closingIdx = i; break; }
   }
   if (closingIdx === -1) {
     // Leading `---` with no closing delimiter line -- malformed, not "no frontmatter"; the
