@@ -105,17 +105,26 @@ function loadTaxonomy() {
   return { rules, canonical };
 }
 
+// The delimiter must be a complete line ("---" alone, optionally with trailing
+// whitespace/CR), not merely a "---" prefix -- a document that starts with e.g.
+// "---draft embargo notice" is ordinary content, not a frontmatter block, and must not
+// be rejected as malformed.
 function splitFrontmatter(content) {
-  if (!content.startsWith('---')) return { hasBlock: false, body: content, raw: null };
-  const end = content.indexOf('\n---', 3);
-  if (end === -1) {
-    // Leading `---` with no closing delimiter -- malformed, not "no frontmatter"; the
+  const lines = content.split('\n');
+  if (lines[0].trim() !== '---') return { hasBlock: false, body: content, raw: null };
+
+  let closingIdx = -1;
+  for (let i = 1; i < lines.length; i++) {
+    if (lines[i].trim() === '---') { closingIdx = i; break; }
+  }
+  if (closingIdx === -1) {
+    // Leading `---` with no closing delimiter line -- malformed, not "no frontmatter"; the
     // caller must not fall through to path/heading inference for this file.
     return { hasBlock: true, closed: false, body: content, raw: null };
   }
-  const raw = content.slice(3, end).trim();
-  const bodyStart = content.indexOf('\n', end + 1);
-  const body = bodyStart === -1 ? '' : content.slice(bodyStart + 1);
+
+  const raw = lines.slice(1, closingIdx).join('\n').trim();
+  const body = lines.slice(closingIdx + 1).join('\n');
   return { hasBlock: true, closed: true, body, raw }; // frontmatter parsed by caller (needs try/catch)
 }
 
@@ -233,22 +242,30 @@ function auditFile(absPath, relPath, taxonomy) {
   const resolved = resolveCategoryAndTags(fm, relPath, rawBody);
   const tags = dedupeTags(resolved.tags, resolved.category);
 
-  const unmapped =
-    resolved.category !== 'uncategorized' &&
-    !taxonomy.canonical.has(resolved.category);
+  // A normalized candidate (e.g. "personal-o", singularized from "personal-os") matching
+  // the whitelist only proves it maps to a canonical entry -- it is not itself a value the
+  // live routing (core/config.mjs's resolveNotebookId, exact-match on stored keys/aliases)
+  // can resolve. Report/compare the map's stored canonical key, not the normalized form,
+  // whenever one was found.
+  const proposedCanonicalKey = taxonomy.canonical.get(resolved.category);
+  const proposedCategory = proposedCanonicalKey || resolved.category;
+  const unmapped = resolved.category !== 'uncategorized' && !proposedCanonicalKey;
 
-  const currentCategory = fm && typeof fm.category === 'string' ? normalize(fm.category) : null;
+  const currentCategoryNorm = fm && typeof fm.category === 'string' ? normalize(fm.category) : null;
+  const currentCategory = currentCategoryNorm
+    ? taxonomy.canonical.get(currentCategoryNorm) || currentCategoryNorm
+    : null;
   const currentTags = Array.isArray(fm && fm.tags) ? fm.tags.map(normalize).filter(Boolean) : [];
   const changed =
     !hasBlock || // no frontmatter block at all
-    currentCategory !== resolved.category ||
+    currentCategory !== proposedCategory ||
     JSON.stringify([...currentTags].sort()) !== JSON.stringify([...tags].sort());
 
   if (!hasBlock) {
     return {
       file: relPath,
       kind: 'missing_frontmatter',
-      proposed: { category: resolved.category, tags, source: resolved.source },
+      proposed: { category: proposedCategory, tags, source: resolved.source },
       unmapped
     };
   }
@@ -261,7 +278,7 @@ function auditFile(absPath, relPath, taxonomy) {
     file: relPath,
     kind: unmapped ? 'unmapped_category' : 'proposed_change',
     current: { category: currentCategory, tags: currentTags },
-    proposed: { category: resolved.category, tags, source: resolved.source },
+    proposed: { category: proposedCategory, tags, source: resolved.source },
     unmapped
   };
 }
