@@ -1,6 +1,6 @@
 ---
 title: "SESSION WRAP UP 2026 07 26"
-category: "uncategorized"
+category: "governance"
 status: "active"
 ---
 

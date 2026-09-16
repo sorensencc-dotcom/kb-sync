@@ -1,6 +1,6 @@
 ---
 title: "task scheduler setup"
-category: "uncategorized"
+category: "operations"
 status: "active"
 ---
 

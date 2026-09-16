@@ -1,6 +1,6 @@
 ---
 title: "archive cleanup"
-category: "uncategorized"
+category: "operations"
 status: "active"
 ---
 
