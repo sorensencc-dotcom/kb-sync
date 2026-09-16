@@ -1,6 +1,7 @@
 ---
 title: "operator rules"
-category: "wiki"
+category: "master-kb"
+tags: ["notebooklm-sync"]
 status: "active"
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "CROSS PLATFORM TESTING"
-category: "wiki"
+category: "uncategorized"
 status: "active"
 ---
 

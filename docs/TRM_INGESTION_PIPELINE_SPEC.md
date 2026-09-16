@@ -1,6 +1,6 @@
 ---
 title: "TRM INGESTION PIPELINE SPEC"
-category: "wiki"
+category: "uncategorized"
 status: "active"
 ---
 

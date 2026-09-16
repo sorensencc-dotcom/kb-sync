@@ -1,6 +1,7 @@
 ---
 title: "2026 08 12 sibling pattern checking"
-category: "wiki"
+category: "superpowers"
+tags: ["plan"]
 status: "active"
 ---
 

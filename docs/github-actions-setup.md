@@ -1,6 +1,6 @@
 ---
 title: "github actions setup"
-category: "wiki"
+category: "uncategorized"
 status: "active"
 ---
 

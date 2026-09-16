@@ -1,6 +1,7 @@
 ---
 title: "2026 08 11 compacted context engine"
-category: "wiki"
+category: "meta"
+tags: ["plan"]
 status: "active"
 ---
 

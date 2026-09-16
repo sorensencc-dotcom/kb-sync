@@ -1,6 +1,7 @@
 ---
 title: "2026 08 11 compacted context design"
-category: "wiki"
+category: "meta"
+tags: ["spec"]
 status: "active"
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "automation policy"
-category: "wiki"
+category: "governance"
 status: "active"
 ---
 
