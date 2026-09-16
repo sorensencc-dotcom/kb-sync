@@ -16,12 +16,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validateCategoriesData } from './config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CATEGORIES_PATH = path.join(__dirname, 'categories.json');
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const DEFAULT_RULES = {
   case_sensitive: false,
@@ -81,7 +83,7 @@ function checkAliasCollisions(existingCategories, seedCategories) {
 
 function validateSeedEntry(key, def) {
   const errors = [];
-  if (!def.target || typeof def.target !== 'string') {
+  if (typeof def.target !== 'string' || !UUID_RE.test(def.target)) {
     errors.push(`seed category '${key}' missing valid 'target' UUID -- assign a real NotebookLM notebook id or drop it from the seed and register it as a placeholder instead`);
   }
   if (!def.title || typeof def.title !== 'string') {
@@ -89,6 +91,9 @@ function validateSeedEntry(key, def) {
   }
   if (def.status !== 'canonical') {
     errors.push(`seed category '${key}' must have status 'canonical'`);
+  }
+  if (def.aliases !== undefined && (!Array.isArray(def.aliases) || def.aliases.some((alias) => typeof alias !== 'string' || !alias.trim()))) {
+    errors.push(`seed category '${key}' 'aliases' must be an array of non-empty strings`);
   }
   return errors;
 }
@@ -145,7 +150,31 @@ function main() {
   const backupPath = `${CATEGORIES_PATH}.bak-${Date.now()}`;
   fs.copyFileSync(CATEGORIES_PATH, backupPath);
 
-  const tmpPath = `${CATEGORIES_PATH}.tmp`;
+  // core/config.mjs's resolveNotebookId can concurrently register a new placeholder via
+  // saveCategoriesData while this migration is running. Re-read immediately before the
+  // write and fold in any placeholders/categories that appeared since our initial read,
+  // so a concurrent registration isn't silently dropped by our snapshot. This narrows the
+  // race window but doesn't eliminate it -- neither writer takes a lock, and a genuine
+  // cross-process lock would need to land in config.mjs itself (the shared writer for both
+  // this script and the live NotebookLM routing path), which is out of scope here.
+  const latestRaw = fs.readFileSync(CATEGORIES_PATH, 'utf8');
+  const latest = JSON.parse(latestRaw);
+  for (const [pKey, pVal] of Object.entries(latest.placeholders || {})) {
+    if (!migrated.placeholders[pKey]) {
+      migrated.placeholders[pKey] = pVal;
+    }
+  }
+  for (const [cKey, cVal] of Object.entries(latest.categories || {})) {
+    if (!migrated.categories[cKey]) {
+      migrated.categories[cKey] = cVal;
+    }
+  }
+  validateCategoriesData(migrated);
+
+  // Use a per-run unique temp filename (not a fixed `${CATEGORIES_PATH}.tmp`) so a
+  // concurrent writer using the same fixed name -- e.g. saveCategoriesData in config.mjs --
+  // can't have its in-flight write clobbered by, or clobber, this one.
+  const tmpPath = `${CATEGORIES_PATH}.tmp-${process.pid}-${crypto.randomUUID()}`;
   try {
     fs.writeFileSync(tmpPath, JSON.stringify(migrated, null, 2), 'utf8');
     fs.renameSync(tmpPath, CATEGORIES_PATH);
