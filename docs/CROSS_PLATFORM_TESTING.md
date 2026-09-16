@@ -1,6 +1,6 @@
 ---
 title: "CROSS PLATFORM TESTING"
-category: "uncategorized"
+category: "operations"
 status: "active"
 ---
 

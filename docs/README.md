@@ -1,6 +1,6 @@
 ---
 title: "README"
-category: "uncategorized"
+category: "meta"
 status: "active"
 ---
 

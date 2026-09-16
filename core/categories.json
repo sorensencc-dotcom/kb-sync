@@ -148,5 +148,76 @@
       "status": "canonical"
     }
   },
-  "placeholders": {}
+  "placeholders": {
+    "placeholder::governance": {
+      "category": "placeholder::governance",
+      "slug": "governance",
+      "created_at": "2026-09-16T13:04:46.538Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 4,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    },
+    "placeholder::meta": {
+      "category": "placeholder::meta",
+      "slug": "meta",
+      "created_at": "2026-09-16T13:04:46.539Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 4,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    },
+    "placeholder::modules": {
+      "category": "placeholder::modules",
+      "slug": "modules",
+      "created_at": "2026-09-16T13:04:46.539Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 1,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    },
+    "placeholder::operations": {
+      "category": "placeholder::operations",
+      "slug": "operations",
+      "created_at": "2026-09-16T13:04:46.540Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 9,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    },
+    "placeholder::skills": {
+      "category": "placeholder::skills",
+      "slug": "skills",
+      "created_at": "2026-09-16T13:04:46.540Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 1,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    },
+    "placeholder::superpowers": {
+      "category": "placeholder::superpowers",
+      "slug": "superpowers",
+      "created_at": "2026-09-16T13:04:46.540Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 10,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    },
+    "placeholder::targets": {
+      "category": "placeholder::targets",
+      "slug": "targets",
+      "created_at": "2026-09-16T13:04:46.541Z",
+      "source": "taxonomy-remediation",
+      "status": "unmapped",
+      "candidate_files": 2,
+      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "operator_required": true
+    }
+  }
 }
