@@ -1,6 +1,6 @@
 {
   "version": "2026-09-13-1",
-  "updated_at": "2026-09-13T20:00:00Z",
+  "updated_at": "2026-09-16T14:03:56.435Z",
   "categories": {
     "willow-run": {
       "title": "CIC - Willow Run & Aviation Engineering",
@@ -146,78 +146,83 @@
         "florida-logistics"
       ],
       "status": "canonical"
+    },
+    "governance": {
+      "title": "KB - Governance",
+      "target": "b42534be-a208-437e-828e-dad645631c66",
+      "description": "Operating rules, charters, authority models, and decision records",
+      "aliases": [
+        "gov",
+        "charter",
+        "policy"
+      ],
+      "status": "canonical"
+    },
+    "meta": {
+      "title": "KB - Meta",
+      "target": "30f80cc0-80f7-421a-a79b-c510d98aaf94",
+      "description": "Knowledge base architecture, design principles, specs, and top-level READMEs",
+      "aliases": [
+        "architecture",
+        "spec",
+        "design"
+      ],
+      "status": "canonical"
+    },
+    "modules": {
+      "title": "KB - Modules",
+      "target": "096b5b92-55d0-44b2-b074-3b3fef0a0d12",
+      "description": "Functional pipeline modules, ingestion scripts, and wiki tooling",
+      "aliases": [
+        "module",
+        "tools",
+        "scripts"
+      ],
+      "status": "canonical"
+    },
+    "operations": {
+      "title": "KB - Operations",
+      "target": "1ab8f1a2-f066-4246-8489-75f223d5f9d2",
+      "description": "Runbooks, deployment, CI/CD, execution testing, and operator procedures",
+      "aliases": [
+        "ops",
+        "runbook",
+        "deployment"
+      ],
+      "status": "canonical"
+    },
+    "skills": {
+      "title": "KB - Skills",
+      "target": "3ac216cc-3379-4c9f-8393-ab28a248cecc",
+      "description": "Standard agent tool definitions, action capabilities, and task specifications",
+      "aliases": [
+        "skill",
+        "capabilities"
+      ],
+      "status": "canonical"
+    },
+    "superpowers": {
+      "title": "KB - Superpowers",
+      "target": "95867d03-1175-4516-9b38-d95592b1a321",
+      "description": "High-order reasoning frameworks, prompt protocols, and system-level directives",
+      "aliases": [
+        "superpower",
+        "prompts",
+        "directives"
+      ],
+      "status": "canonical"
+    },
+    "targets": {
+      "title": "KB - Targets",
+      "target": "0cab9d12-0f0e-4cc0-9009-69ec809fce4a",
+      "description": "Ingestion destinations, output formats, and platform adapters",
+      "aliases": [
+        "target",
+        "destinations",
+        "adapters"
+      ],
+      "status": "canonical"
     }
   },
-  "placeholders": {
-    "placeholder::governance": {
-      "category": "placeholder::governance",
-      "slug": "governance",
-      "created_at": "2026-09-16T13:04:46.538Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 4,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    },
-    "placeholder::meta": {
-      "category": "placeholder::meta",
-      "slug": "meta",
-      "created_at": "2026-09-16T13:04:46.539Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 4,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    },
-    "placeholder::modules": {
-      "category": "placeholder::modules",
-      "slug": "modules",
-      "created_at": "2026-09-16T13:04:46.539Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 1,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    },
-    "placeholder::operations": {
-      "category": "placeholder::operations",
-      "slug": "operations",
-      "created_at": "2026-09-16T13:04:46.540Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 9,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    },
-    "placeholder::skills": {
-      "category": "placeholder::skills",
-      "slug": "skills",
-      "created_at": "2026-09-16T13:04:46.540Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 1,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    },
-    "placeholder::superpowers": {
-      "category": "placeholder::superpowers",
-      "slug": "superpowers",
-      "created_at": "2026-09-16T13:04:46.540Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 10,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    },
-    "placeholder::targets": {
-      "category": "placeholder::targets",
-      "slug": "targets",
-      "created_at": "2026-09-16T13:04:46.541Z",
-      "source": "taxonomy-remediation",
-      "status": "unmapped",
-      "candidate_files": 2,
-      "fallback_notebook_id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
-      "operator_required": true
-    }
-  }
+  "placeholders": {}
 }
