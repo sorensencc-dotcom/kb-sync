@@ -28,16 +28,32 @@ const IGNORED_ROOT_SEGMENTS = new Set(['content', 'pages', 'posts', 'drafts', 's
 const MAX_CATEGORY_DEPTH = 2;
 
 const SEMVER_TOKEN_RE = /^v[0-9]+(?:\.[0-9]+)*$/i;
-const LOCALE_TOKEN_RE = /^[a-z]{2}(-[A-Z]{2})?$/;
+// A bare "any two lowercase letters" pattern false-positives on ordinary 2-letter
+// directory names ("kb", "ui", "qa", "db", ...) that aren't locale codes at all -- so this
+// matches against a curated set of common ISO 639-1 codes instead of a wildcard regex.
+const LOCALE_CODES = new Set([
+  'en', 'es', 'fr', 'de', 'it', 'pt', 'nl', 'ru', 'ja', 'zh', 'ko', 'ar', 'hi',
+  'pl', 'tr', 'sv', 'da', 'fi', 'no', 'cs', 'el', 'he', 'th', 'vi', 'id', 'uk'
+]);
+const LOCALE_TOKEN_RE = /^([a-z]{2})(-[A-Z]{2})?$/;
 const HEADING_ANCHOR_RE = /^#{1,2}\s*\[([^\]]+)\]/;
+function isLocaleToken(seg) {
+  const m = LOCALE_TOKEN_RE.exec(seg);
+  return Boolean(m) && LOCALE_CODES.has(m[1]);
+}
 
 // Domain terms a naive trailing-`s` strip would mangle; left as-is. Starter list --
 // operators should extend this as they hit more false positives, same as the ruleset's
-// own "static mapping table for irregular forms" ask.
+// own "static mapping table for irregular forms" ask. Includes plural top-level doc
+// domain buckets (operations, modules, skills, targets, superpowers): singularizing a
+// directory-derived category name reintroduces the exact taxonomy-fragmentation problem
+// the whitelist exists to prevent whenever an operator has already used the plural form
+// elsewhere (e.g. an existing file already declares `category: "operations"`).
 const KEEP_AS_IS = new Set([
   'kubernetes', 'devops', 'nodejs', 'analytics', 'js', 'ios', 'os',
   'status', 'https', 'aws', 'iis', 'news', 'series', 'kb',
-  'postgres', 'redis', 'nginx', 'k8s'
+  'postgres', 'redis', 'nginx', 'k8s',
+  'operations', 'modules', 'skills', 'targets', 'superpowers'
 ]);
 // Irregular plural -> singular forms worth naming explicitly.
 const IRREGULAR_PLURALS = {
@@ -149,7 +165,7 @@ function pathHeuristic(relPath) {
   const tokens = segments.filter((seg) => {
     if (IGNORED_ROOT_SEGMENTS.has(seg)) return false;
     if (SEMVER_TOKEN_RE.test(seg)) return false;
-    if (LOCALE_TOKEN_RE.test(seg)) return false;
+    if (isLocaleToken(seg)) return false;
     return seg.length > 0;
   });
   if (tokens.length === 0) return null;
