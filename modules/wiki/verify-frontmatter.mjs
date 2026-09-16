@@ -92,24 +92,31 @@ function loadTaxonomy() {
     unmapped_fallback: 'uncategorized',
     ...(data.rules || {})
   };
+  // Canonical keys/aliases must run through the same `normalize()` as resolved candidates,
+  // or anything the taxonomy stores in a form normalize() would change (a trailing plural,
+  // an underscore) reads as unmapped even though it's the canonical value itself.
   const canonical = new Map(); // normalized key/alias -> canonical category key
   for (const [key, def] of Object.entries(data.categories || {})) {
-    canonical.set(key.toLowerCase().trim(), key);
+    canonical.set(normalize(key), key);
     for (const alias of def.aliases || []) {
-      canonical.set(alias.toLowerCase().trim(), key);
+      canonical.set(normalize(alias), key);
     }
   }
   return { rules, canonical };
 }
 
 function splitFrontmatter(content) {
-  if (!content.startsWith('---')) return { frontmatter: null, body: content, raw: null };
+  if (!content.startsWith('---')) return { hasBlock: false, body: content, raw: null };
   const end = content.indexOf('\n---', 3);
-  if (end === -1) return { frontmatter: null, body: content, raw: null };
+  if (end === -1) {
+    // Leading `---` with no closing delimiter -- malformed, not "no frontmatter"; the
+    // caller must not fall through to path/heading inference for this file.
+    return { hasBlock: true, closed: false, body: content, raw: null };
+  }
   const raw = content.slice(3, end).trim();
   const bodyStart = content.indexOf('\n', end + 1);
   const body = bodyStart === -1 ? '' : content.slice(bodyStart + 1);
-  return { frontmatter: undefined, body, raw }; // frontmatter parsed by caller (needs try/catch)
+  return { hasBlock: true, closed: true, body, raw }; // frontmatter parsed by caller (needs try/catch)
 }
 
 function declaredCategory(fm) {
@@ -158,10 +165,14 @@ function headingAnchor(body) {
 function resolveCategoryAndTags(fm, relPath, body) {
   const declared = declaredCategory(fm);
   if (declared) {
+    // A scalar `category`/`section` carries no tags of its own; a separate `tags:` field
+    // (common alongside a scalar category) is still real declared data and must not be
+    // reported as "should be removed" just because it wasn't the field precedence matched.
+    const explicitTags = Array.isArray(fm && fm.tags) ? fm.tags : [];
     return {
       source: 'frontmatter',
       category: normalize(declared.primary),
-      tags: declared.tags.map(normalize).filter(Boolean)
+      tags: [...declared.tags, ...explicitTags].map(normalize).filter(Boolean)
     };
   }
 
@@ -197,10 +208,17 @@ function dedupeTags(tags, primaryCategory) {
 
 function auditFile(absPath, relPath, taxonomy) {
   const content = fs.readFileSync(absPath, 'utf8');
-  const { frontmatter: _unused, body: rawBody, raw } = splitFrontmatter(content);
+  const { hasBlock, closed, body: rawBody, raw } = splitFrontmatter(content);
+
+  if (hasBlock && !closed) {
+    // A leading `---` with no closing delimiter is a malformed block, not an absent one --
+    // falling through to path/heading inference here would guess at a file whose declared
+    // frontmatter simply failed to parse.
+    return { file: relPath, kind: 'malformed', error: 'Unclosed frontmatter block (no closing "---")' };
+  }
 
   let fm = null;
-  if (raw !== null) {
+  if (hasBlock) {
     if (raw === '') {
       // Explicit empty frontmatter block ("---\n---") -- malformed per the ruleset, never guess.
       return { file: relPath, kind: 'malformed', error: 'Empty frontmatter block' };
@@ -222,11 +240,11 @@ function auditFile(absPath, relPath, taxonomy) {
   const currentCategory = fm && typeof fm.category === 'string' ? normalize(fm.category) : null;
   const currentTags = Array.isArray(fm && fm.tags) ? fm.tags.map(normalize).filter(Boolean) : [];
   const changed =
-    raw === null || // no frontmatter block at all
+    !hasBlock || // no frontmatter block at all
     currentCategory !== resolved.category ||
     JSON.stringify([...currentTags].sort()) !== JSON.stringify([...tags].sort());
 
-  if (raw === null) {
+  if (!hasBlock) {
     return {
       file: relPath,
       kind: 'missing_frontmatter',
