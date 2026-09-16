@@ -164,11 +164,26 @@ function main() {
       migrated.placeholders[pKey] = pVal;
     }
   }
+
+  // Categories that appeared concurrently must clear the same key/alias collision check
+  // the seed did -- validateCategoriesData only catches alias-vs-alias duplicates, not a
+  // new category's key colliding with another category's alias, so skipping this check
+  // here would let a late-arriving category silently steal or be shadowed by an existing
+  // route in buildNotebookTargetMap.
+  const newlyArrived = {};
   for (const [cKey, cVal] of Object.entries(latest.categories || {})) {
     if (!migrated.categories[cKey]) {
-      migrated.categories[cKey] = cVal;
+      newlyArrived[cKey] = cVal;
     }
   }
+  const lateCollisions = checkAliasCollisions(migrated.categories, newlyArrived);
+  if (lateCollisions.length) {
+    throw new Error(
+      `Refusing to write: a category registered concurrently during this migration collides with an existing/seed category or alias -- rerun the migration once the conflict is resolved: ${lateCollisions.join('; ')}`
+    );
+  }
+  Object.assign(migrated.categories, newlyArrived);
+
   validateCategoriesData(migrated);
 
   // Use a per-run unique temp filename (not a fixed `${CATEGORIES_PATH}.tmp`) so a
