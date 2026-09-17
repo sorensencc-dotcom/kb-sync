@@ -116,6 +116,20 @@ export function resolveCategoryKey(category, categoriesData = loadCategoriesData
   return normalized;
 }
 
+// Canonical keys of categories that must never be bundled into the
+// historical master-kb pack (see docs/targets isolation invariant). Driven
+// by categories.json's `exclude_from_master_kb` flag rather than a
+// hand-maintained list, so promoting a new non-historical category can't
+// silently reopen the cross-domain leak this was added to close.
+export function getMasterKbExclusions(categoriesData = loadCategoriesData()) {
+  const excluded = new Set();
+  const categories = categoriesData.categories || {};
+  for (const [key, catDef] of Object.entries(categories)) {
+    if (catDef.exclude_from_master_kb) excluded.add(key);
+  }
+  return excluded;
+}
+
 export function resolveNotebookId(category, options = {}) {
   if (!category) return NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
   const normalized = String(category).toLowerCase().trim();

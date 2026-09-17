@@ -11,7 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { NOTEBOOK_TARGETS, resolveNotebookId, resolveCategoryKey } from '../core/config.mjs';
+import { NOTEBOOK_TARGETS, resolveNotebookId, resolveCategoryKey, getMasterKbExclusions } from '../core/config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -107,22 +107,17 @@ export function consolidatePacks(options = {}) {
 
   logInfo(`Discovered ${candidateFiles.length} markdown source files.`);
 
-  // Domain 2 (Software) and Domain 3 (Personal OS) categories must never
-  // bundle into the historical master-kb pack (see docs/targets isolation
-  // invariant: software vs. historical isolation).
+  // Categories marked `exclude_from_master_kb` in core/categories.json (software,
+  // personal-os, and KB-documentation domains) must never bundle into the
+  // historical master-kb pack (see docs/targets isolation invariant).
   // NOTE: this set holds canonical category keys only. Frontmatter values
   // are normalized through resolveCategoryKey() below before checking
-  // against it, so aliases (e.g. 'graft', 'household', 'ssg' — see
+  // against it, so aliases (e.g. 'graft', 'household', 'adapters' — see
   // core/categories.json) exclude correctly instead of leaking into the
-  // master pack.
-  const NON_HISTORICAL_CATEGORIES = new Set([
-    'ironledger',
-    'sigil',
-    'agent-harness',
-    'rewrite-labs',
-    'dev-triage',
-    'personal-os'
-  ]);
+  // master pack. Pulling the set from categories.json (rather than a
+  // hand-maintained list here) means promoting a new non-historical
+  // category can't silently reopen this leak.
+  const NON_HISTORICAL_CATEGORIES = getMasterKbExclusions();
 
   // Parse and organize files by category
   const categorized = {
