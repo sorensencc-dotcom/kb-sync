@@ -1,6 +1,6 @@
 {
-  "version": "2026-09-13-1",
-  "updated_at": "2026-09-16T14:03:56.435Z",
+  "version": "2026-09-17-1",
+  "updated_at": "2026-09-17T12:30:00.000Z",
   "categories": {
     "willow-run": {
       "title": "CIC - Willow Run & Aviation Engineering",
@@ -93,7 +93,8 @@
         "iron_ledger",
         "ledger"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "sigil": {
       "title": "Sigil Protocol & Federation",
@@ -103,7 +104,8 @@
         "sigil-federation",
         "fix-session"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "agent-harness": {
       "title": "Agent Harnesses & Local Execution (Graft, SAM, Herdr)",
@@ -114,7 +116,8 @@
         "sam",
         "herdr"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "rewrite-labs": {
       "title": "Rewrite Labs SSG/Redesign Platform",
@@ -124,7 +127,8 @@
         "ssg",
         "redesign"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "dev-triage": {
       "title": "Open Dev Issues (CI/CD Triage Buffer)",
@@ -134,7 +138,8 @@
         "ci_cd",
         "triage"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "personal-os": {
       "title": "Personal OS (Household, Utilities, Florida Logistics)",
@@ -145,7 +150,8 @@
         "utilities",
         "florida-logistics"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "governance": {
       "title": "KB - Governance",
@@ -156,7 +162,8 @@
         "charter",
         "policy"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "meta": {
       "title": "KB - Meta",
@@ -167,7 +174,8 @@
         "spec",
         "design"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "modules": {
       "title": "KB - Modules",
@@ -178,7 +186,8 @@
         "tools",
         "scripts"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "operations": {
       "title": "KB - Operations",
@@ -189,7 +198,8 @@
         "runbook",
         "deployment"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "skills": {
       "title": "KB - Skills",
@@ -199,7 +209,8 @@
         "skill",
         "capabilities"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "superpowers": {
       "title": "KB - Superpowers",
@@ -210,7 +221,8 @@
         "prompts",
         "directives"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     },
     "targets": {
       "title": "KB - Targets",
@@ -221,7 +233,8 @@
         "destinations",
         "adapters"
       ],
-      "status": "canonical"
+      "status": "canonical",
+      "exclude_from_master_kb": true
     }
   },
   "placeholders": {}

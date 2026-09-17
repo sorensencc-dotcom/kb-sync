@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { execSync } from "child_process";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 
 console.log("================================================================================");
 console.log("Core Scripts Verification Tests");
@@ -506,6 +506,141 @@ runTest("core/rollback.sh restores modified files from backup", () => {
     if (fs.existsSync(tempDir)) {
       fs.rmSync(tempDir, { recursive: true, force: true });
     }
+  }
+});
+
+// Tests 9-12: category alias resolution regression coverage (kb-sync PR #16 review)
+const configModule = await import(pathToFileURL(path.join(REPO_ROOT, "core", "config.mjs")).href);
+const targetsModule = await import(pathToFileURL(path.join(REPO_ROOT, "core", "targets.mjs")).href);
+const dagModule = await import(pathToFileURL(path.join(REPO_ROOT, "core", "dag.mjs")).href);
+const consolidatePackModule = await import(pathToFileURL(path.join(REPO_ROOT, "scripts", "consolidate-pack.mjs")).href);
+
+runTest("core/config.mjs resolveCategoryKey normalizes aliases to canonical keys", () => {
+  const { resolveCategoryKey } = configModule;
+  const cases: Array<[string, string]> = [
+    ["household", "personal-os"],
+    ["graft", "agent-harness"],
+    ["adapters", "targets"],
+    ["willow-run", "willow-run"],
+    ["aviation", "willow-run"]
+  ];
+  for (const [input, expected] of cases) {
+    const actual = resolveCategoryKey(input);
+    if (actual !== expected) {
+      throw new Error(`resolveCategoryKey('${input}') expected '${expected}', got '${actual}'`);
+    }
+  }
+});
+
+runTest("core/config.mjs getMasterKbExclusions derives exclusion set from categories.json flags", () => {
+  const { getMasterKbExclusions } = configModule;
+  const excluded: Set<string> = getMasterKbExclusions();
+  const mustExclude = [
+    "ironledger", "sigil", "agent-harness", "rewrite-labs", "dev-triage", "personal-os",
+    "governance", "meta", "modules", "operations", "skills", "superpowers", "targets"
+  ];
+  for (const key of mustExclude) {
+    if (!excluded.has(key)) {
+      throw new Error(`Expected '${key}' in master-kb exclusion set (missing exclude_from_master_kb flag?)`);
+    }
+  }
+  const mustInclude = ["willow-run", "ford-politics", "post-war", "cuba-claims", "miami-estate", "assembly-line"];
+  for (const key of mustInclude) {
+    if (excluded.has(key)) {
+      throw new Error(`Historical category '${key}' should not be excluded from master-kb`);
+    }
+  }
+});
+
+runTest("core/targets.mjs resolveNotebookId stays pure/fail-soft for unknown categories", () => {
+  const { resolveNotebookId, NOTEBOOK_TARGETS } = targetsModule;
+  const before = fs.readFileSync(path.join(REPO_ROOT, "core", "categories.json"), "utf8");
+  const result = resolveNotebookId("some-totally-unmapped-category-xyz");
+  const after = fs.readFileSync(path.join(REPO_ROOT, "core", "categories.json"), "utf8");
+  if (result !== NOTEBOOK_TARGETS["daily"]) {
+    throw new Error(`Expected unknown category to fall back to daily notebook, got: ${result}`);
+  }
+  if (before !== after) {
+    throw new Error("core/targets.mjs resolveNotebookId must not write to categories.json (fail-soft contract for read-only installs)");
+  }
+});
+
+runTest("scripts/consolidate-pack.mjs excludes aliased non-historical categories from master-kb", () => {
+  const tempDir = path.join(REPO_ROOT, ".test_consolidate_alias_exclusion");
+  if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true, force: true });
+  const wikiDir = path.join(tempDir, "wiki");
+  fs.mkdirSync(wikiDir, { recursive: true });
+
+  try {
+    fs.writeFileSync(
+      path.join(wikiDir, "aliased-note.md"),
+      `---\ncategory: household\n---\n# Personal note tagged via alias\n`,
+      "utf8"
+    );
+    fs.writeFileSync(
+      path.join(wikiDir, "historical-note.md"),
+      `---\ncategory: willow-run\n---\n# Historical note\n`,
+      "utf8"
+    );
+
+    const outDir = path.join(tempDir, "out");
+    consolidatePackModule.consolidatePacks({ rootDir: tempDir, outDir });
+
+    const master = fs.readFileSync(path.join(outDir, "pack_master_kb.txt"), "utf8");
+    if (master.includes("aliased-note.md")) {
+      throw new Error("Alias 'household' (-> personal-os) leaked into pack_master_kb.txt");
+    }
+    if (!master.includes("historical-note.md")) {
+      throw new Error("Historical note was incorrectly excluded from pack_master_kb.txt");
+    }
+  } finally {
+    if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+runTest("core/config.mjs loadCategoriesData fails closed when categories.json is unavailable", () => {
+  const { loadCategoriesData } = configModule;
+  const categoriesPath = path.join(REPO_ROOT, "core", "categories.json");
+  const movedPath = `${categoriesPath}.test-moved-${process.pid}`;
+
+  fs.renameSync(categoriesPath, movedPath);
+  try {
+    let threw = false;
+    try {
+      loadCategoriesData();
+    } catch (err: any) {
+      threw = true;
+      if (!/CATEGORY_REGISTRY_UNAVAILABLE/.test(err.message || "")) {
+        throw new Error(`Expected CATEGORY_REGISTRY_UNAVAILABLE error, got: ${err.message}`);
+      }
+    }
+    if (!threw) {
+      throw new Error("loadCategoriesData() must throw when categories.json is missing, not silently return an empty registry");
+    }
+  } finally {
+    fs.renameSync(movedPath, categoriesPath);
+  }
+});
+
+runTest("core/dag.mjs collapses aliased domain backlinks onto the canonical domain node", () => {
+  const { buildDagGraph } = dagModule;
+  const result = buildDagGraph({
+    chunks: [],
+    fileList: ["wiki/a.md", "wiki/b.md"],
+    backlinks: [
+      { source: "wiki/a.md", target: "domain:graft", type: "wikilink" },
+      { source: "wiki/b.md", target: "domain:agent-harness", type: "wikilink" }
+    ]
+  });
+
+  const domainNodes = result.dag.nodes.filter((n: any) => n.node_type === "domain");
+  if (domainNodes.length !== 1) {
+    throw new Error(
+      `Expected alias 'graft' and canonical 'agent-harness' backlinks to collapse onto one domain node, got ${domainNodes.length}: ${domainNodes.map((n: any) => n.id).join(", ")}`
+    );
+  }
+  if (domainNodes[0].id !== "node:domain:agent-harness") {
+    throw new Error(`Expected canonical domain node id 'node:domain:agent-harness', got '${domainNodes[0].id}'`);
   }
 });
 

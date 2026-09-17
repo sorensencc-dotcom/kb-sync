@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { NOTEBOOK_TARGETS } from './targets.mjs';
+import { NOTEBOOK_TARGETS, resolveCategoryKey } from './targets.mjs';
 
 export function countNonTrivialSCCs(nodes, edges) {
   const orderedIds = nodes.map(n => n.id).sort((a, b) => a.localeCompare(b));
@@ -140,16 +140,20 @@ export function buildDagGraph({ chunks = [], backlinks = [], fileList = [], comm
 
     let tgtId = `node:file:${tgtNorm}`;
     if (isPartitionDomain) {
-      tgtId = `node:domain:${cleanTgt}`;
+      // Normalize aliases to their canonical category key so e.g. 'graft'
+      // and 'agent-harness' backlinks collapse onto the same domain node
+      // instead of splitting domain identity (see kb-sync PR #16 review).
+      const canonicalTgt = resolveCategoryKey(cleanTgt);
+      tgtId = `node:domain:${canonicalTgt}`;
       if (!nodesMap.has(tgtId)) {
         nodesMap.set(tgtId, {
           id: tgtId,
           node_type: 'domain',
-          label: `domain:${cleanTgt}`,
-          path: `domain/${cleanTgt}`,
+          label: `domain:${canonicalTgt}`,
+          path: `domain/${canonicalTgt}`,
           status: 'valid',
           target_kind: 'partition',
-          tags: ['partition', cleanTgt]
+          tags: ['partition', canonicalTgt]
         });
       }
     } else if (!nodesMap.has(tgtId)) {

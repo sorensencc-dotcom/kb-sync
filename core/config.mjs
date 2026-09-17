@@ -7,16 +7,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CATEGORIES_PATH = path.join(__dirname, 'categories.json');
 
+// Deliberately fails closed: a missing, unreadable, or unparseable
+// categories.json throws rather than returning an empty registry. An empty
+// registry looks valid to every caller (NOTEBOOK_TARGETS, resolveNotebookId,
+// getMasterKbExclusions all build from it), so a silent fallback here used to
+// mean routing quietly degraded to 'daily' for every category and master-kb
+// domain isolation evaporated with no error anywhere in the pipeline (see
+// kb-sync PR #16 review). If categories.json is genuinely unavailable, every
+// caller needs to know immediately, not produce valid-looking wrong output.
 export function loadCategoriesData() {
-  try {
-    if (fs.existsSync(CATEGORIES_PATH)) {
-      const raw = fs.readFileSync(CATEGORIES_PATH, 'utf8');
-      return JSON.parse(raw);
-    }
-  } catch (err) {
-    console.error(`[CONFIG] [ERROR] Failed to load categories.json: ${err.message}`);
+  if (!fs.existsSync(CATEGORIES_PATH)) {
+    throw new Error(`CATEGORY_REGISTRY_UNAVAILABLE: categories.json not found at ${CATEGORIES_PATH}. Category routing and master-kb domain isolation cannot proceed without it.`);
   }
-  return { version: '2026-08-29-1', categories: {}, placeholders: {} };
+  let raw;
+  try {
+    raw = fs.readFileSync(CATEGORIES_PATH, 'utf8');
+  } catch (err) {
+    throw new Error(`CATEGORY_REGISTRY_UNAVAILABLE: Failed to read categories.json: ${err.message}`);
+  }
+  try {
+    return JSON.parse(raw);
+  } catch (err) {
+    throw new Error(`CATEGORY_REGISTRY_UNAVAILABLE: Failed to parse categories.json: ${err.message}`);
+  }
 }
 
 export function validateCategoriesData(data) {
@@ -98,6 +111,37 @@ export function buildNotebookTargetMap(categoriesData = loadCategoriesData()) {
 }
 
 export const NOTEBOOK_TARGETS = buildNotebookTargetMap();
+
+// Resolves a raw frontmatter category string (which may be a canonical key
+// or any of its aliases, per core/categories.json) to its canonical key.
+// Unknown categories are returned normalized but unchanged, since callers
+// (e.g. domain-isolation exclusion sets) key off canonical names only.
+export function resolveCategoryKey(category, categoriesData = loadCategoriesData()) {
+  if (!category) return 'daily';
+  const normalized = String(category).toLowerCase().trim();
+  const categories = categoriesData.categories || {};
+  if (categories[normalized]) return normalized;
+  for (const [key, catDef] of Object.entries(categories)) {
+    if (Array.isArray(catDef.aliases) && catDef.aliases.some((a) => a.toLowerCase().trim() === normalized)) {
+      return key;
+    }
+  }
+  return normalized;
+}
+
+// Canonical keys of categories that must never be bundled into the
+// historical master-kb pack (see docs/targets isolation invariant). Driven
+// by categories.json's `exclude_from_master_kb` flag rather than a
+// hand-maintained list, so promoting a new non-historical category can't
+// silently reopen the cross-domain leak this was added to close.
+export function getMasterKbExclusions(categoriesData = loadCategoriesData()) {
+  const excluded = new Set();
+  const categories = categoriesData.categories || {};
+  for (const [key, catDef] of Object.entries(categories)) {
+    if (catDef.exclude_from_master_kb) excluded.add(key);
+  }
+  return excluded;
+}
 
 export function resolveNotebookId(category, options = {}) {
   if (!category) return NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
