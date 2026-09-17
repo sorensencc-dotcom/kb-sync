@@ -28,6 +28,9 @@ const MIME_TYPES = {
   '.txt': 'text/plain; charset=UTF-8'
 };
 
+// No Access-Control-Allow-Origin header: this server binds to 127.0.0.1 only,
+// but a wildcard CORS header would let any web page the operator visits read
+// local KB data cross-origin via fetch() while the server is running.
 const server = createServer(async (req, res) => {
   const reqUrl = new URL(req.url, `http://${req.headers.host || '127.0.0.1'}`);
   const pathname = reqUrl.pathname;
@@ -35,7 +38,6 @@ const server = createServer(async (req, res) => {
   // 1. API Route: GET /api/reporting/weekly-retro
   if (pathname === '/api/reporting/weekly-retro' && req.method === 'GET') {
     res.setHeader('Content-Type', 'application/json; charset=UTF-8');
-    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
       const data = await retroTransport.fetch();
       res.writeHead(200);
@@ -83,8 +85,7 @@ const server = createServer(async (req, res) => {
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
       const fileContent = readFileSync(safePath);
       res.writeHead(200, {
-        'Content-Type': contentType,
-        'Access-Control-Allow-Origin': '*'
+        'Content-Type': contentType
       });
       res.end(fileContent);
     } catch (err) {
