@@ -27,6 +27,76 @@ log_warn() {
   printf '\e[33m[RUN-ALL] [WARN] %s\e[0m\n' "$*" >&2
 }
 
+# --- GIT AUTO-SYNC PREFLIGHT -------------------------------------------------
+# Keeps the local checkout current with origin before any scheduled/manual
+# run, so unattended runs (Windows Task Scheduler) never operate on stale
+# code after the machine has been offline. Fast-forward only: never
+# overwrites local work. Failure here (no network, dirty tree, diverged
+# history) is logged and the pipeline proceeds against whatever is
+# currently checked out, per this repo's fail-soft orchestration principle.
+#
+# Generated telemetry the pipeline itself rewrites every run (.sync-status.json,
+# .drift-report.json, .coverage-report.json, .cross-repo-drift-report.json) is
+# committed back as a separate, human-driven step (see git log), not by this
+# script. Treating those as "local work in progress" would mean the first
+# pipeline run ever leaves the tree permanently "dirty" from git's
+# perspective, disabling auto-sync for good -- so they're excluded from the
+# cleanliness check below while any other tracked change still blocks it.
+#
+# Runs before configs/global.yaml and SYNC_TARGETS are read below, and
+# re-execs this script fresh after any successful fast-forward: a
+# fast-forward rewrites core/run-all.sh itself on disk mid-run when this file
+# changed upstream, and a bash process already executing the old version
+# cannot be trusted to pick that up mid-script. KB_RUN_ALL_RESYNCED guards
+# against re-exec looping.
+git_sync_preflight_and_reexec() {
+  if [ -n "${KB_RUN_ALL_RESYNCED:-}" ]; then
+    return 0
+  fi
+
+  local branch
+  branch="$(git -C "$REPO_ROOT" symbolic-ref --short HEAD 2>/dev/null || echo "")"
+
+  if [ -z "$branch" ]; then
+    log_warn "Git sync: detached HEAD or not on a branch; skipping auto-sync."
+    return 0
+  fi
+
+  if [ -n "$(git -C "$REPO_ROOT" status --porcelain -- . \
+      ':!.sync-status.json' ':!.drift-report.json' \
+      ':!.coverage-report.json' ':!.cross-repo-drift-report.json' 2>/dev/null)" ]; then
+    log_warn "Git sync: working tree has uncommitted changes; skipping auto-sync to avoid clobbering local work."
+    return 0
+  fi
+
+  local before_sha
+  before_sha="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo "")"
+
+  log_info "Git sync: fetching origin/$branch..."
+  if ! git -C "$REPO_ROOT" fetch origin "$branch" --quiet 2>&1; then
+    log_warn "Git sync: fetch failed (offline or unreachable remote); continuing with current checkout."
+    return 0
+  fi
+
+  if ! git -C "$REPO_ROOT" merge --ff-only "origin/$branch" --quiet 2>&1; then
+    log_warn "Git sync: local branch has diverged from origin/$branch or fast-forward isn't possible; skipping auto-sync. Manual intervention needed."
+    return 0
+  fi
+
+  local after_sha
+  after_sha="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo "")"
+
+  if [ "$before_sha" = "$after_sha" ]; then
+    log_info "Git sync: already up to date with origin/$branch ($after_sha)."
+    return 0
+  fi
+
+  log_info "Git sync: fast-forwarded $before_sha -> $after_sha; restarting orchestrator on the updated checkout."
+  KB_RUN_ALL_RESYNCED=1 exec bash "$REPO_ROOT/core/run-all.sh" "$@"
+}
+
+git_sync_preflight_and_reexec "$@"
+
 validate_notebooklm_telemetry() {
   local status_file="$REPO_ROOT/.sync-status.json"
   if [ ! -f "$status_file" ]; then
