@@ -40,14 +40,51 @@ const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all
 const SANITIZED_EXTENSIONS = /\.(md|html|mermaid|svg)$/i;
 const BINARY_EXTENSIONS = /\.(png|jpg|jpeg|gif)$/i;
 
+const UTF8_BOM = Buffer.from([0xEF, 0xBB, 0xBF]);
+const UTF16LE_BOM = Buffer.from([0xFF, 0xFE]);
+const UTF16BE_BOM = Buffer.from([0xFE, 0xFF]);
+
+// SVG (and, in principle, any XML/text asset) can be UTF-16 with a BOM --
+// blindly decoding every file as UTF-8 would silently corrupt those,
+// defeating the sanitize step by publishing garbage instead of the image.
+// Detect the BOM, decode/re-encode accordingly, and preserve it on write.
+function decodeTextFile(fullSrc) {
+  const buf = fs.readFileSync(fullSrc);
+  if (buf.length >= 3 && buf.subarray(0, 3).equals(UTF8_BOM)) {
+    return { text: buf.subarray(3).toString('utf8'), encoding: 'utf8', bom: UTF8_BOM };
+  }
+  if (buf.length >= 2 && buf.subarray(0, 2).equals(UTF16LE_BOM)) {
+    return { text: buf.subarray(2).toString('utf16le'), encoding: 'utf16le', bom: UTF16LE_BOM };
+  }
+  if (buf.length >= 2 && buf.subarray(0, 2).equals(UTF16BE_BOM)) {
+    const swapped = Buffer.from(buf.subarray(2));
+    swapped.swap16();
+    return { text: swapped.toString('utf16le'), encoding: 'utf16be', bom: UTF16BE_BOM };
+  }
+  return { text: buf.toString('utf8'), encoding: 'utf8', bom: null };
+}
+
+function encodeTextFile(text, encoding, bom) {
+  let body;
+  if (encoding === 'utf16le') {
+    body = Buffer.from(text, 'utf16le');
+  } else if (encoding === 'utf16be') {
+    body = Buffer.from(text, 'utf16le');
+    body.swap16();
+  } else {
+    body = Buffer.from(text, 'utf8');
+  }
+  return bom ? Buffer.concat([bom, body]) : body;
+}
+
 function writeSanitized(fullSrc, dest, findings) {
-  const raw = fs.readFileSync(fullSrc, 'utf8');
+  const { text: raw, encoding, bom } = decodeTextFile(fullSrc);
   const { sanitizedText, secretsFound, categories } = scanAndSanitizeText(raw);
   if (secretsFound > 0) {
     findings.push({ file: fullSrc, secretsFound, categories });
   }
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  fs.writeFileSync(dest, sanitizedText, 'utf8');
+  fs.writeFileSync(dest, encodeTextFile(sanitizedText, encoding, bom));
 }
 
 /**
