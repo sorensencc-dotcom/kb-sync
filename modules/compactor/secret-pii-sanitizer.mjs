@@ -20,6 +20,29 @@ const SECRET_PATTERNS = [
   { name: 'Generic Secret Variable', regex: /(?:secret|password|passwd|api_key|token|auth_key|master_token)\s*[:=]\s*["']?([A-Za-z0-9_\-\.\/]{16,})["']?/gi }
 ];
 
+// Hidden-markup patterns: HTML/XML comments and invisible unicode formatting
+// characters are the same vector reported for planted prompt-injection payloads
+// in agent compaction/memory summaries -- content a human reviewer never sees
+// rendered, but that rides along verbatim into an LLM's context window.
+// Stripped unconditionally (fail-closed) rather than allow-listed, since a
+// sanitizer that only blocks *known* injection phrasing is trivially bypassed.
+const HIDDEN_COMMENT_PATTERN = /<!--[\s\S]*?-->/g;
+const ZERO_WIDTH_PATTERN = /[​-‍﻿⁠-⁤]/g;
+
+/**
+ * Strips hidden markup (HTML/XML comments, zero-width/invisible characters)
+ * from text before it is embedded in a compacted context payload or summary.
+ * This intentionally also removes benign schema/marker comments (e.g. the
+ * IJFW `<!-- ijfw schema:1 -->` header) -- pattern-matching cannot distinguish
+ * a benign marker from a malicious hidden instruction, so both are dropped.
+ */
+export function stripHiddenDirectives(content) {
+  if (typeof content !== 'string') return content;
+  return content
+    .replace(HIDDEN_COMMENT_PATTERN, '')
+    .replace(ZERO_WIDTH_PATTERN, '');
+}
+
 /**
  * Scan text for secrets and replace them with redaction placeholders.
  * Returns { sanitizedText, secretsFound, categories }
@@ -30,7 +53,7 @@ export function scanAndSanitizeText(content, options = {}) {
     throw new Error('[SECRET_SANITIZER] Content must be a string (Fail-Closed)');
   }
 
-  let sanitized = content;
+  let sanitized = stripHiddenDirectives(content);
   let totalFound = 0;
   const categories = {};
 

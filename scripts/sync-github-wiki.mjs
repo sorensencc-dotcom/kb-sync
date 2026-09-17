@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { scanAndSanitizeText } from '../modules/compactor/secret-pii-sanitizer.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -31,9 +32,34 @@ const targetWikiDir = path.resolve(root, value('--target-dir', '.wiki-publish-te
 const shouldPush = !args.includes('--no-push');
 const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all wiki pages, RFCs, and diagram assets');
 
+// Text formats get read, scanned for secrets, and stripped of hidden markup
+// before they leave the machine -- everything else (images, diagrams) is
+// copied byte-for-byte since it can't carry planted text instructions.
+const SANITIZED_EXTENSIONS = /\.(md|html|mermaid)$/i;
+const BINARY_EXTENSIONS = /\.(png|svg|jpg|jpeg|gif)$/i;
+
+function writeSanitized(fullSrc, dest, findings) {
+  const raw = fs.readFileSync(fullSrc, 'utf8');
+  const { sanitizedText, secretsFound, categories } = scanAndSanitizeText(raw);
+  if (secretsFound > 0) {
+    findings.push({ file: fullSrc, secretsFound, categories });
+  }
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  fs.writeFileSync(dest, sanitizedText, 'utf8');
+}
+
+/**
+ * Copies wiki source content into the publish working tree, gated by a
+ * fail-closed secret/hidden-markup scan on every text file: this is the last
+ * checkpoint before content reaches the public GitHub wiki repo, so nothing
+ * text-based is copied unscanned. Throws (never partially publishes) if any
+ * secret is found -- callers must remove the offending value in `wiki/` and
+ * re-run rather than bypass the check here.
+ */
 function copyFlatAndPreserve(srcDir, destDir) {
   if (!fs.existsSync(srcDir)) return 0;
   let copied = 0;
+  const findings = [];
 
   function walk(currentDir) {
     const entries = fs.readdirSync(currentDir, { withFileTypes: true });
@@ -42,12 +68,19 @@ function copyFlatAndPreserve(srcDir, destDir) {
       if (entry.isDirectory()) {
         if (entry.name === '.git' || entry.name === 'node_modules') continue;
         walk(fullSrc);
-      } else if (entry.isFile() && /\.(md|png|svg|jpg|jpeg|gif|html|mermaid)$/i.test(entry.name)) {
-        // 1. Copy directly to root of wiki repo for flat GitHub Wiki URL routing
+      } else if (entry.isFile() && SANITIZED_EXTENSIONS.test(entry.name)) {
+        // 1. Copy (sanitized) directly to root of wiki repo for flat GitHub Wiki URL routing
+        writeSanitized(fullSrc, path.join(destDir, entry.name), findings);
+
+        // 2. Also preserve relative subfolder hierarchy
+        const relPath = path.relative(srcDir, fullSrc);
+        writeSanitized(fullSrc, path.join(destDir, relPath), findings);
+
+        copied += 1;
+      } else if (entry.isFile() && BINARY_EXTENSIONS.test(entry.name)) {
         const flatDest = path.join(destDir, entry.name);
         fs.copyFileSync(fullSrc, flatDest);
 
-        // 2. Also preserve relative subfolder hierarchy
         const relPath = path.relative(srcDir, fullSrc);
         const nestedDest = path.join(destDir, relPath);
         fs.mkdirSync(path.dirname(nestedDest), { recursive: true });
@@ -59,6 +92,17 @@ function copyFlatAndPreserve(srcDir, destDir) {
   }
 
   walk(srcDir);
+
+  if (findings.length > 0) {
+    const summary = findings
+      .map(f => `  - ${f.file}: ${f.secretsFound} secret(s) [${Object.keys(f.categories).join(', ')}]`)
+      .join('\n');
+    throw new Error(
+      `[KB-SYNC WIKI PUBLISHER] Refusing to publish: secret material detected in wiki/ source content:\n${summary}\n` +
+      `Remove or redact the flagged values in the source files under "wiki/" and re-run.`
+    );
+  }
+
   return copied;
 }
 
