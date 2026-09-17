@@ -33,10 +33,12 @@ const shouldPush = !args.includes('--no-push');
 const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all wiki pages, RFCs, and diagram assets');
 
 // Text formats get read, scanned for secrets, and stripped of hidden markup
-// before they leave the machine -- everything else (images, diagrams) is
-// copied byte-for-byte since it can't carry planted text instructions.
-const SANITIZED_EXTENSIONS = /\.(md|html|mermaid)$/i;
-const BINARY_EXTENSIONS = /\.(png|svg|jpg|jpeg|gif)$/i;
+// before they leave the machine -- everything else (raster images) is
+// copied byte-for-byte since it can't carry planted text instructions. SVG
+// is XML text (comments, <text>/<script> elements) so it goes through the
+// same scan as markdown/html rather than the raw byte-copy path.
+const SANITIZED_EXTENSIONS = /\.(md|html|mermaid|svg)$/i;
+const BINARY_EXTENSIONS = /\.(png|jpg|jpeg|gif)$/i;
 
 function writeSanitized(fullSrc, dest, findings) {
   const raw = fs.readFileSync(fullSrc, 'utf8');
@@ -159,8 +161,8 @@ function generateFooter(wikiDir) {
   fs.writeFileSync(path.join(wikiDir, '_Footer.md'), footerContent, 'utf8');
 }
 
-function generateHome(wikiDir) {
-  const readmePath = path.join(root, 'README.md');
+function generateHome(wikiDir, repoRoot) {
+  const readmePath = path.join(repoRoot, 'README.md');
   let homeContent = '';
   if (fs.existsSync(readmePath)) {
     homeContent = fs.readFileSync(readmePath, 'utf8');
@@ -171,7 +173,19 @@ function generateHome(wikiDir) {
   } else {
     homeContent = `# Knowledge Base Sync (\`kb-sync\`) Wiki\n\nWelcome to the official documentation wiki for **kb-sync**.`;
   }
-  fs.writeFileSync(path.join(wikiDir, 'Home.md'), homeContent, 'utf8');
+
+  // Home.md is generated from README.md content, not copied by
+  // copyFlatAndPreserve, so it needs its own pass through the same
+  // secret/hidden-markup gate before it reaches the public wiki repo.
+  const { sanitizedText, secretsFound, categories } = scanAndSanitizeText(homeContent);
+  if (secretsFound > 0) {
+    throw new Error(
+      `[KB-SYNC WIKI PUBLISHER] Refusing to publish: secret material detected in README.md ` +
+      `(${secretsFound} secret(s) [${Object.keys(categories).join(', ')}]). Remove or redact the flagged values and re-run.`
+    );
+  }
+
+  fs.writeFileSync(path.join(wikiDir, 'Home.md'), sanitizedText, 'utf8');
 }
 
 export async function publishWiki(customOptions = {}) {
@@ -203,7 +217,7 @@ export async function publishWiki(customOptions = {}) {
   console.log(`✓ Transferred ${copiedCount} file(s).`);
 
   console.log(`Generating Home.md, _Sidebar.md, and _Footer.md navigation assets...`);
-  generateHome(currentTarget);
+  generateHome(currentTarget, currentRoot);
   generateSidebar(currentTarget);
   generateFooter(currentTarget);
   console.log(`✓ Navigation templates generated.`);

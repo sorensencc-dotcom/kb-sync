@@ -91,7 +91,10 @@ export function sanitizeFile(filePath, options = {}) {
   try {
     const raw = fs.readFileSync(filePath, 'utf8');
     const result = scanAndSanitizeText(raw, options);
-    if (result.secretsFound > 0 && options.overwrite !== false) {
+    // Gate on any change, not just secretsFound: hidden-directive stripping
+    // can alter the text with zero redacted secrets, and that change must
+    // still be persisted (fail-closed) rather than silently discarded.
+    if (result.sanitizedText !== raw && options.overwrite !== false) {
       fs.writeFileSync(filePath, result.sanitizedText, 'utf8');
     }
     return result;
