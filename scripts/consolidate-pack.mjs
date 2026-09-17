@@ -11,7 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { NOTEBOOK_TARGETS, resolveNotebookId } from '../core/config.mjs';
+import { NOTEBOOK_TARGETS, resolveNotebookId, resolveCategoryKey } from '../core/config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -110,6 +110,11 @@ export function consolidatePacks(options = {}) {
   // Domain 2 (Software) and Domain 3 (Personal OS) categories must never
   // bundle into the historical master-kb pack (see docs/targets isolation
   // invariant: software vs. historical isolation).
+  // NOTE: this set holds canonical category keys only. Frontmatter values
+  // are normalized through resolveCategoryKey() below before checking
+  // against it, so aliases (e.g. 'graft', 'household', 'ssg' — see
+  // core/categories.json) exclude correctly instead of leaking into the
+  // master pack.
   const NON_HISTORICAL_CATEGORIES = new Set([
     'ironledger',
     'sigil',
@@ -132,7 +137,7 @@ export function consolidatePacks(options = {}) {
       const relPath = path.relative(rootDir, filePath).replace(/\\/g, '/');
       const content = fs.readFileSync(filePath, 'utf8');
       const fm = extractFrontmatter(content);
-      const cat = (fm.category || '').toLowerCase().trim();
+      const cat = resolveCategoryKey(fm.category || '');
 
       const item = { relPath, filePath, content, frontmatter: fm };
 
@@ -141,7 +146,7 @@ export function consolidatePacks(options = {}) {
         categorized['willow-run'].push(item);
       } else if (cat === 'ford-politics') {
         categorized['ford-politics'].push(item);
-      } else if (cat === 'willys-overland' || cat === 'post-war') {
+      } else if (cat === 'post-war') {
         categorized['willys-overland'].push(item);
       }
 

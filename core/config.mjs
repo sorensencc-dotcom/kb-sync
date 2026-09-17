@@ -99,6 +99,23 @@ export function buildNotebookTargetMap(categoriesData = loadCategoriesData()) {
 
 export const NOTEBOOK_TARGETS = buildNotebookTargetMap();
 
+// Resolves a raw frontmatter category string (which may be a canonical key
+// or any of its aliases, per core/categories.json) to its canonical key.
+// Unknown categories are returned normalized but unchanged, since callers
+// (e.g. domain-isolation exclusion sets) key off canonical names only.
+export function resolveCategoryKey(category, categoriesData = loadCategoriesData()) {
+  if (!category) return 'daily';
+  const normalized = String(category).toLowerCase().trim();
+  const categories = categoriesData.categories || {};
+  if (categories[normalized]) return normalized;
+  for (const [key, catDef] of Object.entries(categories)) {
+    if (Array.isArray(catDef.aliases) && catDef.aliases.some((a) => a.toLowerCase().trim() === normalized)) {
+      return key;
+    }
+  }
+  return normalized;
+}
+
 export function resolveNotebookId(category, options = {}) {
   if (!category) return NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
   const normalized = String(category).toLowerCase().trim();
