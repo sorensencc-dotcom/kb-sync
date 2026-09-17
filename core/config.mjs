@@ -7,16 +7,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CATEGORIES_PATH = path.join(__dirname, 'categories.json');
 
+// Deliberately fails closed: a missing, unreadable, or unparseable
+// categories.json throws rather than returning an empty registry. An empty
+// registry looks valid to every caller (NOTEBOOK_TARGETS, resolveNotebookId,
+// getMasterKbExclusions all build from it), so a silent fallback here used to
+// mean routing quietly degraded to 'daily' for every category and master-kb
+// domain isolation evaporated with no error anywhere in the pipeline (see
+// kb-sync PR #16 review). If categories.json is genuinely unavailable, every
+// caller needs to know immediately, not produce valid-looking wrong output.
 export function loadCategoriesData() {
-  try {
-    if (fs.existsSync(CATEGORIES_PATH)) {
-      const raw = fs.readFileSync(CATEGORIES_PATH, 'utf8');
-      return JSON.parse(raw);
-    }
-  } catch (err) {
-    console.error(`[CONFIG] [ERROR] Failed to load categories.json: ${err.message}`);
+  if (!fs.existsSync(CATEGORIES_PATH)) {
+    throw new Error(`CATEGORY_REGISTRY_UNAVAILABLE: categories.json not found at ${CATEGORIES_PATH}. Category routing and master-kb domain isolation cannot proceed without it.`);
   }
-  return { version: '2026-08-29-1', categories: {}, placeholders: {} };
+  let raw;
+  try {
+    raw = fs.readFileSync(CATEGORIES_PATH, 'utf8');
+  } catch (err) {
+    throw new Error(`CATEGORY_REGISTRY_UNAVAILABLE: Failed to read categories.json: ${err.message}`);
+  }
+  try {
+    return JSON.parse(raw);
+  } catch (err) {
+    throw new Error(`CATEGORY_REGISTRY_UNAVAILABLE: Failed to parse categories.json: ${err.message}`);
+  }
 }
 
 export function validateCategoriesData(data) {

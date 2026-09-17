@@ -598,6 +598,30 @@ runTest("scripts/consolidate-pack.mjs excludes aliased non-historical categories
   }
 });
 
+runTest("core/config.mjs loadCategoriesData fails closed when categories.json is unavailable", () => {
+  const { loadCategoriesData } = configModule;
+  const categoriesPath = path.join(REPO_ROOT, "core", "categories.json");
+  const movedPath = `${categoriesPath}.test-moved-${process.pid}`;
+
+  fs.renameSync(categoriesPath, movedPath);
+  try {
+    let threw = false;
+    try {
+      loadCategoriesData();
+    } catch (err: any) {
+      threw = true;
+      if (!/CATEGORY_REGISTRY_UNAVAILABLE/.test(err.message || "")) {
+        throw new Error(`Expected CATEGORY_REGISTRY_UNAVAILABLE error, got: ${err.message}`);
+      }
+    }
+    if (!threw) {
+      throw new Error("loadCategoriesData() must throw when categories.json is missing, not silently return an empty registry");
+    }
+  } finally {
+    fs.renameSync(movedPath, categoriesPath);
+  }
+});
+
 runTest("core/dag.mjs collapses aliased domain backlinks onto the canonical domain node", () => {
   const { buildDagGraph } = dagModule;
   const result = buildDagGraph({
