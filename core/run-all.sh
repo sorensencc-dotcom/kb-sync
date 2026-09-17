@@ -27,6 +27,41 @@ log_warn() {
   printf '\e[33m[RUN-ALL] [WARN] %s\e[0m\n' "$*" >&2
 }
 
+# --- GIT AUTO-SYNC PREFLIGHT -------------------------------------------------
+# Keeps the local checkout current with origin before any scheduled/manual
+# run, so unattended runs (Windows Task Scheduler) never operate on stale
+# code after the machine has been offline. Fast-forward only: never
+# overwrites local work. Failure here (no network, dirty tree, diverged
+# history) is logged and the pipeline proceeds against whatever is
+# currently checked out, per this repo's fail-soft orchestration principle.
+git_sync_preflight() {
+  local branch
+  branch="$(git -C "$REPO_ROOT" symbolic-ref --short HEAD 2>/dev/null || echo "")"
+
+  if [ -z "$branch" ]; then
+    log_warn "Git sync: detached HEAD or not on a branch; skipping auto-sync."
+    return 0
+  fi
+
+  if [ -n "$(git -C "$REPO_ROOT" status --porcelain 2>/dev/null)" ]; then
+    log_warn "Git sync: working tree has uncommitted changes; skipping auto-sync to avoid clobbering local work."
+    return 0
+  fi
+
+  log_info "Git sync: fetching origin/$branch..."
+  if ! git -C "$REPO_ROOT" fetch origin "$branch" --quiet 2>&1; then
+    log_warn "Git sync: fetch failed (offline or unreachable remote); continuing with current checkout."
+    return 0
+  fi
+
+  if ! git -C "$REPO_ROOT" merge --ff-only "origin/$branch" --quiet 2>&1; then
+    log_warn "Git sync: local branch has diverged from origin/$branch or fast-forward isn't possible; skipping auto-sync. Manual intervention needed."
+    return 0
+  fi
+
+  log_info "Git sync: up to date with origin/$branch ($(git -C "$REPO_ROOT" rev-parse --short HEAD))."
+}
+
 validate_notebooklm_telemetry() {
   local status_file="$REPO_ROOT/.sync-status.json"
   if [ ! -f "$status_file" ]; then
@@ -95,6 +130,8 @@ SYNC_TARGETS=(
 
 log_info "Multi-target sync orchestrator starting..."
 log_info "Repository root: $REPO_ROOT"
+
+git_sync_preflight
 
 # --- ARGUMENT PARSING --------------------------------------------------------
 RUN_ROLLBACK=false
