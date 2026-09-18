@@ -43,17 +43,29 @@ assert_contains "$OUT_1" "No valid NotebookLM CLI runtime found (explicit NLM_CL
 assert_not_contains "$OUT_1" "git submodule update" \
   "Scenario 1: does not claim a submodule fix when uv was never installed"
 
+STUB_BIN="$(mktemp -d)"
+trap 'rm -rf "$STUB_BIN"' EXIT
+
+# A real `uv` is not guaranteed on the host running this test (it happens to
+# be present in some dev sandboxes but not on GitHub Actions' ubuntu-latest
+# runner) -- a bare no-op stub is enough here since the script only checks
+# `command -v uv` for presence before reaching the pyproject.toml check this
+# scenario is actually exercising.
+cat > "$STUB_BIN/uv" <<'EOF'
+#!/usr/bin/env bash
+exit 0
+EOF
+chmod +x "$STUB_BIN/uv"
+UV_DIR="$STUB_BIN"
+
 # --- Scenario 2: uv present, local project unprovisioned, no global CLI -----
-UV_DIR="$(dirname "$(command -v uv)")"
-OUT_2="$(PATH="/usr/bin:/bin:$NODE_DIR:$UV_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
+OUT_2="$(PATH="$STUB_BIN:/usr/bin:/bin:$NODE_DIR:$UV_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
 assert_contains "$OUT_2" "Local uv project not found at $REPO_ROOT/notebooklm-mcp-cli (pyproject.toml missing)" \
   "Scenario 2: warns about the unprovisioned local project"
 assert_contains "$OUT_2" "git submodule update --init --recursive" \
   "Scenario 2: FATAL message gives the actionable provisioning command"
 
 # --- Scenario 3: uv present, local project unprovisioned, global CLI DOES exist
-STUB_BIN="$(mktemp -d)"
-trap 'rm -rf "$STUB_BIN"' EXIT
 cat > "$STUB_BIN/notebooklm" <<'EOF'
 #!/usr/bin/env bash
 echo '[]'
