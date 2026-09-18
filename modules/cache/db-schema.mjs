@@ -54,6 +54,14 @@ CREATE TABLE IF NOT EXISTS kb_vectors (
 -- Keyed by normalized query hash; invalidated whenever pack_generation_sha
 -- no longer matches the currently active knowledge pack (see
 -- modules/notebooklm/ingest-notebooklm.sh last_sync_pack_sha), or by ttl_ms.
+--
+-- NOTE: this table + scripts/mcp-memory-server.mjs's invalidateStaleCache()
+-- are prep infrastructure only (RFC-NLM-05 Phase 4 as locked). Nothing yet
+-- writes a row here on an nlm_chat_json call or reads one back to serve a
+-- cached answer -- that L1/L2 read/write-back wiring is deliberately out of
+-- scope for this phase and needs its own design pass (cache-check point in
+-- the MCP tool handler, write-back point after a chat call, per-request
+-- staleness re-check rather than only-at-startup) before it does anything.
 CREATE TABLE IF NOT EXISTS nlm_grounded_cache (
   query_hash TEXT PRIMARY KEY,       -- SHA-256(normalized_query)
   query_text TEXT NOT NULL,

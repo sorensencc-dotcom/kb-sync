@@ -41,6 +41,7 @@ assert_eq() {
 
 # --- Scenario 1: immediately ACTIVE -----------------------------------------
 NOTEBOOK_ID="nb1"
+PACK_FILE="repo_knowledge_pack" # set in the real script from configs/notebooklm.yaml
 TIMEOUT_MS=90000
 PRE_EXISTING_SOURCES=("old1")
 nlm_source_list_json() {
@@ -112,6 +113,29 @@ else
   echo "FAIL: Scenario 5: took ${ELAPSED}s -- expected immediate return"
   FAIL=1
 fi
+
+# --- Scenario 6: custom PACK_FILE must still match its own new sources -----
+# Regression guard: an earlier version hardcoded the "repo_knowledge_pack"
+# pattern, so any deployment with a custom pack_filename would see
+# NO_NEW_SOURCES_YET forever and hard-fail the whole sync via TIMEOUT_MS.
+PACK_FILE="my_org_kb_pack"
+TIMEOUT_MS=90000
+nlm_source_list_json() {
+  echo '[{"id":"old1","title":"my_org_kb_pack.txt"},{"id":"new1","title":"my_org_kb_pack_part_aa.txt","status":"ACTIVE"}]'
+}
+PRE_EXISTING_SOURCES=("old1")
+START_S=$(date +%s)
+poll_new_sources_active; RC=$?
+END_S=$(date +%s)
+assert_eq "$RC" "0" "Scenario 6: custom PACK_FILE recognizes its own new sources as ACTIVE"
+ELAPSED=$((END_S - START_S))
+if [ "$ELAPSED" -lt 5 ]; then
+  echo "PASS: Scenario 6: returned immediately, did not time out matching a custom pack filename"
+else
+  echo "FAIL: Scenario 6: took ${ELAPSED}s -- custom PACK_FILE pattern likely not matching"
+  FAIL=1
+fi
+PACK_FILE="repo_knowledge_pack"
 
 if [ "$FAIL" -ne 0 ]; then
   echo "--- notebooklm-polling.test.sh: FAILED ---"

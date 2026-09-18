@@ -665,7 +665,6 @@ poll_new_sources_active() {
   local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
   local poll_interval_sec=5
   local elapsed_sec=0
-  local warned_no_status=false
 
   while true; do
     local sources_json
@@ -679,13 +678,21 @@ poll_new_sources_active() {
       const fs = require("fs");
       const preExistingArg = process.argv[1];
       const preExisting = new Set(preExistingArg ? preExistingArg.split(",").filter(Boolean) : []);
+      // PACK_FILE is configurable (configs/notebooklm.yaml pack_filename); a
+      // hardcoded "repo_knowledge_pack" pattern here would never match a
+      // custom filename, leaving newSources permanently empty and forcing
+      // every sync to hard-fail via the TIMEOUT_MS path below instead of
+      // just silently mis-scoping (as the pre-existing, unrelated hardcoded
+      // pattern in query_preexisting_pack_sources above does).
+      const packFileArg = process.argv[2] || "repo_knowledge_pack";
+      const escapedPackFile = packFileArg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       try {
         const input = fs.readFileSync(0, "utf8");
         let raw = JSON.parse(input || "[]");
         let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : []);
         // "New" sources are whatever matches the pack-filename pattern and
         // was NOT in the pre-existing snapshot taken before upload (Step 5a).
-        const pattern = /^repo_knowledge_pack.*\.txt$/i;
+        const pattern = new RegExp("^" + escapedPackFile + ".*\\.txt$", "i");
         const newSources = list.filter(s => {
           if (!s || typeof s.id !== "string") return false;
           const name = typeof s.title === "string" ? s.title : (typeof s.name === "string" ? s.name : "");
@@ -717,7 +724,7 @@ poll_new_sources_active() {
       } catch (e) {
         console.log("PARSE_ERROR");
       }
-    ' "$(IFS=,; echo "${PRE_EXISTING_SOURCES[*]:-}")" 2>/dev/null)
+    ' "$(IFS=,; echo "${PRE_EXISTING_SOURCES[*]:-}")" "$PACK_FILE" 2>/dev/null)
 
     case "$poll_result" in
       ACTIVE)
@@ -725,10 +732,10 @@ poll_new_sources_active() {
         return 0
         ;;
       NO_STATUS_FIELD)
-        if [ "$warned_no_status" = false ]; then
-          log_warn "Step 5-poll: source list response has no 'status' field for this CLI variant; skipping active-state verification."
-          warned_no_status=true
-        fi
+        # This branch always returns immediately (see below), so it only
+        # ever fires once per call -- no "warn once across polls" guard
+        # is needed here.
+        log_warn "Step 5-poll: source list response has no 'status' field for this CLI variant; skipping active-state verification."
         return 0
         ;;
       ERROR:*)
