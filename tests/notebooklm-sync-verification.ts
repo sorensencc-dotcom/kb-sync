@@ -204,10 +204,24 @@ runTest("Sync script execution simulation with mock CLI (triggers chunking)", ()
   // Write mock notebooklm binary
   const mockCliPath = path.join(mockCliDir, "mock-nlm");
   const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
+  // `source list` reports empty until at least one `source add` has run, then
+  // reports a single ACTIVE pack source -- simulates the real indexing
+  // lifecycle closely enough for the Step 5b-poll gate (which waits for
+  // newly uploaded sources to report ACTIVE/READY before Step 5c prunes
+  // pre-existing sources) to resolve immediately instead of waiting out its
+  // real 90s timeout against a CLI that never reports any sources at all.
   const mockCliContent = `#!/usr/bin/env bash
+MARKER="$(dirname "$0")/.mock_uploaded"
 if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  echo "[]"
+  if [ -f "$MARKER" ]; then
+    echo '[{"id":"mock-source-1","title":"repo_knowledge_pack_part_aa.txt","status":"ACTIVE"}]'
+  else
+    echo "[]"
+  fi
   exit 0
+fi
+if [ "$1" = "source" ] && [ "$2" = "add" ]; then
+  touch "$MARKER"
 fi
 echo "[MOCK-CLI] Invoked with arguments: $@"
 exit 0
