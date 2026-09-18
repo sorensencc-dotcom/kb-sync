@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-18T14:51:12.053Z",
-  "system_time_epoch_ms": 1789743072053,
+  "timestamp": "2026-09-18T14:59:24.595Z",
+  "system_time_epoch_ms": 1789743564595,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -64,7 +64,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/cache/db-schema.mjs",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T14:59:23+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/db-schema.mjs"
@@ -80,7 +80,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/ingest-notebooklm.sh",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T14:59:23+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/ingest-notebooklm.sh"
@@ -240,7 +240,7 @@
     {
       "repo": "kb-sync",
       "file": "tests/notebooklm-polling.test.sh",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T14:59:23+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-polling.test.sh"
