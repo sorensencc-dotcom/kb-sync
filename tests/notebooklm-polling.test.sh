@@ -21,8 +21,16 @@ log_warn() { echo "[WARN] $*" >&2; }
 log_error() { echo "[ERROR] $*" >&2; }
 sleep_backoff() { :; } # no real sleep -- keep the test fast
 
-# Extract poll_new_sources_active()'s body verbatim from the live script.
-FN_SRC="$(sed -n '/^poll_new_sources_active() {/,/^}/p' "$SCRIPT")"
+DELETED_IDS=()
+nlm_source_delete() { DELETED_IDS+=("$2"); return 0; }
+
+# Extract cleanup_orphaned_new_sources() and poll_new_sources_active()'s
+# bodies verbatim from the live script (rather than a hand-copied
+# duplicate) so the test can never silently drift from the code it's
+# supposed to cover.
+FN_SRC="$(sed -n '/^cleanup_orphaned_new_sources() {/,/^}/p' "$SCRIPT")"
+FN_SRC="$FN_SRC
+$(sed -n '/^poll_new_sources_active() {/,/^}/p' "$SCRIPT")"
 if [ -z "$FN_SRC" ]; then
   echo "FAIL: could not extract poll_new_sources_active() from $SCRIPT"
   exit 1
@@ -78,6 +86,7 @@ TIMEOUT_MS=90000 # deliberately large -- must NOT be exhausted for this to pass
 nlm_source_list_json() {
   echo '[{"id":"old1","title":"repo_knowledge_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"ERROR"}]'
 }
+DELETED_IDS=()
 START_S=$(date +%s)
 poll_new_sources_active; RC=$?
 END_S=$(date +%s)
@@ -89,13 +98,26 @@ else
   echo "FAIL: Scenario 3: took ${ELAPSED}s -- looks like it waited instead of failing fast"
   FAIL=1
 fi
+if [ "${#DELETED_IDS[@]}" -eq 1 ] && [ "${DELETED_IDS[0]}" = "new1" ]; then
+  echo "PASS: Scenario 3: cleaned up the errored new source (new1) to avoid ambiguity on next run"
+else
+  echo "FAIL: Scenario 3: expected new1 to be deleted, got: ${DELETED_IDS[*]:-<none>}"
+  FAIL=1
+fi
 
 # --- Scenario 4: always PROCESSING -> times out, Step 5c must be skippable -
 TIMEOUT_MS=1000 # short timeout so the test doesn't hang
 nlm_source_list_json() {
   echo '[{"id":"old1","title":"repo_knowledge_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"PROCESSING"}]'
 }
+DELETED_IDS=()
 poll_new_sources_active; assert_eq "$?" "1" "Scenario 4: perpetual PROCESSING times out (failure, so Step 5c is skipped)"
+if [ "${#DELETED_IDS[@]}" -eq 1 ] && [ "${DELETED_IDS[0]}" = "new1" ]; then
+  echo "PASS: Scenario 4: cleaned up the still-PROCESSING new source on timeout"
+else
+  echo "FAIL: Scenario 4: expected new1 to be deleted on timeout, got: ${DELETED_IDS[*]:-<none>}"
+  FAIL=1
+fi
 
 # --- Scenario 5: no status field at all -> degrades gracefully, no hang ----
 TIMEOUT_MS=90000
@@ -113,6 +135,28 @@ else
   echo "FAIL: Scenario 5: took ${ELAPSED}s -- expected immediate return"
   FAIL=1
 fi
+
+# --- Scenario 6a: partial visibility must NOT resolve early ----------------
+# Regression guard: an earlier version only checked whatever sources were
+# currently visible, so 1-of-3 uploaded chunks appearing ACTIVE would
+# resolve success and let Step 5c purge the complete old pack while 2/3 of
+# the new one was not even visible yet.
+PACK_FILE="repo_knowledge_pack"
+TIMEOUT_MS=1000
+NOTEBOOK_ID="nb1"
+PRE_EXISTING_SOURCES=("old1")
+nlm_source_list_json() {
+  # Only 1 of the 3 expected chunks is visible, and it is ACTIVE.
+  echo '[{"id":"old1","title":"repo_knowledge_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"ACTIVE"}]'
+}
+poll_new_sources_active 3; assert_eq "$?" "1" "Scenario 6a: 1-of-3 visible ACTIVE does not resolve early (times out instead)"
+
+# --- Scenario 6b: once all expected chunks are visible and ACTIVE, succeeds -
+TIMEOUT_MS=90000
+nlm_source_list_json() {
+  echo '[{"id":"old1","title":"repo_knowledge_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"ACTIVE"},{"id":"new2","title":"repo_knowledge_pack_part_ab.txt","status":"ACTIVE"},{"id":"new3","title":"repo_knowledge_pack_part_ac.txt","status":"ACTIVE"}]'
+}
+poll_new_sources_active 3; assert_eq "$?" "0" "Scenario 6b: 3-of-3 visible ACTIVE resolves success"
 
 # --- Scenario 6: custom PACK_FILE must still match its own new sources -----
 # Regression guard: an earlier version hardcoded the "repo_knowledge_pack"

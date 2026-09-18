@@ -53,7 +53,16 @@ write_sync_telemetry() {
     // active pack (from the last successful run) is still what is live in
     // NotebookLM, per the stage-before-drop guarantee, so the cache
     // invalidation key must not move until a new pack actually goes live.
-    if (status === "SUCCESS" && packSha) {
+    // "__CLEAR__" is a distinct signal from the rollback path: rollback
+    // restores older content without recomputing a matching generation
+    // SHA for it, and leaving the just-replaced (newer) generation SHA
+    // in place would point cache invalidation the wrong way -- treating
+    // the now-reverted-away-from pack as still current, and the actually
+    // current restored pack as stale. Clearing forces a clean cache miss
+    // (safe) instead of that backwards match (unsafe).
+    if (status === "SUCCESS" && packSha === "__CLEAR__") {
+      delete existing.last_sync_pack_sha;
+    } else if (status === "SUCCESS" && packSha) {
       existing.last_sync_pack_sha = packSha;
     }
     if (status !== "SUCCESS") {
@@ -511,7 +520,7 @@ if [ "$RUN_ROLLBACK" = true ]; then
   fi
 
   log_info "NotebookLM rollback completed successfully! Purged: $PURGED_COUNT, Uploaded: $UPLOADED_COUNT."
-  write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
+  write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT "" "__CLEAR__"
   exit 0
 fi
 
@@ -661,10 +670,31 @@ done
 # ERROR-like state fails the sync immediately (no point waiting on it), and
 # on TIMEOUT_MS expiry, Step 5c is skipped entirely so the pre-existing
 # sources remain the notebook's only content, exactly as before.
+# Deletes the new sources this run uploaded but never reached ACTIVE. Left
+# in place, a future run_preflight_drift_audit call would see multiple
+# matching sources and purge "count - 1" by list order alone -- with no way
+# to tell the known-good pack apart from the rejected upload, list order
+# alone decides which one survives. Cleaning up here means the notebook
+# reverts to exactly its pre-sync state on failure, matching this script's
+# own "pre-existing sources remain intact" guarantee for the sources that
+# were never supposed to be temporary in the first place.
+cleanup_orphaned_new_sources() {
+  local ids_csv="$1"
+  [ -z "$ids_csv" ] && return 0
+  log_warn "Step 5-poll: Removing $(echo "$ids_csv" | tr ',' ' ') uploaded during this failed sync to avoid ambiguity on the next run."
+  local id
+  IFS=',' read -ra ids_arr <<< "$ids_csv"
+  for id in "${ids_arr[@]}"; do
+    [ -n "$id" ] && nlm_source_delete "$NOTEBOOK_ID" "$id" >/dev/null 2>&1
+  done
+}
+
 poll_new_sources_active() {
+  local expected_count="${1:-1}"
   local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
   local poll_interval_sec=5
   local elapsed_sec=0
+  local last_new_ids=""
 
   while true; do
     local sources_json
@@ -685,6 +715,7 @@ poll_new_sources_active() {
       // just silently mis-scoping (as the pre-existing, unrelated hardcoded
       // pattern in query_preexisting_pack_sources above does).
       const packFileArg = process.argv[2] || "repo_knowledge_pack";
+      const expectedCount = parseInt(process.argv[3], 10) || 1;
       const escapedPackFile = packFileArg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       try {
         const input = fs.readFileSync(0, "utf8");
@@ -698,35 +729,50 @@ poll_new_sources_active() {
           const name = typeof s.title === "string" ? s.title : (typeof s.name === "string" ? s.name : "");
           return pattern.test(name) && !preExisting.has(s.id);
         });
-        if (newSources.length === 0) {
-          console.log("NO_NEW_SOURCES_YET");
+        // Every currently-visible new-source ID is reported alongside the
+        // status word (format "STATUS|id1,id2,...") regardless of outcome,
+        // so a failed poll can hand its caller exactly what to clean up --
+        // not just the errored subset, since even the ACTIVE ones are part
+        // of a batch this run is about to abort.
+        const newIds = newSources.map(s => s.id).join(",");
+        function emit(status) {
+          console.log(status + "|" + newIds);
           process.exit(0);
+        }
+        // Require ALL uploaded chunks to be visible before evaluating any of
+        // them -- NotebookLM can expose sources to `source list` at
+        // different times, so checking status on a partial set (e.g. 1 of 3
+        // chunks visible and ACTIVE) would let Step 5c purge the complete
+        // old pack while most of the new one is not even indexed yet.
+        if (newSources.length < expectedCount) {
+          emit("NO_NEW_SOURCES_YET");
         }
         const withStatus = newSources.filter(s => typeof s.status === "string");
         if (withStatus.length === 0) {
           // This CLI/response variant does not report a status field at all --
           // cannot verify indexing state either way, so degrade to "assume
           // active" rather than block forever on data that will never arrive.
-          console.log("NO_STATUS_FIELD");
-          process.exit(0);
+          emit("NO_STATUS_FIELD");
         }
         const errored = withStatus.filter(s => /^(ERROR|FAILED)$/i.test(s.status));
         if (errored.length > 0) {
-          console.log("ERROR:" + errored.map(s => s.id).join(","));
-          process.exit(0);
+          emit("ERROR");
         }
         const notReady = withStatus.filter(s => !/^(ACTIVE|READY)$/i.test(s.status));
         if (notReady.length > 0) {
-          console.log("PROCESSING");
-          process.exit(0);
+          emit("PROCESSING");
         }
-        console.log("ACTIVE");
+        emit("ACTIVE");
       } catch (e) {
-        console.log("PARSE_ERROR");
+        console.log("PARSE_ERROR|");
       }
-    ' "$(IFS=,; echo "${PRE_EXISTING_SOURCES[*]:-}")" "$PACK_FILE" 2>/dev/null)
+    ' "$(IFS=,; echo "${PRE_EXISTING_SOURCES[*]:-}")" "$PACK_FILE" "$expected_count" 2>/dev/null)
 
-    case "$poll_result" in
+    local poll_status="${poll_result%%|*}"
+    local poll_ids="${poll_result#*|}"
+    [ "$poll_status" = "$poll_result" ] && poll_ids=""
+
+    case "$poll_status" in
       ACTIVE)
         log_info "Step 5-poll: All newly uploaded sources report ACTIVE/READY."
         return 0
@@ -738,17 +784,19 @@ poll_new_sources_active() {
         log_warn "Step 5-poll: source list response has no 'status' field for this CLI variant; skipping active-state verification."
         return 0
         ;;
-      ERROR:*)
-        log_error "Step 5-poll: Newly uploaded source(s) reported an error state: ${poll_result#ERROR:}"
+      ERROR)
+        log_error "Step 5-poll: Newly uploaded source(s) reported an error state."
+        cleanup_orphaned_new_sources "$poll_ids"
         return 1
         ;;
       NO_NEW_SOURCES_YET|PROCESSING|PARSE_ERROR|"")
-        : # keep polling
+        last_new_ids="$poll_ids"
         ;;
     esac
 
     if [ "$elapsed_sec" -ge "$timeout_sec" ]; then
       log_error "Step 5-poll: Newly uploaded sources did not reach ACTIVE state within ${timeout_sec}s."
+      cleanup_orphaned_new_sources "$last_new_ids"
       return 1
     fi
 
@@ -758,7 +806,7 @@ poll_new_sources_active() {
 }
 
 log_info "Step 5b-poll: Waiting for newly uploaded sources to finish indexing..."
-if ! poll_new_sources_active; then
+if ! poll_new_sources_active "$UPLOADED_COUNT"; then
   log_error "Aborting before Step 5c: pre-existing sources will NOT be purged. The previous knowledge pack remains intact and searchable."
   write_sync_telemetry "FAILED" 0 "$UPLOADED_COUNT" "Uploaded sources failed to reach ACTIVE state within timeout"
   exit 1

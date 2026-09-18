@@ -130,6 +130,11 @@ async function main() {
   }
 
   const statusData = {
+    // Preserve whatever Stage 1 (ingest-notebooklm.sh) already wrote --
+    // e.g. last_sync_pack_sha, purged_sources, uploaded_chunks -- rather
+    // than discarding it. A bare overwrite here silently broke the hybrid
+    // cache's pack-generation invalidation key on every successful run.
+    ...existingStatus,
     last_sync_timestamp: new Date().toISOString(),
     status: "SUCCESS",
     file_count: totalFiles,
