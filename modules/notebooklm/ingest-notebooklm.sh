@@ -693,8 +693,15 @@ poll_new_sources_active() {
   local expected_count="${1:-1}"
   local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
   local poll_interval_sec=5
-  local elapsed_sec=0
   local last_new_ids=""
+  # Wall-clock deadline, not a counter incremented only between sleeps --
+  # each nlm_source_list_json call is itself allowed up to TIMEOUT_MS
+  # internally (exec_with_timeout), so a counter that only advances on the
+  # sleep path could let ~TIMEOUT_MS/poll_interval_sec slow-but-successful
+  # calls each burn close to TIMEOUT_MS before the loop's own budget
+  # registered as spent -- multiplying the intended timeout by however many
+  # polls fit, rather than bounding total wall time to it.
+  local deadline_epoch=$(( $(date +%s) + timeout_sec ))
 
   while true; do
     local sources_json
@@ -756,7 +763,7 @@ poll_new_sources_active() {
         }
         const withStatus = newSources.filter(s => typeof s.status === "string");
         if (withStatus.length === 0) {
-          // This CLI/response variant does not report a status field at all --
+          // No source in this response reports a status field at all --
           // cannot verify indexing state either way, so degrade to "assume
           // active" rather than block forever on data that will never arrive.
           emit("NO_STATUS_FIELD");
@@ -765,7 +772,14 @@ poll_new_sources_active() {
         if (errored.length > 0) {
           emit("ERROR");
         }
-        const notReady = withStatus.filter(s => !/^(ACTIVE|READY)$/i.test(s.status));
+        // A source lacking `status` counts as not-ready here, NOT as an
+        // automatic pass -- withStatus.length > 0 above already proved this
+        // CLI variant DOES report status on at least one source, so a
+        // status-less entry in a mixed batch means its status just has not
+        // landed yet, not that this variant never reports it. Treating it
+        // as ready would let one early-ACTIVE chunk green-light the whole
+        // batch while the indexing state of a sibling chunk is still unknown.
+        const notReady = newSources.filter(s => !(typeof s.status === "string" && /^(ACTIVE|READY)$/i.test(s.status)));
         if (notReady.length > 0) {
           emit("PROCESSING");
         }
@@ -801,14 +815,13 @@ poll_new_sources_active() {
         ;;
     esac
 
-    if [ "$elapsed_sec" -ge "$timeout_sec" ]; then
+    if [ "$(date +%s)" -ge "$deadline_epoch" ]; then
       log_error "Step 5-poll: Newly uploaded sources did not reach ACTIVE state within ${timeout_sec}s."
       cleanup_orphaned_new_sources "$last_new_ids"
       return 1
     fi
 
     sleep_backoff $((poll_interval_sec * 1000))
-    elapsed_sec=$((elapsed_sec + poll_interval_sec))
   done
 }
 

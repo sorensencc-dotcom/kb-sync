@@ -216,6 +216,55 @@ else
 fi
 PACK_FILE="repo_knowledge_pack"
 
+# --- Scenario 7: mixed statuses must NOT resolve on the ACTIVE subset ------
+# Regression guard: an earlier version excluded status-less sources from
+# both the error and readiness checks, so one ACTIVE chunk plus one
+# status-less chunk (proving this CLI variant DOES report status, just not
+# for every source yet) would resolve success while the status-less
+# chunk's real indexing state was still unknown.
+TIMEOUT_MS=1000
+NOTEBOOK_ID="nb1"
+PRE_EXISTING_SOURCES=("old1")
+nlm_source_list_json() {
+  echo '[{"id":"old1","title":"repo_knowledge_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"ACTIVE"},{"id":"new2","title":"repo_knowledge_pack_part_ab.txt"}]'
+}
+poll_new_sources_active 2; assert_eq "$?" "1" "Scenario 7: mixed ACTIVE + status-less does not resolve early (times out instead)"
+
+# --- Scenario 8: overall timeout is wall-clock, not counted only on sleeps -
+# Regression guard: elapsed_sec previously advanced only on the
+# sleep_backoff path, never accounting for time spent inside a slow-but-
+# successful nlm_source_list_json call (each individually allowed up to
+# TIMEOUT_MS via exec_with_timeout). A CLI that responds slowly could let
+# the loop run for many multiples of TIMEOUT_MS instead of bounding total
+# wall time to it.
+TIMEOUT_MS=800 # timeout_sec rounds to 1; poll_interval_sec is a fixed 5s,
+               # so the old counter-based logic always allowed exactly 2
+               # real CLI-call iterations before stopping, regardless of
+               # how long each individual call actually took.
+CALL_COUNT_FILE="$(mktemp)"
+echo 0 > "$CALL_COUNT_FILE"
+nlm_source_list_json() {
+  local n=$(cat "$CALL_COUNT_FILE")
+  n=$((n + 1))
+  echo "$n" > "$CALL_COUNT_FILE"
+  sleep 2
+  echo '[{"id":"old1","title":"repo_knowledge_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"PROCESSING"}]'
+}
+START_S=$(date +%s)
+poll_new_sources_active; RC=$?
+END_S=$(date +%s)
+CALLS=$(cat "$CALL_COUNT_FILE")
+rm -f "$CALL_COUNT_FILE"
+assert_eq "$RC" "1" "Scenario 8: still times out (fails) as before"
+ELAPSED=$((END_S - START_S))
+if [ "$CALLS" -eq 1 ] && [ "$ELAPSED" -lt 4 ]; then
+  echo "PASS: Scenario 8: stopped after the deadline passed mid-call (1 call, ${ELAPSED}s) instead of running a second ~2s call regardless"
+else
+  echo "FAIL: Scenario 8: expected 1 call and <4s elapsed, got $CALLS call(s) and ${ELAPSED}s -- timeout may still be counted only on sleeps"
+  FAIL=1
+fi
+TIMEOUT_MS=90000
+
 if [ "$FAIL" -ne 0 ]; then
   echo "--- notebooklm-polling.test.sh: FAILED ---"
   exit 1

@@ -13,15 +13,40 @@
 // Exit 2: grounding check failed (empty or misattributed citations).
 // Exit 1: usage/environment error (missing NOTEBOOK_ID, CLI bridge failure).
 // ==============================================================================
+import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = path.resolve(__dirname, '../..');
 const BRIDGE_SCRIPT = path.resolve(__dirname, 'run-nlm-chat.sh');
-const PACK_FILENAME_PREFIX = 'repo_knowledge_pack';
 const GROUNDING_PROMPT = 'What is the repo_root configuration in configs/notebooklm.yaml?';
+
+// Read pack_filename the same way ingest-notebooklm.sh does (configs/
+// notebooklm.yaml, default "repo_knowledge_pack"). A hardcoded prefix here
+// would reject every citation to a custom pack name -- the ingest pipeline
+// already accounts for custom pack_filename, so the gate that checks its
+// output has to match the same naming.
+function readPackFilename() {
+  const configPath = path.join(REPO_ROOT, 'configs', 'notebooklm.yaml');
+  try {
+    const content = fs.readFileSync(configPath, 'utf8');
+    const match = content.match(/^\s*pack_filename\s*:\s*["']?([^"'#\r\n]+?)["']?\s*(#.*)?$/m);
+    if (match) return match[1].trim();
+  } catch {
+    // Config missing/unreadable -- fall through to the default below.
+  }
+  return 'repo_knowledge_pack';
+}
+
+const PACK_FILENAME = readPackFilename();
+// Chunked uploads are always named repo_knowledge_pack_part_* regardless of
+// pack_filename -- core/chunk.sh hardcodes that prefix as shared infra used
+// by every sync target (see the same reasoning in ingest-notebooklm.sh's
+// poll_new_sources_active pattern).
+const VALID_ATTRIBUTION_PREFIXES = [...new Set([PACK_FILENAME, 'repo_knowledge_pack_part_'])];
 
 function fail(message, code = 2) {
   console.error(`[GROUNDING-GATE] FAILED: ${message}`);
@@ -58,7 +83,8 @@ if (!data.citations || data.citations.length === 0) {
 }
 
 const hasValidAttribution = data.citations.some(
-  (c) => c && typeof c.source_name === 'string' && c.source_name.startsWith(PACK_FILENAME_PREFIX)
+  (c) => c && typeof c.source_name === 'string'
+    && VALID_ATTRIBUTION_PREFIXES.some((prefix) => c.source_name.startsWith(prefix))
 );
 
 if (!hasValidAttribution) {
