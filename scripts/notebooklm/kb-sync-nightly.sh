@@ -80,6 +80,33 @@ else
   exit 1
 fi
 
+# --- STAGE 1.5: POST-UPLOAD GROUNDING GATE ---
+log_info ""
+log_info "================================================================================"
+log_info "STAGE 1.5: Verifying semantic grounding against active pack"
+log_info "================================================================================"
+
+STAGE_1_5_SCRIPT="$REPO_ROOT/scripts/notebooklm/verify-grounding-gate.mjs"
+# NOTEBOOK_ID is exported inside Stage 1's own subprocess (bash "$STAGE_1_SCRIPT")
+# and does not propagate back here -- read it from .env directly, matching
+# this file's existing pattern for WEBHOOK_URL above.
+NOTEBOOK_ID_FOR_GATE="${NOTEBOOK_ID:-}"
+if [ -z "$NOTEBOOK_ID_FOR_GATE" ] && [ -f "$REPO_ROOT/.env" ]; then
+  NOTEBOOK_ID_FOR_GATE="$(grep -E "^\s*NOTEBOOK_ID\s*=" "$REPO_ROOT/.env" | head -1 | sed -E 's/^\s*NOTEBOOK_ID\s*=\s*//; s/#.*$//; s/^["'\'']//; s/["'\'']$//; s/\s*$//' || true)"
+fi
+
+if command -v node >/dev/null 2>&1 && [ -f "$STAGE_1_5_SCRIPT" ]; then
+  if node "$STAGE_1_5_SCRIPT" "$NOTEBOOK_ID_FOR_GATE"; then
+    log_info "Stage 1.5 grounding gate passed."
+  else
+    log_error "Stage 1.5 grounding gate failed. Aborting before Stage 2 (ungrounded release build)."
+    send_webhook_notification "Grounding Gate Failed" "Stage 1 sync succeeded, but the post-upload grounding check found no valid citations against the active pack." "ERROR"
+    exit 1
+  fi
+else
+  log_warn "node not found or verify-grounding-gate.mjs missing. Grounding gate skipped."
+fi
+
 # --- STAGE 2: GENERATE ARTIFACT ---
 log_info ""
 log_info "================================================================================"

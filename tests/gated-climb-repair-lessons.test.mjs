@@ -65,3 +65,47 @@ test('generateLessonFromFailure creates deterministic file and handles revisions
   if (fs.existsSync(lessonPath)) fs.unlinkSync(lessonPath);
   if (fs.existsSync(rev2Path)) fs.unlinkSync(rev2Path);
 });
+
+test('generateLessonFromFailure skips remote push and keeps its local-write contract when INCIDENT_NOTEBOOK_ID is unset', () => {
+  const originalEnv = process.env.INCIDENT_NOTEBOOK_ID;
+  delete process.env.INCIDENT_NOTEBOOK_ID;
+
+  const runId = 'test-run-incident-unset';
+  const vaultRoot = process.cwd();
+  const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
+  fs.mkdirSync(lessonsDir, { recursive: true });
+
+  const prefix = `unallowed-diff-${runId}-`;
+  for (const file of fs.readdirSync(lessonsDir)) {
+    if (file.startsWith(prefix)) fs.unlinkSync(path.join(lessonsDir, file));
+  }
+
+  const warnCalls = [];
+  const originalWarn = console.warn;
+  console.warn = (...args) => warnCalls.push(args.join(' '));
+
+  let lessonPath;
+  try {
+    lessonPath = generateLessonFromFailure({
+      runId,
+      error: 'UNALLOWED_DIFF_REJECTED: incident-push test',
+      targetPath: 'wiki/kb-sync/wiki/Test.md',
+      quarantinePath: '_quarantine/test-run-incident-unset',
+      vaultRoot
+    });
+  } finally {
+    console.warn = originalWarn;
+    if (originalEnv !== undefined) process.env.INCIDENT_NOTEBOOK_ID = originalEnv;
+  }
+
+  // Return value and local file write must be identical to the
+  // INCIDENT_NOTEBOOK_ID-unset case as when it's set and the push fails --
+  // the remote push must never be able to change this contract.
+  assert.strictEqual(fs.existsSync(lessonPath), true);
+  assert.ok(
+    warnCalls.some((msg) => msg.includes('INCIDENT_NOTEBOOK_ID is unset')),
+    `expected a console.warn mentioning INCIDENT_NOTEBOOK_ID is unset, got: ${JSON.stringify(warnCalls)}`
+  );
+
+  if (fs.existsSync(lessonPath)) fs.unlinkSync(lessonPath);
+});

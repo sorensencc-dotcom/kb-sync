@@ -49,6 +49,23 @@ CREATE TABLE IF NOT EXISTS kb_vectors (
   model TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Remote NotebookLM grounded-answer cache (L2 fallback write-back).
+-- Keyed by normalized query hash; invalidated whenever pack_generation_sha
+-- no longer matches the currently active knowledge pack (see
+-- modules/notebooklm/ingest-notebooklm.sh last_sync_pack_sha), or by ttl_ms.
+CREATE TABLE IF NOT EXISTS nlm_grounded_cache (
+  query_hash TEXT PRIMARY KEY,       -- SHA-256(normalized_query)
+  query_text TEXT NOT NULL,
+  answer_markdown TEXT NOT NULL,
+  citations_json TEXT NOT NULL,      -- JSON string of structured citations
+  pack_generation_sha TEXT NOT NULL, -- Pack SHA active when this was cached
+  created_at INTEGER NOT NULL,       -- Epoch ms
+  ttl_ms INTEGER NOT NULL DEFAULT 86400000 -- 24 hours
+);
+
+CREATE INDEX IF NOT EXISTS idx_nlm_cache_pack
+  ON nlm_grounded_cache (pack_generation_sha);
 `;
 
 /**

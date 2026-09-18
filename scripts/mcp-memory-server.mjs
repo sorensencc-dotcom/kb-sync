@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 import readline from 'node:readline';
 import path from 'node:path';
+import fs from 'node:fs';
 import { getDatabase, DEFAULT_DB_PATH } from '../modules/cache/db-schema.mjs';
 import { upsertDocumentToDiskAndCache } from '../modules/cache/vfs-upsert.mjs';
 
 const DB_PATH = process.env.KB_CACHE_DB || DEFAULT_DB_PATH;
+const SYNC_STATUS_PATH = path.resolve(process.cwd(), '.sync-status.json');
 
 // Ensure database and schema exist
 let db;
@@ -13,6 +15,41 @@ try {
 } catch (err) {
   process.stderr.write(`[mcp-memory-server] Warning opening DB: ${err.message}\n`);
 }
+
+/**
+ * Drops nlm_grounded_cache rows that no longer match the currently active
+ * knowledge pack, or that have outlived their ttl_ms. Rows written against
+ * an older pack generation would otherwise replay stale citations across
+ * commits -- see modules/notebooklm/ingest-notebooklm.sh last_sync_pack_sha.
+ * @param {import('node:sqlite').DatabaseSync} database
+ */
+function invalidateStaleCache(database) {
+  if (!database) return;
+
+  let currentPackSha = '';
+  try {
+    const status = JSON.parse(fs.readFileSync(SYNC_STATUS_PATH, 'utf8'));
+    currentPackSha = status.last_sync_pack_sha || '';
+  } catch {
+    // No sync-status.json yet (first run, or notebooklm target never synced) --
+    // nothing to compare against, so skip invalidation rather than wipe the cache.
+    return;
+  }
+
+  if (!currentPackSha) return;
+
+  try {
+    database
+      .prepare(
+        'DELETE FROM nlm_grounded_cache WHERE pack_generation_sha != ? OR (created_at + ttl_ms) < ?'
+      )
+      .run(currentPackSha, Date.now());
+  } catch (err) {
+    process.stderr.write(`[mcp-memory-server] Warning invalidating nlm_grounded_cache: ${err.message}\n`);
+  }
+}
+
+invalidateStaleCache(db);
 
 const SERVER_NAME = 'local-context-cache';
 const SERVER_VERSION = '1.0.0';

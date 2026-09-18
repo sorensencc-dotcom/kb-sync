@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateAllowedDiff } from './normalized-diff-guard.mjs';
 import { validateLessonSchema } from './validate-contract.mjs';
@@ -614,6 +614,28 @@ Programmatic fix pending background LLM enrichment pass.
   }
 
   fs.writeFileSync(lessonPath, content, 'utf8');
+
+  // Best-effort remote incident push (RFC-NLM-05 Phase 5). This must never
+  // change the local-write contract above: it runs synchronously so it
+  // can't race a later read of the same lesson file, and any failure is
+  // swallowed to a warning -- the function's return value (the local
+  // lessonPath) is identical whether or not the remote push succeeds.
+  const incidentNotebookId = process.env.INCIDENT_NOTEBOOK_ID;
+  if (!incidentNotebookId) {
+    console.warn('[GATED-CLIMB] INCIDENT_NOTEBOOK_ID is unset. Skipping remote incident upload; preserving local lesson note only.');
+  } else {
+    try {
+      const pushScript = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../notebooklm/push-source.sh');
+      const result = spawnSync(pushScript, [incidentNotebookId, lessonPath], { encoding: 'utf8', timeout: 90000 });
+      if (result.error || result.status !== 0) {
+        const reason = result.error ? result.error.message : (result.stderr || '').trim();
+        console.warn(`[GATED-CLIMB] Failed to push incident lesson to NotebookLM: ${reason}`);
+      }
+    } catch (err) {
+      console.warn(`[GATED-CLIMB] Failed to push incident lesson to NotebookLM: ${err.message}`);
+    }
+  }
+
   return lessonPath;
 }
 

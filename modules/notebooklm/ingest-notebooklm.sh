@@ -25,6 +25,7 @@ write_sync_telemetry() {
   local purged="$2"
   local uploaded="$3"
   local last_error="${4:-}"
+  local pack_sha="${5:-}"
   local now_ms=$(node -e 'console.log(Date.now())' 2>/dev/null || echo $(($(date +%s)*1000)))
   local duration_ms=$(( now_ms - START_TIME_MS ))
   if [ "$duration_ms" -lt 0 ]; then duration_ms=0; fi
@@ -37,7 +38,7 @@ write_sync_telemetry() {
   # into this same file earlier in the pipeline; a raw overwrite here erased them.
   if node -e '
     const fs = require("fs");
-    const [statusFile, tmpFile, status, purged, uploaded, durationMs, timestamp, lastError] = process.argv.slice(1);
+    const [statusFile, tmpFile, status, purged, uploaded, durationMs, timestamp, lastError, packSha] = process.argv.slice(1);
     let existing = {};
     if (fs.existsSync(statusFile)) {
       try { existing = JSON.parse(fs.readFileSync(statusFile, "utf8")); } catch (_) {}
@@ -48,6 +49,13 @@ write_sync_telemetry() {
     existing.duration_ms = Number(durationMs);
     existing.purged_sources = Number(purged);
     existing.uploaded_chunks = Number(uploaded);
+    // Only update on SUCCESS -- on FAILED/PARTIAL_SUCCESS the previously
+    // active pack (from the last successful run) is still what is live in
+    // NotebookLM, per the stage-before-drop guarantee, so the cache
+    // invalidation key must not move until a new pack actually goes live.
+    if (status === "SUCCESS" && packSha) {
+      existing.last_sync_pack_sha = packSha;
+    }
     if (status !== "SUCCESS") {
       // Stage booleans / notebook_id are written by generate-kb-sync-artifact.mjs
       // on successful runs and persist through the merge below. Left untouched,
@@ -63,7 +71,7 @@ write_sync_telemetry() {
       delete existing.last_error;
     }
     fs.writeFileSync(tmpFile, JSON.stringify(existing, null, 2), "utf8");
-  ' "$REPO_ROOT/.sync-status.json" "$SYNC_STATUS_TMP" "$status" "$purged" "$uploaded" "$duration_ms" "$timestamp" "$last_error"
+  ' "$REPO_ROOT/.sync-status.json" "$SYNC_STATUS_TMP" "$status" "$purged" "$uploaded" "$duration_ms" "$timestamp" "$last_error" "$pack_sha"
   then
     if mv -f "$SYNC_STATUS_TMP" "$REPO_ROOT/.sync-status.json" 2>/dev/null; then
       TELEMETRY_WRITTEN=true
@@ -209,151 +217,20 @@ log_info "Pack directory: $PACK_DIR"
 log_info "Pack filename: $PACK_FILE"
 
 # Load .env (hardened parser)
-if [ -f "$REPO_ROOT/.env" ]; then
-  while IFS= read -r line || [ -n "$line" ]; do
-    [[ "$line" =~ ^#.*$ ]] && continue
-    [[ -z "$line" ]] && continue
-    line="${line%$'\r'}"
-    [[ "$line" != *"="* ]] && continue
-    env_key="${line%%=*}"
-    env_val="${line#*=}"
-    [[ -z "$env_key" ]] && continue
-    [[ "$env_key" =~ [^a-zA-Z0-9_] ]] && continue
-    env_val="${env_val#\"}" ; env_val="${env_val%\"}"
-    env_val="${env_val#\'}" ; env_val="${env_val%\'}"
-    if [ -z "${!env_key+x}" ]; then
-      export "$env_key"="$env_val"
-    fi
-  done < "$REPO_ROOT/.env"
-fi
+# CLI resolution + dialect-safe wrappers (run_nlm_cli, nlm_source_list_json,
+# nlm_source_add, nlm_source_delete, nlm_auth_check, nlm_chat_json) live in
+# the shared lib so scripts/notebooklm/push-source.sh and
+# scripts/notebooklm/run-nlm-chat.sh can reuse them without duplicating the
+# dialect logic. TIMEOUT_MS is already set above; log_info/log_warn/log_error
+# are already defined above too, so the lib reuses these colorized versions
+# instead of its own plain fallbacks.
+# shellcheck source=lib/nlm-cli.sh
+source "$SCRIPT_DIR/lib/nlm-cli.sh"
 
-export NOTEBOOK_ID="${NOTEBOOK_ID:-}"
-
-# --- RESOLVE NOTEBOOKLM CLI RUNTIME ------------------------------------------
-NLM_MODE=""
-EXPLICIT_NLM_CLI="${NLM_CLI:-}"
-
-if [ -n "$EXPLICIT_NLM_CLI" ]; then
-  NLM_MODE="explicit"
-  log_info "CLI resolution mode: explicit (path: '$EXPLICIT_NLM_CLI')"
-elif (command -v uv >/dev/null 2>&1 || command -v uv.exe >/dev/null 2>&1) && [ -f "$REPO_ROOT/notebooklm-mcp-cli/pyproject.toml" ]; then
-  NLM_MODE="uv-project"
-  UV_EXEC="uv"
-  if ! command -v uv >/dev/null 2>&1 && command -v uv.exe >/dev/null 2>&1; then
-    UV_EXEC="uv.exe"
-  fi
-  log_info "CLI resolution mode: local uv project ($REPO_ROOT/notebooklm-mcp-cli)"
-elif command -v notebooklm >/dev/null 2>&1; then
-  NLM_MODE="global"
-  GLOBAL_NLM_EXEC="notebooklm"
-  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
-elif command -v notebooklm.exe >/dev/null 2>&1; then
-  NLM_MODE="global"
-  GLOBAL_NLM_EXEC="notebooklm.exe"
-  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
-elif command -v nlm >/dev/null 2>&1; then
-  NLM_MODE="global"
-  GLOBAL_NLM_EXEC="nlm"
-  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
-elif command -v nlm.exe >/dev/null 2>&1; then
-  NLM_MODE="global"
-  GLOBAL_NLM_EXEC="nlm.exe"
-  log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
-else
-  NLM_MODE="none"
-  log_error "No valid NotebookLM CLI runtime found (explicit NLM_CLI, uv local project, or global notebooklm/nlm binaries)."
+if ! resolve_nlm_cli; then
   write_sync_telemetry "FAILED" 0 0
   exit 1
 fi
-
-exec_with_timeout() {
-  local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
-  [ "$timeout_sec" -lt 1 ] && timeout_sec=1
-  if command -v timeout >/dev/null 2>&1; then
-    timeout "$timeout_sec" "$@"
-  elif node -e 'process.exit(0)' >/dev/null 2>&1; then
-    node -e '
-      const { spawnSync } = require("child_process");
-      const [cmd, ...args] = process.argv.slice(1);
-      const res = spawnSync(cmd, args, { stdio: "inherit", timeout: parseInt(process.env.TIMEOUT_MS, 10) || 90000 });
-      if (res.error || res.status !== 0) process.exit(res.status || 1);
-    ' "$@"
-  else
-    log_error "FATAL: No valid timeout provider available (neither 'timeout' binary nor 'node')."
-    write_sync_telemetry "FAILED" 0 0
-    exit 1
-  fi
-}
-
-run_nlm_cli() {
-  if [ "$NLM_MODE" = "explicit" ]; then
-    exec_with_timeout "$EXPLICIT_NLM_CLI" "$@"
-  elif [ "$NLM_MODE" = "uv-project" ]; then
-    local uv_dir="$REPO_ROOT/notebooklm-mcp-cli"
-    if command -v wslpath >/dev/null 2>&1; then
-      uv_dir="$(wslpath -w "$uv_dir")"
-    elif command -v cygpath >/dev/null 2>&1; then
-      uv_dir="$(cygpath -w "$uv_dir")"
-    fi
-    exec_with_timeout "${UV_EXEC:-uv}" --directory "$uv_dir" run nlm "$@"
-  elif [ "$NLM_MODE" = "global" ]; then
-    exec_with_timeout "$GLOBAL_NLM_EXEC" "$@"
-  else
-    log_error "Cannot execute NotebookLM CLI: no valid runtime available."
-    write_sync_telemetry "FAILED" 0 0
-    return 1
-  fi
-}
-
-# The local uv-project `nlm` CLI (notebooklm-mcp-cli) and the global
-# `notebooklm` CLI use incompatible argument dialects for the same
-# operations: uv-project takes NOTEBOOK_ID positionally and has no
-# --notebook flag at all on `source delete`, and requires --file (not a
-# bare positional) for local file uploads on `source add`. Calling
-# uv-project's `nlm` with the global CLI's --notebook flag fails outright
-# (exit 2, empty output) -- confirmed live against the CIC-KB notebook,
-# where it silently broke the pre-existing-source query every run.
-nlm_source_list_json() {
-  local notebook_id="$1"
-  if [ "$NLM_MODE" = "uv-project" ]; then
-    run_nlm_cli source list "$notebook_id" --json
-  else
-    run_nlm_cli source list --notebook "$notebook_id" --json
-  fi
-}
-
-nlm_source_add() {
-  local notebook_id="$1" file_path="$2"
-  if [ "$NLM_MODE" = "uv-project" ]; then
-    run_nlm_cli source add "$notebook_id" --file "$file_path"
-  else
-    run_nlm_cli source add --notebook "$notebook_id" "$file_path"
-  fi
-}
-
-nlm_source_delete() {
-  local notebook_id="$1" source_id="$2"
-  if [ "$NLM_MODE" = "uv-project" ]; then
-    run_nlm_cli source delete "$source_id" -y
-  else
-    run_nlm_cli source delete --notebook "$notebook_id" "$source_id" -y
-  fi
-}
-
-# uv-project's `nlm` has no `auth` command group at all (confirmed live:
-# "No such command 'auth'. Did you mean 'batch'?") -- its equivalent is
-# `login --check`. This previously made verify_auth_or_die always think
-# auth was broken and fall through every recovery path to a hard FATAL
-# stop, even when the stored profile was already valid (confirmed live:
-# `login --check` returns "Authentication valid!" with the same profile
-# that `auth check` was failing against).
-nlm_auth_check() {
-  if [ "$NLM_MODE" = "uv-project" ]; then
-    run_nlm_cli login --check
-  else
-    run_nlm_cli auth check
-  fi
-}
 
 sleep_backoff() {
   local ms="${1:-2000}"
@@ -687,6 +564,15 @@ if [ -d "$REPO_ROOT/wiki/lessons" ]; then
   fi
 fi
 
+# Hash the final pack generation (post lesson-consolidation, pre-chunk) so
+# the hybrid cache (Phase 4) can key invalidation to "this sync's content,"
+# regardless of whether it later gets split into multiple upload parts.
+PACK_SHA=""
+if command -v sha256sum >/dev/null 2>&1; then
+  PACK_SHA="$(sha256sum "$PACK_FILE_PATH" | cut -d' ' -f1)"
+elif command -v shasum >/dev/null 2>&1; then
+  PACK_SHA="$(shasum -a 256 "$PACK_FILE_PATH" | cut -d' ' -f1)"
+fi
 
 # Step 2: Validate
 log_info "Step 2/5: Validating pack file size..."
@@ -768,6 +654,109 @@ for file in "${UPLOAD_FILES[@]}"; do
   UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
 done
 
+# Step 5b-poll: Wait for freshly uploaded sources to finish indexing before
+# pruning old ones. Without this, Step 5c could purge the last known-good
+# sources while the new ones are still PROCESSING -- momentarily leaving an
+# active agent with zero grounded context. Any new source that reports an
+# ERROR-like state fails the sync immediately (no point waiting on it), and
+# on TIMEOUT_MS expiry, Step 5c is skipped entirely so the pre-existing
+# sources remain the notebook's only content, exactly as before.
+poll_new_sources_active() {
+  local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
+  local poll_interval_sec=5
+  local elapsed_sec=0
+  local warned_no_status=false
+
+  while true; do
+    local sources_json
+    if ! sources_json="$(nlm_source_list_json "$NOTEBOOK_ID" 2>/dev/null)"; then
+      log_error "Step 5-poll: Failed to query source list while waiting for indexing to complete."
+      return 1
+    fi
+
+    local poll_result
+    poll_result=$(printf '%s' "$sources_json" | node -e '
+      const fs = require("fs");
+      const preExistingArg = process.argv[1];
+      const preExisting = new Set(preExistingArg ? preExistingArg.split(",").filter(Boolean) : []);
+      try {
+        const input = fs.readFileSync(0, "utf8");
+        let raw = JSON.parse(input || "[]");
+        let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : []);
+        // "New" sources are whatever matches the pack-filename pattern and
+        // was NOT in the pre-existing snapshot taken before upload (Step 5a).
+        const pattern = /^repo_knowledge_pack.*\.txt$/i;
+        const newSources = list.filter(s => {
+          if (!s || typeof s.id !== "string") return false;
+          const name = typeof s.title === "string" ? s.title : (typeof s.name === "string" ? s.name : "");
+          return pattern.test(name) && !preExisting.has(s.id);
+        });
+        if (newSources.length === 0) {
+          console.log("NO_NEW_SOURCES_YET");
+          process.exit(0);
+        }
+        const withStatus = newSources.filter(s => typeof s.status === "string");
+        if (withStatus.length === 0) {
+          // This CLI/response variant does not report a status field at all --
+          // cannot verify indexing state either way, so degrade to "assume
+          // active" rather than block forever on data that will never arrive.
+          console.log("NO_STATUS_FIELD");
+          process.exit(0);
+        }
+        const errored = withStatus.filter(s => /^(ERROR|FAILED)$/i.test(s.status));
+        if (errored.length > 0) {
+          console.log("ERROR:" + errored.map(s => s.id).join(","));
+          process.exit(0);
+        }
+        const notReady = withStatus.filter(s => !/^(ACTIVE|READY)$/i.test(s.status));
+        if (notReady.length > 0) {
+          console.log("PROCESSING");
+          process.exit(0);
+        }
+        console.log("ACTIVE");
+      } catch (e) {
+        console.log("PARSE_ERROR");
+      }
+    ' "$(IFS=,; echo "${PRE_EXISTING_SOURCES[*]:-}")" 2>/dev/null)
+
+    case "$poll_result" in
+      ACTIVE)
+        log_info "Step 5-poll: All newly uploaded sources report ACTIVE/READY."
+        return 0
+        ;;
+      NO_STATUS_FIELD)
+        if [ "$warned_no_status" = false ]; then
+          log_warn "Step 5-poll: source list response has no 'status' field for this CLI variant; skipping active-state verification."
+          warned_no_status=true
+        fi
+        return 0
+        ;;
+      ERROR:*)
+        log_error "Step 5-poll: Newly uploaded source(s) reported an error state: ${poll_result#ERROR:}"
+        return 1
+        ;;
+      NO_NEW_SOURCES_YET|PROCESSING|PARSE_ERROR|"")
+        : # keep polling
+        ;;
+    esac
+
+    if [ "$elapsed_sec" -ge "$timeout_sec" ]; then
+      log_error "Step 5-poll: Newly uploaded sources did not reach ACTIVE state within ${timeout_sec}s."
+      return 1
+    fi
+
+    sleep_backoff $((poll_interval_sec * 1000))
+    elapsed_sec=$((elapsed_sec + poll_interval_sec))
+  done
+}
+
+log_info "Step 5b-poll: Waiting for newly uploaded sources to finish indexing..."
+if ! poll_new_sources_active; then
+  log_error "Aborting before Step 5c: pre-existing sources will NOT be purged. The previous knowledge pack remains intact and searchable."
+  write_sync_telemetry "FAILED" 0 "$UPLOADED_COUNT" "Uploaded sources failed to reach ACTIVE state within timeout"
+  exit 1
+fi
+
 # Step 5c: Delete pre-existing sources ONLY after upload succeeds
 log_info "Step 5c: Upload complete. Purging ${#PRE_EXISTING_SOURCES[@]} old source(s)..."
 PURGED_COUNT=0
@@ -788,5 +777,5 @@ if [ "$PURGE_SUCCESS" = false ]; then
 fi
 
 log_info "NotebookLM sync completed successfully! Purged: $PURGED_COUNT, Uploaded: $UPLOADED_COUNT."
-write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
+write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT "" "$PACK_SHA"
 exit 0
