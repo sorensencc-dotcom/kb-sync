@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-18T21:51:45.939Z",
-  "system_time_epoch_ms": 1789768305939,
+  "timestamp": "2026-09-18T21:55:44.511Z",
+  "system_time_epoch_ms": 1789768544511,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -80,7 +80,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/ingest-notebooklm.sh",
-      "last_code_commit": "2026-09-18T21:45:49+00:00",
+      "last_code_commit": "2026-09-18T21:55:43+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/ingest-notebooklm.sh"
@@ -208,7 +208,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/notebooklm/verify-grounding-gate.mjs",
-      "last_code_commit": "2026-09-18T21:51:42+00:00",
+      "last_code_commit": "2026-09-18T21:55:43+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/verify-grounding-gate.mjs"
@@ -264,7 +264,7 @@
     {
       "repo": "kb-sync",
       "file": "tests/notebooklm-polling.test.sh",
-      "last_code_commit": "2026-09-18T21:45:49+00:00",
+      "last_code_commit": "2026-09-18T21:55:43+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-polling.test.sh"
