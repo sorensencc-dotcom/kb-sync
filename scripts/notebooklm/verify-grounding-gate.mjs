@@ -16,6 +16,7 @@
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BRIDGE_SCRIPT = path.resolve(__dirname, 'run-nlm-chat.sh');
@@ -32,7 +33,8 @@ if (!notebookId) {
   fail('No NOTEBOOK_ID provided (pass as argv[1] or set NOTEBOOK_ID env var).', 1);
 }
 
-const result = spawnSync(BRIDGE_SCRIPT, [notebookId, GROUNDING_PROMPT], {
+const bashExe = resolveBashExecutable();
+const result = spawnSync(bashExe, [BRIDGE_SCRIPT, notebookId, GROUNDING_PROMPT], {
   encoding: 'utf8',
   timeout: Number(process.env.TIMEOUT_MS) || 90000,
 });
