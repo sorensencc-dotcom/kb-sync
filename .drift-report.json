@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-18T14:59:24.595Z",
-  "system_time_epoch_ms": 1789743564595,
+  "timestamp": "2026-09-18T21:45:50.075Z",
+  "system_time_epoch_ms": 1789767950075,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -80,7 +80,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/ingest-notebooklm.sh",
-      "last_code_commit": "2026-09-18T14:59:23+00:00",
+      "last_code_commit": "2026-09-18T21:45:49+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/ingest-notebooklm.sh"
@@ -128,7 +128,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/gated-climb-repair.mjs",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T21:45:49+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/gated-climb-repair.mjs"
@@ -164,6 +164,22 @@
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/mcp-memory-server.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/notebooklm/generate-kb-sync-artifact.mjs",
+      "last_code_commit": "2026-09-18T15:09:14+00:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/generate-kb-sync-artifact.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/notebooklm/kb-sync-nightly.ps1",
+      "last_code_commit": "2026-09-18T21:45:49+00:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/kb-sync-nightly.ps1"
     },
     {
       "repo": "kb-sync",
@@ -240,7 +256,7 @@
     {
       "repo": "kb-sync",
       "file": "tests/notebooklm-polling.test.sh",
-      "last_code_commit": "2026-09-18T14:59:23+00:00",
+      "last_code_commit": "2026-09-18T21:45:49+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-polling.test.sh"
@@ -256,7 +272,7 @@
     {
       "repo": "kb-sync",
       "file": "tests/notebooklm-sync-verification.ts",
-      "last_code_commit": "2026-09-18T14:51:11+00:00",
+      "last_code_commit": "2026-09-18T15:09:14+00:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-sync-verification.ts"
@@ -264,7 +280,7 @@
   ],
   "summary": {
     "total_sources_checked": 225,
-    "stale_pages_count": 32,
+    "stale_pages_count": 34,
     "untracked_paths_count": 1
   }
 }
