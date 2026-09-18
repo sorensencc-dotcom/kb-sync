@@ -56,7 +56,7 @@
     "artifact:generate": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm",
     "artifact:generate:obsidian": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
     "artifact:generate:all": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm && bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
-    "test:notebooklm": "npx tsx tests/notebooklm-sync-verification.ts",
+    "test:notebooklm": "npx tsx tests/notebooklm-sync-verification.ts && bash tests/notebooklm-submodule-guard.test.sh && bash tests/notebooklm-polling.test.sh",
     "test:core": "npx tsx tests/core-scripts-verification.ts",
     "test:obsidian": "npx tsx tests/obsidian-sync-verification.ts",
     "test:worker": "npx tsx tests/synthesize-worker-verification.ts",

@@ -10,6 +10,31 @@ import { resolveVaultPaths } from './config-loader.mjs';
 import { sweepStagingVault } from './autoheal-sweeper.mjs';
 
 /**
+ * Locates a bash executable to run modules/notebooklm/push-source.sh under.
+ * spawnSync-ing a .sh file directly works on POSIX (the shebang line is
+ * enough) and under Git Bash/WSL, but native Windows has no association for
+ * .sh files at all -- spawnSync would fail with ENOENT. Mirrors the
+ * Git-Bash-candidate-path pattern already established in
+ * scripts/notebooklm/kb-sync-nightly.ps1 for this exact problem.
+ * @returns {string} path or bare command to invoke as `bash <script> <args>`
+ */
+function resolveBashExecutable() {
+  if (process.platform !== 'win32') {
+    return 'bash';
+  }
+  const candidates = [
+    'C:\\Program Files\\Git\\bin\\bash.exe',
+    'C:\\Program Files\\Git\\usr\\bin\\bash.exe',
+    process.env.ProgramFiles ? `${process.env.ProgramFiles}\\Git\\bin\\bash.exe` : null,
+    process.env.LOCALAPPDATA ? `${process.env.LOCALAPPDATA}\\Programs\\Git\\bin\\bash.exe` : null,
+  ].filter(Boolean);
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return 'bash.exe';
+}
+
+/**
  * Normalizes Windows drive letter and path separators.
  * @param {string} p
  * @returns {string}
@@ -626,7 +651,8 @@ Programmatic fix pending background LLM enrichment pass.
   } else {
     try {
       const pushScript = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../notebooklm/push-source.sh');
-      const result = spawnSync(pushScript, [incidentNotebookId, lessonPath], { encoding: 'utf8', timeout: 90000 });
+      const bashExe = resolveBashExecutable();
+      const result = spawnSync(bashExe, [pushScript, incidentNotebookId, lessonPath], { encoding: 'utf8', timeout: 90000 });
       if (result.error || result.status !== 0) {
         const reason = result.error ? result.error.message : (result.stderr || '').trim();
         console.warn(`[GATED-CLIMB] Failed to push incident lesson to NotebookLM: ${reason}`);

@@ -708,12 +708,17 @@ poll_new_sources_active() {
       const fs = require("fs");
       const preExistingArg = process.argv[1];
       const preExisting = new Set(preExistingArg ? preExistingArg.split(",").filter(Boolean) : []);
-      // PACK_FILE is configurable (configs/notebooklm.yaml pack_filename); a
-      // hardcoded "repo_knowledge_pack" pattern here would never match a
-      // custom filename, leaving newSources permanently empty and forcing
-      // every sync to hard-fail via the TIMEOUT_MS path below instead of
-      // just silently mis-scoping (as the pre-existing, unrelated hardcoded
-      // pattern in query_preexisting_pack_sources above does).
+      // PACK_FILE is configurable (configs/notebooklm.yaml pack_filename), but
+      // that only names the UNCHUNKED pack file ($PACK_FILE.txt, Step 3 "OK"
+      // branch). When chunking is triggered, core/chunk.sh emits parts under
+      // its own hardcoded CHUNK_PREFIX ("repo_knowledge_pack_part_") no
+      // matter what PACK_FILE was -- that is shared infra used by every
+      // sync target, not something to special-case from here -- and
+      // find(1) in the upload step matches that exact hardcoded prefix
+      // (modules/notebooklm/ingest-notebooklm.sh, Step 3 HARD branch). So a
+      // custom PACK_FILE with chunked uploads is STILL named
+      // repo_knowledge_pack_part_*.txt: matching PACK_FILE alone would
+      // never see them and hang until timeout every time chunking kicks in.
       const packFileArg = process.argv[2] || "repo_knowledge_pack";
       const expectedCount = parseInt(process.argv[3], 10) || 1;
       const escapedPackFile = packFileArg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -721,9 +726,11 @@ poll_new_sources_active() {
         const input = fs.readFileSync(0, "utf8");
         let raw = JSON.parse(input || "[]");
         let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : []);
-        // "New" sources are whatever matches the pack-filename pattern and
-        // was NOT in the pre-existing snapshot taken before upload (Step 5a).
-        const pattern = new RegExp("^" + escapedPackFile + ".*\\.txt$", "i");
+        // "New" sources are whatever matches the pack-filename pattern
+        // (either the configured PACK_FILE itself, or the fixed chunk
+        // output prefix) and was NOT in the pre-existing snapshot taken
+        // before upload (Step 5a).
+        const pattern = new RegExp("^(" + escapedPackFile + "|repo_knowledge_pack_part_).*\\.txt$", "i");
         const newSources = list.filter(s => {
           if (!s || typeof s.id !== "string") return false;
           const name = typeof s.title === "string" ? s.title : (typeof s.name === "string" ? s.name : "");

@@ -16,6 +16,15 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT="$REPO_ROOT/modules/notebooklm/ingest-notebooklm.sh"
 FAIL=0
 
+# poll_new_sources_active's JSON parsing is a node -e call -- without this
+# check, a missing node binary would surface as every scenario mysteriously
+# timing out (node -e silently failing) rather than a clear environment
+# error naming the actual missing prerequisite.
+if ! command -v node >/dev/null 2>&1; then
+  echo "FAIL: node is required to run this test (poll_new_sources_active parses JSON via node -e) but was not found on PATH"
+  exit 1
+fi
+
 log_info() { :; }
 log_warn() { echo "[WARN] $*" >&2; }
 log_error() { echo "[ERROR] $*" >&2; }
@@ -177,6 +186,32 @@ if [ "$ELAPSED" -lt 5 ]; then
   echo "PASS: Scenario 6: returned immediately, did not time out matching a custom pack filename"
 else
   echo "FAIL: Scenario 6: took ${ELAPSED}s -- custom PACK_FILE pattern likely not matching"
+  FAIL=1
+fi
+PACK_FILE="repo_knowledge_pack"
+
+# --- Scenario 6c: custom PACK_FILE with a CHUNKED upload ---------------------
+# Regression guard: core/chunk.sh hardcodes its output prefix to
+# "repo_knowledge_pack_part_" regardless of what --file/PACK_FILE it was
+# given, so a custom pack_filename's chunked uploads are STILL named
+# repo_knowledge_pack_part_*.txt, never <custom>_part_*.txt. Scenario 6
+# above used an unrealistic mock (my_org_kb_pack_part_aa.txt) that doesn't
+# reflect this; this one uses the real naming chunk.sh actually produces.
+PACK_FILE="my_org_kb_pack"
+TIMEOUT_MS=90000
+nlm_source_list_json() {
+  echo '[{"id":"old1","title":"my_org_kb_pack.txt"},{"id":"new1","title":"repo_knowledge_pack_part_aa.txt","status":"ACTIVE"}]'
+}
+PRE_EXISTING_SOURCES=("old1")
+START_S=$(date +%s)
+poll_new_sources_active; RC=$?
+END_S=$(date +%s)
+assert_eq "$RC" "0" "Scenario 6c: custom PACK_FILE recognizes chunk.sh's real (unprefixed) chunk naming"
+ELAPSED=$((END_S - START_S))
+if [ "$ELAPSED" -lt 5 ]; then
+  echo "PASS: Scenario 6c: returned immediately, did not time out on real chunk naming"
+else
+  echo "FAIL: Scenario 6c: took ${ELAPSED}s -- chunk-prefix alternation likely not matching"
   FAIL=1
 fi
 PACK_FILE="repo_knowledge_pack"
