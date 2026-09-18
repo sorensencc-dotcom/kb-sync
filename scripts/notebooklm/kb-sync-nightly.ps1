@@ -159,6 +159,42 @@ if ($Stage1ExitCode -eq 0) {
     exit 1
 }
 
+# --- STAGE 1.5: POST-UPLOAD GROUNDING GATE ---
+# npm run kb:sync invokes this script, not the bash kb-sync-nightly.sh --
+# without this, the primary unattended release path never called
+# verify-grounding-gate.mjs at all, and a bad upload could reach Stage 3
+# (GitHub Wiki publish) with zero valid citations.
+Write-Host ""
+Write-LogInfo "================================================================================"
+Write-LogInfo "STAGE 1.5: Verifying semantic grounding against active pack"
+Write-LogInfo "================================================================================"
+
+$Stage1_5Script = Join-Path $RepoRoot "scripts\notebooklm\verify-grounding-gate.mjs"
+$NotebookIdForGate = $env:NOTEBOOK_ID
+if (-not $NotebookIdForGate -and (Test-Path "$RepoRoot\.env")) {
+    $EnvContent = Get-Content "$RepoRoot\.env" -ErrorAction SilentlyContinue
+    foreach ($Line in $EnvContent) {
+        if ($Line -match '^\s*NOTEBOOK_ID\s*=\s*["'']?(.*?)["'']?\s*$') {
+            $NotebookIdForGate = $Matches[1]
+            break
+        }
+    }
+}
+
+$GateNodeCmd = Get-Command "node.exe" -ErrorAction SilentlyContinue
+if ($GateNodeCmd -and (Test-Path $Stage1_5Script)) {
+    & node "$Stage1_5Script" "$NotebookIdForGate"
+    if ($LASTEXITCODE -eq 0) {
+        Write-LogInfo "Stage 1.5 grounding gate passed."
+    } else {
+        Write-LogError "Stage 1.5 grounding gate failed with exit code $LASTEXITCODE. Aborting before Stage 2 (ungrounded release build)."
+        Send-WebhookNotification -Title "Grounding Gate Failed" -Message "Stage 1 sync succeeded, but the post-upload grounding check found no valid citations against the active pack." -Level "ERROR"
+        exit 1
+    }
+} else {
+    Write-LogWarn "node.exe not found or verify-grounding-gate.mjs missing. Grounding gate skipped."
+}
+
 # --- STAGE 2: GENERATE ARTIFACT ---
 Write-Host ""
 Write-LogInfo "================================================================================"

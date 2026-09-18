@@ -204,10 +204,36 @@ runTest("Sync script execution simulation with mock CLI (triggers chunking)", ()
   // Write mock notebooklm binary
   const mockCliPath = path.join(mockCliDir, "mock-nlm");
   const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
+  // `source list` reports one ACTIVE pack source per `source add` call so
+  // far, matching the real "each chunk becomes visible/active as it
+  // finishes indexing" lifecycle closely enough for the Step 5b-poll gate
+  // (which now requires ALL uploaded chunks to be visible and ACTIVE, not
+  // just any one of them, before Step 5c prunes pre-existing sources) to
+  // resolve as soon as every chunk has been counted, instead of either
+  // waiting out its real 90s timeout (no sources ever reported) or
+  // resolving early on a fixed single mock source regardless of how many
+  // chunks were actually uploaded.
   const mockCliContent = `#!/usr/bin/env bash
+COUNTER="$(dirname "$0")/.mock_upload_count"
 if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  echo "[]"
+  count=0
+  if [ -f "$COUNTER" ]; then count=$(wc -l < "$COUNTER" | tr -d ' '); fi
+  if [ "$count" -eq 0 ]; then
+    echo "[]"
+  else
+    entries=""
+    i=0
+    while [ "$i" -lt "$count" ]; do
+      [ -n "$entries" ] && entries="$entries,"
+      entries="$entries{\\"id\\":\\"mock-source-$i\\",\\"title\\":\\"repo_knowledge_pack_part_mock$i.txt\\",\\"status\\":\\"ACTIVE\\"}"
+      i=$((i + 1))
+    done
+    echo "[$entries]"
+  fi
   exit 0
+fi
+if [ "$1" = "source" ] && [ "$2" = "add" ]; then
+  echo "x" >> "$COUNTER"
 fi
 echo "[MOCK-CLI] Invoked with arguments: $@"
 exit 0
@@ -302,6 +328,14 @@ exit 0
   fs.writeFileSync(mockCliCmdPath, mockCliCmdContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x ./.mock_cli_bin/mock-nlm"`, { cwd: REPO_ROOT }); } catch (_) {}
 
+  // Seed a stale last_sync_pack_sha, as a prior successful sync would have
+  // left behind, to verify rollback clears it (rather than leaving it
+  // pointed at the generation rollback just replaced -- see the
+  // "__CLEAR__" sentinel in write_sync_telemetry).
+  const statusPath = path.join(REPO_ROOT, ".sync-status.json");
+  const originalStatusContent = fs.existsSync(statusPath) ? fs.readFileSync(statusPath, "utf8") : null;
+  fs.writeFileSync(statusPath, JSON.stringify({ last_sync_pack_sha: "stale-pre-rollback-sha", status: "SUCCESS" }, null, 2), "utf8");
+
   console.log("  Running sync script with rollback flag...");
   try {
     const bashScriptPath = toBashPath(SYNC_SCRIPT_PATH);
@@ -311,7 +345,7 @@ exit 0
       env: getCleanEnv(),
       encoding: "utf8"
     });
-    
+
     console.log("  Script output:\n" + output.split("\n").map(l => "    " + l).join("\n"));
 
     if (!output.includes("NotebookLM rollback completed successfully")) {
@@ -325,10 +359,20 @@ exit 0
     if (!output.includes("Uploading:") && !output.includes("Re-uploading")) {
       throw new Error("Rollback did not log uploading backup files");
     }
+
+    const statusAfterRollback = JSON.parse(fs.readFileSync(statusPath, "utf8"));
+    if ("last_sync_pack_sha" in statusAfterRollback) {
+      throw new Error("Rollback left a stale last_sync_pack_sha in .sync-status.json instead of clearing it");
+    }
   } finally {
     // Cleanup
     if (fs.existsSync(mockBackupFile)) fs.unlinkSync(mockBackupFile);
     if (fs.existsSync(mockCliDir)) fs.rmSync(mockCliDir, { recursive: true, force: true });
+    if (originalStatusContent !== null) {
+      fs.writeFileSync(statusPath, originalStatusContent, "utf8");
+    } else if (fs.existsSync(statusPath)) {
+      fs.unlinkSync(statusPath);
+    }
   }
 });
 runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
