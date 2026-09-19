@@ -431,39 +431,10 @@
       <!-- Connector 1 -> 2 -->
       <div class="step-connector">
         <div class="connector-line"></div>
-        <div class="connector-badge">↓ 15 Minute Buffer (Vault writing complete, locks released)</div>
+        <div class="connector-badge">↓ 30 Minute Buffer (Notebook mining complete, inquiry vectors extracted)</div>
       </div>
 
-      <!-- Step 2: Triage -->
-      <div class="step-row triage">
-        <div class="step-left">
-          <div class="step-time" style="color: var(--sky);">06:20 AM ET</div>
-          <div class="step-duration">Runtime: ~2–5 mins</div>
-          <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
-        </div>
-        <div>
-          <div class="step-right-header">
-            <div class="step-name">2. KB-Sync-TRM-Triage</div>
-            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \KB-SYNC\</span>
-          </div>
-          <div class="step-body">
-            Synchronizes the local SQLite context cache (FTS5 + AST grounding vectors) and executes the cognitive gap triage engine. Synthesizes RFC markdown drafts (<code>wiki/research/rfc-gap-*.md</code>) for open gaps (<code>- [ ] ➔ - [/]</code>) and reconciles verified vault fact cards.
-          </div>
-          <div class="step-footer">
-            <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
-            <span>Privilege: <strong style="color:var(--white);">Highest</strong></span>
-            <span>Script: <code>schedule-task-wrapper-TRM-Triage.ps1</code></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Connector 2 -> 3 -->
-      <div class="step-connector">
-        <div class="connector-line"></div>
-        <div class="connector-badge">↓ 10 Minute Buffer (RFC synthesis written, cache sync released)</div>
-      </div>
-
-      <!-- Step 3: Treatment -->
+      <!-- Step 2: Treatment -->
       <div class="step-row treatment">
         <div class="step-left">
           <div class="step-time" style="color: var(--brass);">06:30 AM ET</div>
@@ -472,7 +443,7 @@
         </div>
         <div>
           <div class="step-right-header">
-            <div class="step-name">3. toolforge-trm-sync-treatment</div>
+            <div class="step-name">2. toolforge-trm-sync-treatment</div>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
           </div>
           <div class="step-body">
@@ -486,13 +457,13 @@
         </div>
       </div>
 
-      <!-- Connector 3 -> 4 -->
+      <!-- Connector 2 -> 3 -->
       <div class="step-connector">
         <div class="connector-line"></div>
-        <div class="connector-badge">↓ 15 Minute Buffer (Treatment report finalized)</div>
+        <div class="connector-badge">↓ 15 Minute Buffer (Treatment report finalized, topic models updated)</div>
       </div>
 
-      <!-- Step 4: Memory -->
+      <!-- Step 3: Memory -->
       <div class="step-row memory">
         <div class="step-left">
           <div class="step-time" style="color: #a78bfa;">06:45 AM ET</div>
@@ -501,7 +472,7 @@
         </div>
         <div>
           <div class="step-right-header">
-            <div class="step-name">4. CIC-Mirror-ClaudeMemory</div>
+            <div class="step-name">3. CIC-Mirror-ClaudeMemory</div>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
           </div>
           <div class="step-body">
@@ -515,13 +486,13 @@
         </div>
       </div>
 
-      <!-- Connector 4 -> 5 -->
+      <!-- Connector 3 -> 4 -->
       <div class="step-connector">
         <div class="connector-line"></div>
         <div class="connector-badge">↓ 15 Minute Buffer (Claude memory mirrors up to date)</div>
       </div>
 
-      <!-- Step 5: Status -->
+      <!-- Step 4: Status -->
       <div class="step-row status">
         <div class="step-left">
           <div class="step-time" style="color: var(--sage);">07:00 AM ET</div>
@@ -530,7 +501,7 @@
         </div>
         <div>
           <div class="step-right-header">
-            <div class="step-name">5. CIC-Daily-Status</div>
+            <div class="step-name">4. CIC-Daily-Status</div>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
           </div>
           <div class="step-body">

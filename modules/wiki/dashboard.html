@@ -1557,7 +1557,7 @@ flowchart TD
 
       <!-- Vertical Stepper Container -->
       <div class="vertical-stepper">
-        <!-- Step 1: Mining -->
+        <!-- Step 1: Mine -->
         <div class="step-row mine">
           <div class="step-left">
             <div class="step-time" style="color: var(--ember);">06:00 AM ET</div>
@@ -1583,39 +1583,10 @@ flowchart TD
         <!-- Connector 1 -> 2 -->
         <div class="step-connector">
           <div class="connector-line"></div>
-          <div class="connector-badge">↓ 15 Minute Buffer (Vault writing complete, locks released)</div>
+          <div class="connector-badge">↓ 30 Minute Buffer (Notebook mining complete, inquiry vectors extracted)</div>
         </div>
 
-        <!-- Step 2: Triage -->
-        <div class="step-row triage">
-          <div class="step-left">
-            <div class="step-time" style="color: #7a9fbf;">06:20 AM ET</div>
-            <div class="step-duration">Runtime: ~2–5 mins</div>
-            <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
-          </div>
-          <div>
-            <div class="step-right-header">
-              <div class="step-name">2. KB-Sync-TRM-Triage</div>
-              <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \KB-SYNC\</span>
-            </div>
-            <div class="step-body">
-              Synchronizes the local SQLite context cache (FTS5 + AST grounding vectors) and executes the cognitive gap triage engine. Synthesizes RFC markdown drafts (<code>wiki/research/rfc-gap-*.md</code>) for open gaps (<code>- [ ] ➔ - [/]</code>) and reconciles verified vault fact cards.
-            </div>
-            <div class="step-footer">
-              <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
-              <span>Privilege: <strong style="color:var(--white);">Highest</strong></span>
-              <span>Script: <code>schedule-task-wrapper-TRM-Triage.ps1</code></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Connector 2 -> 3 -->
-        <div class="step-connector">
-          <div class="connector-line"></div>
-          <div class="connector-badge">↓ 10 Minute Buffer (RFC synthesis written, cache sync released)</div>
-        </div>
-
-        <!-- Step 3: Treatment -->
+        <!-- Step 2: Treatment -->
         <div class="step-row treatment">
           <div class="step-left">
             <div class="step-time" style="color: var(--brass);">06:30 AM ET</div>
@@ -1624,7 +1595,7 @@ flowchart TD
           </div>
           <div>
             <div class="step-right-header">
-              <div class="step-name">3. toolforge-trm-sync-treatment</div>
+              <div class="step-name">2. toolforge-trm-sync-treatment</div>
               <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
             </div>
             <div class="step-body">
@@ -1638,13 +1609,13 @@ flowchart TD
           </div>
         </div>
 
-        <!-- Connector 3 -> 4 -->
+        <!-- Connector 2 -> 3 -->
         <div class="step-connector">
           <div class="connector-line"></div>
-          <div class="connector-badge">↓ 15 Minute Buffer (Treatment report finalized)</div>
+          <div class="connector-badge">↓ 15 Minute Buffer (Treatment report finalized, topic models updated)</div>
         </div>
 
-        <!-- Step 4: Memory -->
+        <!-- Step 3: Memory -->
         <div class="step-row memory">
           <div class="step-left">
             <div class="step-time" style="color: #a78bfa;">06:45 AM ET</div>
@@ -1653,7 +1624,7 @@ flowchart TD
           </div>
           <div>
             <div class="step-right-header">
-              <div class="step-name">4. CIC-Mirror-ClaudeMemory</div>
+              <div class="step-name">3. CIC-Mirror-ClaudeMemory</div>
               <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
             </div>
             <div class="step-body">
@@ -1667,13 +1638,13 @@ flowchart TD
           </div>
         </div>
 
-        <!-- Connector 4 -> 5 -->
+        <!-- Connector 3 -> 4 -->
         <div class="step-connector">
           <div class="connector-line"></div>
           <div class="connector-badge">↓ 15 Minute Buffer (Claude memory mirrors up to date)</div>
         </div>
 
-        <!-- Step 5: Status -->
+        <!-- Step 4: Status -->
         <div class="step-row status">
           <div class="step-left">
             <div class="step-time" style="color: var(--sage);">07:00 AM ET</div>
@@ -1682,7 +1653,7 @@ flowchart TD
           </div>
           <div>
             <div class="step-right-header">
-              <div class="step-name">5. CIC-Daily-Status</div>
+              <div class="step-name">4. CIC-Daily-Status</div>
               <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
             </div>
             <div class="step-body">
@@ -1704,7 +1675,7 @@ flowchart TD
             🌙 Nightly Maintenance Window (08:00 PM &amp; 08:30 PM ET)
           </div>
           <div style="font-size: 0.85rem; color: var(--bone); margin-top: 0.25rem;">
-            <code>08:00 PM</code> <strong>KB-Sync-Master-Pipeline</strong> (wiki validation, link integrity, autohealing) ➔ <code>08:30 PM</code> <strong>KB-Sync-TRM-Triage</strong> (evening gap synthesis pass).
+            <code>08:00 PM</code> <strong>KB-Sync-Master-Pipeline</strong> (wiki validation, link integrity, autohealing) ➔ <code>08:30 PM</code> <strong>KB-Sync-TRM-Triage</strong> (gap triage engine, RFC drafting &amp; fact reconciliation).
           </div>
         </div>
         <span class="tag date" style="background: rgba(90, 158, 111, 0.15); color: var(--sage); border-color: rgba(90, 158, 111, 0.4);">SCHEDULED DAILY</span>
@@ -1723,14 +1694,13 @@ flowchart TD
       </p>
       <pre style="background: var(--iron); padding: 1.25rem; border: 1px solid rgba(154, 144, 136, 0.15); color: var(--bone); font-family: monospace; font-size: 0.8rem; overflow-x: auto;"><code>flowchart TD
   subgraph MorningChain["Daily Morning Pipeline (06:00 AM – 07:00 AM ET)"]
-    M1["06:00 AM: TRM-Notebooklm-Mine\n(Ingests 11 NBs &amp; Mines Gaps)"] -->|"15 min buffer"| M2["06:20 AM: KB-Sync-TRM-Triage\n(Cache Sync &amp; RFC Synthesis)"]
-    M2 -->|"10 min buffer"| M3["06:30 AM: toolforge-trm-sync-treatment\n(Reconciles Vault Facts)"]
-    M3 -->|"15 min buffer"| M4["06:45 AM: CIC-Mirror-ClaudeMemory\n(Mirrors Protected Memory)"]
-    M4 -->|"15 min buffer"| M5["07:00 AM: CIC-Daily-Status\n(Aggregates JSON &amp; Renders ICF Dashboard)"]
+    M1["06:00 AM: TRM-Notebooklm-Mine\n(Ingests 11 NBs &amp; Mines Gaps)"] -->|"30 min buffer"| M2["06:30 AM: toolforge-trm-sync-treatment\n(Reconciles Vault Facts)"]
+    M2 -->|"15 min buffer"| M3["06:45 AM: CIC-Mirror-ClaudeMemory\n(Mirrors Protected Memory)"]
+    M3 -->|"15 min buffer"| M4["07:00 AM: CIC-Daily-Status\n(Aggregates JSON &amp; Renders ICF Dashboard)"]
   end
 
   subgraph EveningChain["Nightly Maintenance (08:00 PM &amp; 08:30 PM ET)"]
-    E1["08:00 PM: KB-Sync-Master-Pipeline\n(Wiki Validation &amp; Autoheal)"] -->|"30 min buffer"| E2["08:30 PM: KB-Sync-TRM-Triage\n(Evening Gap Synthesis Pass)"]
+    E1["08:00 PM: KB-Sync-Master-Pipeline\n(Wiki Validation &amp; Autoheal)"] -->|"30 min buffer"| E2["08:30 PM: KB-Sync-TRM-Triage\n(Gap Triage &amp; RFC Synthesis Pass)"]
   end</code></pre>
     </div>
 
