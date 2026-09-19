@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap"
+title: "RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Executive Alliance"
 category: "research"
 topic: "rfc-gap-50-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-50--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:22.686Z"
+created_at: "2026-09-19T21:16:29.115Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verification.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
+# RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Executive Alliance
 
 ## 1. Problem Statement & Context
-)**: There is **no written proof or documentation** in the Peter E. Martin Papers (BFRC Accession 823) or the Frank Campsall Files (BFRC Accession SE-007) confirming Sorensen's actual a
+)**: **The Executive Alliance:** Archival dossiers document an **Edsel-Sorensen alliance** against Harry Bennett’s paramilitary Service Department [5]. In one meeting (BFRC Accession 65
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
+- **rfc-gap-12-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
   > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-24--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - Shareholder Primacy Precedent" category: "research" topic: "rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executi
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

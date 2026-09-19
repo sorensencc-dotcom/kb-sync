@@ -2344,3 +2344,102 @@ New staging includes 3 additional files compared to previous snapshot (85 files 
   - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
   - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
   - `wiki/Index.md`
+
+## [2026-09-19 20:48] auto-synthesize
+
+- Provider: `offline-template` (`offline-scaffold-v1`)
+- Session Hash: `7baab4da59dedc0c`
+- Staging Path: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260919-164841`
+- Proposals Accepted: 90 (0 rejected)
+- Created/Updated Files:
+  - `wiki/kb-sync/wiki/.AutohealReceipt.md`
+  - `wiki/kb-sync/wiki/.Catalog.md`
+  - `wiki/kb-sync/wiki/.CoverageReport.md`
+  - `wiki/kb-sync/wiki/.CrossRepoDriftReport.md`
+  - `wiki/kb-sync/wiki/.DriftReport.md`
+  - `wiki/kb-sync/wiki/.FleetWikiSyncReport.md`
+  - `wiki/kb-sync/wiki/.Gitattributes.md`
+  - `wiki/kb-sync/wiki/.Gitignore.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.md`
+  - `wiki/kb-sync/wiki/.DreamState.md`
+  - `wiki/kb-sync/wiki/.LayoutVersion.md`
+  - `wiki/kb-sync/wiki/.ProfileDeriveCursor.md`
+  - `wiki/kb-sync/wiki/.SessionCounter.md`
+  - `wiki/kb-sync/wiki/.SessionCounterId.md`
+  - `wiki/kb-sync/wiki/.SessionMarkerTs.md`
+  - `wiki/kb-sync/wiki/.SessionStyleAcc.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.md`
+  - `wiki/kb-sync/wiki/.PerformanceBaselines.md`
+  - `wiki/kb-sync/wiki/.RepairManifest.md`
+  - `wiki/kb-sync/wiki/.SyncStatus.md`
+  - `wiki/kb-sync/wiki/.WikiSyncReceipt.md`
+  - `wiki/kb-sync/wiki/.DreamState.Json.md`
+  - `wiki/kb-sync/wiki/.DreamStateV2.Json.md`
+  - `wiki/kb-sync/wiki/.TranscriptCursor.Json.md`
+  - `wiki/kb-sync/wiki/RfcGap01CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap01TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap02CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap02TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap03CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap03TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap04CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap04TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap05CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap05TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap06CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap06TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap07CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap07TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap08CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap08TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap09CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap09TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap10CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap10TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap11CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap11TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap12CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap12TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap13CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap13TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap14CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap14TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap15CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap15TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap16CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap16TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap17CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap17TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap18CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap18TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap19CicDailyResearchCicDailyResearchOpenContr.md`
+  - `wiki/kb-sync/wiki/RfcGap19TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap20TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap21TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap22TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap23TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap24TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap25TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap26TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap27TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap28TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap29TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap30TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap31TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap32TheSorensenPhotographicArchiveTheSorensenPhotographicArc.md`
+  - `wiki/kb-sync/wiki/RfcGap70CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap71CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap72CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap73CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap74CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap75CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap76CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap77CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap78CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap79CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap80CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap81CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap82CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap83CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/kb-sync/wiki/RfcGap84CastIronCharlieResearchLogsCastIronCharlieResearchLo.md`
+  - `wiki/Index.md`

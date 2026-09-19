@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-42--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - 6.)**"
+title: "RFC: GAP-42--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - 6. Archival Signature Verification Protocols (Sigil Trust Engine))**"
 category: "research"
 topic: "rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-42--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:12.749Z"
+created_at: "2026-09-19T21:16:15.229Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/historical-revocation-verification.md"]
+citations: ["wiki/research/historical-revocation-verification.md","wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 ---
 
-# RFC: GAP-42--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - 6.)**
+# RFC: GAP-42--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - 6. Archival Signature Verification Protocols (Sigil Trust Engine))**
 
 ## 1. Problem Statement & Context
-6. Archival Signature Verification Protocols (Sigil Trust Engine)
+**6. Archival Signature Verification Protocols (Sigil Trust Engine)**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
+- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-04--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive**" category: "research" topic: "rfc-gap-04-cic-ford-executiv
+- **rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

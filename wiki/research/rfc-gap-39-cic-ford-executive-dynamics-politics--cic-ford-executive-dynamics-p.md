@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-39--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:11.097Z"
+created_at: "2026-09-19T21:16:08.072Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
+citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-39--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Frank "Mike" Bennett (1904–1933)
 
 ## 1. Problem Statement & Context
-)**: International branch representative sent across Europe and Asia, dispatched to Russia in 1930 as Production Supervisor to set up assembly plants in **Moscow and Nizhni Novgorod** [
+)**: **Frank "Mike" Bennett (1904–1933):** International branch representative sent across Europe and Asia, dispatched to Russia in 1930 as Production Supervisor to set up assembly plan
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
 - **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
+  > 
+- **rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-14--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Target Repositories" category: "research" topic: "rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" g
+- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

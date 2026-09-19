@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The "One-Night Sketch""
+title: "RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive)**"
 category: "research"
 topic: "rfc-gap-69-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-69--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:42.839Z"
+created_at: "2026-09-19T21:19:06.683Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md"]
 ---
 
-# RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The "One-Night Sketch"
+# RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive)**
 
 ## 1. Problem Statement & Context
-)**: Sorensen claimed in his memoir that he single-handedly roughed out the entire floor plan of the Willow Run bomber plant on note paper in a single hotel room night at the Hotel del
+**2. Primary Verification of Clara Ford’s Boardroom Succession Directive**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

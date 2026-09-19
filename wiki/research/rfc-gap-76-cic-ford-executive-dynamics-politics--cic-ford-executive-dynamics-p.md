@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-76--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Uncorroborated Boardroom Legends"
+title: "RFC: GAP-76--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories"
 category: "research"
 topic: "rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-76--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:51.781Z"
+created_at: "2026-09-19T21:19:12.533Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-76--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Uncorroborated Boardroom Legends
+# RFC: GAP-76--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: Ernest Kanzler's claim that **Clara Ford directly demanded Sorensen's removal** in 1944 to protect her grandson Henry Ford II's succession lacks primary written proof in corporate
+)**: **Target Repositories:** **William C. Klann Papers (BFRC Accession 499)** [10] and his 1955 oral history transcript in **BFRC Accession 65** [11, 12] versus **Clarence W. Avery Pap
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-01--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+- **rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-08--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Target Repositories" category: "research" topic: "rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" g
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

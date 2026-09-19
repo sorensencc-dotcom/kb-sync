@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-66--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Executive Alliance"
+title: "RFC: GAP-66--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 1. Textual Collation of the Sorensen Oral History Transcripts (Censorship & Softening))**"
 category: "research"
 topic: "rfc-gap-66-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-66--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:39.553Z"
+created_at: "2026-09-19T21:19:04.702Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-66--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Executive Alliance
+# RFC: GAP-66--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 1. Textual Collation of the Sorensen Oral History Transcripts (Censorship & Softening))**
 
 ## 1. Problem Statement & Context
-)**: Archival dossiers document an **Edsel-Sorensen alliance** against Harry Bennett’s paramilitary Service Department [4]. In one meeting (BFRC Accession 65, Box 69), when Bennett atte
+**1. Textual Collation of the Sorensen Oral History Transcripts (Censorship & Softening)**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [hybrid]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr** (`wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr.md`) [lexical_only]:
   > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

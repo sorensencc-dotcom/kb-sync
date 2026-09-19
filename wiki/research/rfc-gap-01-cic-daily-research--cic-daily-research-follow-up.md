@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-01--cic-daily-research - **CIC - Daily Research (follow-up - 1.)**"
+title: "RFC: GAP-01--cic-daily-research - **CIC - Daily Research (follow-up - The Target"
 category: "research"
 topic: "rfc-gap-01-cic-daily-research--cic-daily-research-follow-up"
 gap_id: "GAP-01--cic-daily-research"
 status: "draft"
-created_at: "2026-09-19T20:32:22.326Z"
+created_at: "2026-09-19T20:49:30.498Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/concepts/fail-soft-orchestration.md","wiki/research/rfc-gap-01--cic-daily-research-follow-up.md"]
+citations: ["wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-01-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-01--cic-daily-research - **CIC - Daily Research (follow-up - 1.)**
+# RFC: GAP-01--cic-daily-research - **CIC - Daily Research (follow-up - The Target
 
 ## 1. Problem Statement & Context
-1. Dispatch the Maryland Vital Records Request (**Closing Gap V-8.1a**)
+)**: **The Target:** Submit a formal vital records application to the **Maryland Division of Vital Records** in Baltimore.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-02-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **fail-soft-orchestration** (`wiki/concepts/fail-soft-orchestration.md`) [lexical_only]:
+- **rfc-gap-01-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-01-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
   > 
-- **rfc-gap-01--cic-daily-research-follow-up** (`wiki/research/rfc-gap-01--cic-daily-research-follow-up.md`) [lexical_only]:
-  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

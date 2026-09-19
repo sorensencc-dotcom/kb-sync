@@ -4,11 +4,11 @@ category: "research"
 topic: "rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-19--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:02.964Z"
+created_at: "2026-09-19T21:15:18.323Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-19--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 7. Contractual & Quality Audits of the "505 Program" and Wartime Provisos)**
@@ -19,9 +19,9 @@ citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/r
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-01--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
   > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat

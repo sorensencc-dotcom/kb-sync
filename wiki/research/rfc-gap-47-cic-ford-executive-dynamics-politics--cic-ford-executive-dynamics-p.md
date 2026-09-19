@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-47--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap"
+title: "RFC: GAP-47--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Machinist’s Record"
 category: "research"
 topic: "rfc-gap-47-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-47--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:17.703Z"
+created_at: "2026-09-19T21:16:23.067Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md"]
 ---
 
-# RFC: GAP-47--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
+# RFC: GAP-47--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Machinist’s Record
 
 ## 1. Problem Statement & Context
-)**: This high-stakes narrative of family political intervention relies entirely on the single-sourced assertion of executive advisor **Ernest Kanzler** [2]. Primary correspondence, per
+)**: **The Machinist’s Record:** This top-down framing is directly contradicted by machinist **William "Pa" Klann's** 400-page 1955 oral history transcript in BFRC Accession 65 [1, 2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
+- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

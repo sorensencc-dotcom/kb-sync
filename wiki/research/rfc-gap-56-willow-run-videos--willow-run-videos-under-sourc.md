@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-56--willow-run-videos - **Willow Run Videos (under-sourced - Harold Wills' Time-Clock Rejection"
+title: "RFC: GAP-56--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality"
 category: "research"
 topic: "rfc-gap-56-willow-run-videos--willow-run-videos-under-sourc"
 gap_id: "GAP-56--willow-run-videos"
 status: "draft"
-created_at: "2026-09-19T20:40:04.454Z"
+created_at: "2026-09-19T20:57:33.144Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-4.md","wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-follow-up-4.md","wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o.md"]
 ---
 
-# RFC: GAP-56--willow-run-videos - **Willow Run Videos (under-sourced - Harold Wills' Time-Clock Rejection
+# RFC: GAP-56--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
 
 ## 1. Problem Statement & Context
-)**: **Harold Wills' Time-Clock Rejection:** Early Ford pioneer Harold Wills went broke with his luxury car company (*Wills Sainte Claire*) and turned down a purchasing job at Ford beca
+)**: **Historical Reality:** This story appears in only a single video transcript [11-13]. It is uncorroborated in Ford purchasing department records, prohibited under War Production Bo
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-4** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-4.md`) [hybrid]:
   > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **rfc-gap-18-willow-run-videos--willow-run-videos-follow-up-4** (`wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-follow-up-4.md`) [hybrid]:
   > 
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

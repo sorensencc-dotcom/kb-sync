@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-27-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-27--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:06.171Z"
+created_at: "2026-09-19T21:15:34.647Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/concepts/deterministic-sync-pipeline.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
+citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-27--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Private Security Apparatus
 
 ## 1. Problem Statement & Context
-)**: Bennett built a **3,000-man private security force** composed of ex-boxers, plant guards, and underworld figures who controlled access gates, timekeeping checkpoints, internal comm
+)**: **Private Security Apparatus:** Harry Bennett operated the **Ford Service Department** as a private internal security and intelligence force of approximately **3,000 agents, ex-box
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **deterministic-sync-pipeline** (`wiki/concepts/deterministic-sync-pipeline.md`) [lexical_only]:
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
 - **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
   > 
+- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-22--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 1.**" category: "research" topic: "rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

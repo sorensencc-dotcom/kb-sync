@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-06--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:22:51.721Z"
+created_at: "2026-09-19T21:14:49.776Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-06--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus
 
 ## 1. Problem Statement & Context
-)**: Search late 1943 and early 1944 records for primary letters, meeting logs, or witness accounts to independently test executive advisor Ernest Kanzler’s assertion [3]. Kanzler claim
+)**: **Research Focus:** Search late 1943 and early 1944 records for primary letters, meeting logs, or witness accounts to independently test executive advisor Ernest Kanzler’s assertio
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
+- **rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-01--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

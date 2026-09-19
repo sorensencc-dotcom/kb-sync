@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-75--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Censorship of the Owen Bombard Transcripts"
+title: "RFC: GAP-75--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 4. Reconstructing Assembly Line Attribution (Klann vs. Executive Memoirs))**"
 category: "research"
 topic: "rfc-gap-75-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-75--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:51.776Z"
+created_at: "2026-09-19T21:19:10.594Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-75--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Censorship of the Owen Bombard Transcripts
+# RFC: GAP-75--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 4. Reconstructing Assembly Line Attribution (Klann vs. Executive Memoirs))**
 
 ## 1. Problem Statement & Context
-)**: Sorensen recorded over 1,000 pages of raw oral history with Owen Bombard in 1953 (BFRC Accession 65, Boxes 66–69) [20, 21]. Co-author Samuel T. Williamson heavily compressed and st
+**4. Reconstructing Assembly Line Attribution (Klann vs. Executive Memoirs)**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **CIC - Ford Executive Dynamics & Politics open-contradictions** category: research topic: rfc-gap-04--cic-ford-executive-dynamics-p gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:44.780Z expansion_method: heuristi
+- **rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

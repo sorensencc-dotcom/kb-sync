@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-55--willow-run-videos - **Willow Run Videos (under-sourced - John Dodge's Office Slap"
+title: "RFC: GAP-55--willow-run-videos - **Willow Run Videos (under-sourced - The Claim"
 category: "research"
 topic: "rfc-gap-55-willow-run-videos--willow-run-videos-under-sourc"
 gap_id: "GAP-55--willow-run-videos"
 status: "draft"
-created_at: "2026-09-19T20:40:02.371Z"
+created_at: "2026-09-19T20:57:33.142Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/.catalog.json","wiki/concepts/immutable-staging.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-12-willow-run-videos--willow-run-videos-follow-up-w.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-20-willow-run-videos--willow-run-videos-follow-up-w.md"]
 ---
 
-# RFC: GAP-55--willow-run-videos - **Willow Run Videos (under-sourced - John Dodge's Office Slap
+# RFC: GAP-55--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **John Dodge's Office Slap:** A heavily intoxicated John Dodge ran over a man's horse and carriage; when the victim came to Dodge's office demanding payment, Dodge reportedly yelle
+)**: **The Claim:** During a severe wartime aluminum shortage, Ford buyers allegedly scoured the country and purchased **thousands of aluminum coffins intended for the South American ma
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **rfc-gap-12-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-12-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
   > 
-- **immutable-staging** (`wiki/concepts/immutable-staging.md`) [vector_only]:
-  > --- title: Immutable Staging category: concepts status: active sourceRepository: kb-sync lastUpdated: 2026-08-30 ---  # Immutable Staging  **Immutable Staging** is the filesystem isolation contract used by KB-Sync to separate active code trees from s
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
+  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-20-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-20-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-57--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 5. Top-Down Origins of the Moving Assembly Line)**"
+title: "RFC: GAP-57--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Humanitarian Counter-Accounts"
 category: "research"
 topic: "rfc-gap-57-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-57--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:26.115Z"
+created_at: "2026-09-19T21:16:46.680Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-07-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-57--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 5. Top-Down Origins of the Moving Assembly Line)**
+# RFC: GAP-57--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Humanitarian Counter-Accounts
 
 ## 1. Problem Statement & Context
-**5. Top-Down Origins of the Moving Assembly Line**
+)**: **Humanitarian Counter-Accounts:** Reviewer George Matthew Adams remembered a **"kindly Henry Ford"** who loved children [20], and compiler Peter E. Greulich notes Sorensen omitted
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-07-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-07-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Target Repositories" category: "research" topic: "rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" g
+- **rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

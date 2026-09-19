@@ -2474,8 +2474,9 @@ flowchart TD
             badge = `<span class="status-badge progress" style="font-size:0.65rem; padding:0.2rem 0.5rem; background: rgba(122,159,191,0.15); color: #7a9fbf; border-color: rgba(122,159,191,0.3);">● TRIAGED</span>`;
           }
 
-          const rfcCell = g.rfc_link ? 
-            `<a href="${g.rfc_link}" target="_blank" class="tag date" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem;">RFC ↗</a>` : 
+          const rfcHref = g.rfc_link ? (g.rfc_link.startsWith('/') ? g.rfc_link : '/' + g.rfc_link) : null;
+          const rfcCell = rfcHref ? 
+            `<a href="${rfcHref}" target="_blank" class="tag date" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem;">RFC ↗</a>` : 
             `<span style="color:var(--ash); font-size:0.75rem;">—</span>`;
 
           return `
@@ -2582,7 +2583,7 @@ flowchart TD
     el.innerHTML = items.map(item => `
       <div class="synth-item">
         <div class="synth-item-title">${escapeHtml(item.title)}</div>
-        <div class="synth-item-desc">${escapeHtml(item.desc)}</div>
+        <div class="synth-item-desc">${escapeHtml(item.desc || item.excerpt || item.text || '')}</div>
       </div>
     `).join('');
   }

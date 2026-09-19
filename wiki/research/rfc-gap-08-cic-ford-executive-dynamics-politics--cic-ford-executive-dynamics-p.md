@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-08--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:22:55.014Z"
+created_at: "2026-09-19T21:14:51.947Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/historical-revocation-verification.md","trm-research-gaps.md","wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-08--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: **Peter E. Martin Papers (BFRC Accession 823)** and **Frank Campsall Files (BFRC Accession SE-007)** [3].
+)**: **Target Repositories:** **Peter E. Martin Papers (BFRC Accession 823)** and **Frank Campsall Files (BFRC Accession SE-007)** [3].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
+- **rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-01--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim"
+title: "RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**"
 category: "research"
 topic: "rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-52--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:22.699Z"
+created_at: "2026-09-19T21:16:33.988Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
 ---
 
-# RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
+# RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**
 
 ## 1. Problem Statement & Context
-)**: Reverend Samuel Marquis allegedly engaged in an explosive, direct confrontation with Henry Ford over the elder Ford’s relentless psychological mistreatment of Edsel [2].
+3. Willow Run Bomber Plant: "One-Night Sketch" Legend vs. Collaborative & Quality Realities
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-01--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
+- **rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

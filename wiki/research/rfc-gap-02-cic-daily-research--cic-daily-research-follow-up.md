@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-02--cic-daily-research - **CIC - Daily Research (follow-up - The Target"
+title: "RFC: GAP-02--cic-daily-research - **CIC - Daily Research (follow-up - The Objective"
 category: "research"
 topic: "rfc-gap-02-cic-daily-research--cic-daily-research-follow-up"
 gap_id: "GAP-02--cic-daily-research"
 status: "draft"
-created_at: "2026-09-19T20:32:22.321Z"
+created_at: "2026-09-19T20:49:32.950Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01--cic-daily-research-follow-up.md","wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
-# RFC: GAP-02--cic-daily-research - **CIC - Daily Research (follow-up - The Target
+# RFC: GAP-02--cic-daily-research - **CIC - Daily Research (follow-up - The Objective
 
 ## 1. Problem Statement & Context
-)**: **The Target:** Submit a formal vital records application to the **Maryland Division of Vital Records** in Baltimore [1].
+)**: **The Objective:** Secure the official certified death certificate to permanently resolve the date-of-death conflict across secondary literature—verifying whether Charles E. Sorens
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-03-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **rfc-gap-01--cic-daily-research-follow-up** (`wiki/research/rfc-gap-01--cic-daily-research-follow-up.md`) [lexical_only]:
+- **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   > 
-- **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets follow-up** category: research topic: rfc-gap-01--cic-cuban-seizures-retired-as gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.520Z expansion_method: heuristic retrieval_m
+- **rfc-gap-09-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-09--cic-daily-research - **CIC - Daily Research follow-up - The Objective" category: "research" topic: "rfc-gap-09-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-09--cic-daily-research" status: "draft" created_at:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

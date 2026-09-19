@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-67--willow-run-videos - **Willow Run Videos (adjacent-topics - Version 2 answer updated.)**"
+title: "RFC: GAP-67--willow-run-videos - **Willow Run Videos (adjacent-topics - The \$105 Million Stock Buyout Bluff"
 category: "research"
 topic: "rfc-gap-67-willow-run-videos--willow-run-videos-adjacent-to"
 gap_id: "GAP-67--willow-run-videos"
 status: "draft"
-created_at: "2026-09-19T20:28:42.021Z"
+created_at: "2026-09-19T21:01:59.471Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md"]
 ---
 
-# RFC: GAP-67--willow-run-videos - **Willow Run Videos (adjacent-topics - Version 2 answer updated.)**
+# RFC: GAP-67--willow-run-videos - **Willow Run Videos (adjacent-topics - The \$105 Million Stock Buyout Bluff
 
 ## 1. Problem Statement & Context
-Version 2 answer updated.
+)**: **The \$105 Million Stock Buyout Bluff:** When the Dodge brothers successfully sued Henry Ford to force dividend payouts rather than Rouge plant expansion [14, 16], an infuriated F
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md`) [hybrid]:
+- **rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
   > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
+- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
+- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [vector_only]:
+  > --- title: "RFC: GAP-06--willow-run-videos - **Willow Run Videos follow-up - Why It Strengthens Findings" category: "research" topic: "rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w" gap_id: "GAP-06--willow-run-videos" status: "draft" cr
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

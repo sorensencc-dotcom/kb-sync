@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research (follow-up - The Target"
+title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research (follow-up - The Objective"
 category: "research"
 topic: "rfc-gap-08-cic-daily-research--cic-daily-research-follow-up"
 gap_id: "GAP-08--cic-daily-research"
 status: "draft"
-created_at: "2026-09-19T20:32:34.853Z"
+created_at: "2026-09-19T20:49:46.289Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md","wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
-# RFC: GAP-08--cic-daily-research - **CIC - Daily Research (follow-up - The Target
+# RFC: GAP-08--cic-daily-research - **CIC - Daily Research (follow-up - The Objective
 
 ## 1. Problem Statement & Context
-)**: **The Target:** Transmit the formal FOIA appeal under 45 C.F.R. § 503 to the **Foreign Claims Settlement Commission** (ZIP 20579) [11].
+)**: **The Objective:** In his raw 1953 oral history dictations with Owen Bombard, Sorensen explicitly confirmed maintaining a **personal daily diary for twenty-five years** covering hi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-12-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [lexical_only]:
   > 
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **rfc-gap-18-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-18--cic-daily-research - **CIC - Daily Research follow-up - The Objective" category: "research" topic: "rfc-gap-18-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-18--cic-daily-research" status: "draft" created_at:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

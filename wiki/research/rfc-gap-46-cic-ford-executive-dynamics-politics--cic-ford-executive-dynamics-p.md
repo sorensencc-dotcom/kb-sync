@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim"
+title: "RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Top-Down Executive Claims"
 category: "research"
 topic: "rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-46--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:16.093Z"
+created_at: "2026-09-19T21:16:23.065Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json","wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
+# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Top-Down Executive Claims
 
 ## 1. Problem Statement & Context
-)**: Following Edsel Ford’s death in May 1943, Henry Ford’s wife, Clara, allegedly intervened in the executive succession crisis and directly demanded Charles Sorensen’s removal to clea
+)**: **Top-Down Executive Claims:** Published memoirs by Henry Ford (1922) trace continuous assembly generally to Chicago packing houses without naming individual contributors [1], whil
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
+- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-04--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive**" category: "research" topic: "rfc-gap-04-cic-ford-executiv
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

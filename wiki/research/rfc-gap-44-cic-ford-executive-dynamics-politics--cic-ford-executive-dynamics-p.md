@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-44-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-44--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:12.758Z"
+created_at: "2026-09-19T21:16:17.524Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verification.md","_kb-sync-staging/trm/current/raw_research_conformance.json"]
+citations: ["wiki/research/historical-revocation-verification.md","wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-sigil-protoc.md"]
 ---
 
 # RFC: GAP-44--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Offline Validation
 
 ## 1. Problem Statement & Context
-)**: Connectors utilize **local SQLite database caching** of revoked keys to check transaction records offline [19].
+)**: **Offline Validation:** Local connectors utilize **local SQLite database caching** of revoked keys to check transaction records offline [16].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
 - **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
   > 
-- **raw_research_conformance** (`_kb-sync-staging/trm/current/raw_research_conformance.json`) [lexical_only]:
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 2.**" category: "research" topic: "rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
+- **rfc-gap-03-cic-kb--cic-kb-follow-up-sigil-protoc** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-sigil-protoc.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

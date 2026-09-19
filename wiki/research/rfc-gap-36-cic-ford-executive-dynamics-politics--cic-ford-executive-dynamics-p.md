@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-36--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:09.503Z"
+created_at: "2026-09-19T21:16:00.020Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token.md","wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-36--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - William Knudsen (1911–1921)
 
 ## 1. Problem Statement & Context
-)**: Production manager who established **14 domestic assembly plants and 3 in Europe**, managed Highland Park operations, and directed Rouge Eagle Boat production during WWI before lea
+)**: **William Knudsen (1911–1921):** Production manager who established **14 domestic assembly plants and 3 in Europe**, managed Highland Park operations, and directed Rouge Eagle Boat
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token.md`) [lexical_only]:
   > 
-- **rfc-gap-01--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+- **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-25--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The 100% Family Buyout" category: "research" topic: "rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dyna
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

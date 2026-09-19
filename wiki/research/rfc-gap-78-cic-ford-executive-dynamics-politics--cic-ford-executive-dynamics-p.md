@@ -1,0 +1,38 @@
+---
+title: "RFC: GAP-78--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 5. Third-Party Corroboration of the Reverend Samuel Marquis Showdown)**"
+category: "research"
+topic: "rfc-gap-78-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-78--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-19T21:19:14.453Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
+ast_grounded_symbols: []
+citations: ["wiki/research/rfc-gap-13-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+---
+
+# RFC: GAP-78--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 5. Third-Party Corroboration of the Reverend Samuel Marquis Showdown)**
+
+## 1. Problem Statement & Context
+**5. Third-Party Corroboration of the Reverend Samuel Marquis Showdown**
+
+## 2. Evidence Grounding & Cache Findings
+The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
+
+- **rfc-gap-13-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-13-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  > 
+
+### 3. AST Call-Graph & Blast Radius Analysis
+*No static call-graph symbols detected in target codebase for this item.*
+
+## 4. Proposed Resolution & Protocol Decision
+- Specify clear interface contracts and execution requirements addressing this gap.
+- Maintain deterministic state across pipeline boundaries and fail-soft fallbacks.
+
+## 5. Open Questions & Residual Risk
+- [ ] Are additional integration tests required to verify protocol compliance?
+- [ ] Does this resolution introduce cross-platform drift across runtime targets?

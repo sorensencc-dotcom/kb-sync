@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-74--willow-run-videos - **Willow Run Videos (under-sourced - Version 1 answer.)**"
+title: "RFC: GAP-74--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality"
 category: "research"
 topic: "rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc"
 gap_id: "GAP-74--willow-run-videos"
 status: "draft"
-created_at: "2026-09-19T20:28:45.933Z"
+created_at: "2026-09-19T21:02:17.344Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md"]
+citations: ["wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-74--willow-run-videos - **Willow Run Videos (under-sourced - Version 1 answer.)**
+# RFC: GAP-74--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
 
 ## 1. Problem Statement & Context
-Version 1 answer.
+)**: **Historical Reality:** This assertion is unique to a single video script [3, 4]. Every other source, primary production document, and War Production Board summary confirms Willow
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md`) [hybrid]:
+- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
   > 
-- **rfc-gap-03--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md`) [hybrid]:
+- **rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
   > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

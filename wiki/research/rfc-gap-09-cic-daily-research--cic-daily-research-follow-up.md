@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-09--cic-daily-research - **CIC - Daily Research (follow-up - The Objective"
+title: "RFC: GAP-09--cic-daily-research - **CIC - Daily Research (follow-up - The Target"
 category: "research"
 topic: "rfc-gap-09-cic-daily-research--cic-daily-research-follow-up"
 gap_id: "GAP-09--cic-daily-research"
 status: "draft"
-created_at: "2026-09-19T20:32:36.592Z"
+created_at: "2026-09-19T20:49:48.334Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--cic-daily-research-under-sour.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-14-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md","wiki/research/rfc-gap-05-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
-# RFC: GAP-09--cic-daily-research - **CIC - Daily Research (follow-up - The Objective
+# RFC: GAP-09--cic-daily-research - **CIC - Daily Research (follow-up - The Target
 
 ## 1. Problem Statement & Context
-)**: **The Objective:** Unseal unredacted administrative files for **Claim CU-2067 / Decision CU-1491** filed by trustee/nominee **Ralph Oppenheim** [11, 17, 18, 24, 25]. Retrieving und
+)**: **The Target:** Commission an archival search of **Ford Motor Company A/S Records (Document Series 400-B)** at the **Danish National Archives (*Rigsarkivet*)** in Copenhagen.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-14-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-14-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **rfc-gap-03--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03--cic-daily-research-under-sour.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **rfc-gap-05-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-05-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-05--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-05-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-05--cic-daily-research" status: "draft" created_at: "2
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

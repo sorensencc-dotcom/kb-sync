@@ -25,7 +25,8 @@ const MIME_TYPES = {
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
-  '.txt': 'text/plain; charset=UTF-8'
+  '.txt': 'text/plain; charset=UTF-8',
+  '.md': 'text/markdown; charset=UTF-8'
 };
 
 // No Access-Control-Allow-Origin header: this server binds to 127.0.0.1 only,

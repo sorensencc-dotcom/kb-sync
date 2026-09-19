@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-59--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 6. Censorship of the Owen Bombard Transcripts)**"
+title: "RFC: GAP-59--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Censorship of the Owen Bombard Transcripts"
 category: "research"
 topic: "rfc-gap-59-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-59--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T19:23:29.393Z"
+created_at: "2026-09-19T21:16:51.327Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md","wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-59--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 6. Censorship of the Owen Bombard Transcripts)**
+# RFC: GAP-59--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Censorship of the Owen Bombard Transcripts
 
 ## 1. Problem Statement & Context
-**6. Censorship of the Owen Bombard Transcripts**
+)**: **Censorship of the Owen Bombard Transcripts:** Sorensen recorded over 1,000 pages of raw oral history with Owen Bombard in 1953 in BFRC Accession 65 (Boxes 66–69) [22, 23]. Co-aut
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [hybrid]:
   > 
-- **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-01--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 1. Textual Collation of the Sorensen Oral History Transcripts Censorship & Softening**" category: "research" topic: "rfc-gap-01-cic
+- **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

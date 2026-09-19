@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-06-cic-daily-research--cic-daily-research-follow-up"
 gap_id: "GAP-06--cic-daily-research"
 status: "draft"
-created_at: "2026-09-19T20:32:30.928Z"
+created_at: "2026-09-19T20:49:41.849Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/concepts/pack-based-knowledge-management.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-06--cic-daily-research - **CIC - Daily Research (follow-up - The Objective
 
 ## 1. Problem Statement & Context
-)**: **The Objective:** Pull the microfilmed estate inventory of his first wife, **Helen Mitchell Sorensen** (who died **March 4, 1959**) [4, 5, 10-13]. Proving that beneficial ownershi
+)**: **The Objective:** Unseal unredacted administrative files for **Claim CU-2067 / Decision CU-1491** filed by trustee/nominee **Ralph Oppenheim**. Retrieving underlying trust agreeme
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-09-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **pack-based-knowledge-management** (`wiki/concepts/pack-based-knowledge-management.md`) [lexical_only]:
+- **rfc-gap-07-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
   > 
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

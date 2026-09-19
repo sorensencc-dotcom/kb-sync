@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-12-cic-daily-research--cic-daily-research-follow-up"
 gap_id: "GAP-12--cic-daily-research"
 status: "draft"
-created_at: "2026-09-19T20:32:40.581Z"
+created_at: "2026-09-19T20:49:54.668Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--cic-daily-research-under-sour.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
+citations: ["wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md","wiki/concepts/pack-based-knowledge-management.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-12--cic-daily-research - **CIC - Daily Research (follow-up - The Objective
 
 ## 1. Problem Statement & Context
-)**: **The Objective:** In his raw 1953 oral history dictations, Sorensen explicitly confirmed maintaining a **personal daily diary for twenty-five years** covering his core executive e
+)**: **The Objective:** Document the exact operating years and street addresses for contract pattern shops **Bryant & Berry** (Jefferson Avenue) and **Standard Pattern Works**. This wil
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-18-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **rfc-gap-03--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03--cic-daily-research-under-sour.md`) [lexical_only]:
+- **pack-based-knowledge-management** (`wiki/concepts/pack-based-knowledge-management.md`) [lexical_only]:
   > 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
-  > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
