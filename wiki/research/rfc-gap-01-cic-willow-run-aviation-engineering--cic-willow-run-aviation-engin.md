@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-01--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - 1. Quantifying Shop-Floor Rivet Thermal Failure Rates)**"
+title: "RFC: GAP-01--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Technical Challenge"
 category: "research"
 topic: "rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-01--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:03:21.019Z"
+created_at: "2026-09-19T21:36:00.929Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
 ---
 
-# RFC: GAP-01--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - 1. Quantifying Shop-Floor Rivet Thermal Failure Rates)**
+# RFC: GAP-01--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Technical Challenge
 
 ## 1. Problem Statement & Context
-**1. Quantifying Shop-Floor Rivet Thermal Failure Rates**
+)**: **The Technical Challenge:** Constructing a single B-24 Liberator required 313,237 rivets across 520 specifications [1]. High-strength aluminum D-17S "ice-box" rivets (boasting a 3
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [lexical_only]:
+- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md`) [vector_only]:
-  > --- title: "RFC: GAP-21--willow-run-videos - **Willow Run Videos follow-up - 5. Library of Congress & NARA Photo Provenance "Rosie" Geography**" category: "research" topic: "rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5" gap_id: "GAP-21
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
+- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus"
+title: "RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Private Security Apparatus"
 category: "research"
 topic: "rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-18--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:13.715Z"
+created_at: "2026-09-19T21:45:34.607Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus
+# RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Private Security Apparatus
 
 ## 1. Problem Statement & Context
-)**: **Research Focus:** Analyze internal financial ledgers, bank correspondence, and valuation sheets regarding the **\$58 million surplus** [16] and dividend withholding policies [16]
+)**: **Private Security Apparatus:** Harry Bennett operated the **Ford Service Department** as a private internal security and intelligence force of approximately **3,000 agents, ex-box
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-22--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 1.**" category: "research" topic: "rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

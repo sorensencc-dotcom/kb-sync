@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-06--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Valuation Contradiction"
+title: "RFC: GAP-06--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Research Value"
 category: "research"
 topic: "rfc-gap-06-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-06--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T21:00:08.416Z"
+created_at: "2026-09-19T21:31:11.275Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-06--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Valuation Contradiction
+# RFC: GAP-06--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Research Value
 
 ## 1. Problem Statement & Context
-)**: **Valuation Contradiction:** Re-examining FCSC hearing transcripts and consultant reports resolves the core paradox between the complete rejection of *Freeport Sulphur Company's* (
+)**: **Research Value:** This isolates how Nicaro demonstrated that operational experience converted probable ore into proven ore, establishing tiered annual discount factors of **8% fo
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md`) [vector_only]:
+  > --- title: "RFC: GAP-13--willow-run-videos - **Willow Run Videos follow-up - 5. Library of Congress & NARA Photo Provenance "Rosie" Geography**" category: "research" topic: "rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5" gap_id: "GAP-13
+- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets follow-up** category: research topic: rfc-gap-01--cic-cuban-seizures-retired-as gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.520Z expansion_method: heuristic retrieval_m
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

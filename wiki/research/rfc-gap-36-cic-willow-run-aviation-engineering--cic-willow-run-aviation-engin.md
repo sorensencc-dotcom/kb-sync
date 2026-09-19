@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-36--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Limited-Access Solution"
+title: "RFC: GAP-36--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - A. M. Wibel’s Firing (April 1943)"
 category: "research"
 topic: "rfc-gap-36-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-36--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:47.551Z"
+created_at: "2026-09-19T21:37:01.575Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/historical-revocation-verification.md"]
+citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json"]
 ---
 
-# RFC: GAP-36--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Limited-Access Solution
+# RFC: GAP-36--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - A. M. Wibel’s Firing (April 1943)
 
 ## 1. Problem Statement & Context
-)**: **The Limited-Access Solution:** Michigan State Highway Commissioner G. Donald Kennedy proposed the state's first limited-access expressway connecting Detroit to Willow Run to tran
+)**: **A. M. Wibel’s Firing (April 1943):** The claim that purchasing agent A. M. Wibel was dismissed because Bennett poisoned Henry Ford's mind after Wibel refused Bennett's demands to
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
+- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
+- **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-25--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The 100% Family Buyout" category: "research" topic: "rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dyna
+- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Domestic Labor Impact"
+title: "RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Korean War Production"
 category: "research"
 topic: "rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-17--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:06.851Z"
+created_at: "2026-09-19T21:36:28.691Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md"]
+citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/.catalog.json","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md"]
 ---
 
-# RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Domestic Labor Impact
+# RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Korean War Production
 
 ## 1. Problem Statement & Context
-)**: **Domestic Labor Impact:** Temporary housing flaws—such as drafty 4-inch stovepipes, melting iceboxes, and hours-long laundry lines—directly increased housework burdens and acceler
+)**: **Korean War Production:** During the Korean War, the plant returned to military service under Kaiser-Frazer to manufacture **C-119 "Flying Boxcars"** [2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
-  > --- title: "RFC: GAP-02--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-02--willow-run-videos" status: "draft" created_at: "2026-09
-- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
   > 
+- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
+  > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

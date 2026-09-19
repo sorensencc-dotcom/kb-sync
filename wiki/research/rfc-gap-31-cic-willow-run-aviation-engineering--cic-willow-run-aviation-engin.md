@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Civil Rights Battle"
+title: "RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Cesor Farms"
 category: "research"
 topic: "rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-31--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:37.309Z"
+created_at: "2026-09-19T21:36:53.811Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 ---
 
-# RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Civil Rights Battle
+# RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Cesor Farms
 
 ## 1. Problem Statement & Context
-)**: **The Civil Rights Battle:** In late 1943, white residents petitioned to secede from Inkster to incorporate "Westwood," meticulously carving out 75% of the land area, 80% of the wh
+)**: **Cesor Farms:** Following his 1944 resignation from Ford, Charles Sorensen operated **Cesor Farms** in New Hudson/Farmington, Michigan, breeding purebred Guernsey cattle [24].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+- **rfc-gap-18-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-18--cic-daily-research - **CIC - Daily Research follow-up - The Objective" category: "research" topic: "rfc-gap-18-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-18--cic-daily-research" status: "draft" created_at:
+- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

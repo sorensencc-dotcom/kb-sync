@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Augustinian Order Certification"
+title: "RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Actuarial Death Awards"
 category: "research"
 topic: "rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-28--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T20:56:43.375Z"
+created_at: "2026-09-19T21:31:52.307Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Augustinian Order Certification
+# RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Actuarial Death Awards
 
 ## 1. Problem Statement & Context
-)**: **Augustinian Order Certification:** In *Brothers of the Order of Hermits of St. Augustine (Inc.)* (Claim CU-3503), the FCSC certified **\$7,885,098.68** covering the nationalized
+)**: **Actuarial Death Awards:** For wrongful death claims under Section 503(b) (such as the firing squad execution of *Robert Otis Fuller*), losses are measured **actuarially by expect
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
-- **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md`) [lexical_only]:
   > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

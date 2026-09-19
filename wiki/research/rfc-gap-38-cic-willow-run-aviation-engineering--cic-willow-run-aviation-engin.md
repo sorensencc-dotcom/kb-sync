@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-38--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Delayed Completion"
+title: "RFC: GAP-38--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Laurence Sheldrick’s Ousting (September 1943)"
 category: "research"
 topic: "rfc-gap-38-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-38--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:52.899Z"
+created_at: "2026-09-19T21:37:05.485Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-38--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Delayed Completion
+# RFC: GAP-38--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Laurence Sheldrick’s Ousting (September 1943)
 
 ## 1. Problem Statement & Context
-)**: **Delayed Completion:** Political and funding delays prevented the full Detroit–Willow Run Expressway from opening until **March 1945**—just five weeks before B-24 production cease
+)**: **Laurence Sheldrick’s Ousting (September 1943):** The abrupt firing of engineer Laurence Sheldrick relies on Sheldrick's own testimony, in which he concluded second-hand that Henr
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
-- **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
-  > --- title: "RFC: GAP-22--willow-run-videos - **Willow Run Videos adjacent-topics - 3. Squalor, Strikes, and Segregation on the "Ypsilanti Frontier"**" category: "research" topic: "rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: "RFC: GAP-03--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering follow-up - Archival Target" category: "research" topic: "rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin" gap_id:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

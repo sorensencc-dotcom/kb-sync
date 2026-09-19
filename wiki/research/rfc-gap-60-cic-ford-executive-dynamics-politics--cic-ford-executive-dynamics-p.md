@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-60--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Uncorroborated Boardroom Legends"
+title: "RFC: GAP-60--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Censorship of the Owen Bombard Transcripts"
 category: "research"
 topic: "rfc-gap-60-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-60--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:51.329Z"
+created_at: "2026-09-19T21:46:46.031Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md","wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-60--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Uncorroborated Boardroom Legends
+# RFC: GAP-60--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Censorship of the Owen Bombard Transcripts
 
 ## 1. Problem Statement & Context
-)**: **Uncorroborated Boardroom Legends:** Ernest Kanzler's claim that **Clara Ford directly demanded Sorensen's removal** in 1944 to protect her grandson Henry Ford II's succession lac
+)**: **Censorship of the Owen Bombard Transcripts:** Sorensen recorded over 1,000 pages of raw oral history with Owen Bombard in 1953 in BFRC Accession 65 (Boxes 66–69) [19, 20]. Co-aut
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [hybrid]:
   > 
-- **rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-01--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 1. Textual Collation of the Sorensen Oral History Transcripts Censorship & Softening**" category: "research" topic: "rfc-gap-01-cic
+- **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

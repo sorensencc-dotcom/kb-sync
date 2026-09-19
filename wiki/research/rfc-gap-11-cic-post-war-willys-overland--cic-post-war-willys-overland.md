@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-11-cic-post-war-willys-overland--cic-post-war-willys-overland"
 gap_id: "GAP-11--cic-post-war-willys-overland"
 status: "draft"
-created_at: "2026-09-19T21:10:51.869Z"
+created_at: "2026-09-19T21:41:21.843Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-04--cic-post-war-willys-overland.md","wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-04--cic-post-war-willys-overland.md"]
 ---
 
 # RFC: GAP-11--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap
 
 ## 1. Problem Statement & Context
-)**: **The Archival Gap:** Sorensen owned agricultural estates in pre-revolutionary Cuba under nominee entities and a holding company named **"CESOR S.A."**, which were nationalized by
+)**: **The Archival Gap:** Primary records document Edsel Ford's 5% fixed-fee contract approval [16], the 27-ton Ingersoll milling machine [17], the 85-ton automated Haughton Elevator t
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
-- **rfc-gap-04--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **CIC - Post-War & Willys-Overland open-contradictions** category: research topic: rfc-gap-04--cic-post-war-willys-overland gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:49.471Z expansion_method: heuristic retriev
-- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-04--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

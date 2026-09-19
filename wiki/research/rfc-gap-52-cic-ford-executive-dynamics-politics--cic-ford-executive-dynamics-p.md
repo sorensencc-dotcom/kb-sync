@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**"
+title: "RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Machinist’s Record"
 category: "research"
 topic: "rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-52--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:33.988Z"
+created_at: "2026-09-19T21:46:31.442Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md"]
 ---
 
-# RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**
+# RFC: GAP-52--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Machinist’s Record
 
 ## 1. Problem Statement & Context
-3. Willow Run Bomber Plant: "One-Night Sketch" Legend vs. Collaborative & Quality Realities
+)**: **The Machinist’s Record:** This top-down framing is directly contradicted by machinist **William "Pa" Klann's** 400-page 1955 oral history transcript in BFRC Accession 65 [1, 2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
-- **rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

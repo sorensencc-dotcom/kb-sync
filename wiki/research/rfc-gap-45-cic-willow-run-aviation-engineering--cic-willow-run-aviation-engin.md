@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-45--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Door-Knocking Compromise"
+title: "RFC: GAP-45--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Cold-Storage Rivet Thermal Failure Logs"
 category: "research"
 topic: "rfc-gap-45-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-45--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:05:20.400Z"
+created_at: "2026-09-19T21:37:13.112Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-45--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Door-Knocking Compromise
+# RFC: GAP-45--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Cold-Storage Rivet Thermal Failure Logs
 
 ## 1. Problem Statement & Context
-)**: **The Door-Knocking Compromise:** To protect the college, Ford Motor Company’s plant security force went door-to-door in Ypsilanti and Ann Arbor for a "room canvas", begging reside
+)**: **Cold-Storage Rivet Thermal Failure Logs:** High-strength aluminum D-17S "ice-box" rivets required heat treatment to 950°F, sub-zero cold storage at -20°F to arrest age-hardening
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

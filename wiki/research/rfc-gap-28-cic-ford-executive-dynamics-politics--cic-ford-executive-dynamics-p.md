@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Battle of the Overpass"
+title: "RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Mead Bricker (1914–1950)"
 category: "research"
 topic: "rfc-gap-28-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-28--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:36.776Z"
+created_at: "2026-09-19T21:45:54.491Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 ---
 
-# RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Battle of the Overpass
+# RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Mead Bricker (1914–1950)
 
 ## 1. Problem Statement & Context
-)**: **The Battle of the Overpass:** On **May 26, 1937**, Service Department agents violently assaulted UAW organizers Walter Reuther and Richard Frankensteen on Bridge 4 outside Gate 4
+)**: **Mead Bricker (1914–1950):** Toolmaker who managed Pratt & Whitney engine building, supervised Sperry anti-aircraft gun director production, managed Willow Run during WWII, instit
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
-- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-10--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 4. Reconstructing Assembly Line Attribution Klann vs. Executive Memoirs**" category: "research" topic: "rfc-gap-10-cic-ford-executi
+- **rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

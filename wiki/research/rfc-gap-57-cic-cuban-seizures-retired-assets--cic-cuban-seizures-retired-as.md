@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-57--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Late-Filing Relief"
+title: "RFC: GAP-57--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Housing Development Profits"
 category: "research"
 topic: "rfc-gap-57-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-57--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T21:01:41.913Z"
+created_at: "2026-09-19T21:32:52.499Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-03--cic-post-war-willys-overland.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md"]
 ---
 
-# RFC: GAP-57--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Late-Filing Relief
+# RFC: GAP-57--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Housing Development Profits
 
 ## 1. Problem Statement & Context
-)**: **Late-Filing Relief:** In *Claim of John Korenda* (Claim CU-8255), the FCSC established that **claims submitted after the formal May 1, 1967 statutory deadline** could still be ac
+)**: **Housing Development Profits:** In *Berlanti Construction Company* (Claims CU-0871 & CU-0657), a \$1.5 million claim for lost profits under a "cost-plus" low-cost housing contract
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-03--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03--cic-post-war-willys-overland.md`) [vector_only]:
+  > --- title: RFC: GAP-03 - **CIC - Post-War & Willys-Overland under-sourced** category: research topic: rfc-gap-03--cic-post-war-willys-overland gap_id: GAP-03 status: draft created_at: 2026-09-05T03:17:49.468Z expansion_method: heuristic retrieval_mod
+- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

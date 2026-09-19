@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-05--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:14:49.774Z"
+created_at: "2026-09-19T21:45:10.181Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-05--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** **Henry Ford II Papers** at the Bentley Historical Library (*Corporate Transition and Security Reorganization Files, 1945*) [7] alongside Clara Ford’s pers
+)**: **Target Repositories:** **Peter E. Martin Papers (BFRC Accession 823)** [2] and **Frank Campsall Files (BFRC Accession SE-007)** [2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-05-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

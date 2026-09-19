@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Top-Down Executive Claims"
+title: "RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap"
 category: "research"
 topic: "rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-46--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:23.065Z"
+created_at: "2026-09-19T21:46:22.467Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json","wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md"]
 ---
 
-# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - Top-Down Executive Claims
+# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
 
 ## 1. Problem Statement & Context
-)**: **Top-Down Executive Claims:** Published memoirs by Henry Ford (1922) trace continuous assembly generally to Chicago packing houses without naming individual contributors [1], whil
+)**: **The Archival Gap:** These executive narratives flatten shop-floor innovations and are directly challenged by machinist **William "Pa" Klann’s** 400-page 1955 oral history (BFRC A
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-04--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive**" category: "research" topic: "rfc-gap-04-cic-ford-executiv
+- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

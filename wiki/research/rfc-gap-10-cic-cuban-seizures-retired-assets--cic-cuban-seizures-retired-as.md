@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-10--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Statutory Framework"
+title: "RFC: GAP-10--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Comparative Scope"
 category: "research"
 topic: "rfc-gap-10-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-10--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T21:00:22.902Z"
+created_at: "2026-09-19T21:31:21.806Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o.md"]
 ---
 
-# RFC: GAP-10--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Statutory Framework
+# RFC: GAP-10--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Comparative Scope
 
 ## 1. Problem Statement & Context
-)**: **Statutory Framework:** Investigating the claim of the *Brothers of the Order of Hermits of St. Augustine (Inc.)* (Claim CU-3503) clarifies how the FCSC evaluated non-stock, non-p
+)**: **Comparative Scope:** Comparing Ford Motor Company's heavy industrial manufacturing at **Willow Run**—engineered under Edsel Ford's 5% fixed-fee contract mandate and powered by to
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md`) [lexical_only]:
   > 
+- **rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
+  > --- title: "RFC: GAP-11--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-11--willow-run-videos" status: "draft" created_at: "2026-09
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

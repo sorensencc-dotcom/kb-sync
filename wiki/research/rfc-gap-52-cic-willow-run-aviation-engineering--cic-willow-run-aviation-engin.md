@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-52--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Ypsilanti's First Black Alderman"
+title: "RFC: GAP-52--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Authoritarianism vs. Democratic Process"
 category: "research"
 topic: "rfc-gap-52-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-52--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:05:38.052Z"
+created_at: "2026-09-19T21:37:26.046Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-19-cic-kb--cic-kb-adjacent-topics-3-loca.md"]
+citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-07-ford-5-day-wage-increase-impac.md"]
 ---
 
-# RFC: GAP-52--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Ypsilanti's First Black Alderman
+# RFC: GAP-52--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Authoritarianism vs. Democratic Process
 
 ## 1. Problem Statement & Context
-)**: **Ypsilanti's First Black Alderman:** Federal officials insisted on building a Black recreation center at Park Ridge deep inside a segregated housing project rather than an integra
+)**: **Authoritarianism vs. Democratic Process:** Sociologists Lowell J. Carr and James E. Stermer concluded in 1952 that *"democratic ends even in civilian life can best be served by a
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+- **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
   > 
-- **rfc-gap-19-cic-kb--cic-kb-adjacent-topics-3-loca** (`wiki/research/rfc-gap-19-cic-kb--cic-kb-adjacent-topics-3-loca.md`) [vector_only]:
-  > --- title: "RFC: GAP-19--cic-kb - **CIC-KB adjacent-topics - 3. Local Vector Databases & Subsystem Clustering**" category: "research" topic: "rfc-gap-19-cic-kb--cic-kb-adjacent-topics-3-loca" gap_id: "GAP-19--cic-kb" status: "draft" created_at: "2026
+- **rfc-gap-07-ford-5-day-wage-increase-impac** (`wiki/research/rfc-gap-07-ford-5-day-wage-increase-impac.md`) [vector_only]:
+  > --- title: "RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output" category: "research" topic: "rfc-gap-07-ford-5-day-wage-increase-impac" gap_id: "GAP-07" status: "draft" created_at: "2026-08-23T01:58:16.723Z" citations: "docs
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-16--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - **6.)**"
+title: "RFC: GAP-16--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Shareholder Primacy Precedent"
 category: "research"
 topic: "rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-16--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:08.694Z"
+created_at: "2026-09-19T21:45:31.299Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-16--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - **6.)**
+# RFC: GAP-16--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Shareholder Primacy Precedent
 
 ## 1. Problem Statement & Context
-**6. Legal & Financial Reconstruction of *Dodge v. Ford Motor Co.* (GAP-04)**
+)**: **Shareholder Primacy Precedent:** In **1919**, the **Michigan Supreme Court** ruled in favor of the Dodges, ordering the distribution of a **\$19.3 million special dividend** (\$1
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Target Repositories" category: "research" topic: "rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" g
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

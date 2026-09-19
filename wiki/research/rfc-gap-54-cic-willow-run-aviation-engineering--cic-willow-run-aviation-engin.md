@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Cesor Farms"
+title: "RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Integration vs. Local Segregation Policies"
 category: "research"
 topic: "rfc-gap-54-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-54--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:05:40.196Z"
+created_at: "2026-09-19T21:37:27.972Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-23-cic-kb--cic-kb-open-contradictions-5.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local.md"]
 ---
 
-# RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Cesor Farms
+# RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Integration vs. Local Segregation Policies
 
 ## 1. Problem Statement & Context
-)**: **Cesor Farms:** Following his 1944 resignation from Ford, Charles Sorensen operated **Cesor Farms** in New Hudson/Farmington, Michigan, breeding purebred Guernsey cattle [21].
+)**: **Integration vs. Local Segregation Policies:** Although advocates like Josephine Gomon pushed for mixed-race housing at Willow Lodge, federal officials yielded to Southern congres
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-23-cic-kb--cic-kb-open-contradictions-5** (`wiki/research/rfc-gap-23-cic-kb--cic-kb-open-contradictions-5.md`) [lexical_only]:
+- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
+- **rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local** (`wiki/research/rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local.md`) [vector_only]:
+  > --- title: "RFC: GAP-20--cic-kb - **CIC-KB adjacent-topics - Local Vector Store Integration**" category: "research" topic: "rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local" gap_id: "GAP-20--cic-kb" status: "draft" created_at: "2026-09-19T20:27:28.162
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

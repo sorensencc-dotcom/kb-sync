@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-53--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The "One-Night Sketch""
+title: "RFC: GAP-53--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Contested Division of Credit"
 category: "research"
 topic: "rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-53--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:36.582Z"
+created_at: "2026-09-19T21:46:33.181Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-53--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The "One-Night Sketch"
+# RFC: GAP-53--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Contested Division of Credit
 
 ## 1. Problem Statement & Context
-)**: **The "One-Night Sketch":** Sorensen claimed in his memoir that he single-handedly roughed out the entire floor plan of the Willow Run bomber plant on note paper in a single hotel
+)**: **Contested Division of Credit:** Archival records also credit **Clarence Avery** (Sorensen's chief development engineer) for establishing Highland Park's final assembly and subass
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-03--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md`) [lexical_only]:
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 2.**" category: "research" topic: "rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-14--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap"
+title: "RFC: GAP-14--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Architectural & Tax Engineering (Frame 141)"
 category: "research"
 topic: "rfc-gap-14-cic-post-war-willys-overland--cic-post-war-willys-overland"
 gap_id: "GAP-14--cic-post-war-willys-overland"
 status: "draft"
-created_at: "2026-09-19T21:11:03.478Z"
+created_at: "2026-09-19T21:41:27.029Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md","wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 ---
 
-# RFC: GAP-14--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap
+# RFC: GAP-14--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Architectural & Tax Engineering (Frame 141)
 
 ## 1. Problem Statement & Context
-)**: **The Archival Gap:** While the physical location of the design sketches is resolved as asset **BSA_BR_2537** at the Milwaukee Art Museum Archives [12-15], Studebaker President Bye
+)**: **Architectural & Tax Engineering (Frame 141):** Industrial architect Albert Kahn designed the 2.8 million-square-foot facility [3]. To prevent the plant from extending across the
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece** (`wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md`) [lexical_only]:
   > 
-- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+- **rfc-gap-08-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-08-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-08--cic-daily-research" status: "draft" created_at: "2
+- **rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

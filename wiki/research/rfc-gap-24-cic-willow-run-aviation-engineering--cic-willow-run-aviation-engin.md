@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-24--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - 3. Investigating Bennett's Backchannel Transport Contracts)**"
+title: "RFC: GAP-24--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Class Discrimination"
 category: "research"
 topic: "rfc-gap-24-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-24--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:20.632Z"
+created_at: "2026-09-19T21:36:40.863Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md","wiki/research/rfc-gap-07-willow-run-videos--willow-run-videos-follow-up-3.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/concepts/karpathy-llm-wiki-pattern.md"]
 ---
 
-# RFC: GAP-24--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - 3. Investigating Bennett's Backchannel Transport Contracts)**
+# RFC: GAP-24--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Class Discrimination
 
 ## 1. Problem Statement & Context
-**3. Investigating Bennett's Backchannel Transport Contracts**
+)**: **Class Discrimination:** Local landladies and residents resisted mixing factory workers with students, insisting that only "high class American women" corresponding to the student
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
+- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-07-willow-run-videos--willow-run-videos-follow-up-3** (`wiki/research/rfc-gap-07-willow-run-videos--willow-run-videos-follow-up-3.md`) [vector_only]:
-  > --- title: "RFC: GAP-07--willow-run-videos - **Willow Run Videos follow-up - 3. Albert Kahn Architectural Papers Demystify the L-Bend Layout**" category: "research" topic: "rfc-gap-07-willow-run-videos--willow-run-videos-follow-up-3" gap_id: "GAP-07-
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  > 
+- **karpathy-llm-wiki-pattern** (`wiki/concepts/karpathy-llm-wiki-pattern.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

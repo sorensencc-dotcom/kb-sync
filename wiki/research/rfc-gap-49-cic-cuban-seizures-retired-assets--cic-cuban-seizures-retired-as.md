@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-49--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - 5.)**"
+title: "RFC: GAP-49--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Capitalization Multipliers"
 category: "research"
 topic: "rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-49--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T21:01:29.739Z"
+created_at: "2026-09-19T21:32:37.631Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-18-cic-kb--cic-kb-adjacent-topics-real-t.md","wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md"]
+citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-49--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - 5.)**
+# RFC: GAP-49--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Capitalization Multipliers
 
 ## 1. Problem Statement & Context
-5. Statutory Exclusions: Federal Agencies & Bond Trustees
+)**: **Capitalization Multipliers:** In *Colgate-Palmolive Company* (Claim CU-0730), the FCSC initially capitalized average net earnings at 10% [11, 12]. Upon appeal, after expert testi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
   > 
-- **rfc-gap-18-cic-kb--cic-kb-adjacent-topics-real-t** (`wiki/research/rfc-gap-18-cic-kb--cic-kb-adjacent-topics-real-t.md`) [vector_only]:
-  > --- title: "RFC: GAP-18--cic-kb - **CIC-KB adjacent-topics - Real-Time IDE Buffer Watch Hooks**" category: "research" topic: "rfc-gap-18-cic-kb--cic-kb-adjacent-topics-real-t" gap_id: "GAP-18--cic-kb" status: "draft" created_at: "2026-09-19T20:27:25.
-- **rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

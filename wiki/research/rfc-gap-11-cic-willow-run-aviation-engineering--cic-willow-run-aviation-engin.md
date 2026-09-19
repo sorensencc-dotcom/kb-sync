@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-11--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Strategic Friction"
+title: "RFC: GAP-11--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - 6. Investigating Domestic Infrastructure Burdens & CCPA Interventions)**"
 category: "research"
 topic: "rfc-gap-11-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-11--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:03:52.480Z"
+created_at: "2026-09-19T21:36:19.893Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa.md","wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 ---
 
-# RFC: GAP-11--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Strategic Friction
+# RFC: GAP-11--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - 6. Investigating Domestic Infrastructure Burdens & CCPA Interventions)**
 
 ## 1. Problem Statement & Context
-)**: **The Strategic Friction:** Tensions between military leadership and Ford reached a peak in early 1942 over high rejection rates for subassemblies delivered to Fort Worth, exposing
+**6. Investigating Domestic Infrastructure Burdens & CCPA Interventions**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa.md`) [lexical_only]:
   > 
-- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: "RFC: GAP-01--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering follow-up - 1. Quantifying Shop-Floor Rivet Thermal Failure Rates**" category: "research" topic: "rfc-gap-01-cic-willow-run-aviation-engineering-
+- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
-- **rfc-gap-01--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering follow-up** category: research topic: rfc-gap-01--cic-willow-run-aviation-engin gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.472Z expansion_method: heuristic retrieval
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

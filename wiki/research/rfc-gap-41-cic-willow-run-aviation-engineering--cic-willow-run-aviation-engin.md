@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver"
+title: "RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - D-17S "Ice-Box" Rivet Failure Rates"
 category: "research"
 topic: "rfc-gap-41-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-41--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:59.363Z"
+created_at: "2026-09-19T21:37:09.261Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md"]
+citations: ["wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md"]
 ---
 
-# RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver
+# RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - D-17S "Ice-Box" Rivet Failure Rates
 
 ## 1. Problem Statement & Context
-)**: **The 1949 Swampy Lot Deed Maneuver:** Michigan state law required citizens to own physical property to vote on school board members or bond issues, disenfranchising thousands of w
+)**: **D-17S "Ice-Box" Rivet Failure Rates:** While the metallurgical requirement of storing D-17S aluminum rivets at -20°F and driving them within 30 minutes of freezer removal is well
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
+- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
+- **rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md`) [vector_only]:
+  > --- title: "RFC: GAP-21--willow-run-videos - **Willow Run Videos follow-up - 5. Library of Congress & NARA Photo Provenance "Rosie" Geography**" category: "research" topic: "rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5" gap_id: "GAP-21
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

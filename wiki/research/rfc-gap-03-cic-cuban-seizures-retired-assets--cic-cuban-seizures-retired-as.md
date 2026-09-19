@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Target Repositories & Documents"
+title: "RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Research Value"
 category: "research"
 topic: "rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-03--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T20:59:57.011Z"
+created_at: "2026-09-19T21:30:58.245Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md"]
 ---
 
-# RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Target Repositories & Documents
+# RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Research Value
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories & Documents:** Primary document retrieval should target **Box 14 of the Charles E. Sorensen Papers (1904–1965) at the Bentley Historical Library (University o
+)**: **Research Value:** Cross-referencing these archives with published accounts, such as Arthur Herman's *Freedom's Forge* (pp. 242, 342–343), documents Sorensen's post-retirement tra
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **rfc-gap-17-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-17--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-17-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-17--cic-daily-research" status: "draft" created_at: "2
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
+- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
+  > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

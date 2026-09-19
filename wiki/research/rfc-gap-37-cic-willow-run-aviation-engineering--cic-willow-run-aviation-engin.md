@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-37--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Roosevelt’s Veto"
+title: "RFC: GAP-37--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - William C. Cowling's Forced Exit (1937)"
 category: "research"
 topic: "rfc-gap-37-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-37--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:49.799Z"
+created_at: "2026-09-19T21:37:03.595Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o.md"]
+citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-37--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Roosevelt’s Veto
+# RFC: GAP-37--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - William C. Cowling's Forced Exit (1937)
 
 ## 1. Problem Statement & Context
-)**: **Roosevelt’s Veto:** In July 1941, President Franklin D. Roosevelt **vetoed a \$320 million defense highway bill** that included funding for the expressway, lambasting it as a "po
+)**: **William C. Cowling's Forced Exit (1937):** Sales manager William Cowling's forced resignation is single-sourced to Bennett's memoir, where Bennett claimed he and Henry Ford prese
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
+- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
-- **rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-21--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Research Focus" category: "research" topic: "rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
-  > --- title: "RFC: GAP-02--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-02-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-02--willow-run-videos" status: "draft" created_at: "2026-09
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

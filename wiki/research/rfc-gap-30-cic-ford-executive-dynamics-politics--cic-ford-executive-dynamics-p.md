@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Corporate vs. Military Authority"
+title: "RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Cryptographic Integrity"
 category: "research"
 topic: "rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-30--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:42.255Z"
+created_at: "2026-09-19T21:45:56.428Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verification.md","wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Corporate vs. Military Authority
+# RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Cryptographic Integrity
 
 ## 1. Problem Statement & Context
-)**: **Corporate vs. Military Authority:** During World War II, Bennett attempted to assert shadow authority over Willow Run by placing Service Department personnel in charge of airfiel
+)**: **Cryptographic Integrity:** Administrative protocols from Accession 42, Box 12 outline verification standards under the **Sigil Trust Engine**, where signatures generated before a
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
   > 
-- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
+- **rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - 2. Paramilitary Surveillance & Anti-Union Labor Warfare)**"
+title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)"
 category: "research"
 topic: "rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-26--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:32.595Z"
+created_at: "2026-09-19T21:45:49.382Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json"]
 ---
 
-# RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - 2. Paramilitary Surveillance & Anti-Union Labor Warfare)**
+# RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)
 
 ## 1. Problem Statement & Context
-**2. Paramilitary Surveillance & Anti-Union Labor Warfare**
+)**: **John Wandersee (1902–1947):** Handyman who studied metallurgy, set up Ford's first material-testing laboratory in 1907, and served as head of the Metallurgical Department establi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-22--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 1.**" category: "research" topic: "rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
+- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-39--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 3. Grassroots Political Rebellions & The "Swampy Lot" Voting Coup)**"
+title: "RFC: GAP-39--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Chester LaMare's Fruit Monopoly"
 category: "research"
 topic: "rfc-gap-39-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-39--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:55.104Z"
+created_at: "2026-09-19T21:37:07.424Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md"]
+citations: ["wiki/research/rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-01--willow-run-videos-follow-up.md","wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md"]
 ---
 
-# RFC: GAP-39--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 3. Grassroots Political Rebellions & The "Swampy Lot" Voting Coup)**
+# RFC: GAP-39--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Chester LaMare's Fruit Monopoly
 
 ## 1. Problem Statement & Context
-**3. Grassroots Political Rebellions & The "Swampy Lot" Voting Coup**
+)**: **Chester LaMare's Fruit Monopoly:** The assertion that Harry Bennett granted Detroit Sicilian Mafia leader Chester LaMare an exclusive fruit-supply concession inside the River Rou
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
+- **rfc-gap-01--willow-run-videos-follow-up** (`wiki/research/rfc-gap-01--willow-run-videos-follow-up.md`) [vector_only]:
+  > --- title: RFC: GAP-01 - **Willow Run Videos follow-up** category: research topic: rfc-gap-01--willow-run-videos-follow-up gap_id: GAP-01 status: draft created_at: 2026-09-05T03:18:10.094Z expansion_method: heuristic retrieval_mode: hybrid-rrf ast_gr
+- **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

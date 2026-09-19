@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-13--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - 5.)**"
+title: "RFC: GAP-13--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - The Hotel del Coronado Floor Plan Sketch"
 category: "research"
 topic: "rfc-gap-13-cic-post-war-willys-overland--cic-post-war-willys-overland"
 gap_id: "GAP-13--cic-post-war-willys-overland"
 status: "draft"
-created_at: "2026-09-19T21:10:59.506Z"
+created_at: "2026-09-19T21:41:25.215Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 ---
 
-# RFC: GAP-13--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - 5.)**
+# RFC: GAP-13--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - The Hotel del Coronado Floor Plan Sketch
 
 ## 1. Problem Statement & Context
-5. Evaluate Stevens–Burlingame Memos on the 1963 LCMV Concept
+)**: **The Hotel del Coronado Floor Plan Sketch:** Unsatisfied with aviation "craft production" in San Diego, Sorensen spent the night of January 8–9, 1941, at the Hotel del Coronado sk
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
-- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: "RFC: GAP-03--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland follow-up - Action" category: "research" topic: "rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland" gap_id: "GAP-03--cic-post-war-willys-ov
-- **rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
+  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

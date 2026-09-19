@@ -4,24 +4,24 @@ category: "research"
 topic: "rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-11--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:14:56.869Z"
+created_at: "2026-09-19T21:45:24.315Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-11--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** **William C. Klann Papers (BFRC Accession 499)** [10] and his 1955 oral history transcript in **BFRC Accession 65** [11, 12] versus **Clarence W. Avery Pap
+)**: **Target Repositories:** **Michigan Supreme Court Records** (*Dodge v. Ford Motor Co.*, Docket No. 58, 1918–1919) [17] and **BFRC Accession 1** (*Henry Ford Office Papers — Minorit
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 - **rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Target Repositories" category: "research" topic: "rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" g

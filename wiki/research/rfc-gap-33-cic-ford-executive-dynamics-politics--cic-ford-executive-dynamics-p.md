@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Settlement"
+title: "RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim"
 category: "research"
 topic: "rfc-gap-33-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-33--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:48.924Z"
+created_at: "2026-09-19T21:46:01.896Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md","trm-research-gaps.md","wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md"]
 ---
 
-# RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Settlement
+# RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
 
 ## 1. Problem Statement & Context
-)**: **The Settlement:** Declassified Foreign Claims Settlement Commission (FCSC) records from November 15, 1948 (Claim No. FCSC-EUR-8812) document a **\$12.4 million principal valuatio
+)**: **The Asserted Claim:** Following Edsel Ford’s death in May 1943, Henry Ford’s wife, Clara, allegedly intervened in the executive succession crisis and directly demanded Charles So
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
   > 
-- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-22--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 1.**" category: "research" topic: "rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

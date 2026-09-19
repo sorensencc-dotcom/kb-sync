@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-18--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Operational Fix"
+title: "RFC: GAP-18--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Law 989 (Expatriate Asset Seizure)"
 category: "research"
 topic: "rfc-gap-18-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-18--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T21:00:45.352Z"
+created_at: "2026-09-19T21:31:37.218Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-16-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","trm-research-gaps.md","wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-18--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Operational Fix
+# RFC: GAP-18--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Law 989 (Expatriate Asset Seizure)
 
 ## 1. Problem Statement & Context
-)**: **Operational Fix:** Addressing technical knowledge ingestion gaps resolves instances where strict notebook scope isolation prevents queries for specific entities (such as *Sorense
+)**: **Law 989 (Expatriate Asset Seizure):** Enacted on December 6, 1961, Law 989 authorized the total confiscation of all real property, personal effects, bank accounts, and bonds belo
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
   > 
-- **rfc-gap-16-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-16-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-16--cic-daily-research - **CIC - Daily Research follow-up - 6.**" category: "research" topic: "rfc-gap-16-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-16--cic-daily-research" status: "draft" created_at: "2026-09
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

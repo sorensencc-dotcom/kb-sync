@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 6. Civil Rights Front Lines"
+title: "RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery"
 category: "research"
 topic: "rfc-gap-50-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-50--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:05:33.900Z"
+created_at: "2026-09-19T21:37:21.363Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verification.md","docs/kb/notebooklm-sync/operator-rules.md"]
 ---
 
-# RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 6. Civil Rights Front Lines
+# RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery
 
 ## 1. Problem Statement & Context
-Siting Disputes & The "Westwood" Secession)**: **6. Civil Rights Front Lines: Siting Disputes & The "Westwood" Secession**
+)**: **The "Secret Codicil" Signature Mystery:** Bennett claimed he burned the original signed codicil to Henry Ford's will—which would have handed 10-year trustee control of Ford Motor
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
   > 
+- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
+  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

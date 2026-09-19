@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap"
+title: "RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action"
 category: "research"
 topic: "rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland"
 gap_id: "GAP-08--cic-post-war-willys-overland"
 status: "draft"
-created_at: "2026-09-19T21:10:40.169Z"
+created_at: "2026-09-19T21:41:16.399Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cic-post-war-willys-overland.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
-# RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap
+# RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action
 
 ## 1. Problem Statement & Context
-)**: **The Archival Gap:** Sorensen personally signed the landmark May 31, 1929 agreement in Moscow with the Supreme Council of the National Economy to license Ford Model A and Model AA
+)**: **Action:** Obtain **Claim CU-2067** within the **Foreign Claims Settlement Commission (FCSC)** records at the Department of Justice / National Archives to establish verified docum
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01--cic-post-war-willys-overland.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
+- **rfc-gap-08-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-08-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-08--cic-daily-research" status: "draft" created_at: "2
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Frank Kulick (1903–1926)"
+title: "RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 4. Sorensen’s "One-Night Sketch" of Willow Run)**"
 category: "research"
 topic: "rfc-gap-41-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-41--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:12.286Z"
+created_at: "2026-09-19T21:46:16.243Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Frank Kulick (1903–1926)
+# RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 4. Sorensen’s "One-Night Sketch" of Willow Run)**
 
 ## 1. Problem Statement & Context
-)**: **Frank Kulick (1903–1926):** One of Ford's first five employees in 1903, top race car driver (1904–1913), transcontinental publicity driver with the 10-millionth Model T, and trav
+**4. Sorensen’s "One-Night Sketch" of Willow Run**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-14-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
-  > --- title: "RFC: GAP-16--willow-run-videos - **Willow Run Videos adjacent-topics - 1. Clara Ford" category: "research" topic: "rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "GAP-16--willow-run-videos" status: "draft" created_at
-- **rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-08-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-04--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive**" category: "research" topic: "rfc-gap-04-cic-ford-executiv
+- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

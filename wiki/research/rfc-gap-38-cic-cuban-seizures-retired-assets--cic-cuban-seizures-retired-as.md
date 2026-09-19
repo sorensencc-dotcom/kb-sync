@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-38--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Law 963 (Currency Annulment)"
+title: "RFC: GAP-38--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Warren and Arthur Smadbeck, Inc. (Varadero Beach Real Estate — Claim CU-2465)"
 category: "research"
 topic: "rfc-gap-38-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-38--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T21:00:59.625Z"
+created_at: "2026-09-19T21:32:13.444Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","trm-research-gaps.md","wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-38--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Law 963 (Currency Annulment)
+# RFC: GAP-38--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Warren and Arthur Smadbeck, Inc. (Varadero Beach Real Estate — Claim CU-2465)
 
 ## 1. Problem Statement & Context
-)**: **Law 963 (Currency Annulment):** Promulgated on August 4, 1961, Law 963 invalidated "old peso" currency notes and restricted exchange within Cuba [4, 5]. The FCSC held that invali
+)**: **Warren and Arthur Smadbeck, Inc. (Varadero Beach Real Estate — Claim CU-2465):** Smadbeck claimed **\$70,600.00** for Havana apartments and Varadero Beach lots based merely on "b
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
   > 
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Post-War & Willys-Overland adjacent-topics** category: research topic: rfc-gap-02--cic-post-war-willys-overland gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.443Z expansion_method: heuristic retrieval_m
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

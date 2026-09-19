@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Executive Alliance"
+title: "RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - 1.)**"
 category: "research"
 topic: "rfc-gap-50-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-50--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:29.115Z"
+created_at: "2026-09-19T21:46:29.698Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Executive Alliance
+# RFC: GAP-50--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - 1.)**
 
 ## 1. Problem Statement & Context
-)**: **The Executive Alliance:** Archival dossiers document an **Edsel-Sorensen alliance** against Harry Bennett’s paramilitary Service Department [5]. In one meeting (BFRC Accession 65
+1. Origins of the Moving Assembly Line: Top-Down Executive Memoirs vs. Shop-Floor Mechanics
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **rfc-gap-12-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
+- **rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   > 
-- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-24--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - Shareholder Primacy Precedent" category: "research" topic: "rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executi
+- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-22--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 1.**" category: "research" topic: "rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

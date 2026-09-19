@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-02--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Technical Challenge"
+title: "RFC: GAP-02--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target"
 category: "research"
 topic: "rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-02--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:03:23.207Z"
+created_at: "2026-09-19T21:36:00.935Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 ---
 
-# RFC: GAP-02--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Technical Challenge
+# RFC: GAP-02--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target
 
 ## 1. Problem Statement & Context
-)**: **The Technical Challenge:** Constructing a single B-24 Liberator required approximately 700,000 rivets [2]. High-strength aluminum D-17S "ice-box" rivets required heat treatment t
+)**: **Archival Target:** Search **Accession 796, Box 1** at the **Benson Ford Research Center** [4]. Unearthing original shop-floor refrigeration temperature inspection logs and daily
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [hybrid]:
+- **rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   > 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
+- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   > 
-- **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **CIC - Willow Run & Aviation Engineering open-contradictions** category: research topic: rfc-gap-04--cic-willow-run-aviation-engin gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:49.499Z expansion_method: heuristic
+- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

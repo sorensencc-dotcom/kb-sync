@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-15--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target"
+title: "RFC: GAP-15--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Tooling Reallocation"
 category: "research"
 topic: "rfc-gap-15-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-15--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:02.119Z"
+created_at: "2026-09-19T21:36:26.947Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 ---
 
-# RFC: GAP-15--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target
+# RFC: GAP-15--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Tooling Reallocation
 
 ## 1. Problem Statement & Context
-)**: **Archival Target:** Examine 1943–1944 civil filings in the **Wayne County Circuit Court**, as well as **Accession 1046** (Brendan Sexton Collection) and **Accession 420** (United
+)**: **Tooling Reallocation:** Over **\$47,000,000 in heavy aircraft stamping presses and production tooling** were reallocated post-VJ Day from Ford’s Aircraft Building Division to Kai
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
-- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-11-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-11--cic-daily-research" status: "draft" created_at: "2
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
+- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

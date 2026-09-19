@@ -4,27 +4,27 @@ category: "research"
 topic: "rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland"
 gap_id: "GAP-06--cic-post-war-willys-overland"
 status: "draft"
-created_at: "2026-09-19T21:10:37.127Z"
+created_at: "2026-09-19T21:41:12.784Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
 # RFC: GAP-06--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action
 
 ## 1. Problem Statement & Context
-)**: **Action:** Examine unrecovered **1945–1946 Willys-Overland Board Minutes** and the corporate papers of Chairman Ward M. Canaday at the Toledo-Lucas County Public Library [6, 7].
+)**: **Action:** Inspect **Accession 65, Box 66-4** at the Benson Ford Research Center to review Sorensen's unedited meeting logs and Amtorg Trading Corporation transcripts detailing hi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
   > 
-- **rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: "RFC: GAP-11--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-11-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-11--cic-daily-research" status: "draft" created_at: "2
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

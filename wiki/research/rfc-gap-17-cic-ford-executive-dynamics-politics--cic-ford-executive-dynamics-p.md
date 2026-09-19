@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories"
+title: "RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The 100% Family Buyout"
 category: "research"
 topic: "rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-17--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:15:08.706Z"
+created_at: "2026-09-19T21:45:32.942Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
+# RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The 100% Family Buyout
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** **Michigan Supreme Court Records** (*Dodge v. Ford Motor Co.*, Docket No. 58, 1918–1919) [15] and **BFRC Accession 1** (*Henry Ford Office Papers — Minorit
+)**: **The 100% Family Buyout:** Following the ruling, Henry Ford threatened to resign and establish a competing firm (*Henry Ford & Son*), panicking minority shareholders [2]. This man
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
 - **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
+- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

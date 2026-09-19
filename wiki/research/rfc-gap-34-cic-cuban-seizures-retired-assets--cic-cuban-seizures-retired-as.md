@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Penal Confiscations"
+title: "RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Freeport Sulphur Company (Islexco — Claim CU-2625)"
 category: "research"
 topic: "rfc-gap-34-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-34--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-19T20:56:51.299Z"
+created_at: "2026-09-19T21:32:05.076Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","wiki/research/rfc-gap-23-cic-kb--cic-kb-adjacent-topics-open-c.md"]
+citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Penal Confiscations
+# RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Freeport Sulphur Company (Islexco — Claim CU-2625)
 
 ## 1. Problem Statement & Context
-)**: **Penal Confiscations:** Confiscations of property pursuant to sovereign criminal convictions (such as *Isabella Shamma*, sentenced to Guanajay Prison for counter-revolutionary act
+)**: **Freeport Sulphur Company (Islexco — Claim CU-2625):** The vice president of Freeport Sulphur submitted an internal appraisal calculating the gross value of unmined ore in the gro
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **rfc-gap-23-cic-kb--cic-kb-adjacent-topics-open-c** (`wiki/research/rfc-gap-23-cic-kb--cic-kb-adjacent-topics-open-c.md`) [vector_only]:
-  > --- title: "RFC: GAP-23--cic-kb - **CIC-KB adjacent-topics - Open Chat Widget & Chat SDK Sigil §19.1 Extensions**" category: "research" topic: "rfc-gap-23-cic-kb--cic-kb-adjacent-topics-open-c" gap_id: "GAP-23--cic-kb" status: "draft" created_at: "20
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

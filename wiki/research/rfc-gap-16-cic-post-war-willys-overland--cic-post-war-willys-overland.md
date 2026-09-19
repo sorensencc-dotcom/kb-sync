@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - 6.)**"
+title: "RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Operational Controls & Labor Dynamics"
 category: "research"
 topic: "rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland"
 gap_id: "GAP-16--cic-post-war-willys-overland"
 status: "draft"
-created_at: "2026-09-19T21:11:10.464Z"
+created_at: "2026-09-19T21:41:28.723Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 ---
 
-# RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - 6.)**
+# RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Operational Controls & Labor Dynamics
 
 ## 1. Problem Statement & Context
-6. Audit Willow Run Tooling Logs & War Contract Correspondence
+)**: **Operational Controls & Labor Dynamics:** Sorensen instituted the automotive **"block concept"** (approved by Gen. Henry "Hap" Arnold) to freeze design specifications for set prod
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+  > 
+- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
 - **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   > 
-- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

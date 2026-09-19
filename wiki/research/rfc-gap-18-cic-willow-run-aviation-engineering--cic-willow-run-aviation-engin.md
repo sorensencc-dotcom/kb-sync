@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-18--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target"
+title: "RFC: GAP-18--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Limited-Access Solution"
 category: "research"
 topic: "rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-18--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-19T21:04:10.204Z"
+created_at: "2026-09-19T21:36:30.883Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md","wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/historical-revocation-verification.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md"]
 ---
 
-# RFC: GAP-18--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target
+# RFC: GAP-18--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Limited-Access Solution
 
 ## 1. Problem Statement & Context
-)**: **Archival Target:** Examine **NARA RG 212** (Records of the Committee for Congested Production Areas, Entry 13) to document how federal area coordinators broke infrastructure bott
+)**: **The Limited-Access Solution:** Michigan State Highway Commissioner G. Donald Kennedy proposed the state's first limited-access expressway connecting Detroit to Willow Run to tran
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [lexical_only]:
+- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
   > 
-- **rfc-gap-02-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-02--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-02-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-02--cic-daily-research" status: "draft" created_at: "2
-- **rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
+  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

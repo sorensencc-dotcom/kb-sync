@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-36--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - William Knudsen (1911–1921)"
+title: "RFC: GAP-36--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim"
 category: "research"
 topic: "rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-36--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-19T21:16:00.020Z"
+created_at: "2026-09-19T21:46:06.848Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token.md","wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
 ---
 
-# RFC: GAP-36--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - William Knudsen (1911–1921)
+# RFC: GAP-36--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
 
 ## 1. Problem Statement & Context
-)**: **William Knudsen (1911–1921):** Production manager who established **14 domestic assembly plants and 3 in Europe**, managed Highland Park operations, and directed Rouge Eagle Boat
+)**: **The Asserted Claim:** To counter the growing shadow authority of Harry Bennett’s 3,000-man Service Department, Sorensen allegedly attempted to recruit and deploy **John Gillespie
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
-- **rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
   > 
-- **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-25--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The 100% Family Buyout" category: "research" topic: "rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dyna
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
