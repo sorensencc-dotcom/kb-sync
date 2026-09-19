@@ -16,6 +16,7 @@ status: "active"
 
 ## Concepts
 
+- [[kb-sync/concepts/iron-command-forge|Iron Command Forge Architecture]] — Standalone operations, reporting, telemetry, and web dashboard platform
 - [[kb-sync/concepts/karpathy-llm-wiki-pattern|Karpathy LLM-Wiki Pattern]] — LLM-maintained semantic structure using Karpathy's design
 - [[kb-sync/concepts/semantic-ingest-workflow|Semantic Ingest Workflow]] — 8-phase synthesis workflow: Ingest → Lint → Update → Cross-Ref → Lint → Log → Review → Commit
 - [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Raw sources, wiki (LLM-maintained), schema (reference)

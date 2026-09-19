@@ -5,97 +5,97 @@
     {
       "name": "charlie",
       "modified": "2026-09-07T15:34:55.082618+00:00",
-      "age_hours": 293.7
+      "age_hours": 294.2
     },
     {
       "name": "charlie/b24-knockdown-logistics",
       "modified": "2026-09-08T10:30:26.380598+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/benson-ford",
       "modified": "2026-08-19T23:55:05.907636+00:00",
-      "age_hours": 741.4
+      "age_hours": 741.9
     },
     {
       "name": "charlie/bombard-memoir-delta",
       "modified": "2026-09-08T10:30:28.271539+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/cuba",
-      "modified": "2026-09-19T21:14:38.873671+00:00",
+      "modified": "2026-09-19T21:43:10.469691+00:00",
       "age_hours": 0.1
     },
     {
       "name": "charlie/cuba-fcsc",
       "modified": "2026-09-08T10:30:20.567327+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/death-date-1968",
       "modified": "2026-09-08T10:30:21.583057+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/helene",
-      "modified": "2026-09-19T21:14:38.868669+00:00",
+      "modified": "2026-09-19T21:43:10.374037+00:00",
       "age_hours": 0.1
     },
     {
       "name": "charlie/helene-i",
       "modified": "2026-08-20T00:04:57.840026+00:00",
-      "age_hours": 741.2
+      "age_hours": 741.7
     },
     {
       "name": "charlie/logan-miller-san-diego-1941",
       "modified": "2026-09-08T10:30:25.417092+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/michigan-flight-museum",
-      "modified": "2026-09-19T21:14:38.874673+00:00",
+      "modified": "2026-09-19T21:43:10.470690+00:00",
       "age_hours": 0.1
     },
     {
       "name": "charlie/photo-archive-id-pass",
       "modified": "2026-09-08T10:30:22.517207+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/retirement",
-      "modified": "2026-09-19T21:14:38.874673+00:00",
+      "modified": "2026-09-19T21:43:10.470690+00:00",
       "age_hours": 0.1
     },
     {
       "name": "charlie/studebaker-lcmv-1963",
       "modified": "2026-09-08T10:30:24.468069+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/willow-run",
-      "modified": "2026-09-19T21:14:38.867660+00:00",
+      "modified": "2026-09-19T21:43:10.369513+00:00",
       "age_hours": 0.1
     },
     {
       "name": "charlie/willow-run-ingersoll-mill",
       "modified": "2026-09-08T10:30:27.326625+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/willys-jeep-day-geography",
       "modified": "2026-09-08T10:30:23.490756+00:00",
-      "age_hours": 274.8
+      "age_hours": 275.3
     },
     {
       "name": "charlie/willys-overland",
-      "modified": "2026-09-19T21:14:38.871668+00:00",
+      "modified": "2026-09-19T21:43:10.462696+00:00",
       "age_hours": 0.1
     },
     {
       "name": "cuba",
       "modified": "2026-08-20T00:08:09.955268+00:00",
-      "age_hours": 741.2
+      "age_hours": 741.6
     }
   ],
   "topics_created": [],
@@ -161,30 +161,30 @@
     {
       "notebook": "CIC - Cuban Seizures & Retired Assets",
       "question": "What open questions or unresolved contradictions exist across these sources?",
-      "excerpt": "An analysis of the Foreign Claims Settlement Commission (FCSC) adjudications and source records reveals several core **legal, methodological, and procedural contradictions** alongside open structural ...",
+      "excerpt": "An examination of the Foreign Claims Settlement Commission (FCSC) adjudications and source records reveals several core **legal, methodological, and procedural contradictions** alongside open structur...",
       "date": "2026-09-19",
-      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
     },
     {
       "notebook": "CIC - Cuban Seizures & Retired Assets",
       "question": "What claims are asserted but single-sourced or under-corroborated?",
-      "excerpt": "Under **Title V of the International Claims Settlement Act of 1949**, the Foreign Claims Settlement Commission (FCSC) strictly enforced the rule that the claimant bears the primary burden of proof on ...",
+      "excerpt": "Under **Title V of the International Claims Settlement Act of 1949**, the Foreign Claims Settlement Commission (FCSC) strictly enforced the statutory rule that the claimant bears the primary burden of...",
       "date": "2026-09-19",
-      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
     },
     {
       "notebook": "CIC - Cuban Seizures & Retired Assets",
       "question": "What adjacent topics do these sources point to that aren't covered yet?",
       "excerpt": "The source records point to several major **legal, financial, administrative, industrial, and technical topics** that extend beyond standard corporate nationalization and property valuation disputes: ...",
       "date": "2026-09-19",
-      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
     },
     {
       "notebook": "CIC - Cuban Seizures & Retired Assets",
       "question": "What follow-up research would most strengthen current findings?",
       "excerpt": "Five primary follow-up research avenues would most effectively strengthen current findings, resolve valuation paradoxes, and bridge evidence gaps across these sources:  ---  ### 1. Primary Archival Ex...",
       "date": "2026-09-19",
-      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:962611d484bbf85981c44ff3c40effecd3b26939ffce97afeccb4e85681deb3d"
+      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:79ad035504422deaea819bfb971dd71327fca6f8b70051f530acfdcbff6a37b9"
     },
     {
       "notebook": "CIC - Daily Research",
@@ -219,28 +219,28 @@
       "question": "What open questions or unresolved contradictions exist across these sources?",
       "excerpt": "Across historical records, contemporary book reviews, and archival dossiers, several major unresolved contradictions, competing narratives, and open questions exist regarding executive dynamics, corpo...",
       "date": "2026-09-19",
-      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:fd89f1ff27fb536a7b658b6f00f401c3485a4033d591c05de25a8d178d7557fa"
+      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:f7ae3c8c8963c8afc3055cbb8f9c11c5d1110e9886c232421635f9c313258cdd"
     },
     {
       "notebook": "CIC - Ford Executive Dynamics & Politics",
       "question": "What claims are asserted but single-sourced or under-corroborated?",
-      "excerpt": "Across historical records, contemporary book reviews, and archival dossiers, several major unresolved contradictions, competing narratives, and open questions exist regarding executive dynamics, corpo...",
+      "excerpt": "Several key claims regarding Ford's executive dynamics, corporate politics, and mass production origins are asserted in memoirs, oral accounts, or third-party histories but remain **single-sourced, un...",
       "date": "2026-09-19",
-      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:c2e1c062728923bbcc3420c34a7e4cd84cd6d08254f059222d1dfc3d32c88845"
+      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:01aefb91824f6ac7de79de73ab789f30057e51782c94ad1ee3267f42382afa52"
     },
     {
       "notebook": "CIC - Ford Executive Dynamics & Politics",
       "question": "What adjacent topics do these sources point to that aren't covered yet?",
-      "excerpt": "Beyond the core narrative of executive politics and Willow Run's wartime assembly line, your sources point directly to **six unexamined adjacent topics** spanning corporate law, labor warfare, interna...",
+      "excerpt": "Beyond the core narrative of executive politics and Willow Run's wartime bomber assembly line, the sources point directly to **six unexamined adjacent topics** spanning corporate governance, labor sec...",
       "date": "2026-09-19",
-      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:9f8db040f27319b17ac05a9f54bdd6b6125690e60476fdf4eb6a3ad059465be0"
+      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:acb8940a0ae52ba1e31bebabb6ef2b321810e9b50aeb3d55a030fb16fd16b276"
     },
     {
       "notebook": "CIC - Ford Executive Dynamics & Politics",
       "question": "What follow-up research would most strengthen current findings?",
-      "excerpt": "To resolve the uncorroborated assertions, archival censorship, and historical gaps identified across your dossiers, follow-up research should be structured around **seven canonical archival tracks** t...",
+      "excerpt": "To resolve uncorroborated assertions, archival censorship, and historical gaps across your sources, follow-up research should be structured around **seven canonical archival tracks** targeting specifi...",
       "date": "2026-09-19",
-      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:99eaba932c2d44877580c54d3f1c56f30e6c6b65fb3ae76d3dfa731a04ea4463"
+      "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:4c69759efbdc29ec53d7ef2438b1e1be116812df6446dba1d63b4421599eb45a"
     },
     {
       "notebook": "CIC-KB",
@@ -275,84 +275,84 @@
       "question": "What open questions or unresolved contradictions exist across these sources?",
       "excerpt": "Across the collection, **five primary archival gaps and unresolved contradictions** persist regarding Charles E. Sorensen's industrial leadership and late-career legacy:  ### 1. The Geographic Locatio...",
       "date": "2026-09-19",
-      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:open-contradictions:ab131288247466094f3801af705b38bf707de88bf15acc293c6bf3e39055c6fb"
+      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:open-contradictions:d1718d65c739983712fe4ed0bbce63911e9d2cbde1bcaa257f8b0abf7f7adc66"
     },
     {
       "notebook": "CIC - Post-War & Willys-Overland",
       "question": "What claims are asserted but single-sourced or under-corroborated?",
-      "excerpt": "Based on your notebook sources, several key claims regarding **Charles E. Sorensen\u2019s** late-career legacy and industrial achievements remain **single-sourced**, **under-corroborated**, or **contradict...",
+      "excerpt": "The available sources highlight **six key claims** regarding Charles E. Sorensen\u2019s industrial career that remain **single-sourced**, **under-corroborated**, or **contradicted**:  ### 1. The Geographic...",
       "date": "2026-09-19",
-      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
     },
     {
       "notebook": "CIC - Post-War & Willys-Overland",
       "question": "What adjacent topics do these sources point to that aren't covered yet?",
-      "excerpt": "The sources point to **nine rich adjacent topics** that extend Charles E. Sorensen's narrative beyond his Willys-Overland presidency and the 1963 Low Cost Molded Vehicle (LCMV) proposal:  ### 1. WWII ...",
+      "excerpt": "Your sources point to **nine rich adjacent topics** that extend Charles E. Sorensen's narrative beyond his Willys-Overland presidency and the 1963 Low Cost Molded Vehicle (LCMV) proposal:  ### 1. WWII...",
       "date": "2026-09-19",
-      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:adjacent-topics:f1ba45c4466d7e81f330f785c8769548a70d1bedfe204b8f1fc4317e51ecc37c"
+      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:adjacent-topics:cd393e32b03a035ed2c04d54554dff4581de9a3ac6568b827339c7a6afbf70c8"
     },
     {
       "notebook": "CIC - Post-War & Willys-Overland",
       "question": "What follow-up research would most strengthen current findings?",
       "excerpt": "To most effectively strengthen current findings and resolve remaining historical uncertainties across your sources, follow-up research should focus on **six targeted primary-source tracks**:  ### 1. R...",
       "date": "2026-09-19",
-      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:cdf70a15c5478d3e4d89c1e20c7dd874af366eef8caeab11dfe277890d6a802a"
+      "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:7d47369892f19c3b3e7b5ece189660cf3b048e82b6d47bfc3646db8cc3bedc04"
     },
     {
       "notebook": "CIC-Reddit",
       "question": "What open questions or unresolved contradictions exist across these sources?",
       "excerpt": "A synthesis across your sources reveals four major **open questions and unresolved contradictions** between primary records, executive memoirs, and community lore:  ---  ### **1. What Was the True Ori...",
       "date": "2026-09-19",
-      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:24ce30057ed831b7234bc7548dc7167d5ed265bc3d44c2772d199fcc18848e3e"
+      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:2b03a89d8b4f7d19a50f68314129a56d10e57825f8ea12d3500056703c8f2e59"
     },
     {
       "notebook": "CIC-Reddit",
       "question": "What claims are asserted but single-sourced or under-corroborated?",
-      "excerpt": "Across your notebook's source material, several prominent assertions circulate in community discussions, forum threads, or regional lore that are **single-sourced, under-corroborated, or contradicted ...",
+      "excerpt": "An examination of your notebook's source material reveals several prominent assertions that circulate in community discussions, forum threads, or regional lore that are **single-sourced, under-corrobo...",
       "date": "2026-09-19",
-      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:96ab7658da74129ceaf40bd74b354f8bc269a9067f3258f303355c023b222dfd"
+      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:24cdca76237b1a5d80a2940bbb1701c8a79bbefbf575766a27657ffc9db885ca"
     },
     {
       "notebook": "CIC-Reddit",
       "question": "What adjacent topics do these sources point to that aren't covered yet?",
       "excerpt": "While your notebook focuses heavily on factory architecture, mass production engineering, and corporate conflicts at Willow Run, the source materials point directly to several compelling **adjacent hi...",
       "date": "2026-09-19",
-      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:790ea9e76ed2d637af88ac14c20f576925ed542bf6edbcecb152935803b5a734"
+      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:68638754499656e3f2b9d7a37b807a7ba979098044cae2298426b727098e7d62"
     },
     {
       "notebook": "CIC-Reddit",
       "question": "What follow-up research would most strengthen current findings?",
-      "excerpt": "To transform current findings from a mix of regional lore and production records into an authoritative historical account, follow-up investigation should focus on **five targeted research modules**:  ...",
+      "excerpt": "To transform current findings from a mix of regional lore, executive memoirs, and production statistics into an authoritative historical account, follow-up investigation should focus on **five targete...",
       "date": "2026-09-19",
-      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:4235ad0750f6a60488aefef23c27a5f360c1033b7f1c797bbf6c9123a35caccc"
+      "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:c3670b602069a9965bd0d85e9f16401f5f698138becc88f89c1682b107d7fa50"
     },
     {
       "notebook": "CIC - Willow Run & Aviation Engineering",
       "question": "What open questions or unresolved contradictions exist across these sources?",
       "excerpt": "Across the primary memoirs, technical dossiers, and academic studies in your notebook, several major archival gaps, contradictory first-person accounts, ideological standoffs, and technical anomalies ...",
       "date": "2026-09-19",
-      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:19ee9ee2b205d73ccbd60c2e39cbf9231344a174c19ae7437f834d2d3a0be082"
+      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:b4e44cd1205ae37ca081252f026f3263074c47da8c3d0b0b763252a651a61e77"
     },
     {
       "notebook": "CIC - Willow Run & Aviation Engineering",
       "question": "What claims are asserted but single-sourced or under-corroborated?",
-      "excerpt": "### **1. Executive Espionage & The \"Secret Codicil\"** * **The Unsigned Codicil:** Attorney I. A. Capizzi admitted that he drafted the secret codicil\u2014which would have placed Ford Motor Company under a ...",
+      "excerpt": "Across the historical collection in your notebook, several major claims regarding executive intrigue, corporate dismissals, underworld concessions, and shop-floor technical records remain **single-sou...",
       "date": "2026-09-19",
-      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:b8698bdc14a50d919faabb72e30250ef1206013a23f2e83ec5237055342dd929"
+      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:8e271ede6311b6f2609450a995caa18fb4991f3f763f7424851124b66fd19491"
     },
     {
       "notebook": "CIC - Willow Run & Aviation Engineering",
       "question": "What adjacent topics do these sources point to that aren't covered yet?",
       "excerpt": "Beyond the core B-24 Liberator manufacturing and housing narratives, your sources point to several rich **adjacent storylines** spanning post-war industrial reconversion, infrastructure politics, gras...",
       "date": "2026-09-19",
-      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
     },
     {
       "notebook": "CIC - Willow Run & Aviation Engineering",
       "question": "What follow-up research would most strengthen current findings?",
-      "excerpt": "To transform findings on Willow Run into an unassailable, publication-grade historical record, primary research should target specific **archival collections, record groups, and box locations** where ...",
+      "excerpt": "To transform the findings on Willow Run into an unassailable, publication-grade historical record, primary research should target specific **archival collections, record groups, and box locations** wh...",
       "date": "2026-09-19",
-      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:55a183b6ac73938e1d9c574f5b5a42e3d443cafe5f7612483b30fae75bcbfba2"
+      "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:7d8d571bd7207a5b19965a86e81f34fdb7945a90fdf7775507e8bf26a5c8b12c"
     },
     {
       "notebook": "The Sorensen Photographic Archive: Industrial Giants at Willow Run",
@@ -471,16 +471,16 @@
     {
       "notebook": "CIC - Cuban Seizures & Retired Assets",
       "question": "What open questions or unresolved contradictions exist across these sources?",
-      "excerpt": "An analysis of the Foreign Claims Settlement Commission (FCSC) adjudications and source records reveals several core **legal, methodological, and procedural contradictions** alongside open structural ...",
+      "excerpt": "An examination of the Foreign Claims Settlement Commission (FCSC) adjudications and source records reveals several core **legal, methodological, and procedural contradictions** alongside open structur...",
       "date": "2026-09-19",
-      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
     },
     {
       "notebook": "CIC - Cuban Seizures & Retired Assets",
       "question": "What claims are asserted but single-sourced or under-corroborated?",
-      "excerpt": "Under **Title V of the International Claims Settlement Act of 1949**, the Foreign Claims Settlement Commission (FCSC) strictly enforced the rule that the claimant bears the primary burden of proof on ...",
+      "excerpt": "Under **Title V of the International Claims Settlement Act of 1949**, the Foreign Claims Settlement Commission (FCSC) strictly enforced the statutory rule that the claimant bears the primary burden of...",
       "date": "2026-09-19",
-      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+      "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
     }
   ],
   "matrix_gaps_total": 0,
@@ -493,7 +493,7 @@
       "id": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
       "title": "CIC-KB",
       "last_mined": "2026-09-19T20:38:04.117Z",
-      "last_mined_age_hours": 0.7,
+      "last_mined_age_hours": 1.1,
       "quarantined": 9,
       "sources_count": 0
     },
@@ -501,7 +501,7 @@
       "id": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
       "title": "CIC - Daily Research",
       "last_mined": "2026-09-19T20:49:28.337Z",
-      "last_mined_age_hours": 0.5,
+      "last_mined_age_hours": 1.0,
       "quarantined": 6,
       "sources_count": 32
     },
@@ -509,7 +509,7 @@
       "id": "ef78168d-b7b9-4952-8e0f-fcb353a21181",
       "title": "Willow Run Videos",
       "last_mined": "2026-09-19T20:56:18.846Z",
-      "last_mined_age_hours": 0.4,
+      "last_mined_age_hours": 0.8,
       "quarantined": 0,
       "sources_count": 23
     },
@@ -517,7 +517,7 @@
       "id": "b8bc161d-495f-42f9-a7d1-ed8692141f6b",
       "title": "Cast Iron Charlie - Research Logs",
       "last_mined": "2026-09-19T21:03:30.721Z",
-      "last_mined_age_hours": 0.3,
+      "last_mined_age_hours": 0.7,
       "quarantined": 0,
       "sources_count": 0
     },
@@ -525,7 +525,7 @@
       "id": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a",
       "title": "The Sorensen Photographic Archive: Industrial Giants at Willow Run",
       "last_mined": "2026-09-19T21:09:47.251Z",
-      "last_mined_age_hours": 0.2,
+      "last_mined_age_hours": 0.6,
       "quarantined": 0,
       "sources_count": 1
     },
@@ -533,14 +533,14 @@
       "id": "0c8dc979-319f-4e6d-8136-22275932c236",
       "title": "CastIronCharlie-Facebook",
       "last_mined": "2026-09-19T21:16:38.121Z",
-      "last_mined_age_hours": 0.1,
+      "last_mined_age_hours": 0.5,
       "quarantined": 1,
       "sources_count": 11
     },
     {
       "id": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d",
       "title": "CIC-Reddit",
-      "last_mined": "2026-09-19T20:52:55.581Z",
+      "last_mined": "2026-09-19T21:23:59.291Z",
       "last_mined_age_hours": 0.4,
       "quarantined": 1,
       "sources_count": 17
@@ -548,37 +548,37 @@
     {
       "id": "c8360946-dbee-4a2c-b622-7f89b05695b0",
       "title": "CIC - Cuban Seizures & Retired Assets",
-      "last_mined": "2026-09-19T20:56:20.342Z",
-      "last_mined_age_hours": 0.4,
-      "quarantined": 0,
+      "last_mined": "2026-09-19T21:30:54.695Z",
+      "last_mined_age_hours": 0.3,
+      "quarantined": 1,
       "sources_count": 0
     },
     {
       "id": "6fd7c40b-df90-444b-9c7a-a64682925856",
       "title": "CIC - Willow Run & Aviation Engineering",
-      "last_mined": "2026-09-19T21:03:17.433Z",
-      "last_mined_age_hours": 0.3,
+      "last_mined": "2026-09-19T21:35:58.986Z",
+      "last_mined_age_hours": 0.2,
       "quarantined": 0,
       "sources_count": 0
     },
     {
       "id": "9c469910-a900-43a4-877c-a43c9f545b5f",
       "title": "CIC - Post-War & Willys-Overland",
-      "last_mined": "2026-09-19T21:09:10.958Z",
-      "last_mined_age_hours": 0.2,
+      "last_mined": "2026-09-19T21:41:03.518Z",
+      "last_mined_age_hours": 0.1,
       "quarantined": 0,
       "sources_count": 0
     },
     {
       "id": "0caf6707-f8f2-4d2a-acd2-020acead55ba",
       "title": "CIC - Ford Executive Dynamics & Politics",
-      "last_mined": "2026-09-19T21:14:40.727Z",
-      "last_mined_age_hours": 0.1,
+      "last_mined": "2026-09-19T21:45:04.880Z",
+      "last_mined_age_hours": 0.0,
       "quarantined": 0,
       "sources_count": 0
     }
   ],
-  "quarantined_total": 17,
+  "quarantined_total": 18,
   "notebook_findings": {
     "b8bc161d-495f-42f9-a7d1-ed8692141f6b": {
       "title": "Cast Iron Charlie - Research Logs",
@@ -868,35 +868,35 @@
           "desc": "The FCSC operated under a statutory mandate to determine a valuation that was \"most appropriate to the property and equitable to the claimant\" [1-3]. However, the decisions show a deep, unresolved tension in how this mandate was applied to similar corporate assets: * **The Banking Valuation Discrepancy:** In the *Claim of The First National Bank of...",
           "excerpt": "The FCSC operated under a statutory mandate to determine a valuation that was \"most appropriate to the property and equitable to the claimant\" [1-3]. However, the decisions show a deep, unresolved tension in how this mandate was applied to similar corporate assets: * **The Banking Valuation Discrepancy:** In the *Claim of The First National Bank of...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
         },
         {
           "title": "2. The Mining Concession Paradox: Speculative vs. Certifiable Reserves",
           "desc": "The FCSC struggled to define when unexploited mineral concessions crossed the line from a valueless speculative asset to a certifiable property interest: * **The Speculative Standard:** In the *Claim of Freeport Sulphur Company* (Claim CU-2625), the claimant sought \\$387,000 for unexploited mining concessions, submitting an internal appraisal estim...",
           "excerpt": "The FCSC struggled to define when unexploited mineral concessions crossed the line from a valueless speculative asset to a certifiable property interest: * **The Speculative Standard:** In the *Claim of Freeport Sulphur Company* (Claim CU-2625), the claimant sought \\$387,000 for unexploited mining concessions, submitting an internal appraisal estim...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
         },
         {
           "title": "3. Corporate Chain Breaks and Nationality Contradictions",
           "desc": "The strict legal boundaries of Title V created scenarios where factual contradictions were left unresolved or created logical loopholes: * **The Continuous Nationality Loophole:** In *AOFC, Inc.* (Claims CU-3671 and CU-3672), the claims were denied under Section 504(a) because the underlying properties passed from a U.S. national to a Canadian corp...",
           "excerpt": "The strict legal boundaries of Title V created scenarios where factual contradictions were left unresolved or created logical loopholes: * **The Continuous Nationality Loophole:** In *AOFC, Inc.* (Claims CU-3671 and CU-3672), the claims were denied under Section 504(a) because the underlying properties passed from a U.S. national to a Canadian corp...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
         },
         {
           "title": "4. Employment Contracts vs. Compensable \"Property Rights\"",
           "desc": "A significant legal and human tension exists regarding how individual labor was categorized: * **The Rice Seed Disallowance:** In the *Claim of Robert L. Cheaney* (Claim CU-0915), the claimant spent 5 years developing experimental, disease-resistant seed rice samples [35, 36]. While the Cuban government confiscated these physical samples, the FCSC ...",
           "excerpt": "A significant legal and human tension exists regarding how individual labor was categorized: * **The Rice Seed Disallowance:** In the *Claim of Robert L. Cheaney* (Claim CU-0915), the claimant spent 5 years developing experimental, disease-resistant seed rice samples [35, 36]. While the Cuban government confiscated these physical samples, the FCSC ...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
         },
         {
           "title": "5. Sovereign Criminal Penalties vs. Denial of Justice",
           "desc": "In the *Claim of Isabella Shamma* (Claim CU-2593), the claimant\u2019s real and personal property was confiscated pursuant to a Cuban court judgment on December 16, 1960 [39, 40]. The FCSC denied the claim, ruling that the Cuban government violated no rule of international law because a sovereign state has an inherent right to impose penalties for viola...",
           "excerpt": "In the *Claim of Isabella Shamma* (Claim CU-2593), the claimant\u2019s real and personal property was confiscated pursuant to a Cuban court judgment on December 16, 1960 [39, 40]. The FCSC denied the claim, ruling that the Cuban government violated no rule of international law because a sovereign state has an inherent right to impose penalties for viola...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:a935b9a95ad8dc9486936296e1eb1880175adde2e561156f9bf001554f2a9231"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:open-contradictions:6b09db3b8cd48f82261d3d9381f82942adcff131201ab03f039184b4569dc51d"
         }
       ],
       "undersourced": [
@@ -905,42 +905,42 @@
           "desc": "The FCSC consistently rejected massive valuations placed on unexploited mining concessions where commercial feasibility and extraction costs had never been tested: * **Freeport Sulphur Company (Islexco \u2014 Claim CU-2625):** The claimant asserted a property loss based on its subsidiary's unexploited mining concessions, submitting an internal affidavit...",
           "excerpt": "The FCSC consistently rejected massive valuations placed on unexploited mining concessions where commercial feasibility and extraction costs had never been tested: * **Freeport Sulphur Company (Islexco \u2014 Claim CU-2625):** The claimant asserted a property loss based on its subsidiary's unexploited mining concessions, submitting an internal affidavit...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
         },
         {
           "title": "2. Secret Oral Agreements and Unverifiable Real Estate Holdings",
           "desc": "When corporate transactions bypassed formal registries, the FCSC disallowed the claims for lack of legal title: * **The Coca-Cola Company (Claim CU-1743 \u2014 Holguin Land):** Coca-Cola claimed a loss of **\\$35,000** for a plot of land in Holguin [24, 25]. The company stated that its subsidiary (*Cia. Embotelladora Coca Cola, S.A.*) had secretly paid t...",
           "excerpt": "When corporate transactions bypassed formal registries, the FCSC disallowed the claims for lack of legal title: * **The Coca-Cola Company (Claim CU-1743 \u2014 Holguin Land):** Coca-Cola claimed a loss of **\\$35,000** for a plot of land in Holguin [24, 25]. The company stated that its subsidiary (*Cia. Embotelladora Coca Cola, S.A.*) had secretly paid t...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
         },
         {
           "title": "3. Missing Corporate balance Sheets and Ledger Records",
           "desc": "Several claimants attempted to prove the value of stock or debt using outdated records or raw investment figures, which the FCSC rejected: * **Warren and Arthur Smadbeck, Inc. (Claim CU-2465 \u2014 Subsidiary Stock):** In addition to its real estate, Smadbeck claimed stock losses in several Cuban entities (Presidente, Gulfview, and North Shore) [28, 31,...",
           "excerpt": "Several claimants attempted to prove the value of stock or debt using outdated records or raw investment figures, which the FCSC rejected: * **Warren and Arthur Smadbeck, Inc. (Claim CU-2465 \u2014 Subsidiary Stock):** In addition to its real estate, Smadbeck claimed stock losses in several Cuban entities (Presidente, Gulfview, and North Shore) [28, 31,...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
         },
         {
           "title": "4. Projected Future Profits and \"Cost-Plus\" Contracts",
           "desc": "The FCSC consistently disallowed claims based on future earnings, holding that prospective profits were too speculative under international law: * **Berlanti Construction Company / Mrs. Ilona Gero Rieger (Claim CU-0871 and CU-0657):** The claimants sought **\\$1.5 million in lost profits** resulting from a contract with the National Housing Commissi...",
           "excerpt": "The FCSC consistently disallowed claims based on future earnings, holding that prospective profits were too speculative under international law: * **Berlanti Construction Company / Mrs. Ilona Gero Rieger (Claim CU-0871 and CU-0657):** The claimants sought **\\$1.5 million in lost profits** resulting from a contract with the National Housing Commissi...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
         },
         {
           "title": "5. Double-Recovery Safeguards and Unreported Collateral",
           "desc": "* **Occidental Life Insurance Company of North Carolina (Claim CU-2353 \u2014 Policy Loans):** The insurance company asserted a loss of **\\$127,643.18** for approximately 200 loans made to Cuban nationals [45, 46]. Because these loans were contractually \"secured by the cash surrender value of the policies\" which remained in Occidental's possession in th...",
           "excerpt": "* **Occidental Life Insurance Company of North Carolina (Claim CU-2353 \u2014 Policy Loans):** The insurance company asserted a loss of **\\$127,643.18** for approximately 200 loans made to Cuban nationals [45, 46]. Because these loans were contractually \"secured by the cash surrender value of the policies\" which remained in Occidental's possession in th...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
         },
         {
           "title": "6. Workspace Ingestion Isolation",
           "desc": "* **The Charles E. Sorensen Estate (Claim CU-3440):** Although the FCSC officially certified Sorensen's loss under Decision CU-5843, the **itemized property manifests, acreage data, and specific deeds for the Pinar del R\u00edo and Matanzas holdings are entirely missing from this active workspace** [49, 50]. The claims are single-sourced to the summary ...",
           "excerpt": "* **The Charles E. Sorensen Estate (Claim CU-3440):** Although the FCSC officially certified Sorensen's loss under Decision CU-5843, the **itemized property manifests, acreage data, and specific deeds for the Pinar del R\u00edo and Matanzas holdings are entirely missing from this active workspace** [49, 50]. The claims are single-sourced to the summary ...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:dd2b940d27b063d71dcd89be83269ff9b872a415ded12b3ac2026032f2647692"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:under-sourced:28181032dd8b19e70d01a9ffb6a09fe22d9594f62da792ff45ac56427148558d"
         }
       ],
       "adjacent": [
@@ -949,56 +949,56 @@
           "desc": "The FCSC officially recognized the **Community Property Laws of Cuba**, adhering to the international legal rule that the law of the *situs* (location) governs the ownership of physical property, meaning that marital assets in Cuba were owned equally by both spouses [1, 2]. This created complex legal challenges when claimants divorced or remarried ...",
           "excerpt": "The FCSC officially recognized the **Community Property Laws of Cuba**, adhering to the international legal rule that the law of the *situs* (location) governs the ownership of physical property, meaning that marital assets in Cuba were owned equally by both spouses [1, 2]. This created complex legal challenges when claimants divorced or remarried ...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "The Exclusion of U.S. Government Agencies as Eligible Claimants",
           "desc": "The FCSC\u2019s adjudications highlight a significant jurisdictional boundary regarding U.S. Government-owned entities: * In the **Claim of Ebasco Industries, Inc. (Claim No. CU-2324)**, the claimant sought recovery for mortgage bonds issued by its subsidiary, the Cuban Electric Company [8-10]. * Between 1952 and 1957, Ebasco had surrendered these bonds...",
           "excerpt": "The FCSC\u2019s adjudications highlight a significant jurisdictional boundary regarding U.S. Government-owned entities: * In the **Claim of Ebasco Industries, Inc. (Claim No. CU-2324)**, the claimant sought recovery for mortgage bonds issued by its subsidiary, the Cuban Electric Company [8-10]. * Between 1952 and 1957, Ebasco had surrendered these bonds...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "Non-Profit and Non-Stock Corporate Claims",
           "desc": "The FCSC established that non-stock corporations organized in the United States, whose trustees or members are U.S. citizens, fully qualify as United States nationals under Title V [13]. This allowed religious and educational orders to seek compensation for socialized properties: * In the **Claim of the Brothers of the Order of Hermits of St. Augus...",
           "excerpt": "The FCSC established that non-stock corporations organized in the United States, whose trustees or members are U.S. citizens, fully qualify as United States nationals under Title V [13]. This allowed religious and educational orders to seek compensation for socialized properties: * In the **Claim of the Brothers of the Order of Hermits of St. Augus...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "Exchange Control Interventions as Constructive Takings",
           "desc": "While most claims focused on physical interventions or direct expropriation decrees, the FCSC established that monetary policy could constitute a constructive taking under international law: * On September 29, 1959, the Cuban Government published **Law 568 concerning foreign exchange**, which restricted the transfer of funds to foreign creditors an...",
           "excerpt": "While most claims focused on physical interventions or direct expropriation decrees, the FCSC established that monetary policy could constitute a constructive taking under international law: * On September 29, 1959, the Cuban Government published **Law 568 concerning foreign exchange**, which restricted the transfer of funds to foreign creditors an...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "Subrogation of Corporate Debt Guarantees",
           "desc": "The FCSC had to address the legal rights of American guarantors who stepped in to pay off foreign debts after Cuban enterprises were nationalized: * In the **Claim of William A. Powe (Claim No. CU-0502)**, Powe had personally guaranteed payment for heavy machinery shipped to his Cuban dealerships by **Caterpillar Americas Company** and **Deere & Co...",
           "excerpt": "The FCSC had to address the legal rights of American guarantors who stepped in to pay off foreign debts after Cuban enterprises were nationalized: * In the **Claim of William A. Powe (Claim No. CU-0502)**, Powe had personally guaranteed payment for heavy machinery shipped to his Cuban dealerships by **Caterpillar Americas Company** and **Deere & Co...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "Late-Filed Claims and the FCSC's \"Orderly Processing\" Discretion",
           "desc": "The statutory deadline for filing claims under the Cuban Claims Program was strictly set for May 1, 1967 [28-30]. However, the FCSC established an important procedural precedent regarding late submissions: * In the **Claim of John Korenda (Claim No. CU-8255)**, the claimant did not submit his \\$100,000 claim until June 25, 1968\u2014over a year past the...",
           "excerpt": "The statutory deadline for filing claims under the Cuban Claims Program was strictly set for May 1, 1967 [28-30]. However, the FCSC established an important procedural precedent regarding late submissions: * In the **Claim of John Korenda (Claim No. CU-8255)**, the claimant did not submit his \\$100,000 claim until June 25, 1968\u2014over a year past the...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "Actuarial Valuation of Life Estates",
           "desc": "When property seized by the Cuban government was subject to split ownership interests (such as life tenancies and remainders), the FCSC had to establish a standard valuation method: * In the **Claim of Richard Franchi Alfaro (Claim No. CU-0048)**, the Commission ruled that the values of life estates and remainder interests must be determined mathem...",
           "excerpt": "When property seized by the Cuban government was subject to split ownership interests (such as life tenancies and remainders), the FCSC had to establish a standard valuation method: * In the **Claim of Richard Franchi Alfaro (Claim No. CU-0048)**, the Commission ruled that the values of life estates and remainder interests must be determined mathem...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         },
         {
           "title": "War Claims Act of 1948 vs. Title V Valuation Standards",
           "desc": "In adjudicating the wrongful death of Robert Otis Fuller (who was executed by a Cuban firing squad), the FCSC had to reconcile conflicting statutory philosophies regarding the value of human life: * Under Title V of the International Claims Settlement Act of 1949, the Commission ruled that a wrongful death award must be measured actuarially by the ...",
           "excerpt": "In adjudicating the wrongful death of Robert Otis Fuller (who was executed by a Cuban firing squad), the FCSC had to reconcile conflicting statutory philosophies regarding the value of human life: * Under Title V of the International Claims Settlement Act of 1949, the Commission ruled that a wrongful death award must be measured actuarially by the ...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:ecdda8764a486d6660d3de226e6838df90c0149cf02039bc1eb4738bbbb87044"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:adjacent-topics:4ac78be6e37fcca8844d9061f4a82d0ba84c64a92de4f01b1bb29b66fbbf47f5"
         }
       ],
       "followup": [
@@ -1007,28 +1007,28 @@
           "desc": "* **The Focus:** The declassified land deeds, financial ledger transactions, and estate records of the Charles E. Sorensen Family Estate (Claim No. CU-3440, Decision No. CU-5843) [1, 2]. * **The Value:** While the Foreign Claims Settlement Commission (FCSC) certified the estate's capital loss for agricultural tracts in the Matanzas and Pinar del R\u00ed...",
           "excerpt": "* **The Focus:** The declassified land deeds, financial ledger transactions, and estate records of the Charles E. Sorensen Family Estate (Claim No. CU-3440, Decision No. CU-5843) [1, 2]. * **The Value:** While the Foreign Claims Settlement Commission (FCSC) certified the estate's capital loss for agricultural tracts in the Matanzas and Pinar del R\u00ed...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:962611d484bbf85981c44ff3c40effecd3b26939ffce97afeccb4e85681deb3d"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:79ad035504422deaea819bfb971dd71327fca6f8b70051f530acfdcbff6a37b9"
         },
         {
           "title": "2. Legal Analysis of Appellate Briefs on Geological Risk (Nicaro Nickel vs. Freeport Sulphur)",
           "desc": "* **The Focus:** Reconciling the FCSC's complete denial of Freeport Sulphur's \\$387,000 concession claim [4] with the \\$33,014,082.52 certification awarded to Nicaro Nickel (Claim No. CU-2624) [5]. * **The Value:** The FCSC ruled that Freeport's concessions had no measurable value because they were \"unripe for commercial development\" on the date of...",
           "excerpt": "* **The Focus:** Reconciling the FCSC's complete denial of Freeport Sulphur's \\$387,000 concession claim [4] with the \\$33,014,082.52 certification awarded to Nicaro Nickel (Claim No. CU-2624) [5]. * **The Value:** The FCSC ruled that Freeport's concessions had no measurable value because they were \"unripe for commercial development\" on the date of...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:962611d484bbf85981c44ff3c40effecd3b26939ffce97afeccb4e85681deb3d"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:79ad035504422deaea819bfb971dd71327fca6f8b70051f530acfdcbff6a37b9"
         },
         {
           "title": "3. Tracking the ITT/Cutelco \\$80 Million \"Trustee\" Payouts",
           "desc": "* **The Focus:** Reconstructing the administrative and legal history of the **\\$80,002,794.14** trust certified to the International Telephone and Telegraph Corporation (ITT) under Decision No. CU-5013 [13-15]. * **The Value:** Due to the defunct status of the Cuban Telephone Company (Cutelco), the FCSC certified these unclaimed assets to ITT \"as T...",
           "excerpt": "* **The Focus:** Reconstructing the administrative and legal history of the **\\$80,002,794.14** trust certified to the International Telephone and Telegraph Corporation (ITT) under Decision No. CU-5013 [13-15]. * **The Value:** Due to the defunct status of the Cuban Telephone Company (Cutelco), the FCSC certified these unclaimed assets to ITT \"as T...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:962611d484bbf85981c44ff3c40effecd3b26939ffce97afeccb4e85681deb3d"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:79ad035504422deaea819bfb971dd71327fca6f8b70051f530acfdcbff6a37b9"
         },
         {
           "title": "4. Reconstructing Valuations for Non-Stock, Charitable Properties (The Augustinian Order)",
           "desc": "* **The Focus:** Mapping the non-market appraisal methods used to certify the **\\$7,885,098.68** loss sustained by the Brothers of the Order of Hermits of St. Augustine (Claim No. CU-3503) [16, 17]. * **The Value:** Since charitable and religious non-stock corporations have no stock trading history or commercial \"going concern\" net profits [16, 18]...",
           "excerpt": "* **The Focus:** Mapping the non-market appraisal methods used to certify the **\\$7,885,098.68** loss sustained by the Brothers of the Order of Hermits of St. Augustine (Claim No. CU-3503) [16, 17]. * **The Value:** Since charitable and religious non-stock corporations have no stock trading history or commercial \"going concern\" net profits [16, 18]...",
           "date": "2026-09-19",
-          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:962611d484bbf85981c44ff3c40effecd3b26939ffce97afeccb4e85681deb3d"
+          "key": "c8360946-dbee-4a2c-b622-7f89b05695b0:follow-up:79ad035504422deaea819bfb971dd71327fca6f8b70051f530acfdcbff6a37b9"
         }
       ]
     },
@@ -1188,35 +1188,35 @@
           "desc": "A sharp contradiction exists regarding who deserves credit for the creation of the moving assembly line: * **The Executive Narrative:** Both Henry Ford's 1922 memoir and Charles Sorensen's 1956 memoir (*My Forty Years with Ford*) minimize individual shop-floor inventors [1, 2]. Henry Ford\u2019s account vaguely attributes the idea to Chicago meatpacking...",
           "excerpt": "A sharp contradiction exists regarding who deserves credit for the creation of the moving assembly line: * **The Executive Narrative:** Both Henry Ford's 1922 memoir and Charles Sorensen's 1956 memoir (*My Forty Years with Ford*) minimize individual shop-floor inventors [1, 2]. Henry Ford\u2019s account vaguely attributes the idea to Chicago meatpacking...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:fd89f1ff27fb536a7b658b6f00f401c3485a4033d591c05de25a8d178d7557fa"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:f7ae3c8c8963c8afc3055cbb8f9c11c5d1110e9886c232421635f9c313258cdd"
         },
         {
           "title": "2. Charles Sorensen: Edsel Ford\u2019s Protector or His Frustrator?",
           "desc": "The sources paint two conflicting portraits of Sorensen\u2019s alignment during the executive factional wars at River Rouge: * **The Aligned Protector:** The *Foundational Dossier* documents a strong **Edsel-Sorensen Alliance** [5]. Sorensen stood alongside Edsel to oppose Harry Bennett's corrupt Service Department, supporting progressive purchasing dir...",
           "excerpt": "The sources paint two conflicting portraits of Sorensen\u2019s alignment during the executive factional wars at River Rouge: * **The Aligned Protector:** The *Foundational Dossier* documents a strong **Edsel-Sorensen Alliance** [5]. Sorensen stood alongside Edsel to oppose Harry Bennett's corrupt Service Department, supporting progressive purchasing dir...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:fd89f1ff27fb536a7b658b6f00f401c3485a4033d591c05de25a8d178d7557fa"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:f7ae3c8c8963c8afc3055cbb8f9c11c5d1110e9886c232421635f9c313258cdd"
         },
         {
           "title": "3. The \"Wizard of Willow Run\" vs. Edsel's Decisive Quality Interventions",
           "desc": "Sorensen famously promoted himself as the supreme operational mastermind of wartime aviation scaling [7]. However, primary records reveal a significant gap between his self-portrayal and actual quality crises: * **Sorensen's Claim of Singular Design:** In his memoir, Sorensen boasts that he single-handedly roughed out the entire, mile-long floor pl...",
           "excerpt": "Sorensen famously promoted himself as the supreme operational mastermind of wartime aviation scaling [7]. However, primary records reveal a significant gap between his self-portrayal and actual quality crises: * **Sorensen's Claim of Singular Design:** In his memoir, Sorensen boasts that he single-handedly roughed out the entire, mile-long floor pl...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:fd89f1ff27fb536a7b658b6f00f401c3485a4033d591c05de25a8d178d7557fa"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:f7ae3c8c8963c8afc3055cbb8f9c11c5d1110e9886c232421635f9c313258cdd"
         },
         {
           "title": "4. Henry Ford\u2019s Dual Nature: Cruel Tyrant vs. Kindly Humanitarian",
           "desc": "Biographers and associates remain deeply divided on the true character of the company's founder: * **The Suspicious Tyrant:** Sorensen describes Henry Ford as **\"small-minded, suspicious, jealous, occasionally malicious, and lacking in sincerity\"** [16]. Reviewers note that Sorensen's portrayal of Ford in his final years\u2014following debilitating stro...",
           "excerpt": "Biographers and associates remain deeply divided on the true character of the company's founder: * **The Suspicious Tyrant:** Sorensen describes Henry Ford as **\"small-minded, suspicious, jealous, occasionally malicious, and lacking in sincerity\"** [16]. Reviewers note that Sorensen's portrayal of Ford in his final years\u2014following debilitating stro...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:fd89f1ff27fb536a7b658b6f00f401c3485a4033d591c05de25a8d178d7557fa"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:f7ae3c8c8963c8afc3055cbb8f9c11c5d1110e9886c232421635f9c313258cdd"
         },
         {
           "title": "5. Archival Gaps & Under-Corroborated Legends",
           "desc": "The *Foundational Dossier* explicitly flags several high-stakes claims that remain entirely uncorroborated or single-sourced within the corporate archives [19]: * **Clara Ford\u2019s Ultimatum:** While executive advisor Ernest Kanzler asserted that Clara Ford directly demanded Sorensen's removal in 1944 to protect her grandson Henry Ford II\u2019s succession...",
           "excerpt": "The *Foundational Dossier* explicitly flags several high-stakes claims that remain entirely uncorroborated or single-sourced within the corporate archives [19]: * **Clara Ford\u2019s Ultimatum:** While executive advisor Ernest Kanzler asserted that Clara Ford directly demanded Sorensen's removal in 1944 to protect her grandson Henry Ford II\u2019s succession...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:fd89f1ff27fb536a7b658b6f00f401c3485a4033d591c05de25a8d178d7557fa"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:open-contradictions:f7ae3c8c8963c8afc3055cbb8f9c11c5d1110e9886c232421635f9c313258cdd"
         }
       ],
       "undersourced": [
@@ -1225,35 +1225,35 @@
           "desc": "* **The Asserted Claim:** Following Edsel Ford\u2019s death in May 1943, Henry Ford's wife, Clara, allegedly stepped into the corporate power struggle, demanding that Charles Sorensen be removed from the company to protect and pave the way for her grandson, Henry Ford II, to assume control [1, 2]. * **The Archival Gap:** This highly dramatic narrative o...",
           "excerpt": "* **The Asserted Claim:** Following Edsel Ford\u2019s death in May 1943, Henry Ford's wife, Clara, allegedly stepped into the corporate power struggle, demanding that Charles Sorensen be removed from the company to protect and pave the way for her grandson, Henry Ford II, to assume control [1, 2]. * **The Archival Gap:** This highly dramatic narrative o...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:c2e1c062728923bbcc3420c34a7e4cd84cd6d08254f059222d1dfc3d32c88845"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:01aefb91824f6ac7de79de73ab789f30057e51782c94ad1ee3267f42382afa52"
         },
         {
           "title": "2. The \"Gillespie Gambit\"",
           "desc": "* **The Asserted Claim:** In an effort to neutralize the hostile and growing authority of Harry Bennett's 3,000-man Service Department, Charles Sorensen allegedly attempted to bring in **John Gillespie** as an executive counterweight [2, 3]. * **The Archival Gap:** While this administrative maneuver is frequently referenced in historical discussion...",
           "excerpt": "* **The Asserted Claim:** In an effort to neutralize the hostile and growing authority of Harry Bennett's 3,000-man Service Department, Charles Sorensen allegedly attempted to bring in **John Gillespie** as an executive counterweight [2, 3]. * **The Archival Gap:** While this administrative maneuver is frequently referenced in historical discussion...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:c2e1c062728923bbcc3420c34a7e4cd84cd6d08254f059222d1dfc3d32c88845"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:01aefb91824f6ac7de79de73ab789f30057e51782c94ad1ee3267f42382afa52"
         },
         {
           "title": "3. Reverend Samuel Marquis's Executive Showdown",
           "desc": "* **The Asserted Claim:** Reverend Samuel Marquis allegedly confronted Henry Ford in a highly explosive, direct showdown over the elder Ford\u2019s cruel and relentless psychological torment of his son, Edsel [2]. * **The Archival Gap:** This foundational narrative of family cruelty and executive confrontation rests entirely on a single source: Marquis'...",
           "excerpt": "* **The Asserted Claim:** Reverend Samuel Marquis allegedly confronted Henry Ford in a highly explosive, direct showdown over the elder Ford\u2019s cruel and relentless psychological torment of his son, Edsel [2]. * **The Archival Gap:** This foundational narrative of family cruelty and executive confrontation rests entirely on a single source: Marquis'...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:c2e1c062728923bbcc3420c34a7e4cd84cd6d08254f059222d1dfc3d32c88845"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:01aefb91824f6ac7de79de73ab789f30057e51782c94ad1ee3267f42382afa52"
         },
         {
           "title": "4. Sorensen\u2019s \"One-Night Sketch\" of Willow Run",
           "desc": "* **The Asserted Claim:** Sorensen asserts in his memoir that he single-handedly roughed out the complete, mile-long pencil floor plan of the massive Willow Run bomber plant on note paper in a single night of inspired work [4, 5]. * **The Archival Gap:** Contemporary reviewers and historians heavily criticize this narrative, labeling it an example ...",
           "excerpt": "* **The Asserted Claim:** Sorensen asserts in his memoir that he single-handedly roughed out the complete, mile-long pencil floor plan of the massive Willow Run bomber plant on note paper in a single night of inspired work [4, 5]. * **The Archival Gap:** Contemporary reviewers and historians heavily criticize this narrative, labeling it an example ...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:c2e1c062728923bbcc3420c34a7e4cd84cd6d08254f059222d1dfc3d32c88845"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:01aefb91824f6ac7de79de73ab789f30057e51782c94ad1ee3267f42382afa52"
         },
         {
           "title": "5. The Top-Down Origin of the Moving Assembly Line",
           "desc": "* **The Asserted Claim:** Henry Ford\u2019s 1922 memoir and Sorensen\u2019s 1956 memoir both frame the invention of the moving assembly line as either an anonymous top-down inspiration from Chicago meatpacking houses or a vague, collective executive milestone [10]. * **The Archival Gap:** These sanitized, executive-focused narratives are deeply challenged by...",
           "excerpt": "* **The Asserted Claim:** Henry Ford\u2019s 1922 memoir and Sorensen\u2019s 1956 memoir both frame the invention of the moving assembly line as either an anonymous top-down inspiration from Chicago meatpacking houses or a vague, collective executive milestone [10]. * **The Archival Gap:** These sanitized, executive-focused narratives are deeply challenged by...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:c2e1c062728923bbcc3420c34a7e4cd84cd6d08254f059222d1dfc3d32c88845"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:under-sourced:01aefb91824f6ac7de79de73ab789f30057e51782c94ad1ee3267f42382afa52"
         }
       ],
       "adjacent": [
@@ -1262,35 +1262,35 @@
           "desc": "Your sources contain deep dossiers on the landmark legal battle **Dodge Brothers vs. Henry Ford (GAP-04)** [1]. * **The Dispute:** In 1916, John and Horace Dodge (who held a 10% minority equity stake in Ford Motor Company) sued Henry Ford over his refusal to distribute a massive \\$58 million accumulated surplus as special dividends [2]. Henry Ford ...",
           "excerpt": "Your sources contain deep dossiers on the landmark legal battle **Dodge Brothers vs. Henry Ford (GAP-04)** [1]. * **The Dispute:** In 1916, John and Horace Dodge (who held a 10% minority equity stake in Ford Motor Company) sued Henry Ford over his refusal to distribute a massive \\$58 million accumulated surplus as special dividends [2]. Henry Ford ...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:9f8db040f27319b17ac05a9f54bdd6b6125690e60476fdf4eb6a3ad059465be0"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:acb8940a0ae52ba1e31bebabb6ef2b321810e9b50aeb3d55a030fb16fd16b276"
         },
         {
           "title": "2. The \"Battle of the Overpass\" & Anti-Union Warfare (1937)",
           "desc": "The shadow authority of Harry Bennett's paramilitary Service Department points directly to the violent labor struggles at River Rouge [5]. * **Paramilitary Scope:** Bennett's Service Department expanded to approximately **3,000 agents, ex-boxers, and underworld figures** who enforced absolute discipline, monitored executive communications, and cond...",
           "excerpt": "The shadow authority of Harry Bennett's paramilitary Service Department points directly to the violent labor struggles at River Rouge [5]. * **Paramilitary Scope:** Bennett's Service Department expanded to approximately **3,000 agents, ex-boxers, and underworld figures** who enforced absolute discipline, monitored executive communications, and cond...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:9f8db040f27319b17ac05a9f54bdd6b6125690e60476fdf4eb6a3ad059465be0"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:acb8940a0ae52ba1e31bebabb6ef2b321810e9b50aeb3d55a030fb16fd16b276"
         },
         {
           "title": "3. World War II Security Clashes at Willow Run (1942\u20131944)",
           "desc": "While Willow Run is celebrated for its production rate, the dossiers reveal a parallel shadow war between Ford corporate security and the United States government [5]. * **Bennett's Encroachment:** During World War II, Harry Bennett attempted to expand his shadow authority by placing Service Department guards in charge of airfield gate security and...",
           "excerpt": "While Willow Run is celebrated for its production rate, the dossiers reveal a parallel shadow war between Ford corporate security and the United States government [5]. * **Bennett's Encroachment:** During World War II, Harry Bennett attempted to expand his shadow authority by placing Service Department guards in charge of airfield gate security and...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:9f8db040f27319b17ac05a9f54bdd6b6125690e60476fdf4eb6a3ad059465be0"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:acb8940a0ae52ba1e31bebabb6ef2b321810e9b50aeb3d55a030fb16fd16b276"
         },
         {
           "title": "4. Post-War International Asset Recovery & \"Ford SAF\" (1948)",
           "desc": "The newly synchronized files contain declassified Foreign Claims Settlement Commission (FCSC) records from November 15, 1948 (Claim No. FCSC-EUR-8812) [6]. * **The Claim:** Ford filed a **\\$12.4 million principal valuation claim** for assembly plant machinery and parts depots destroyed or controlled during WWII [6]. * **The Locations:** The restitu...",
           "excerpt": "The newly synchronized files contain declassified Foreign Claims Settlement Commission (FCSC) records from November 15, 1948 (Claim No. FCSC-EUR-8812) [6]. * **The Claim:** Ford filed a **\\$12.4 million principal valuation claim** for assembly plant machinery and parts depots destroyed or controlled during WWII [6]. * **The Locations:** The restitu...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:9f8db040f27319b17ac05a9f54bdd6b6125690e60476fdf4eb6a3ad059465be0"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:acb8940a0ae52ba1e31bebabb6ef2b321810e9b50aeb3d55a030fb16fd16b276"
         },
         {
           "title": "5. The Overshadowed Pioneers of Mass Production",
           "desc": "While Sorensen and Bennett dominate the political narratives, the biographical guides profile several key technical minds whose contributions are ripe for exploration: * **William Knudsen (Years at Ford: 1911\u20131921):** The manufacturing giant who actually oversaw the construction of **14 domestic assembly plants and three in Europe**, managed Highla...",
           "excerpt": "While Sorensen and Bennett dominate the political narratives, the biographical guides profile several key technical minds whose contributions are ripe for exploration: * **William Knudsen (Years at Ford: 1911\u20131921):** The manufacturing giant who actually oversaw the construction of **14 domestic assembly plants and three in Europe**, managed Highla...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:9f8db040f27319b17ac05a9f54bdd6b6125690e60476fdf4eb6a3ad059465be0"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:adjacent-topics:acb8940a0ae52ba1e31bebabb6ef2b321810e9b50aeb3d55a030fb16fd16b276"
         }
       ],
       "followup": [
@@ -1299,35 +1299,35 @@
           "desc": "* **The Gaps:** Executive memoirs claim the moving assembly line was a top-down, collective milestone [1, 2], while machinist William \"Pa\" Klann's account attributes the core concept to a hands-on bottom-up experiment [2, 3]. * **Actionable Archival Strategy:** * **William C. Klann Papers (BFRC Accession 499) & 1955 Reminiscences:** Trace the exact...",
           "excerpt": "* **The Gaps:** Executive memoirs claim the moving assembly line was a top-down, collective milestone [1, 2], while machinist William \"Pa\" Klann's account attributes the core concept to a hands-on bottom-up experiment [2, 3]. * **Actionable Archival Strategy:** * **William C. Klann Papers (BFRC Accession 499) & 1955 Reminiscences:** Trace the exact...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:99eaba932c2d44877580c54d3f1c56f30e6c6b65fb3ae76d3dfa731a04ea4463"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:4c69759efbdc29ec53d7ef2438b1e1be116812df6446dba1d63b4421599eb45a"
         },
         {
           "title": "2. Forensic Analysis of the Sorensen Oral History (Memoir vs. Transcripts)",
           "desc": "* **The Gaps:** Charles Sorensen's 1,000+ page 1953 raw oral history was heavily edited, compressed, and stylized by journalist Samuel T. Williamson before its 1956 publication [1, 8]. * **Actionable Archival Strategy:** * **Owen Bombard Interview Series (BFRC Accession 65, Boxes 66\u201369):** Conduct a line-by-line textual comparison of Sorensen\u2019s raw...",
           "excerpt": "* **The Gaps:** Charles Sorensen's 1,000+ page 1953 raw oral history was heavily edited, compressed, and stylized by journalist Samuel T. Williamson before its 1956 publication [1, 8]. * **Actionable Archival Strategy:** * **Owen Bombard Interview Series (BFRC Accession 65, Boxes 66\u201369):** Conduct a line-by-line textual comparison of Sorensen\u2019s raw...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:99eaba932c2d44877580c54d3f1c56f30e6c6b65fb3ae76d3dfa731a04ea4463"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:4c69759efbdc29ec53d7ef2438b1e1be116812df6446dba1d63b4421599eb45a"
         },
         {
           "title": "3. Verifying Clara Ford\u2019s Boardroom Intervention",
           "desc": "* **The Gaps:** The claim that Clara Ford stepped in to demand Sorensen\u2019s removal in 1944 to protect her grandson Henry Ford II\u2019s succession relies entirely on a single source: executive advisor Ernest Kanzler [15]. * **Actionable Archival Strategy:** * **Henry Ford II Papers (Bentley Historical Library):** Target the *Corporate Transition and Secu...",
           "excerpt": "* **The Gaps:** The claim that Clara Ford stepped in to demand Sorensen\u2019s removal in 1944 to protect her grandson Henry Ford II\u2019s succession relies entirely on a single source: executive advisor Ernest Kanzler [15]. * **Actionable Archival Strategy:** * **Henry Ford II Papers (Bentley Historical Library):** Target the *Corporate Transition and Secu...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:99eaba932c2d44877580c54d3f1c56f30e6c6b65fb3ae76d3dfa731a04ea4463"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:4c69759efbdc29ec53d7ef2438b1e1be116812df6446dba1d63b4421599eb45a"
         },
         {
           "title": "4. Reconstructing \"The Gillespie Gambit\" & Factional Control",
           "desc": "* **The Gaps:** Stories of Sorensen trying to hire John Gillespie as an administrative shield against Harry Bennett's 3,000-man Service Department lack verified documentation [15, 18]. * **Actionable Archival Strategy:** * **P.E. Martin Papers (BFRC Accession 823):** Review Martin's correspondence and administrative files from his tenure as plant s...",
           "excerpt": "* **The Gaps:** Stories of Sorensen trying to hire John Gillespie as an administrative shield against Harry Bennett's 3,000-man Service Department lack verified documentation [15, 18]. * **Actionable Archival Strategy:** * **P.E. Martin Papers (BFRC Accession 823):** Review Martin's correspondence and administrative files from his tenure as plant s...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:99eaba932c2d44877580c54d3f1c56f30e6c6b65fb3ae76d3dfa731a04ea4463"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:4c69759efbdc29ec53d7ef2438b1e1be116812df6446dba1d63b4421599eb45a"
         },
         {
           "title": "5. Documenting the Dodge Brothers Buyout Negotiations (GAP-04)",
           "desc": "* **The Gaps:** The transition to 100% family equity following the *Dodge v. Ford* (1919) ruling [19] requires deeper financial and strategic tracing. * **Actionable Archival Strategy:** * **Michigan Supreme Court Records:** Retrieve *Records and Briefs in Dodge v. Ford Motor Co.* (Docket No. 58, 1918\u20131919) [20] to inspect original depositions deta...",
           "excerpt": "* **The Gaps:** The transition to 100% family equity following the *Dodge v. Ford* (1919) ruling [19] requires deeper financial and strategic tracing. * **Actionable Archival Strategy:** * **Michigan Supreme Court Records:** Retrieve *Records and Briefs in Dodge v. Ford Motor Co.* (Docket No. 58, 1918\u20131919) [20] to inspect original depositions deta...",
           "date": "2026-09-19",
-          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:99eaba932c2d44877580c54d3f1c56f30e6c6b65fb3ae76d3dfa731a04ea4463"
+          "key": "0caf6707-f8f2-4d2a-acd2-020acead55ba:follow-up:4c69759efbdc29ec53d7ef2438b1e1be116812df6446dba1d63b4421599eb45a"
         }
       ]
     },
@@ -1424,7 +1424,7 @@
           "desc": "Across the collection, **five primary archival gaps and unresolved contradictions** persist regarding Charles E. Sorensen's industrial leadership and late-career legacy:  ### 1. The Geographic Locatio...",
           "excerpt": "Across the collection, **five primary archival gaps and unresolved contradictions** persist regarding Charles E. Sorensen's industrial leadership and late-career legacy:  ### 1. The Geographic Locatio...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:open-contradictions:ab131288247466094f3801af705b38bf707de88bf15acc293c6bf3e39055c6fb"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:open-contradictions:d1718d65c739983712fe4ed0bbce63911e9d2cbde1bcaa257f8b0abf7f7adc66"
         }
       ],
       "undersourced": [
@@ -1433,51 +1433,51 @@
           "desc": "There is a direct geographical conflict regarding the location of Sorensen\u2019s personal estate where the historic July 18, 1945 \"Jeep Day\" demonstration was held: * The *Foundational Dossier* asserts that the 2,000-acre agricultural estate where civilian Jeep implement testing took place, **CESOR Farm**, was located in **New Hudson, Michigan** [1]. *...",
           "excerpt": "There is a direct geographical conflict regarding the location of Sorensen\u2019s personal estate where the historic July 18, 1945 \"Jeep Day\" demonstration was held: * The *Foundational Dossier* asserts that the 2,000-acre agricultural estate where civilian Jeep implement testing took place, **CESOR Farm**, was located in **New Hudson, Michigan** [1]. *...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
         },
         {
           "title": "2. The 1946 Willys-Overland Boardroom Conflict",
           "desc": "While the sources assert that Sorensen\u2019s autocratic style clashed with Willys-Overland's corporate committee governance\u2014culminating in him blocking the board\u2019s passenger sedan plans and stepping down as CEO in 1946 [1]\u2014the precise details of this conflict are **under-corroborated**. The dossier explicitly acknowledges this as an **archival gap**, n...",
           "excerpt": "While the sources assert that Sorensen\u2019s autocratic style clashed with Willys-Overland's corporate committee governance\u2014culminating in him blocking the board\u2019s passenger sedan plans and stepping down as CEO in 1946 [1]\u2014the precise details of this conflict are **under-corroborated**. The dossier explicitly acknowledges this as an **archival gap**, n...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
         },
         {
           "title": "3. Expropriated Cuban Land Holdings under \"CESOR S.A.\"",
           "desc": "The claim that Sorensen held extensive agricultural estates in pre-revolutionary Cuba that were nationalized by the Castro government after 1959 is highly intriguing but **lacks primary verification** [6]. The dossier lists this as an **unresolved question**, noting that the exact acreage, corporate veil, and valuations of these estates remain comp...",
           "excerpt": "The claim that Sorensen held extensive agricultural estates in pre-revolutionary Cuba that were nationalized by the Castro government after 1959 is highly intriguing but **lacks primary verification** [6]. The dossier lists this as an **unresolved question**, noting that the exact acreage, corporate veil, and valuations of these estates remain comp...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
         },
         {
           "title": "4. Details of the 1929 Soviet-Ford (GAZ) Negotiations",
           "desc": "The text notes that Sorensen personally signed the landmark May 31, 1929, licensing agreement to build the USSR's first assembly lines in Nizhny Novgorod [7]. However, the detailed, unedited records of his meetings with Soviet economic minister Valery Mezhlauk are **under-corroborated** because the original diaries and Amtorg trading transcripts at...",
           "excerpt": "The text notes that Sorensen personally signed the landmark May 31, 1929, licensing agreement to build the USSR's first assembly lines in Nizhny Novgorod [7]. However, the detailed, unedited records of his meetings with Soviet economic minister Valery Mezhlauk are **under-corroborated** because the original diaries and Amtorg trading transcripts at...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
         },
         {
           "title": "5. The \\$560 LCMV Unit Cost and Economic Feasibility",
           "desc": "Sorensen\u2019s revolutionary **\\$560 unit cost** projection for the 1963 fiberglass Low Cost Molded Vehicle (LCMV) is **single-sourced** to his own \"rough calculations\" and designer Brooks Stevens' personal recollections in a later interview [8, 9]. Furthermore, the assertion that this vehicle could have salvaged Studebaker is heavily contested; histor...",
           "excerpt": "Sorensen\u2019s revolutionary **\\$560 unit cost** projection for the 1963 fiberglass Low Cost Molded Vehicle (LCMV) is **single-sourced** to his own \"rough calculations\" and designer Brooks Stevens' personal recollections in a later interview [8, 9]. Furthermore, the assertion that this vehicle could have salvaged Studebaker is heavily contested; histor...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
         },
         {
           "title": "6. Sorensen\u2019s Royal Danish Honors",
           "desc": "The claim that King Christian X appointed Sorensen a Knight of the **Order of the Dannebrog** in 1930 and promoted him to Commander in 1937 [7] is sourced strictly to Sorensen family legal accessions [11]. These prestigious appointments lack primary diplomatic or state registry corroboration within the current files. \ud83e\udded Would you like to review the ...",
           "excerpt": "The claim that King Christian X appointed Sorensen a Knight of the **Order of the Dannebrog** in 1930 and promoted him to Commander in 1937 [7] is sourced strictly to Sorensen family legal accessions [11]. These prestigious appointments lack primary diplomatic or state registry corroboration within the current files. \ud83e\udded Would you like to review the ...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:d914e07c11fe71da820c38bc50d94b08d485be0c6b05e92bd3fe7e6df2e37482"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:under-sourced:96e90bb8f2e322a44cb5d7d82bc674b0155e6dcbc483503d037a657a24e7c97d"
         }
       ],
       "adjacent": [
         {
           "title": "What adjacent topics do these sources point to that aren't covered yet?",
-          "desc": "The sources point to **nine rich adjacent topics** that extend Charles E. Sorensen's narrative beyond his Willys-Overland presidency and the 1963 Low Cost Molded Vehicle (LCMV) proposal:  ### 1. WWII ...",
-          "excerpt": "The sources point to **nine rich adjacent topics** that extend Charles E. Sorensen's narrative beyond his Willys-Overland presidency and the 1963 Low Cost Molded Vehicle (LCMV) proposal:  ### 1. WWII ...",
+          "desc": "Your sources point to **nine rich adjacent topics** that extend Charles E. Sorensen's narrative beyond his Willys-Overland presidency and the 1963 Low Cost Molded Vehicle (LCMV) proposal:  ### 1. WWII...",
+          "excerpt": "Your sources point to **nine rich adjacent topics** that extend Charles E. Sorensen's narrative beyond his Willys-Overland presidency and the 1963 Low Cost Molded Vehicle (LCMV) proposal:  ### 1. WWII...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:adjacent-topics:f1ba45c4466d7e81f330f785c8769548a70d1bedfe204b8f1fc4317e51ecc37c"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:adjacent-topics:cd393e32b03a035ed2c04d54554dff4581de9a3ac6568b827339c7a6afbf70c8"
         }
       ],
       "followup": [
@@ -1486,35 +1486,35 @@
           "desc": "The sources present a direct conflict on where the historic July 18, 1945 \"Jeep Day\" occurred\u2014citing both **CESOR Farm in New Hudson, Michigan** [1] and a **personal estate in Ohio** [2]. * **Target Research:** Retrieve the original July 18\u201319, 1945 press releases and local coverage from the ***Toledo Blade* archives** [3]. Additionally, land regis...",
           "excerpt": "The sources present a direct conflict on where the historic July 18, 1945 \"Jeep Day\" occurred\u2014citing both **CESOR Farm in New Hudson, Michigan** [1] and a **personal estate in Ohio** [2]. * **Target Research:** Retrieve the original July 18\u201319, 1945 press releases and local coverage from the ***Toledo Blade* archives** [3]. Additionally, land regis...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:cdf70a15c5478d3e4d89c1e20c7dd874af366eef8caeab11dfe277890d6a802a"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:7d47369892f19c3b3e7b5ece189660cf3b048e82b6d47bfc3646db8cc3bedc04"
         },
         {
           "title": "2. Recover the 1946 Willys-Overland Board Minutes",
           "desc": "While we know Sorensen's autocratic style led to his transition to Vice Chairman after blocking the board's passenger car plans [1], the exact nature of his executive clashes remains uncorroborated by primary corporate records [4]. * **Target Research:** Query corporate archives holding **Willys-Overland Board Minutes from 1945\u20131946** and the perso...",
           "excerpt": "While we know Sorensen's autocratic style led to his transition to Vice Chairman after blocking the board's passenger car plans [1], the exact nature of his executive clashes remains uncorroborated by primary corporate records [4]. * **Target Research:** Query corporate archives holding **Willys-Overland Board Minutes from 1945\u20131946** and the perso...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:cdf70a15c5478d3e4d89c1e20c7dd874af366eef8caeab11dfe277890d6a802a"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:7d47369892f19c3b3e7b5ece189660cf3b048e82b6d47bfc3646db8cc3bedc04"
         },
         {
           "title": "3. Retrieve Foreign Claims Settlement Commission (FCSC) Files on Cuba",
           "desc": "The claim that Sorensen held extensive agricultural estates under **\"CESOR S.A.\"** that were nationalized by the Castro government after 1959 is highly intriguing but currently lacks primary documentation [4, 5]. * **Target Research:** Retrieve **Claim CU-2067** from the federal **Foreign Claims Settlement Commission (FCSC) records** [4]. These fil...",
           "excerpt": "The claim that Sorensen held extensive agricultural estates under **\"CESOR S.A.\"** that were nationalized by the Castro government after 1959 is highly intriguing but currently lacks primary documentation [4, 5]. * **Target Research:** Retrieve **Claim CU-2067** from the federal **Foreign Claims Settlement Commission (FCSC) records** [4]. These fil...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:cdf70a15c5478d3e4d89c1e20c7dd874af366eef8caeab11dfe277890d6a802a"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:7d47369892f19c3b3e7b5ece189660cf3b048e82b6d47bfc3646db8cc3bedc04"
         },
         {
           "title": "4. Locate the 1929 Soviet Negotiation Logs",
           "desc": "The fine-grained details of Sorensen's landmark meetings in the USSR to establish the GAZ assembly lines in Nizhny Novgorod are currently uncorroborated [4, 6]. * **Target Research:** Access the **Benson Ford Research Center** to examine **Accession 65, Box 66-4** [4]. This specific box contains the unedited diaries and Amtorg Trading Corporation t...",
           "excerpt": "The fine-grained details of Sorensen's landmark meetings in the USSR to establish the GAZ assembly lines in Nizhny Novgorod are currently uncorroborated [4, 6]. * **Target Research:** Access the **Benson Ford Research Center** to examine **Accession 65, Box 66-4** [4]. This specific box contains the unedited diaries and Amtorg Trading Corporation t...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:cdf70a15c5478d3e4d89c1e20c7dd874af366eef8caeab11dfe277890d6a802a"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:7d47369892f19c3b3e7b5ece189660cf3b048e82b6d47bfc3646db8cc3bedc04"
         },
         {
           "title": "5. Audit the Stevens-Burlingame Correspondence on the \\$560 LCMV",
           "desc": "While the Milwaukee Art Museum's **BSA_BR_2537** record preserves the physical sketches of the Low Cost Molded Vehicle [7, 8], the claim that the \\$560 concept could have saved Studebaker is heavily contested by local historians who argue the factory was too old and the vehicle margins were too narrow [9, 10]. * **Target Research:** Search the **Br...",
           "excerpt": "While the Milwaukee Art Museum's **BSA_BR_2537** record preserves the physical sketches of the Low Cost Molded Vehicle [7, 8], the claim that the \\$560 concept could have saved Studebaker is heavily contested by local historians who argue the factory was too old and the vehicle margins were too narrow [9, 10]. * **Target Research:** Search the **Br...",
           "date": "2026-09-19",
-          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:cdf70a15c5478d3e4d89c1e20c7dd874af366eef8caeab11dfe277890d6a802a"
+          "key": "9c469910-a900-43a4-877c-a43c9f545b5f:follow-up:7d47369892f19c3b3e7b5ece189660cf3b048e82b6d47bfc3646db8cc3bedc04"
         }
       ]
     },
@@ -1528,28 +1528,28 @@
           "desc": "A major physical and political contradiction lies in the layout of the Willow Run Bomber Plant. The massive facility featured a prominent **90-degree bend** two-thirds of the way down its mile-long assembly line, requiring giant rotating turntables to turn the heavy B-24 bombers during completion [1-3]. Your sources explain this unique L-shape in f...",
           "excerpt": "A major physical and political contradiction lies in the layout of the Willow Run Bomber Plant. The massive facility featured a prominent **90-degree bend** two-thirds of the way down its mile-long assembly line, requiring giant rotating turntables to turn the heavy B-24 bombers during completion [1-3]. Your sources explain this unique L-shape in f...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:24ce30057ed831b7234bc7548dc7167d5ed265bc3d44c2772d199fcc18848e3e"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:2b03a89d8b4f7d19a50f68314129a56d10e57825f8ea12d3500056703c8f2e59"
         },
         {
           "title": "**2. The Digital Anomaly: Landmark Preservation vs. Cryptocurrency Gambling**",
           "desc": "There is a jarring modern contradiction between the intended historical purpose of one of your digital sources and its actual retrieved content: * **The Historical Mission:** Wikipedia and local records note that a public fundraising campaign called **SaveTheBomberPlant.org** was launched to raise **\\$1.2 million** to save a portion of the original...",
           "excerpt": "There is a jarring modern contradiction between the intended historical purpose of one of your digital sources and its actual retrieved content: * **The Historical Mission:** Wikipedia and local records note that a public fundraising campaign called **SaveTheBomberPlant.org** was launched to raise **\\$1.2 million** to save a portion of the original...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:24ce30057ed831b7234bc7548dc7167d5ed265bc3d44c2772d199fcc18848e3e"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:2b03a89d8b4f7d19a50f68314129a56d10e57825f8ea12d3500056703c8f2e59"
         },
         {
           "title": "**3. The Paradox of Henry Ford: Benevolent Reformer vs. Autocratic Tycoon**",
           "desc": "A deep thematic contradiction exists between Henry Ford's public persona as a champion of the common worker and the actual mechanisms of control inside his industrial empire: * **The Benevolent Reformer:** Ford famously shocked the industrial world in January 1914 by more than doubling worker pay to a landmark **\\$5-a-day** and shaving an hour off ...",
           "excerpt": "A deep thematic contradiction exists between Henry Ford's public persona as a champion of the common worker and the actual mechanisms of control inside his industrial empire: * **The Benevolent Reformer:** Ford famously shocked the industrial world in January 1914 by more than doubling worker pay to a landmark **\\$5-a-day** and shaving an hour off ...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:24ce30057ed831b7234bc7548dc7167d5ed265bc3d44c2772d199fcc18848e3e"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:2b03a89d8b4f7d19a50f68314129a56d10e57825f8ea12d3500056703c8f2e59"
         },
         {
           "title": "**4. Shareholder Primacy vs. Corporate Social Responsibility**",
           "desc": "The legal fallout from *Dodge v. Ford Motor Co.* presents an unresolved ethical contradiction that continues to animate modern corporate debates: * **The Precedent:** Henry Ford wanted to withhold special dividends from shareholders to invest in expanding employment, building new factories, and lowering car prices for the public. The Dodge brothers...",
           "excerpt": "The legal fallout from *Dodge v. Ford Motor Co.* presents an unresolved ethical contradiction that continues to animate modern corporate debates: * **The Precedent:** Henry Ford wanted to withhold special dividends from shareholders to invest in expanding employment, building new factories, and lowering car prices for the public. The Dodge brothers...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:24ce30057ed831b7234bc7548dc7167d5ed265bc3d44c2772d199fcc18848e3e"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:open-contradictions:2b03a89d8b4f7d19a50f68314129a56d10e57825f8ea12d3500056703c8f2e59"
         }
       ],
       "undersourced": [
@@ -1558,35 +1558,35 @@
           "desc": "A deleted user in a forum thread asserts that the Dodge brothers designed the entire drivetrain of the Model T and later \"turned out to be Jewish,\" framing this as a difficult pill for the famously anti-Semitic Henry Ford to swallow [1]. * **The Reality:** This assertion is **entirely uncorroborated and historically inaccurate** [1]. In the exact s...",
           "excerpt": "A deleted user in a forum thread asserts that the Dodge brothers designed the entire drivetrain of the Model T and later \"turned out to be Jewish,\" framing this as a difficult pill for the famously anti-Semitic Henry Ford to swallow [1]. * **The Reality:** This assertion is **entirely uncorroborated and historically inaccurate** [1]. In the exact s...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:96ab7658da74129ceaf40bd74b354f8bc269a9067f3258f303355c023b222dfd"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:24cdca76237b1a5d80a2940bbb1701c8a79bbefbf575766a27657ffc9db885ca"
         },
         {
           "title": "**Harry Bennett's Medieval Paranoia (Spiked Moats and Lions)**",
           "desc": "In a discussion about Harry Bennett's brutal union-busting activities, forum users share personal childhood recollections of visiting Bennett's estates [2]. One user claims that Bennett's cabin at Lost Lake near Clare, Michigan, featured a spiked moat, secret rooms, hidden tunnels, and deliberately uneven \"stumble stairs\" designed to trip running i...",
           "excerpt": "In a discussion about Harry Bennett's brutal union-busting activities, forum users share personal childhood recollections of visiting Bennett's estates [2]. One user claims that Bennett's cabin at Lost Lake near Clare, Michigan, featured a spiked moat, secret rooms, hidden tunnels, and deliberately uneven \"stumble stairs\" designed to trip running i...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:96ab7658da74129ceaf40bd74b354f8bc269a9067f3258f303355c023b222dfd"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:24cdca76237b1a5d80a2940bbb1701c8a79bbefbf575766a27657ffc9db885ca"
         },
         {
           "title": "**Visibly Seeing the Curvature of the Earth Inside the Plant**",
           "desc": "A user commenting on a historical photograph of the mile-long Willow Run facility asserts that \"one could visibly see the curvature of the earth looking from one end to the other\" [6]. * **The Reality:** While the plant\u2019s immense scale is undisputed\u2014spanning 3.5 million square feet of factory space with an assembly line over a mile long [6, 7]\u2014this...",
           "excerpt": "A user commenting on a historical photograph of the mile-long Willow Run facility asserts that \"one could visibly see the curvature of the earth looking from one end to the other\" [6]. * **The Reality:** While the plant\u2019s immense scale is undisputed\u2014spanning 3.5 million square feet of factory space with an assembly line over a mile long [6, 7]\u2014this...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:96ab7658da74129ceaf40bd74b354f8bc269a9067f3258f303355c023b222dfd"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:24cdca76237b1a5d80a2940bbb1701c8a79bbefbf575766a27657ffc9db885ca"
         },
         {
           "title": "**The Spiteful Wayne County \"Tax Turn\" Retaliation**",
           "desc": "A popular regional blog post and several community members assert that the plant's 90-degree bend was a spiteful \"tax turn\" [8-10]. According to this story, Henry Ford retaliated against Wayne County commissioners for refusing to fund a freeway out to his plant by routing the tax-revenue-generating factory into Washtenaw County [11]. In response, W...",
           "excerpt": "A popular regional blog post and several community members assert that the plant's 90-degree bend was a spiteful \"tax turn\" [8-10]. According to this story, Henry Ford retaliated against Wayne County commissioners for refusing to fund a freeway out to his plant by routing the tax-revenue-generating factory into Washtenaw County [11]. In response, W...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:96ab7658da74129ceaf40bd74b354f8bc269a9067f3258f303355c023b222dfd"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:24cdca76237b1a5d80a2940bbb1701c8a79bbefbf575766a27657ffc9db885ca"
         },
         {
           "title": "**The Modern Status of the \\$1.2 Million Preservation Campaign**",
           "desc": "The title and metadata of one of your digital sources outline an active public campaign to raise \\$1.2 million by May 1st to save a portion of the original Willow Run Bomber Plant from demolition to preserve it as a museum [21, 22]. * **The Reality:** While Wikipedia references this \"Save The Bomber Plant\" campaign [21, 22], the actual digital sour...",
           "excerpt": "The title and metadata of one of your digital sources outline an active public campaign to raise \\$1.2 million by May 1st to save a portion of the original Willow Run Bomber Plant from demolition to preserve it as a museum [21, 22]. * **The Reality:** While Wikipedia references this \"Save The Bomber Plant\" campaign [21, 22], the actual digital sour...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:96ab7658da74129ceaf40bd74b354f8bc269a9067f3258f303355c023b222dfd"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:under-sourced:24cdca76237b1a5d80a2940bbb1701c8a79bbefbf575766a27657ffc9db885ca"
         }
       ],
       "adjacent": [
@@ -1595,35 +1595,35 @@
           "desc": "Your sources note that Willow Run Airport transitioned into Detroit\u2019s primary commercial passenger hub after WWII. However, they also point to its eventual decline as the **\"Jet Age\"** took over. Airlines ultimately migrated to Detroit Metropolitan Airport (DTW) because Willow Run's existing infrastructure could not support the larger, heavier comm...",
           "excerpt": "Your sources note that Willow Run Airport transitioned into Detroit\u2019s primary commercial passenger hub after WWII. However, they also point to its eventual decline as the **\"Jet Age\"** took over. Airlines ultimately migrated to Detroit Metropolitan Airport (DTW) because Willow Run's existing infrastructure could not support the larger, heavier comm...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:790ea9e76ed2d637af88ac14c20f576925ed542bf6edbcecb152935803b5a734"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:68638754499656e3f2b9d7a37b807a7ba979098044cae2298426b727098e7d62"
         },
         {
           "title": "**2. Cold War Aerospace and Missile Defense Research**",
           "desc": "Following the war, the federal government sold the airfield to the **University of Michigan in 1947 for just \\$1.00**. The university transformed the site into the **Michigan Aeronautical Research Center**. This facility conducted cutting-edge, high-stakes Cold War defense research, utilizing a **supersonic wind tunnel** and participating in the **...",
           "excerpt": "Following the war, the federal government sold the airfield to the **University of Michigan in 1947 for just \\$1.00**. The university transformed the site into the **Michigan Aeronautical Research Center**. This facility conducted cutting-edge, high-stakes Cold War defense research, utilizing a **supersonic wind tunnel** and participating in the **...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:790ea9e76ed2d637af88ac14c20f576925ed542bf6edbcecb152935803b5a734"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:68638754499656e3f2b9d7a37b807a7ba979098044cae2298426b727098e7d62"
         },
         {
           "title": "**3. The Fairchild C-119 \"Flying Boxcar\" Assembly**",
           "desc": "Wartime aviation at Willow Run did not completely die with the B-24. When the **Kaiser-Frazer Corporation** leased the massive factory bays to build passenger cars, they also returned to military manufacturing. During the Korean War era (1952\u20131953), Kaiser utilized the factory to assemble **71 Fairchild C-119 \"Flying Boxcar\" cargo planes** before G...",
           "excerpt": "Wartime aviation at Willow Run did not completely die with the B-24. When the **Kaiser-Frazer Corporation** leased the massive factory bays to build passenger cars, they also returned to military manufacturing. During the Korean War era (1952\u20131953), Kaiser utilized the factory to assemble **71 Fairchild C-119 \"Flying Boxcar\" cargo planes** before G...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:790ea9e76ed2d637af88ac14c20f576925ed542bf6edbcecb152935803b5a734"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:68638754499656e3f2b9d7a37b807a7ba979098044cae2298426b727098e7d62"
         },
         {
           "title": "**4. The Battle of the Overpass (1937)**",
           "desc": "In detailing the history of Harry Bennett\u2019s brutal Service Department, the sources highlight his private army of thugs used to violently suppress union organizing. They point specifically to the **Battle of the Overpass**, a landmark clash at the River Rouge plant where Bennett's enforcers brutally beat union organizer **Walter Reuther** and others...",
           "excerpt": "In detailing the history of Harry Bennett\u2019s brutal Service Department, the sources highlight his private army of thugs used to violently suppress union organizing. They point specifically to the **Battle of the Overpass**, a landmark clash at the River Rouge plant where Bennett's enforcers brutally beat union organizer **Walter Reuther** and others...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:790ea9e76ed2d637af88ac14c20f576925ed542bf6edbcecb152935803b5a734"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:68638754499656e3f2b9d7a37b807a7ba979098044cae2298426b727098e7d62"
         },
         {
           "title": "**5. The Hungarian Engineers of the Model T**",
           "desc": "The legal discussions surrounding *Dodge v. Ford* touch upon the technical designs of the Model T. While Henry Ford took absolute public credit for the car, your sources point out that the vehicle's revolutionary drivetrain and chassis were actually designed by a tight-knit team of immigrant engineers and draftsmen\u2014specifically **J\u00f3zsef Galamb, Jen...",
           "excerpt": "The legal discussions surrounding *Dodge v. Ford* touch upon the technical designs of the Model T. While Henry Ford took absolute public credit for the car, your sources point out that the vehicle's revolutionary drivetrain and chassis were actually designed by a tight-knit team of immigrant engineers and draftsmen\u2014specifically **J\u00f3zsef Galamb, Jen...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:790ea9e76ed2d637af88ac14c20f576925ed542bf6edbcecb152935803b5a734"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:adjacent-topics:68638754499656e3f2b9d7a37b807a7ba979098044cae2298426b727098e7d62"
         }
       ],
       "followup": [
@@ -1632,28 +1632,28 @@
           "desc": "While local blog posts, regional historical accounts, and oral histories vividly detail the spiteful \"tax turn\" feud between Henry Ford and Wayne County officials [1, 2], primary corporate and technical records suggest entirely different motivations. * **The Conflict in the Sources:** Regional folklore claims Ford spent \\$300,000 on giant floor tur...",
           "excerpt": "While local blog posts, regional historical accounts, and oral histories vividly detail the spiteful \"tax turn\" feud between Henry Ford and Wayne County officials [1, 2], primary corporate and technical records suggest entirely different motivations. * **The Conflict in the Sources:** Regional folklore claims Ford spent \\$300,000 on giant floor tur...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:4235ad0750f6a60488aefef23c27a5f360c1033b7f1c797bbf6c9123a35caccc"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:c3670b602069a9965bd0d85e9f16401f5f698138becc88f89c1682b107d7fa50"
         },
         {
           "title": "**2. Deepening the Logistics of B-24 \"Knock-Down Kits\"**",
           "desc": "Your sources establish that Willow Run operated as a key node in a massive, distributed Allied production network, shipping hundreds of modular assemblies elsewhere [7]. * **The Conflict in the Sources:** Willow Run shut down production in May 1945, having built 6,972 fully completed Liberators and provided **1,893 sets of \"knock-down\" kits** to Co...",
           "excerpt": "Your sources establish that Willow Run operated as a key node in a massive, distributed Allied production network, shipping hundreds of modular assemblies elsewhere [7]. * **The Conflict in the Sources:** Willow Run shut down production in May 1945, having built 6,972 fully completed Liberators and provided **1,893 sets of \"knock-down\" kits** to Co...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:4235ad0750f6a60488aefef23c27a5f360c1033b7f1c797bbf6c9123a35caccc"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:c3670b602069a9965bd0d85e9f16401f5f698138becc88f89c1682b107d7fa50"
         },
         {
           "title": "**3. Primary Documentation of Eleanor Ford\u2019s Corporate Coup**",
           "desc": "The dramatic downfall of Henry Ford's brutal enforcer, Harry Bennett, is detailed in \"The Ballad of Harry Bennett,\" which describes how Edsel Ford's widow, Eleanor, successfully ousted Bennett from the company [11]. * **The Conflict in the Sources:** Bennett maintained a decade-long reign of terror over Ford's workforce, utilizing the company's \"Se...",
           "excerpt": "The dramatic downfall of Henry Ford's brutal enforcer, Harry Bennett, is detailed in \"The Ballad of Harry Bennett,\" which describes how Edsel Ford's widow, Eleanor, successfully ousted Bennett from the company [11]. * **The Conflict in the Sources:** Bennett maintained a decade-long reign of terror over Ford's workforce, utilizing the company's \"Se...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:4235ad0750f6a60488aefef23c27a5f360c1033b7f1c797bbf6c9123a35caccc"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:c3670b602069a9965bd0d85e9f16401f5f698138becc88f89c1682b107d7fa50"
         },
         {
           "title": "**4. Digital Forensics of the `savethebomberplant.org` Hijacking**",
           "desc": "The most bizarre anomaly in your notebook is the digital source meant to cover the Yankee Air Museum's campaign to save the bomber plant [15]. * **The Conflict in the Sources:** Wikipedia and local records note that a public fundraising campaign called **SaveTheBomberPlant.org** was launched to raise **\\$1.2 million** to save a portion of the origi...",
           "excerpt": "The most bizarre anomaly in your notebook is the digital source meant to cover the Yankee Air Museum's campaign to save the bomber plant [15]. * **The Conflict in the Sources:** Wikipedia and local records note that a public fundraising campaign called **SaveTheBomberPlant.org** was launched to raise **\\$1.2 million** to save a portion of the origi...",
           "date": "2026-09-19",
-          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:4235ad0750f6a60488aefef23c27a5f360c1033b7f1c797bbf6c9123a35caccc"
+          "key": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d:follow-up:c3670b602069a9965bd0d85e9f16401f5f698138becc88f89c1682b107d7fa50"
         }
       ]
     },
@@ -1667,21 +1667,21 @@
           "desc": "Several major discrepancies and popular legends that were once listed as active \"research gaps\" have been completely settled by the newly added primary evidence: * **The L-Bend Assembly Line (Resolved \u2014 GAP-04):** * *The Old Legend:* Popular folklore asserted that architect Albert Kahn put a sharp 90-degree L-bend in the assembly line solely to kee...",
           "excerpt": "Several major discrepancies and popular legends that were once listed as active \"research gaps\" have been completely settled by the newly added primary evidence: * **The L-Bend Assembly Line (Resolved \u2014 GAP-04):** * *The Old Legend:* Popular folklore asserted that architect Albert Kahn put a sharp 90-degree L-bend in the assembly line solely to kee...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:19ee9ee2b205d73ccbd60c2e39cbf9231344a174c19ae7437f834d2d3a0be082"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:b4e44cd1205ae37ca081252f026f3263074c47da8c3d0b0b763252a651a61e77"
         },
         {
           "title": "**2. Active Gaps & Unresolved Historical Contradictions**",
           "desc": "Despite these breakthroughs, several key historical discrepancies and archival gaps remain **unresolved** across your current sources: * **The Cold-Storage Rivet Logs (Unresolved Gaps):** * *The Gap:* While the metallurgy of the D-17S \"ice-box\" rivets is thoroughly documented (requiring heat treatment to 950\u00b0F, sub-zero storage at -20\u00b0F, and drivin...",
           "excerpt": "Despite these breakthroughs, several key historical discrepancies and archival gaps remain **unresolved** across your current sources: * **The Cold-Storage Rivet Logs (Unresolved Gaps):** * *The Gap:* While the metallurgy of the D-17S \"ice-box\" rivets is thoroughly documented (requiring heat treatment to 950\u00b0F, sub-zero storage at -20\u00b0F, and drivin...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:19ee9ee2b205d73ccbd60c2e39cbf9231344a174c19ae7437f834d2d3a0be082"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:b4e44cd1205ae37ca081252f026f3263074c47da8c3d0b0b763252a651a61e77"
         },
         {
           "title": "**3. The Temporal Anomaly (Workstream H)**",
           "desc": "* **The Software Engineering Mystery:** * *The Anomaly:* Curiously, *pack_willow_run.txt* continues to contain a modern software engineering specification filed under \"Accession 65, Box 69\" [43-46]. Labeled \"Workstream H,\" it details how to bypass background JavaScript interval throttling on mobile operating systems using the Page Visibility API an...",
           "excerpt": "* **The Software Engineering Mystery:** * *The Anomaly:* Curiously, *pack_willow_run.txt* continues to contain a modern software engineering specification filed under \"Accession 65, Box 69\" [43-46]. Labeled \"Workstream H,\" it details how to bypass background JavaScript interval throttling on mobile operating systems using the Page Visibility API an...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:19ee9ee2b205d73ccbd60c2e39cbf9231344a174c19ae7437f834d2d3a0be082"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:open-contradictions:b4e44cd1205ae37ca081252f026f3263074c47da8c3d0b0b763252a651a61e77"
         }
       ],
       "undersourced": [
@@ -1690,21 +1690,21 @@
           "desc": "The dramatic stories of wartime corporate intrigue inside Ford Motor Company are heavily reliant on the highly biased, retrospective memoirs of production chief Charles Sorensen (*My Forty Years with Ford*) and security chief Harry Bennett (*We Never Called Him Henry*). Historians note that their recollections of the critical 1943\u20131944 period are f...",
           "excerpt": "The dramatic stories of wartime corporate intrigue inside Ford Motor Company are heavily reliant on the highly biased, retrospective memoirs of production chief Charles Sorensen (*My Forty Years with Ford*) and security chief Harry Bennett (*We Never Called Him Henry*). Historians note that their recollections of the critical 1943\u20131944 period are f...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:b8698bdc14a50d919faabb72e30250ef1206013a23f2e83ec5237055342dd929"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:8e271ede6311b6f2609450a995caa18fb4991f3f763f7424851124b66fd19491"
         },
         {
           "title": "**2. Disputed Cultural Icons**",
           "desc": "* **Rose Will Monroe as \"Rosie the Riveter\":** While Ford Motor Company officially asserts that the iconic \"Rosie the Riveter\" poster and national campaign were inspired by Rose Will Monroe, a real-life riveter working on the Willow Run line [7, 8], your sources note that **some historical sources dispute this claim**, leaving it as a contested cor...",
           "excerpt": "* **Rose Will Monroe as \"Rosie the Riveter\":** While Ford Motor Company officially asserts that the iconic \"Rosie the Riveter\" poster and national campaign were inspired by Rose Will Monroe, a real-life riveter working on the Willow Run line [7, 8], your sources note that **some historical sources dispute this claim**, leaving it as a contested cor...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:b8698bdc14a50d919faabb72e30250ef1206013a23f2e83ec5237055342dd929"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:8e271ede6311b6f2609450a995caa18fb4991f3f763f7424851124b66fd19491"
         },
         {
           "title": "**3. Missing Primary Engineering & Administrative Records**",
           "desc": "Your technical dossiers identify several operational assertions that remain uncorroborated due to lost or missing primary physical files: * **D-17S Rivet Failure Rates:** While the metallurgical necessity of sub-zero cold-storage (-20\u00b0F) for high-strength aluminum D-17S rivets is well-documented [9], the actual field failure rates of rivets driven ...",
           "excerpt": "Your technical dossiers identify several operational assertions that remain uncorroborated due to lost or missing primary physical files: * **D-17S Rivet Failure Rates:** While the metallurgical necessity of sub-zero cold-storage (-20\u00b0F) for high-strength aluminum D-17S rivets is well-documented [9], the actual field failure rates of rivets driven ...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:b8698bdc14a50d919faabb72e30250ef1206013a23f2e83ec5237055342dd929"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:under-sourced:8e271ede6311b6f2609450a995caa18fb4991f3f763f7424851124b66fd19491"
         }
       ],
       "adjacent": [
@@ -1713,42 +1713,42 @@
           "desc": "* **The Automotive Transition:** On November 1, 1945, the newly formed **Kaiser-Frazer Corporation** leased the former bomber plant from the federal government to manufacture passenger cars [1]. * **Engineering Irony:** Kaiser-Frazer initially struggled with unreliable hydramatic transmissions purchased from General Motors, prompting them to partne...",
           "excerpt": "* **The Automotive Transition:** On November 1, 1945, the newly formed **Kaiser-Frazer Corporation** leased the former bomber plant from the federal government to manufacture passenger cars [1]. * **Engineering Irony:** Kaiser-Frazer initially struggled with unreliable hydramatic transmissions purchased from General Motors, prompting them to partne...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
         },
         {
           "title": "**2. The Battle for the Detroit\u2013Willow Run Expressway (Vetoes and Pork Barrels)**",
           "desc": "* **Peacetime Standards vs. War Necessity:** When the plant was constructed, local roads were narrow, unpaved, and turned to mud during wet weather, making them entirely inadequate for thousands of commuting workers [4]. The Michigan State Highway Department, led by G. Donald Kennedy, proposed an ambitious limited-access expressway to tether Willow...",
           "excerpt": "* **Peacetime Standards vs. War Necessity:** When the plant was constructed, local roads were narrow, unpaved, and turned to mud during wet weather, making them entirely inadequate for thousands of commuting workers [4]. The Michigan State Highway Department, led by G. Donald Kennedy, proposed an ambitious limited-access expressway to tether Willow...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
         },
         {
           "title": "**3. The Local School District Rebellion (The Spencer District Coup)**",
           "desc": "* **Political Fragmentation:** Because the federally constructed temporary town of Willow Village was located on unincorporated land, it spilled across three separate rural school districts [12]. Lanham Act funds provided school construction money, but federal law prohibited direct federal administration of local schools [13, 14]. * **The Spencer D...",
           "excerpt": "* **Political Fragmentation:** Because the federally constructed temporary town of Willow Village was located on unincorporated land, it spilled across three separate rural school districts [12]. Lanham Act funds provided school construction money, but federal law prohibited direct federal administration of local schools [13, 14]. * **The Spencer D...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
         },
         {
           "title": "**4. Class Segregation & The \"Working Girls\" Threat to Ypsilanti Normal School**",
           "desc": "* **The Normal School Target:** To solve a desperate housing shortage for female industrial workers, federal housing officials threatened to seize and convert the dormitories of the **Michigan State Normal School** in Ypsilanti [16, 17]. * **Social Standoff:** This plan sparked an immediate uproar among Ypsilanti's middle-class residents and landla...",
           "excerpt": "* **The Normal School Target:** To solve a desperate housing shortage for female industrial workers, federal housing officials threatened to seize and convert the dormitories of the **Michigan State Normal School** in Ypsilanti [16, 17]. * **Social Standoff:** This plan sparked an immediate uproar among Ypsilanti's middle-class residents and landla...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
         },
         {
           "title": "**5. Pre-War Aerodynamic Failures: The Ford Model 15-P \"Flying Wing\"**",
           "desc": "* **The Tailless Experiment:** In 1935, Ford\u2019s Stout Metal Airplane Division developed the **Ford Model 15-P**, an experimental, tailless two-seat \"flying wing\" aircraft [19]. It was powered by a modified 115 hp Ford Flathead V8 automotive engine in a pusher configuration [19]. * **Fatal Stall Dynamics:** During flight testing in 1935\u20131936, the air...",
           "excerpt": "* **The Tailless Experiment:** In 1935, Ford\u2019s Stout Metal Airplane Division developed the **Ford Model 15-P**, an experimental, tailless two-seat \"flying wing\" aircraft [19]. It was powered by a modified 115 hp Ford Flathead V8 automotive engine in a pusher configuration [19]. * **Fatal Stall Dynamics:** During flight testing in 1935\u20131936, the air...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
         },
         {
           "title": "**6. The \"Flying Cow\" of Willow Run (GAP-02)**",
           "desc": "* **Cesor Farms:** Following his resignation from Ford in 1944, Charles Sorensen operated **Cesor Farms**, a high-profile agricultural venture specializing in purebred Guernsey cattle breeding [22, 23]. * **First Bovine Air Passenger:** On **November 16, 1947**, Sorensen sold his \\$3,100 champion cow, *Cesor Maxim's Irene*, to a buyer in North Caro...",
           "excerpt": "* **Cesor Farms:** Following his resignation from Ford in 1944, Charles Sorensen operated **Cesor Farms**, a high-profile agricultural venture specializing in purebred Guernsey cattle breeding [22, 23]. * **First Bovine Air Passenger:** On **November 16, 1947**, Sorensen sold his \\$3,100 champion cow, *Cesor Maxim's Irene*, to a buyer in North Caro...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:4d2b0d3bd0d2f4bef81b30cadb67d46c849ef0862fd54a1c872a2a1c099a5df2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:adjacent-topics:3a535947d0264429fe12b9f5b67768afd53030333cec023b50a04c0fa708ca40"
         }
       ],
       "followup": [
@@ -1757,35 +1757,35 @@
           "desc": "* **The Objective:** Determine the exact daily failure and replacement rates of the high-strength **D-17S \"ice-box\" rivets** that were driven past their strict 30-minute room-temperature exposure limit. * **The Target:** Conduct a physical search of **Accession 796, Box 1** at the Benson Ford Research Center. Locating the original daily temperature...",
           "excerpt": "* **The Objective:** Determine the exact daily failure and replacement rates of the high-strength **D-17S \"ice-box\" rivets** that were driven past their strict 30-minute room-temperature exposure limit. * **The Target:** Conduct a physical search of **Accession 796, Box 1** at the Benson Ford Research Center. Locating the original daily temperature...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:55a183b6ac73938e1d9c574f5b5a42e3d443cafe5f7612483b30fae75bcbfba2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:7d8d571bd7207a5b19965a86e81f34fdb7945a90fdf7775507e8bf26a5c8b12c"
         },
         {
           "title": "**2. Documenting Bennett's Backchannel Transport Monopoly (Procurement Records)**",
           "desc": "* **The Objective:** Prove whether Harry Bennett\u2019s Service Department actively bypassed standard War Department competitive bidding to award the highly lucrative, overland haul-away contracts for the 1,094 knock-down kits to Mafia-affiliated Anthony D'Anna (\"Tony Cars\") and E&L Transport. * **The Target:** Cross-reference **Ford Motor Company Trans...",
           "excerpt": "* **The Objective:** Prove whether Harry Bennett\u2019s Service Department actively bypassed standard War Department competitive bidding to award the highly lucrative, overland haul-away contracts for the 1,094 knock-down kits to Mafia-affiliated Anthony D'Anna (\"Tony Cars\") and E&L Transport. * **The Target:** Cross-reference **Ford Motor Company Trans...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:55a183b6ac73938e1d9c574f5b5a42e3d443cafe5f7612483b30fae75bcbfba2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:7d8d571bd7207a5b19965a86e81f34fdb7945a90fdf7775507e8bf26a5c8b12c"
         },
         {
           "title": "**3. Reconstructing the Arnold\u2013Edsel Ford Strategic Dispute (Military Correspondence)**",
           "desc": "* **The Objective:** Reveal the exact engineering defects and administrative tensions that led to the Army Air Forces\u2019 mass rejection of the early 1942 subassemblies shipped to Fort Worth, which pushed Edsel Ford\u2019s relationship with military leadership to its breaking point. * **The Target:** Search the personal and official papers of **General Hen...",
           "excerpt": "* **The Objective:** Reveal the exact engineering defects and administrative tensions that led to the Army Air Forces\u2019 mass rejection of the early 1942 subassemblies shipped to Fort Worth, which pushed Edsel Ford\u2019s relationship with military leadership to its breaking point. * **The Target:** Search the personal and official papers of **General Hen...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:55a183b6ac73938e1d9c574f5b5a42e3d443cafe5f7612483b30fae75bcbfba2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:7d8d571bd7207a5b19965a86e81f34fdb7945a90fdf7775507e8bf26a5c8b12c"
         },
         {
           "title": "**4. Verifying the Inkster gerrymandering lawsuit (Legal Archives)**",
           "desc": "* **The Objective:** Uncover the legal strategy, briefs, and witness testimonies of the landmark **NAACP lawsuit** that successfully blocked the white residents of Inkster from seceding to form \"Westwood\"\u2014a move designed to capture 75% of the taxable commercial assets and disenfranchise the Black war workers of Carver Homes. * **The Target:** Retri...",
           "excerpt": "* **The Objective:** Uncover the legal strategy, briefs, and witness testimonies of the landmark **NAACP lawsuit** that successfully blocked the white residents of Inkster from seceding to form \"Westwood\"\u2014a move designed to capture 75% of the taxable commercial assets and disenfranchise the Black war workers of Carver Homes. * **The Target:** Retri...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:55a183b6ac73938e1d9c574f5b5a42e3d443cafe5f7612483b30fae75bcbfba2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:7d8d571bd7207a5b19965a86e81f34fdb7945a90fdf7775507e8bf26a5c8b12c"
         },
         {
           "title": "**5. Deciphering the Legal Drafting of the \"Secret Codicil\" (Legal Files)**",
           "desc": "* **The Objective:** Establish whether Henry Ford ever signed the infamous codicil that would have handed corporate control to a Bennett-dominated board, or if the entire episode was a theatrical bluff orchestrated by Bennett. * **The Target:** Review the personal legal papers of attorney **I. A. Capizzi** and the internal correspondence files of J...",
           "excerpt": "* **The Objective:** Establish whether Henry Ford ever signed the infamous codicil that would have handed corporate control to a Bennett-dominated board, or if the entire episode was a theatrical bluff orchestrated by Bennett. * **The Target:** Review the personal legal papers of attorney **I. A. Capizzi** and the internal correspondence files of J...",
           "date": "2026-09-19",
-          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:55a183b6ac73938e1d9c574f5b5a42e3d443cafe5f7612483b30fae75bcbfba2"
+          "key": "6fd7c40b-df90-444b-9c7a-a64682925856:follow-up:7d8d571bd7207a5b19965a86e81f34fdb7945a90fdf7775507e8bf26a5c8b12c"
         }
       ]
     },

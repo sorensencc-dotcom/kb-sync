@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-18T21:55:44.511Z",
-  "system_time_epoch_ms": 1789768544511,
+  "timestamp": "2026-09-19T22:37:51.389Z",
+  "system_time_epoch_ms": 1789857471389,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -64,7 +64,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/cache/db-schema.mjs",
-      "last_code_commit": "2026-09-18T14:59:23+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/db-schema.mjs"
@@ -80,7 +80,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/ingest-notebooklm.sh",
-      "last_code_commit": "2026-09-18T21:55:43+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/ingest-notebooklm.sh"
@@ -88,7 +88,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/lib/bash-resolver.mjs",
-      "last_code_commit": "2026-09-18T21:51:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/bash-resolver.mjs"
@@ -96,7 +96,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/lib/nlm-cli.sh",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/nlm-cli.sh"
@@ -104,18 +104,42 @@
     {
       "repo": "kb-sync",
       "file": "modules/notebooklm/push-source.sh",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/push-source.sh"
     },
     {
       "repo": "kb-sync",
+      "file": "modules/review-capacity/review-capacity-baseline.csv",
+      "last_code_commit": "2026-09-19T00:52:46Z",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/review-capacity-baseline.csv"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/trm/gap-triage-engine.mjs",
+      "last_code_commit": "2026-09-19T16:40:52-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/gap-triage-engine.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "modules/wiki/daily_status.json",
-      "last_code_commit": "2026-09-14T23:43:15-04:00",
+      "last_code_commit": "2026-09-19T17:30:20-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/daily_status.json"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/dashboard.html",
+      "last_code_commit": "2026-09-19T18:26:20-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/dashboard.html"
     },
     {
       "repo": "kb-sync",
@@ -136,10 +160,42 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/gated-climb-repair.mjs",
-      "last_code_commit": "2026-09-18T21:51:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/gated-climb-repair.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/operations_mockup.html",
+      "last_code_commit": "2026-09-19T16:48:30-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/operations_mockup.html"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/trm_history/2026-09-17.json",
+      "last_code_commit": "2026-09-19T16:40:52-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/2026-09-17.json"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/trm_history/2026-09-18.json",
+      "last_code_commit": "2026-09-19T16:40:52-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/2026-09-18.json"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/trm_history/2026-09-19.json",
+      "last_code_commit": "2026-09-19T17:30:20-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/2026-09-19.json"
     },
     {
       "repo": "kb-sync",
@@ -168,15 +224,23 @@
     {
       "repo": "kb-sync",
       "file": "scripts/mcp-memory-server.mjs",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/mcp-memory-server.mjs"
     },
     {
       "repo": "kb-sync",
+      "file": "scripts/nlm-pack-replace-gate.mjs",
+      "last_code_commit": "2026-09-19T15:34:55-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/nlm-pack-replace-gate.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/notebooklm/generate-kb-sync-artifact.mjs",
-      "last_code_commit": "2026-09-18T15:09:14+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/generate-kb-sync-artifact.mjs"
@@ -184,7 +248,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/notebooklm/kb-sync-nightly.ps1",
-      "last_code_commit": "2026-09-18T21:45:49+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/kb-sync-nightly.ps1"
@@ -192,7 +256,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/notebooklm/kb-sync-nightly.sh",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/kb-sync-nightly.sh"
@@ -200,7 +264,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/notebooklm/run-nlm-chat.sh",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/run-nlm-chat.sh"
@@ -208,7 +272,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/notebooklm/verify-grounding-gate.mjs",
-      "last_code_commit": "2026-09-18T21:55:43+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/verify-grounding-gate.mjs"
@@ -216,7 +280,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/run-closed-loop-research.mjs",
-      "last_code_commit": "2026-09-15T22:26:59-04:00",
+      "last_code_commit": "2026-09-19T15:34:55-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/run-closed-loop-research.mjs"
@@ -256,15 +320,23 @@
     {
       "repo": "kb-sync",
       "file": "tests/gated-climb-repair-lessons.test.mjs",
-      "last_code_commit": "2026-09-18T14:45:42+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/gated-climb-repair-lessons.test.mjs"
     },
     {
       "repo": "kb-sync",
+      "file": "tests/nlm-pack-replace-gate.test.mjs",
+      "last_code_commit": "2026-09-19T15:34:55-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/nlm-pack-replace-gate.test.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "tests/notebooklm-polling.test.sh",
-      "last_code_commit": "2026-09-18T21:55:43+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-polling.test.sh"
@@ -272,7 +344,7 @@
     {
       "repo": "kb-sync",
       "file": "tests/notebooklm-submodule-guard.test.sh",
-      "last_code_commit": "2026-09-18T21:48:02+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-submodule-guard.test.sh"
@@ -280,15 +352,15 @@
     {
       "repo": "kb-sync",
       "file": "tests/notebooklm-sync-verification.ts",
-      "last_code_commit": "2026-09-18T15:09:14+00:00",
+      "last_code_commit": "2026-09-18T17:57:54-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/notebooklm-sync-verification.ts"
     }
   ],
   "summary": {
-    "total_sources_checked": 226,
-    "stale_pages_count": 35,
-    "untracked_paths_count": 1
+    "total_sources_checked": 233,
+    "stale_pages_count": 44,
+    "untracked_paths_count": 11
   }
 }

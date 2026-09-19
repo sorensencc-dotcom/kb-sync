@@ -8,5 +8,11 @@
   "total_url_references": 307,
   "notebook_id": "unknown",
   "stage1_success": true,
-  "stage2_success": true
+  "stage2_success": true,
+  "target": "notebooklm",
+  "timestamp": "2026-09-19T20:59:41Z",
+  "duration_ms": 206049,
+  "purged_sources": 1,
+  "uploaded_chunks": 12,
+  "last_sync_pack_sha": "777d83c4e11984ea7520840881e825a590cd77a26eb1338ed0baf226af953785"
 }
