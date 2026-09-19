@@ -99,6 +99,9 @@ if (-not (Test-Path `$LogDir)) { mkdir `$LogDir | Out-Null }
 
 try {
     Set-Location "$($Task.WorkDir)"
+    . (Join-Path "$($Task.WorkDir)" "scripts\git-sync-preflight.ps1")
+    Invoke-GitSyncPreflight -RepoRoot "$($Task.WorkDir)"
+
     & cmd /c "$($Task.Script)" 2>&1 | Tee-Object -FilePath `$LogFile -Append
     `$ExitCode = `$LASTEXITCODE
 } catch {

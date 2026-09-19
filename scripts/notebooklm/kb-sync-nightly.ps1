@@ -11,6 +11,10 @@ $ErrorActionPreference = "Stop"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $RepoRoot = (Resolve-Path "$ScriptDir\..\..").Path
 
+. (Join-Path $RepoRoot "scripts\git-sync-preflight.ps1")
+Invoke-GitSyncPreflight -RepoRoot $RepoRoot
+
+
 function Write-LogInfo($Message) {
     Write-Host "[KB-SYNC-NIGHTLY] [INFO] $Message" -ForegroundColor Green
 }
