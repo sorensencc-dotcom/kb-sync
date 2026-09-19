@@ -377,3 +377,66 @@ export async function executeGapTriage(options = {}) {
     updatedGapsContent: updatedContent
   };
 }
+
+/**
+ * Scans vault fact cards and SQLite context cache to automatically mark
+ * in-progress gaps as resolved (- [x]) when matching facts exist.
+ *
+ * @param {string} gapsFilePath
+ * @param {Object} [options]
+ * @returns {{ resolvedCount: number, resolvedGaps: string[] }}
+ */
+export function reconcileResolvedGaps(gapsFilePath, options = {}) {
+  const gapsPath = path.resolve(gapsFilePath);
+  if (!fs.existsSync(gapsPath)) return { resolvedCount: 0, resolvedGaps: [] };
+
+  const rawContent = fs.readFileSync(gapsPath, 'utf8');
+  const parsedGaps = parseGapItems(rawContent);
+  const inProgressGaps = parsedGaps.filter((g) => g.status === 'in-progress');
+
+  if (inProgressGaps.length === 0) {
+    return { resolvedCount: 0, resolvedGaps: [] };
+  }
+
+  const vaultRoot = options.vaultRoot || 'C:\\Users\\soren\\trm-vault';
+  const resolvedGaps = [];
+  let updatedContent = rawContent;
+
+  const topicsDir = path.join(vaultRoot, 'topics');
+  const factTexts = [];
+  if (fs.existsSync(topicsDir)) {
+    try {
+      const topics = fs.readdirSync(topicsDir);
+      for (const topic of topics) {
+        const factsPath = path.join(topicsDir, topic, 'extracted-facts.json');
+        if (fs.existsSync(factsPath)) {
+          const parsed = JSON.parse(fs.readFileSync(factsPath, 'utf8'));
+          const facts = Array.isArray(parsed) ? parsed : (parsed.facts || []);
+          for (const f of facts) {
+            if (f.text) factTexts.push(String(f.text).toLowerCase());
+            if (f.claim) factTexts.push(String(f.claim).toLowerCase());
+          }
+        }
+      }
+    } catch {}
+  }
+
+  for (const gap of inProgressGaps) {
+    const keywords = gap.title.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 4);
+    if (keywords.length >= 2) {
+      const regexes = keywords.map((kw) => new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i'));
+      const match = factTexts.some((text) => regexes.every((re) => re.test(text)));
+      if (match) {
+        const resolvedLine = gap.raw.replace(/-\s*\[\s*\/\]/, '- [x]');
+        updatedContent = updatedContent.replace(gap.raw, resolvedLine);
+        resolvedGaps.push(gap.id);
+      }
+    }
+  }
+
+  if (resolvedGaps.length > 0 && !options.dryRun) {
+    fs.writeFileSync(gapsPath, updatedContent, 'utf8');
+  }
+
+  return { resolvedCount: resolvedGaps.length, resolvedGaps };
+}

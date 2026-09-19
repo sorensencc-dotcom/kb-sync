@@ -470,6 +470,203 @@
 
     .toast.show { display: block; }
 
+    /* TRM Intelligence & Deep Synthesis */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--forge);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .control-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .synthesis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+    .synth-card {
+      background: rgba(10, 8, 6, 0.6);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      border-top: 3px solid;
+      padding: 1.25rem;
+    }
+    .synth-card.contradictions { border-top-color: var(--ember); }
+    .synth-card.undersourced { border-top-color: var(--brass); }
+    .synth-card.adjacent { border-top-color: #7a9fbf; }
+    .synth-card.followup { border-top-color: #5a9e6f; }
+
+    .synth-head {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .synth-card.contradictions .synth-head { color: var(--ember); }
+    .synth-card.undersourced .synth-head { color: var(--brass); }
+    .synth-card.adjacent .synth-head { color: #7a9fbf; }
+    .synth-card.followup .synth-head { color: #5a9e6f; }
+
+    .synth-item {
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px dashed rgba(154, 144, 136, 0.1);
+    }
+    .synth-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .synth-item-title {
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .synth-item-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--bone);
+    }
+    .tag-pill {
+      font-family: monospace;
+      font-size: 0.75rem;
+      background: var(--iron);
+      color: var(--bone);
+      padding: 0.2rem 0.5rem;
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      display: inline-block;
+      margin: 0.2rem;
+    }
+    .history-btn {
+      background: var(--iron);
+      color: var(--white);
+      border: 1px solid rgba(196, 80, 26, 0.4);
+      padding: 0.4rem 0.75rem;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+    .vertical-stepper {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 1rem;
+    }
+    .step-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem;
+      background: var(--iron);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      border-left: 4px solid;
+      position: relative;
+    }
+    @media (max-width: 768px) {
+      .step-row { grid-template-columns: 1fr; gap: 0.75rem; }
+    }
+    .step-row.mine { border-left-color: var(--ember); }
+    .step-row.triage { border-left-color: #7a9fbf; }
+    .step-row.treatment { border-left-color: var(--brass); }
+    .step-row.memory { border-left-color: #a78bfa; }
+    .step-row.status { border-left-color: var(--sage); }
+
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .step-time {
+      font-family: monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .step-duration {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--ash);
+      margin-top: 0.2rem;
+    }
+
+    .step-right-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .step-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .step-body {
+      font-size: 0.9rem;
+      color: var(--bone);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+    .step-footer {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--ash);
+      padding-top: 0.5rem;
+      border-top: 1px dashed rgba(154, 144, 136, 0.12);
+    }
+
+    .step-connector {
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 1.5rem;
+      gap: 1rem;
+      margin-left: 100px;
+    }
+    @media (max-width: 768px) {
+      .step-connector { margin-left: 20px; }
+    }
+    .connector-line {
+      width: 2px;
+      height: 24px;
+      background: rgba(196, 80, 26, 0.4);
+    }
+    .connector-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ash);
+      background: rgba(10, 8, 6, 0.6);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(154, 144, 136, 0.15);
+    }
+
+
     /* Footer */
     footer {
       text-align: center;
@@ -514,28 +711,32 @@
       <span>03. Knowledge Graph &amp; Validation</span>
       <span class="tag date" id="tabKbBadge">Vault Live</span>
     </button>
+    <button type="button" class="tab-btn" id="btn-tab-trm" onclick="switchTab('tab-trm')">
+      <span>04. TRM Cognitive Intelligence</span>
+      <span class="tag date" id="tabTrmBadge" style="background: rgba(196,80,26,0.15); color: var(--ember); border: 1px solid rgba(196,80,26,0.35);">11 Notebooks</span>
+    </button>
     <button type="button" class="tab-btn" id="btn-tab-reporting" onclick="switchTab('tab-reporting')">
-      <span>04. Weekly Reporting</span>
+      <span>05. Weekly Reporting</span>
       <span class="tag date">Telemetry</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-ops" onclick="switchTab('tab-ops')">
-      <span>04. Automation &amp; Daemons</span>
-      <span class="tag date">4 Registered</span>
+      <span>06. Operations &amp; Automation</span>
+      <span class="tag date" id="tabOpsBadge">6 Tasks</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-headroom" onclick="switchTab('tab-headroom')">
-      <span>05. Headroom Optimizer</span>
+      <span>07. Headroom Optimizer</span>
       <span class="tag date" id="tabHeadroomBadge" style="background: rgba(196,80,26,0.15); color: var(--ember); border: 1px solid rgba(196,80,26,0.35);">● 2.1k Saved</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-graft" onclick="switchTab('tab-graft')">
-      <span>06. Graft &amp; Drift</span>
+      <span>08. Graft &amp; Drift</span>
       <span class="tag date" id="tabGraftBadge" style="background: rgba(94,234,212,0.15); color: #5eead4; border: 1px solid rgba(94,234,212,0.35);">● 94.8% Saved</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-skills" onclick="switchTab('tab-skills')">
-      <span>07. Toolforge Skills</span>
+      <span>09. Toolforge Skills</span>
       <span class="tag date" id="tabSkillsBadge">43 Registered</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-history" onclick="switchTab('tab-history')">
-      <span>08. Execution History &amp; Errors</span>
+      <span>10. Execution History &amp; Errors</span>
       <span class="tag date" id="tabHistoryBadge">Telemetry Live</span>
     </button>
   </nav>
@@ -880,7 +1081,420 @@
   </section>
 
   <!-- ================================================================= -->
-  <!-- TAB 4: WEEKLY REPORTING -->
+  <!-- TAB 4: TRM COGNITIVE INTELLIGENCE -->
+  <!-- ================================================================= -->
+  <section id="tab-trm" class="tab-pane" aria-label="TRM Cognitive Intelligence">
+    <!-- KPIs -->
+    <div class="section-label">Pipeline Freshness &amp; Topic KPIs</div>
+    <div class="grid-metrics">
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="trmStatSyncAge">2.5h ago</div>
+          <div class="stat-label">Latest Sync Report</div>
+        </div>
+        <div class="stat-sub" id="trmStatReportName">TRM_SYNC_REPORT...</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="trmStatCollisions">0 Collisions</div>
+          <div class="stat-label">Fact Collisions</div>
+        </div>
+        <div class="stat-sub" id="trmStatPartial">Partial Run: false</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="trmStatTopics">19 Topics</div>
+          <div class="stat-label">Vault Topics</div>
+        </div>
+        <div class="stat-sub">Active models in vault</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="trmStatAnswers">44 Answered</div>
+          <div class="stat-label">Questions Mined</div>
+        </div>
+        <div class="stat-sub">Across 11 NotebookLM sources</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" id="trmStatActiveGaps" style="color: var(--ember);">5 Open</div>
+          <div class="stat-label">Active Gaps</div>
+        </div>
+        <div class="stat-sub" id="trmStatGapsSub">0 Triaged · 0 Resolved</div>
+      </div>
+    </div>
+
+    <!-- Notebook & Date History Navigation -->
+    <div class="controls-bar">
+      <div class="control-group">
+        <span class="control-label">Target Notebook:</span>
+        <select id="trmNotebookSelector" onchange="updateTrmNotebookView(this.value)">
+          <option value="0caf6707-f8f2-4d2a-acd2-020acead55ba">CIC - Ford Executive Dynamics &amp; Politics (0caf6707...)</option>
+          <option value="1b4861a3-931f-4632-8fc1-343a8dd37df8">CIC - Daily Research (1b4861a3...)</option>
+          <option value="b8bc161d-495f-42f9-a7d1-ed8692141f6b">Cast Iron Charlie - Research Logs (b8bc161d...)</option>
+          <option value="fd0e0e4e-6890-4fb9-89bf-b9e568295e7a">The Sorensen Photographic Archive (fd0e0e4e...)</option>
+          <option value="6fd7c40b-df90-444b-9c7a-a64682925856">CIC - Willow Run &amp; Aviation Engineering (6fd7c40b...)</option>
+          <option value="ef78168d-b7b9-4952-8e0f-fcb353a21181">Willow Run Videos (ef78168d...)</option>
+          <option value="9c469910-a900-43a4-877c-a43c9f545b5f">CIC - Post-War &amp; Willys-Overland (9c469910...)</option>
+          <option value="c8360946-dbee-4a2c-b622-7f89b05695b0">CIC - Cuban Seizures &amp; Retired Assets (c8360946...)</option>
+          <option value="0c8dc979-319f-4e6d-8136-22275932c236">CastIronCharlie-Facebook (0c8dc979...)</option>
+          <option value="039e2c13-75b3-4bf2-b58d-9bbce8f73a4d">CIC-Reddit (039e2c13...)</option>
+          <option value="679b8bab-2d87-42cb-a726-6dc54c83acc2">CIC-KB (679b8bab...)</option>
+        </select>
+        <a id="trmExtNotebookLink" href="https://notebooklm.google.com/notebook/0caf6707-f8f2-4d2a-acd2-020acead55ba" target="_blank" class="tag high" style="text-decoration: none;">Open in NotebookLM ↗</a>
+      </div>
+
+      <div class="control-group">
+        <span class="control-label">Mining History:</span>
+        <button type="button" class="history-btn" onclick="stepTrmHistory(-1)">◀ Prev Day</button>
+        <select id="trmHistoryDateSelector" onchange="loadTrmHistory(this.value)">
+          <option value="today" selected>Today (Latest Snapshot)</option>
+        </select>
+        <button type="button" class="history-btn" onclick="stepTrmHistory(1)">Next Day ▶</button>
+      </div>
+    </div>
+
+    <!-- Deep Synthesis Findings Panel -->
+    <div class="panel">
+      <div class="section-label">Deep Extraction Synthesis</div>
+      <div class="panel-header">
+        <div>
+          <div class="panel-title" id="trmSelectedNotebookTitle">Findings for Ford Executive Dynamics &amp; Politics</div>
+          <div style="font-size: 0.8rem; color: var(--ash); margin-top: 0.2rem; font-family: monospace;" id="trmNotebookMeta">
+            ID: <code>0caf6707-f8f2-4d2a-acd2-020acead55ba</code> · Extraction Status: <span style="color:#5a9e6f;">COMPLETE</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.9rem; color: var(--bone); line-height: 1.6; margin-bottom: 1rem;">
+        The latest mining sweep extracted and synthesized the following granular findings, cross-referencing primary memoirs with corporate accessions:
+      </p>
+
+      <!-- 4-Quadrant Deep Synthesis View -->
+      <div class="synthesis-grid">
+        <div class="synth-card contradictions">
+          <div class="synth-head">⚖️ Unresolved Contradictions Identified</div>
+          <div id="trmSynthContradictions">
+            <div class="synth-item">
+              <div class="synth-item-title">Bennett vs. Sorensen Narrative Conflict</div>
+              <div class="synth-item-desc">Competing accounts between Harry Bennett's <em>We Never Called Him Henry</em> and Charles Sorensen's <em>My Forty Years with Ford</em> regarding Henry Ford's mental decline prior to Edsel Ford's 1943 death and the true internal power dynamics preceding the accession of Henry Ford II.</div>
+            </div>
+            <div class="synth-item">
+              <div class="synth-item-title">Service Department Operational Boundary</div>
+              <div class="synth-item-desc">Contradictory evidence regarding whether Sorensen maintained direct operational coordination with Bennett's Service Department during union suppression or maintained strict manufacturing separation.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="synth-card undersourced">
+          <div class="synth-head">⚠️ Under-Sourced Assertions</div>
+          <div id="trmSynthUndersourced">
+            <div class="synth-item">
+              <div class="synth-item-title">Bennett Purge Confrontation Timeline</div>
+              <div class="synth-item-desc">Assertions regarding the private boardroom confrontation and specific document destruction during Harry Bennett's dismissal in September 1945 rely on single-source memoirs rather than corroborating corporate minutes.</div>
+            </div>
+            <div class="synth-item">
+              <div class="synth-item-title">Executive Surveillance Files</div>
+              <div class="synth-item-desc">Claims concerning Bennett's internal intelligence dossier files on senior Ford management lack primary archival provenance.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="synth-card adjacent">
+          <div class="synth-head">🧭 New Adjacent Leads</div>
+          <div id="trmSynthAdjacent">
+            <div class="synth-item">
+              <div class="synth-item-title">War Production Board Executive Oversight</div>
+              <div class="synth-item-desc">Unindexed correspondence between WPB officials and Ford leadership regarding wartime executive stability.</div>
+            </div>
+            <div class="synth-item">
+              <div class="synth-item-title">Ford Foundation Voting Stock Restructuring</div>
+              <div class="synth-item-desc">Post-war transition legal files from 1944–1947 detailing the distribution of non-voting vs. voting shares following Edsel and Henry Ford's deaths.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="synth-card followup">
+          <div class="synth-head">🎯 Recommended Follow-up Tracks</div>
+          <div id="trmSynthFollowup">
+            <div class="synth-item">
+              <div class="synth-item-title">Benson Ford Research Center Accessions</div>
+              <div class="synth-item-desc">Accessions covering 1943–1945 Board of Directors executive committee records.</div>
+            </div>
+            <div class="synth-item">
+              <div class="synth-item-title">Declassified FBI Surveillance Dossiers</div>
+              <div class="synth-item-desc">Target declassified surveillance files on Harry Bennett and Ford Service Department personnel.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active & Triaged Research Gaps Panel -->
+    <div class="panel">
+      <div class="section-label">Active Research Gaps Matrix</div>
+      <div class="panel-header">
+        <div class="panel-title">Open, Triaged, and Corroborated Gaps</div>
+        <button type="button" class="panel-action" onclick="copyCommand('npm run test:trm:triage')">Run Gap Triage →</button>
+      </div>
+      <table class="table-clean">
+        <thead>
+          <tr>
+            <th style="width: 110px;">Status</th>
+            <th style="width: 280px;">Target Inquiry</th>
+            <th>Description / Historical Excerpt</th>
+            <th style="width: 140px;">RFC Resolution</th>
+          </tr>
+        </thead>
+        <tbody id="trmGapsTableBody">
+          <!-- Populated dynamically via daily_status.json -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Monitored NotebookLM Registry Panel -->
+    <div class="panel">
+      <div class="section-label">Registry Surface</div>
+      <div class="panel-header">
+        <div class="panel-title">Monitored NotebookLM Notebooks (11 Active)</div>
+      </div>
+      <table class="table-clean">
+        <thead>
+          <tr>
+            <th>Notebook Title</th>
+            <th>Identifier</th>
+            <th>Tracked Sources</th>
+            <th>Quarantine State</th>
+            <th>Last Mined</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="trmRegistryTableBody">
+          <!-- Populated dynamically via daily_status.json -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Active Vault Topics Cloud -->
+    <div class="panel">
+      <div class="section-label">Knowledge Vault Topics</div>
+      <div class="panel-header">
+        <div class="panel-title">Active Vault Topics (19 Models)</div>
+      </div>
+      <div style="line-height: 2;" id="trmTopicsContainer">
+        <!-- Populated dynamically via daily_status.json -->
+      </div>
+    </div>
+
+    <!-- TRM Process Architecture Diagram (Cathryn Lavery diagram-design Standard) -->
+    <div class="panel" style="background: #14100d; border-color: rgba(196, 80, 26, 0.3);">
+      <div class="section-label">Pipeline Architecture Diagram</div>
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">TRM Closed-Loop Topic Routing &amp; Mining Architecture</div>
+          <div style="font-size: 0.8rem; color: var(--ash); margin-top: 0.2rem;">End-to-End Visual Specification: Multimodal Ingestion, Deep Mining, Cognitive Triage, Fact Reconciliation, &amp; Iron Command Forge Telemetry</div>
+        </div>
+      </div>
+
+      <!-- Standalone SVG Diagram in Cathryn Lavery Standard Warm/Forge Palette -->
+      <div style="overflow-x: auto; padding: 1rem 0; text-align: center;">
+        <svg viewBox="0 0 1200 680" width="100%" height="auto" style="max-width: 1200px; font-family: 'Barlow Condensed', sans-serif; background: #1a1410; border: 1px solid rgba(196, 80, 26, 0.25); border-radius: 4px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#2c2420" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#1f1814" stop-opacity="0.95"/>
+            </linearGradient>
+            <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+            </filter>
+            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#C4501A"/>
+            </marker>
+            <marker id="arrowBrass" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#B8922A"/>
+            </marker>
+          </defs>
+
+          <!-- Canvas Title / Header Bar -->
+          <rect x="0" y="0" width="1200" height="50" fill="#120e0b"/>
+          <text x="30" y="32" font-family="'Playfair Display', Georgia, serif" font-size="20" font-weight="700" fill="#faf6f0">TOPIC-ROUTING &amp; MEMORY (TRM) — CLOSED-LOOP ENGINE</text>
+          <text x="1170" y="32" font-family="'Barlow Condensed', sans-serif" font-size="13" font-weight="600" letter-spacing="2" text-anchor="end" fill="#C4501A">CANONICAL PROTOCOL V2.4</text>
+          <line x1="0" y1="50" x2="1200" y2="50" stroke="#C4501A" stroke-width="2"/>
+
+          <!-- STAGE 1: INGESTION -->
+          <g transform="translate(40, 80)">
+            <rect x="0" y="0" width="200" height="230" rx="4" fill="url(#cardGrad)" stroke="#C4501A" stroke-width="1.5" filter="url(#cardShadow)"/>
+            <rect x="0" y="0" width="200" height="34" fill="#C4501A" rx="4 4 0 0"/>
+            <text x="100" y="22" font-size="13" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#faf6f0">01. MULTIMODAL INGEST</text>
+            <text x="15" y="60" font-size="13" font-weight="700" fill="#faf6f0">Primary Sources</text>
+            <text x="15" y="78" font-size="11" fill="#9a9088">• PDFs, Transcripts, Audios</text>
+            <text x="15" y="94" font-size="11" fill="#9a9088">• Photos &amp; Video Metadata</text>
+            <rect x="12" y="110" width="176" height="42" rx="3" fill="#140f0c" stroke="rgba(196,80,26,0.4)"/>
+            <text x="20" y="127" font-family="monospace" font-size="11" fill="#B8922A">trm ingest-notebooklm</text>
+            <text x="20" y="142" font-size="10" fill="#9a9088">Pulls Studio notes &amp; sources</text>
+            <text x="15" y="175" font-size="12" font-weight="700" fill="#5a9e6f">11 Active Notebooks</text>
+            <text x="15" y="193" font-size="11" fill="#9a9088">Automated Quarantine check</text>
+            <text x="15" y="210" font-size="11" fill="#9a9088">Hash Registry Verification</text>
+          </g>
+
+          <!-- Arrow 1 -> 2 -->
+          <path d="M 240 195 L 275 195" fill="none" stroke="#C4501A" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- STAGE 2: DEEP QUESTION MINING -->
+          <g transform="translate(280, 80)">
+            <rect x="0" y="0" width="210" height="230" rx="4" fill="url(#cardGrad)" stroke="#B8922A" stroke-width="1.5" filter="url(#cardShadow)"/>
+            <rect x="0" y="0" width="210" height="34" fill="#B8922A" rx="4 4 0 0"/>
+            <text x="105" y="22" font-size="13" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#0a0806">02. QUESTION MINING</text>
+            <text x="15" y="58" font-size="12" font-weight="700" fill="#faf6f0">4 Canonical Query Vectors</text>
+            <text x="15" y="76" font-size="11" fill="#e8e0d4">1. Unresolved Contradictions</text>
+            <text x="15" y="92" font-size="11" fill="#e8e0d4">2. Under-Sourced Claims</text>
+            <text x="15" y="108" font-size="11" fill="#e8e0d4">3. Adjacent Research Leads</text>
+            <text x="15" y="124" font-size="11" fill="#e8e0d4">4. Archival Follow-ups</text>
+            <rect x="12" y="136" width="186" height="42" rx="3" fill="#140f0c" stroke="rgba(184,146,42,0.4)"/>
+            <text x="20" y="153" font-family="monospace" font-size="11" fill="#C4501A">extractAtomicGaps()</text>
+            <text x="20" y="168" font-size="10" fill="#9a9088">SHA-256 Item Key Decomp</text>
+            <text x="15" y="200" font-size="11" fill="#9a9088">Answers logged to:</text>
+            <text x="15" y="216" font-family="monospace" font-size="10" fill="#B8922A">trm/research-gaps/*.md</text>
+          </g>
+
+          <!-- Arrow 2 -> 3 -->
+          <path d="M 490 195 L 525 195" fill="none" stroke="#B8922A" stroke-width="2" marker-end="url(#arrowBrass)"/>
+
+          <!-- STAGE 3: TRIAGE & COGNITIVE CACHE -->
+          <g transform="translate(530, 80)">
+            <rect x="0" y="0" width="210" height="230" rx="4" fill="url(#cardGrad)" stroke="#7a9fbf" stroke-width="1.5" filter="url(#cardShadow)"/>
+            <rect x="0" y="0" width="210" height="34" fill="#7a9fbf" rx="4 4 0 0"/>
+            <text x="105" y="22" font-size="13" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#0a0806">03. COGNITIVE TRIAGE</text>
+            <text x="15" y="58" font-size="12" font-weight="700" fill="#faf6f0">Gaps Matrix Registry</text>
+            <text x="15" y="76" font-family="monospace" font-size="11" fill="#7a9fbf">trm-research-gaps.md</text>
+            <text x="15" y="92" font-size="11" fill="#e8e0d4">• - [ ] Open Inquiries</text>
+            <rect x="12" y="104" width="186" height="52" rx="3" fill="#140f0c" stroke="rgba(122,159,191,0.4)"/>
+            <text x="20" y="121" font-family="monospace" font-size="11" fill="#7a9fbf">gap-triage-engine.mjs</text>
+            <text x="20" y="136" font-size="10" fill="#9a9088">Hybrid RRF + FTS5 Lexical</text>
+            <text x="20" y="149" font-size="10" fill="#9a9088">+ AST Grounding Cache</text>
+            <text x="15" y="180" font-size="12" font-weight="700" fill="#B8922A">RFC Synthesis</text>
+            <text x="15" y="196" font-family="monospace" font-size="10" fill="#faf6f0">wiki/research/rfc-gap-*.md</text>
+            <text x="15" y="214" font-size="11" fill="#5a9e6f">Transitions - [ ] ➔ - [/]</text>
+          </g>
+
+          <!-- Arrow 3 -> 4 -->
+          <path d="M 740 195 L 775 195" fill="none" stroke="#7a9fbf" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- STAGE 4: VAULT FACT EXTRACTION & CORROBORATION -->
+          <g transform="translate(780, 80)">
+            <rect x="0" y="0" width="200" height="230" rx="4" fill="url(#cardGrad)" stroke="#5a9e6f" stroke-width="1.5" filter="url(#cardShadow)"/>
+            <rect x="0" y="0" width="200" height="34" fill="#5a9e6f" rx="4 4 0 0"/>
+            <text x="100" y="22" font-size="13" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#0a0806">04. CORROBORATION</text>
+            <text x="15" y="58" font-size="12" font-weight="700" fill="#faf6f0">Topic Fact Vault</text>
+            <text x="15" y="76" font-family="monospace" font-size="11" fill="#5a9e6f">trm-vault/topics/*</text>
+            <text x="15" y="92" font-size="11" fill="#e8e0d4">• 19 Active Topic Models</text>
+            <rect x="12" y="106" width="176" height="42" rx="3" fill="#140f0c" stroke="rgba(90,158,111,0.4)"/>
+            <text x="20" y="123" font-family="monospace" font-size="11" fill="#5a9e6f">reconcileResolvedGaps()</text>
+            <text x="20" y="138" font-size="10" fill="#9a9088">Cross-checks fact cards</text>
+            <text x="15" y="172" font-size="12" font-weight="700" fill="#5a9e6f">Automated Resolution</text>
+            <text x="15" y="190" font-size="11" fill="#e8e0d4">Transitions - [/] ➔ - [x]</text>
+            <text x="15" y="208" font-size="11" fill="#9a9088">When proof card exists</text>
+          </g>
+
+          <!-- Arrow 4 -> 5 -->
+          <path d="M 980 195 L 1015 195" fill="none" stroke="#5a9e6f" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- STAGE 5: IRON COMMAND FORGE TELEMETRY -->
+          <g transform="translate(1020, 80)">
+            <rect x="0" y="0" width="140" height="230" rx="4" fill="url(#cardGrad)" stroke="#C4501A" stroke-width="2" filter="url(#cardShadow)"/>
+            <rect x="0" y="0" width="140" height="34" fill="#C4501A" rx="4 4 0 0"/>
+            <text x="70" y="22" font-size="12" font-weight="700" letter-spacing="1" text-anchor="middle" fill="#faf6f0">05. COMMAND FORGE</text>
+            <text x="12" y="60" font-size="11" font-weight="700" fill="#faf6f0">Daily Telemetry</text>
+            <text x="12" y="78" font-family="monospace" font-size="9" fill="#B8922A">daily_status.json</text>
+            <text x="12" y="104" font-size="11" font-weight="700" fill="#faf6f0">Dashboard View</text>
+            <text x="12" y="122" font-size="10" fill="#e8e0d4">• 4-Box Synthesis</text>
+            <text x="12" y="138" font-size="10" fill="#e8e0d4">• History Timeline</text>
+            <text x="12" y="154" font-size="10" fill="#e8e0d4">• Gap Matrix Table</text>
+            <text x="12" y="170" font-size="10" fill="#e8e0d4">• 11-NB Registry</text>
+            <rect x="10" y="185" width="120" height="32" rx="3" fill="#C4501A"/>
+            <text x="70" y="205" font-size="11" font-weight="700" text-anchor="middle" fill="#faf6f0">LIVE IN ICF</text>
+          </g>
+
+          <!-- CLOSED LOOP BACKFEED (STAGE 4 -> STAGE 1 / NOTEBOOKLM UPLOAD) -->
+          <path d="M 880 310 L 880 350 L 140 350 L 140 310" fill="none" stroke="#C4501A" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+          <rect x="420" y="336" width="360" height="28" rx="14" fill="#0a0806" stroke="#C4501A" stroke-width="1.5"/>
+          <text x="600" y="354" font-size="11" font-weight="700" letter-spacing="1" text-anchor="middle" fill="#faf6f0">CLOSED-LOOP REFEED: UPLOADS RFC &amp; TRM GAPS BACK TO NOTEBOOKLM</text>
+
+          <!-- BOTTOM CALLOUT BOX: Granular Decomposition Contract -->
+          <g transform="translate(40, 390)">
+            <rect x="0" y="0" width="1120" height="260" rx="4" fill="#120e0b" stroke="rgba(196,80,26,0.3)" stroke-width="1"/>
+            <rect x="0" y="0" width="1120" height="32" fill="#1f1814" rx="4 4 0 0"/>
+            <text x="20" y="21" font-family="'Playfair Display', Georgia, serif" font-size="14" font-weight="700" fill="#faf6f0">GRANULAR SYNTHESIS &amp; RECONCILIATION CONTRACT</text>
+            <g transform="translate(30, 50)">
+              <text x="0" y="20" font-size="13" font-weight="700" fill="#C4501A">1. Item-Level SHA-256 Hashing</text>
+              <text x="0" y="40" font-size="11" fill="#e8e0d4">Every bullet inquiry is assigned an immutable hash key:</text>
+              <text x="0" y="58" font-family="monospace" font-size="10" fill="#B8922A">{notebookId}:{questionCategoryId}:{itemHash}</text>
+              <text x="0" y="78" font-size="11" fill="#9a9088">Prevents category string collisions &amp; enables independent triage.</text>
+
+              <text x="0" y="110" font-size="13" font-weight="700" fill="#B8922A">2. 4-Box Structured Schema</text>
+              <text x="0" y="130" font-size="11" fill="#e8e0d4">Parsed into Contradictions, Under-Sourced claims,</text>
+              <text x="0" y="148" font-size="11" fill="#e8e0d4">Adjacent leads, and Archival follow-ups.</text>
+              <text x="0" y="168" font-size="11" fill="#9a9088">Exposes rich investigative context directly in Iron Command Forge.</text>
+            </g>
+
+            <g transform="translate(580, 50)">
+              <text x="0" y="20" font-size="13" font-weight="700" fill="#7a9fbf">3. Multi-Day Snapshot Storage</text>
+              <text x="0" y="40" font-size="11" fill="#e8e0d4">Historical runs archived under:</text>
+              <text x="0" y="58" font-family="monospace" font-size="10" fill="#7a9fbf">C:\dev\_status-feed\trm_history\YYYY-MM-DD.json</text>
+              <text x="0" y="78" font-size="11" fill="#9a9088">Allows day-over-day and week-over-week progress inspection.</text>
+
+              <text x="0" y="110" font-size="13" font-weight="700" fill="#5a9e6f">4. Corroborated Auto-Resolution</text>
+              <text x="0" y="130" font-size="11" fill="#e8e0d4">When primary evidence fact cards match gap titles,</text>
+              <text x="0" y="148" font-size="11" fill="#e8e0d4">triage engine marks gaps resolved (- [x]) automatically.</text>
+              <text x="0" y="168" font-size="11" fill="#9a9088">Maintains true zero-friction closed-loop research tracking.</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Raw Mermaid Source inside details (per Cathryn Lavery Standard) -->
+      <details style="margin-top: 1rem; color: var(--ash); font-size: 0.8rem; cursor: pointer;">
+        <summary style="font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ember);">Mermaid Source Specification (Click to view)</summary>
+        <pre style="background: var(--iron); padding: 1rem; margin-top: 0.5rem; overflow-x: auto; color: var(--bone); font-family: monospace; font-size: 0.75rem;"><code>```mermaid
+flowchart TD
+  subgraph Stage1["1. Multimodal Ingest"]
+    A["Primary Sources & Videos"] --> B["trm ingest-notebooklm"]
+    B --> C["11 Registered Notebooks"]
+  end
+
+  subgraph Stage2["2. Deep Question Mining"]
+    C --> D["trm mine-notebooklm"]
+    D --> E["4 Canonical Queries"]
+    E --> F["extractAtomicGaps() -> SHA-256 Keys"]
+  end
+
+  subgraph Stage3["3. Cognitive Triage"]
+    F --> G["trm-research-gaps.md"]
+    G --> H["gap-triage-engine.mjs"]
+    H --> I["SQLite Cache (RRF + FTS5 + AST)"]
+    I --> J["RFC Synthesis: wiki/research/rfc-gap-*.md"]
+  end
+
+  subgraph Stage4["4. Vault Corroboration"]
+    J --> K["trm-vault/topics/* Fact Cards"]
+    K --> L["reconcileResolvedGaps()"]
+    L --> M["Auto-transition - [/] to - [x]"]
+  end
+
+  subgraph Stage5["5. Iron Command Forge Telemetry"]
+    M --> N["aggregate_status.py"]
+    N --> O["daily_status.json & History Archive"]
+    O --> P["Iron Command Forge Dashboard (dashboard.html)"]
+  end
+
+  M -.->|"Closed-Loop Refeed: Upload RFCs & Gaps"| C
+```</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- TAB 5: WEEKLY REPORTING -->
   <section id="tab-reporting" class="tab-pane" aria-label="Weekly Retro Reporting">
     <div class="panel">
       <div class="section-label">Reporting</div>
@@ -892,53 +1506,344 @@
     </div>
   </section>
 
-  <!-- TAB 5: AUTOMATION & DAEMONS -->
   <!-- ================================================================= -->
-  <section id="tab-ops" class="tab-pane" aria-label="Automation and Daemons">
-    <div class="panel" style="margin-bottom: 1.75rem;">
-      <div class="section-label">Watchdogs</div>
-      <div class="panel-header">
-        <div class="panel-title">Windows Scheduled Tasks &amp; Watchdogs</div>
-        <button type="button" class="panel-action" onclick="copyCommand('Get-ScheduledTask -TaskPath \\CIC\\')">Inspect Tasks →</button>
+  <!-- TAB 06: OPERATIONS & AUTOMATION DAEMONS -->
+  <!-- ================================================================= -->
+  <section id="tab-ops" class="tab-pane" aria-label="Operations and Automation Daemons">
+    <!-- Operations KPI Metrics -->
+    <div class="grid-metrics">
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" style="color: var(--sage);">6 / 6 Ready</div>
+          <div class="stat-label">Scheduled Tasks Active</div>
+        </div>
+        <div class="stat-sub">S4U / Password · Highest Privilege</div>
       </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" style="color: #7a9fbf;">100%</div>
+          <div class="stat-label">Unattended Execution</div>
+        </div>
+        <div class="stat-sub">StartWhenAvailable Enabled</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" style="color: var(--ember);">15 min</div>
+          <div class="stat-label">Inter-Stage Safety Buffer</div>
+        </div>
+        <div class="stat-sub">Zero lock contention guaranteed</div>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-number" style="color: #5eead4;">4 Daemons</div>
+          <div class="stat-label">Background Watchdogs</div>
+        </div>
+        <div class="stat-sub">:8080 (ICF) · :8787 · :8000 · stdio</div>
+      </div>
+    </div>
+
+    <!-- PIPELINE ORDER & TIMING BUFFERS (CLEAN VERTICAL STEPPER) -->
+    <div class="panel" style="margin-bottom: 2rem;">
+      <div class="section-label">Morning Execution Architecture</div>
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Daily Pipeline Order &amp; Processing Buffers</div>
+          <div style="font-size: 0.85rem; color: var(--ash); margin-top: 0.2rem;">
+            Sequential execution chain scheduled in Windows Task Scheduler (06:00 AM – 07:00 AM ET) with inter-stage isolation buffers.
+          </div>
+        </div>
+        <button type="button" class="btn-secondary" onclick="copyCommand('powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\soren\\OneDrive\\Documents\\Claude\\Projects\\CIC\\scripts\\Run-DailyStatus.ps1')">Run Daily Pipeline 📋</button>
+      </div>
+
+      <!-- Vertical Stepper Container -->
+      <div class="vertical-stepper">
+        <!-- Step 1: Mining -->
+        <div class="step-row mine">
+          <div class="step-left">
+            <div class="step-time" style="color: var(--ember);">06:00 AM ET</div>
+            <div class="step-duration">Runtime: ~10–15 mins</div>
+            <div style="margin-top: 0.4rem;"><span class="tag high">WAKE ENABLED</span></div>
+          </div>
+          <div>
+            <div class="step-right-header">
+              <div class="step-name">1. TRM-Notebooklm-Mine</div>
+              <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
+            </div>
+            <div class="step-body">
+              Pulls Studio notes and new attachments across all <strong>11 NotebookLM notebooks</strong> into <code>trm-vault/</code>, executes the 4 canonical query vectors (Contradictions, Under-Sourced claims, Adjacent leads, Follow-up tracks), and appends atomic inquiry items with SHA-256 keys to <code>trm-research-gaps.md</code>.
+            </div>
+            <div class="step-footer">
+              <span>Principal: <strong style="color:var(--white);">soren (Password)</strong></span>
+              <span>Privilege: <strong style="color:var(--white);">Highest</strong></span>
+              <span>Script: <code>schedule-task-wrapper-TRM-Notebooklm-Mine.ps1</code></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector 1 -> 2 -->
+        <div class="step-connector">
+          <div class="connector-line"></div>
+          <div class="connector-badge">↓ 15 Minute Buffer (Vault writing complete, locks released)</div>
+        </div>
+
+        <!-- Step 2: Triage -->
+        <div class="step-row triage">
+          <div class="step-left">
+            <div class="step-time" style="color: #7a9fbf;">06:20 AM ET</div>
+            <div class="step-duration">Runtime: ~2–5 mins</div>
+            <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
+          </div>
+          <div>
+            <div class="step-right-header">
+              <div class="step-name">2. KB-Sync-TRM-Triage</div>
+              <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \KB-SYNC\</span>
+            </div>
+            <div class="step-body">
+              Synchronizes the local SQLite context cache (FTS5 + AST grounding vectors) and executes the cognitive gap triage engine. Synthesizes RFC markdown drafts (<code>wiki/research/rfc-gap-*.md</code>) for open gaps (<code>- [ ] ➔ - [/]</code>) and reconciles verified vault fact cards.
+            </div>
+            <div class="step-footer">
+              <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+              <span>Privilege: <strong style="color:var(--white);">Highest</strong></span>
+              <span>Script: <code>schedule-task-wrapper-TRM-Triage.ps1</code></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector 2 -> 3 -->
+        <div class="step-connector">
+          <div class="connector-line"></div>
+          <div class="connector-badge">↓ 10 Minute Buffer (RFC synthesis written, cache sync released)</div>
+        </div>
+
+        <!-- Step 3: Treatment -->
+        <div class="step-row treatment">
+          <div class="step-left">
+            <div class="step-time" style="color: var(--brass);">06:30 AM ET</div>
+            <div class="step-duration">Runtime: ~3–5 mins</div>
+            <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
+          </div>
+          <div>
+            <div class="step-right-header">
+              <div class="step-name">3. toolforge-trm-sync-treatment</div>
+              <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
+            </div>
+            <div class="step-body">
+              Reconciles extracted facts against <strong>19 topic models</strong> in <code>trm-vault/topics/</code>, validates fact keys, enforces canonical ordering, and writes the daily sync report (<code>TRM_SYNC_REPORT_*.md</code>) to <code>charlie-deep-research/treatment/</code>.
+            </div>
+            <div class="step-footer">
+              <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+              <span>Collision Target: <strong style="color:var(--sage);">0 Collisions</strong></span>
+              <span>Script: <code>trm-sync-treatment-agent.ps1</code></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector 3 -> 4 -->
+        <div class="step-connector">
+          <div class="connector-line"></div>
+          <div class="connector-badge">↓ 15 Minute Buffer (Treatment report finalized)</div>
+        </div>
+
+        <!-- Step 4: Memory -->
+        <div class="step-row memory">
+          <div class="step-left">
+            <div class="step-time" style="color: #a78bfa;">06:45 AM ET</div>
+            <div class="step-duration">Runtime: &lt;1 min</div>
+            <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
+          </div>
+          <div>
+            <div class="step-right-header">
+              <div class="step-name">4. CIC-Mirror-ClaudeMemory</div>
+              <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
+            </div>
+            <div class="step-body">
+              Safely mirrors protected Claude project memory files and session wraps into <code>C:\dev\_status-feed\claude-memory</code> via non-blocking read copies without locking active developer sessions.
+            </div>
+            <div class="step-footer">
+              <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+              <span>Contention: <strong style="color:var(--sage);">Zero Lock Impact</strong></span>
+              <span>Script: <code>Mirror-ClaudeMemory.ps1</code></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector 4 -> 5 -->
+        <div class="step-connector">
+          <div class="connector-line"></div>
+          <div class="connector-badge">↓ 15 Minute Buffer (Claude memory mirrors up to date)</div>
+        </div>
+
+        <!-- Step 5: Status -->
+        <div class="step-row status">
+          <div class="step-left">
+            <div class="step-time" style="color: var(--sage);">07:00 AM ET</div>
+            <div class="step-duration">Runtime: ~1 min</div>
+            <div style="margin-top: 0.4rem;"><span class="tag date" style="background: rgba(90, 158, 111, 0.15); color: var(--sage); border-color: rgba(90, 158, 111, 0.4);">DAILY HANDOFF</span></div>
+          </div>
+          <div>
+            <div class="step-right-header">
+              <div class="step-name">5. CIC-Daily-Status</div>
+              <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
+            </div>
+            <div class="step-body">
+              Executes <code>aggregate_status.py</code> across 11 telemetry sources, archives the daily snapshot into <code>_status-feed/trm_history/YYYY-MM-DD.json</code>, synchronizes <code>daily_status.json</code> to the Iron Command Forge dashboard directory, and renders <code>CIC_Daily_Status.html</code>.
+            </div>
+            <div class="step-footer">
+              <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+              <span>Output: <code>daily_status.json</code> &amp; <code>CIC_Daily_Status.html</code></span>
+              <span>Script: <code>Run-DailyStatus.ps1</code></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nightly Maintenance Banner -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(34, 27, 23, 0.6); border-left: 4px solid #7a9fbf; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div style="font-family: var(--font-ui); font-size: 0.9rem; font-weight: 700; color: #7a9fbf; letter-spacing: 0.1em; text-transform: uppercase;">
+            🌙 Nightly Maintenance Window (08:00 PM &amp; 08:30 PM ET)
+          </div>
+          <div style="font-size: 0.85rem; color: var(--bone); margin-top: 0.25rem;">
+            <code>08:00 PM</code> <strong>KB-Sync-Master-Pipeline</strong> (wiki validation, link integrity, autohealing) ➔ <code>08:30 PM</code> <strong>KB-Sync-TRM-Triage</strong> (evening gap synthesis pass).
+          </div>
+        </div>
+        <span class="tag date" style="background: rgba(90, 158, 111, 0.15); color: var(--sage); border-color: rgba(90, 158, 111, 0.4);">SCHEDULED DAILY</span>
+      </div>
+    </div>
+
+    <!-- MERMAID FLOW SPECIFICATION (COMPACT & COLLAPSED) -->
+    <div class="panel" style="margin-bottom: 2rem;">
+      <div class="section-label">Architecture Specification</div>
+      <div class="panel-header">
+        <div class="panel-title">Operations Pipeline Sequence Diagram</div>
+        <span class="tag date">Cathryn Lavery Heuristic Standard</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--ash); margin-bottom: 1rem;">
+        Formal state transition flow for all unattended scheduled tasks across TRM, KB-Sync, and CIC operations:
+      </p>
+      <pre style="background: var(--iron); padding: 1.25rem; border: 1px solid rgba(154, 144, 136, 0.15); color: var(--bone); font-family: monospace; font-size: 0.8rem; overflow-x: auto;"><code>flowchart TD
+  subgraph MorningChain["Daily Morning Pipeline (06:00 AM – 07:00 AM ET)"]
+    M1["06:00 AM: TRM-Notebooklm-Mine\n(Ingests 11 NBs &amp; Mines Gaps)"] -->|"15 min buffer"| M2["06:20 AM: KB-Sync-TRM-Triage\n(Cache Sync &amp; RFC Synthesis)"]
+    M2 -->|"10 min buffer"| M3["06:30 AM: toolforge-trm-sync-treatment\n(Reconciles Vault Facts)"]
+    M3 -->|"15 min buffer"| M4["06:45 AM: CIC-Mirror-ClaudeMemory\n(Mirrors Protected Memory)"]
+    M4 -->|"15 min buffer"| M5["07:00 AM: CIC-Daily-Status\n(Aggregates JSON &amp; Renders ICF Dashboard)"]
+  end
+
+  subgraph EveningChain["Nightly Maintenance (08:00 PM &amp; 08:30 PM ET)"]
+    E1["08:00 PM: KB-Sync-Master-Pipeline\n(Wiki Validation &amp; Autoheal)"] -->|"30 min buffer"| E2["08:30 PM: KB-Sync-TRM-Triage\n(Evening Gap Synthesis Pass)"]
+  end</code></pre>
+    </div>
+
+    <!-- SCHEDULED TASKS LIVE INVENTORY TABLE -->
+    <div class="panel" style="margin-bottom: 2rem;">
+      <div class="section-label">Windows Task Scheduler Registry</div>
+      <div class="panel-header">
+        <div class="panel-title">Registered Scheduled Tasks &amp; Execution Policies</div>
+        <button type="button" class="btn-secondary" onclick="copyCommand('Get-ScheduledTask | Where-Object { $_.TaskPath -like \\'*\\CIC\\*\\' -or $_.TaskPath -like \\'*\\TRM\\*\\' -or $_.TaskPath -like \\'*\\KB-SYNC\\*\\' }')">Copy Inspection PowerShell 📋</button>
+      </div>
+
       <table class="table-clean">
+        <thead>
+          <tr>
+            <th>Task Name &amp; Path</th>
+            <th>Daily Schedule</th>
+            <th>Est. Duration</th>
+            <th>Logon / Privilege</th>
+            <th>Wake / Catchup</th>
+            <th>Last Run Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <td class="key">CIC-Daily-Status</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Daily 07:00 ET <span class="status-badge live">● LIVE</span></span></td>
+            <td><strong style="color:var(--white);">TRM-Notebooklm-Mine</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:monospace;">\TRM\</span></td>
+            <td><span class="tag high">Daily 06:00 AM</span></td>
+            <td>~10–15 mins</td>
+            <td><code>soren (Password)</code> · Highest</td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● WAKE ENABLED</span></td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+            <td><button type="button" class="btn-secondary" onclick="copyCommand('Start-ScheduledTask -TaskName \\'TRM-Notebooklm-Mine\\' -TaskPath \\'\\TRM\\\\'')">Run Task</button></td>
           </tr>
           <tr>
-            <td class="key">Dashboard Watchdog</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8080 <span class="status-badge live">● LIVE</span></span></td>
+            <td><strong style="color:var(--white);">KB-Sync-TRM-Triage</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:monospace;">\KB-SYNC\</span></td>
+            <td><span class="tag date">Daily 06:20 AM</span></td>
+            <td>~2–5 mins</td>
+            <td><code>soren (S4U)</code> · Highest</td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+            <td><button type="button" class="btn-secondary" onclick="copyCommand('Start-ScheduledTask -TaskName \\'KB-Sync-TRM-Triage\\' -TaskPath \\'\\KB-SYNC\\\\'')">Run Task</button></td>
           </tr>
           <tr>
-            <td class="key">Trending Batch Engine</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Hourly <span class="status-badge soon">● SOON</span></span></td>
+            <td><strong style="color:var(--white);">toolforge-trm-sync-treatment</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:monospace;">\TRM\</span></td>
+            <td><span class="tag date">Daily 06:30 AM</span></td>
+            <td>~3–5 mins</td>
+            <td><code>soren (S4U)</code> · Highest</td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+            <td><button type="button" class="btn-secondary" onclick="copyCommand('Start-ScheduledTask -TaskName \\'toolforge-trm-sync-treatment\\' -TaskPath \\'\\TRM\\\\'')">Run Task</button></td>
           </tr>
           <tr>
-            <td class="key">Autoheal Sweeper</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Daily 02:00 ET <span class="status-badge live">● LIVE</span></span></td>
+            <td><strong style="color:var(--white);">CIC-Mirror-ClaudeMemory</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:monospace;">\CIC\</span></td>
+            <td><span class="tag date">Daily 06:45 AM</span></td>
+            <td>&lt;1 min</td>
+            <td><code>soren (S4U)</code> · Highest</td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+            <td><button type="button" class="btn-secondary" onclick="copyCommand('Start-ScheduledTask -TaskName \\'CIC-Mirror-ClaudeMemory\\' -TaskPath \\'\\CIC\\\\'')">Run Task</button></td>
           </tr>
           <tr>
-            <td class="key">Headroom Context Proxy</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8787 <span class="status-badge live" id="headroomOpsStatus">● LIVE</span></span></td>
+            <td><strong style="color:var(--white);">CIC-Daily-Status</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:monospace;">\CIC\</span></td>
+            <td><span class="tag date">Daily 07:00 AM</span></td>
+            <td>~1 min</td>
+            <td><code>soren (S4U)</code> · Highest</td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+            <td><button type="button" class="btn-secondary" onclick="copyCommand('Start-ScheduledTask -TaskName \\'CIC-Daily-Status\\' -TaskPath \\'\\CIC\\\\'')">Run Task</button></td>
           </tr>
           <tr>
-            <td class="key">Graft Context Graph</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Local VFS Index <span class="status-badge live" id="graftOpsStatus">● LIVE (94.8% Saved)</span></span></td>
-          </tr>
-          <tr>
-            <td class="key">Upstream Competitor Watchdog</td>
-            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Sigil Queue <span class="status-badge live" id="driftOpsStatus">● 3 Monitored / 0 Pending</span></span></td>
+            <td><strong style="color:var(--white);">KB-Sync-Master-Pipeline</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:monospace;">\KB-SYNC\</span></td>
+            <td><span class="tag date">Daily 08:00 PM</span></td>
+            <td>~3–8 mins</td>
+            <td><code>soren (S4U)</code> · Highest</td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+            <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+            <td><button type="button" class="btn-secondary" onclick="copyCommand('Start-ScheduledTask -TaskName \\'KB-Sync-Master-Pipeline\\' -TaskPath \\'\\KB-SYNC\\\\'')">Run Task</button></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="panel">
-      <div class="section-label">Task Spec</div>
-      <div class="panel-title" style="margin-bottom: 1.25rem;">Scheduled Task Action Specification</div>
-      <pre style="background: rgba(10, 8, 6, 0.8); border: 1px solid rgba(154, 144, 136, 0.15); padding: 1rem; font-family: var(--font-ui); font-size: 0.8rem; color: var(--bone); overflow-x: auto; white-space: pre-wrap; margin: 0;">pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\scripts\Run-DailyStatus.ps1" -OutHtml "C:\Users\soren\OneDrive\Documents\Claude\Projects\CIC\CIC_Daily_Status.html"</pre>
+    <!-- BACKGROUND PORT WATCHDOGS PANEL -->
+    <div class="panel" style="margin-bottom: 1.75rem;">
+      <div class="section-label">Watchdogs &amp; Daemons</div>
+      <div class="panel-header">
+        <div class="panel-title">Background Network Ports &amp; Daemons</div>
+        <button type="button" class="panel-action" onclick="copyCommand('Get-NetTCPConnection -LocalPort 8080,8787,8000')">Inspect Ports →</button>
+      </div>
+      <table class="table-clean">
+        <tbody>
+          <tr>
+            <td class="key">Command Forge Server</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8080 (Node.js) <span class="status-badge live">● LIVE</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">Headroom Context Proxy</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8787 (Rust/CCR) <span class="status-badge live" id="headroomOpsStatus">● LIVE</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">IronLedger Price &amp; Tax Feed</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8000 (HTTP API) <span class="status-badge live">● LIVE</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">Graft Context Graph Indexer</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Local VFS SQLite <span class="status-badge live" id="graftOpsStatus">● LIVE (94.8% Saved)</span></span></td>
+          </tr>
+          <tr>
+            <td class="key">Upstream Competitor Watchdog</td>
+            <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Sigil Mailbox <span class="status-badge live" id="driftOpsStatus">● 3 Monitored / 0 Pending</span></span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -1496,19 +2401,271 @@
     renderDomainsTable();
   }
 
+  let currentTrmData = null;
+  let currentPipelineData = null;
+  let currentTrmHistoryDates = [];
+  let selectedTrmNotebookId = '0caf6707-f8f2-4d2a-acd2-020acead55ba';
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   async function loadDailyStatus() {
     try {
       const res = await fetch('daily_status.json', { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
-        if (data.timestamp) {
-          const ts = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          document.getElementById('reportTimestamp').textContent = `SYNCED AT ${ts}`;
+        const tsStr = data.timestamp || data.generated_at;
+        if (tsStr) {
+          const ts = new Date(tsStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const repEl = document.getElementById('reportTimestamp');
+          if (repEl) repEl.textContent = `SYNCED AT ${ts}`;
+        }
+        if (data.trm_intelligence) {
+          currentTrmData = data.trm_intelligence;
+          currentPipelineData = data.trm_pipeline || null;
+          renderTrmIntelligence(data.trm_intelligence, data.trm_pipeline);
         }
       }
     } catch (e) {
-      console.log('Using default telemetry state');
+      console.log('Using default telemetry state', e);
     }
+  }
+
+  function renderTrmIntelligence(trm, pipeline) {
+    if (!trm) return;
+
+    // 1. KPIs
+    if (pipeline) {
+      const ageEl = document.getElementById('trmStatSyncAge');
+      const repEl = document.getElementById('trmStatReportName');
+      const colEl = document.getElementById('trmStatCollisions');
+      const partEl = document.getElementById('trmStatPartial');
+
+      if (ageEl && pipeline.run_age_hours !== undefined) ageEl.textContent = `${Number(pipeline.run_age_hours).toFixed(1)}h ago`;
+      if (repEl && pipeline.latest_report) repEl.textContent = pipeline.latest_report.length > 24 ? pipeline.latest_report.substring(0, 24) + '...' : pipeline.latest_report;
+      if (colEl) colEl.textContent = `${pipeline.fact_key_collisions || 0} Collisions`;
+      if (partEl) partEl.textContent = `Partial Run: ${pipeline.partial_run || 'false'}`;
+    }
+
+    const topEl = document.getElementById('trmStatTopics');
+    const ansEl = document.getElementById('trmStatAnswers');
+    const gapEl = document.getElementById('trmStatActiveGaps');
+    const gapSubEl = document.getElementById('trmStatGapsSub');
+
+    if (topEl) topEl.textContent = `${trm.topics_total || (trm.topics ? trm.topics.length : 0)} Topics`;
+    if (ansEl) ansEl.textContent = `${trm.questions_answered_total || 0} Answered`;
+    
+    const openGapsCount = trm.matrix_gaps_open !== undefined ? trm.matrix_gaps_open : (trm.active_gaps ? trm.active_gaps.filter(g => !g.triaged && !g.resolved).length : 0);
+    const triagedGapsCount = trm.matrix_gaps_triaged !== undefined ? trm.matrix_gaps_triaged : (trm.active_gaps ? trm.active_gaps.filter(g => g.triaged).length : 0);
+    const resolvedGapsCount = trm.matrix_gaps_resolved !== undefined ? trm.matrix_gaps_resolved : (trm.resolved_gaps ? trm.resolved_gaps.length : 0);
+
+    if (gapEl) gapEl.textContent = `${openGapsCount} Open`;
+    if (gapSubEl) gapSubEl.textContent = `${triagedGapsCount} Triaged · ${resolvedGapsCount} Resolved`;
+
+    // 2. History Dates Selector
+    if (trm.history_dates && trm.history_dates.length > 0) {
+      currentTrmHistoryDates = trm.history_dates;
+      const historySelect = document.getElementById('trmHistoryDateSelector');
+      if (historySelect) {
+        historySelect.innerHTML = trm.history_dates.map((d, i) => `
+          <option value="${d}" ${i === 0 ? 'selected' : ''}>${d} ${i === 0 ? '(Latest Snapshot)' : ''}</option>
+        `).join('');
+      }
+    }
+
+    // 3. Notebook Selector Population (if not populated)
+    if (trm.notebooks && trm.notebooks.length > 0) {
+      const nbSelect = document.getElementById('trmNotebookSelector');
+      if (nbSelect) {
+        nbSelect.innerHTML = trm.notebooks.map(nb => `
+          <option value="${nb.id}" ${nb.id === selectedTrmNotebookId ? 'selected' : ''}>${escapeHtml(nb.title || nb.id)} (${nb.id.substring(0, 8)}...)</option>
+        `).join('');
+      }
+    }
+
+    // 4. Render Active Gaps Table
+    const gapsBody = document.getElementById('trmGapsTableBody');
+    if (gapsBody) {
+      const allGaps = [...(trm.active_gaps || []), ...(trm.resolved_gaps || [])];
+      if (allGaps.length === 0) {
+        gapsBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 1.5rem; color: var(--ash);">No research gaps logged in current registry.</td></tr>`;
+      } else {
+        gapsBody.innerHTML = allGaps.map(g => {
+          let badge = `<span class="status-badge soon" style="font-size:0.65rem; padding:0.2rem 0.5rem; background: rgba(196,80,26,0.15); color: var(--ember); border-color: rgba(196,80,26,0.3);">● OPEN</span>`;
+          if (g.resolved || g.status === 'RESOLVED') {
+            badge = `<span class="status-badge live" style="font-size:0.65rem; padding:0.2rem 0.5rem;">● RESOLVED</span>`;
+          } else if (g.triaged || g.status === 'TRIAGED') {
+            badge = `<span class="status-badge progress" style="font-size:0.65rem; padding:0.2rem 0.5rem; background: rgba(122,159,191,0.15); color: #7a9fbf; border-color: rgba(122,159,191,0.3);">● TRIAGED</span>`;
+          }
+
+          const rfcCell = g.rfc_link ? 
+            `<a href="${g.rfc_link}" target="_blank" class="tag date" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem;">RFC ↗</a>` : 
+            `<span style="color:var(--ash); font-size:0.75rem;">—</span>`;
+
+          return `
+            <tr>
+              <td>${badge}</td>
+              <td><code style="font-family: var(--font-ui); color: var(--bone); font-weight: 700;">${escapeHtml(g.target)}</code></td>
+              <td><div style="font-size: 0.8rem; color: var(--ash); line-height: 1.4;">${escapeHtml(g.excerpt)}</div></td>
+              <td>${rfcCell}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    // 5. Render Notebook Registry Table
+    const regBody = document.getElementById('trmRegistryTableBody');
+    if (regBody && trm.notebooks) {
+      regBody.innerHTML = trm.notebooks.map(nb => {
+        const qBadge = nb.quarantined > 0 ? 
+          `<span class="tag high">${nb.quarantined} quarantined</span>` : 
+          `<span class="status-badge live" style="font-size:0.65rem;">● CLEAN</span>`;
+        const ageStr = nb.last_mined_age_hours !== undefined ? `${Number(nb.last_mined_age_hours).toFixed(1)}h ago` : '—';
+
+        return `
+          <tr>
+            <td><strong style="color: var(--white);">${escapeHtml(nb.title || nb.id)}</strong></td>
+            <td><code>${nb.id ? nb.id.substring(0, 8) + '...' : ''}</code></td>
+            <td style="color: var(--bone);">${nb.sources_count || 0} tracked</td>
+            <td>${qBadge}</td>
+            <td style="color: var(--ash); font-size: 0.8rem;">${ageStr}</td>
+            <td>
+              <button type="button" class="btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.7rem;" onclick="selectTrmNotebook('${nb.id}')">View Findings</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // 6. Render Active Vault Topics Cloud
+    const topicsContainer = document.getElementById('trmTopicsContainer');
+    if (topicsContainer && trm.topics) {
+      topicsContainer.innerHTML = trm.topics.map(t => `
+        <span class="tag-pill" style="cursor: pointer;" title="Modified: ${t.modified || 'Unknown'}" onclick="copyWikilink('[[topics/${t.name}]]')">[[topics/${t.name}]]</span>
+      `).join('');
+    }
+
+    // 7. Update Notebook Synthesis View
+    updateTrmNotebookView(selectedTrmNotebookId);
+  }
+
+  function updateTrmNotebookView(notebookId) {
+    if (!notebookId) return;
+    selectedTrmNotebookId = notebookId;
+
+    const nbSelect = document.getElementById('trmNotebookSelector');
+    if (nbSelect && nbSelect.value !== notebookId) nbSelect.value = notebookId;
+
+    const extLink = document.getElementById('trmExtNotebookLink');
+    if (extLink) extLink.href = `https://notebooklm.google.com/notebook/${notebookId}`;
+
+    const titleEl = document.getElementById('trmSelectedNotebookTitle');
+    const metaEl = document.getElementById('trmNotebookMeta');
+
+    const findings = (currentTrmData && currentTrmData.notebook_findings && currentTrmData.notebook_findings[notebookId]) || null;
+
+    if (findings) {
+      if (titleEl) titleEl.textContent = `Findings for ${findings.title || notebookId}`;
+      if (metaEl) {
+        metaEl.innerHTML = `ID: <code>${notebookId}</code> · Extraction Status: <span style="color:#5a9e6f;">COMPLETE (${findings.total_questions || 0} Vectors Mined)</span>`;
+      }
+
+      renderSynthesisQuadrant('trmSynthContradictions', findings.contradictions);
+      renderSynthesisQuadrant('trmSynthUndersourced', findings.undersourced);
+      renderSynthesisQuadrant('trmSynthAdjacent', findings.adjacent);
+      renderSynthesisQuadrant('trmSynthFollowup', findings.followup);
+    } else {
+      // Fallback or empty state
+      let nbTitle = notebookId;
+      if (currentTrmData && currentTrmData.notebooks) {
+        const matchNb = currentTrmData.notebooks.find(n => n.id === notebookId);
+        if (matchNb) nbTitle = matchNb.title;
+      }
+      if (titleEl) titleEl.textContent = `Findings for ${nbTitle}`;
+      if (metaEl) {
+        metaEl.innerHTML = `ID: <code>${notebookId}</code> · Extraction Status: <span style="color:var(--ash);">AWAITING MINING SWEEP</span>`;
+      }
+
+      renderSynthesisQuadrant('trmSynthContradictions', []);
+      renderSynthesisQuadrant('trmSynthUndersourced', []);
+      renderSynthesisQuadrant('trmSynthAdjacent', []);
+      renderSynthesisQuadrant('trmSynthFollowup', []);
+    }
+  }
+
+  function renderSynthesisQuadrant(containerId, items) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+
+    if (!items || items.length === 0) {
+      el.innerHTML = `<div style="font-size: 0.8rem; color: var(--ash); font-style: italic; padding: 0.5rem 0;">No active items logged in current sweep</div>`;
+      return;
+    }
+
+    el.innerHTML = items.map(item => `
+      <div class="synth-item">
+        <div class="synth-item-title">${escapeHtml(item.title)}</div>
+        <div class="synth-item-desc">${escapeHtml(item.desc)}</div>
+      </div>
+    `).join('');
+  }
+
+  function selectTrmNotebook(notebookId) {
+    updateTrmNotebookView(notebookId);
+    const panel = document.getElementById('trmSelectedNotebookTitle');
+    if (panel) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  async function loadTrmHistory(dateStr) {
+    if (!dateStr || dateStr === 'today') {
+      loadDailyStatus();
+      showToast('Loaded latest TRM snapshot');
+      return;
+    }
+
+    try {
+      let res = await fetch(`trm_history/${dateStr}.json`, { cache: 'no-store' });
+      if (!res.ok) {
+        res = await fetch(`../../_status-feed/trm_history/${dateStr}.json`, { cache: 'no-store' });
+      }
+      if (res.ok) {
+        const histData = await res.json();
+        currentTrmData = histData;
+        renderTrmIntelligence(histData, currentPipelineData);
+        showToast(`Loaded TRM snapshot: ${dateStr}`);
+      } else {
+        showToast(`Snapshot not found: ${dateStr}`);
+      }
+    } catch (err) {
+      showToast(`Failed to load snapshot ${dateStr}`);
+    }
+  }
+
+  function stepTrmHistory(delta) {
+    if (!currentTrmHistoryDates || currentTrmHistoryDates.length === 0) return;
+    const historySelect = document.getElementById('trmHistoryDateSelector');
+    if (!historySelect) return;
+
+    const currentVal = historySelect.value;
+    let idx = currentTrmHistoryDates.indexOf(currentVal);
+    if (idx === -1) idx = 0;
+
+    let targetIdx = idx - delta; // reverse chronological: prev day is index + 1
+    if (targetIdx < 0) targetIdx = 0;
+    if (targetIdx >= currentTrmHistoryDates.length) targetIdx = currentTrmHistoryDates.length - 1;
+
+    const targetDate = currentTrmHistoryDates[targetIdx];
+    historySelect.value = targetDate;
+    loadTrmHistory(targetDate);
   }
 
   async function loadValidationReport() {
@@ -1554,7 +2711,7 @@
 
       if (qEl) qEl.textContent = `${tokensSaved.toLocaleString()} Tok`;
       if (qSub) qSub.textContent = `${Number(hitRate).toFixed(1)}% Cache Hit | $${Number(totalCostAvoided).toFixed(3)} Cut`;
-      if (badge) badge.textContent = `● ${tokensSaved > 0 ? (tokensSaved / 1000).toFixed(1) + 'k Saved' : 'Online'}`;
+      if (badge) badge.textContent = `● ${tokensSaved > 0 ? (tokensSaved / 1000).toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'k Saved' : 'Online'}`;
       if (opsBadge) opsBadge.innerHTML = '● LIVE';
       if (tabBadge) tabBadge.innerHTML = '● PROXY :8787 ONLINE';
 
@@ -1791,7 +2948,11 @@
       'daily': 'tab-daily',
       'mcp': 'tab-mcp',
       'kbsync': 'tab-kbsync',
+      'trm': 'tab-trm',
+      'reporting': 'tab-reporting',
       'ops': 'tab-ops',
+      'operations': 'tab-ops',
+      'pipeline': 'tab-ops',
       'headroom': 'tab-headroom',
       'graft': 'tab-graft',
       'skills': 'tab-skills',

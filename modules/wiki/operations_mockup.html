@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iron Command Forge — Operations & Pipeline Automation (Vertical Flow)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Geist+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0806;
+      --charcoal: #14100d;
+      --iron: #221b17;
+      --steel: #2c2420;
+      --ash: #9a9088;
+      --bone: #e8e0d4;
+      --white: #faf6f0;
+      --ember: #c4501a;
+      --rust: #8b3a1a;
+      --brass: #b8922a;
+      --sky: #7a9fbf;
+      --sage: #5a9e6f;
+      --teal: #5eead4;
+      --font-display: 'Cinzel', serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-body: 'Spectral', Georgia, serif;
+      --font-ui: 'Barlow Condensed', sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container { max-width: 1300px; margin: 0 auto; }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.15);
+      margin-bottom: 2rem;
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+    .brand-subtitle {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    .status-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .status-badge.live { background: rgba(90, 158, 111, 0.15); color: var(--sage); border-color: rgba(90, 158, 111, 0.4); }
+
+    /* Navigation Bar */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.2);
+      padding-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--charcoal);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      color: var(--ash);
+      padding: 0.6rem 1rem;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .tab-btn.active {
+      background: var(--iron);
+      border-color: var(--ember);
+      color: var(--white);
+      border-bottom: 2px solid var(--ember);
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.15rem 0.45rem;
+      border: 1px solid;
+    }
+    .tag.high { background: rgba(196, 80, 26, 0.2); color: var(--ember); border-color: rgba(196, 80, 26, 0.5); }
+    .tag.date { background: rgba(34, 27, 23, 0.8); color: var(--bone); border-color: rgba(154, 144, 136, 0.2); }
+    .tag.sage { background: rgba(90, 158, 111, 0.15); color: var(--sage); border-color: rgba(90, 158, 111, 0.4); }
+
+    /* Metric Cards */
+    .grid-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--charcoal);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      border-top: 2px solid var(--ember);
+      padding: 1.25rem;
+    }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .stat-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-top: 0.25rem;
+    }
+    .stat-sub {
+      font-size: 0.75rem;
+      color: var(--ash);
+      margin-top: 0.4rem;
+      font-family: var(--font-ui);
+    }
+
+    /* Panels */
+    .panel {
+      background: var(--charcoal);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .section-label {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* VERTICAL STEPPER (NO HORIZONTAL SLIDERS) */
+    .vertical-stepper {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 1rem;
+    }
+    .step-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem;
+      background: var(--iron);
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      border-left: 4px solid;
+      position: relative;
+    }
+    @media (max-width: 768px) {
+      .step-row { grid-template-columns: 1fr; gap: 0.75rem; }
+    }
+    .step-row.mine { border-left-color: var(--ember); }
+    .step-row.triage { border-left-color: var(--sky); }
+    .step-row.treatment { border-left-color: var(--brass); }
+    .step-row.memory { border-left-color: #a78bfa; }
+    .step-row.status { border-left-color: var(--sage); }
+
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .step-time {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .step-duration {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--ash);
+      margin-top: 0.2rem;
+    }
+
+    .step-right-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .step-name {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .step-body {
+      font-size: 0.9rem;
+      color: var(--bone);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+    .step-footer {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--ash);
+      padding-top: 0.5rem;
+      border-top: 1px dashed rgba(154, 144, 136, 0.12);
+    }
+
+    /* Vertical connector between steps */
+    .step-connector {
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 1.5rem;
+      gap: 1rem;
+      margin-left: 100px;
+    }
+    @media (max-width: 768px) {
+      .step-connector { margin-left: 20px; }
+    }
+    .connector-line {
+      width: 2px;
+      height: 24px;
+      background: rgba(196, 80, 26, 0.4);
+    }
+    .connector-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ash);
+      background: rgba(10, 8, 6, 0.6);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(154, 144, 136, 0.15);
+    }
+
+    /* Table styles */
+    .table-clean {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .table-clean th {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-align: left;
+      padding: 0.75rem 0.6rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.2);
+    }
+    .table-clean td {
+      padding: 0.75rem 0.6rem;
+      border-bottom: 1px solid rgba(154, 144, 136, 0.08);
+      color: var(--bone);
+      vertical-align: middle;
+    }
+    .table-clean tr:hover td {
+      background: rgba(196, 80, 26, 0.04);
+    }
+
+    .btn-secondary {
+      background: var(--iron);
+      color: var(--bone);
+      border: 1px solid rgba(154, 144, 136, 0.2);
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: var(--steel);
+      border-color: var(--ember);
+      color: var(--white);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: rgba(10, 8, 6, 0.6);
+      padding: 0.15rem 0.4rem;
+      border: 1px solid rgba(154, 144, 136, 0.15);
+      color: #5eead4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <div class="brand-title">IRON COMMAND FORGE</div>
+      <div class="brand-subtitle">Unified Operations, Pipeline Orchestration &amp; Unattended Automation Suite</div>
+    </div>
+    <div style="display: flex; gap: 0.75rem; align-items: center;">
+      <span class="status-badge live">● 100% UNATTENDED LIVE</span>
+      <span class="tag date">PORT 8080 ONLINE</span>
+    </div>
+  </header>
+
+  <!-- TAB NAVIGATION BAR -->
+  <nav class="tabs-nav" aria-label="Command Center Tabs">
+    <button type="button" class="tab-btn"><span>01. Daily Feed</span><span class="tag date">4 Open</span></button>
+    <button type="button" class="tab-btn"><span>02. MCP Matrix</span><span class="tag date">13 Active</span></button>
+    <button type="button" class="tab-btn"><span>03. Knowledge Graph</span><span class="tag date">Vault Live</span></button>
+    <button type="button" class="tab-btn"><span>04. TRM Cognitive Intelligence</span><span class="tag date">11 Notebooks</span></button>
+    <button type="button" class="tab-btn"><span>05. Weekly Reporting</span><span class="tag date">Telemetry</span></button>
+    <button type="button" class="tab-btn active"><span>06. Operations &amp; Daemons</span><span class="tag high">6 Active Jobs</span></button>
+    <button type="button" class="tab-btn"><span>07. Headroom</span><span class="tag date">● 2.1k Saved</span></button>
+    <button type="button" class="tab-btn"><span>08. Graft &amp; Drift</span><span class="tag date">● 94.8%</span></button>
+    <button type="button" class="tab-btn"><span>09. Toolforge Skills</span><span class="tag date">43 Skills</span></button>
+    <button type="button" class="tab-btn"><span>10. Execution History</span><span class="tag date">Live</span></button>
+  </nav>
+
+  <!-- METRICS ROW -->
+  <div class="grid-metrics">
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--sage);">6 / 6 Ready</div>
+      <div class="stat-label">Scheduled Tasks Active</div>
+      <div class="stat-sub">S4U / Password · Highest Privilege</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--sky);">100%</div>
+      <div class="stat-label">Unattended Execution</div>
+      <div class="stat-sub">StartWhenAvailable Enabled</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--ember);">15 min</div>
+      <div class="stat-label">Inter-Stage Safety Buffer</div>
+      <div class="stat-sub">Zero lock contention guaranteed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--teal);">4 Daemons</div>
+      <div class="stat-label">Background Watchdogs</div>
+      <div class="stat-sub">:8080 (ICF) · :8787 (Headroom) · :8000</div>
+    </div>
+  </div>
+
+  <!-- DAILY PIPELINE VERTICAL STEPPER (CLEAN VERTICAL FLOW) -->
+  <div class="panel">
+    <div class="section-label">Morning Execution Architecture</div>
+    <div class="panel-header">
+      <div>
+        <div class="panel-title">Daily Pipeline Order &amp; Processing Buffers</div>
+        <div style="font-size: 0.85rem; color: var(--ash); margin-top: 0.2rem;">
+          Sequential execution chain scheduled in Windows Task Scheduler (06:00 AM – 07:00 AM ET) with inter-stage isolation buffers.
+        </div>
+      </div>
+      <button type="button" class="btn-secondary" onclick="alert('Running full daily pipeline...')">Run Daily Pipeline Now ▶</button>
+    </div>
+
+    <!-- Vertical Stepper Container -->
+    <div class="vertical-stepper">
+      <!-- Step 1: Mining -->
+      <div class="step-row mine">
+        <div class="step-left">
+          <div class="step-time" style="color: var(--ember);">06:00 AM ET</div>
+          <div class="step-duration">Runtime: ~10–15 mins</div>
+          <div style="margin-top: 0.4rem;"><span class="tag high">WAKE ENABLED</span></div>
+        </div>
+        <div>
+          <div class="step-right-header">
+            <div class="step-name">1. TRM-Notebooklm-Mine</div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
+          </div>
+          <div class="step-body">
+            Pulls Studio notes and new attachments across all <strong>11 NotebookLM notebooks</strong> into <code>trm-vault/</code>, executes the 4 canonical query vectors (Contradictions, Under-Sourced claims, Adjacent leads, Follow-up tracks), and appends atomic inquiry items with SHA-256 keys to <code>trm-research-gaps.md</code>.
+          </div>
+          <div class="step-footer">
+            <span>Principal: <strong style="color:var(--white);">soren (Password)</strong></span>
+            <span>Privilege: <strong style="color:var(--white);">Highest</strong></span>
+            <span>Script: <code>schedule-task-wrapper-TRM-Notebooklm-Mine.ps1</code></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector 1 -> 2 -->
+      <div class="step-connector">
+        <div class="connector-line"></div>
+        <div class="connector-badge">↓ 15 Minute Buffer (Vault writing complete, locks released)</div>
+      </div>
+
+      <!-- Step 2: Triage -->
+      <div class="step-row triage">
+        <div class="step-left">
+          <div class="step-time" style="color: var(--sky);">06:20 AM ET</div>
+          <div class="step-duration">Runtime: ~2–5 mins</div>
+          <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
+        </div>
+        <div>
+          <div class="step-right-header">
+            <div class="step-name">2. KB-Sync-TRM-Triage</div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \KB-SYNC\</span>
+          </div>
+          <div class="step-body">
+            Synchronizes the local SQLite context cache (FTS5 + AST grounding vectors) and executes the cognitive gap triage engine. Synthesizes RFC markdown drafts (<code>wiki/research/rfc-gap-*.md</code>) for open gaps (<code>- [ ] ➔ - [/]</code>) and reconciles verified vault fact cards.
+          </div>
+          <div class="step-footer">
+            <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+            <span>Privilege: <strong style="color:var(--white);">Highest</strong></span>
+            <span>Script: <code>schedule-task-wrapper-TRM-Triage.ps1</code></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector 2 -> 3 -->
+      <div class="step-connector">
+        <div class="connector-line"></div>
+        <div class="connector-badge">↓ 10 Minute Buffer (RFC synthesis written, cache sync released)</div>
+      </div>
+
+      <!-- Step 3: Treatment -->
+      <div class="step-row treatment">
+        <div class="step-left">
+          <div class="step-time" style="color: var(--brass);">06:30 AM ET</div>
+          <div class="step-duration">Runtime: ~3–5 mins</div>
+          <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
+        </div>
+        <div>
+          <div class="step-right-header">
+            <div class="step-name">3. toolforge-trm-sync-treatment</div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
+          </div>
+          <div class="step-body">
+            Reconciles extracted facts against <strong>19 topic models</strong> in <code>trm-vault/topics/</code>, validates fact keys, enforces canonical ordering, and writes the daily sync report (<code>TRM_SYNC_REPORT_*.md</code>) to <code>charlie-deep-research/treatment/</code>.
+          </div>
+          <div class="step-footer">
+            <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+            <span>Collision Target: <strong style="color:var(--sage);">0 Collisions</strong></span>
+            <span>Script: <code>trm-sync-treatment-agent.ps1</code></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector 3 -> 4 -->
+      <div class="step-connector">
+        <div class="connector-line"></div>
+        <div class="connector-badge">↓ 15 Minute Buffer (Treatment report finalized)</div>
+      </div>
+
+      <!-- Step 4: Memory -->
+      <div class="step-row memory">
+        <div class="step-left">
+          <div class="step-time" style="color: #a78bfa;">06:45 AM ET</div>
+          <div class="step-duration">Runtime: &lt;1 min</div>
+          <div style="margin-top: 0.4rem;"><span class="tag date">S4U UNATTENDED</span></div>
+        </div>
+        <div>
+          <div class="step-right-header">
+            <div class="step-name">4. CIC-Mirror-ClaudeMemory</div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
+          </div>
+          <div class="step-body">
+            Safely mirrors protected Claude project memory files and session wraps into <code>C:\dev\_status-feed\claude-memory</code> via non-blocking read copies without locking active developer sessions.
+          </div>
+          <div class="step-footer">
+            <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+            <span>Contention: <strong style="color:var(--sage);">Zero Lock Impact</strong></span>
+            <span>Script: <code>Mirror-ClaudeMemory.ps1</code></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector 4 -> 5 -->
+      <div class="step-connector">
+        <div class="connector-line"></div>
+        <div class="connector-badge">↓ 15 Minute Buffer (Claude memory mirrors up to date)</div>
+      </div>
+
+      <!-- Step 5: Status -->
+      <div class="step-row status">
+        <div class="step-left">
+          <div class="step-time" style="color: var(--sage);">07:00 AM ET</div>
+          <div class="step-duration">Runtime: ~1 min</div>
+          <div style="margin-top: 0.4rem;"><span class="tag sage">DAILY HANDOFF</span></div>
+        </div>
+        <div>
+          <div class="step-right-header">
+            <div class="step-name">5. CIC-Daily-Status</div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ash);">Task Path: \CIC\</span>
+          </div>
+          <div class="step-body">
+            Executes <code>aggregate_status.py</code> across 11 telemetry sources, archives the daily snapshot into <code>_status-feed/trm_history/YYYY-MM-DD.json</code>, synchronizes <code>daily_status.json</code> to the Iron Command Forge dashboard directory, and renders <code>CIC_Daily_Status.html</code>.
+          </div>
+          <div class="step-footer">
+            <span>Principal: <strong style="color:var(--white);">soren (S4U)</strong></span>
+            <span>Output: <code>daily_status.json</code> &amp; <code>CIC_Daily_Status.html</code></span>
+            <span>Script: <code>Run-DailyStatus.ps1</code></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nightly Maintenance Banner -->
+    <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(34, 27, 23, 0.6); border-left: 4px solid var(--sky); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div style="font-family: var(--font-ui); font-size: 0.9rem; font-weight: 700; color: var(--sky); letter-spacing: 0.1em; text-transform: uppercase;">
+          🌙 Nightly Maintenance Window (08:00 PM &amp; 08:30 PM ET)
+        </div>
+        <div style="font-size: 0.85rem; color: var(--bone); margin-top: 0.25rem;">
+          <code>08:00 PM</code> <strong>KB-Sync-Master-Pipeline</strong> (wiki validation, link integrity, autohealing) ➔ <code>08:30 PM</code> <strong>KB-Sync-TRM-Triage</strong> (evening gap synthesis pass).
+        </div>
+      </div>
+      <span class="tag sage">SCHEDULED DAILY</span>
+    </div>
+  </div>
+
+  <!-- SCHEDULED TASKS LIVE INVENTORY TABLE -->
+  <div class="panel">
+    <div class="section-label">Windows Task Scheduler Registry</div>
+    <div class="panel-header">
+      <div class="panel-title">Registered Scheduled Tasks &amp; Execution Policies</div>
+      <button type="button" class="btn-secondary" onclick="alert('Querying live Task Scheduler status...')">Refresh Tasks ↺</button>
+    </div>
+
+    <table class="table-clean">
+      <thead>
+        <tr>
+          <th>Task Name &amp; Path</th>
+          <th>Daily Schedule</th>
+          <th>Est. Duration</th>
+          <th>Logon / Privilege</th>
+          <th>Wake / Catchup</th>
+          <th>Last Run Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--white);">TRM-Notebooklm-Mine</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:var(--font-mono);">\TRM\</span></td>
+          <td><span class="tag high">Daily 06:00 AM</span></td>
+          <td>~10–15 mins</td>
+          <td><code>soren (Password)</code> · Highest</td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● WAKE ENABLED</span></td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+          <td><button type="button" class="btn-secondary">Run Now</button></td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white);">KB-Sync-TRM-Triage</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:var(--font-mono);">\KB-SYNC\</span></td>
+          <td><span class="tag date">Daily 06:20 AM</span></td>
+          <td>~2–5 mins</td>
+          <td><code>soren (S4U)</code> · Highest</td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+          <td><button type="button" class="btn-secondary">Run Now</button></td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white);">toolforge-trm-sync-treatment</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:var(--font-mono);">\TRM\</span></td>
+          <td><span class="tag date">Daily 06:30 AM</span></td>
+          <td>~3–5 mins</td>
+          <td><code>soren (S4U)</code> · Highest</td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+          <td><button type="button" class="btn-secondary">Run Now</button></td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white);">CIC-Mirror-ClaudeMemory</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:var(--font-mono);">\CIC\</span></td>
+          <td><span class="tag date">Daily 06:45 AM</span></td>
+          <td>&lt;1 min</td>
+          <td><code>soren (S4U)</code> · Highest</td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+          <td><button type="button" class="btn-secondary">Run Now</button></td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white);">CIC-Daily-Status</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:var(--font-mono);">\CIC\</span></td>
+          <td><span class="tag date">Daily 07:00 AM</span></td>
+          <td>~1 min</td>
+          <td><code>soren (S4U)</code> · Highest</td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+          <td><button type="button" class="btn-secondary">Run Now</button></td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white);">KB-Sync-Master-Pipeline</strong><br><span style="font-size:0.75rem; color:var(--ash); font-family:var(--font-mono);">\KB-SYNC\</span></td>
+          <td><span class="tag date">Daily 08:00 PM</span></td>
+          <td>~3–8 mins</td>
+          <td><code>soren (S4U)</code> · Highest</td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● CATCHUP ON</span></td>
+          <td><span class="status-badge live" style="font-size:0.6rem;">● SUCCESS (0)</span></td>
+          <td><button type="button" class="btn-secondary">Run Now</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BACKGROUND PORT WATCHDOGS PANEL -->
+  <div class="panel">
+    <div class="section-label">Watchdogs &amp; Daemons</div>
+    <div class="panel-header">
+      <div class="panel-title">Background Network Ports &amp; Daemons</div>
+      <button type="button" class="panel-action" onclick="alert('Querying ports...')">Inspect Ports →</button>
+    </div>
+    <table class="table-clean">
+      <tbody>
+        <tr>
+          <td class="key">Command Forge Server</td>
+          <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8080 (Node.js) <span class="status-badge live">● LIVE</span></span></td>
+        </tr>
+        <tr>
+          <td class="key">Headroom Context Proxy</td>
+          <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8787 (Rust/CCR) <span class="status-badge live" id="headroomOpsStatus">● LIVE</span></span></td>
+        </tr>
+        <tr>
+          <td class="key">IronLedger Price &amp; Tax Feed</td>
+          <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Port 8000 (HTTP API) <span class="status-badge live">● LIVE</span></span></td>
+        </tr>
+        <tr>
+          <td class="key">Graft Context Graph Indexer</td>
+          <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Local VFS SQLite <span class="status-badge live" id="graftOpsStatus">● LIVE (94.8% Saved)</span></span></td>
+        </tr>
+        <tr>
+          <td class="key">Upstream Competitor Watchdog</td>
+          <td class="val"><span style="display: inline-flex; align-items: center; gap: 0.5rem;">Sigil Mailbox <span class="status-badge live" id="driftOpsStatus">● 3 Monitored / 0 Pending</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
