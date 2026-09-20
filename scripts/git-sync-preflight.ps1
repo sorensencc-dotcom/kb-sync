@@ -14,11 +14,16 @@
 function Invoke-GitSyncPreflight {
     param(
         [Parameter(Mandatory=$true)][string]$RepoRoot,
-        [string]$LogPrefix = "[GIT-SYNC]"
+        [string]$LogPrefix = "[GIT-SYNC]",
+        [string]$LogFile = "",
+        [string]$EntryPoint = "",
+        [string[]]$EntryArguments = @()
     )
 
     function Write-SyncLog($Message) {
-        Write-Host "$LogPrefix $Message"
+        $line = "$LogPrefix $Message"
+        Write-Host $line
+        if ($LogFile) { Add-Content -LiteralPath $LogFile -Value $line }
     }
 
     Push-Location $RepoRoot
@@ -41,21 +46,45 @@ function Invoke-GitSyncPreflight {
             return
         }
 
-        Write-SyncLog "Fetching origin/$branch..."
-        git fetch origin $branch --quiet 2>&1 | Write-Host
-        if ($LASTEXITCODE -ne 0) {
-            Write-SyncLog "Fetch failed (offline or unreachable remote); continuing with current checkout."
-            return
-        }
+        $beforeSha = (git rev-parse HEAD)
+        $telemetry = @('.sync-status.json', '.drift-report.json', '.coverage-report.json', '.cross-repo-drift-report.json')
+        $temp = Join-Path ([System.IO.Path]::GetTempPath()) ("kb-sync-telemetry-" + [guid]::NewGuid().ToString('N'))
+        New-Item -ItemType Directory -Path $temp -Force | Out-Null
+        try {
+            foreach ($name in $telemetry) {
+                $source = Join-Path $RepoRoot $name
+                if (Test-Path -LiteralPath $source) { Copy-Item -LiteralPath $source -Destination (Join-Path $temp $name) }
+                git restore --source=HEAD -- $name 2>$null
+            }
 
-        git merge --ff-only "origin/$branch" --quiet 2>&1 | Write-Host
-        if ($LASTEXITCODE -ne 0) {
-            Write-SyncLog "Local branch has diverged from origin/$branch or fast-forward isn't possible; skipping auto-sync. Manual intervention needed."
-            return
-        }
+            Write-SyncLog "Fetching origin/$branch..."
+            git fetch origin $branch --quiet 2>&1 | ForEach-Object { Write-SyncLog $_ }
+            if ($LASTEXITCODE -ne 0) {
+                Write-SyncLog "Fetch failed (offline or unreachable remote); continuing with current checkout."
+                return
+            }
 
-        $headSha = (git rev-parse --short HEAD)
-        Write-SyncLog "Up to date with origin/$branch ($headSha)."
+            git merge --ff-only "origin/$branch" --quiet 2>&1 | ForEach-Object { Write-SyncLog $_ }
+            if ($LASTEXITCODE -ne 0) {
+                Write-SyncLog "Local branch has diverged from origin/$branch or fast-forward isn't possible; skipping auto-sync. Manual intervention needed."
+                return
+            }
+
+            $headSha = (git rev-parse HEAD)
+            if ($beforeSha -ne $headSha -and $EntryPoint -and -not $env:KB_SYNC_RESYNCED) {
+                Write-SyncLog "Fast-forwarded $beforeSha -> $headSha; restarting entry point on updated checkout."
+                $env:KB_SYNC_RESYNCED = '1'
+                & pwsh.exe -NoProfile -ExecutionPolicy Bypass -File $EntryPoint @EntryArguments
+                exit $LASTEXITCODE
+            }
+            Write-SyncLog "Up to date with origin/$branch ($headSha)."
+        } finally {
+            foreach ($name in $telemetry) {
+                $saved = Join-Path $temp $name
+                if (Test-Path -LiteralPath $saved) { Copy-Item -LiteralPath $saved -Destination (Join-Path $RepoRoot $name) -Force }
+            }
+            Remove-Item -LiteralPath $temp -Recurse -Force -ErrorAction SilentlyContinue
+        }
     } finally {
         Pop-Location
     }

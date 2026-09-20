@@ -10,9 +10,13 @@ $ErrorActionPreference = "Stop"
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $RepoRoot = (Resolve-Path "$ScriptDir\..\..").Path
+$LogDir = Join-Path $RepoRoot "logs"
+if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir -Force | Out-Null }
+$Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$LogFile = Join-Path $LogDir "KB-Sync-Nightly-$Timestamp.log"
 
 . (Join-Path $RepoRoot "scripts\git-sync-preflight.ps1")
-Invoke-GitSyncPreflight -RepoRoot $RepoRoot
+Invoke-GitSyncPreflight -RepoRoot $RepoRoot -LogFile $LogFile -EntryPoint $MyInvocation.MyCommand.Path -LogPrefix "[KB-SYNC-NIGHTLY] [GIT-SYNC]"
 
 
 function Write-LogInfo($Message) {
@@ -251,4 +255,3 @@ Write-LogInfo "=================================================================
 Write-LogInfo "KB Sync Nightly Pipeline Completed"
 Write-LogInfo "================================================================================"
 exit 0
-

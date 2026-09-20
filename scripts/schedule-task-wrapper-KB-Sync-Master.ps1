@@ -10,18 +10,13 @@ $ErrorActionPreference = "Continue"
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $RepoRoot = (Resolve-Path "$ScriptDir\..").Path
-
-. (Join-Path $RepoRoot "scripts\git-sync-preflight.ps1")
-Invoke-GitSyncPreflight -RepoRoot $RepoRoot -LogPrefix "[KB-SYNC-MASTER] [GIT-SYNC]"
-
 $LogDir = Join-Path $RepoRoot "logs"
-
-if (-not (Test-Path $LogDir)) {
-    New-Item -ItemType Directory -Path $LogDir -Force | Out-Null
-}
-
+if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir -Force | Out-Null }
 $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $LogFile = Join-Path $LogDir "KB-Sync-Master-Pipeline-$Timestamp.log"
+
+. (Join-Path $RepoRoot "scripts\git-sync-preflight.ps1")
+Invoke-GitSyncPreflight -RepoRoot $RepoRoot -LogFile $LogFile -EntryPoint $MyInvocation.MyCommand.Path -LogPrefix "[KB-SYNC-MASTER] [GIT-SYNC]"
 $StartTime = Get-Date
 
 function Write-LogInfo($Message) {
