@@ -100,41 +100,31 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   
   if (match) {
     body = match[2];
-    const fmText = match[1];
-    fmText.split(/\r?\n/).forEach(line => {
-      const parts = line.split(':');
-      if (parts.length >= 2) {
-        const key = parts[0].trim();
-        const value = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
-        frontmatter[key] = value;
+    for (const line of match[1].split(/\r?\n/)) {
+      const idx = line.indexOf(':');
+      if (idx > 0) {
+        frontmatter[line.slice(0, idx).trim()] = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
       }
-    });
+    }
   } else {
     repairs.push('injected_frontmatter');
-    const parsedPath = path.parse(filePath);
-    frontmatter.title = parsedPath.name;
+    frontmatter.title = path.parse(filePath).name;
   }
 
   // Title Inference & Backfill
   if (!frontmatter.title) {
     if (frontmatter.source_title) {
       frontmatter.title = frontmatter.source_title;
-      if (match) repairs.push('added_missing_fields');
     } else {
       const headingMatch = body.match(/^#\s+(.+)$/m);
       if (headingMatch) {
-        let clean = headingMatch[1].trim().replace(/^`|`$/g, '').replace(/\[\[.*?\|(.*?)\]\]/g, '$1').replace(/\[\[(.*?)\]\]/g, '$1');
-        if (clean.includes('/')) {
-          clean = path.basename(clean);
-        }
-        frontmatter.title = clean;
-        if (match) repairs.push('added_missing_fields');
+        let clean = headingMatch[1].trim().replace(/^`|`$/g, '').replace(/\[\[(?:.*\|)?(.*?)\]\]/g, '$1');
+        frontmatter.title = clean.includes('/') ? path.basename(clean) : clean;
       } else {
-        const parsedPath = path.parse(filePath);
-        frontmatter.title = parsedPath.name;
-        if (match) repairs.push('added_missing_fields');
+        frontmatter.title = path.parse(filePath).name;
       }
     }
+    if (match) repairs.push('added_missing_fields');
   }
 
   // Category

@@ -1,9 +1,22 @@
 {
-  "timestamp": "2026-09-12T03:45:50.422Z",
-  "status": "NO_DRIFT",
-  "totalFilesScanned": 463,
-  "totalFilesHealed": 0,
-  "deterministicRepairsCount": 0,
-  "semanticRepairsCount": 0,
-  "manifestEntries": []
+  "timestamp": "2026-09-20T14:01:44.107Z",
+  "status": "APPLIED",
+  "totalFilesScanned": 1,
+  "totalFilesHealed": 1,
+  "deterministicRepairsCount": 1,
+  "semanticRepairsCount": 1,
+  "manifestEntries": [
+    {
+      "file": "dirty.md",
+      "beforeSha256": "6f0e5308891959e72352623305aeee94b5a4516e0affd57edaa25a1d453bb089",
+      "afterSha256": "f8c87eeaaf37ecd1ddf4d3cd75792c0155bc130a19915d50be8c574836244103",
+      "deterministicRules": [
+        "rewrote_wikilinks"
+      ],
+      "semanticRules": [
+        "injected_frontmatter"
+      ],
+      "status": "APPLIED"
+    }
+  ]
 }
