@@ -15,9 +15,6 @@ $ErrorActionPreference = "Continue"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $RepoRoot = (Resolve-Path "$ScriptDir\..").Path
 
-. (Join-Path $RepoRoot "scripts\git-sync-preflight.ps1")
-Invoke-GitSyncPreflight -RepoRoot $RepoRoot -LogPrefix "[TRM-TRIAGE] [GIT-SYNC]"
-
 $LogDir = Join-Path $RepoRoot "logs"
 
 if (-not (Test-Path $LogDir)) {
@@ -27,6 +24,9 @@ if (-not (Test-Path $LogDir)) {
 $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $LogFile = Join-Path $LogDir "TRM-Triage-$Timestamp.log"
 $StartTime = Get-Date
+
+. (Join-Path $RepoRoot "scripts\git-sync-preflight.ps1")
+Invoke-GitSyncPreflight -RepoRoot $RepoRoot -LogPrefix "[TRM-TRIAGE] [GIT-SYNC]" -LogFile $LogFile
 
 function Write-LogInfo($Message) {
     $msg = "[TRM-TRIAGE] [INFO] $Message"
