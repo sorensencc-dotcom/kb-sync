@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-19T22:37:51.389Z",
-  "system_time_epoch_ms": 1789857471389,
+  "timestamp": "2026-09-20T00:07:45.681Z",
+  "system_time_epoch_ms": 1789862865681,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -128,7 +128,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/daily_status.json",
-      "last_code_commit": "2026-09-19T17:30:20-04:00",
+      "last_code_commit": "2026-09-19T18:38:26-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/daily_status.json"
@@ -192,7 +192,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/trm_history/2026-09-19.json",
-      "last_code_commit": "2026-09-19T17:30:20-04:00",
+      "last_code_commit": "2026-09-19T18:38:26-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/2026-09-19.json"
@@ -361,6 +361,6 @@
   "summary": {
     "total_sources_checked": 233,
     "stale_pages_count": 44,
-    "untracked_paths_count": 11
+    "untracked_paths_count": 6
   }
 }

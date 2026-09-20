@@ -10,9 +10,9 @@
   "stage1_success": true,
   "stage2_success": true,
   "target": "notebooklm",
-  "timestamp": "2026-09-19T20:59:41Z",
-  "duration_ms": 206049,
+  "timestamp": "2026-09-20T00:07:42Z",
+  "duration_ms": 225177,
   "purged_sources": 1,
-  "uploaded_chunks": 12,
-  "last_sync_pack_sha": "777d83c4e11984ea7520840881e825a590cd77a26eb1338ed0baf226af953785"
+  "uploaded_chunks": 13,
+  "last_sync_pack_sha": "d8f61c7c5727160552edd8349c7a3253cf2969f4eb805f05b6ecf3e2e3a61cbc"
 }
