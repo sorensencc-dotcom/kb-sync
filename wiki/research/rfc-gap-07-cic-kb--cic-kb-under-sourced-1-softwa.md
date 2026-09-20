@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-07--cic-kb - **CIC-KB (under-sourced - 1. Software & Technical Infrastructure Claims)**"
-category: "research"
-topic: "rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa"
-gap_id: "GAP-07--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:38:18.363Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-07--cic-kb - **CIC-KB (under-sourced - 1. Software & Technical Infrastructure Claims)**
+category: research
+topic: rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa
+gap_id: GAP-07--cic-kb
+status: draft
+created_at: 2026-09-19T20:38:18.363Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-07--cic-kb - **CIC-KB (under-sourced - 1. Software & Technical Infrastructure Claims)**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","trm-re
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC - Cuban Seizures & Retired Assets under-sourced** category: research topic: rfc-gap-02--cic-cuban-seizures-retired-as gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.521Z expansion_method: heuristic retriev
 

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 4. Sorensen’s "One-Night Sketch" of Willow Run)**"
-category: "research"
-topic: "rfc-gap-41-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-41--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:46:16.243Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
+category: research
+topic: rfc-gap-41-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-41--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-20T11:20:26.365Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-112-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 4. Sorensen’s "One-Night Sketch" of Willow Run)**
+# RFC: GAP-41--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
 
 ## 1. Problem Statement & Context
-**4. Sorensen’s "One-Night Sketch" of Willow Run**
+)**: **The Archival Gap:** These executive narratives flatten shop-floor innovations and are directly challenged by machinist **William "Pa" Klann’s** 400-page 1955 oral history (BFRC A
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-04--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive**" category: "research" topic: "rfc-gap-04-cic-ford-executiv
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+- **rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-112-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-112-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

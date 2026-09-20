@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - Each B-24 required between 313,237 and 400,000 ...)**"
-category: "research"
-topic: "rfc-gap-16-cic-reddit--cic-reddit-adjacent-topics-ea"
-gap_id: "GAP-16--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T21:24:39.587Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - Each B-24 required between 313,237 and 400,000 ...)**
+category: research
+topic: rfc-gap-16-cic-reddit--cic-reddit-adjacent-topics-ea
+gap_id: GAP-16--cic-reddit
+status: draft
+created_at: 2026-09-19T21:24:39.587Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: ["scripts/notebooklm/ingest-notebooklm.sh"]
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - Each B-24 required between 313,237 and 400,000 ...)**
@@ -20,9 +21,9 @@ Each B-24 required between 313,237 and 400,000 rivets driven individually by han
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [vector_only]:
   > --- title: "RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment" category: "research" topic: "rfc-gap-04-dodge-brothers-vs-henry-ford-g" gap_id: "GAP-04" status: "draft" created_at: "2026-08-23T01:58:16.715Z" citations: "doc
 
@@ -41,7 +42,6 @@ sh · function · scripts/run-closed-loop-research-v2.mjs:L68-L71
   calls ← loadModelSelection (scripts/run-closed-loop-research-v2.mjs:L82-L109) [depth 1]
   calls ← run (scripts/run-closed-loop-research-v2.mj
 ```
-
 
 ## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.

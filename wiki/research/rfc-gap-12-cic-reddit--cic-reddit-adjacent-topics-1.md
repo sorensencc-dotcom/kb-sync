@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-12--cic-reddit - **CIC-Reddit (adjacent-topics - 1. The B-24’s Combat Record & Overseas Air Missions)**"
-category: "research"
-topic: "rfc-gap-12-cic-reddit--cic-reddit-adjacent-topics-1"
-gap_id: "GAP-12--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T21:24:29.053Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-12--cic-reddit - **CIC-Reddit (adjacent-topics - 1. The B-24’s Combat Record & Overseas Air Missions)**
+category: research
+topic: rfc-gap-12-cic-reddit--cic-reddit-adjacent-topics-1
+gap_id: GAP-12--cic-reddit
+status: draft
+created_at: 2026-09-19T21:24:29.053Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr.md","trm-research-gaps.md","wiki/research/rfc-gap-03--cic-reddit-under-sourced.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-12--cic-reddit - **CIC-Reddit (adjacent-topics - 1. The B-24’s Combat Record & Overseas Air Missions)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr** (`wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-2-integr.md`) [lexical_only]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
   > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 - **rfc-gap-03--cic-reddit-under-sourced** (`wiki/research/rfc-gap-03--cic-reddit-under-sourced.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

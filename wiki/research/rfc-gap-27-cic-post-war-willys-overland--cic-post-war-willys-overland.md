@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-27--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status"
-category: "research"
-topic: "rfc-gap-27-cic-post-war-willys-overland--cic-post-war-willys-overland"
-gap_id: "GAP-27--cic-post-war-willys-overland"
-status: "draft"
-created_at: "2026-09-19T21:41:48.388Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-27--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Claim
+category: research
+topic: rfc-gap-27-cic-post-war-willys-overland--cic-post-war-willys-overland
+gap_id: GAP-27--cic-post-war-willys-overland
+status: draft
+created_at: 2026-09-20T11:17:40.530Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-03--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-30-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-27--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status
+# RFC: GAP-27--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **Status:** Day-to-day accounts of his meetings with Soviet economic minister Valery Mezhlauk remain under-corroborated because his unedited personal meeting logs and Amtorg tradin
+)**: **The Claim:** King Christian X appointed Sorensen a Knight (1930) and Commander (1937) of the **Order of the Dannebrog** for his industrial achievements and support for Danish int
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Post-War & Willys-Overland adjacent-topics** category: research topic: rfc-gap-02--cic-post-war-willys-overland gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.443Z expansion_method: heuristic retrieval_m
-- **rfc-gap-03--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+- **rfc-gap-30-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-30-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
+- **rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
+- **rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

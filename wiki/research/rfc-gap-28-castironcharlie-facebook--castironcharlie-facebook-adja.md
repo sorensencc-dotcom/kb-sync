@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Fire Suppression and Parking Lot Patrols"
-category: "research"
-topic: "rfc-gap-28-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-28--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:42.056Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Frame 141 "Tax Dodge" Pivot
+category: research
+topic: rfc-gap-28-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-28--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:59.720Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-02-cross-platform-path-normalizat.md","wiki/research/rfc-gap-21-cic-kb--cic-kb-adjacent-topics-louvai.md"]
+citations: ["wiki/research/rfc-gap-36-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Fire Suppression and Parking Lot Patrols
+# RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Frame 141 "Tax Dodge" Pivot
 
 ## 1. Problem Statement & Context
-)**: **Fire Suppression and Parking Lot Patrols:** Fire Chief Dake managed 21,000 feet of hose, 4 hangar crash trucks, and 53,452 automatic sprinkler heads discharging 16 gallons per mi
+)**: **The Frame 141 "Tax Dodge" Pivot:** Construction manager Harry Hanson feared extending the factory across the Washtenaw/Wayne County border would create post-war tax liabilities,
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
-- **rfc-gap-02-cross-platform-path-normalizat** (`wiki/research/rfc-gap-02-cross-platform-path-normalizat.md`) [vector_only]:
-  > --- title: "RFC: GAP-02 - Cross-platform path normalization for Windows and POSIX vault roots" category: "research" topic: "rfc-gap-02-cross-platform-path-normalizat" gap_id: "GAP-02" status: "draft" created_at: "2026-08-23T01:58:16.710Z" citations:
-- **rfc-gap-21-cic-kb--cic-kb-adjacent-topics-louvai** (`wiki/research/rfc-gap-21-cic-kb--cic-kb-adjacent-topics-louvai.md`) [lexical_only]:
-  > 
+- **rfc-gap-36-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-36-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

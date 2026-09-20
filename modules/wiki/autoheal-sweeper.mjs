@@ -89,6 +89,7 @@ function normalizeStatus(status) {
 export async function autohealMetadata(filePath, fileContent, options = {}) {
   const { repoName = 'kb-sync', index = new Map() } = options;
   const repairs = [];
+  const eol = fileContent.includes('\r\n') ? '\r\n' : '\n';
   
   let content = fileContent;
   let frontmatter = {};
@@ -112,6 +113,28 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
     repairs.push('injected_frontmatter');
     const parsedPath = path.parse(filePath);
     frontmatter.title = parsedPath.name;
+  }
+
+  // Title Inference & Backfill
+  if (!frontmatter.title) {
+    if (frontmatter.source_title) {
+      frontmatter.title = frontmatter.source_title;
+      if (match) repairs.push('added_missing_fields');
+    } else {
+      const headingMatch = body.match(/^#\s+(.+)$/m);
+      if (headingMatch) {
+        let clean = headingMatch[1].trim().replace(/^`|`$/g, '').replace(/\[\[.*?\|(.*?)\]\]/g, '$1').replace(/\[\[(.*?)\]\]/g, '$1');
+        if (clean.includes('/')) {
+          clean = path.basename(clean);
+        }
+        frontmatter.title = clean;
+        if (match) repairs.push('added_missing_fields');
+      } else {
+        const parsedPath = path.parse(filePath);
+        frontmatter.title = parsedPath.name;
+        if (match) repairs.push('added_missing_fields');
+      }
+    }
   }
 
   // Category
@@ -145,7 +168,7 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   }
 
   // Wikilinks
-  const codeBlockRegex = /(```[\s\S]*?```|`[^`]+`)/g;
+  const codeBlockRegex = /(```[\s\S]*?```|~~~[\s\S]*?~~~|`[^`\r\n]+`)/g;
   const blocks = [];
   let placeholderIndex = 0;
   
@@ -182,7 +205,7 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
     if (/[^\s]  $/.test(line)) return line;
     return line.replace(/\s+$/, '');
   });
-  tempBody = cleanedLines.join('\n').replace(/\n{3,}/g, '\n\n');
+  tempBody = cleanedLines.join(eol).replace(new RegExp(`(?:${eol}){3,}`, 'g'), `${eol}${eol}`);
   if (tempBody !== origBody) {
     repairs.push('cleaned_hygiene');
   }
@@ -193,11 +216,11 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   });
 
   // Construct final frontmatter
-  let newFm = '---\n';
+  let newFm = `---${eol}`;
   for (const [k, v] of Object.entries(frontmatter)) {
-    newFm += `${k}: ${v}\n`;
+    newFm += `${k}: ${v}${eol}`;
   }
-  newFm += '---\n';
+  newFm += `---${eol}`;
 
   return {
     content: newFm + tempBody,

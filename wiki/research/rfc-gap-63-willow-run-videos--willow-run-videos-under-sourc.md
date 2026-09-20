@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-63--willow-run-videos - **Willow Run Videos (under-sourced - The Claim"
-category: "research"
-topic: "rfc-gap-63-willow-run-videos--willow-run-videos-under-sourc"
-gap_id: "GAP-63--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:57:47.602Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-63--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
+category: research
+topic: rfc-gap-63-willow-run-videos--willow-run-videos-under-sourc
+gap_id: GAP-63--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:57:47.602Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01--cic-reddit-follow-up.md","wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-follow-up-o.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-63--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01--cic-reddit-follow-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01--cic-reddit-follow-up** (`wiki/research/rfc-gap-01--cic-reddit-follow-up.md`) [vector_only]:
   > --- title: RFC: GAP-01 - **CIC-Reddit follow-up** category: research topic: rfc-gap-01--cic-reddit-follow-up gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:52.686Z expansion_method: heuristic retrieval_mode: hybrid-rrf ast_grounded_symbols
 - **rfc-gap-08-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

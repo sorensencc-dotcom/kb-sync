@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Investigate Corporate Rebuttals"
-category: "research"
-topic: "rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-14--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:03:59.825Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
+category: research
+topic: rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-14--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:32.664Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Investigate Corporate Rebuttals
+# RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
 
 ## 1. Problem Statement & Context
-)**: **Investigate Corporate Rebuttals:** Check for any public or private responses issued by Henry Ford II or the Ford Motor Company regarding Sorensen's self-described role as "regent
+)**: **Automotive Establishment Response:** Whether **Henry Ford II** or the broader Ford Motor Company / automotive establishment issued public or private rebuttals to Sorensen’s candi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
 - **rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
+  >
+- **rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

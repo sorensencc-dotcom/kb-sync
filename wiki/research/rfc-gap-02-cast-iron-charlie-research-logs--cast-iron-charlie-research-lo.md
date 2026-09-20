@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Resolve the Contested Death Date"
-category: "research"
-topic: "rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-02--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:03:30.890Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Locate Helen Sorensen's Press Obituary
+category: research
+topic: rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-02--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:20.194Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md","wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Resolve the Contested Death Date
+# RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Locate Helen Sorensen's Press Obituary
 
 ## 1. Problem Statement & Context
-)**: **Resolve the Contested Death Date:** Published biographies and Wikipedia text state that Sorensen died on **August 28, 1968** [1], whereas Find A Grave entries, cemetery records,
+)**: **Locate Helen Sorensen's Press Obituary:** Search *Miami Herald* archives around March 5, 1959, to retrieve her physical press obituary following her death in Miami on March 4, 19
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
+- **rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
+  > --- title: "RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs adjacent-topics - Helen Sorensen’s Press Obituary" category: "research" topic: "rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

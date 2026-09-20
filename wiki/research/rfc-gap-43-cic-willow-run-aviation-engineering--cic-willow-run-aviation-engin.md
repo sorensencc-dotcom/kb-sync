@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-43--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - WPB Handover Memos"
-category: "research"
-topic: "rfc-gap-43-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-43--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:11.335Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-43--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Arnold–Edsel Ford Letters
+category: research
+topic: rfc-gap-43-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-43--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:56.385Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-44-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-85-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-43--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - WPB Handover Memos
+# RFC: GAP-43--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Arnold–Edsel Ford Letters
 
 ## 1. Problem Statement & Context
-)**: **WPB Handover Memos:** Specific internal War Production Board memos documenting the December 1942 management transition from Roscoe Smith to Mead Bricker remain unlocated in prima
+)**: **Arnold–Edsel Ford Letters:** Primary correspondence between General Henry H. "Hap" Arnold and Edsel Ford regarding early 1942 subassembly rejection rates at Fort Worth has not ye
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+- **rfc-gap-44-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-44-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-85-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-85-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

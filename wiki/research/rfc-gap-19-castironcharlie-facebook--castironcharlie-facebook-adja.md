@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-19--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Non-Magnetic Compass Rose"
-category: "research"
-topic: "rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-19--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:23.677Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-19--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Data Automation in Department 981
+category: research
+topic: rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-19--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:52.399Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["wiki/research/rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-19--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Non-Magnetic Compass Rose
+# RFC: GAP-19--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Data Automation in Department 981
 
 ## 1. Problem Statement & Context
-)**: **The Non-Magnetic Compass Rose:** To calibrate internal magnetic compasses without interference from the plant's structural steel, the Haughton Elevator Company constructed an **8
+)**: **Data Automation in Department 981:** Managing 30,000 distinct parts across 1.25 million total components per aircraft exceeded manual record-keeping capacity, prompting Material
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+- **rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-16--willow-run-videos - **Willow Run Videos (adjacent-topics - 1. Clara Ford"
-category: "research"
-topic: "rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-16--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:36:43.705Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-16--willow-run-videos - **Willow Run Videos (adjacent-topics - The 1941 Union Surrender
+category: research
+topic: rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-16--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.742Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-16--willow-run-videos - **Willow Run Videos (adjacent-topics - 1. Clara Ford
+# RFC: GAP-16--willow-run-videos - **Willow Run Videos (adjacent-topics - The 1941 Union Surrender
 
 ## 1. Problem Statement & Context
-The Silent Power Broker of Dearborn)**: **1. Clara Ford: The Silent Power Broker of Dearborn** While Henry Ford was mythologized as an autocrat, his wife **Clara Ford** was his single most influential advisor [1-3]. The
+)**: **The 1941 Union Surrender:** During the intense UAW labor standoff in early 1941, Henry Ford fiercely resisted unionization, stating he would rather shut down his factories, forfe
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-03 - **CIC - Ford Executive Dynamics & Politics under-sourced** category: research topic: rfc-gap-03--cic-ford-executive-dynamics-p gap_id: GAP-03 status: draft created_at: 2026-09-05T03:17:44.743Z expansion_method: heuristic retr
+- **rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  >
+- **rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  >
+- **rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-81--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status"
-category: "research"
-topic: "rfc-gap-81-cic-post-war-willys-overland--cic-post-war-willys-overland"
-gap_id: "GAP-81--cic-post-war-willys-overland"
-status: "draft"
-created_at: "2026-09-19T21:13:22.514Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-81--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status
+category: research
+topic: rfc-gap-81-cic-post-war-willys-overland--cic-post-war-willys-overland
+gap_id: GAP-81--cic-post-war-willys-overland
+status: draft
+created_at: 2026-09-19T21:13:22.514Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-81--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","trm-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: "RFC: GAP-03--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland follow-up - Action" category: "research" topic: "rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland" gap_id: "GAP-03--cic-post-war-willys-ov
 

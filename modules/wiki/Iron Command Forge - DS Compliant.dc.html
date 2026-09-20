@@ -474,8 +474,8 @@ class Component extends DCLogic {
       actionItemsFiltered, hasActionItems: actionItemsFiltered.length > 0, hasNoActionItems: actionItemsFiltered.length === 0,
       actionItemsCountLabel: `${actionItemsFiltered.length} groups`,
       domainRowsFiltered, topLinks, opsTasks,
-      copyTodosCmd: () => this.copyCmd('code C:\\\\dev\\\\TODOS.md'),
-      copyValidateCmd: () => this.copyCmd('node modules/wiki/validate-staging-docs.mjs --json=./.validation-report.json .'),
+      copyTodosCmd: () => this.copyCmd('code C:\\dev\\TODOS.md'),
+      copyValidateCmd: () => this.copyCmd('node modules/wiki/validate-staging-docs.mjs --json=./.validation-report.json wiki'),
       noopCmd: () => this.toast('Reload/export require the live local server'),
       toastVisible: this.state.toastVisible, toastMsg: this.state.toastMsg
     };

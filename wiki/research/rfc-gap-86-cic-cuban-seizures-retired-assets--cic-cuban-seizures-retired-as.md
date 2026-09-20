@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-86--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - 6.)**"
-category: "research"
-topic: "rfc-gap-86-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-86--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T20:58:23.266Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-86--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - 6.)**
+category: research
+topic: rfc-gap-86-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-86--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-19T20:58:23.266Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","wiki/research/rfc-gap-16-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-86--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - 6.)**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-16-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-16-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-16--cic-daily-research - **CIC - Daily Research follow-up - 6.**" category: "research" topic: "rfc-gap-16-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-16--cic-daily-research" status: "draft" created_at: "2026-09
 

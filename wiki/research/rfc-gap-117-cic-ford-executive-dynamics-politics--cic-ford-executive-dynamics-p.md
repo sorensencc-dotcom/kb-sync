@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-117--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**"
-category: "research"
-topic: "rfc-gap-117-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-117--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:20:44.348Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-117--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**
+category: research
+topic: rfc-gap-117-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-117--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-19T21:20:44.348Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-117--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - 3.)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
 - **rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

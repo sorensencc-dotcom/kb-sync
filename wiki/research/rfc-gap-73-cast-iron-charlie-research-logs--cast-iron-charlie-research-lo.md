@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-73--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Ralph Oppenheim Nominee Lead"
-category: "research"
-topic: "rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-73--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:47:28.286Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-73--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Ralph Oppenheim Nominee Lead
+category: research
+topic: rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-73--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-19T20:47:28.286Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/architecture.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-73--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Ralph Oppenheim Nominee Lead
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-fol
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
   > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
 

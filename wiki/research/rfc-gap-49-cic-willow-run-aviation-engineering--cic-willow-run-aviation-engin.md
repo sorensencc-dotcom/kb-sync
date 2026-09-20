@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-49--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Sorensen vs. Bennett Memoir Discrepancies"
-category: "research"
-topic: "rfc-gap-49-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-49--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:19.460Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-49--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery
+category: research
+topic: rfc-gap-49-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-49--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:56.549Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe.md"]
+citations: ["wiki/research/rfc-gap-106-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-123-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-50-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-49--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Sorensen vs. Bennett Memoir Discrepancies
+# RFC: GAP-49--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery
 
 ## 1. Problem Statement & Context
-)**: **Sorensen vs. Bennett Memoir Discrepancies:** Retrospective first-person accounts by production chief Charles Sorensen (*My Forty Years with Ford*) and security chief Harry Bennet
+)**: **The "Secret Codicil" Signature Mystery:** Bennett claimed he burned the original signed codicil to Henry Ford's will—which would have handed 10-year trustee control of Ford Motor
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [hybrid]:
-  > 
-- **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
-- **rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe.md`) [vector_only]:
-  > --- title: "RFC: GAP-02--cic-kb - **CIC-KB follow-up - Empirical Performance Benchmarking & Telemetry**" category: "research" topic: "rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe" gap_id: "GAP-02--cic-kb" status: "draft" created_at: "2026-09-19T2
+- **rfc-gap-106-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-106-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-123-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-123-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-50-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-50-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-117--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Cold-Storage Rivet Thermal Failure Logs"
-category: "research"
-topic: "rfc-gap-117-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-117--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:07:27.945Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-117--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Cold-Storage Rivet Thermal Failure Logs
+category: research
+topic: rfc-gap-117-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-117--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:07:27.945Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/concepts/local-context-cache.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-117--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Cold-Storage Rivet Thermal Failure Logs
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-11-cast-iron-charlie-r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-11--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Audit Library & Kroll Collections" category: "research" topic: "rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_
 - **local-context-cache** (`wiki/concepts/local-context-cache.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-52--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike"
-category: "research"
-topic: "rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-52--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:57:28.170Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-52--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
+category: research
+topic: rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-52--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:57:28.170Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/.catalog.json"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-52--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjac
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

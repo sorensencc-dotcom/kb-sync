@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-54--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction"
-category: "research"
-topic: "rfc-gap-54-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-54--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:37:43.502Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-54--willow-run-videos - **Willow Run Videos (open-contradictions - Historical Record
+category: research
+topic: rfc-gap-54-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-54--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:06.851Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","trm-research-gaps.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-102-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-122-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-open-contra.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-54--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+# RFC: GAP-54--willow-run-videos - **Willow Run Videos (open-contradictions - Historical Record
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** Transcripts split on where Charles E. Sorensen spent his sleepless night in January 1941 deconstructing the B-24 layout onto paper. Multiple accounts place t
+)**: **Historical Record:** The Westinghouse "We Can Do It!" poster campaign was established before Monroe was discovered in Michigan [31, 36], and historical archives place Naomi Parke
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+- **rfc-gap-102-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-102-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-122-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-122-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-72-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

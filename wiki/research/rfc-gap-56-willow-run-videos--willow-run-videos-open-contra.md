@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-56--willow-run-videos - **Willow Run Videos (open-contradictions - 3. Motive Behind the 90-Degree L-Bend"
-category: "research"
-topic: "rfc-gap-56-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-56--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:37:45.415Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-56--willow-run-videos - **Willow Run Videos (open-contradictions - Floor Contemporaries
+category: research
+topic: rfc-gap-56-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-56--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:08.538Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--willow-run-videos-follow-up.md","docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-56--willow-run-videos - **Willow Run Videos (open-contradictions - 3. Motive Behind the 90-Degree L-Bend
+# RFC: GAP-56--willow-run-videos - **Willow Run Videos (open-contradictions - Floor Contemporaries
 
 ## 1. Problem Statement & Context
-Airfield Geometry vs. County Tax Evasion)**: **3. Motive Behind the 90-Degree L-Bend: Airfield Geometry vs. County Tax Evasion**
+)**: **Floor Contemporaries:** Oral histories from shop-floor contemporaries (William "Pa" Klann and Clarence Avery) deny this claim, stating Sorensen was confined to foundry pattern wo
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--willow-run-videos-follow-up** (`wiki/research/rfc-gap-01--willow-run-videos-follow-up.md`) [lexical_only]:
-  > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+- **rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  >
+- **rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
+  > --- title: "RFC: GAP-32--willow-run-videos - **Willow Run Videos under-sourced - The Claim" category: "research" topic: "rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc" gap_id: "GAP-32--willow-run-videos" status: "draft" created_at: "202
+- **rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-27--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Willow Run to Willys Transition"
-category: "research"
-topic: "rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-27--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:25.212Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-27--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Unverified Holding Structures)**
+category: research
+topic: rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-27--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.325Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-61-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-78-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-53-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-27--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Willow Run to Willys Transition
+# RFC: GAP-27--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Unverified Holding Structures)**
 
 ## 1. Problem Statement & Context
-)**: **Willow Run to Willys Transition:** Historical details surrounding his 1944 transition from directing mass production at the **Willow Run bomber plant** during World War II to tak
+**Unverified Holding Structures**: No primary deeds or corporate filings have been located to confirm whether the physical land was incorporated under the entity **"CESOR S.A."**,
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
-- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
-- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+- **rfc-gap-61-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-61-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-78-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-78-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-53-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-53-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

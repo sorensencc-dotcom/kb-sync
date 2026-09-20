@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-22--cic-kb - **CIC-KB (adjacent-topics - 4. Sigil Extensions, Chat SDKs & Transport Bridges)**"
-category: "research"
-topic: "rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi"
-gap_id: "GAP-22--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:27:31.570Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-22--cic-kb - **CIC-KB (adjacent-topics - 4. Sigil Extensions, Chat SDKs & Transport Bridges)**
+category: research
+topic: rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi
+gap_id: GAP-22--cic-kb
+status: draft
+created_at: 2026-09-19T20:27:31.570Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/historical-revocation-verification.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-22--cic-kb - **CIC-KB (adjacent-topics - 4. Sigil Extensions, Chat SDKs & Transport Bridges)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-02--cic-daily-research-adjacent-t.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
 - **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-02--cic-reddit - **CIC-Reddit (follow-up - The Conflict"
-category: "research"
-topic: "rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-conf"
-gap_id: "GAP-02--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T20:52:55.741Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02--cic-reddit - **CIC-Reddit (follow-up - The Conflict
+category: research
+topic: rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-conf
+gap_id: GAP-02--cic-reddit
+status: draft
+created_at: 2026-09-19T20:52:55.741Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02--cic-reddit - **CIC-Reddit (follow-up - The Conflict
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

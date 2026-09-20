@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-38--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept""
-category: "research"
-topic: "rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-38--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T20:50:11.300Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-38--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept"
+category: research
+topic: rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-38--castironcharlie-facebook
+status: draft
+created_at: 2026-09-19T20:50:11.300Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-03-cic-kb--cic-kb-adjacent-topics-nostr.md","wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-38--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept"
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03-cic-kb--cic-kb-adjacent-topics-nostr** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-adjacent-topics-nostr.md`) [vector_only]:
   > --- title: "RFC: GAP-03--cic-kb - **CIC-KB adjacent-topics - Nostr-Signed Git-Patching Workflows from Block's Buzz**" category: "research" topic: "rfc-gap-03-cic-kb--cic-kb-adjacent-topics-nostr" gap_id: "GAP-03--cic-kb" status: "draft" created_at: "
 - **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

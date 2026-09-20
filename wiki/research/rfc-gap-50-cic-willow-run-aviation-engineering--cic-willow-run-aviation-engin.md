@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery"
-category: "research"
-topic: "rfc-gap-50-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-50--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:21.363Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Executive Dismissal Narratives
+category: research
+topic: rfc-gap-50-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-50--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:56.561Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verification.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-107-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-51-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-124-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery
+# RFC: GAP-50--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Executive Dismissal Narratives
 
 ## 1. Problem Statement & Context
-)**: **The "Secret Codicil" Signature Mystery:** Bennett claimed he burned the original signed codicil to Henry Ford's will—which would have handed 10-year trustee control of Ford Motor
+)**: **Executive Dismissal Narratives:** Purchasing agent A. M. Wibel was dismissed in April 1943 after appealing to Edsel Ford when Bennett demanded Wibel steer a lucrative purchasing
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
-  > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-107-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-107-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-51-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-51-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-124-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-124-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

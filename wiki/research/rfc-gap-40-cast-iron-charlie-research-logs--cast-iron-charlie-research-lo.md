@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-40--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - The Rumored Virgin Islands Property"
-category: "research"
-topic: "rfc-gap-40-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-40--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:54.461Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-40--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Secondary Source Reliance
+category: research
+topic: rfc-gap-40-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-40--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.340Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-92-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-109-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-40--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - The Rumored Virgin Islands Property
+# RFC: GAP-40--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Secondary Source Reliance
 
 ## 1. Problem Statement & Context
-)**: **The Rumored Virgin Islands Property:** Family memory references a potential retirement property or real estate asset in the **U.S. Virgin Islands** alongside Florida ("another bi
+)**: **Secondary Source Reliance:** The narrative of an 82-year-old Sorensen meeting industrial designer Brooks Stevens in Florida and conceiving a "Ferris Wheel" molding machine for St
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-92-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-92-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-109-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-109-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

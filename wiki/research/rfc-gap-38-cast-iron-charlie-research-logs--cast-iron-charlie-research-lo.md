@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-38--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Daily Life on North Bay Drive"
-category: "research"
-topic: "rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-38--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:51.756Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-38--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Nominee Lead
+category: research
+topic: rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-38--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.257Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-90-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-38--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Daily Life on North Bay Drive
+# RFC: GAP-38--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Nominee Lead
 
 ## 1. Problem Statement & Context
-)**: **Daily Life on North Bay Drive:** Beyond references to his burial and yacht, Sorensen's day-to-day life during his long retirement at his winter home (**5185 N. Bay Dr.** in Miami
+)**: **The Nominee Lead:** Official filings reveal that Claim **CU-2067** (pertaining to stock in *Compania Litografica de la Habana, S.A.* / Havana Lithographing Company) is registered
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+- **rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-90-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-90-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

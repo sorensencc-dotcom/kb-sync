@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-07--cic-daily-research - **CIC - Daily Research (follow-up - The Target"
-category: "research"
-topic: "rfc-gap-07-cic-daily-research--cic-daily-research-follow-up"
-gap_id: "GAP-07--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:49:44.250Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-07--cic-daily-research - **CIC - Daily Research (follow-up - The Target
+category: research
+topic: rfc-gap-07-cic-daily-research--cic-daily-research-follow-up
+gap_id: GAP-07--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:49:44.250Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md","wiki/research/rfc-gap-05-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-07--cic-daily-research - **CIC - Daily Research (follow-up - The Target
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-fol
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-05-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-05-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-05--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-05-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-05--cic-daily-research" status: "draft" created_at: "2
 

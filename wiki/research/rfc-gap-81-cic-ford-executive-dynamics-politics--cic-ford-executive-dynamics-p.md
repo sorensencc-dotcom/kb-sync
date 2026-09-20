@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-81--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - **6.)**"
-category: "research"
-topic: "rfc-gap-81-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-81--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:19:18.402Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-81--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - **6.)**
+category: research
+topic: rfc-gap-81-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-81--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-19T21:19:18.402Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-81--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - **6.)**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - Target Repositories" category: "research" topic: "rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" g
 

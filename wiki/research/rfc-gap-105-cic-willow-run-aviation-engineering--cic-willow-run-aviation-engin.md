@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-105--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Sorensen vs. Bennett Memoir Discrepancies"
-category: "research"
-topic: "rfc-gap-105-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-105--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:07:08.602Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-105--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Sorensen vs. Bennett Memoir Discrepancies
+category: research
+topic: rfc-gap-105-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-105--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:07:08.602Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-105--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Sorensen vs. Bennett Memoir Discrepancies
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe.md`) [vector_only]:
   > --- title: "RFC: GAP-02--cic-kb - **CIC-KB follow-up - Empirical Performance Benchmarking & Telemetry**" category: "research" topic: "rfc-gap-02-cic-kb--cic-kb-follow-up-empirical-pe" gap_id: "GAP-02--cic-kb" status: "draft" created_at: "2026-09-19T2
 

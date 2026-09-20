@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-13--cic-kb - **CIC-KB (adjacent-topics - Tiered Context Hierarchy)**"
-category: "research"
-topic: "rfc-gap-13-cic-kb--cic-kb-adjacent-topics-tiered"
-gap_id: "GAP-13--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:27:15.775Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-13--cic-kb - **CIC-KB (adjacent-topics - Tiered Context Hierarchy)**
+category: research
+topic: rfc-gap-13-cic-kb--cic-kb-adjacent-topics-tiered
+gap_id: GAP-13--cic-kb
+status: draft
+created_at: 2026-09-19T20:27:15.775Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/concepts/pack-based-knowledge-management.md","docs/kb/notebooklm-sync/architecture.md","wiki/concepts/deterministic-sync-pipeline.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-13--cic-kb - **CIC-KB (adjacent-topics - Tiered Context Hierarchy)**
@@ -20,11 +21,11 @@ citations: ["wiki/concepts/pack-based-knowledge-management.md","docs/kb/notebook
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **pack-based-knowledge-management** (`wiki/concepts/pack-based-knowledge-management.md`) [lexical_only]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
   > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
 - **deterministic-sync-pipeline** (`wiki/concepts/deterministic-sync-pipeline.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

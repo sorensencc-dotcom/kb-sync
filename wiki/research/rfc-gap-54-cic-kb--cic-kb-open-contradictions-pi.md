@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-54--cic-kb - **CIC-KB (open-contradictions - Pipeline Environment & Staging Drift)**"
-category: "research"
-topic: "rfc-gap-54-cic-kb--cic-kb-open-contradictions-pi"
-gap_id: "GAP-54--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:28:16.728Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-54--cic-kb - **CIC-KB (open-contradictions - Pipeline Environment & Staging Drift)**
+category: research
+topic: rfc-gap-54-cic-kb--cic-kb-open-contradictions-pi
+gap_id: GAP-54--cic-kb
+status: draft
+created_at: 2026-09-19T20:28:16.728Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-kb-open-contradictions.md","wiki/research/rfc-gap-01--cic-kb-follow-up.md","wiki/concepts/deterministic-sync-pipeline.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-54--cic-kb - **CIC-KB (open-contradictions - Pipeline Environment & Staging Drift)**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-02--cic-kb-open-contradictions.md","wiki/rese
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-kb-open-contradictions** (`wiki/research/rfc-gap-02--cic-kb-open-contradictions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01--cic-kb-follow-up** (`wiki/research/rfc-gap-01--cic-kb-follow-up.md`) [lexical_only]:
-  > 
+  >
 - **deterministic-sync-pipeline** (`wiki/concepts/deterministic-sync-pipeline.md`) [vector_only]:
   > --- title: Deterministic Sync Pipeline category: concepts status: active sourceRepository: kb-sync lastUpdated: 2026-08-30 ---  # Deterministic Sync Pipeline  The **Deterministic Sync Pipeline** is the core state management and publication protocol o
 

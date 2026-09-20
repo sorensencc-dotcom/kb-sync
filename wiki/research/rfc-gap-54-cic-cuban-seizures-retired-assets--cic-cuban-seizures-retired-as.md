@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-54--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Unproved vs. Discounted Reserves"
-category: "research"
-topic: "rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-54--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T21:32:46.172Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-54--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - The Certifiable Reserve Standard
+category: research
+topic: rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-54--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-20T11:10:28.527Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-113-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-133-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-54--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Unproved vs. Discounted Reserves
+# RFC: GAP-54--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - The Certifiable Reserve Standard
 
 ## 1. Problem Statement & Context
-)**: **Unproved vs. Discounted Reserves:** In *John El Koury* (Claim CU-0384) and *Archibald S. Abbey* (Claim CU-0352), raw tonnage projections were rejected due to lack of production h
+)**: **The Certifiable Reserve Standard:** This contrasts directly with *Nicaro Nickel Company* (Claim CU-2624). The Commission initially denied claims for "probable" and "possible" ore
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
-- **rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: "RFC: GAP-02--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Historical Context" category: "research" topic: "rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as" gap_id: "GA
+- **rfc-gap-113-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-113-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-133-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-133-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

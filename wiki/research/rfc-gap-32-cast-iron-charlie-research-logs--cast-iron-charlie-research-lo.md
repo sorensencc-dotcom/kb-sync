@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Helen Sorensen’s Press Obituary"
-category: "research"
-topic: "rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-32--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:41:57.042Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Undocumented Industry Reaction)**
+category: research
+topic: rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-32--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.101Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md","trm-research-gaps.md","wiki/concepts/pack-based-knowledge-management.md"]
+citations: ["wiki/research/rfc-gap-66-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-83-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Helen Sorensen’s Press Obituary
+# RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Undocumented Industry Reaction)**
 
 ## 1. Problem Statement & Context
-)**: **Helen Sorensen’s Press Obituary:** While family records confirm his first wife Helen died on **March 4, 1959**, in Miami, her physical press obituary in the ***Miami Herald*** ha
+**Undocumented Industry Reaction**: While *My Forty Years with Ford* generated a sharp split among contemporary newspaper reviewers upon its 1956 release [7], any official public o
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
-- **pack-based-knowledge-management** (`wiki/concepts/pack-based-knowledge-management.md`) [lexical_only]:
-  > 
+- **rfc-gap-66-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-66-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-83-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-83-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-80--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality"
-category: "research"
-topic: "rfc-gap-80-willow-run-videos--willow-run-videos-under-sourc"
-gap_id: "GAP-80--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T21:02:30.319Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-80--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
+category: research
+topic: rfc-gap-80-willow-run-videos--willow-run-videos-under-sourc
+gap_id: GAP-80--willow-run-videos
+status: draft
+created_at: 2026-09-19T21:02:30.319Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w.md","_kb-sync-staging/trm/current/raw_research_conformance.json","wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-w.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-80--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
-  > 
+  >
 - **raw_research_conformance** (`_kb-sync-staging/trm/current/raw_research_conformance.json`) [vector_only]:
   > {   "timestamp": "2026-08-23T02:19:45.925Z",   "gaps_analyzed":      "decentralized-verification",     "heartbeat-throttling"   ,   "findings":      {       "topic": "Mobile Browser Timer Throttling",       "solution": "Use Service Workers or Page Vi
 - **rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

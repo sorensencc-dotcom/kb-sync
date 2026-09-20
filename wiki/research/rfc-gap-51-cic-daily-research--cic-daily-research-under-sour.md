@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-51--cic-daily-research - **CIC - Daily Research (under-sourced - 5.)**"
-category: "research"
-topic: "rfc-gap-51-cic-daily-research--cic-daily-research-under-sour"
-gap_id: "GAP-51--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:50:39.429Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-51--cic-daily-research - **CIC - Daily Research (under-sourced - 5.)**
+category: research
+topic: rfc-gap-51-cic-daily-research--cic-daily-research-under-sour
+gap_id: GAP-51--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:50:39.429Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-13-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-51--cic-daily-research - **CIC - Daily Research (under-sourced - 5.)**
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-13-cic-daily-research-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-13-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-13--cic-daily-research - **CIC - Daily Research follow-up - 5.**" category: "research" topic: "rfc-gap-13-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-13--cic-daily-research" status: "draft" created_at: "2026-09
 - **rfc-gap-12-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

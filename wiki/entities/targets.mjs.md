@@ -1,8 +1,12 @@
 ---
+title: targets.mjs
 entity_type: module
 source_path: core/targets.mjs
 repository: kb-sync
 last_updated: 2026-09-14
+category: wiki
+status: draft
+sourceRepository: kb-sync
 ---
 
 # `core/targets.mjs`

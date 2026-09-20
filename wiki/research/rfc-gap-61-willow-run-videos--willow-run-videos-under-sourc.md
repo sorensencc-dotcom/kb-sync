@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-61--willow-run-videos - **Willow Run Videos (under-sourced - The Claim"
-category: "research"
-topic: "rfc-gap-61-willow-run-videos--willow-run-videos-under-sourc"
-gap_id: "GAP-61--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:57:43.239Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-61--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
+category: research
+topic: rfc-gap-61-willow-run-videos--willow-run-videos-under-sourc
+gap_id: GAP-61--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:57:43.239Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-2.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-61--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-2** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-2.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md`) [vector_only]:
   > --- title: "RFC: GAP-14--willow-run-videos - **Willow Run Videos follow-up - Why It Strengthens Findings" category: "research" topic: "rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w" gap_id: "GAP-14--willow-run-videos" status: "draft" cr
 

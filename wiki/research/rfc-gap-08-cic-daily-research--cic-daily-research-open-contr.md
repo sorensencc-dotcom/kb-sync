@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research (open-contradictions - Attribution Controversy"
-category: "research"
-topic: "rfc-gap-08-cic-daily-research--cic-daily-research-open-contr"
-gap_id: "GAP-08--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:47:34.704Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-08--cic-daily-research - **CIC - Daily Research (open-contradictions - Attribution Controversy
+category: research
+topic: rfc-gap-08-cic-daily-research--cic-daily-research-open-contr
+gap_id: GAP-08--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:47:34.704Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-13-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-08--cic-daily-research - **CIC - Daily Research (open-contradictions - Attribution Controversy
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-13-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-13--cic-daily-research - **CIC - Daily Research follow-up - 5.**" category: "research" topic: "rfc-gap-13-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-13--cic-daily-research" status: "draft" created_at: "2026-09
 

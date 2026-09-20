@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective"
-category: "research"
-topic: "rfc-gap-28-castironcharlie-facebook--castironcharlie-facebook-foll"
-gap_id: "GAP-28--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T20:50:29.789Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
+category: research
+topic: rfc-gap-28-castironcharlie-facebook--castironcharlie-facebook-foll
+gap_id: GAP-28--castironcharlie-facebook
+status: draft
+created_at: 2026-09-19T20:50:29.789Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/concepts/deterministic-sync-pipeline.md","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-02--cic-kb-adjacent-topics.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-28--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
@@ -20,11 +21,11 @@ citations: ["wiki/concepts/deterministic-sync-pipeline.md","wiki/research/rfc-ga
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **deterministic-sync-pipeline** (`wiki/concepts/deterministic-sync-pipeline.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
   > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
 - **rfc-gap-02--cic-kb-adjacent-topics** (`wiki/research/rfc-gap-02--cic-kb-adjacent-topics.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

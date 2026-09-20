@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Operational Controls & Labor Dynamics"
-category: "research"
-topic: "rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland"
-gap_id: "GAP-16--cic-post-war-willys-overland"
-status: "draft"
-created_at: "2026-09-19T21:41:28.723Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Operational Controls & Labor Dynamics
+category: research
+topic: rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland
+gap_id: GAP-16--cic-post-war-willys-overland
+status: draft
+created_at: 2026-09-20T11:17:38.582Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-16--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Operational Controls & Labor Dynamics
@@ -19,12 +20,12 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-post-war-willy
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
-- **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+- **rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
+- **rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

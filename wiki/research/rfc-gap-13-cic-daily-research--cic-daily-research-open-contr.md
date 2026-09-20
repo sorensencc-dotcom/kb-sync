@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-13--cic-daily-research - **CIC - Daily Research (open-contradictions - The Open Archival Question"
-category: "research"
-topic: "rfc-gap-13-cic-daily-research--cic-daily-research-open-contr"
-gap_id: "GAP-13--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:47:44.818Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-13--cic-daily-research - **CIC - Daily Research (open-contradictions - The Open Archival Question
+category: research
+topic: rfc-gap-13-cic-daily-research--cic-daily-research-open-contr
+gap_id: GAP-13--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:47:44.818Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md","wiki/research/rfc-gap-14-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-13--cic-daily-research - **CIC - Daily Research (open-contradictions - The Open Archival Question
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-fol
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-12-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-14-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-14-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-14--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-14-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-14--cic-daily-research" status: "draft" created_at: "2
 

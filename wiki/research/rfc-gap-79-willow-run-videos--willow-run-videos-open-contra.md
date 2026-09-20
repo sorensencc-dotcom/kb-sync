@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-79--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts"
-category: "research"
-topic: "rfc-gap-79-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-79--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:41:01.884Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-79--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts
+category: research
+topic: rfc-gap-79-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-79--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:41:01.884Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["docs/kb/notebooklm-sync/pipeline.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/operator-rules.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-79--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts
@@ -20,11 +21,11 @@ citations: ["docs/kb/notebooklm-sync/pipeline.md","wiki/research/.catalog.json",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **pipeline** (`docs/kb/notebooklm-sync/pipeline.md`) [hybrid]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [hybrid]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

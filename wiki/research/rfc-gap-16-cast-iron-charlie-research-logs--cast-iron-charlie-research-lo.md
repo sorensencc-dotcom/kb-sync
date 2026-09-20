@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-16--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Confirm Willys-Overland Payroll Terms"
-category: "research"
-topic: "rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-16--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:01.970Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-16--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - **Visual Documentation of the Yacht *Helene*
+category: research
+topic: rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-16--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.042Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-16--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Confirm Willys-Overland Payroll Terms
+# RFC: GAP-16--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - **Visual Documentation of the Yacht *Helene*
 
 ## 1. Problem Statement & Context
-)**: **Confirm Willys-Overland Payroll Terms:** Search Willys corporate files at the Toledo-Lucas County Public Library or the Kaiser-Willys archive to verify the duration and financial
+**...)**: **Visual Documentation of the Yacht *Helene*:** Research logs highlight a pending lead to track down archival photographs and operational logs for his luxury yacht, the ***Helene**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Audit Library & Kroll Collections" category: "research" topic: "rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_
+- **rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

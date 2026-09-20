@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-21--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - 3. IBM Punched-Card Material Control (Dept 981) & Tooling Alignment)**"
-category: "research"
-topic: "rfc-gap-21-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-21--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:29.044Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-21--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Heavy Tooling Management
+category: research
+topic: rfc-gap-21-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-21--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:53.512Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+citations: ["wiki/research/rfc-gap-50-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-24-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-21--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - 3. IBM Punched-Card Material Control (Dept 981) & Tooling Alignment)**
+# RFC: GAP-21--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Heavy Tooling Management
 
 ## 1. Problem Statement & Context
-**3. IBM Punched-Card Material Control (Dept 981) & Tooling Alignment**
+)**: **Heavy Tooling Management:** The system managed and scheduled **40 center-wing fixtures weighing 27.5 tons each** (a combined fixture mass equal to 37 M-4 tanks) to maintain real-
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
-- **rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt** (`wiki/research/rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cic-kb - **CIC-KB adjacent-topics - 1. Virtual Filesystem Tiering `viking" category: "research" topic: "rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt" gap_id: "GAP-11--cic-kb" status: "draft" created_at: "2026-09-19T20:27:
-- **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+- **rfc-gap-50-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-50-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-24-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-24-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-20--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response"
-category: "research"
-topic: "rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-20--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:12.424Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-20--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Extended Willys-Overland Payroll Terms
+category: research
+topic: rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-20--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.145Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-20--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
+# RFC: GAP-20--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Extended Willys-Overland Payroll Terms
 
 ## 1. Problem Statement & Context
-)**: **Automotive Establishment Response:** Whether **Henry Ford II** or the broader Ford Motor Company / automotive establishment issued public or private rebuttals to Sorensen’s candi
+)**: **Extended Willys-Overland Payroll Terms:** Although Sorensen's active executive role at Willys-Overland ended in 1946, trade sources indicate he remained on their payroll into the
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+- **rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

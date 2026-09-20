@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Inkster Secession Attempt (1943)"
-category: "research"
-topic: "rfc-gap-68-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-68--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:06:04.140Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Inkster Secession Attempt (1943)
+category: research
+topic: rfc-gap-68-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-68--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:06:04.140Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Inkster Secession Attempt (1943)
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece** (`wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

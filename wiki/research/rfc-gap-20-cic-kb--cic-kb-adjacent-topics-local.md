@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-20--cic-kb - **CIC-KB (adjacent-topics - Local Vector Store Integration)**"
-category: "research"
-topic: "rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local"
-gap_id: "GAP-20--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:27:28.162Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-20--cic-kb - **CIC-KB (adjacent-topics - Local Vector Store Integration)**
+category: research
+topic: rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local
+gap_id: GAP-20--cic-kb
+status: draft
+created_at: 2026-09-19T20:27:28.162Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/concepts/karpathy-llm-wiki-pattern.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/concepts/pack-based-knowledge-management.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-20--cic-kb - **CIC-KB (adjacent-topics - Local Vector Store Integration)**
@@ -20,11 +21,11 @@ citations: ["wiki/concepts/karpathy-llm-wiki-pattern.md","docs/kb/notebooklm-syn
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **karpathy-llm-wiki-pattern** (`wiki/concepts/karpathy-llm-wiki-pattern.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **pack-based-knowledge-management** (`wiki/concepts/pack-based-knowledge-management.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

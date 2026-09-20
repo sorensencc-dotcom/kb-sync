@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-32--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - The Contradiction"
-category: "research"
-topic: "rfc-gap-32-cic-post-war-willys-overland--cic-post-war-willys-overland"
-gap_id: "GAP-32--cic-post-war-willys-overland"
-status: "draft"
-created_at: "2026-09-19T21:42:00.576Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-32--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - Archival Status
+category: research
+topic: rfc-gap-32-cic-post-war-willys-overland--cic-post-war-willys-overland
+gap_id: GAP-32--cic-post-war-willys-overland
+status: draft
+created_at: 2026-09-20T11:17:42.460Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-35-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-23-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-32--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - The Contradiction
+# RFC: GAP-32--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - Archival Status
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** Foundational dossiers assert that Sorensen hosted the national **July 18, 1945 "Jeep Day"** press demonstration debuting the civilian Jeep (CJ-2A) at **CESOR
+)**: **Archival Status:** The primary **1945–1946 Willys-Overland board minutes** recording the specific executive debate between Chairman Ward Canaday and Sorensen over cancelling the
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
-- **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
-- **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **CIC - Ford Executive Dynamics & Politics open-contradictions** category: research topic: rfc-gap-04--cic-ford-executive-dynamics-p gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:44.780Z expansion_method: heuristi
+- **rfc-gap-35-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-35-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
+- **rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
+- **rfc-gap-23-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-23-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

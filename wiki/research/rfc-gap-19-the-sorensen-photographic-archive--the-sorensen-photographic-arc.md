@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-19--the-sorensen-photographic-archive - **The Sorensen Photographic Archive"
-category: "research"
-topic: "rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
-gap_id: "GAP-19--the-sorensen-photographic-archive"
-status: "draft"
-created_at: "2026-09-19T21:11:17.793Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-19--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
+category: research
+topic: rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc
+gap_id: GAP-19--the-sorensen-photographic-archive
+status: draft
+created_at: 2026-09-19T21:11:17.793Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-19--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
@@ -20,9 +21,9 @@ Industrial Giants at Willow Run (open-contradictions - 1.)**: 1. Conflicting Air
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w.md`) [vector_only]:
   > --- title: "RFC: GAP-23--willow-run-videos - **Willow Run Videos follow-up - Why It Strengthens Findings" category: "research" topic: "rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w" gap_id: "GAP-23--willow-run-videos" status: "draft" cr
 

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response"
-category: "research"
-topic: "rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-37--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:51.754Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Expropriation vs. Official Absence
+category: research
+topic: rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-37--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.246Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
+# RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Expropriation vs. Official Absence
 
 ## 1. Problem Statement & Context
-)**: **Automotive Establishment Response:** Whether **Henry Ford II** or the broader Ford Motor Company / automotive establishment issued public or private rebuttals to Sorensen’s candi
+)**: **Expropriation vs. Official Absence:** Secondary sources and family tradition assert that Fidel Castro's government seized Sorensen's extensive Cuban agricultural holdings ("CESOR
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+- **rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

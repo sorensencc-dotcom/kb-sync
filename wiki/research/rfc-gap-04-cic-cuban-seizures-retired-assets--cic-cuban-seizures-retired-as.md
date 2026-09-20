@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Valuation Contradiction"
-category: "research"
-topic: "rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-04--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T21:31:05.592Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Valuation Contradiction
+category: research
+topic: rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-04--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-20T11:09:41.449Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-69-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Valuation Contradiction
@@ -19,12 +20,12 @@ citations: ["wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","trm-re
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets follow-up** category: research topic: rfc-gap-01--cic-cuban-seizures-retired-as gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.520Z expansion_method: heuristic retrieval_m
+- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-69-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-69-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  >
+- **rfc-gap-76-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
+  > --- title: "RFC: GAP-76--willow-run-videos - **Willow Run Videos open-contradictions - The Contradiction" category: "research" topic: "rfc-gap-76-willow-run-videos--willow-run-videos-open-contra" gap_id: "GAP-76--willow-run-videos" status: "draft" cr
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

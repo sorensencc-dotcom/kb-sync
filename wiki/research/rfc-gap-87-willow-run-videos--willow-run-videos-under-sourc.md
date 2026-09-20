@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-87--willow-run-videos - **Willow Run Videos (under-sourced - Henry Ford’s "College Wagon" Lesson"
-category: "research"
-topic: "rfc-gap-87-willow-run-videos--willow-run-videos-under-sourc"
-gap_id: "GAP-87--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T21:02:42.064Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-87--willow-run-videos - **Willow Run Videos (under-sourced - Henry Ford’s "College Wagon" Lesson
+category: research
+topic: rfc-gap-87-willow-run-videos--willow-run-videos-under-sourc
+gap_id: GAP-87--willow-run-videos
+status: draft
+created_at: 2026-09-19T21:02:42.064Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-87--willow-run-videos - **Willow Run Videos (under-sourced - Henry Ford’s "College Wagon" Lesson
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

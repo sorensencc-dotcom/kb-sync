@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-69--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction"
-category: "research"
-topic: "rfc-gap-69-cic-daily-research--cic-daily-research-under-sour"
-gap_id: "GAP-69--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:51:57.177Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-69--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction
+category: research
+topic: rfc-gap-69-cic-daily-research--cic-daily-research-under-sour
+gap_id: GAP-69--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:51:57.177Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--cic-post-war-willys-overland.md","wiki/research/rfc-gap-02--the-sorensen-photographic-arc.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-69--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction
@@ -20,9 +21,9 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--cic-post-war-willy
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02--the-sorensen-photographic-arc.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **The Sorensen Photographic Archive category: research topic: rfc-gap-02--the-sorensen-photographic-arc gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:58.989Z expansion_method: heuristic retrieval_mode: hybrid-rrf
 

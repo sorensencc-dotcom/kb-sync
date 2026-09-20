@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-126--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts"
-category: "research"
-topic: "rfc-gap-126-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-126--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T21:04:06.117Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-126--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts
+category: research
+topic: rfc-gap-126-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-126--willow-run-videos
+status: draft
+created_at: 2026-09-19T21:04:06.117Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/.catalog.json","wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-126--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-12-the-sorensen-photographic-archive--the-sor
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [vector_only]:
   > {   "generated": "2026-08-22T01:52:02.931Z",   "files":      {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",       "title": "RFC: GAP-01 - **Willow Run Videos under-sourced**",       "description": nu
 - **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

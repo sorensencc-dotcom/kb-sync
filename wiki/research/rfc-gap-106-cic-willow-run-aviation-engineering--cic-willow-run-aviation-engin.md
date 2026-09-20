@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-106--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery"
-category: "research"
-topic: "rfc-gap-106-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-106--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:07:10.521Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-106--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery
+category: research
+topic: rfc-gap-106-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-106--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:07:10.521Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verification.md","docs/kb/notebooklm-sync/operator-rules.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-106--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The "Secret Codicil" Signature Mystery
@@ -20,9 +21,9 @@ citations: ["trm-research-gaps.md","wiki/research/historical-revocation-verifica
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 

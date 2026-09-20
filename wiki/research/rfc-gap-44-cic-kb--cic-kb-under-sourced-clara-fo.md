@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-44--cic-kb - **CIC-KB (under-sourced - Clara Ford's 1944 Succession Ultimatum & The Gillespie Gambit)**"
-category: "research"
-topic: "rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo"
-gap_id: "GAP-44--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:28:02.321Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-44--cic-kb - **CIC-KB (under-sourced - Clara Ford's 1944 Succession Ultimatum & The Gillespie Gambit)**
+category: research
+topic: rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo
+gap_id: GAP-44--cic-kb
+status: draft
+created_at: 2026-09-19T20:28:02.321Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md","wiki/research/.catalog.json"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-44--cic-kb - **CIC-KB (under-sourced - Clara Ford's 1944 Succession Ultimatum & The Gillespie Gambit)**
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04-dodge-brothers-vs-h
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [lexical_only]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

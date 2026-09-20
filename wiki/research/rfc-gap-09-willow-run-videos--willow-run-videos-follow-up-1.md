@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - 1. Official USAAF Serial Acceptance Logs (Settle the B-24 vs. B-17 Mismatch))**"
-category: "research"
-topic: "rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-1"
-gap_id: "GAP-09--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:38:22.336Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - 1. Official USAAF Serial Acceptance Logs (Settle the B-24 vs. B-17 Mismatch))**
+category: research
+topic: rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-1
+gap_id: GAP-09--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:38:22.336Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/error-boundaries.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - 1. Official USAAF Serial Acceptance Logs (Settle the B-24 vs. B-17 Mismatch))**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-b-24-knock-down-kit** (`wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md`) [hybrid]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+  >
 - **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
   > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
 

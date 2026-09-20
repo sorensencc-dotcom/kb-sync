@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-07--cic-kb - **CIC-KB (follow-up - FCSC Cuban Claims & Property Title Triangulation (CU-3440 / Decision CU-5843))**"
-category: "research"
-topic: "rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c"
-gap_id: "GAP-07--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:27:05.730Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-07--cic-kb - **CIC-KB (follow-up - FCSC Cuban Claims & Property Title Triangulation (CU-3440 / Decision CU-5843))**
+category: research
+topic: rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c
+gap_id: GAP-07--cic-kb
+status: draft
+created_at: 2026-09-19T20:27:05.730Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/.catalog.json","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-07--cic-kb - **CIC-KB (follow-up - FCSC Cuban Claims & Property Title Triangulation (CU-3440 / Decision CU-5843))**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [vector_only]:
   > {   "generated": "2026-08-22T01:52:02.931Z",   "files":      {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",       "title": "RFC: GAP-01 - **Willow Run Videos under-sourced**",       "description": nu
 - **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

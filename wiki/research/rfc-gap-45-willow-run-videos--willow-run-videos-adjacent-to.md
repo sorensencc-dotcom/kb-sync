@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-45--willow-run-videos - **Willow Run Videos (adjacent-topics - 2. The Wild "Outlaw" Era of Early Detroit Automotive Pioneers)**"
-category: "research"
-topic: "rfc-gap-45-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-45--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:57:15.111Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-45--willow-run-videos - **Willow Run Videos (adjacent-topics - 2. The Wild "Outlaw" Era of Early Detroit Automotive Pioneers)**
+category: research
+topic: rfc-gap-45-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-45--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:57:15.111Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-25-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-45--willow-run-videos - **Willow Run Videos (adjacent-topics - 2. The Wild "Outlaw" Era of Early Detroit Automotive Pioneers)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjac
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-25-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-25-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

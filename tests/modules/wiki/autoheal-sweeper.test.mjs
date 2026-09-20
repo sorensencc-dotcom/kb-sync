@@ -79,7 +79,7 @@ describe('autohealMetadata', () => {
     
     expect(result.content).toContain('[[kb-sync/wiki/daemons/KnownTarget]]');
     expect(result.content).toContain('[[kb-sync/wiki/daemons/KnownTarget|Custom Label]]');
-    expect(result.content).toContain('[[kb-sync/wiki/research/UnknownTarget]]');
+    expect(result.content).toContain('[[UnknownTarget]]');
     expect(result.repairs).toContain('rewrote_wikilinks');
   });
 
@@ -117,17 +117,46 @@ describe('autohealMetadata', () => {
     const result = await autohealMetadata('test.md', content, { repoName: 'kb-sync', index });
     
     expect(result.content).toContain('[[kb-sync/wiki/daemons/KnownTarget#architecture|Architecture Diagram]]');
-    expect(result.content).toContain('[[kb-sync/wiki/research/UnknownTarget#subheading]]');
+    expect(result.content).toContain('[[UnknownTarget#subheading]]');
     expect(result.repairs).toContain('rewrote_wikilinks');
   });
 
-  it('handles CRLF line endings in frontmatter and body seamlessly', async () => {
-    const rawContent = '---\r\ntitle: CRLF Note\r\ncategory: Research\r\nstatus: Active\r\n---\r\n# CRLF Header\r\n\r\n[[Target]]\r\n';
-    const result = await autohealMetadata('wiki/research/crlf-note.md', rawContent, { repoName: 'kb-sync' });
+  it('backfills missing title from source_title when frontmatter exists', async () => {
+    const rawContent = '---\nsource_title: Historical Key Revocation\ncategory: research\n---\n# Some Body\n';
+    const result = await autohealMetadata('wiki/research/test.md', rawContent, { repoName: 'kb-sync' });
+
+    expect(result.content).toContain('title: Historical Key Revocation');
+    expect(result.repairs).toContain('added_missing_fields');
+  });
+
+  it('backfills missing title from H1 heading when frontmatter exists without source_title', async () => {
+    const rawContent = '---\ncategory: wiki\nstatus: active\n---\n# `core/targets.mjs`\n\nCanonical targets.\n';
+    const result = await autohealMetadata('wiki/entities/targets.mjs.md', rawContent, { repoName: 'kb-sync' });
+
+    expect(result.content).toContain('title: targets.mjs');
+    expect(result.repairs).toContain('added_missing_fields');
+  });
+
+  it('cleans trailing whitespace on downstream lines despite an unmatched single backtick', async () => {
+    const rawContent = '---\ntitle: Unmatched Backtick Note\n---\nLine with unmatched ` backtick.\n\nDownstream line with trailing spaces.   \n';
+    const result = await autohealMetadata('wiki/research/unmatched.md', rawContent, { repoName: 'kb-sync' });
+
+    expect(result.content).not.toContain('trailing spaces.   ');
+    expect(result.content).toContain('trailing spaces.');
+    expect(result.repairs).toContain('cleaned_hygiene');
+  });
+
+  it('handles CRLF line endings in frontmatter and body seamlessly and preserves CRLF', async () => {
+    const rawContent = '---\r\ntitle: CRLF Note\r\ncategory: Research\r\nstatus: Active\r\n---\r\n# CRLF Header\r\n\r\n[[KnownTarget]]\r\n';
+    const index = new Map([
+      ['KnownTarget', 'kb-sync/wiki/research/KnownTarget']
+    ]);
+    const result = await autohealMetadata('wiki/research/crlf-note.md', rawContent, { repoName: 'kb-sync', index });
 
     expect(result.content).toContain('category: research');
     expect(result.content).toContain('status: active');
-    expect(result.content).toContain('[[kb-sync/wiki/research/Target]]');
+    expect(result.content).toContain('[[kb-sync/wiki/research/KnownTarget]]');
+    expect(result.content).toContain('\r\n');
     expect(result.repairs).toContain('normalized_category');
     expect(result.repairs).toContain('rewrote_wikilinks');
   });

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-22--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Data Automation in Department 981"
-category: "research"
-topic: "rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-22--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:31.111Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-22--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Col. Thornton's Attrition Analysis
+category: research
+topic: rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-22--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:54.083Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/concepts/trm-closed-loop-research.md"]
+citations: ["wiki/research/rfc-gap-52-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-25-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-22--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Data Automation in Department 981
+# RFC: GAP-22--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Col. Thornton's Attrition Analysis
 
 ## 1. Problem Statement & Context
-)**: **Data Automation in Department 981:** Managing 30,000 distinct parts across 1.25 million total components per aircraft exceeded manual record-keeping capacity, prompting Material
+)**: **Col. Thornton's Attrition Analysis:** Army Air Forces statistical reports compiled by Col. Charles B. Thornton (Statistical Control Division) revealed that heavy bombers had an a
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
-- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
-- **trm-closed-loop-research** (`wiki/concepts/trm-closed-loop-research.md`) [lexical_only]:
-  > 
+- **rfc-gap-52-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-52-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-25-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-25-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

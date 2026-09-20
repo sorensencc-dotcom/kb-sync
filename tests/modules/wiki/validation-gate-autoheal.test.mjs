@@ -9,10 +9,12 @@ describe('Validation gate autohealing pre-pass', () => {
     fs.mkdirSync(tmpDir, { recursive: true });
     fs.writeFileSync(path.join(tmpDir, 'dirty.md'), '# Dirty Note\nSee [[LinkTarget]]');
 
+    const index = new Map([['LinkTarget', 'kb-sync/wiki/research/LinkTarget']]);
     const report = await sweepStagingVault({
       targetDir: tmpDir,
-      vaultIndex: {},
-      fix: true
+      index,
+      fix: true,
+      allowDirty: true
     });
 
     expect(report.filesHealed).toBe(1);

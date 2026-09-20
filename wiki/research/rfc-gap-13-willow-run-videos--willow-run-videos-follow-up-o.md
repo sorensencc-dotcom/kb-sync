@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - Objective"
-category: "research"
-topic: "rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-o"
-gap_id: "GAP-13--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:38:30.703Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - Objective
+category: research
+topic: rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-o
+gap_id: GAP-13--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.669Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-04--willow-run-videos-open-contra.md"]
+citations: ["wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - Objective
 
 ## 1. Problem Statement & Context
-)**: **Objective:** Review **1942 monthly progress reports of the USAAF Material Command** and Charles E. Sorensen’s personal daily journals [4, 5].
+)**: **Objective:** Search the **Library of Congress Prints & Photographs Division** and National Archives RG 208 press photo records.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
-  > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
-- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
+  >
+- **rfc-gap-34-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
+  >
+- **rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

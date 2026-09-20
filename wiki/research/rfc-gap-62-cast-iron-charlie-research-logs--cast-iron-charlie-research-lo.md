@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-62--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Only"
-category: "research"
-topic: "rfc-gap-62-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-62--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:05:57.040Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-62--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Only
+category: research
+topic: rfc-gap-62-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-62--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-19T21:05:57.040Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-62--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Only
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-11--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Audit Library & Kroll Collections" category: "research" topic: "rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_
 

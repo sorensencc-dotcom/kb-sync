@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-35--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 4. Phoenix Mill Payroll Ledgers & Social Directives)**"
-category: "research"
-topic: "rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-foll"
-gap_id: "GAP-35--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T20:50:43.208Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-35--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 4. Phoenix Mill Payroll Ledgers & Social Directives)**
+category: research
+topic: rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-foll
+gap_id: GAP-35--castironcharlie-facebook
+status: draft
+created_at: 2026-09-19T20:50:43.208Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-35--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 4. Phoenix Mill Payroll Ledgers & Social Directives)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-01--castironcharlie-facebook-adja.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-01--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Examine Nominee Filings" category: "research" topic: "rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_id: "GAP-0
 - **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

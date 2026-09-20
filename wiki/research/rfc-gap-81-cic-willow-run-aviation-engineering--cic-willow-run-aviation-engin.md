@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-81--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 5. Unverified Shop-Floor & Logistics Gaps)**"
-category: "research"
-topic: "rfc-gap-81-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-81--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:06:30.064Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-81--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 5. Unverified Shop-Floor & Logistics Gaps)**
+category: research
+topic: rfc-gap-81-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-81--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:06:30.064Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-81--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 5. Unverified Shop-Floor & Logistics Gaps)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md`) [vector_only]:
   > --- title: "RFC: GAP-21--willow-run-videos - **Willow Run Videos follow-up - 5. Library of Congress & NARA Photo Provenance "Rosie" Geography**" category: "research" topic: "rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5" gap_id: "GAP-21
 - **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
