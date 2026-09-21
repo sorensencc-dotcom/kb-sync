@@ -1,4 +1,1 @@
-# newline-encoding probe line1
-# newline-encoding probe line2
-$LogFile = 'probe'
-Invoke-GitSyncPreflight -LogFile $LogFile
+IyB0ZXN0IGI2NAo=
