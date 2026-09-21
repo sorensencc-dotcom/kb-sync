@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-111--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Invention Myth vs. Collaborative Reality"
-category: "research"
-topic: "rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-111--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:07:16.171Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-111--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Invention Myth vs. Collaborative Reality
+category: research
+topic: rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-111--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-19T21:07:16.171Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/error-boundaries.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-111--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Invention Myth vs. Collaborative Reality
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
   > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

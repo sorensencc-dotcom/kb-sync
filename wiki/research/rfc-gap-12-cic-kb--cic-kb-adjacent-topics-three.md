@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-12--cic-kb - **CIC-KB (adjacent-topics - Three-Tier Virtual Disk Projection)**"
-category: "research"
-topic: "rfc-gap-12-cic-kb--cic-kb-adjacent-topics-three"
-gap_id: "GAP-12--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:27:13.995Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-12--cic-kb - **CIC-KB (adjacent-topics - Three-Tier Virtual Disk Projection)**
+category: research
+topic: rfc-gap-12-cic-kb--cic-kb-adjacent-topics-three
+gap_id: GAP-12--cic-kb
+status: draft
+created_at: 2026-09-19T20:27:13.995Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["docs/kb/notebooklm-sync/authentication.md","wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md","docs/kb/notebooklm-sync/operator-rules.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-12--cic-kb - **CIC-KB (adjacent-topics - Three-Tier Virtual Disk Projection)**
@@ -20,9 +21,9 @@ citations: ["docs/kb/notebooklm-sync/authentication.md","wiki/research/rfc-gap-0
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **authentication** (`docs/kb/notebooklm-sync/authentication.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 

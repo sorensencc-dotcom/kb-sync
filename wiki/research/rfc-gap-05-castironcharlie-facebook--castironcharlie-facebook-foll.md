@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories"
-category: "research"
-topic: "rfc-gap-05-castironcharlie-facebook--castironcharlie-facebook-foll"
-gap_id: "GAP-05--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:16:49.415Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
+category: research
+topic: rfc-gap-05-castironcharlie-facebook--castironcharlie-facebook-foll
+gap_id: GAP-05--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:39.383Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md","wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-10-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-29-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories
+# RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** Hagley Museum and Library (*Sperry Gyroscope Company Records*, Box 33) and NARA Record Group 74 / RG 227 (OSRD Division 7) [3].
+)**: **Research Objective:** Audit master cam profiler engineering blueprints, optics line inspection sheets, and temperature-controlled sanctuary calibration logs for the Sperry M-7 el
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [hybrid]:
-  > 
-- **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
-  > 
-- **rfc-gap-10-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-10-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Query NARA Records" category: "research" topic: "rfc-gap-10-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_id: "GAP-10--ca
+- **rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+  >
+- **rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+  >
+- **rfc-gap-29-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-29-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-21--willow-run-videos - **Willow Run Videos (adjacent-topics - The Downfall of C. Harold Wills"
-category: "research"
-topic: "rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-21--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:36:51.251Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-21--willow-run-videos - **Willow Run Videos (adjacent-topics - "Bummerville" & Hot Bedding
+category: research
+topic: rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-21--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.870Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-30-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-21--willow-run-videos - **Willow Run Videos (adjacent-topics - The Downfall of C. Harold Wills
+# RFC: GAP-21--willow-run-videos - **Willow Run Videos (adjacent-topics - "Bummerville" & Hot Bedding
 
 ## 1. Problem Statement & Context
-)**: **The Downfall of C. Harold Wills:** Early Ford engineering genius Harold Wills grew wealthy, sloppy, and built an overly complex luxury car (*Wills Sainte Claire*) that garage mec
+)**: **"Bummerville" & Hot Bedding:** The rapid migration of **42,000 workers** to a rural soybean farm west of Detroit created a severe humanitarian and social crisis on the ground [28
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
+- **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-30-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-30-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

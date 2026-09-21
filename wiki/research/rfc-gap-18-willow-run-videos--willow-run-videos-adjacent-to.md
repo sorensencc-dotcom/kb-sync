@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-18--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap"
-category: "research"
-topic: "rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-18--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:36:45.441Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-18--willow-run-videos - **Willow Run Videos (adjacent-topics - The \$105 Million Stock Buyout Bluff
+category: research
+topic: rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-18--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.771Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-47-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-18--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap
+# RFC: GAP-18--willow-run-videos - **Willow Run Videos (adjacent-topics - The \$105 Million Stock Buyout Bluff
 
 ## 1. Problem Statement & Context
-)**: **The John Dodge Office Slap:** Early Ford shareholders John and Horace Dodge were boisterous, chaotic figures [7-10]. After a heavily intoxicated John Dodge ran over a man's horse
+)**: **The \$105 Million Stock Buyout Bluff:** When the Dodge brothers successfully sued Henry Ford to force dividend payouts rather than Rouge plant expansion, an infuriated Ford launc
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-47-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-47-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

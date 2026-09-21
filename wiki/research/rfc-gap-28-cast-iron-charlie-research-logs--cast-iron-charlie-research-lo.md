@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-28--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Helen Sorensen’s Press Obituary"
-category: "research"
-topic: "rfc-gap-28-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-28--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:27.587Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-28--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Single Secondary Source)**
+category: research
+topic: rfc-gap-28-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-28--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.383Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-62-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-92-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-28--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Helen Sorensen’s Press Obituary
+# RFC: GAP-28--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Single Secondary Source)**
 
 ## 1. Problem Statement & Context
-)**: **Helen Sorensen’s Press Obituary:** While family records confirm his first wife Helen died on **March 4, 1959**, in Miami, her physical press obituary in the ***Miami Herald*** ha
+**Single Secondary Source**: The narrative of an 82-year-old Sorensen meeting industrial designer Brooks Stevens in Florida and conceiving a "Ferris Wheel" molding machine for Stud
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-22--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs adjacent-topics - Daily Life on North Bay Drive" category: "research" topic: "rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" ga
+- **rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-62-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-62-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-92-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-92-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

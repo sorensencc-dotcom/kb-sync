@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-57--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - 3.)**"
-category: "research"
-topic: "rfc-gap-57-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-57--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:47:07.509Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-57--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - 3.)**
+category: research
+topic: rfc-gap-57-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-57--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-19T20:47:07.509Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-07-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-03--cic-post-war-willys-overland.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-57--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - 3.)**
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-07-cast-iron-charlie-r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-07-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-07--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - 3.**" category: "research" topic: "rfc-gap-07-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_id: "GAP-07--cast-iron-charli
 - **rfc-gap-03--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

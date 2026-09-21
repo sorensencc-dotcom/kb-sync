@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-79--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 4. Cultural Claims & Production Legends)**"
-category: "research"
-topic: "rfc-gap-79-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-79--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:06:26.294Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-79--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 4. Cultural Claims & Production Legends)**
+category: research
+topic: rfc-gap-79-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-79--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:06:26.294Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa.md","wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-79--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 4. Cultural Claims & Production Legends)**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-under-sourced-1-softwa.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-04 - **CIC - Willow Run & Aviation Engineering open-contradictions** category: research topic: rfc-gap-04--cic-willow-run-aviation-engin gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:49.499Z expansion_method: heuristic
 

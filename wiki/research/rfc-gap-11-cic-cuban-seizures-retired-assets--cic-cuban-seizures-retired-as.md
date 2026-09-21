@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-11--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Target Documentation"
-category: "research"
-topic: "rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-11--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T21:31:21.809Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-11--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Target Documentation
+category: research
+topic: rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-11--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-20T11:09:51.019Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-11--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Target Documentation
@@ -19,12 +20,12 @@ citations: ["wiki/research/rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cub
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
-  > 
-- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+- **rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
+  > --- title: "RFC: GAP-08--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Target Documentation" category: "research" topic: "rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as" gap_id: "
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

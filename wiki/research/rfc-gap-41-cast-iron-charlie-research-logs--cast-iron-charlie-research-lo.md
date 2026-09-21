@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - The 1931 Gillespie/Bennett Letter"
-category: "research"
-topic: "rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-41--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:56.350Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unexplored Primary Archive
+category: research
+topic: rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-41--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.352Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - The 1931 Gillespie/Bennett Letter
+# RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unexplored Primary Archive
 
 ## 1. Problem Statement & Context
-)**: **The 1931 Gillespie/Bennett Letter:** A **February 1931 letter** in the Kroll Archive hints at early Ford-era ties to Cuba involving Harry Bennett, but how this correspondence con
+)**: **Unexplored Primary Archive:** The meeting's exact date in December 1963 is unconfirmed, and the primary archive that could validate the event—the **Brooks Stevens Archive at the
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

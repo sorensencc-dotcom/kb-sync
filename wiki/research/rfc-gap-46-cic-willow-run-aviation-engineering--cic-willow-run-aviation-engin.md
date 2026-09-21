@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-46--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - WPB Memos on the Smith-to-Bricker Handover"
-category: "research"
-topic: "rfc-gap-46-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-46--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:15.050Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-46--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Bennett's Backchannel Transport Contracts
+category: research
+topic: rfc-gap-46-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-46--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:56.471Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md"]
+citations: ["wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-119-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-46--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - WPB Memos on the Smith-to-Bricker Handover
+# RFC: GAP-46--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Bennett's Backchannel Transport Contracts
 
 ## 1. Problem Statement & Context
-)**: **WPB Memos on the Smith-to-Bricker Handover:** Plant manager Roscoe Smith's December 1942 removal was precipitated by an August 1942 clash where security chief Harry Bennett punch
+)**: **Bennett's Backchannel Transport Contracts:** Ford engineered custom 60-foot articulated truck-trailer rigs powered by twin Ford Flathead V-8 engines to ship 1,893 complete B-24 k
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [hybrid]:
-  > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
-- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
-  > 
+- **rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-119-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-119-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

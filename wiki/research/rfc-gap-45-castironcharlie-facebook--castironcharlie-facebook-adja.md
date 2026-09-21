@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Automated Compass Rose"
-category: "research"
-topic: "rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-45--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T20:51:05.374Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Automated Compass Rose
+category: research
+topic: rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-45--castironcharlie-facebook
+status: draft
+created_at: 2026-09-19T20:51:05.374Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Automated Compass Rose
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md","
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-26--cic-reddit - **CIC-Reddit (adjacent-topics - Henry Ford hired aviator **Charles Lindbergh as...)**"
-category: "research"
-topic: "rfc-gap-26-cic-reddit--cic-reddit-adjacent-topics-he"
-gap_id: "GAP-26--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T21:25:13.971Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-26--cic-reddit - **CIC-Reddit (adjacent-topics - Henry Ford hired aviator **Charles Lindbergh as...)**
+category: research
+topic: rfc-gap-26-cic-reddit--cic-reddit-adjacent-topics-he
+gap_id: GAP-26--cic-reddit
+status: draft
+created_at: 2026-09-19T21:25:13.971Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-26--cic-reddit - **CIC-Reddit (adjacent-topics - Henry Ford hired aviator **Charles Lindbergh as...)**
@@ -20,11 +21,11 @@ Henry Ford hired aviator **Charles Lindbergh as a technical consultant and test 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-25--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The 100% Family Buyout" category: "research" topic: "rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dyna
 - **rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

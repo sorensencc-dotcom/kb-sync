@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-71--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus"
-category: "research"
-topic: "rfc-gap-71-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-71--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:19:06.700Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-71--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus
+category: research
+topic: rfc-gap-71-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-71--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-19T21:19:06.700Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-71--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

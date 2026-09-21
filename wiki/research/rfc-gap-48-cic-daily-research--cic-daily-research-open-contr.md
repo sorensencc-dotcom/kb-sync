@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-48--cic-daily-research - **CIC - Daily Research (open-contradictions - The Resolution"
-category: "research"
-topic: "rfc-gap-48-cic-daily-research--cic-daily-research-open-contr"
-gap_id: "GAP-48--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:33:33.323Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-48--cic-daily-research - **CIC - Daily Research (open-contradictions - The Resolution
+category: research
+topic: rfc-gap-48-cic-daily-research--cic-daily-research-open-contr
+gap_id: GAP-48--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:33:33.323Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: ["scripts/notebooklm/ingest-notebooklm.sh"]
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04--cic-daily-research-open-contr.md","wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-48--cic-daily-research - **CIC - Daily Research (open-contradictions - The Resolution
@@ -20,9 +21,9 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04--cic-daily-research
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04--cic-daily-research-open-contr** (`wiki/research/rfc-gap-04--cic-daily-research-open-contr.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [vector_only]:
   > --- title: "RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment" category: "research" topic: "rfc-gap-04-dodge-brothers-vs-henry-ford-g" gap_id: "GAP-04" status: "draft" created_at: "2026-08-23T01:58:16.715Z" citations: "doc
 
@@ -41,7 +42,6 @@ sh · function · scripts/run-closed-loop-research-v2.mjs:L68-L71
   calls ← loadModelSelection (scripts/run-closed-loop-research-v2.mjs:L82-L109) [depth 1]
   calls ← run (scripts/run-closed-loop-research-v2.mj
 ```
-
 
 ## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.

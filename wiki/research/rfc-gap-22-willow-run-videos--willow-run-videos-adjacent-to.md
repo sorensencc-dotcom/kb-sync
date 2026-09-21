@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-22--willow-run-videos - **Willow Run Videos (adjacent-topics - 3. Squalor, Strikes, and Segregation on the "Ypsilanti Frontier")**"
-category: "research"
-topic: "rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-22--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:36:53.155Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-22--willow-run-videos - **Willow Run Videos (adjacent-topics - Systemic Housing Segregation
+category: research
+topic: rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-22--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.928Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
+citations: ["wiki/research/rfc-gap-51-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-32-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-71-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-22--willow-run-videos - **Willow Run Videos (adjacent-topics - 3. Squalor, Strikes, and Segregation on the "Ypsilanti Frontier")**
+# RFC: GAP-22--willow-run-videos - **Willow Run Videos (adjacent-topics - Systemic Housing Segregation
 
 ## 1. Problem Statement & Context
-**3. Squalor, Strikes, and Segregation on the "Ypsilanti Frontier"** The rapid migration of **42,000 workers** to a rural soybean farm west of Detroit created a severe humanitarian
+)**: **Systemic Housing Segregation:** While Willow Run offered equal hourly pay to female riveters, local housing authorities refused to integrate the primary dormitories, forcing Blac
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
-  > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
+- **rfc-gap-51-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-51-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-32-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-32-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-71-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-71-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

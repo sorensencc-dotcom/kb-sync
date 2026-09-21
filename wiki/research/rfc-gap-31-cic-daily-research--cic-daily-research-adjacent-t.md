@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-31--cic-daily-research - **CIC - Daily Research (adjacent-topics - 3.)**"
-category: "research"
-topic: "rfc-gap-31-cic-daily-research--cic-daily-research-adjacent-t"
-gap_id: "GAP-31--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:33:12.415Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-31--cic-daily-research - **CIC - Daily Research (adjacent-topics - 3.)**
+category: research
+topic: rfc-gap-31-cic-daily-research--cic-daily-research-adjacent-t
+gap_id: GAP-31--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:33:12.415Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md","wiki/research/rfc-gap-01-fail-soft-recovery-during-conc.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-31--cic-daily-research - **CIC - Daily Research (adjacent-topics - 3.)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-b-24-knock-down-kit** (`wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02--cic-reddit-adjacent-topics** (`wiki/research/rfc-gap-02--cic-reddit-adjacent-topics.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC-Reddit adjacent-topics** category: research topic: rfc-gap-02--cic-reddit-adjacent-topics gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:52.687Z expansion_method: heuristic retrieval_mode: hybrid-rrf ast_grou
 - **rfc-gap-01-fail-soft-recovery-during-conc** (`wiki/research/rfc-gap-01-fail-soft-recovery-during-conc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective"
-category: "research"
-topic: "rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll"
-gap_id: "GAP-31--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T20:50:34.971Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
+category: research
+topic: rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll
+gap_id: GAP-31--castironcharlie-facebook
+status: draft
+created_at: 2026-09-19T20:50:34.971Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-11--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Audit Library & Kroll Collections" category: "research" topic: "rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_
 - **rfc-gap-01--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-01--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-46--cic-kb - **CIC-KB (under-sourced - Sorensen Monday "Keelhauling" Meetings)**"
-category: "research"
-topic: "rfc-gap-46-cic-kb--cic-kb-under-sourced-sorensen"
-gap_id: "GAP-46--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:28:04.103Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-46--cic-kb - **CIC-KB (under-sourced - Sorensen Monday "Keelhauling" Meetings)**
+category: research
+topic: rfc-gap-46-cic-kb--cic-kb-under-sourced-sorensen
+gap_id: GAP-46--cic-kb
+status: draft
+created_at: 2026-09-19T20:28:04.103Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-46--cic-kb - **CIC-KB (under-sourced - Sorensen Monday "Keelhauling" Meetings)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

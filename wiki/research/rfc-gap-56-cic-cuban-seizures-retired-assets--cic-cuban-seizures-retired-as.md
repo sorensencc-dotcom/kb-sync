@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Debts of Defunct vs. Active U.S. Entities"
-category: "research"
-topic: "rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-56--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T21:32:50.229Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Unproved vs. Discounted Reserves
+category: research
+topic: rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-56--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-20T11:10:28.599Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md"]
+citations: ["wiki/research/rfc-gap-115-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-135-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Debts of Defunct vs. Active U.S. Entities
+# RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Unproved vs. Discounted Reserves
 
 ## 1. Problem Statement & Context
-)**: **Debts of Defunct vs. Active U.S. Entities:** Under Section 505(a), unsecured debts owed by American corporations (such as Cuban Telephone Company / Cutelco) were barred unless ch
+)**: **Unproved vs. Discounted Reserves:** In *John El Koury* (Claim CU-0384) and *Archibald S. Abbey* (Claim CU-0352), raw tonnage projections were rejected due to lack of production h
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [vector_only]:
-  > --- title: "RFC: GAP-07--cic-kb - **CIC-KB follow-up - FCSC Cuban Claims & Property Title Triangulation CU-3440 / Decision CU-5843**" category: "research" topic: "rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c" gap_id: "GAP-07--cic-kb" status: "dra
-- **rfc-gap-03-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md`) [lexical_only]:
-  > 
+- **rfc-gap-115-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-115-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-135-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-135-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

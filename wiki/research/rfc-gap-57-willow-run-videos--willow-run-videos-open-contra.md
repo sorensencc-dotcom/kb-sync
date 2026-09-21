@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-57--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction"
-category: "research"
-topic: "rfc-gap-57-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-57--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:37:47.200Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-57--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts
+category: research
+topic: rfc-gap-57-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-57--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:08.550Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-79-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-105-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-125-willow-run-videos--willow-run-videos-open-contra.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-57--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+# RFC: GAP-57--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** Popular local folklore claims Henry Ford forced architect Albert Kahn to design a 90-degree turn mid-plant strictly to keep the building inside Washtenaw Cou
+)**: **Part Counts:** Transcripts fluctuate between **450,000 components** [41], **1.225 million parts** [42], **1.25 million parts** [43], and **1.5 million parts** [44].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
-- **rfc-gap-03--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03--the-sorensen-photographic-arc.md`) [vector_only]:
-  > --- title: RFC: GAP-03 - **The Sorensen Photographic Archive category: research topic: rfc-gap-03--the-sorensen-photographic-arc gap_id: GAP-03 status: draft created_at: 2026-09-05T03:17:58.990Z expansion_method: heuristic retrieval_mode: hybrid-rrf
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+- **rfc-gap-79-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-79-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-105-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-105-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-125-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-125-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

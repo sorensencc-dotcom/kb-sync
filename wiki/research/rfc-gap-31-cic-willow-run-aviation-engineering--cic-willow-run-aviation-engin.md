@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Cesor Farms"
-category: "research"
-topic: "rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-31--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:36:53.811Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Bovine Air Passenger
+category: research
+topic: rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-31--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:54.908Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-32-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-adjacent-t.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Cesor Farms
+# RFC: GAP-31--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Bovine Air Passenger
 
 ## 1. Problem Statement & Context
-)**: **Cesor Farms:** Following his 1944 resignation from Ford, Charles Sorensen operated **Cesor Farms** in New Hudson/Farmington, Michigan, breeding purebred Guernsey cattle [24].
+)**: **Bovine Air Passenger:** On **November 16, 1947**, Sorensen sold his **\$3,100 champion cow, *Cesor Maxim's Irene***, to a buyer in North Carolina [24]. To spare the animal from o
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-18-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-18-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-18--cic-daily-research - **CIC - Daily Research follow-up - The Objective" category: "research" topic: "rfc-gap-18-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-18--cic-daily-research" status: "draft" created_at:
-- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+- **rfc-gap-32-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-32-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t.md`) [hybrid]:
+  >
+- **rfc-gap-28-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-adjacent-t.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

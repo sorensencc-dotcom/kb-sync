@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-47--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Helen Sorensen’s Press Obituary"
-category: "research"
-topic: "rfc-gap-47-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-47--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:46:42.119Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-47--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Willys-Overland Payroll Terms
+category: research
+topic: rfc-gap-47-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-47--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.744Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-97-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-47--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Helen Sorensen’s Press Obituary
+# RFC: GAP-47--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Willys-Overland Payroll Terms
 
 ## 1. Problem Statement & Context
-)**: **Helen Sorensen’s Press Obituary:** While family records confirm his first wife Helen died on **March 4, 1959**, in Miami, her physical press obituary in the ***Miami Herald*** ha
+)**: **Willys-Overland Payroll Terms:** The assertion that Sorensen remained on the Willys-Overland payroll into the 1950s after stepping down as vice-chairman in 1946 rests on trade ar
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-06-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
-- **rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+- **rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-97-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-97-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

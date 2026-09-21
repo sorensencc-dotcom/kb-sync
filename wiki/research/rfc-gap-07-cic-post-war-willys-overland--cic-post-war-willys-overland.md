@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-07--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap"
-category: "research"
-topic: "rfc-gap-07-cic-post-war-willys-overland--cic-post-war-willys-overland"
-gap_id: "GAP-07--cic-post-war-willys-overland"
-status: "draft"
-created_at: "2026-09-19T21:41:14.534Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-07--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap
+category: research
+topic: rfc-gap-07-cic-post-war-willys-overland--cic-post-war-willys-overland
+gap_id: GAP-07--cic-post-war-willys-overland
+status: draft
+created_at: 2026-09-20T11:17:30.524Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-04--cic-post-war-willys-overland.md","wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-07-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-07--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - The Archival Gap
@@ -19,12 +20,12 @@ citations: ["wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
-- **rfc-gap-04--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **CIC - Post-War & Willys-Overland open-contradictions** category: research topic: rfc-gap-04--cic-post-war-willys-overland gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:49.471Z expansion_method: heuristic retriev
-- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+- **rfc-gap-07-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-07-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  >
+- **rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+  >
+- **rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
+  > --- title: "RFC: GAP-24--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim" category: "research" topic: "rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland" gap_id: "GAP-24--cic-post-war-wi
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-20--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Corporate vs. Military Authority"
-category: "research"
-topic: "rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-20--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:45:38.004Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-20--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Corporate vs. Military Authority
+category: research
+topic: rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-20--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-20T11:20:11.906Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json","wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-95-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-20--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Corporate vs. Military Authority
@@ -19,12 +20,12 @@ citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Dividend Conflict" category: "research" topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
+- **rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-95-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-95-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

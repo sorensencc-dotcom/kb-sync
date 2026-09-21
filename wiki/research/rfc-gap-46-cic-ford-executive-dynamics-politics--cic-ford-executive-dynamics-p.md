@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap"
-category: "research"
-topic: "rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-46--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:46:22.467Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Contested Division of Credit
+category: research
+topic: rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-46--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-20T11:20:28.210Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md"]
+citations: ["wiki/research/rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-113-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-64-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
+# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Contested Division of Credit
 
 ## 1. Problem Statement & Context
-)**: **The Archival Gap:** These executive narratives flatten shop-floor innovations and are directly challenged by machinist **William "Pa" Klann’s** 400-page 1955 oral history (BFRC A
+)**: **Contested Division of Credit:** Archival records also credit **Clarence Avery** (Sorensen's chief development engineer) for establishing Highland Park's final assembly and subass
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
-- **rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-follow-up-executive-dy.md`) [lexical_only]:
-  > 
+- **rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-113-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-113-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-64-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-64-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

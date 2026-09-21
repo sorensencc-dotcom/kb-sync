@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-32--willow-run-videos - **Willow Run Videos (under-sourced - The Claim"
-category: "research"
-topic: "rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc"
-gap_id: "GAP-32--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:37:09.138Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-32--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
+category: research
+topic: rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc
+gap_id: GAP-32--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:03.000Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-32--willow-run-videos - **Willow Run Videos (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** During a severe wartime aluminum shortage, Ford buyers allegedly scoured the country and purchased **thousands of aluminum coffins intended for the South American ma
+)**: **The Claim:** In early 1941, Henry Ford fiercely resisted unionization, stating he would rather shut down his factories and hand the keys to the government than sign a UAW contrac
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  >
+- **rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  >
+- **rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

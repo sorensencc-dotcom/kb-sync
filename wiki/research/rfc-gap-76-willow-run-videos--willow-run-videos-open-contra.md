@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-76--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction"
-category: "research"
-topic: "rfc-gap-76-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-76--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:40:53.920Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-76--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+category: research
+topic: rfc-gap-76-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-76--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:40:53.920Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/operator-rules.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-76--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 

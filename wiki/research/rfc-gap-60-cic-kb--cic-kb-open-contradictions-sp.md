@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-60--cic-kb - **CIC-KB (open-contradictions - Sperry M-7 Mass-Production Limits (GAP-13))**"
-category: "research"
-topic: "rfc-gap-60-cic-kb--cic-kb-open-contradictions-sp"
-gap_id: "GAP-60--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:28:28.191Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-60--cic-kb - **CIC-KB (open-contradictions - Sperry M-7 Mass-Production Limits (GAP-13))**
+category: research
+topic: rfc-gap-60-cic-kb--cic-kb-open-contradictions-sp
+gap_id: GAP-60--cic-kb
+status: draft
+created_at: 2026-09-19T20:28:28.191Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--willow-run-videos-open-contra.md","wiki/research/rfc-gap-03--cic-kb-open-contradictions.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-60--cic-kb - **CIC-KB (open-contradictions - Sperry M-7 Mass-Production Limits (GAP-13))**
@@ -20,9 +21,9 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--willow-run-videos-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02--willow-run-videos-open-contra** (`wiki/research/rfc-gap-02--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03--cic-kb-open-contradictions** (`wiki/research/rfc-gap-03--cic-kb-open-contradictions.md`) [vector_only]:
   > --- title: RFC: GAP-03 - **CIC-KB open-contradictions** category: research topic: rfc-gap-03--cic-kb-open-contradictions gap_id: GAP-03 status: draft created_at: 2026-08-28T14:42:58.947Z expansion_method: heuristic retrieval_mode: hybrid-rrf ast_grou
 

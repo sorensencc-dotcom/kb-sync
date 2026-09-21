@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-20--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Wood-Reinforced Firing Range"
-category: "research"
-topic: "rfc-gap-20-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-20--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:25.732Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-20--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The 77-Minute Material Cadence
+category: research
+topic: rfc-gap-20-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-20--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:52.942Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-01--cic-daily-research-follow-up.md","wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md"]
+citations: ["wiki/research/rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-20--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Wood-Reinforced Firing Range
+# RFC: GAP-20--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The 77-Minute Material Cadence
 
 ## 1. Problem Statement & Context
-)**: **The Wood-Reinforced Firing Range:** Built between November 1943 and January 1944 to test Browning M2 .50-caliber machine guns, the plant's on-site range ("gun butt") featured a 4
+)**: **The 77-Minute Material Cadence:** Material Control Flow Charts scheduled a complete set of parts to enter Station 1 of Final Assembly **every 1.28 hours (77 minutes)** across an
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
-- **rfc-gap-01--cic-daily-research-follow-up** (`wiki/research/rfc-gap-01--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Daily Research follow-up** category: research topic: rfc-gap-01--cic-daily-research-follow-up gap_id: GAP-01 status: draft created_at: 2026-09-05T03:18:17.589Z expansion_method: heuristic retrieval_mode: hybrid-rrf as
-- **rfc-gap-03--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+- **rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

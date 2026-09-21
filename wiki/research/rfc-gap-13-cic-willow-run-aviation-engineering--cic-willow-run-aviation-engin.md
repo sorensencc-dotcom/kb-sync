@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target"
-category: "research"
-topic: "rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-13--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:36:23.450Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Automotive Reconversion
+category: research
+topic: rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-13--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:38.272Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md","wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target
+# RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Automotive Reconversion
 
 ## 1. Problem Statement & Context
-)**: **Archival Target:** Examine **NARA RG 212** (Records of the Committee for Congested Production Areas, Entry 13) to document how federal area coordinators broke infrastructure bott
+)**: **Automotive Reconversion:** On November 1, 1945, Henry J. Kaiser's **Kaiser-Frazer Corporation** leased the former bomber plant from the federal government to produce passenger au
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [lexical_only]:
-  > 
-- **rfc-gap-01--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering follow-up** category: research topic: rfc-gap-01--cic-willow-run-aviation-engin gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.472Z expansion_method: heuristic retrieval
-- **rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-18-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+- **rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  >
+- **rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: "RFC: GAP-18--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - The Limited-Access Solution" category: "research" topic: "rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviati
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

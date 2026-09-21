@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-05--the-sorensen-photographic-archive - **The Sorensen Photographic Archive"
-category: "research"
-topic: "rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
-gap_id: "GAP-05--the-sorensen-photographic-archive"
-status: "draft"
-created_at: "2026-09-19T20:45:23.839Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-05--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
+category: research
+topic: rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc
+gap_id: GAP-05--the-sorensen-photographic-archive
+status: draft
+created_at: 2026-09-19T20:45:23.839Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-05--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
@@ -20,9 +21,9 @@ Industrial Giants at Willow Run (follow-up - Mead L. Bricker)**: **Mead L. Brick
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md`) [vector_only]:
   > --- title: RFC: GAP-01 - **The Sorensen Photographic Archive category: research topic: rfc-gap-01--the-sorensen-photographic-arc gap_id: GAP-01 status: draft created_at: 2026-09-05T03:18:28.827Z expansion_method: heuristic retrieval_mode: hybrid-rrf
 

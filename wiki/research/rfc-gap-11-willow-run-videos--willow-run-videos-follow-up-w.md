@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-11--willow-run-videos - **Willow Run Videos (follow-up - Why It Strengthens Findings"
-category: "research"
-topic: "rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-w"
-gap_id: "GAP-11--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:38:26.597Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-11--willow-run-videos - **Willow Run Videos (follow-up - Why It Strengthens Findings
+category: research
+topic: rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-w
+gap_id: GAP-11--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:38:26.597Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-01--willow-run-videos-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-11--willow-run-videos - **Willow Run Videos (follow-up - Why It Strengthens Findings
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-b-24-knock-down-kit** (`wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01--willow-run-videos-follow-up** (`wiki/research/rfc-gap-01--willow-run-videos-follow-up.md`) [vector_only]:
   > --- title: RFC: GAP-01 - **Willow Run Videos follow-up** category: research topic: rfc-gap-01--willow-run-videos-follow-up gap_id: GAP-01 status: draft created_at: 2026-09-05T03:18:10.094Z expansion_method: heuristic retrieval_mode: hybrid-rrf ast_gr
 

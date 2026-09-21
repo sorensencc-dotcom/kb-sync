@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Second Marriage Documentation"
-category: "research"
-topic: "rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-48--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:46:44.390Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Virgin Islands Property
+category: research
+topic: rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-48--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.755Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Second Marriage Documentation
+# RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Virgin Islands Property
 
 ## 1. Problem Statement & Context
-)**: **Second Marriage Documentation:** His January 1960 marriage to **Edith Thompson Montgomery** in Milwaukee at age 78 remains a biographical footnote requiring official marriage rec
+)**: **Virgin Islands Property:** Mention of a retirement property or land asset in the U.S. Virgin Islands stems solely from vague family rumor ("another big secret") and lacks legal o
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-04-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **rfc-gap-02--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **Cast Iron Charlie - Research Logs adjacent-topics** category: research topic: rfc-gap-02--cast-iron-charlie-research-lo gap_id: GAP-02 status: draft created_at: 2026-09-05T03:18:01.927Z expansion_method: heuristic retrieval
+- **rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

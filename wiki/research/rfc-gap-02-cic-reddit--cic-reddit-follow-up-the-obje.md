@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-02--cic-reddit - **CIC-Reddit (follow-up - The Objective"
-category: "research"
-topic: "rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-obje"
-gap_id: "GAP-02--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T21:24:01.632Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02--cic-reddit - **CIC-Reddit (follow-up - The Objective
+category: research
+topic: rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-obje
+gap_id: GAP-02--cic-reddit
+status: draft
+created_at: 2026-09-19T21:24:01.632Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv.md","wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02--cic-reddit - **CIC-Reddit (follow-up - The Objective
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-daily-research - **CIC - Daily Research follow-up - The Objective" category: "research" topic: "rfc-gap-06-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-06--cic-daily-research" status: "draft" created_at:
 - **rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

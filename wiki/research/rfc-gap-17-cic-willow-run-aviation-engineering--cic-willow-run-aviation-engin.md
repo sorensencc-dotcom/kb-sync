@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Korean War Production"
-category: "research"
-topic: "rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-17--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:36:28.691Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Limited-Access Solution
+category: research
+topic: rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-17--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:45.543Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/.catalog.json","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md"]
+citations: ["wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-19-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Korean War Production
+# RFC: GAP-17--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Limited-Access Solution
 
 ## 1. Problem Statement & Context
-)**: **Korean War Production:** During the Korean War, the plant returned to military service under Kaiser-Frazer to manufacture **C-119 "Flying Boxcars"** [2].
+)**: **The Limited-Access Solution:** Michigan State Highway Commissioner G. Donald Kennedy proposed the state's first limited-access expressway connecting Detroit to Willow Run to tran
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
+- **rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-19-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-19-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  >
+- **rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: "RFC: GAP-60--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - The College Takeover Threat" category: "research" topic: "rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviati
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

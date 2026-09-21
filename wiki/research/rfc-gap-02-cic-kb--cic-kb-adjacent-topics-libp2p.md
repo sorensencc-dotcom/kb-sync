@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-02--cic-kb - **CIC-KB (adjacent-topics - `libp2p` P2P Data-Plane Routing (from Google SAM))**"
-category: "research"
-topic: "rfc-gap-02-cic-kb--cic-kb-adjacent-topics-libp2p"
-gap_id: "GAP-02--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:38:06.462Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-02--cic-kb - **CIC-KB (adjacent-topics - `libp2p` P2P Data-Plane Routing (from Google SAM))**
+category: research
+topic: rfc-gap-02-cic-kb--cic-kb-adjacent-topics-libp2p
+gap_id: GAP-02--cic-kb
+status: draft
+created_at: 2026-09-19T20:38:06.462Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["_kb-sync-staging/trm/current/raw_research_conformance.json","wiki/concepts/immutable-staging.md","wiki/research/rfc-gap-01--cic-kb-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-02--cic-kb - **CIC-KB (adjacent-topics - `libp2p` P2P Data-Plane Routing (from Google SAM))**
@@ -20,11 +21,11 @@ citations: ["_kb-sync-staging/trm/current/raw_research_conformance.json","wiki/c
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **raw_research_conformance** (`_kb-sync-staging/trm/current/raw_research_conformance.json`) [lexical_only]:
-  > 
+  >
 - **immutable-staging** (`wiki/concepts/immutable-staging.md`) [vector_only]:
   > --- title: Immutable Staging category: concepts status: active sourceRepository: kb-sync lastUpdated: 2026-08-30 ---  # Immutable Staging  **Immutable Staging** is the filesystem isolation contract used by KB-Sync to separate active code trees from s
 - **rfc-gap-01--cic-kb-follow-up** (`wiki/research/rfc-gap-01--cic-kb-follow-up.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

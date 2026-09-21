@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "repository": "kb-sync",
-  "timestamp": "2026-09-20T00:07:45.681Z",
-  "system_time_epoch_ms": 1789862865681,
+  "timestamp": "2026-09-20T14:02:10.795Z",
+  "system_time_epoch_ms": 1789912930795,
   "status": "DRIFT_DETECTED",
   "drifted_sources": [
     {
@@ -32,7 +32,7 @@
     {
       "repo": "kb-sync",
       "file": "core/harvest_registry.json",
-      "last_code_commit": "2026-09-14T23:43:15-04:00",
+      "last_code_commit": "2026-09-20T10:02:02-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/harvest_registry.json"
@@ -127,8 +127,16 @@
     },
     {
       "repo": "kb-sync",
+      "file": "modules/wiki/autoheal-sweeper.mjs",
+      "last_code_commit": "2026-09-20T10:02:02-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "HASH_MISMATCH",
+      "wiki_page": "entities/autoheal-sweeper.mjs"
+    },
+    {
+      "repo": "kb-sync",
       "file": "modules/wiki/daily_status.json",
-      "last_code_commit": "2026-09-19T18:38:26-04:00",
+      "last_code_commit": "2026-09-20T09:52:45-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/daily_status.json"
@@ -136,7 +144,7 @@
     {
       "repo": "kb-sync",
       "file": "modules/wiki/dashboard.html",
-      "last_code_commit": "2026-09-19T18:26:20-04:00",
+      "last_code_commit": "2026-09-20T09:52:45-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/dashboard.html"
@@ -164,6 +172,14 @@
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/gated-climb-repair.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "modules/wiki/Iron Command Forge - DS Compliant.dc.html",
+      "last_code_commit": "2026-09-20T09:52:45-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/Iron Command Forge - DS Compliant.dc.html"
     },
     {
       "repo": "kb-sync",
@@ -199,6 +215,14 @@
     },
     {
       "repo": "kb-sync",
+      "file": "modules/wiki/trm_history/2026-09-20.json",
+      "last_code_commit": "2026-09-20T09:52:45-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/2026-09-20.json"
+    },
+    {
+      "repo": "kb-sync",
       "file": "modules/wiki/verify-frontmatter.mjs",
       "last_code_commit": "2026-09-16T08:56:42-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
@@ -220,6 +244,14 @@
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/consolidate-pack.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/git-sync-preflight.ps1",
+      "last_code_commit": "2026-09-19T21:14:21-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/git-sync-preflight.ps1"
     },
     {
       "repo": "kb-sync",
@@ -248,7 +280,7 @@
     {
       "repo": "kb-sync",
       "file": "scripts/notebooklm/kb-sync-nightly.ps1",
-      "last_code_commit": "2026-09-18T17:57:54-04:00",
+      "last_code_commit": "2026-09-19T21:14:21-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/kb-sync-nightly.ps1"
@@ -295,6 +327,30 @@
     },
     {
       "repo": "kb-sync",
+      "file": "scripts/schedule-task-wrapper-KB-Sync-Master.ps1",
+      "last_code_commit": "2026-09-19T21:14:21-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/schedule-task-wrapper-KB-Sync-Master.ps1"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/schedule-task-wrapper-TRM-Triage.ps1",
+      "last_code_commit": "2026-09-19T21:14:21-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/schedule-task-wrapper-TRM-Triage.ps1"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "scripts/setup-scheduled-tasks.ps1",
+      "last_code_commit": "2026-09-19T21:14:21-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/setup-scheduled-tasks.ps1"
+    },
+    {
+      "repo": "kb-sync",
       "file": "scripts/sync-github-wiki.mjs",
       "last_code_commit": "2026-09-17T18:54:28-04:00",
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
@@ -324,6 +380,22 @@
       "last_wiki_sync": "2026-09-15T00:03:05.297Z",
       "status": "STALE",
       "wiki_page": "entities/gated-climb-repair-lessons.test.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "tests/modules/wiki/autoheal-sweeper.test.mjs",
+      "last_code_commit": "2026-09-20T09:52:45-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/autoheal-sweeper.test.mjs"
+    },
+    {
+      "repo": "kb-sync",
+      "file": "tests/modules/wiki/validation-gate-autoheal.test.mjs",
+      "last_code_commit": "2026-09-20T09:52:45-04:00",
+      "last_wiki_sync": "2026-09-15T00:03:05.297Z",
+      "status": "STALE",
+      "wiki_page": "entities/validation-gate-autoheal.test.mjs"
     },
     {
       "repo": "kb-sync",
@@ -359,8 +431,8 @@
     }
   ],
   "summary": {
-    "total_sources_checked": 233,
-    "stale_pages_count": 44,
-    "untracked_paths_count": 6
+    "total_sources_checked": 235,
+    "stale_pages_count": 53,
+    "untracked_paths_count": 4
   }
 }

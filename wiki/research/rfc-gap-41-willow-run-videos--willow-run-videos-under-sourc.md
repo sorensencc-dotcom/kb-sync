@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-41--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality"
-category: "research"
-topic: "rfc-gap-41-willow-run-videos--willow-run-videos-under-sourc"
-gap_id: "GAP-41--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:39:32.085Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-41--willow-run-videos - **Willow Run Videos (under-sourced - Harold Wills' Time-Clock Rejection
+category: research
+topic: rfc-gap-41-willow-run-videos--willow-run-videos-under-sourc
+gap_id: GAP-41--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:03.222Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-86-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-41--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
+# RFC: GAP-41--willow-run-videos - **Willow Run Videos (under-sourced - Harold Wills' Time-Clock Rejection
 
 ## 1. Problem Statement & Context
-)**: **Historical Reality:** This story appears in only a single video transcript and is uncorroborated in Ford purchasing department records [2, 11-13].
+)**: **Harold Wills' Time-Clock Rejection:** Early Ford pioneer Harold Wills went broke with his luxury car company (*Wills Sainte Claire*) and turned down a purchasing job at Ford beca
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-01--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+- **rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  >
+- **rfc-gap-86-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-86-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  >
+- **rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

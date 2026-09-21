@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-107--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Executive Dismissal Narratives"
-category: "research"
-topic: "rfc-gap-107-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-107--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:07:13.446Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-107--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Executive Dismissal Narratives
+category: research
+topic: rfc-gap-107-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-107--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:07:13.446Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-107--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Executive Dismissal Narratives
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-25--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The 100% Family Buyout" category: "research" topic: "rfc-gap-25-cic-ford-executive-dynamics-politics--cic-ford-executive-dyna
 - **rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - 1. Aircraft Identity"
-category: "research"
-topic: "rfc-gap-58-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-58--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:40:07.300Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts
+category: research
+topic: rfc-gap-58-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-58--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:08.576Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/research/.catalog.json","wiki/research/rfc-gap-02--willow-run-videos-open-contra.md"]
+citations: ["wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-80-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - 1. Aircraft Identity
+# RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts
 
 ## 1. Problem Statement & Context
-Consolidated B-24 Liberator vs. Boeing B-17 Flying Fortress)**: **1. Aircraft Identity: Consolidated B-24 Liberator vs. Boeing B-17 Flying Fortress**
+)**: **Rivet Counts:** Figures vary from **360,000 rivets** [41] to **550,000 rivets** [44], **700,000 rivets** [45], and **1.25 million rivets** [46].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-willow-run-b-24-knock-down-kit** (`wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md`) [hybrid]:
-  > 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **rfc-gap-02--willow-run-videos-open-contra** (`wiki/research/rfc-gap-02--willow-run-videos-open-contra.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **Willow Run Videos open-contradictions** category: research topic: rfc-gap-02--willow-run-videos-open-contra gap_id: GAP-02 status: draft created_at: 2026-08-28T14:43:13.133Z expansion_method: heuristic retrieval_mode: hybri
+- **rfc-gap-106-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-80-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-80-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-126-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

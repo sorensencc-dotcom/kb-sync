@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Daily Life on North Bay Drive"
-category: "research"
-topic: "rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-21--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:12.426Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Willow Run to Willys Transition
+category: research
+topic: rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-21--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.156Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Daily Life on North Bay Drive
+# RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Willow Run to Willys Transition
 
 ## 1. Problem Statement & Context
-)**: **Daily Life on North Bay Drive:** Beyond references to his burial and yacht, Sorensen's day-to-day life during his long retirement at his winter home (**5185 N. Bay Dr.** in Miami
+)**: **Willow Run to Willys Transition:** Historical details surrounding his 1944 transition from directing mass production at the **Willow Run bomber plant** during World War II to tak
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

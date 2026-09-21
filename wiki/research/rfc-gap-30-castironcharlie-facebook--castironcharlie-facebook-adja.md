@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-30--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Follow-the-Pointer Tracking"
-category: "research"
-topic: "rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-30--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:45.974Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-30--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept"
+category: research
+topic: rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-30--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:02:01.936Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md","wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-63-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-30--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Follow-the-Pointer Tracking
+# RFC: GAP-30--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept"
 
 ## 1. Problem Statement & Context
-)**: **Follow-the-Pointer Tracking:** Early Sperry anti-aircraft directors (such as the T-6) required **nine human operators** sitting or standing on a revolving pedestal, turning handw
+)**: **General Arnold's "Block Concept":** To prevent 575 initial military engineering changes from constantly halting assembly lines, Ford persuaded Gen. Henry "Hap" Arnold to freeze d
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [lexical_only]:
-  > 
-- **rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
-  > --- title: "RFC: GAP-26--willow-run-videos - **Willow Run Videos adjacent-topics - The John Dodge Office Slap" category: "research" topic: "rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "GAP-26--willow-run-videos" status: "draf
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+- **rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-63-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-63-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

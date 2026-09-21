@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-27--willow-run-videos - **Willow Run Videos (adjacent-topics - The \$105 Million Dividend Stock Buyout Bluff"
-category: "research"
-topic: "rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-27--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:38:53.581Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-27--willow-run-videos - **Willow Run Videos (adjacent-topics - Desert Meltdowns
+category: research
+topic: rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-27--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:02.854Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/.catalog.json","trm-research-gaps.md","wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-54-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-27--willow-run-videos - **Willow Run Videos (adjacent-topics - The \$105 Million Dividend Stock Buyout Bluff
+# RFC: GAP-27--willow-run-videos - **Willow Run Videos (adjacent-topics - Desert Meltdowns
 
 ## 1. Problem Statement & Context
-)**: **The \$105 Million Dividend Stock Buyout Bluff:** When the Dodge brothers successfully sued Henry Ford to force dividend payouts rather than Rouge plant expansion, an infuriated F
+)**: **Desert Meltdowns:** The moment World War II ended, the military cancelled all remaining orders [47-50, 52]. Thousands of brand-new, multi-million-dollar B-24s were flown straight
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [lexical_only]:
-  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
+- **rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
+  > --- title: "RFC: GAP-72--willow-run-videos - **Willow Run Videos adjacent-topics - The June 1943 Packard Strike" category: "research" topic: "rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "GAP-72--willow-run-videos" status: "dr
+- **rfc-gap-54-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-54-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

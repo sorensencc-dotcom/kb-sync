@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - "Bummerville" & Hot Bedding"
-category: "research"
-topic: "rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-23--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:36:53.155Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
+category: research
+topic: rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-23--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.941Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/.catalog.json","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-04--willow-run-videos-open-contra.md"]
+citations: ["wiki/research/rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - "Bummerville" & Hot Bedding
+# RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
 
 ## 1. Problem Statement & Context
-)**: **"Bummerville" & Hot Bedding:** With no housing or infrastructure, thousands of Southern migrants lived in mud-soaked tent cities and trailer parks nicknamed "Bummerville" [22-24,
+)**: **The June 1943 Packard Strike:** Racial friction in the region peaked when **25,000 white workers walked off the line at the Packard plant** (which built B-24 engines) to protest
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **-catalog** (`wiki/research/.catalog.json`) [hybrid]:
-  > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
-- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+- **rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

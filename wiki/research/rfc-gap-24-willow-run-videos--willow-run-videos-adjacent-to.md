@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-24--willow-run-videos - **Willow Run Videos (adjacent-topics - 1. Clara Ford"
-category: "research"
-topic: "rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-24--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:38:49.501Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-24--willow-run-videos - **Willow Run Videos (adjacent-topics - Defying the Injunction
+category: research
+topic: rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-24--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:56.975Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","docs/kb/notebooklm-sync/operator-rules.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-24--willow-run-videos - **Willow Run Videos (adjacent-topics - 1. Clara Ford
+# RFC: GAP-24--willow-run-videos - **Willow Run Videos (adjacent-topics - Defying the Injunction
 
 ## 1. Problem Statement & Context
-The Silent Power Broker of Dearborn)**: **1. Clara Ford: The Silent Power Broker of Dearborn** While Henry Ford was mythologized as an autocrat, his wife **Clara Ford** was his single most influential advisor [1-3]. The
+)**: **Defying the Injunction:** Long before Willow Run, Henry Ford and Sorensen fought a 5-year legal battle against **George Selden**, a New York patent lawyer who patented a basic ga
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-03--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-03 - **CIC - Ford Executive Dynamics & Politics under-sourced** category: research topic: rfc-gap-03--cic-ford-executive-dynamics-p gap_id: GAP-03 status: draft created_at: 2026-09-05T03:17:44.743Z expansion_method: heuristic retr
+- **rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
+  >
+- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
+  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

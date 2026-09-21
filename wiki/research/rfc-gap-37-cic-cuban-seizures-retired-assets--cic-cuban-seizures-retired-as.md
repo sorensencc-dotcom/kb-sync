@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-37--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Coca-Cola Company (Holguin Land — Claim CU-1743)"
-category: "research"
-topic: "rfc-gap-37-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-37--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T21:32:11.350Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-37--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Freeport Sulphur Company (Islexco — Claim CU-2625)
+category: research
+topic: rfc-gap-37-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-37--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-20T11:10:28.042Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md"]
+citations: ["wiki/research/rfc-gap-34-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-89-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-69-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-37--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Coca-Cola Company (Holguin Land — Claim CU-1743)
+# RFC: GAP-37--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Freeport Sulphur Company (Islexco — Claim CU-2625)
 
 ## 1. Problem Statement & Context
-)**: **The Coca-Cola Company (Holguin Land — Claim CU-1743):** Coca-Cola claimed **\$37,460.00** for expenses in connection with land in Holguin intended for a new bottling plant [25, 2
+)**: **Freeport Sulphur Company (Islexco — Claim CU-2625):** The vice president of Freeport Sulphur submitted an internal appraisal calculating the gross value of unmined ore in the gro
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-17--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Document Miami Retirement & Yacht Assets" category: "research" topic: "rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-l
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
-  > 
+- **rfc-gap-34-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-34-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-89-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-89-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-69-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-69-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

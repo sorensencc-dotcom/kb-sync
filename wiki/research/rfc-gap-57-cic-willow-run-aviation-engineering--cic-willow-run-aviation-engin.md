@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Workstream H"
-category: "research"
-topic: "rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-57--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:05:49.018Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Workstream H
+category: research
+topic: rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-57--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:05:49.018Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Workstream H
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-fol
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
+  >
 - **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: "RFC: GAP-26--cic-daily-research - **CIC - Daily Research adjacent-topics - The Floating Sawmill" category: "research" topic: "rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t" gap_id: "GAP-26--cic-daily-research" status: "draf
 

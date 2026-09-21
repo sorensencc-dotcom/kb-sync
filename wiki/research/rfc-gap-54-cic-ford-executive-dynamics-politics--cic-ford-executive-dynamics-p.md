@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-54--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Executive Alliance"
-category: "research"
-topic: "rfc-gap-54-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-54--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:46:34.933Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-54--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Uncorroborated Boardroom Legends
+category: research
+topic: rfc-gap-54-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-54--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-20T11:20:29.180Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-61-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-125-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-54--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Executive Alliance
+# RFC: GAP-54--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Uncorroborated Boardroom Legends
 
 ## 1. Problem Statement & Context
-)**: **The Executive Alliance:** Archival dossiers document an **Edsel-Sorensen alliance** against Harry Bennett’s paramilitary Service Department [4, 5]. In one meeting (BFRC Accession
+)**: **Uncorroborated Boardroom Legends:** Ernest Kanzler's claim that **Clara Ford directly demanded Sorensen's removal** in 1944 to protect her grandson Henry Ford II's succession lac
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
-- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
-  > 
-- **rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-24--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - Shareholder Primacy Precedent" category: "research" topic: "rfc-gap-24-cic-ford-executive-dynamics-politics--cic-ford-executi
+- **rfc-gap-61-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-61-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-125-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-125-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo** (`wiki/research/rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

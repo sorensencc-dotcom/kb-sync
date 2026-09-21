@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)"
-category: "research"
-topic: "rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-26--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:45:49.382Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)
+category: research
+topic: rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-26--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-20T11:20:12.549Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-103-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)
@@ -19,12 +20,12 @@ citations: ["wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
-- **rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-22--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 1.**" category: "research" topic: "rfc-gap-22-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
+- **rfc-gap-103-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-103-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

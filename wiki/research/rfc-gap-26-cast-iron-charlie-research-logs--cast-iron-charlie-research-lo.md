@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Extended Willys-Overland Payroll Terms"
-category: "research"
-topic: "rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-26--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:21.214Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Nominee Theory)**
+category: research
+topic: rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-26--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.312Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-77-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Extended Willys-Overland Payroll Terms
+# RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Nominee Theory)**
 
 ## 1. Problem Statement & Context
-)**: **Extended Willys-Overland Payroll Terms:** Although Sorensen's active executive role at Willys-Overland ended in 1946, trade sources indicate he remained on their payroll into the
+**The Nominee Theory**: Official filings show that Claim **CU-2067** (pertaining to stock in *Compania Litografica de la Habana, S.A.* / Havana Lithographing Company) is registered
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+- **rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-77-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-77-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

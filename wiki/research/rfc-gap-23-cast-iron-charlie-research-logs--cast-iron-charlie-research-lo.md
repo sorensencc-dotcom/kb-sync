@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - The Rumored Virgin Islands Property"
-category: "research"
-topic: "rfc-gap-23-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-23--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:04:16.230Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Second Marriage Documentation
+category: research
+topic: rfc-gap-23-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-23--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:33.225Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-46-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - The Rumored Virgin Islands Property
+# RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Second Marriage Documentation
 
 ## 1. Problem Statement & Context
-)**: **The Rumored Virgin Islands Property:** Family memory references a potential retirement property or real estate asset in the **U.S. Virgin Islands** alongside Florida ("another bi
+)**: **Second Marriage Documentation:** His January 1960 marriage to **Edith Thompson Montgomery** in Milwaukee at age 78 remains a biographical footnote requiring official marriage rec
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-46-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-46-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

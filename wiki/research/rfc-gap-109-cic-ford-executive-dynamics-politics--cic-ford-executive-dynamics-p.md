@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-109--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Offline Validation"
-category: "research"
-topic: "rfc-gap-109-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-109--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:20:13.744Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-109--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Offline Validation
+category: research
+topic: rfc-gap-109-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-109--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-19T21:20:13.744Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/historical-revocation-verification.md","wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-sigil-protoc.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-109--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Offline Validation
@@ -20,11 +21,11 @@ citations: ["wiki/research/historical-revocation-verification.md","wiki/research
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - 2.**" category: "research" topic: "rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_id: "G
 - **rfc-gap-03-cic-kb--cic-kb-follow-up-sigil-protoc** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-sigil-protoc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

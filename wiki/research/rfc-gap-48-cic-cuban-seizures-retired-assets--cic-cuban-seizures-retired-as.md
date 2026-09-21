@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-48--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Banking Sector Allocation vs. Capitalization"
-category: "research"
-topic: "rfc-gap-48-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
-gap_id: "GAP-48--cic-cuban-seizures-retired-assets"
-status: "draft"
-created_at: "2026-09-19T21:32:33.871Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-48--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Ford Motor Company (Credesco — Claim CU-3072)
+category: research
+topic: rfc-gap-48-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
+gap_id: GAP-48--cic-cuban-seizures-retired-assets
+status: draft
+created_at: 2026-09-20T11:10:28.316Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-105-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-46-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-85-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-48--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Banking Sector Allocation vs. Capitalization
+# RFC: GAP-48--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Ford Motor Company (Credesco — Claim CU-3072)
 
 ## 1. Problem Statement & Context
-)**: **Banking Sector Allocation vs. Capitalization:** In *The First National Bank of Boston* (Claim CU-2268), the FCSC originally applied book value in its Proposed Decision, but rejec
+)**: **Ford Motor Company (Credesco — Claim CU-3072):** Ford asserted a **\$1,775,000.00** "provisional claim" based on corporate guarantees extended to six commercial banks [47, 48]. T
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
-  > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-105-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-105-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-46-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-46-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-85-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-85-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

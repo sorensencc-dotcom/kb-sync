@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response"
-category: "research"
-topic: "rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-35--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:46:19.063Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Documentation)**
+category: research
+topic: rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-35--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.183Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-69-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-70-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
+# RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Documentation)**
 
 ## 1. Problem Statement & Context
-)**: **Automotive Establishment Response:** Whether **Henry Ford II** or the broader Ford Motor Company / automotive establishment issued public or private rebuttals to Sorensen’s candi
+**Second Marriage Documentation**: His January 1960 marriage to Edith Thompson Montgomery in Milwaukee at age 78 is supported by family memory, but no official marriage certificate
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-02--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **Cast Iron Charlie - Research Logs adjacent-topics** category: research topic: rfc-gap-02--cast-iron-charlie-research-lo gap_id: GAP-02 status: draft created_at: 2026-09-05T03:18:01.927Z expansion_method: heuristic retrieval
+- **rfc-gap-69-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-69-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-70-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-70-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

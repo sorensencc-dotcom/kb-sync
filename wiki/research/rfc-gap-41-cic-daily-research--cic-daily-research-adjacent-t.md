@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-41--cic-daily-research - **CIC - Daily Research (adjacent-topics - Late-Life Innovation"
-category: "research"
-topic: "rfc-gap-41-cic-daily-research--cic-daily-research-adjacent-t"
-gap_id: "GAP-41--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:33:25.447Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-41--cic-daily-research - **CIC - Daily Research (adjacent-topics - Late-Life Innovation
+category: research
+topic: rfc-gap-41-cic-daily-research--cic-daily-research-adjacent-t
+gap_id: GAP-41--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:33:25.447Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-41--cic-daily-research - **CIC - Daily Research (adjacent-topics - Late-Life Innovation
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","trm-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
 

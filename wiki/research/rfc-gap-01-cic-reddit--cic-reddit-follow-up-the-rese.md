@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-01--cic-reddit - **CIC-Reddit (follow-up - The Research Target"
-category: "research"
-topic: "rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-rese"
-gap_id: "GAP-01--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T21:24:07.488Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01--cic-reddit - **CIC-Reddit (follow-up - The Research Target
+category: research
+topic: rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-rese
+gap_id: GAP-01--cic-reddit
+status: draft
+created_at: 2026-09-19T21:24:07.488Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md","wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-01--cic-reddit - **CIC-Reddit (follow-up - The Research Target
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-1-archiv.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-11--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-11-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-11--cic-daily-research" status: "draft" created_at: "2
 

@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - 1.)**"
-category: "research"
-topic: "rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-01--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T21:03:34.312Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Resolve the Contested Death Date
+category: research
+topic: rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-01--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:20.213Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1.md"]
+citations: ["wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - 1.)**
+# RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Resolve the Contested Death Date
 
 ## 1. Problem Statement & Context
-1. Settle Critical Biographical Discrepancies (**High Priority**)
+)**: **Resolve the Contested Death Date:** Published biographies and Wikipedia state that Sorensen died on **August 28, 1968** [1, 2], whereas Find A Grave entries, cemetery records, an
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1** (`wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1.md`) [vector_only]:
-  > --- title: "RFC: GAP-01--willow-run-videos - **Willow Run Videos follow-up - 1. Official USAAF Serial Acceptance Logs Settle the B-24 vs. B-17 Mismatch**" category: "research" topic: "rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1" gap_i
+- **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-55--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Lowell Carr’s Sociological Study"
-category: "research"
-topic: "rfc-gap-55-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-55--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T20:51:25.550Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-55--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Lowell Carr’s Sociological Study
+category: research
+topic: rfc-gap-55-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-55--castironcharlie-facebook
+status: draft
+created_at: 2026-09-19T20:51:25.550Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","wiki/research/rfc-gap-20-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-55--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Lowell Carr’s Sociological Study
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04--castironcharlie-facebook-open** (`wiki/research/rfc-gap-04--castironcharlie-facebook-open.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-20-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-20-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
   > --- title: "RFC: GAP-20--willow-run-videos - **Willow Run Videos adjacent-topics - The Hawkins Cost-Card Purge 1907" category: "research" topic: "rfc-gap-20-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "GAP-20--willow-run-videos" status:
 - **rfc-gap-02--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

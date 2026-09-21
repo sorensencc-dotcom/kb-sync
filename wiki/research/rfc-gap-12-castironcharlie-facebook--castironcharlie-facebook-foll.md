@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-12--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 5. University of Michigan Wind Tunnel Logs & Flying Wing Files)**"
-category: "research"
-topic: "rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-foll"
-gap_id: "GAP-12--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:06.179Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-12--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories
+category: research
+topic: rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-foll
+gap_id: GAP-12--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:47.250Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md","wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["wiki/research/rfc-gap-10-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-39-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-09-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-12--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 5. University of Michigan Wind Tunnel Logs & Flying Wing Files)**
+# RFC: GAP-12--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-**5. University of Michigan Wind Tunnel Logs & Flying Wing Files**
+)**: **Target Repositories:** Detroit River Custom House Vessel Documentation and Wayne County Property Records [17].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
-- **rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md`) [vector_only]:
-  > --- title: "RFC: GAP-13--willow-run-videos - **Willow Run Videos follow-up - 5. Library of Congress & NARA Photo Provenance "Rosie" Geography**" category: "research" topic: "rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5" gap_id: "GAP-13
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+- **rfc-gap-10-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-10-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+  >
+- **rfc-gap-39-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-39-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+  >
+- **rfc-gap-09-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-09-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

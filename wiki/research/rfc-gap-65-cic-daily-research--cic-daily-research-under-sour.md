@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-65--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim"
-category: "research"
-topic: "rfc-gap-65-cic-daily-research--cic-daily-research-under-sour"
-gap_id: "GAP-65--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:51:47.938Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-65--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
+category: research
+topic: rfc-gap-65-cic-daily-research--cic-daily-research-under-sour
+gap_id: GAP-65--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:51:47.938Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/concepts/fail-soft-orchestration.md","wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-65--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
@@ -20,9 +21,9 @@ citations: ["trm-research-gaps.md","wiki/concepts/fail-soft-orchestration.md","w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **fail-soft-orchestration** (`wiki/concepts/fail-soft-orchestration.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [vector_only]:
   > --- title: RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets follow-up** category: research topic: rfc-gap-01--cic-cuban-seizures-retired-as gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.520Z expansion_method: heuristic retrieval_m
 

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-17--cic-daily-research - **CIC - Daily Research (follow-up - The Target"
-category: "research"
-topic: "rfc-gap-17-cic-daily-research--cic-daily-research-follow-up"
-gap_id: "GAP-17--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:32:48.681Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-17--cic-daily-research - **CIC - Daily Research (follow-up - The Target
+category: research
+topic: rfc-gap-17-cic-daily-research--cic-daily-research-follow-up
+gap_id: GAP-17--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:32:48.681Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/concepts/deterministic-sync-pipeline.md","wiki/research/rfc-gap-01--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-17--cic-daily-research - **CIC - Daily Research (follow-up - The Target
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/concepts/deterministic-sync-pipeline.md
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **deterministic-sync-pipeline** (`wiki/concepts/deterministic-sync-pipeline.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01--cic-daily-research-follow-up** (`wiki/research/rfc-gap-01--cic-daily-research-follow-up.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

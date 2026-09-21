@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Mead Bricker (1914–1950)"
-category: "research"
-topic: "rfc-gap-28-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-28--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:45:54.491Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Mead Bricker (1914–1950)
+category: research
+topic: rfc-gap-28-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-28--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-20T11:20:12.991Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-105-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-28-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-28--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Mead Bricker (1914–1950)
@@ -19,12 +20,12 @@ citations: ["wiki/research/rfc-gap-16-the-sorensen-photographic-archive--the-sor
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
-- **rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-10-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics follow-up - 4. Reconstructing Assembly Line Attribution Klann vs. Executive Memoirs**" category: "research" topic: "rfc-gap-10-cic-ford-executi
-- **rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+- **rfc-gap-105-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-105-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **rfc-gap-28-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-28-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  >
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

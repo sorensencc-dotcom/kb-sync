@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Hazardous Daily Operations"
-category: "research"
-topic: "rfc-gap-17-castironcharlie-facebook--castironcharlie-facebook-adja"
-gap_id: "GAP-17--castironcharlie-facebook"
-status: "draft"
-created_at: "2026-09-19T21:17:19.194Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Non-Magnetic Compass Rose
+category: research
+topic: rfc-gap-17-castironcharlie-facebook--castironcharlie-facebook-adja
+gap_id: GAP-17--castironcharlie-facebook
+status: draft
+created_at: 2026-09-20T11:01:51.173Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-13-cic-kb--cic-kb-adjacent-topics-tiered.md","trm-research-gaps.md","wiki/research/rfc-gap-04--castironcharlie-facebook-open.md"]
+citations: ["wiki/research/rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-18-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Hazardous Daily Operations
+# RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Non-Magnetic Compass Rose
 
 ## 1. Problem Statement & Context
-)**: **Hazardous Daily Operations:** Fueling was the final station before flight testing, requiring ground crews to pump **30,000 gallons of 100-octane gasoline and 1,100 gallons of oil
+)**: **The Haughton Non-Magnetic Compass Rose:** To calibrate internal magnetic compasses without interference from surrounding structural steel, the Haughton Elevator Company construct
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-13-cic-kb--cic-kb-adjacent-topics-tiered** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-adjacent-topics-tiered.md`) [lexical_only]:
-  > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-04--castironcharlie-facebook-open** (`wiki/research/rfc-gap-04--castironcharlie-facebook-open.md`) [lexical_only]:
-  > 
+- **rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+  >
+- **rfc-gap-18-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-18-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-33--cic-reddit - **CIC-Reddit (adjacent-topics - Birth of Airport Car Rentals"
-category: "research"
-topic: "rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-bi"
-gap_id: "GAP-33--cic-reddit"
-status: "draft"
-created_at: "2026-09-19T21:25:31.713Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-33--cic-reddit - **CIC-Reddit (adjacent-topics - Birth of Airport Car Rentals
+category: research
+topic: rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-bi
+gap_id: GAP-33--cic-reddit
+status: draft
+created_at: 2026-09-19T21:25:31.713Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-33--cic-reddit - **CIC-Reddit (adjacent-topics - Birth of Airport Car Rentals
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

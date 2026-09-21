@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - D-17S "Ice-Box" Rivet Failure Rates"
-category: "research"
-topic: "rfc-gap-41-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-41--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:09.261Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - E&L Transport Backchannel Contracts
+category: research
+topic: rfc-gap-41-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-41--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:56.320Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md"]
+citations: ["wiki/research/rfc-gap-83-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-42-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - D-17S "Ice-Box" Rivet Failure Rates
+# RFC: GAP-41--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - E&L Transport Backchannel Contracts
 
 ## 1. Problem Statement & Context
-)**: **D-17S "Ice-Box" Rivet Failure Rates:** While the metallurgical requirement of storing D-17S aluminum rivets at -20°F and driving them within 30 minutes of freezer removal is well
+)**: **E&L Transport Backchannel Contracts:** The assertion that Bennett's Service Department bypassed War Department competitive bidding to award lucrative haul-away contracts for B-24
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
-- **rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
-- **rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md`) [vector_only]:
-  > --- title: "RFC: GAP-21--willow-run-videos - **Willow Run Videos follow-up - 5. Library of Congress & NARA Photo Provenance "Rosie" Geography**" category: "research" topic: "rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5" gap_id: "GAP-21
+- **rfc-gap-83-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-83-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-42-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-42-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

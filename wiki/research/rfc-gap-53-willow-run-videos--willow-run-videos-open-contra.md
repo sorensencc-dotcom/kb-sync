@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-53--willow-run-videos - **Willow Run Videos (open-contradictions - 2. Setting of the Overnight Sketch"
-category: "research"
-topic: "rfc-gap-53-willow-run-videos--willow-run-videos-open-contra"
-gap_id: "GAP-53--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:37:43.501Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-53--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+category: research
+topic: rfc-gap-53-willow-run-videos--willow-run-videos-open-contra
+gap_id: GAP-53--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:53:06.837Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/.catalog.json","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md"]
+citations: ["wiki/research/rfc-gap-101-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-121-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-80-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-53--willow-run-videos - **Willow Run Videos (open-contradictions - 2. Setting of the Overnight Sketch
+# RFC: GAP-53--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
 
 ## 1. Problem Statement & Context
-Hotel del Coronado vs. U.S. Grant Hotel)**: **2. Setting of the Overnight Sketch: Hotel del Coronado vs. U.S. Grant Hotel**
+)**: **The Contradiction:** Many sources celebrate **Rose Will Monroe**, a Willow Run night-shift riveter filmed by actor Walter Pidgeon for a war bond short [31-34]. Conversely, one tr
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [lexical_only]:
-  > 
+- **rfc-gap-101-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-101-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-121-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-121-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  >
+- **rfc-gap-80-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-80-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

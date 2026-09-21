@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive)**"
-category: "research"
-topic: "rfc-gap-69-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
-gap_id: "GAP-69--cic-ford-executive-dynamics-politics"
-status: "draft"
-created_at: "2026-09-19T21:19:06.683Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive)**
+category: research
+topic: rfc-gap-69-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+gap_id: GAP-69--cic-ford-executive-dynamics-politics
+status: draft
+created_at: 2026-09-19T21:19:06.683Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-69--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - 2. Primary Verification of Clara Ford’s Boardroom Succession Directive)**
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

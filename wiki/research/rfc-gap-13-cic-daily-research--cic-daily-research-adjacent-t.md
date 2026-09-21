@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-13--cic-daily-research - **CIC - Daily Research (adjacent-topics - Jungle Timber Offset"
-category: "research"
-topic: "rfc-gap-13-cic-daily-research--cic-daily-research-adjacent-t"
-gap_id: "GAP-13--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:49:54.687Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-13--cic-daily-research - **CIC - Daily Research (adjacent-topics - Jungle Timber Offset
+category: research
+topic: rfc-gap-13-cic-daily-research--cic-daily-research-adjacent-t
+gap_id: GAP-13--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:49:54.687Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-24-cic-daily-research--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-14-cic-daily-research--cic-daily-research-follow-up.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-13--cic-daily-research - **CIC - Daily Research (adjacent-topics - Jungle Timber Offset
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adj
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-25-cic-daily-research--cic-daily-research-adjacent-t.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-24-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-24-cic-daily-research--cic-daily-research-adjacent-t.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-14-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-14-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

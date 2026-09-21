@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-55--cic-kb - **CIC-KB (open-contradictions - 3. Multi-Agent Controls & Execution Harness)**"
-category: "research"
-topic: "rfc-gap-55-cic-kb--cic-kb-open-contradictions-3"
-gap_id: "GAP-55--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:28:18.737Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-55--cic-kb - **CIC-KB (open-contradictions - 3. Multi-Agent Controls & Execution Harness)**
+category: research
+topic: rfc-gap-55-cic-kb--cic-kb-open-contradictions-3
+gap_id: GAP-55--cic-kb
+status: draft
+created_at: 2026-09-19T20:28:18.737Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","docs/kb/notebooklm-sync/architecture.md","wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-55--cic-kb - **CIC-KB (open-contradictions - 3. Multi-Agent Controls & Execution Harness)**
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","docs/k
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [hybrid]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md`) [vector_only]:
   > --- title: RFC: GAP-04 - **CIC-Reddit open-contradictions** category: research topic: rfc-gap-04--cic-reddit-open-contradiction gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:52.704Z expansion_method: heuristic retrieval_mode: hybrid-rrf a
 

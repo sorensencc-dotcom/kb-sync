@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-15--willow-run-videos - **Willow Run Videos (follow-up - Impact"
-category: "research"
-topic: "rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-i"
-gap_id: "GAP-15--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:56:19.054Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-15--willow-run-videos - **Willow Run Videos (follow-up - Impact
+category: research
+topic: rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-i
+gap_id: GAP-15--willow-run-videos
+status: draft
+created_at: 2026-09-19T20:56:19.054Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-15--willow-run-videos - **Willow Run Videos (follow-up - Impact
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

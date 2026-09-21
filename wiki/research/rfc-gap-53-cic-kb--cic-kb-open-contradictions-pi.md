@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-53--cic-kb - **CIC-KB (open-contradictions - Pinned TypeScript Guard Failure)**"
-category: "research"
-topic: "rfc-gap-53-cic-kb--cic-kb-open-contradictions-pi"
-gap_id: "GAP-53--cic-kb"
-status: "draft"
-created_at: "2026-09-19T20:28:15.209Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-53--cic-kb - **CIC-KB (open-contradictions - Pinned TypeScript Guard Failure)**
+category: research
+topic: rfc-gap-53-cic-kb--cic-kb-open-contradictions-pi
+gap_id: GAP-53--cic-kb
+status: draft
+created_at: 2026-09-19T20:28:15.209Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/concepts/pack-based-knowledge-management.md","wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","wiki/concepts/deterministic-sync-pipeline.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-53--cic-kb - **CIC-KB (open-contradictions - Pinned TypeScript Guard Failure)**
@@ -20,11 +21,11 @@ citations: ["wiki/concepts/pack-based-knowledge-management.md","wiki/research/rf
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **pack-based-knowledge-management** (`wiki/concepts/pack-based-knowledge-management.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04--castironcharlie-facebook-open** (`wiki/research/rfc-gap-04--castironcharlie-facebook-open.md`) [vector_only]:
   > --- title: RFC: GAP-04 - **CastIronCharlie-Facebook open-contradictions** category: research topic: rfc-gap-04--castironcharlie-facebook-open gap_id: GAP-04 status: draft created_at: 2026-09-05T03:18:26.331Z expansion_method: heuristic retrieval_mode
 - **deterministic-sync-pipeline** (`wiki/concepts/deterministic-sync-pipeline.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

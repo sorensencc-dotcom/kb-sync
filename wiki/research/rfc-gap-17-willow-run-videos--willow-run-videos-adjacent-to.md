@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-17--willow-run-videos - **Willow Run Videos (adjacent-topics - 2. The Wild "Outlaw" Era of Early Detroit & Automotive Pioneers)**"
-category: "research"
-topic: "rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to"
-gap_id: "GAP-17--willow-run-videos"
-status: "draft"
-created_at: "2026-09-19T20:36:43.706Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-17--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap
+category: research
+topic: rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to
+gap_id: GAP-17--willow-run-videos
+status: draft
+created_at: 2026-09-20T10:52:54.759Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md"]
+citations: ["wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-46-willow-run-videos--willow-run-videos-adjacent-to.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-17--willow-run-videos - **Willow Run Videos (adjacent-topics - 2. The Wild "Outlaw" Era of Early Detroit & Automotive Pioneers)**
+# RFC: GAP-17--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap
 
 ## 1. Problem Statement & Context
-**2. The Wild "Outlaw" Era of Early Detroit & Automotive Pioneers** Your sources record several unpolished anecdotes from the early automotive boom before corporate formality set i
+)**: **The John Dodge Office Slap:** Early Ford shareholders John and Horace Dodge were loud, boisterous, and chaotic figures [9-13]. After a heavily intoxicated John Dodge ran over a m
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
-- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+- **rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  >
+- **rfc-gap-46-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-46-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -27,7 +27,7 @@ The CIC-KB notebook (`679b8bab-2d87-42cb-a726-6dc54c83acc2`, category `master-kb
 Related context from the local knowledge base:
 
 - **CIC-KB (follow-up)** (`trm-research-gaps.md`) [lexical]:
-  > GAP-01 follow-up for the CIC master knowledge base and `kb-sync`: lock ingest contracts, fail-soft hook behavior, and wiki-health SLOs. Canonical note: [[rfc-gap-01--cic-kb-follow-up]].
+  > GAP-01 follow-up for the CIC master knowledge base and `kb-sync`: lock ingest contracts, fail-soft hook behavior, and wiki-health SLOs. Canonical note: [[kb-sync/wiki/research/rfc-gap-01--cic-kb-follow-up]].
 - **NotebookLM sync pipeline** (`docs/kb/notebooklm-sync/pipeline.md`) [citation]:
   > Six sequential phases — Trigger, Flatten, Pack, Purge, Upload, Verify. `npm run kb:sync` calls `scripts/notebooklm/ingest-notebooklm.sh` and does not run in the background unless configured as an opt-in Git post-commit hook.
 - **Fail-soft orchestration** (`wiki/concepts/fail-soft-orchestration.md`) [citation]:

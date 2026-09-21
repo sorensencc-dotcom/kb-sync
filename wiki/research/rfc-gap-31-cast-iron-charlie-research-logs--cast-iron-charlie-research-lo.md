@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-31--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - 5.)**"
-category: "research"
-topic: "rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-31--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-19T20:41:57.041Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-31--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Vague Family Rumor)**
+category: research
+topic: rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-31--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-20T10:56:35.090Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-82-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-31--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - 5.)**
+# RFC: GAP-31--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Vague Family Rumor)**
 
 ## 1. Problem Statement & Context
-5. Personal Family Milestones
+**Vague Family Rumor**: Mention of a retirement location or real estate asset in the U.S. Virgin Islands stems solely from secondary reference entries and family memory (noted in r
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-03--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-01--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+- **rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-82-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-82-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
+- **rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-56--cic-daily-research - **CIC - Daily Research (open-contradictions - The Contradiction"
-category: "research"
-topic: "rfc-gap-56-cic-daily-research--cic-daily-research-open-contr"
-gap_id: "GAP-56--cic-daily-research"
-status: "draft"
-created_at: "2026-09-19T20:33:49.760Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-56--cic-daily-research - **CIC - Daily Research (open-contradictions - The Contradiction
+category: research
+topic: rfc-gap-56-cic-daily-research--cic-daily-research-open-contr
+gap_id: GAP-56--cic-daily-research
+status: draft
+created_at: 2026-09-19T20:33:49.760Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-56--cic-daily-research - **CIC - Daily Research (open-contradictions - The Contradiction
@@ -20,11 +21,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04--willow-run-videos-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: RFC: GAP-04 - **Willow Run Videos open-contradictions** category: research topic: rfc-gap-04--willow-run-videos-open-contra gap_id: GAP-04 status: draft created_at: 2026-09-05T03:18:15.023Z expansion_method: heuristic retrieval_mode: hybri
 - **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

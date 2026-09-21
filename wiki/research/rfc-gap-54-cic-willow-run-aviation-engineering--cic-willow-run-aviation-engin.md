@@ -1,30 +1,31 @@
 ---
-title: "RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Integration vs. Local Segregation Policies"
-category: "research"
-topic: "rfc-gap-54-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-54--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:27.972Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Mobile WebSocket Specification
+category: research
+topic: rfc-gap-54-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-54--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-20T11:13:57.210Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local.md"]
+citations: ["wiki/research/rfc-gap-55-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-130-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-113-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
-# RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Integration vs. Local Segregation Policies
+# RFC: GAP-54--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Mobile WebSocket Specification
 
 ## 1. Problem Statement & Context
-)**: **Integration vs. Local Segregation Policies:** Although advocates like Josephine Gomon pushed for mixed-race housing at Willow Lodge, federal officials yielded to Southern congres
+)**: **Mobile WebSocket Specification:** Filed under "Accession 65, Box 69," the source collection includes a modern software engineering specification labeled **"Workstream H"** [27, 2
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
-- **rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
-- **rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local** (`wiki/research/rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local.md`) [vector_only]:
-  > --- title: "RFC: GAP-20--cic-kb - **CIC-KB adjacent-topics - Local Vector Store Integration**" category: "research" topic: "rfc-gap-20-cic-kb--cic-kb-adjacent-topics-local" gap_id: "GAP-20--cic-kb" status: "draft" created_at: "2026-09-19T20:27:28.162
+- **rfc-gap-55-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-55-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-130-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-130-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
+- **rfc-gap-113-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-113-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

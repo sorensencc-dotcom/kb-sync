@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-55--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Mobile WebSocket Specification"
-category: "research"
-topic: "rfc-gap-55-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
-gap_id: "GAP-55--cic-willow-run-aviation-engineering"
-status: "draft"
-created_at: "2026-09-19T21:37:29.709Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-55--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Mobile WebSocket Specification
+category: research
+topic: rfc-gap-55-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
+gap_id: GAP-55--cic-willow-run-aviation-engineering
+status: draft
+created_at: 2026-09-19T21:37:29.709Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-55--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Mobile WebSocket Specification
@@ -20,9 +21,9 @@ citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-fol
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
+  >
 - **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
 
