@@ -58,15 +58,23 @@ function runCapture(cmd) {
   });
 }
 
+function assertSafeCliValue(value, label) {
+  if (typeof value !== 'string' || !value || /[;&|<>`$()\r\n]/.test(value)) {
+    throw new Error(`Unsafe NotebookLM ${label}`);
+  }
+  return value;
+}
+
 /**
  * List notebook sources via notebooklm/nlm CLI.
  * Tries several known shapes used across CIC scripts.
  */
 export function listNotebookSources(cli, notebookId) {
+  assertSafeCliValue(cli, 'CLI');
+  assertSafeCliValue(notebookId, 'notebook id');
   const attempts = [
-    `${cli} source list ${notebookId} --json`,
+    `${cli} source list --notebook "${notebookId}" --json`,
     `${cli} source list --notebook-id="${notebookId}" --json`,
-    `${cli} sources list --notebook-id="${notebookId}" --json`,
   ];
   let lastErr;
   for (const cmd of attempts) {
@@ -86,6 +94,8 @@ export function listNotebookSources(cli, notebookId) {
 }
 
 export function deleteNotebookSource(cli, sourceId) {
+  assertSafeCliValue(cli, 'CLI');
+  assertSafeCliValue(sourceId, 'source id');
   const attempts = [
     `${cli} source delete ${sourceId} -y`,
     `${cli} source delete --id="${sourceId}" -y`,
@@ -170,5 +180,8 @@ export function purgePackFamilyBeforeUpload({
 }
 
 export function buildNotebookLmUploadCommand({ cli, notebookId, file }) {
-  return `${cli} source upload --notebook-id="${notebookId}" --file="${file}"`;
+  assertSafeCliValue(cli, 'CLI');
+  assertSafeCliValue(notebookId, 'notebook id');
+  assertSafeCliValue(file, 'file path');
+  return `${cli} source upload --notebook "${notebookId}" --file="${file}"`;
 }

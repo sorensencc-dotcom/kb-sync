@@ -48,14 +48,14 @@ test('buildNotebookLmUploadCommand builds standard upload command', () => {
     notebookId: 'nb-12345',
     file: '/tmp/pack_willow_run.txt',
   });
-  assert.equal(cmd, 'notebooklm source upload --notebook-id="nb-12345" --file="/tmp/pack_willow_run.txt"');
+  assert.equal(cmd, 'notebooklm source upload --notebook "nb-12345" --file="/tmp/pack_willow_run.txt"');
 });
 
 test('purgePackFamilyBeforeUpload dry-run handles empty sources list', () => {
   let loggedInfo = [];
   let loggedWarn = [];
-  // Mock CLI that returns empty JSON list
-  const mockCli = 'node -e "console.log(JSON.stringify([]))" --';
+  const mockCli = 'node tests/mock-nlm-cli.mjs';
+  process.env.MOCK_NLM_MODE = 'empty';
   const result = purgePackFamilyBeforeUpload({
     cli: mockCli,
     notebookId: 'nb-mock',
@@ -78,8 +78,9 @@ test('purgePackFamilyBeforeUpload dry-run identifies matching pack sources witho
     { id: 'src-1', title: 'pack_willow_run.txt' },
     { id: 'src-2', title: 'Daily Notes' },
   ];
-  const b64 = Buffer.from(JSON.stringify(mockSources)).toString('base64');
-  const mockCli = `node -e "console.log(Buffer.from('${b64}','base64').toString('utf8'))" --`;
+  const mockCli = 'node tests/mock-nlm-cli.mjs';
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
   const result = purgePackFamilyBeforeUpload({
     cli: mockCli,
     notebookId: 'nb-mock',
@@ -104,9 +105,9 @@ test('purgePackFamilyBeforeUpload live mode purges matching sources', () => {
     { id: 'src-del-1', title: 'pack_ford_politics.txt' },
     { id: 'src-keep-1', title: 'Interview transcript' },
   ];
-  const b64 = Buffer.from(JSON.stringify(mockSources)).toString('base64');
-  // CLI echoes sources on list and succeeds on delete
-  const mockCli = `node -e "if(process.argv.includes('delete')||process.argv.includes('remove')){process.exit(0)}else{console.log(Buffer.from('${b64}','base64').toString('utf8'))}" --`;
+  const mockCli = 'node tests/mock-nlm-cli.mjs';
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
   const result = purgePackFamilyBeforeUpload({
     cli: mockCli,
     notebookId: 'nb-live-test',
@@ -127,7 +128,8 @@ test('purgePackFamilyBeforeUpload live mode purges matching sources', () => {
 test('purgePackFamilyBeforeUpload fails closed when source list fails', () => {
   let loggedInfo = [];
   let loggedWarn = [];
-  const mockCli = 'node -e "process.exit(1)" --';
+  const mockCli = 'node tests/mock-nlm-cli.mjs';
+  process.env.MOCK_NLM_MODE = 'fail';
   assert.throws(
     () => {
       purgePackFamilyBeforeUpload({
@@ -141,4 +143,10 @@ test('purgePackFamilyBeforeUpload fails closed when source list fails', () => {
     },
     /Failed to list NotebookLM sources/,
   );
+});
+
+test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () => {
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm; rm -rf /', notebookId: 'nb-1', file: 'pack.txt' }), /Unsafe NotebookLM CLI/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1 & dir', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack.txt | calc' }), /Unsafe NotebookLM file path/);
 });

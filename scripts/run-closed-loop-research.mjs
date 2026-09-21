@@ -1,8 +1,8 @@
-import { execSync } from 'child_process';
+import { execFileSync, execSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import { NOTEBOOK_TARGETS, resolveNotebookId, extractFrontmatterCategory } from '../core/targets.mjs';
-import { purgePackFamilyBeforeUpload } from './nlm-pack-replace-gate.mjs';
+import { deleteNotebookSource, purgePackFamilyBeforeUpload, buildNotebookLmUploadCommand } from './nlm-pack-replace-gate.mjs';
 
 export { NOTEBOOK_TARGETS, resolveNotebookId, extractFrontmatterCategory };
 
@@ -202,22 +202,32 @@ When verifying historical signatures:
     logInfo(`Pushing ${pack.filename} to Target '${pack.category}' (Notebook ID: ${targetNbId})...`);
     // Pre-upload replace gate (query + purge pack family) -- keeps <=1 pack family even in dry/mock runs when CLI is available.
     const isLive = process.env.NLM_REPLACE_GATE_LIVE === '1';
+    let oldPackSources = [];
     try {
-      purgePackFamilyBeforeUpload({
+      oldPackSources = purgePackFamilyBeforeUpload({
         cli: nlmCli,
         notebookId: targetNbId,
         packFile: packFilePath,
-        dryRun: !isLive, // v1 is mock-upload; set NLM_REPLACE_GATE_LIVE=1 to purge for real
+        dryRun: true,
         logInfo,
         logWarn,
-      });
+      }).matched;
     } catch (err) {
       if (isLive) {
         throw err;
       }
       logWarn(`Replace-gate skipped/failed for ${pack.filename}: ${err.message}`);
     }
-    logInfo(`Command: ${nlmCli} source upload --notebook-id="${targetNbId}" --file="${packFilePath}"`);
+    const uploadCommand = buildNotebookLmUploadCommand({ cli: nlmCli, notebookId: targetNbId, file: packFilePath });
+    if (!isLive) {
+      logInfo(`Command: ${uploadCommand}`);
+      continue;
+    }
+    execFileSync(nlmCli, ['source', 'upload', '--notebook', targetNbId, '--file', packFilePath], { stdio: 'inherit' });
+    for (const source of oldPackSources) {
+      deleteNotebookSource(nlmCli, source.id || source.sourceId);
+    }
+    logInfo(`Uploaded ${pack.filename}; old pack sources remain until upload succeeds.`);
   }
   
   logInfo('\n================================================================================');
