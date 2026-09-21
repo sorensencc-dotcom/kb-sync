@@ -1,3 +1,9 @@
+---
+title: "Daily Synthesis Log: AI-Ideas — 2026-09-20"
+category: "wiki"
+status: "active"
+---
+
 # Daily Synthesis Log: AI-Ideas — 2026-09-20
 
 | Metadata | Value |
@@ -32,8 +38,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-20. Gro
   **Finding:** Comparing the **Fractional CAIO / AI Business ideas** against your **Ecosystem Architecture Guide** reveals that you already possess a huge unfair advantage [1, 2]. 
 
 While typical AI agencies rely on expensive third-party SaaS, messy Zapier webs, or raw API calls that blow through token budgets, yo...
-- **Q:** https://www.makeuseof.com/docker-containers-worth-self-hosting/?link_source=ta_first_comment&taid=6aac71022292740001e410a8&utm_campaign=trueanthem&utm_medium=social&utm_source=facebook&fbclid=IwZnRzaAUb8GFwZG9mBWZkaWQWUOvoad6F9D9jBU5367nVTAyF4q9T2mV4dG4DYWVtAjExAHNydGMGYXBwX2lkCjY2Mjg1NjgzNzkAAR77bIuW5m2LPcemcsY4A4SgQh5QcC4QvlpFXM80YgXNQJh_kLx0v_hKVRd9TQ_aem_Hk_Mz5jJ_4sU8eX0x_g2Fw
-  **Finding:** ...
 - **Q:** Tell me about what I just added
   **Finding:** The source **"5 Docker containers you should try self-hosting this weekend"** details five open-source tools designed to upgrade a local home server setup [1-3]:
 
