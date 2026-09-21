@@ -119,6 +119,6 @@ pwsh -NoProfile -File C:\dev\scripts\verify-repo-context.ps1 -Path C:\dev\icf
 
 ## Related concepts
 
-- [[concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Foundation for knowledge base separation
-- [[concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Ingestion and synchronization mechanisms
-- [[concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — Resilient execution patterns across agent tasks
+- [[kb-sync/concepts/three-layer-vault-architecture|Three-Layer Vault Architecture]] — Foundation for knowledge base separation
+- [[kb-sync/concepts/deterministic-sync-pipeline|Deterministic Sync Pipeline]] — Ingestion and synchronization mechanisms
+- [[kb-sync/concepts/fail-soft-orchestration|Fail-Soft Orchestration]] — Resilient execution patterns across agent tasks
