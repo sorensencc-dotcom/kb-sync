@@ -1,3 +1,8 @@
+---
+title: "Daily Synthesis Log: CIC - Willow Run & Aviation Engineering — 2026-09-20"
+category: "wiki"
+status: "active"
+---
 # Daily Synthesis Log: CIC - Willow Run & Aviation Engineering — 2026-09-20
 
 | Metadata | Value |

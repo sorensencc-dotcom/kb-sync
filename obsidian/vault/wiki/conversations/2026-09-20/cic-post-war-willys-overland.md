@@ -1,3 +1,8 @@
+---
+title: "Daily Synthesis Log: CIC - Post-War & Willys-Overland — 2026-09-20"
+category: "wiki"
+status: "active"
+---
 # Daily Synthesis Log: CIC - Post-War & Willys-Overland — 2026-09-20
 
 | Metadata | Value |

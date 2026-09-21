@@ -1,3 +1,8 @@
+---
+title: "Daily Synthesis Log: CIC - Cuban Seizures & Retired Assets — 2026-09-20"
+category: "wiki"
+status: "active"
+---
 # Daily Synthesis Log: CIC - Cuban Seizures & Retired Assets — 2026-09-20
 
 | Metadata | Value |
