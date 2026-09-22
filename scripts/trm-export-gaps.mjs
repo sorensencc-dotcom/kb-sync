@@ -41,17 +41,30 @@ export function parseGapsRegistry(filePath) {
       }
       continue;
     }
-    // Handle Markdown list format: - [/] [GAP-01] **Topic**: ...
-    const listMatch = trimmed.match(/^-\s*\[([ x/.-]*)\]\s*\[(GAP-[0-9]{2,3}(?:-[A-Z0-9]+)?)\]\s*\*\*([^*]+)\*\*/i);
+    // Handle Markdown list format: - [/] [GAP-01] **Topic**: Details (Drafted: [RFC](path))
+    const listMatch = trimmed.match(/^-\s*\[([ x/.-]*)\]\s*\[(GAP-[0-9]{2,3}(?:-[A-Z0-9]+)?)\]\s*\*\*([^*]+)\*\*:\s*(.*)$/i);
     if (listMatch) {
       const statusMark = listMatch[1].trim().toLowerCase();
       const status = (statusMark === 'x') ? 'resolved' : 'active';
+      let rawTopic = listMatch[3].trim().replace(/:\s*$/, '').replace(/\(\s*([^)]*?)\s*:\s*\)/g, '($1)').trim();
+      let rawDetails = listMatch[4].trim();
+      
+      let rfcPath = null;
+      const rfcMatch = rawDetails.match(/\(Drafted:\s*\[RFC\]\(([^)]+)\)\)/i);
+      if (rfcMatch) {
+        rfcPath = rfcMatch[1];
+        rawDetails = rawDetails.replace(rfcMatch[0], '').trim();
+      }
+
       rows.push({
         gap_id: listMatch[2],
-        topic: listMatch[3].trim(),
+        topic: rawTopic,
+        description: rawDetails,
+        rfc_path: rfcPath,
         priority: 'HIGH',
         status
       });
+      continue;
     }
   }
   return rows;
@@ -92,7 +105,8 @@ export async function exportGapsToDrive(options = {}) {
     const lockFiles = fs.readdirSync(locksDir).filter(f => f.startsWith(gap.gap_id));
     if (lockFiles.length > 0) continue;
 
-    const bodyText = `# RESEARCH TASK: Corroborate ${gap.gap_id}\n\n## Objective\nInvestigate topic '${gap.topic}' and resolve open ambiguities.\n\n## Open Question\nWhat primary accession filings or historical records corroborate this topic?`;
+    const description = gap.description ? `\n\n## Specific Research Targets\n${gap.description}` : '';
+    const bodyText = `# RESEARCH TASK: Corroborate ${gap.gap_id}\n\n## Topic\n${gap.topic}${description}\n\n## Open Questions & Targets\n- What primary accession filings, corporate archives, or court dockets corroborate these facts?\n- What specific contradictions exist between primary witness accounts and secondary publications?`;
     const body_sha256 = crypto.createHash('sha256').update(bodyText, 'utf8').digest('hex');
 
     const frontmatter = {
@@ -106,8 +120,19 @@ export async function exportGapsToDrive(options = {}) {
     const cardContent = `---\n${yaml.dump(frontmatter)}---\n\n${bodyText}\n`;
     fs.writeFileSync(cardPath, cardContent, 'utf8');
 
-    // Context pack
-    const contextContent = `# Reference Context: ${gap.gap_id}\n\n${redactContext(`Topic reference notes for ${gap.topic}`)}`;
+    // Context pack: embed actual RFC draft content if available
+    let rawContext = '';
+    if (gap.rfc_path) {
+      const resolvedRfc = path.resolve(KB_SYNC_ROOT, gap.rfc_path);
+      if (fs.existsSync(resolvedRfc)) {
+        rawContext = fs.readFileSync(resolvedRfc, 'utf8');
+      }
+    }
+    if (!rawContext) {
+      rawContext = `# Context: ${gap.gap_id}\n\n**Topic:** ${gap.topic}\n\n**Details:** ${gap.description || 'No additional context provided.'}`;
+    }
+
+    const contextContent = `# Reference Context: ${gap.gap_id}\n\n${redactContext(rawContext)}`;
     fs.writeFileSync(path.join(contextDir, `${gap.gap_id}-context-pack.md`), contextContent, 'utf8');
 
     exported.push(gap);

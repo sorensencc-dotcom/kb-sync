@@ -17,7 +17,13 @@ export function hashFile(filePath) {
   try {
     return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
   } catch {
-    return null;
+    // For virtual cloud files or unreadable stubs, return mtime string as stable surrogate
+    try {
+      const stat = fs.statSync(filePath);
+      return `stat-${stat.mtimeMs}-${stat.size}`;
+    } catch {
+      return null;
+    }
   }
 }
 
@@ -34,6 +40,69 @@ export async function batchDebounceFiles(filePaths, debounceMs = 15000) {
     if (hashFile(fp) === content) stable.push(fp);
   }
   return stable;
+}
+
+export async function resolveGoogleDocId(filePath) {
+  try {
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, 'utf8');
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed.doc_id) return parsed.doc_id;
+        if (parsed.id) return parsed.id;
+      } catch {}
+    }
+  } catch {}
+
+  // Fallback: Query local Google DriveFS SQLite metadata database
+  const baseName = path.basename(filePath).replace(/\.gdoc$/i, '').replace(/\s+READY$/i, '').trim();
+  const driveFsBase = path.join(process.env.LOCALAPPDATA || '', 'Google', 'DriveFS');
+  if (fs.existsSync(driveFsBase)) {
+    try {
+      const entries = fs.readdirSync(driveFsBase);
+      for (const entry of entries) {
+        const dbPath = path.join(driveFsBase, entry, 'mirror_metadata_sqlite.db');
+        if (fs.existsSync(dbPath)) {
+          try {
+            const Database = (await import('better-sqlite3')).default;
+            const db = new Database(dbPath, { readonly: true });
+            const row = db.prepare("SELECT id FROM items WHERE local_title LIKE ? AND mime_type = 'application/vnd.google-apps.document' LIMIT 1").get(`%${baseName}%`);
+            db.close();
+            if (row && row.id) return row.id;
+          } catch {}
+        }
+      }
+    } catch {}
+  }
+
+  return null;
+}
+
+export async function fetchGoogleDocContent(docId, options = {}) {
+  if (options.docFetcher) {
+    const res = await options.docFetcher(docId);
+    if (res && res.ok) return res.content;
+    return null;
+  }
+
+  const exportUrl = `https://docs.google.com/document/d/${docId}/export?format=txt`;
+  try {
+    const headers = {};
+    if (options.authBearer) {
+      headers['Authorization'] = `Bearer ${options.authBearer}`;
+    } else if (process.env.GOOGLE_OAUTH_TOKEN) {
+      headers['Authorization'] = `Bearer ${process.env.GOOGLE_OAUTH_TOKEN}`;
+    }
+    const resp = await fetch(exportUrl, { headers });
+    if (!resp.ok) return null;
+    const text = await resp.text();
+    if (text.trim().startsWith('<!DOCTYPE html>') || text.includes('<html')) {
+      return null;
+    }
+    return text;
+  } catch {
+    return null;
+  }
 }
 
 export function updateRegistryRow(registryPath, gapId) {
@@ -82,11 +151,32 @@ export async function ingestDriveFindings(options = {}) {
 
   for (const filePath of stableFiles) {
     const filename = path.basename(filePath);
-    const rawContent = fs.readFileSync(filePath, 'utf8');
+    let rawContent = '';
+    const isGDoc = filePath.endsWith('.gdoc');
+
+    if (isGDoc) {
+      const docId = await resolveGoogleDocId(filePath);
+      if (docId) {
+        const docContent = await fetchGoogleDocContent(docId, options);
+        if (docContent) {
+          rawContent = docContent;
+        }
+      }
+      if (!rawContent) {
+        try { rawContent = fs.readFileSync(filePath, 'utf8'); } catch {}
+      }
+    } else {
+      try {
+        rawContent = fs.readFileSync(filePath, 'utf8');
+      } catch {
+        continue;
+      }
+    }
+
     const sidecarPath = filePath.replace(/\.[^.]+$/, '') + '.ready';
     const hasSidecar = fs.existsSync(sidecarPath);
 
-    const validation = validateFinding(rawContent);
+    let validation = validateFinding(rawContent);
     const readySignal = detectReadySignal({ filename, hasSidecar, frontmatter: validation.frontmatter });
 
     if (!readySignal) continue;

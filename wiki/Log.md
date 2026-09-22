@@ -209,3 +209,9 @@ sourceRepository: kb-sync
 - Staging Path: `c:/dev/_kb-sync-staging/kb-sync/20260823-230800`
 - Proposals Accepted: 19 (0 rejected)
 - Synthesized and cleared documentation drift across modules/wiki, scripts, and tests.
+- [2026-09-22T17:12:36.031Z] Ingested remote finding 2d03818fd102e5d2b7ceed06063f828bf2fca53fb6089c0f1a0d3c4df8a6c2f4 for GAP-00-FIXTURE
+- [2026-09-22T18:34:46.599Z] Ingested remote finding 91f6d2d77fdfb003271d7e7fc27990f7b7f6f27785720393ea17fefb56fe40ef for GAP-00-FIXTURE
+- [2026-09-22T18:59:42.666Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-22T19:00:11.426Z] Ingested remote finding 45df4587190c857a4e344d58521ceef32ab233445b593d0316bf8c6e94510aa9 for GAP-01
+- [2026-09-22T19:08:53.322Z] Ingested remote finding 1c3e383ac919fb96863148eb71ec5985560701f72a7a789cc21e3a91e6bd9d27 for GAP-02
+- [2026-09-22T19:11:19.091Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
