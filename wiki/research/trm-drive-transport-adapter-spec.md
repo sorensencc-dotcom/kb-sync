@@ -18,7 +18,7 @@ The system enables zero-token, high-capacity mobile research workflows without c
 
 1. **Single Git Write Authority**: Git-tracked markdown files (`wiki/research/rfc-gap-*.md`, `trm-research-gaps.md`, and `wiki/Log.md`) are the sole canonical truth. Derived databases (SQLite, caches) are strictly secondary and downstream.
 2. **Inbound Status Invariant**: Remote agent findings arrive as candidate evidence (`provenance_type: remote_agent_finding`, `verification_status: inferred`, `not_primary_evidence: true`). Automated ingest pipelines never mark a research gap as `resolved`.
-3. **Frozen Identifier Pattern**: All gap identifiers must strictly match `^GAP-[0-9]{2,3}(-[A-Z]+)?$` (e.g., `GAP-03-VIDEOS`, `GAP-00-FIXTURE`, `GAP-000`).
+3. **Frozen Identifier Pattern**: All gap identifiers must strictly match `^GAP-[0-9]{2,3}(-[A-Z0-9]+)?$` (e.g., `GAP-03-VIDEOS`, `GAP-00-FIXTURE`, `GAP-001-V2`, `GAP-000`).
 4. **Delimited Finding Identity**: Finding IDs are cryptographically derived using the unit separator byte (`0x1f`):
    $$\text{finding\_id} = \text{SHA-256}(\text{gap\_id} \mathbin{\Vert} \mathtt{0x1f} \mathbin{\Vert} \text{canonical\_payload\_sha256})$$
    This prevents delimiter and prefix collision attacks across variable-length identifiers.
@@ -35,7 +35,7 @@ The Google Drive buffer root (`drive_buffer_root`, default: `G:/My Drive/TRM-Res
 
 ```
 TRM-Research/
-├── 01_actionable_gaps/     # Outbound task cards (GAP-{ID}.md and GAP-{ID}.ready)
+├── 01_actionable_gaps/     # Outbound task cards (GAP-{ID}.md)
 ├── 02_reference_context/   # Redacted context packs (GAP-{ID}-context-pack.md)
 ├── 03_grok_completed/      # Inbound mobile research findings awaiting ingestion
 ├── 04_archive/             # Processed items

@@ -57,6 +57,7 @@ export async function ingestDriveFindings(options = {}) {
   const rfcDir = options.rfcDir || path.join(KB_SYNC_ROOT, 'wiki', 'research');
   const registryPath = options.registryPath || path.join(KB_SYNC_ROOT, 'trm-research-gaps.md');
   const logPath = options.logPath || path.join(KB_SYNC_ROOT, 'wiki', 'Log.md');
+  const repoRoot = options.repoRoot || KB_SYNC_ROOT;
   const debounceMs = options.debounceMs ?? (config.ingest_debounce_seconds * 1000);
   const doCommit = options.commit ?? false;
 
@@ -122,12 +123,12 @@ export async function ingestDriveFindings(options = {}) {
 
     // Git commit if requested
     if (doCommit) {
-      if (fs.existsSync(path.join(KB_SYNC_ROOT, '.git', 'MERGE_HEAD'))) {
+      if (fs.existsSync(path.join(repoRoot, '.git', 'MERGE_HEAD'))) {
         throw new Error('Cannot commit: .git/MERGE_HEAD exists');
       }
       try {
         execSync(`git add -- "${rfcFile}" "${registryPath}" "${logPath}" && git commit --only -- "${rfcFile}" "${registryPath}" "${logPath}" -m "chore(trm): ingest remote candidate evidence for ${gap_id}"`, {
-          cwd: KB_SYNC_ROOT,
+          cwd: repoRoot,
           stdio: 'pipe'
         });
       } catch (err) {

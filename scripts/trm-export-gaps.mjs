@@ -69,8 +69,6 @@ export async function exportGapsToDrive(options = {}) {
     if (exported.length >= limit) break;
 
     const cardPath = path.join(gapsDir, `${gap.gap_id}.md`);
-    const readyPath = path.join(gapsDir, `${gap.gap_id}.ready`);
-
     // Skip if card already exported or locked
     if (fs.existsSync(cardPath)) continue;
     
@@ -95,9 +93,6 @@ export async function exportGapsToDrive(options = {}) {
     // Context pack
     const contextContent = `# Reference Context: ${gap.gap_id}\n\n${redactContext(`Topic reference notes for ${gap.topic}`)}`;
     fs.writeFileSync(path.join(contextDir, `${gap.gap_id}-context-pack.md`), contextContent, 'utf8');
-
-    // Touch sidecar
-    fs.writeFileSync(readyPath, 'ready', 'utf8');
 
     exported.push(gap);
   }

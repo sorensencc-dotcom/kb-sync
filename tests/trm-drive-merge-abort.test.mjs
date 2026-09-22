@@ -26,20 +26,20 @@ test('ingestDriveFindings throws and aborts commit when .git/MERGE_HEAD is prese
   const logPath = path.join(tmpDir, 'Log.md');
   fs.writeFileSync(logPath, '# Log\n');
 
-  // We can pass a mock repo root or test that error is thrown
+  // Verify explicit MERGE_HEAD abort error is thrown
   await assert.rejects(
     async () => {
-      // Ingest with commit: true and simulated error condition
       await ingestDriveFindings({
         driveRoot,
         rfcDir: tmpDir,
         registryPath,
         logPath,
+        repoRoot: tmpDir,
         debounceMs: 10,
         commit: true
       });
     },
-    /Cannot commit|Git commit failed/
+    /^Error: Cannot commit: \.git\/MERGE_HEAD exists$/
   );
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
