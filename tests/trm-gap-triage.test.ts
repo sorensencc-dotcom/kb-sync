@@ -78,6 +78,22 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.match(result.rfcContent, /\[jev:0\.77\]/);
   });
 
+  test('TEST-JEV-04: jev circuit breaker trips once and stays tripped across the batch', async () => {
+    process.env.TRM_JEV_FILTER = '1';
+    const originalFetch = globalThis.fetch;
+    let callCount = 0;
+    globalThis.fetch = async () => { callCount++; return { ok: false, status: 500 }; };
+    fs.writeFileSync(gapsFilePath, [
+      '# Gaps',
+      '- [ ] [GAP-01] First gap: about alpha.',
+      '- [ ] [GAP-02] Second gap: about beta.',
+    ].join('\n'), 'utf8');
+    await executeGapTriage({ gapsFilePath, outputDir, dbPath: testDbPath, dryRun: true, concurrency: 1 });
+    globalThis.fetch = originalFetch;
+    delete process.env.TRM_JEV_FILTER;
+    assert.equal(callCount, 0);
+  });
+
   test('TEST-01: Markdown gap list parser extracts structured items and statuses', () => {
     const markdown = `# Gaps
 - [ ] [GAP-01] Fail-soft recovery: SQLite state verification under load.

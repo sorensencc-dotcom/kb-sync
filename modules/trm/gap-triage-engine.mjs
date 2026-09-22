@@ -325,10 +325,12 @@ export async function executeGapTriage(options = {}) {
   // Lazy-load expander only if needed (avoids import cost when --no-expand)
   let expandSearchQuery = null;
   let circuitBreaker = null;
+  let jevCircuitBreaker = null;
   if (!noExpand) {
     const expander = await import('./query-expander.mjs');
     expandSearchQuery = expander.expandSearchQuery;
     circuitBreaker = expander.createCircuitBreaker();
+    jevCircuitBreaker = expander.createCircuitBreaker();
   }
 
   const expandOptions = {
@@ -349,6 +351,7 @@ export async function executeGapTriage(options = {}) {
         triageGapAgainstCache(db, gap, {
           expandSearchQuery,
           circuitBreaker,
+          jevCircuitBreaker,
           expandOptions,
           webFallback: options.webFallback,
           limit: 3,
