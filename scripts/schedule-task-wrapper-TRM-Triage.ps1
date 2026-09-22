@@ -76,6 +76,15 @@ try {
 
     if ($ExitCode -eq 0) {
         Write-LogInfo "TRM Gap Triage completed successfully."
+        
+        # 3. Export newly active/triaged priority gaps to Google Drive (Evening Drop)
+        Write-LogInfo "Dropping priority actionable gaps to Google Drive (Evening Drop)..."
+        & node scripts/trm-export-gaps.mjs 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            Write-LogWarn "TRM Gap Export exited with code $LASTEXITCODE"
+        } else {
+            Write-LogInfo "TRM Gap Export completed successfully."
+        }
     } else {
         Write-LogError "TRM Gap Triage exited with code $ExitCode"
     }

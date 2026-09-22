@@ -129,3 +129,15 @@ To inspect and promote findings locally:
    ```bash
    git diff wiki/research/rfc-gap-03-videos.md
    ```
+
+---
+
+## 7. Automation Cadence & Execution Windows
+
+| Window | Component / Task | Action | Target / Directory |
+|---|---|---|---|
+| **20:30 ET (Daily)** | `KB-Sync-TRM-Triage` | Main TRM gap triage & daily outbound drop | `01_actionable_gaps/`, `02_reference_context/` |
+| **21:30 ET (Daily)** | Grok Remote Job | Mobile research worker claims 1 gap | `03_grok_completed/` |
+| **Every 4 Hours** | `\Ironbots\TRM-Drive-Sync` | Transport ingest & archive loop | Ingests from `03_grok_completed/` to RFCs |
+| **On Demand** | Human Reviewer | Manual candidate promotion | `scripts/trm-review-queue.mjs` |
+
