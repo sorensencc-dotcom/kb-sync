@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import yaml from 'js-yaml';
 
-export const GAP_ID_REGEX = /^GAP-[0-9]{2,3}(-[A-Z]+)?$/;
+export const GAP_ID_REGEX = /^GAP-[0-9]{2,3}(-[A-Z0-9]+)?$/;
 export const EMPTY_SHA256 = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
 
 export function computeFindingId(gapId, canonicalPayloadSha256) {
