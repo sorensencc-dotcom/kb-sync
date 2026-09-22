@@ -29,6 +29,21 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     fs.rmSync(sandboxRoot, { recursive: true, force: true });
   });
 
+  test('TEST-JEV-01: jev filter is never invoked when retrieval mode is not hybrid-rrf', async () => {
+    process.env.TRM_JEV_FILTER = '1';
+    const originalFetch = globalThis.fetch;
+    let fetchCalled = false;
+    globalThis.fetch = async (url) => { if (String(url).includes('/v1/systemone')) fetchCalled = true; return { ok: true, json: async () => ({}) }; };
+    const db = getDatabase(testDbPath, { readonly: false });
+    const gap = { id: 'GAP-01--x', localId: 'GAP-01', topicKey: 'x', title: 'X', description: 'Y', status: 'pending', line: '', raw: '' };
+    const result = await triageGapAgainstCache(db, gap, { expandSearchQuery, limit: 3 });
+    globalThis.fetch = originalFetch;
+    delete process.env.TRM_JEV_FILTER;
+    db.close();
+    assert.equal(fetchCalled, false);
+    assert.notEqual(result.rfcContent.includes('retrieval_mode: "hybrid-rrf'), true);
+  });
+
   test('TEST-01: Markdown gap list parser extracts structured items and statuses', () => {
     const markdown = `# Gaps
 - [ ] [GAP-01] Fail-soft recovery: SQLite state verification under load.

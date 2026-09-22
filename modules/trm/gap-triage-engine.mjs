@@ -13,6 +13,7 @@ import {
   formatAstGroundingSection,
 } from './ast-grounding.mjs';
 import { searchWebFallback } from './web-search-fallback.mjs';
+import { filterMatchedDocuments } from './jev-filter.mjs';
 
 /**
  * Derive a stable topic slug fragment from a gap title for namespaced gap IDs.
@@ -105,7 +106,7 @@ export function parseGapItems(content) {
  * @returns {Promise<{ gap: Object, matchedDocuments: Array, citations: Array, rfcContent: string, topicSlug: string }>}
  */
 export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
-  const { expandSearchQuery = null, circuitBreaker = null, expandOptions = {} } = options;
+  const { expandSearchQuery = null, circuitBreaker = null, expandOptions = {}, jevCircuitBreaker = null } = options;
 
   let query;
   let expansionMethod = 'raw';
@@ -166,6 +167,14 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
   } catch {
     // Fail-soft: continue with lexical hits if vector search fails
     matchedDocuments = lexicalHits;
+  }
+
+  if (retrievalMode === 'hybrid-rrf') {
+    const { matchedDocuments: filtered, applied } = await filterMatchedDocuments(
+      gap, matchedDocuments, { circuitBreaker: jevCircuitBreaker }
+    );
+    matchedDocuments = filtered;
+    if (applied) retrievalMode = 'hybrid-rrf+jev';
   }
 
   // 2b. Live Web Fallback (Path D: Parallel / TinyFish) if local cache has 0 matches
