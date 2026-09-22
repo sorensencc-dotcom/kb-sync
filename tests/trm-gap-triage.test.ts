@@ -44,6 +44,40 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.notEqual(result.rfcContent.includes('retrieval_mode: "hybrid-rrf'), true);
   });
 
+  test('TEST-JEV-02: evidenceList renders [jev:0.xx] tag only when jev_score is present', () => {
+    const docWithJev = { topic: 'Doc A', file_path: 'a.md', content: 'alpha content', retrieval_mode: 'hybrid-rrf+jev', jev_score: 0.87 };
+    const docWithoutJev = { topic: 'Doc B', file_path: 'b.md', content: 'beta content', retrieval_mode: 'hybrid-rrf' };
+    const render = (doc) => {
+      const cleanSnippet = (doc.content || '').slice(0, 250);
+      const modeTag = doc.retrieval_mode ? ` [${doc.retrieval_mode}]` : '';
+      const jevTag = typeof doc.jev_score === 'number' ? ` [jev:${doc.jev_score.toFixed(2)}]` : '';
+      return `- **${doc.topic}** (\`${doc.file_path}\`)${modeTag}${jevTag}:\n  > ${cleanSnippet}`;
+    };
+    assert.match(render(docWithJev), /\[jev:0\.87\]/);
+    assert.doesNotMatch(render(docWithoutJev), /\[jev:/);
+  });
+
+  test('TEST-JEV-03: rfcContent carries [jev:0.xx] tag end-to-end when jev applies', async () => {
+    process.env.TRM_JEV_FILTER = '1';
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = async (url) => ({
+      ok: true,
+      json: async () => String(url).includes('/api/embeddings')
+        ? { embedding: [1, 0, 0] }
+        : { answers: { doc_0: { value: 0.77, certainty: 4 } } },
+    });
+    const db = getDatabase(testDbPath, { readonly: false });
+    db.exec(`INSERT INTO kb_documents (id, topic, file_path, content, category, sha256) VALUES ('doc-1', 'Doc One', 'doc-1.md', 'relevant content about X', 'notes', 'hash')`);
+    db.prepare('INSERT INTO kb_vectors (id, topic, embedding, dimensions, model) VALUES (?, ?, ?, ?, ?)')
+      .run('doc-1', 'Doc One', new Uint8Array(new Float32Array([1, 0, 0]).buffer), 3, 'test');
+    const gap = { id: 'GAP-02--x', localId: 'GAP-02', topicKey: 'x', title: 'X topic', description: 'about X', status: 'pending', line: '', raw: '' };
+    const result = await triageGapAgainstCache(db, gap, { expandSearchQuery, limit: 3 });
+    globalThis.fetch = originalFetch;
+    delete process.env.TRM_JEV_FILTER;
+    db.close();
+    assert.match(result.rfcContent, /\[jev:0\.77\]/);
+  });
+
   test('TEST-01: Markdown gap list parser extracts structured items and statuses', () => {
     const markdown = `# Gaps
 - [ ] [GAP-01] Fail-soft recovery: SQLite state verification under load.

@@ -227,7 +227,10 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
           .slice(0, 250)
           .trim();
         const modeTag = doc.retrieval_mode ? ` [${doc.retrieval_mode}]` : '';
-        return `- **${doc.topic}** (\`${doc.file_path}\`)${modeTag}:\n  > ${cleanSnippet}`;
+        const jevTag = typeof doc.jev_score === 'number'
+          ? ` [jev:${doc.jev_score.toFixed(2)}]`
+          : '';
+        return `- **${doc.topic}** (\`${doc.file_path}\`)${modeTag}${jevTag}:\n  > ${cleanSnippet}`;
       }).join('\n')
     : '- *No immediate context matches found in local knowledge cache. External investigation required.*';
 
