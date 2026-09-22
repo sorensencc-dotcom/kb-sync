@@ -66,12 +66,18 @@ Behavior:
    - Timeout via `AbortController`, `options.timeoutMs ?? 3000` (matches the
      embedding-call timeout already used in `triageGapAgainstCache`).
 4. **On success:** for each doc, attach `jev_score` (the `score` question's
-   `value`) and `jev_certainty` (its `certainty`, 1-5). Re-sort
-   `matchedDocuments` by `rrf_score * 0.6 + jev_score * 0.4` (documented
-   inline as a starting weight, not exposed as a public option — tune later
-   from real data, YAGNI now). Truncate to the same `limit` already applied
-   upstream (re-sort only, no new truncation point). Record success on the
-   circuit breaker. Return `{ matchedDocuments: reranked, applied: true }`.
+   `value`, 0.0-1.0) and `jev_certainty` (its `certainty`, 1-5). `rrf_score`
+   is not on a 0-1 scale (RRF terms are `1/(k+rank)` with `k=60`, so values
+   sit around 0.008-0.033) — blending it directly against `jev_score` would
+   let `jev_score` dominate regardless of the stated 0.6/0.4 weights. Min-max
+   normalize `rrf_score` across the current candidate set first
+   (`(score - min) / (max - min || 1)`, single-doc set maps to `1.0`), then
+   re-sort `matchedDocuments` by
+   `normalizedRrf * 0.6 + jev_score * 0.4` (documented inline as a starting
+   weight, not exposed as a public option — tune later from real data, YAGNI
+   now). Truncate to the same `limit` already applied upstream (re-sort only,
+   no new truncation point). Record success on the circuit breaker. Return
+   `{ matchedDocuments: reranked, applied: true }`.
 5. **On any failure** (fetch error, timeout, non-2xx, malformed/missing
    fields in response): record failure on the circuit breaker, return
    `{ matchedDocuments, applied: false }` unchanged — identical fail-soft
@@ -97,7 +103,10 @@ if (retrievalMode === 'hybrid-rrf') {
     gap, matchedDocuments, { circuitBreaker: jevCircuitBreaker }
   );
   matchedDocuments = filtered;
-  if (applied) retrievalMode = `${retrievalMode}+jev`;
+  // Literal, not `${retrievalMode}+jev` — the guard above already narrows
+  // retrievalMode to exactly 'hybrid-rrf', so templating it implies support
+  // for other input values this branch can never see.
+  if (applied) retrievalMode = 'hybrid-rrf+jev';
 }
 ```
 
@@ -106,9 +115,47 @@ RFC frontmatter (`retrieval_mode: "hybrid-rrf+jev"` vs `"hybrid-rrf"`) shows
 whether jev ran for that gap, without a separate boolean field to keep in
 sync with the suffix.
 
-`jevCircuitBreaker` is created once per `executeGapTriage()` batch run
-(same lifetime pattern as the existing query-expander circuit breaker),
-passed down alongside it.
+`jevCircuitBreaker` is created once per `executeGapTriage()` batch run and
+threaded down exactly like the existing query-expander `circuitBreaker` is
+today (`gap-triage-engine.mjs` current ~L314-320, ~L337-340). Concretely:
+
+```js
+// alongside the existing `circuitBreaker` creation in executeGapTriage()
+const jevCircuitBreaker = createJevCircuitBreaker(); // from ./jev-filter.mjs
+
+// ...in the batch.map((gap) => triageGapAgainstCache(db, gap, { ... })) call:
+triageGapAgainstCache(db, gap, {
+  expandSearchQuery,
+  circuitBreaker,       // existing, query-expander's
+  jevCircuitBreaker,    // new
+  expandOptions,
+})
+```
+
+`triageGapAgainstCache`'s own signature gains one destructured option,
+`jevCircuitBreaker = null`, passed through to `filterMatchedDocuments`
+unchanged.
+
+### RFC evidence rendering: `gap-triage-engine.mjs` evidenceList
+
+Today, `jev_score`/`jev_certainty` only exist in-memory for reranking and
+are dropped before the RFC is written — the only surviving signal is the
+`retrieval_mode` suffix. That's not enough to audit *why* a doc ranked where
+it did after a jev run. The existing per-doc `modeTag` (real file,
+evidenceList map, currently `` ` [${doc.retrieval_mode}]` ``) gains a second
+tag when `jev_score` is present:
+
+```js
+const modeTag = doc.retrieval_mode ? ` [${doc.retrieval_mode}]` : '';
+const jevTag = typeof doc.jev_score === 'number'
+  ? ` [jev:${doc.jev_score.toFixed(2)}]`
+  : '';
+return `- **${doc.topic}** (\`${doc.file_path}\`)${modeTag}${jevTag}:\n  > ${cleanSnippet}`;
+```
+
+No new frontmatter field — the per-doc score sits next to its citation
+where it's read, not in a separate list that has to stay index-aligned with
+`citations`.
 
 ### Tests: `tests/jev-filter.test.mjs`
 
@@ -119,10 +166,14 @@ Mocked `fetchImpl` (matches cic-jev's own test convention), covering:
 - Call-site: `retrievalMode !== 'hybrid-rrf'` (lexical-only or web-fallback) →
   `filterMatchedDocuments` never called at all (covers `gap-triage-engine.mjs`
   call site, not the module itself).
-- Success → scores attached, re-sort order matches the weighted formula.
+- Success → scores attached, re-sort order matches the normalized weighted
+  formula (covers both the multi-doc min-max case and the single-doc
+  `normalizedRrf = 1.0` edge case).
 - Timeout / non-2xx / malformed response body → fail-soft, `applied: false`,
   circuit breaker records failure.
 - Circuit breaker already open → no network call made.
+- `gap-triage-engine.mjs` evidenceList rendering: doc with `jev_score` set
+  renders the `[jev:0.xx]` tag; doc without it (jev not applied) doesn't.
 
 ## Open questions
 
