@@ -82,12 +82,13 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     process.env.TRM_JEV_FILTER = '1';
     const originalFetch = globalThis.fetch;
     let callCount = 0;
-    globalThis.fetch = async () => { callCount++; return { ok: false, status: 500 }; };
+    globalThis.fetch = async (url) => { if (String(url).includes('/v1/systemone')) callCount++; return { ok: false, status: 500 }; };
     fs.writeFileSync(gapsFilePath, [
       '# Gaps',
       '- [ ] [GAP-01] First gap: about alpha.',
       '- [ ] [GAP-02] Second gap: about beta.',
     ].join('\n'), 'utf8');
+    getDatabase(testDbPath, { readonly: false }).close();
     await executeGapTriage({ gapsFilePath, outputDir, dbPath: testDbPath, dryRun: true, concurrency: 1 });
     globalThis.fetch = originalFetch;
     delete process.env.TRM_JEV_FILTER;
