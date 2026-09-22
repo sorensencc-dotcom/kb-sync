@@ -50,10 +50,12 @@ export async function exportGapsToDrive(options = {}) {
 
   const gapsDir = path.join(driveRoot, '01_actionable_gaps');
   const contextDir = path.join(driveRoot, '02_reference_context');
+  const completedDir = path.join(driveRoot, '03_grok_completed');
   const locksDir = path.join(driveRoot, '_locks');
 
   fs.mkdirSync(gapsDir, { recursive: true });
   fs.mkdirSync(contextDir, { recursive: true });
+  fs.mkdirSync(completedDir, { recursive: true });
   fs.mkdirSync(locksDir, { recursive: true });
 
   const allGaps = parseGapsRegistry(registryPath);
