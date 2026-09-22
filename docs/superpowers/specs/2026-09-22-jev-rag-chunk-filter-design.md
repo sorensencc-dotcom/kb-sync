@@ -80,15 +80,25 @@ Behavior:
 
 ### Call site: `gap-triage-engine.mjs`
 
-One new step in `triageGapAgainstCache`, between the RRF block (current
-~L144-169) and AST grounding (~L188):
+One new step in `triageGapAgainstCache`, immediately after the RRF block
+(current ~L144-169) and **before** the web-fallback block (~L171-186) — not
+after it. Web-fallback only runs when `matchedDocuments.length === 0`, so
+placing jev's call first means it only ever sees actual RRF survivors, never
+web-fallback or pure-lexical fallback docs, matching the "RRF survivors only"
+scope in Non-goals. As defense in depth against a future reordering of these
+blocks, the gate also checks `retrievalMode === 'hybrid-rrf'` explicitly
+rather than relying on placement alone:
 
 ```js
-const { matchedDocuments: filtered, applied } = await filterMatchedDocuments(
-  gap, matchedDocuments, { circuitBreaker: jevCircuitBreaker }
-);
-matchedDocuments = filtered;
-if (applied) retrievalMode = `${retrievalMode}+jev`;
+// Placed here, before web-fallback (~L171), so jev only ever scores
+// actual RRF survivors — never web-fallback or lexical-only fallback docs.
+if (retrievalMode === 'hybrid-rrf') {
+  const { matchedDocuments: filtered, applied } = await filterMatchedDocuments(
+    gap, matchedDocuments, { circuitBreaker: jevCircuitBreaker }
+  );
+  matchedDocuments = filtered;
+  if (applied) retrievalMode = `${retrievalMode}+jev`;
+}
 ```
 
 `retrievalMode` gaining the `+jev` suffix only when actually applied means
@@ -106,6 +116,9 @@ Mocked `fetchImpl` (matches cic-jev's own test convention), covering:
 
 - Flag off → no-op, `applied: false`, docs unchanged.
 - Empty `matchedDocuments` → no-op without a network call.
+- Call-site: `retrievalMode !== 'hybrid-rrf'` (lexical-only or web-fallback) →
+  `filterMatchedDocuments` never called at all (covers `gap-triage-engine.mjs`
+  call site, not the module itself).
 - Success → scores attached, re-sort order matches the weighted formula.
 - Timeout / non-2xx / malformed response body → fail-soft, `applied: false`,
   circuit breaker records failure.
