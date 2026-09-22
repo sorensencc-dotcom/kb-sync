@@ -18,7 +18,13 @@
       "aliases": [
         "ford_politics",
         "politics",
-        "executive"
+        "executive",
+        "ford-labor",
+        "ford_labor",
+        "labor",
+        "biography",
+        "sorensen-biography",
+        "sorensen_biography"
       ],
       "status": "canonical"
     },
@@ -71,7 +77,8 @@
       "aliases": [
         "master",
         "kb",
-        "master_kb"
+        "master_kb",
+        "wiki"
       ],
       "status": "canonical"
     },
@@ -80,7 +87,9 @@
       "target": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
       "aliases": [
         "default",
-        "daily_research"
+        "daily_research",
+        "research",
+        "reporting"
       ],
       "status": "canonical"
     },
@@ -184,7 +193,9 @@
       "aliases": [
         "module",
         "tools",
-        "scripts"
+        "scripts",
+        "sync-tools",
+        "sync_tools"
       ],
       "status": "canonical",
       "exclude_from_master_kb": true
@@ -196,7 +207,9 @@
       "aliases": [
         "ops",
         "runbook",
-        "deployment"
+        "deployment",
+        "foundry-telemetry",
+        "foundry_telemetry"
       ],
       "status": "canonical",
       "exclude_from_master_kb": true
