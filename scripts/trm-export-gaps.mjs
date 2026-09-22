@@ -27,14 +27,30 @@ export function parseGapsRegistry(filePath) {
   const rows = [];
   const lines = content.split('\n');
   for (const line of lines) {
-    if (!line.startsWith('|') || line.includes('---') || line.includes('Gap ID')) continue;
-    const parts = line.split('|').map(s => s.trim()).filter(Boolean);
-    if (parts.length >= 4) {
+    const trimmed = line.trim();
+    // Handle Markdown table format
+    if (trimmed.startsWith('|') && !trimmed.includes('---') && !trimmed.includes('Gap ID')) {
+      const parts = trimmed.split('|').map(s => s.trim()).filter(Boolean);
+      if (parts.length >= 4) {
+        rows.push({
+          gap_id: parts[0],
+          topic: parts[1],
+          priority: parts[2],
+          status: parts[3]
+        });
+      }
+      continue;
+    }
+    // Handle Markdown list format: - [/] [GAP-01] **Topic**: ...
+    const listMatch = trimmed.match(/^-\s*\[([ x/.-]*)\]\s*\[(GAP-[0-9]{2,3}(?:-[A-Z0-9]+)?)\]\s*\*\*([^*]+)\*\*/i);
+    if (listMatch) {
+      const statusMark = listMatch[1].trim().toLowerCase();
+      const status = (statusMark === 'x') ? 'resolved' : 'active';
       rows.push({
-        gap_id: parts[0],
-        topic: parts[1],
-        priority: parts[2],
-        status: parts[3]
+        gap_id: listMatch[2],
+        topic: listMatch[3].trim(),
+        priority: 'HIGH',
+        status
       });
     }
   }
