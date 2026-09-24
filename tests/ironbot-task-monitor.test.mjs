@@ -23,3 +23,32 @@ test('getDownstreamTasks resolves full topological dependency order', () => {
     'CIC-Daily-Status',
   ]);
 });
+
+import { diagnoseAndHeal, clearStaleGitLocks } from '../scripts/ironbot/ironbot-playbooks.mjs';
+
+test('clearStaleGitLocks detects and cleans expired lock files', () => {
+  const tempDir = path.join(REPO_ROOT, '.test-tmp-git-locks');
+  fs.mkdirSync(tempDir, { recursive: true });
+  const lockFile = path.join(tempDir, 'index.lock');
+  fs.writeFileSync(lockFile, 'lock');
+
+  // Set mtime to 20 minutes ago
+  const oldTime = (Date.now() - 20 * 60 * 1000) / 1000;
+  fs.utimesSync(lockFile, oldTime, oldTime);
+
+  const cleared = clearStaleGitLocks(tempDir, 10 * 60 * 1000);
+  assert.equal(cleared.length, 1);
+  assert.equal(fs.existsSync(lockFile), false);
+  fs.rmSync(tempDir, { recursive: true, force: true });
+});
+
+test('diagnoseAndHeal returns actionable repair payload for process path crash (2147942667)', () => {
+  const result = diagnoseAndHeal({
+    taskName: 'CastIronCharlie-DailyResearch',
+    exitCode: 2147942667,
+    repoRoot: REPO_ROOT,
+  });
+  assert.equal(result.healed, true);
+  assert.equal(result.errorCategory, 'PROCESS_PATH_CRASH');
+  assert.ok(result.actions.length > 0);
+});
