@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRM Dual-Inbound Transport Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f2ece2;
+      --color-ink:     #2c2420;
+      --color-muted:   #5c5349;
+      --color-accent:  #c4501a;
+      --font-sans:     'Barlow Condensed', system-ui, sans-serif;
+      --font-serif:    'Playfair Display', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .frame { max-width: 1240px; width: 100%; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 2rem;
+    }
+
+    svg { width: 100%; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">TRM Architecture · Transport & Ingestion Specification</p>
+    <h1>Dual-Inbound Mobile & Remote Research Pipeline</h1>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="100%" height="100%">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#c4501a"/>
+        </marker>
+        <marker id="arrow-dark" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#2c2420"/>
+        </marker>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+          <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2c2420" flood-opacity="0.08"/>
+        </filter>
+      </defs>
+
+      <!-- 1. Outbound / Mobile Sources -->
+      <g filter="url(#shadow)">
+        <rect x="30" y="40" width="250" height="460" rx="12" fill="#fff" stroke="#e3d8cc" stroke-width="1.5"/>
+        <rect x="30" y="40" width="250" height="42" rx="12" fill="#2c2420"/>
+        <rect x="30" y="70" width="250" height="12" fill="#2c2420"/>
+        <text x="45" y="67" font-family="'Barlow Condensed', sans-serif" font-size="16" font-weight="700" fill="#f2ece2" letter-spacing="1">1. RESEARCH PRODUCERS</text>
+        
+        <rect x="45" y="105" width="220" height="85" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="55" y="128" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Scheduled GAP Triage</text>
+        <text x="55" y="148" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">trm-export-gaps.mjs</text>
+        <text x="55" y="168" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">Outbound Task Cards</text>
+
+        <rect x="45" y="210" width="220" height="120" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="55" y="233" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Mobile LLM Operators</text>
+        <text x="55" y="253" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Grok DeepSearch / Copilot</text>
+        <text x="55" y="273" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Path A: GAP Findings</text>
+        <text x="55" y="293" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">Path B: drive-it skill drops</text>
+
+        <rect x="45" y="350" width="220" height="130" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="55" y="373" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Ingestion Triggers</text>
+        <text x="55" y="393" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">ready: true | .ready sidecar</text>
+        <text x="55" y="413" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">status: drop frontmatter</text>
+        <text x="55" y="433" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">15s Content Hash Debounce</text>
+      </g>
+
+      <!-- Arrow 1 to 2 -->
+      <path d="M 280 270 L 320 270" fill="none" stroke="#c4501a" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- 2. Google Drive Buffer Root -->
+      <g filter="url(#shadow)">
+        <rect x="330" y="40" width="270" height="460" rx="12" fill="#fff" stroke="#e3d8cc" stroke-width="1.5"/>
+        <rect x="330" y="40" width="270" height="42" rx="12" fill="#c4501a"/>
+        <rect x="330" y="70" width="270" height="12" fill="#c4501a"/>
+        <text x="345" y="67" font-family="'Barlow Condensed', sans-serif" font-size="16" font-weight="700" fill="#f2ece2" letter-spacing="1">2. GOOGLE DRIVE BUFFER ROOT</text>
+
+        <rect x="345" y="105" width="240" height="85" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="355" y="128" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Outbound Task Queues</text>
+        <text x="355" y="148" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">01_actionable_gaps/</text>
+        <text x="355" y="168" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">02_reference_context/</text>
+
+        <rect x="345" y="205" width="240" height="90" rx="8" fill="#fef8f4" stroke="#c4501a" stroke-width="1.5"/>
+        <text x="355" y="228" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="700" fill="#c4501a">Path A: 03_grok_completed/</text>
+        <text x="355" y="248" font-family="'Geist Mono', monospace" font-size="12" fill="#2c2420">GAP-{ID}-findings.md</text>
+        <text x="355" y="268" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Schema: gap_id + verdict</text>
+
+        <rect x="345" y="310" width="240" height="90" rx="8" fill="#fef8f4" stroke="#c4501a" stroke-width="1.5"/>
+        <text x="355" y="333" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="700" fill="#c4501a">Path B: mobile-inbox/</text>
+        <text x="355" y="353" font-family="'Geist Mono', monospace" font-size="12" fill="#2c2420">YYYY-MM-DDTHHMMSSZ__*</text>
+        <text x="355" y="373" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Schema: topic + drive-it drop</text>
+
+        <rect x="345" y="415" width="240" height="65" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="355" y="438" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">04_archive/ &amp; _locks/</text>
+        <text x="355" y="458" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">completed/, mobile-inbox/, rejected/</text>
+      </g>
+
+      <!-- Arrow 2 to 3 -->
+      <path d="M 600 270 L 640 270" fill="none" stroke="#c4501a" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- 3. Ingest Engine -->
+      <g filter="url(#shadow)">
+        <rect x="650" y="40" width="250" height="460" rx="12" fill="#fff" stroke="#e3d8cc" stroke-width="1.5"/>
+        <rect x="650" y="40" width="250" height="42" rx="12" fill="#2c2420"/>
+        <rect x="650" y="70" width="250" height="12" fill="#2c2420"/>
+        <text x="665" y="67" font-family="'Barlow Condensed', sans-serif" font-size="16" font-weight="700" fill="#f2ece2" letter-spacing="1">3. INGEST ENGINE</text>
+
+        <rect x="665" y="105" width="220" height="75" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="675" y="128" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">trm-ingest-drive.mjs</text>
+        <text x="675" y="148" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Dual Buffer Ingest Loop</text>
+        <text x="675" y="168" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">Batch Hashing &amp; Locks</text>
+
+        <rect x="665" y="195" width="220" height="105" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="675" y="218" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Schema Validation</text>
+        <text x="675" y="238" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">validateFinding (Path A)</text>
+        <text x="675" y="258" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">validateMobileInboxDrop (Path B)</text>
+        <text x="675" y="278" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">Kebab Slug Sanitization</text>
+
+        <rect x="665" y="315" width="220" height="90" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="675" y="338" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Idempotency &amp; Quarantine</text>
+        <text x="675" y="358" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">content_sha256 matching</text>
+        <text x="675" y="378" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Safe collision suffixing</text>
+
+        <rect x="665" y="420" width="220" height="60" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="675" y="443" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Atomic Archiving</text>
+        <text x="675" y="463" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">Release lock + move to 04_</text>
+      </g>
+
+      <!-- Arrow 3 to 4 -->
+      <path d="M 900 270 L 940 270" fill="none" stroke="#c4501a" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- 4. Local Git & Obsidian Vault -->
+      <g filter="url(#shadow)">
+        <rect x="950" y="40" width="220" height="460" rx="12" fill="#fff" stroke="#e3d8cc" stroke-width="1.5"/>
+        <rect x="950" y="40" width="220" height="42" rx="12" fill="#2c2420"/>
+        <rect x="950" y="70" width="220" height="12" fill="#2c2420"/>
+        <text x="965" y="67" font-family="'Barlow Condensed', sans-serif" font-size="16" font-weight="700" fill="#f2ece2" letter-spacing="1">4. LOCAL VAULT &amp; GIT</text>
+
+        <rect x="965" y="105" width="190" height="105" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="975" y="128" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">RFC Evidence</text>
+        <text x="975" y="148" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">wiki/research/</text>
+        <text x="975" y="168" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">rfc-gap-{ID}.md</text>
+        <text x="975" y="188" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">Candidate evidence block</text>
+
+        <rect x="965" y="225" width="190" height="120" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="975" y="248" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Conversations Vault</text>
+        <text x="975" y="268" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">obsidian/vault/wiki/</text>
+        <text x="975" y="288" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">conversations/YYYY-MM-DD/</text>
+        <text x="975" y="308" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">{slug}.md</text>
+        <text x="975" y="328" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">status: drop</text>
+
+        <rect x="965" y="360" width="190" height="120" rx="8" fill="#f8f5f0" stroke="#e3d8cc"/>
+        <text x="975" y="383" font-family="'Barlow Condensed', sans-serif" font-size="15" font-weight="600" fill="#2c2420">Audit Trail &amp; Git</text>
+        <text x="975" y="403" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">wiki/Log.md</text>
+        <text x="975" y="423" font-family="'Geist Mono', monospace" font-size="12" fill="#5c5349">trm-research-gaps.md</text>
+        <text x="975" y="443" font-family="'Geist Mono', monospace" font-size="12" fill="#c4501a">Isolated Commit (--commit)</text>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>

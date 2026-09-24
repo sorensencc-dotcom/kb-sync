@@ -31,15 +31,17 @@ The system enables zero-token, high-capacity mobile research workflows without c
 
 ## 3. Directory Layout & Buffer Root Structure
 
-The Google Drive buffer root (`drive_buffer_root`, default: `G:/My Drive/TRM-Research`) contains five functional folders:
+The Google Drive buffer root (`drive_buffer_root`, default: `G:/My Drive/TRM-Research`) contains six functional folders across two inbound paths:
 
 ```
 TRM-Research/
 ├── 01_actionable_gaps/     # Outbound task cards (GAP-{ID}.md)
 ├── 02_reference_context/   # Redacted context packs (GAP-{ID}-context-pack.md)
-├── 03_grok_completed/      # Inbound mobile research findings awaiting ingestion
+├── 03_grok_completed/      # Inbound mobile research findings awaiting ingestion (Path A)
+├── mobile-inbox/           # Inbound unscheduled research drops from drive-it (Path B)
 ├── 04_archive/             # Processed items
 │   ├── completed/          # Ingested findings (timestamped)
+│   ├── mobile-inbox/       # Ingested mobile drops (timestamped)
 │   ├── gaps/               # Ingested outbound cards
 │   └── rejected/           # Malformed or unauthenticated payloads
 └── _locks/                 # Active research leases (GAP-{ID}.lease-{agent})
@@ -49,18 +51,65 @@ TRM-Research/
 
 ## 4. Operational Pipeline Flow
 
-```
-[Local TRM Registry] ──(trm-export-gaps.mjs)──> [01_actionable_gaps / 02_reference_context]
-                                                                │
-                                                        (Mobile Operator)
-                                                                ▼
-[Local RFCs / Git] <──(trm-ingest-drive.mjs)─── [03_grok_completed]
+![TRM Dual-Inbound Transport Architecture](trm-dual-inbound-transport.png)
+
+<details>
+<summary>Mermaid source...</summary>
+
+```mermaid
+flowchart LR
+    subgraph Producers ["1. Research Producers"]
+        direction TB
+        REG["Local TRM Registry"]
+        OUT["trm-export-gaps.mjs"]
+        MOB["Mobile Operators\n(Grok / Copilot)"]
+        REG --> OUT
+    end
+
+    subgraph BufferRoot ["2. Google Drive Buffer Root"]
+        direction TB
+        GAPS["01_actionable_gaps/\n02_reference_context/"]
+        PATH_A["Path A: 03_grok_completed/\n(GAP-NN Findings)"]
+        PATH_B["Path B: mobile-inbox/\n(drive-it Drops)"]
+        ARCH["04_archive/\n_locks/"]
+        OUT --> GAPS
+        GAPS -.-> MOB
+        MOB --> PATH_A
+        MOB --> PATH_B
+    end
+
+    subgraph IngestEngine ["3. Ingest Engine"]
+        direction TB
+        ING["trm-ingest-drive.mjs"]
+        VAL["Schema Validation &\nSlug Sanitization"]
+        IDEM["Idempotency &\nLock Management"]
+        PATH_A --> ING
+        PATH_B --> ING
+        ING --> VAL
+        VAL --> IDEM
+        IDEM --> ARCH
+    end
+
+    subgraph LocalVault ["4. Local Vault & Git"]
+        direction TB
+        RFCS["wiki/research/rfc-gap-*.md\n(Candidate Evidence)"]
+        CONVS["obsidian/vault/wiki/conversations/\nYYYY-MM-DD/<slug>.md"]
+        LOG["wiki/Log.md &\ntrm-research-gaps.md"]
+        IDEM --> RFCS
+        IDEM --> CONVS
+        IDEM --> LOG
+    end
 ```
 
+</details>
+
 1. **Export**: Priority-ordered actionable gaps (`HIGH`, `MEDIUM`) are exported as structured YAML-frontmatter cards with corresponding redacted context packs.
-2. **Execution**: Remote mobile operators inspect tasks in `01_actionable_gaps/`, read reference context, conduct web and database research, and write findings to `03_grok_completed/`.
-3. **Ingest**: Local ingestion batches files, applies content-hash debounce (15s default), validates schemas and finding IDs, appends candidate evidence blocks to `wiki/research/rfc-{gap_id}.md`, marks registry rows as `<!-- needs_review: true -->`, and moves processed artifacts to `04_archive/`.
+2. **Execution**:
+   - **Path A (Scheduled GAP research)**: Remote mobile operators inspect tasks in `01_actionable_gaps/`, read reference context, conduct web and database research, and write structured findings (`gap_id`, `ready: true`) to `03_grok_completed/`.
+   - **Path B (Unscheduled research drops)**: Mobile Grok operators run `drive-it` drops (`topic`, `status: drop`) directly into `mobile-inbox/`.
+3. **Ingest**: Local ingestion batches files, applies content-hash debounce (15s default), validates schemas and finding IDs, appends candidate evidence blocks to `wiki/research/rfc-{gap_id}.md` (Path A) or writes daily conversation files to `obsidian/vault/wiki/conversations/YYYY-MM-DD/<slug>.md` (Path B), logs audit records to `wiki/Log.md`, and archives processed artifacts to `04_archive/`.
 4. **Promotion**: Human reviewers evaluate candidate evidence using `node scripts/trm-review-queue.mjs` and promote verified findings via `trm-review-queue.mjs promote --gap=<GAP_ID> --finding=<FINDING_ID>`.
+
 
 ---
 

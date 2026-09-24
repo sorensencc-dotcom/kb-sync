@@ -3,7 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { loadDriveConfig, KB_SYNC_ROOT } from './trm-drive-common.mjs';
-import { validateFinding } from './validate-drive-findings.mjs';
+import { validateFinding, validateMobileInboxDrop } from './validate-drive-findings.mjs';
 
 export function detectReadySignal(entry) {
   if (entry.hasSidecar) return 'sidecar';
@@ -124,140 +124,234 @@ export async function ingestDriveFindings(options = {}) {
   const config = loadDriveConfig();
   const driveRoot = options.driveRoot || config.drive_buffer_root;
   const rfcDir = options.rfcDir || path.join(KB_SYNC_ROOT, 'wiki', 'research');
+  const conversationsDir = options.conversationsDir || path.join(KB_SYNC_ROOT, 'obsidian', 'vault', 'wiki', 'conversations');
   const registryPath = options.registryPath || path.join(KB_SYNC_ROOT, 'trm-research-gaps.md');
   const logPath = options.logPath || path.join(KB_SYNC_ROOT, 'wiki', 'Log.md');
   const repoRoot = options.repoRoot || KB_SYNC_ROOT;
   const debounceMs = options.debounceMs ?? (config.ingest_debounce_seconds * 1000);
   const doCommit = options.commit ?? false;
 
-  const completedDir = path.join(driveRoot, '03_grok_completed');
+  const completedDir = options.completedDir || path.join(driveRoot, '03_grok_completed');
+  const mobileInboxDir = options.mobileInboxDir || path.join(driveRoot, 'mobile-inbox');
   const gapsOutDir = path.join(driveRoot, '01_actionable_gaps');
-  const archiveCompletedDir = path.join(driveRoot, '04_archive', 'completed');
+  const archiveCompletedDir = options.archiveCompletedDir || path.join(driveRoot, '04_archive', 'completed');
+  const archiveMobileInboxDir = options.archiveMobileInboxDir || path.join(driveRoot, '04_archive', 'mobile-inbox');
   const archiveGapsDir = path.join(driveRoot, '04_archive', 'gaps');
-  const archiveRejectedDir = path.join(driveRoot, '04_archive', 'rejected');
-  const locksDir = path.join(driveRoot, '_locks');
+  const archiveRejectedDir = options.archiveRejectedDir || path.join(driveRoot, '04_archive', 'rejected');
+  const locksDir = options.locksDir || path.join(driveRoot, '_locks');
 
   fs.mkdirSync(archiveCompletedDir, { recursive: true });
+  fs.mkdirSync(archiveMobileInboxDir, { recursive: true });
   fs.mkdirSync(archiveGapsDir, { recursive: true });
   fs.mkdirSync(archiveRejectedDir, { recursive: true });
+  fs.mkdirSync(locksDir, { recursive: true });
 
-  if (!fs.existsSync(completedDir)) return { ingestedCount: 0 };
-
-  const allFiles = fs.readdirSync(completedDir).map(f => path.join(completedDir, f));
-  const candidateFiles = allFiles.filter(f => !f.endsWith('.ready'));
-
-  const stableFiles = await batchDebounceFiles(candidateFiles, debounceMs);
   let ingestedCount = 0;
+  let mobileIngestedCount = 0;
+  const touchedFiles = [];
 
-  for (const filePath of stableFiles) {
-    const filename = path.basename(filePath);
-    let rawContent = '';
-    const isGDoc = filePath.endsWith('.gdoc');
+  // ==========================================
+  // 1. Ingest Scheduled GAP RFC Findings
+  // ==========================================
+  if (fs.existsSync(completedDir)) {
+    const allFiles = fs.readdirSync(completedDir).map(f => path.join(completedDir, f)).filter(f => fs.statSync(f).isFile());
+    const candidateFiles = allFiles.filter(f => !f.endsWith('.ready'));
 
-    if (isGDoc) {
-      const docId = await resolveGoogleDocId(filePath);
-      if (docId) {
-        const docContent = await fetchGoogleDocContent(docId, options);
-        if (docContent) {
-          rawContent = docContent;
+    const stableFiles = await batchDebounceFiles(candidateFiles, debounceMs);
+
+    for (const filePath of stableFiles) {
+      const filename = path.basename(filePath);
+      let rawContent = '';
+      const isGDoc = filePath.endsWith('.gdoc');
+
+      if (isGDoc) {
+        const docId = await resolveGoogleDocId(filePath);
+        if (docId) {
+          const docContent = await fetchGoogleDocContent(docId, options);
+          if (docContent) {
+            rawContent = docContent;
+          }
+        }
+        if (!rawContent) {
+          try { rawContent = fs.readFileSync(filePath, 'utf8'); } catch {}
+        }
+      } else {
+        try {
+          rawContent = fs.readFileSync(filePath, 'utf8');
+        } catch {
+          continue;
         }
       }
-      if (!rawContent) {
-        try { rawContent = fs.readFileSync(filePath, 'utf8'); } catch {}
+
+      const sidecarPath = filePath.replace(/\.[^.]+$/, '') + '.ready';
+      const hasSidecar = fs.existsSync(sidecarPath);
+
+      let validation = validateFinding(rawContent);
+      const readySignal = detectReadySignal({ filename, hasSidecar, frontmatter: validation.frontmatter });
+
+      if (!readySignal) continue;
+
+      if (!validation.valid) {
+        const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
+        fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`));
+        if (hasSidecar) fs.unlinkSync(sidecarPath);
+        continue;
       }
-    } else {
+
+      const { gap_id } = validation.frontmatter;
+      const rfcFile = path.join(rfcDir, `rfc-${gap_id.toLowerCase()}.md`);
+      
+      let rfcContent = fs.existsSync(rfcFile) ? fs.readFileSync(rfcFile, 'utf8') : `# RFC: ${gap_id}\n\n`;
+
+      const findingMarker = `<!-- finding_id: ${validation.finding_id} -->`;
+      if (rfcContent.includes(findingMarker)) {
+        // Idempotent skip: already ingested, just archive
+        const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
+        fs.renameSync(filePath, path.join(archiveCompletedDir, `${filename}.${utcSuffix}`));
+        if (hasSidecar) fs.unlinkSync(sidecarPath);
+        continue;
+      }
+
+      const evidenceBlock = `\n## Candidate Evidence: Remote Agent Finding (${new Date().toISOString()})\n${findingMarker}\n- **Agent Origin**: \`${validation.frontmatter.agent_origin || 'unknown'}\`\n- **Verdict**: \`${validation.frontmatter.verdict || 'UNSPECIFIED'}\`\n- **Verification Status**: \`inferred\`\n- **Provenance**: \`remote_agent_finding\` (\`not_primary_evidence: true\`)\n\n### Findings Summary\n${validation.body}\n`;
+
+      fs.writeFileSync(rfcFile, rfcContent + evidenceBlock, 'utf8');
+      updateRegistryRow(registryPath, gap_id);
+
+      if (fs.existsSync(logPath)) {
+        fs.appendFileSync(logPath, `\n- [${new Date().toISOString()}] Ingested remote finding ${validation.finding_id} for ${gap_id}`);
+      }
+      touchedFiles.push(rfcFile, registryPath);
+
+      // Move to archive
+      const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
+      fs.renameSync(filePath, path.join(archiveCompletedDir, `${filename}.${utcSuffix}`));
+      if (hasSidecar) fs.unlinkSync(sidecarPath);
+
+      // Archive matching gap card in 01
+      const outboundCard = path.join(gapsOutDir, `${gap_id}.md`);
+      if (fs.existsSync(outboundCard)) {
+        fs.renameSync(outboundCard, path.join(archiveGapsDir, `${gap_id}.${utcSuffix}.md`));
+        const outReady = path.join(gapsOutDir, `${gap_id}.ready`);
+        if (fs.existsSync(outReady)) fs.unlinkSync(outReady);
+      }
+
+      // Release lease
+      if (fs.existsSync(locksDir)) {
+        const locks = fs.readdirSync(locksDir).filter(f => f.startsWith(gap_id));
+        for (const l of locks) {
+          try { fs.unlinkSync(path.join(locksDir, l)); } catch {}
+        }
+      }
+
+      ingestedCount++;
+    }
+  }
+
+  // ==========================================
+  // 2. Ingest Unscheduled Mobile Inbox Drops
+  // ==========================================
+  if (fs.existsSync(mobileInboxDir)) {
+    const allMobileFiles = fs.readdirSync(mobileInboxDir).map(f => path.join(mobileInboxDir, f)).filter(f => fs.statSync(f).isFile());
+    const candidateMobileFiles = allMobileFiles.filter(f => !f.endsWith('.ready'));
+
+    const stableMobileFiles = await batchDebounceFiles(candidateMobileFiles, debounceMs);
+
+    for (const filePath of stableMobileFiles) {
+      const filename = path.basename(filePath);
+      let rawContent = '';
       try {
         rawContent = fs.readFileSync(filePath, 'utf8');
       } catch {
         continue;
       }
-    }
 
-    const sidecarPath = filePath.replace(/\.[^.]+$/, '') + '.ready';
-    const hasSidecar = fs.existsSync(sidecarPath);
-
-    let validation = validateFinding(rawContent);
-    const readySignal = detectReadySignal({ filename, hasSidecar, frontmatter: validation.frontmatter });
-
-    if (!readySignal) continue;
-
-    if (!validation.valid) {
+      const validation = validateMobileInboxDrop(rawContent, filename);
       const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
-      fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`));
-      if (hasSidecar) fs.unlinkSync(sidecarPath);
-      continue;
-    }
 
-    const { gap_id } = validation.frontmatter;
-    const rfcFile = path.join(rfcDir, `rfc-${gap_id.toLowerCase()}.md`);
-    
-    let rfcContent = fs.existsSync(rfcFile) ? fs.readFileSync(rfcFile, 'utf8') : `# RFC: ${gap_id}\n\n`;
-
-    const findingMarker = `<!-- finding_id: ${validation.finding_id} -->`;
-    if (rfcContent.includes(findingMarker)) {
-      // Idempotent skip: already ingested, just archive
-      const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
-      fs.renameSync(filePath, path.join(archiveCompletedDir, `${filename}.${utcSuffix}`));
-      if (hasSidecar) fs.unlinkSync(sidecarPath);
-      continue;
-    }
-
-    const evidenceBlock = `\n## Candidate Evidence: Remote Agent Finding (${new Date().toISOString()})\n${findingMarker}\n- **Agent Origin**: \`${validation.frontmatter.agent_origin || 'unknown'}\`\n- **Verdict**: \`${validation.frontmatter.verdict || 'UNSPECIFIED'}\`\n- **Verification Status**: \`inferred\`\n- **Provenance**: \`remote_agent_finding\` (\`not_primary_evidence: true\`)\n\n### Findings Summary\n${validation.body}\n`;
-
-    fs.writeFileSync(rfcFile, rfcContent + evidenceBlock, 'utf8');
-    updateRegistryRow(registryPath, gap_id);
-
-    if (fs.existsSync(logPath)) {
-      fs.appendFileSync(logPath, `\n- [${new Date().toISOString()}] Ingested remote finding ${validation.finding_id} for ${gap_id}`);
-    }
-
-    // Git commit if requested
-    if (doCommit) {
-      if (fs.existsSync(path.join(repoRoot, '.git', 'MERGE_HEAD'))) {
-        throw new Error('Cannot commit: .git/MERGE_HEAD exists');
+      if (!validation.valid) {
+        fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`));
+        continue;
       }
-      try {
-        execSync(`git add -- "${rfcFile}" "${registryPath}" "${logPath}" && git commit --only -- "${rfcFile}" "${registryPath}" "${logPath}" -m "chore(trm): ingest remote candidate evidence for ${gap_id}"`, {
-          cwd: repoRoot,
-          stdio: 'pipe'
-        });
-      } catch (err) {
-        throw new Error(`Git commit failed: ${err.message}`);
+
+      const { date, slug, frontmatter, body, content_sha256 } = validation;
+      const targetDateDir = path.join(conversationsDir, date);
+      fs.mkdirSync(targetDateDir, { recursive: true });
+
+      let targetFile = path.join(targetDateDir, `${slug}.md`);
+
+      // Idempotency and conflict handling
+      if (fs.existsSync(targetFile)) {
+        const existingContent = fs.readFileSync(targetFile, 'utf8');
+        const existingSha = crypto.createHash('sha256').update(existingContent, 'utf8').digest('hex');
+        if (existingSha === content_sha256 || existingContent.includes(content_sha256)) {
+          // Idempotent skip: identical content already in place
+          fs.renameSync(filePath, path.join(archiveMobileInboxDir, `${filename}.${utcSuffix}`));
+          mobileIngestedCount++;
+          continue;
+        }
+        // Conflict with different content: use collision suffix
+        const timeSuffix = new Date().toISOString().replace(/[:.]/g, '-').slice(11, 19);
+        targetFile = path.join(targetDateDir, `${slug}.${timeSuffix}.md`);
       }
-    }
 
-    // Move to archive
-    const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
-    fs.renameSync(filePath, path.join(archiveCompletedDir, `${filename}.${utcSuffix}`));
-    if (hasSidecar) fs.unlinkSync(sidecarPath);
+      const docContent = `---\nsource: ${frontmatter.source || 'grok'}\nskill: ${frontmatter.skill || 'drive-it'}\ntopic: ${frontmatter.topic || 'general'}\ntitle: "${(frontmatter.title || slug).replace(/"/g, '\\"')}"\ncreated: ${frontmatter.created || new Date().toISOString()}\nfolder_id: ${frontmatter.folder_id || ''}\nstatus: drop\nprovenance_type: mobile_inbox_drop\ncontent_sha256: ${content_sha256}\n---\n\n${body}\n`;
 
-    // Archive matching gap card in 01
-    const outboundCard = path.join(gapsOutDir, `${gap_id}.md`);
-    if (fs.existsSync(outboundCard)) {
-      fs.renameSync(outboundCard, path.join(archiveGapsDir, `${gap_id}.${utcSuffix}.md`));
-      const outReady = path.join(gapsOutDir, `${gap_id}.ready`);
-      if (fs.existsSync(outReady)) fs.unlinkSync(outReady);
-    }
+      fs.writeFileSync(targetFile, docContent, 'utf8');
+      touchedFiles.push(targetFile);
 
-    // Release lease
-    if (fs.existsSync(locksDir)) {
-      const locks = fs.readdirSync(locksDir).filter(f => f.startsWith(gap_id));
-      for (const l of locks) {
-        try { fs.unlinkSync(path.join(locksDir, l)); } catch {}
+      if (fs.existsSync(logPath)) {
+        fs.appendFileSync(logPath, `\n- [${new Date().toISOString()}] Ingested mobile drop ${filename} into conversations/${date}/${path.basename(targetFile)}`);
       }
-    }
 
-    ingestedCount++;
+      // Archive source drop
+      fs.renameSync(filePath, path.join(archiveMobileInboxDir, `${filename}.${utcSuffix}`));
+
+      // Release any matching lock
+      if (fs.existsSync(locksDir)) {
+        const locks = fs.readdirSync(locksDir).filter(f => f.startsWith(slug));
+        for (const l of locks) {
+          try { fs.unlinkSync(path.join(locksDir, l)); } catch {}
+        }
+      }
+
+      mobileIngestedCount++;
+    }
   }
 
-  return { ingestedCount };
+  // Git commit if requested
+  if (doCommit && touchedFiles.length > 0) {
+    if (fs.existsSync(path.join(repoRoot, '.git', 'MERGE_HEAD'))) {
+      throw new Error('Cannot commit: .git/MERGE_HEAD exists');
+    }
+    try {
+      const uniqueTouched = Array.from(new Set(touchedFiles));
+      if (fs.existsSync(logPath)) uniqueTouched.push(logPath);
+      const stageArgs = uniqueTouched.map(f => `"${f}"`).join(' ');
+      execSync(`git add -- ${stageArgs} && git commit --only -- ${stageArgs} -m "chore(trm): ingest drive findings and mobile drops"`, {
+        cwd: repoRoot,
+        stdio: 'pipe'
+      });
+    } catch (err) {
+      throw new Error(`Git commit failed: ${err.message}`);
+    }
+  }
+
+  return {
+    ingestedCount,
+    mobileIngestedCount,
+    total: ingestedCount + mobileIngestedCount
+  };
 }
 
 if (process.argv[1] && process.argv[1].endsWith('trm-ingest-drive.mjs')) {
   ingestDriveFindings().then(res => {
-    console.log(`[trm-ingest-drive] Ingested ${res.ingestedCount} findings.`);
+    const summary = res.mobileIngestedCount > 0 
+      ? `Ingested ${res.ingestedCount} GAP findings and ${res.mobileIngestedCount} mobile inbox drops (${res.total} total).`
+      : `Ingested ${res.ingestedCount} findings.`;
+    console.log(`[trm-ingest-drive] ${summary}`);
   }).catch(err => {
     console.error('[trm-ingest-drive] Error:', err);
     process.exit(1);
   });
 }
+

@@ -74,3 +74,102 @@ export function validateFinding(rawContent) {
     unwrapped
   };
 }
+
+const WINDOWS_RESERVED_NAMES = /^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i;
+
+export function sanitizeSlug(input) {
+  if (!input || typeof input !== 'string') return 'untitled-drop';
+  let slug = input.toLowerCase()
+    .replace(/[^a-z0-9-_]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 100);
+  if (!slug || WINDOWS_RESERVED_NAMES.test(slug)) {
+    slug = `${slug || 'drop'}-item`;
+  }
+  return slug;
+}
+
+export function validateMobileInboxDrop(rawContent, filename = '') {
+  const errors = [];
+  const unwrapped = unwrapCodeFences(rawContent);
+
+  const fmMatch = unwrapped.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!fmMatch) {
+    return { valid: false, errors: ['Missing or malformed YAML frontmatter'], quarantine_reason: 'malformed_frontmatter' };
+  }
+
+  let fm = {};
+  try {
+    fm = yaml.load(fmMatch[1]) || {};
+  } catch (err) {
+    return { valid: false, errors: [`YAML parse error: ${err.message}`], quarantine_reason: 'yaml_syntax_error' };
+  }
+
+  const body = normalizePayloadBody(fmMatch[2]);
+
+  if (!fm.source || typeof fm.source !== 'string') {
+    errors.push("Missing or invalid 'source' in frontmatter");
+  }
+  if (!fm.skill || typeof fm.skill !== 'string') {
+    errors.push("Missing or invalid 'skill' in frontmatter");
+  }
+  if (fm.status !== 'drop') {
+    errors.push(`Expected status 'drop', got '${fm.status}'`);
+  }
+  if (!fm.topic || typeof fm.topic !== 'string') {
+    errors.push("Missing or invalid 'topic' in frontmatter");
+  }
+
+  // Parse ISO date
+  let date = null;
+  if (fm.created) {
+    const parsedDate = new Date(fm.created);
+    if (!isNaN(parsedDate.getTime())) {
+      date = parsedDate.toISOString().slice(0, 10);
+    }
+  }
+
+  // Fallback date from filename YYYY-MM-DD
+  if (!date && filename) {
+    const fnDateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+    if (fnDateMatch) {
+      date = fnDateMatch[1];
+    }
+  }
+
+  if (!date) {
+    errors.push("Unable to determine valid UTC date from 'created' or filename");
+  }
+
+  // Determine slug
+  let slug = '';
+  if (filename) {
+    const fnSlugMatch = filename.match(/^\d{4}-\d{2}-\d{2}T[0-9A-Z_-]+?__[a-zA-Z0-9_-]+?__(.+)\.md$/i);
+    if (fnSlugMatch) {
+      slug = sanitizeSlug(fnSlugMatch[1]);
+    }
+  }
+  if (!slug && fm.title) {
+    slug = sanitizeSlug(fm.title);
+  }
+  if (!slug) {
+    slug = 'mobile-research-drop';
+  }
+
+  const content_sha256 = crypto.createHash('sha256').update(rawContent, 'utf8').digest('hex');
+  const body_sha256 = crypto.createHash('sha256').update(body, 'utf8').digest('hex');
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    quarantine_reason: errors.length > 0 ? 'invalid_schema' : null,
+    frontmatter: fm,
+    body,
+    date,
+    slug,
+    content_sha256,
+    body_sha256,
+    unwrapped
+  };
+}
+
