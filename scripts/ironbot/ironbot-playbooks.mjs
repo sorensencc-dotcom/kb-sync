@@ -49,7 +49,6 @@ export function clearStaleGitLocks(gitDir, maxAgeMs = 10 * 60 * 1000) {
 }
 
 export function diagnoseAndHeal({ taskName, exitCode, repoRoot }) {
-  const config = parseTaskDagConfig();
   const actions = [];
   let healed = false;
   let errorCategory = 'UNKNOWN';

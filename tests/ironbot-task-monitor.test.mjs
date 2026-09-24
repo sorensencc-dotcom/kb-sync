@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getDownstreamTasks, parseTaskDagConfig } from '../scripts/ironbot/ironbot-playbooks.mjs';
+import { getDownstreamTasks, parseTaskDagConfig, diagnoseAndHeal, clearStaleGitLocks } from '../scripts/ironbot/ironbot-playbooks.mjs';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -23,8 +23,6 @@ test('getDownstreamTasks resolves full topological dependency order', () => {
     'CIC-Daily-Status',
   ]);
 });
-
-import { diagnoseAndHeal, clearStaleGitLocks } from '../scripts/ironbot/ironbot-playbooks.mjs';
 
 test('clearStaleGitLocks detects and cleans expired lock files', () => {
   const tempDir = path.join(REPO_ROOT, '.test-tmp-git-locks');
