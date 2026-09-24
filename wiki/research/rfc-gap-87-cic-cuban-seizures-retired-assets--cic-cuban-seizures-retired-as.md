@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-87--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Charles E. Sorensen Estate (Claim CU-3440 / Decision CU-5843)
 
 ## 1. Problem Statement & Context
-)**: **Charles E. Sorensen Estate (Claim CU-3440 / Decision CU-5843):** While Sorensen's capital loss was certified by the FCSC, itemized land deeds, crop ledgers, and property manifest
+)**: **Charles E. Sorensen Estate (Claim CU-3440 / Decision CU-5843):** While the FCSC certified Sorensen's capital loss, itemized land deeds, crop ledgers, and property manifest
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

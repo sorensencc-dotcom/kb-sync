@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-97--willow-run-videos - **Willow Run Videos (open-contradictions - May 17, 1942
 
 ## 1. Problem Statement & Context
-)**: **May 17, 1942:** One transcript notes an early educational rollout occurred on May 17, 1942, but claims it was rejected by military inspectors after documenting **1,847 separate d
+)**: **May 17, 1942:** One transcript notes an early educational rollout occurred on May 17, 1942, but claims military inspectors rejected it after documenting **1,847 separate d
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

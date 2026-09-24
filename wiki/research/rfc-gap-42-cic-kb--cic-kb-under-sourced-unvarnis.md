@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-42--cic-kb - **CIC-KB (under-sourced - Unvarnished Authenticity of Sorensen's Memoir)**
 
 ## 1. Problem Statement & Context
-**Unvarnished Authenticity of Sorensen's Memoir**: Treating Charles Sorensen’s 1956 memoir (*My Forty Years with Ford*) as an unvarnished primary source is contradicted by textual
+**Unvarnished Authenticity of Sorensen's Memoir**: Treating Charles Sorensen’s 1956 memoir (*My Forty Years with Ford*) as an unvarnished primary source conflicts with textual
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

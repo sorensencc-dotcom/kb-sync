@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-32--cic-reddit - **CIC-Reddit (open-contradictions - Land Easement & Property Boundary Disputes
 
 ## 1. Problem Statement & Context
-)**: **Land Easement & Property Boundary Disputes:** Executive memoirs from production chief Charles Sorensen state that the L-shape was dictated strictly by difficulties securing land
+)**: **Land Easement & Property Boundary Disputes:** Executive memoirs from production chief Charles Sorensen state that the L-shape resulted strictly from difficulties securing land
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

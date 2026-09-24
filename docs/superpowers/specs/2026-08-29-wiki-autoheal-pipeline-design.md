@@ -15,7 +15,7 @@ This specification establishes a five-stage pipeline for documentation ingestion
 
 When automated research synthesis or ingestion pipelines process markdown documents, minor metadata errors block the entire pipeline:
 1. **Shared path contamination**: Synthesis scripts resolve target paths directly to host locations (`C:\dev\wiki`), risking workspace collision when executed in sandbox clones.
-2. **Binary validation gates**: The contract validator ([`validate-contract.mjs`](file:///C:/dev/kb-sync/modules/wiki/validate-contract.mjs)) triggers atomic rollbacks when encountering missing YAML headers, uppercase or unmapped category enums, or relative `[[wikilinks]]`.
+2. **Binary validation gates**: The contract validator ([`validate-contract.mjs`](file:///C:/dev/kb-sync/modules/wiki/validate-contract.mjs)) triggers atomic rollbacks on missing YAML headers, unmapped category enums, or relative `[[wikilinks]]`.
 3. **Category and repository schema drift**: The schema contract whitelist in [`toolforge-kbsync-contract.json`](file:///C:/dev/kb-sync/modules/wiki/toolforge-kbsync-contract.json) rejects valid payloads from `trm`, `cic-ingestion`, and emerging research categories.
 
 ## Architecture & pipeline flow

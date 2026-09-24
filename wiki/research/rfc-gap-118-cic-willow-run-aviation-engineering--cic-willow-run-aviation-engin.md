@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-118--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - WPB Memos on the Smith-to-Bricker Handover
 
 ## 1. Problem Statement & Context
-)**: **WPB Memos on the Smith-to-Bricker Handover:** Plant manager Roscoe Smith's December 1942 removal was precipitated by an August 1942 clash where security chief Harry Bennett punch
+)**: **WPB Memos on the Smith-to-Bricker Handover:** Plant manager Roscoe Smith's December 1942 removal followed an August 1942 clash where security chief Harry Bennett punch
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

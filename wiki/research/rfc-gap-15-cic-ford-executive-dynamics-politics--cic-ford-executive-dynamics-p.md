@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-15--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Dividend Conflict
-category: research
-topic: rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-15--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:11.716Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-15--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Dividend Conflict"
+category: "research"
+topic: "rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-15--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-24T12:34:13.896Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
 # RFC: GAP-15--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Dividend Conflict
 
 ## 1. Problem Statement & Context
-)**: **The Dividend Conflict:** In **1916**, John and Horace Dodge (holding a 10% minority equity stake) sued Henry Ford over his refusal to distribute an accumulated **\$58 million sur
+)**: **The Dividend Conflict:** In 1916, brothers John and Horace Dodge (holding a 10% minority equity stake) sued Henry Ford over his refusal to distribute an accumulated **\$58 million surplus
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
+- **rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
 - **rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-15-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-27-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

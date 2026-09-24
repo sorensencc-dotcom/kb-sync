@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-88--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Dividend Conflict
 
 ## 1. Problem Statement & Context
-)**: **The Dividend Conflict:** In **1916**, John and Horace Dodge (holding a 10% minority equity stake) sued Henry Ford over his refusal to distribute an accumulated **\$58 million sur
+)**: **The Dividend Conflict:** In **1916**, brothers John and Horace Dodge (holding a 10% minority equity stake) sued Henry Ford over his refusal to distribute an accumulated **\$58 million sur
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

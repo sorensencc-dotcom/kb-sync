@@ -16,7 +16,7 @@ status: "active"
 
 ## 1. Executive Summary
 
-This document specifies three phased enhancements to `kb-sync` designed to automate documentation freshness, streamline human-in-the-loop wiki updates, and leverage telemetry data to continuously improve development processes.
+This document specifies three phased enhancements to `kb-sync` designed to automate documentation freshness, simplify human-in-the-loop wiki updates, and leverage telemetry data to continuously improve development processes.
 
 - **Phase 1 (Knowledge Freshness & Drift Detection):** Detects when source code has evolved past the last wiki ingest timestamp or staging snapshot.
 - **Phase 2 (Ingest Delta Summarization):** Computes structural diffs between consecutive staging passes and injects tailored delta prompts into operator workflows.

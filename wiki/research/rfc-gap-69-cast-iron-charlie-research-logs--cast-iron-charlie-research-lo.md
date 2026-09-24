@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-69--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Documentation
 
 ## 1. Problem Statement & Context
-)**: **Second Marriage Documentation:** His January 1960 marriage to Edith Thompson Montgomery in Milwaukee at age 78 is supported by family memory, but no official marriage certificate
+)**: **Second Marriage Documentation:** His January 1960 marriage to Edith Thompson Montgomery in Milwaukee at age 78 finds support in family memory, but no official marriage certificate
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:

@@ -15,7 +15,7 @@ sourceRepository: kb-sync
 # RFC: GAP-85--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Helen Sorensen's Press Obituary
 
 ## 1. Problem Statement & Context
-)**: **Helen Sorensen's Press Obituary:** Her death on March 4, 1959, is confirmed by family, but her physical press obituary in the *Miami Herald* has not yet been located [2].
+)**: **Helen Sorensen's Press Obituary:** Her death on March 4, 1959, finds confirmation in family records, but her physical press obituary in the *Miami Herald* has not yet been located [2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
