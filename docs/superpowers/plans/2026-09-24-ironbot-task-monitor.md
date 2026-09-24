@@ -26,7 +26,7 @@
 - Consumes: Task definitions and DAG dependencies.
 - Produces: `task-dag-definitions.json` mapping task paths, triggers, dependency lists, and log targets.
 
-- [ ] **Step 1: Write the unit test for DAG definition parsing and topological sorting**
+- [x] **Step 1: Write the unit test for DAG definition parsing and topological sorting**
 
 ```javascript
 // tests/ironbot-task-monitor.test.mjs
@@ -53,12 +53,12 @@ test('getDownstreamTasks resolves full topological dependency order', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test tests/ironbot-task-monitor.test.mjs`
-Expected: FAIL (`cannot find module '../scripts/ironbot/ironbot-playbooks.mjs'`)
+Expected: FAIL (module not found or import error)
 
-- [ ] **Step 3: Create declarative task DAG definitions file**
+- [x] **Step 3: Create declarative task DAG definitions file**
 
 Create `scripts/ironbot/task-dag-definitions.json`:
 ```json
@@ -106,7 +106,7 @@ Create `scripts/ironbot/task-dag-definitions.json`:
 }
 ```
 
-- [ ] **Step 4: Implement initial DAG helpers in `ironbot-playbooks.mjs`**
+- [x] **Step 4: Implement initial DAG helpers in `ironbot-playbooks.mjs`**
 
 Create `scripts/ironbot/ironbot-playbooks.mjs`:
 ```javascript
@@ -143,7 +143,7 @@ export function getDownstreamTasks(taskName, config = parseTaskDagConfig()) {
 }
 ```
 
-- [ ] **Step 5: Run tests to verify pass**
+- [x] **Step 5: Run tests to verify pass**
 
 Run: `node --test tests/ironbot-task-monitor.test.mjs`
 Expected: PASS (2 tests pass).
@@ -160,7 +160,7 @@ Expected: PASS (2 tests pass).
 - Consumes: Task exit codes, error logs, and repository state.
 - Produces: `diagnoseAndHeal({ taskName, exitCode, repoRoot })` returning `{ healed: boolean, actions: string[], errorCategory: string }`.
 
-- [ ] **Step 1: Add unit tests for playbook error diagnosis and lock clearing**
+- [x] **Step 1: Add unit tests for playbook error diagnosis and lock clearing**
 
 Add to `tests/ironbot-task-monitor.test.mjs`:
 ```javascript
@@ -194,22 +194,87 @@ test('diagnoseAndHeal returns actionable repair payload for process path crash (
 });
 ```
 
-- [ ] **Step 2: Run test to verify failure**
+- [x] **Step 2: Run test to verify failure**
 
 Run: `node --test tests/ironbot-task-monitor.test.mjs`
 Expected: FAIL (`diagnoseAndHeal is not a function`).
 
-- [ ] **Step 3: Implement playbooks and diagnostic engine in `ironbot-playbooks.mjs`**
+- [x] **Step 3: Implement playbooks and diagnostic engine in `ironbot-playbooks.mjs`**
 
-Implement:
-- `clearStaleGitLocks(gitDir, maxAgeMs)`
-- `diagnoseAndHeal({ taskName, exitCode, repoRoot, taskLog })`
-- `writeAuditReport({ logDir, findings, healedCount, replayedCount })`
+Add the following exports to `scripts/ironbot/ironbot-playbooks.mjs`:
+```javascript
+import { spawnSync } from 'node:child_process';
 
-- [ ] **Step 4: Run test to verify pass**
+export function clearStaleGitLocks(gitDir, maxAgeMs = 10 * 60 * 1000) {
+  if (!fs.existsSync(gitDir)) return [];
+  const lockFiles = fs.readdirSync(gitDir).filter(f => f.endsWith('.lock'));
+  const cleared = [];
+  for (const f of lockFiles) {
+    const lockPath = path.join(gitDir, f);
+    const age = Date.now() - fs.statSync(lockPath).mtimeMs;
+    if (age > maxAgeMs) {
+      try {
+        fs.unlinkSync(lockPath);
+        cleared.push(lockPath);
+      } catch { /* best-effort */ }
+    }
+  }
+  return cleared;
+}
+
+export function diagnoseAndHeal({ taskName, exitCode, repoRoot }) {
+  const config = parseTaskDagConfig();
+  const taskDef = config.tasks[taskName];
+  const actions = [];
+  let healed = false;
+  let errorCategory = 'UNKNOWN';
+
+  if (exitCode === 2147942667) {
+    errorCategory = 'PROCESS_PATH_CRASH';
+    // Verify pwsh and node paths exist
+    const pwshResult = spawnSync('where', ['pwsh.exe'], { encoding: 'utf8' });
+    const nodeResult = spawnSync('where', ['node.exe'], { encoding: 'utf8' });
+    if (pwshResult.status === 0) actions.push('pwsh.exe path verified');
+    if (nodeResult.status === 0) actions.push('node.exe path verified');
+    healed = pwshResult.status === 0 && nodeResult.status === 0;
+  } else if (exitCode === 1) {
+    const gitDir = path.join(repoRoot, '.git');
+    const lockCleared = clearStaleGitLocks(gitDir);
+    if (lockCleared.length > 0) {
+      errorCategory = 'GIT_LOCK';
+      actions.push(`Cleared ${lockCleared.length} stale lock(s)`);
+      healed = true;
+    } else {
+      errorCategory = 'GENERIC_FAILURE';
+      actions.push('No stale locks found; escalating');
+    }
+  }
+
+  return { healed, errorCategory, actions };
+}
+
+export function writeAuditReport({ logDir, findings, healedCount, replayedCount }) {
+  fs.mkdirSync(logDir, { recursive: true });
+  const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+  const reportPath = path.join(logDir, `${ts}.json`);
+  const report = {
+    timestamp: new Date().toISOString(),
+    healedCount,
+    replayedCount,
+    findings,
+  };
+  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
+  return reportPath;
+}
+```
+
+- [x] **Step 4: Run test to verify pass**
 
 Run: `node --test tests/ironbot-task-monitor.test.mjs`
 Expected: PASS (4 tests pass).
+```
+ℹ pass 4
+```
 
 ---
 
@@ -223,7 +288,7 @@ Expected: PASS (4 tests pass).
 - Consumes: Windows Scheduled Tasks state via `Get-ScheduledTask`.
 - Produces: CLI execution output and JSON report in `docs/audit/ironbot/`.
 
-- [ ] **Step 1: Write PowerShell test harness check in `tests/ironbot-task-monitor.test.mjs`**
+- [x] **Step 1: Write PowerShell test harness check in `tests/ironbot-task-monitor.test.mjs`**
 
 ```javascript
 test('ironbot-task-monitor.ps1 script exists and parses cleanly', () => {
@@ -232,20 +297,79 @@ test('ironbot-task-monitor.ps1 script exists and parses cleanly', () => {
 });
 ```
 
-- [ ] **Step 2: Implement `scripts/ironbot/ironbot-task-monitor.ps1`**
+- [x] **Step 2: Implement `scripts/ironbot/ironbot-task-monitor.ps1`**
 
-Write PowerShell orchestrator:
-- Scans `\KB-SYNC\*`, `\CIC\*`, `\TRM\*`, `\CastIronCharlie\*`.
-- Checks `LastTaskResult`. If non-zero or abnormal, invokes Node playbook engine.
-- If playbook succeeds, re-runs root task with `Start-ScheduledTask`.
-- Resolves downstream dependencies via `getDownstreamTasks` and executes them sequentially.
-- Emits structured JSON audit trail to `docs/audit/ironbot/YYYY-MM-DD-HHMMSS.json`.
-- Sends Slack notification if `WEBHOOK_URL` is set.
+```powershell
+[CmdletBinding()]
+param([switch]$DryRun)
 
-- [ ] **Step 3: Run integration test and verify PowerShell syntax**
+$ErrorActionPreference = 'Stop'
+$RepoRoot = (Resolve-Path "$PSScriptRoot\..\..").Path
+$AuditDir = Join-Path $RepoRoot 'docs\audit\ironbot'
+$Namespaces = @('\KB-SYNC\', '\CIC\', '\TRM\', '\CastIronCharlie\')
+$Findings = @()
+$HealedCount = 0
+$ReplayedCount = 0
 
-Run: `pwsh -NoProfile -Command "& { & pwsh -NoProfile -File scripts/ironbot/ironbot-task-monitor.ps1 -DryRun }"`
-Expected: Output showing scan completed with status code 0.
+function Write-IronLog($Msg) { Write-Host "[IronBot] $Msg" }
+
+foreach ($ns in $Namespaces) {
+    $tasks = Get-ScheduledTask -TaskPath $ns -ErrorAction SilentlyContinue
+    foreach ($task in $tasks) {
+        $info = $task | Get-ScheduledTaskInfo
+        if ($info.LastTaskResult -ne 0) {
+            Write-IronLog "FAILED: $($task.TaskName) (exit $($info.LastTaskResult))"
+
+            if (-not $DryRun) {
+                $result = node "$RepoRoot\scripts\ironbot\ironbot-playbooks.mjs" `
+                    --task $task.TaskName --exitCode $info.LastTaskResult
+                $payload = $result | ConvertFrom-Json
+
+                if ($payload.healed) {
+                    $HealedCount++
+                    Start-ScheduledTask -TaskName $task.TaskName -TaskPath $ns
+                    Write-IronLog "Reran: $($task.TaskName)"
+
+                    # Replay downstream
+                    $downstream = node "$RepoRoot\scripts\ironbot\ironbot-playbooks.mjs" `
+                        --downstream $task.TaskName | ConvertFrom-Json
+                    foreach ($dep in $downstream) {
+                        $depDef = (node "$RepoRoot\scripts\ironbot\ironbot-playbooks.mjs" --dag | ConvertFrom-Json).tasks.$dep
+                        Start-ScheduledTask -TaskName $dep -TaskPath $depDef.task_path
+                        $ReplayedCount++
+                        Write-IronLog "Replayed downstream: $dep"
+                    }
+                }
+            }
+
+            $Findings += @{ task = $task.TaskName; exitCode = $info.LastTaskResult }
+        }
+    }
+}
+
+New-Item -ItemType Directory -Force -Path $AuditDir | Out-Null
+$ts = (Get-Date -Format 'yyyy-MM-dd-HHmmss')
+$report = @{
+    timestamp = (Get-Date -Format 'o')
+    healedCount = $HealedCount
+    replayedCount = $ReplayedCount
+    findings = $Findings
+    dryRun = $DryRun.IsPresent
+}
+$report | ConvertTo-Json -Depth 5 | Out-File "$AuditDir\$ts.json" -Encoding utf8
+Write-IronLog "Audit written: $AuditDir\$ts.json"
+
+$WebhookUrl = $env:WEBHOOK_URL
+if ($WebhookUrl -and $HealedCount -gt 0) {
+    $body = @{ text = "[IronBot] Healed $HealedCount task(s), replayed $ReplayedCount downstream. Findings: $($Findings.Count)" } | ConvertTo-Json
+    Invoke-RestMethod -Uri $WebhookUrl -Method Post -Body $body -ContentType 'application/json' -ErrorAction SilentlyContinue
+}
+```
+
+- [x] **Step 3: Run integration test and verify PowerShell syntax**
+
+Run: `pwsh -NoProfile -File scripts/ironbot/ironbot-task-monitor.ps1 -DryRun`
+Expected: Output `[IronBot] Audit written: docs/audit/ironbot/<timestamp>.json`, exit code 0.
 
 ---
 
@@ -259,47 +383,92 @@ Expected: Output showing scan completed with status code 0.
 - Consumes: Task monitor path and 4-hour trigger configuration.
 - Produces: Scheduled task `\IronBot\IronBot-TaskMonitor` in Windows Task Scheduler configured with `LogonType: S4U` and `RunLevel: Highest`.
 
-- [ ] **Step 1: Implement `scripts/ironbot/register-ironbot-task.ps1`**
+- [x] **Step 1: Implement `scripts/ironbot/register-ironbot-task.ps1`**
 
-Register task:
 ```powershell
-$TaskName = "IronBot-TaskMonitor"
-$TaskPath = "\IronBot\"
-$Action = New-ScheduledTaskAction -Execute "pwsh.exe" -Argument "-NoProfile -ExecutionPolicy Bypass -File C:\dev\kb-sync\scripts\ironbot\ironbot-task-monitor.ps1" -WorkingDirectory "C:\dev\kb-sync"
-$Trigger = New-ScheduledTaskTrigger -Daily -At "00:00"
-$Trigger.Repetition = (New-ScheduledTaskTrigger -Once -At "00:00" -RepetitionInterval (New-TimeSpan -Hours 4) -RepetitionDuration (New-TimeSpan -Days 3650)).Repetition
-$Principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType S4U -RunLevel Highest
-$Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances Parallel
-Register-ScheduledTask -TaskName $TaskName -TaskPath $TaskPath -Action $Action -Trigger $Trigger -Principal $Principal -Settings $Settings -Force
+[CmdletBinding()]
+param()
+
+$ScriptPath = (Resolve-Path "$PSScriptRoot\ironbot-task-monitor.ps1").Path
+$WorkDir    = (Resolve-Path "$PSScriptRoot\..\..").Path
+$TaskName   = "IronBot-TaskMonitor"
+$TaskPath   = "\IronBot\"
+
+# Once-type trigger with 4h repetition is the only variant that supports RepetitionInterval
+$Trigger = New-ScheduledTaskTrigger -Once -At "00:00" `
+    -RepetitionInterval (New-TimeSpan -Hours 4) `
+    -RepetitionDuration (New-TimeSpan -Days 3650)
+
+$Action   = New-ScheduledTaskAction -Execute "pwsh.exe" `
+    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`"" `
+    -WorkingDirectory $WorkDir
+
+$Principal = New-ScheduledTaskPrincipal `
+    -UserId "$env:USERDOMAIN\$env:USERNAME" `
+    -LogonType S4U `
+    -RunLevel Highest
+
+$Settings = New-ScheduledTaskSettingsSet `
+    -AllowStartIfOnBatteries `
+    -DontStopIfGoingOnBatteries `
+    -StartWhenAvailable `
+    -MultipleInstances IgnoreNew
+
+Register-ScheduledTask -TaskName $TaskName -TaskPath $TaskPath `
+    -Action $Action -Trigger $Trigger -Principal $Principal -Settings $Settings -Force |
+    Out-Null
+Write-Host "[IronBot] Registered \$TaskPath$TaskName"
 ```
 
-- [ ] **Step 2: Add npm script in `package.json`**
+- [x] **Step 2: Add npm scripts in `package.json`**
 
-Add `"ironbot:monitor": "powershell.exe -ExecutionPolicy Bypass -File scripts/ironbot/ironbot-task-monitor.ps1"` and `"ironbot:register": "powershell.exe -ExecutionPolicy Bypass -File scripts/ironbot/register-ironbot-task.ps1"`.
+Add both entries under the `"scripts"` key:
+```json
+"ironbot:register": "powershell.exe -ExecutionPolicy Bypass -File scripts/ironbot/register-ironbot-task.ps1",
+"ironbot:monitor":  "powershell.exe -ExecutionPolicy Bypass -File scripts/ironbot/ironbot-task-monitor.ps1 -DryRun"
+```
+Note: `ironbot:monitor` uses `-DryRun` by default — omit the flag only when intentionally running against live tasks.
 
-- [ ] **Step 3: Test registering and verifying scheduled task**
+- [x] **Step 3: Test registering and verifying scheduled task**
 
 Run: `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/ironbot/register-ironbot-task.ps1`
-Expected: Task `\IronBot\IronBot-TaskMonitor` registered with state `Ready`.
+
+Verify registration with an explicit assertion:
+```powershell
+$t = Get-ScheduledTask -TaskName "IronBot-TaskMonitor" -TaskPath "\IronBot\" -ErrorAction Stop
+if ($t.State -ne 'Ready') { throw "Task state is $($t.State), expected Ready" }
+Write-Host "PASS: Task registered in state $($t.State)"
+```
+Expected: `PASS: Task registered in state Ready`
 
 ---
 
 ### Task 5: End-to-End Verification & Commit
 
-- [ ] **Step 1: Run full test suite**
+- [x] **Step 1: Run full test suite**
 
 Run: `node --test tests/ironbot-task-monitor.test.mjs`
-Expected: 100% tests pass.
+Expected:
+```
+ℹ tests 5
+ℹ pass 5
+ℹ fail 0
+```
+(5 tests: DAG config, downstream resolution, lock clearing, diagnoseAndHeal, ps1 exists)
 
-- [ ] **Step 2: Execute live monitor dry-run**
+- [x] **Step 2: Execute monitor dry-run**
 
 Run: `npm run ironbot:monitor`
-Expected: Clean scan, audit log written under `docs/audit/ironbot/`.
+Expected: `[IronBot] Audit written: docs/audit/ironbot/<timestamp>.json`, exit code 0. Confirm the file exists:
+```bash
+ls docs/audit/ironbot/
+```
 
-- [ ] **Step 3: Commit and push changes**
+- [x] **Step 3: Commit and push changes**
 
 ```bash
 git add scripts/ironbot/ tests/ironbot-task-monitor.test.mjs package.json docs/superpowers/plans/2026-09-24-ironbot-task-monitor.md
 git commit -m "feat(ironbot): implement unattended task monitor, self-healing playbooks, and DAG replay"
 git push origin main
 ```
+
