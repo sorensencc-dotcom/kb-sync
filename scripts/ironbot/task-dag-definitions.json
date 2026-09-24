@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "cadence_hours": 4,
+  "tasks": {
+    "toolforge-trm-sync-treatment": {
+      "task_path": "\\TRM\\",
+      "depends_on": [],
+      "downstream": ["KB-Sync-Master-Pipeline"],
+      "playbook": "drive_sync_recovery"
+    },
+    "CastIronCharlie-DailyResearch": {
+      "task_path": "\\CastIronCharlie\\",
+      "depends_on": [],
+      "downstream": ["CIC-Nightly-Notebook-Mining"],
+      "playbook": "path_and_process_recovery"
+    },
+    "KB-Sync-Master-Pipeline": {
+      "task_path": "\\KB-SYNC\\",
+      "depends_on": ["toolforge-trm-sync-treatment"],
+      "downstream": ["CIC-Nightly-Notebook-Mining"],
+      "playbook": "git_and_auth_recovery"
+    },
+    "CIC-Nightly-Notebook-Mining": {
+      "task_path": "\\CIC\\",
+      "depends_on": ["KB-Sync-Master-Pipeline", "CastIronCharlie-DailyResearch"],
+      "downstream": ["CIC-Daily-Status"],
+      "playbook": "path_and_process_recovery"
+    },
+    "CIC-Daily-Status": {
+      "task_path": "\\CIC\\",
+      "depends_on": ["CIC-Nightly-Notebook-Mining"],
+      "downstream": [],
+      "playbook": "generic_process_recovery"
+    },
+    "KB-Sync-TRM-Triage": {
+      "task_path": "\\KB-SYNC\\",
+      "depends_on": [],
+      "downstream": [],
+      "playbook": "trm_triage_recovery"
+    }
+  }
+}
