@@ -56,7 +56,7 @@ The Topic Research Mining (TRM) Ingestion Pipeline establishes a contract-guarde
 
 ### 2.1 Frontmatter Category & Status Compatibility
 To prevent breaking changes across existing repositories and CI validators:
-* **Frontmatter `category`**: Stamped as `category: "wiki"`. Classification is governed by frontmatter `tags`: `["research", "trm"]` for research deep-dives and `["concept", "trm"]` for conceptual notes.
+* **Frontmatter `category`**: Stamped as `category: "wiki"`. Frontmatter `tags` govern classification: `["research", "trm"]` for research deep-dives and `["concept", "trm"]` for conceptual notes.
 * **Frontmatter `status`**: Stamped as `status: "beta"` (proposed/draft) or `status: "active"` (validated/curated).
 
 ### 2.2 Canonical Wikilink Target Resolver Contract

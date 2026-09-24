@@ -38,7 +38,7 @@ flowchart LR
 2. **Worktree Cleanliness Guard:**
    Mutating operations require a clean Git working tree. Untracked and uncommitted files block automatic healing runs to prevent silent overwrites.
 3. **Idempotent Manifest Hashing:**
-   Staging directories are identified by SHA-256 manifest hashes. If a manifest hash has already been processed in `Log.md`, repeat runs are skipped unless `--force` is provided.
+   SHA-256 manifest hashes identify staging directories. If `Log.md` already lists a manifest hash, repeat runs skip it unless `--force` is provided.
 4. **Canonical Path Containment:**
    All read and write operations are strictly contained within verified repository roots, blocking directory traversal (`..`) and sandbox leakage.
 5. **Cryptographic Proof Receipts (`.wiki-sync-receipt.json`):**

@@ -77,7 +77,7 @@
 - "Fails gracefully if X is missing (doesn't crash the pipeline)"
 - "Uses mapfile instead of while-read to avoid subshell issues"
 - "Path normalization handles both Windows backslashes and Unix forward slashes"
-- "Manifest mode is used by Obsidian; default mode used by NotebookLM"
+- "Obsidian uses manifest mode; NotebookLM uses default mode"
 
 If no special notes, write "None."]
 

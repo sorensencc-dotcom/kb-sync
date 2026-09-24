@@ -157,7 +157,7 @@ Enrichment uses the existing `synthesize-wiki.ts` Phase 13 Journaled Recoverable
 6. **Crash Recovery:** If process crashes or validation fails, delete `.transact-<sessionId>/`, restore from `.backup-<sessionId>/`, and release lock.
 
 ### 5.2 Case-Insensitive Slice Preservation Boundary
-Preservation is defined strictly by exact string slices located via case-insensitive heading search:
+Exact string slices located via case-insensitive heading search define preservation strictly:
 ```typescript
 const sec2Match = content.match(/#### 2\. Root Cause Analysis/i);
 const sec4Match = content.match(/#### 4\. Source Citations/i);

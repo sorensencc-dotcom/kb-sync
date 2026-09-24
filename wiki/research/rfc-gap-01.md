@@ -25,7 +25,7 @@ That is the same accession/box range named on the GAP-01 card. Acc. 65 is the Ow
 
 ### What Acc. 65 is [2][3]
 
-Owen W. Bombard (b. 1922) trained in Allan Nevins’s Oral History Research Office at Columbia, then was hired by Ford Motor Company Archives in 1950 to run an Oral History Section. Stated purpose (Bombard, 1952 AHA / *American Archivist* “A New Measure of Things Past”): increase quantity and quality of sources and reduce “blank spots.” Project wound down 1957.
+Owen W. Bombard (b. 1922) trained in Allan Nevins’s Oral History Research Office at Columbia, then Ford Motor Company Archives hired him in 1950 to run an Oral History Section. Stated purpose (Bombard, 1952 AHA / *American Archivist* “A New Measure of Things Past”): increase quantity and quality of sources and reduce “blank spots.” Project wound down 1957.
 
 Digitized Acc. 65 siblings (e.g. C. F. Holton, F. Bennett) carry the series boilerplate: interviewer’s questions omitted from the account; narrative is the donor’s language after the donor reviewed and signed the manuscript. INFERRED: CES boxes 66–69 follow the same editorial protocol. That already differs from a raw tape.
 

@@ -8,7 +8,7 @@ lastUpdated: 2026-08-30
 
 # Karpathy LLM-Wiki Pattern
 
-The **Karpathy LLM-Wiki Pattern** models knowledge distillation as a compilation pipeline where **raw, noisy source corpora are compiled by LLMs into structured, interconnected markdown wiki nodes**.
+The **Karpathy LLM-Wiki Pattern** models knowledge distillation as a compilation pipeline where **LLMs compile raw, noisy source corpora into structured, interconnected markdown wiki nodes**.
 
 ---
 
