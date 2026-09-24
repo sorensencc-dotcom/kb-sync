@@ -37,18 +37,18 @@ export function clearStaleGitLocks(gitDir, maxAgeMs = 10 * 60 * 1000) {
   const cleared = [];
   for (const f of lockFiles) {
     const lockPath = path.join(gitDir, f);
-    const age = Date.now() - fs.statSync(lockPath).mtimeMs;
-    if (age > maxAgeMs) {
-      try {
+    try {
+      const age = Date.now() - fs.statSync(lockPath).mtimeMs;
+      if (age > maxAgeMs) {
         fs.unlinkSync(lockPath);
         cleared.push(lockPath);
-      } catch { /* best-effort */ }
-    }
+      }
+    } catch { /* best-effort */ }
   }
   return cleared;
 }
 
-export function diagnoseAndHeal({ taskName, exitCode, repoRoot }) {
+export function diagnoseAndHeal({ taskName, exitCode, repoRoot = REPO_ROOT }) {
   const actions = [];
   let healed = false;
   let errorCategory = 'UNKNOWN';
@@ -89,3 +89,23 @@ export function writeAuditReport({ logDir, findings, healedCount, replayedCount 
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
   return reportPath;
 }
+
+// CLI entrypoint
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  const args = process.argv.slice(2);
+  if (args.includes('--dag')) {
+    console.log(JSON.stringify(parseTaskDagConfig()));
+  } else if (args.includes('--downstream')) {
+    const idx = args.indexOf('--downstream');
+    const taskName = args[idx + 1];
+    console.log(JSON.stringify(getDownstreamTasks(taskName)));
+  } else if (args.includes('--task')) {
+    const taskIdx = args.indexOf('--task');
+    const taskName = args[taskIdx + 1];
+    const codeIdx = args.indexOf('--exitCode');
+    const exitCode = codeIdx !== -1 ? parseInt(args[codeIdx + 1], 10) : 0;
+    const result = diagnoseAndHeal({ taskName, exitCode, repoRoot: REPO_ROOT });
+    console.log(JSON.stringify(result));
+  }
+}
+

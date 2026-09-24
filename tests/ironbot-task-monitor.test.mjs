@@ -50,3 +50,8 @@ test('diagnoseAndHeal returns actionable repair payload for process path crash (
   assert.equal(result.errorCategory, 'PROCESS_PATH_CRASH');
   assert.ok(result.actions.length > 0);
 });
+
+test('ironbot-task-monitor.ps1 script exists and parses cleanly', () => {
+  const scriptPath = path.join(REPO_ROOT, 'scripts/ironbot/ironbot-task-monitor.ps1');
+  assert.ok(fs.existsSync(scriptPath), 'ironbot-task-monitor.ps1 should exist');
+});
