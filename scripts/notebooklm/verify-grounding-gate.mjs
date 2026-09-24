@@ -22,7 +22,8 @@ import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolve
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
 const BRIDGE_SCRIPT = path.resolve(__dirname, 'run-nlm-chat.sh');
-const GROUNDING_PROMPT = 'What is the repo_root configuration in configs/notebooklm.yaml?';
+const timestamp = new Date().toISOString();
+const GROUNDING_PROMPT = `[${timestamp}] [KB-Sync Grounding Verification] What is the repo_root configuration in configs/notebooklm.yaml?`;
 
 // Read pack_filename the same way ingest-notebooklm.sh does (configs/
 // notebooklm.yaml, default "repo_knowledge_pack"). A hardcoded prefix here
