@@ -187,6 +187,7 @@ To inspect and promote findings locally:
 |---|---|---|---|
 | **20:30 ET (Daily)** | `KB-Sync-TRM-Triage` | Main TRM gap triage & daily outbound drop | `01_actionable_gaps/`, `02_reference_context/` |
 | **21:30 ET (Daily)** | Grok Remote Job | Mobile research worker claims 1 gap | `03_grok_completed/` |
-| **Every 4 Hours** | `\Ironbots\TRM-Drive-Sync` | Transport ingest & archive loop | Ingests from `03_grok_completed/` to RFCs |
+| **Every 4 Hours** | `\Ironbots\TRM-Drive-Sync` | Transport ingest & archive loop | Ingests from `03_grok_completed/` to RFCs & `mobile-inbox/` to `conversations/` |
+| **On Demand** | Mobile Research Drops | Unscheduled `drive-it` drops | `mobile-inbox/` ➔ `conversations/YYYY-MM-DD/` |
 | **On Demand** | Human Reviewer | Manual candidate promotion | `scripts/trm-review-queue.mjs` |
 

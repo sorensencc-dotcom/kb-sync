@@ -1,14 +1,14 @@
-# IronBot Task Monitor & Pipeline Self-Healing Architecture Spec
+# IronBot task monitor & pipeline self-healing architecture spec
 
 ## 1. Overview
 The IronBot Task Monitor (`IronBot-TaskMonitor`) is an autonomous Windows service and task supervisor designed to monitor, diagnose, repair, and replay scheduled tasks across the `\KB-SYNC\`, `\CIC\`, `\TRM\`, and `\CastIronCharlie\` namespaces. It runs every 4 hours, independent of active user sessions (configured with `LogonType: S4U` / Highest RunLevel), ensuring zero pipeline stalls due to transient crashes, lock contention, or unhandled exceptions.
 
 ---
 
-## 2. Core Operational Requirements
-1. **Execution Cadence**: Runs every 4 hours (`00:00`, `04:00`, `08:00`, `12:00`, `16:00`, `20:00` ET).
-2. **Session Independence**: Configured to run whether the user is logged on or not (`LogonType: S4U` with elevated `Highest` privileges).
-3. **Task Scope**:
+## 2. Core operational requirements
+1. **Execution cadence**: Runs every 4 hours (`00:00`, `04:00`, `08:00`, `12:00`, `16:00`, `20:00` ET).
+2. **Session independence**: Configured to run whether the user is logged on or not (`LogonType: S4U` with elevated `Highest` privileges).
+3. **Task scope**:
    * `\KB-SYNC\KB-Sync-Master-Pipeline`
    * `\KB-SYNC\KB-Sync-TRM-Triage`
    * `\CIC\CIC-Nightly-Notebook-Mining`
@@ -18,61 +18,71 @@ The IronBot Task Monitor (`IronBot-TaskMonitor`) is an autonomous Windows servic
    * `\TRM\toolforge-trm-sync-treatment`
    * `\TRM\TRM-Notebooklm-Chat-Archive`
    * `\TRM\TRM-Notebooklm-Mine`
-4. **Self-Healing Pipeline**:
+4. **Self-healing pipeline**:
    * Inspects task `LastTaskResult` and execution timestamps.
    * Diagnoses root causes via exit codes and log files.
    * Executes deterministic playbooks (stale lock release, git state repair, auth refresh, directory verification).
-5. **DAG-Based Dependency Replay**:
+5. **DAG-based dependency replay**:
    * When a broken root task succeeds after healing, triggers all downstream dependent tasks in topological order.
-6. **Logging & Multi-Channel Reporting**:
+6. **Logging & multi-channel reporting**:
    * Appends structured JSON/Markdown audit entries to `docs/audit/ironbot/`.
    * Dispatches incident and recovery notifications to Slack webhook.
    * Updates Notion operations database.
 
 ---
 
-## 3. Architecture & Components
+## 3. Architecture & components
 
+![IronBot Task Monitor Architecture](ironbot-pipeline-healing.png)
+
+<details>
+<summary>Mermaid source</summary>
+
+```mermaid
+flowchart TD
+  subgraph Cadence ["1. Cadence & Trigger (Unattended S4U)"]
+    T1["Trigger: Every 4 Hours (00:00, 04:00...)"]
+    T2["Scope: KB-SYNC, CIC, TRM, CastIronCharlie"]
+  end
+
+  subgraph Scanner ["2. Scanner & Failure Classifier"]
+    S1["Query Scheduled Tasks"]
+    S2{"LastTaskResult == 0?"}
+    S3["Exit 0 (Healthy)"]
+    S4["Diagnostic Parser & Error Classifier"]
+  end
+
+  subgraph Healing ["3. Playbook Engine & Root Task Execution"]
+    H1["Playbook: Lock Release / Auth / Path Normalizer"]
+    H2["Execute Root Scheduled Task"]
+    H3{"Task Succeeded?"}
+    H4["Escalate & Alert"]
+  end
+
+  subgraph Replay ["4. DAG Dependency Replay & Audit"]
+    R1["Topological DAG Dependency Traversal"]
+    R2["Replay Downstream Tasks"]
+    R3["Append docs/audit/ironbot/ & Slack / Notion Telemetry"]
+  end
+
+  Cadence --> S1
+  S1 --> S2
+  S2 -->|Yes| S3
+  S2 -->|No| S4
+  S4 --> H1
+  H1 --> H2
+  H2 --> H3
+  H3 -->|No| H4
+  H3 -->|Yes| R1
+  R1 --> R2
+  R2 --> R3
 ```
-+-------------------------------------------------------------+
-|               IronBot Task-Bot Orchestrator                |
-|      (Runs every 4h via S4U Unattended Task Scheduler)       |
-+-------------------------------------------------------------+
-                              |
-                              v
-             [ 1. Scheduled Task Scanner & Filter ]
-               - Query \KB-SYNC\, \CIC\, \TRM\, \CastIronCharlie\
-               - Identify LastTaskResult != 0 or Stale Run Timestamps
-                              |
-                              +---> All Healthy? ---> Exit 0 & Log
-                              |
-                              v
-             [ 2. Diagnosis & Playbook Engine ]
-               - Crash 2147942667: Resolve missing binary/paths
-               - Lock 1: Clear .git/index.lock, MERGE_HEAD
-               - Auth 1: Run NLM auth refresh / Drive check
-               - Staging error: Run DAG auto-repair / cache sync
-                              |
-                              v
-             [ 3. Target Task Execution & Verify ]
-               - Start-ScheduledTask & wait for completion
-               - Assert LastTaskResult == 0
-                              |
-                              v
-             [ 4. DAG Downstream Dependency Replay ]
-               - Identify dependent tasks in topological order
-               - Replay downstream tasks sequentially
-                              |
-                              v
-             [ 5. Multi-Channel Reporting & Audit ]
-               - Write docs/audit/ironbot/YYYY-MM-DD.json
-               - Send formatted Slack alert
-               - Sync Notion status
-```
+
+</details>
 
 ---
 
-## 4. Task Dependency Graph (DAG)
+## 4. Task dependency graph (DAG)
 
 | Task Name | Task Path | Depends On | Triggers Downstream |
 | :--- | :--- | :--- | :--- |
@@ -84,7 +94,7 @@ The IronBot Task Monitor (`IronBot-TaskMonitor`) is an autonomous Windows servic
 
 ---
 
-## 5. Playbook Self-Healing Matrix
+## 5. Playbook self-healing matrix
 
 | Exit Code / Symptom | Identified Root Cause | Automated Playbook Action |
 | :--- | :--- | :--- |
@@ -96,7 +106,7 @@ The IronBot Task Monitor (`IronBot-TaskMonitor`) is an autonomous Windows servic
 
 ---
 
-## 6. Implementation Plan & File Layout
+## 6. Implementation plan & file layout
 
 1. `scripts/ironbot/ironbot-task-monitor.ps1`: Primary PowerShell orchestrator running scan, healing, DAG replay, and reporting.
 2. `scripts/ironbot/ironbot-playbooks.mjs`: Node-based diagnostic log parser, error categorizer, and recovery playbook executor.

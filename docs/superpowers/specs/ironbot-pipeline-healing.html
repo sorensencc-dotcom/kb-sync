@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronBot Task Monitor Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f2ece2;
+      --color-ink:     #2c2420;
+      --color-muted:   #5c5349;
+      --color-accent:  #c4501a;
+      --font-sans:     'Barlow Condensed', system-ui, sans-serif;
+      --font-serif:    'Playfair Display', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .frame { max-width: 1240px; width: 100%; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 2rem;
+    }
+
+    svg { width: 100%; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Autonomous Task Supervision · Unattended Recovery & DAG Replay</p>
+    <h1>IronBot Task Monitor & Pipeline Self-Healing</h1>
+
+    <svg viewBox="0 0 1160 520" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 2L8 5L2 8" fill="none" stroke="#5c5349" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arrow-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 2L8 5L2 8" fill="none" stroke="#c4501a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Stage 1: Trigger & Schedule -->
+      <rect x="20" y="30" width="220" height="440" rx="8" fill="#ebe4d8" stroke="#d5cbbe" stroke-width="1.5"/>
+      <text x="40" y="65" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#c4501a" letter-spacing="1">CADENCE & TRIGGER</text>
+      <text x="40" y="95" font-family="'Playfair Display', serif" font-size="18" font-weight="700" fill="#2c2420">Unattended S4U</text>
+      <text x="40" y="118" font-family="'Barlow Condensed', sans-serif" font-size="13" fill="#5c5349">Runs 24/7 without login</text>
+      
+      <rect x="40" y="145" width="180" height="70" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="55" y="172" font-family="'Geist Mono', monospace" font-size="12" font-weight="600" fill="#2c2420">Schedule Trigger</text>
+      <text x="55" y="195" font-family="'Barlow Condensed', sans-serif" font-size="13" fill="#5c5349">Every 4 Hours (00:00, 04:00...)</text>
+
+      <rect x="40" y="235" width="180" height="90" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="55" y="262" font-family="'Geist Mono', monospace" font-size="12" font-weight="600" fill="#2c2420">Scope Folders</text>
+      <text x="55" y="285" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">\KB-SYNC\, \CIC\</text>
+      <text x="55" y="305" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">\TRM\, \CastIronCharlie\</text>
+
+      <line x1="240" y1="250" x2="278" y2="250" stroke="#5c5349" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Stage 2: Scanner & Diagnosis -->
+      <rect x="280" y="30" width="240" height="440" rx="8" fill="#ebe4d8" stroke="#d5cbbe" stroke-width="1.5"/>
+      <text x="300" y="65" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#c4501a" letter-spacing="1">SCAN & DIAGNOSIS</text>
+      <text x="300" y="95" font-family="'Playfair Display', serif" font-size="18" font-weight="700" fill="#2c2420">Failure Classifier</text>
+      <text x="300" y="118" font-family="'Barlow Condensed', sans-serif" font-size="13" fill="#5c5349">Inspects LastTaskResult & logs</text>
+
+      <rect x="300" y="145" width="200" height="85" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="315" y="172" font-family="'Geist Mono', monospace" font-size="12" font-weight="600" fill="#2c2420">Status & Codes</text>
+      <text x="315" y="195" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">0 = Healthy</text>
+      <text x="315" y="215" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#c4501a">1, 2147942667 = Broken</text>
+
+      <rect x="300" y="245" width="200" height="100" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="315" y="272" font-family="'Geist Mono', monospace" font-size="12" font-weight="600" fill="#2c2420">Diagnostic Parser</text>
+      <text x="315" y="295" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">Matches process path, git locks,</text>
+      <text x="315" y="315" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">auth tokens, or staging drift</text>
+
+      <line x1="520" y1="250" x2="558" y2="250" stroke="#c4501a" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+
+      <!-- Stage 3: Self-Healing & Rerun -->
+      <rect x="560" y="30" width="260" height="440" rx="8" fill="#ebe4d8" stroke="#d5cbbe" stroke-width="1.5"/>
+      <text x="580" y="65" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#c4501a" letter-spacing="1">SELF-HEALING</text>
+      <text x="580" y="95" font-family="'Playfair Display', serif" font-size="18" font-weight="700" fill="#2c2420">Playbook Engine</text>
+      <text x="580" y="118" font-family="'Barlow Condensed', sans-serif" font-size="13" fill="#5c5349">Deterministic auto-recovery</text>
+
+      <rect x="580" y="145" width="220" height="60" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="595" y="170" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#2c2420">Lock Release</text>
+      <text x="595" y="190" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">Unlinks stale .git/index.lock</text>
+
+      <rect x="580" y="215" width="220" height="60" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="595" y="240" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#2c2420">Path & Auth Refresh</text>
+      <text x="595" y="260" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">pwsh/node resolution & login check</text>
+
+      <rect x="580" y="285" width="220" height="60" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="595" y="310" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#2c2420">Task Execution</text>
+      <text x="595" y="330" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">Reruns healed root scheduled task</text>
+
+      <line x1="820" y1="250" x2="858" y2="250" stroke="#5c5349" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Stage 4: DAG Replay & Reporting -->
+      <rect x="860" y="30" width="280" height="440" rx="8" fill="#ebe4d8" stroke="#d5cbbe" stroke-width="1.5"/>
+      <text x="880" y="65" font-family="'Geist Mono', monospace" font-size="11" font-weight="600" fill="#c4501a" letter-spacing="1">DAG REPLAY & AUDIT</text>
+      <text x="880" y="95" font-family="'Playfair Display', serif" font-size="18" font-weight="700" fill="#2c2420">Downstream Replay</text>
+      <text x="880" y="118" font-family="'Barlow Condensed', sans-serif" font-size="13" fill="#5c5349">Topological execution & telemetry</text>
+
+      <rect x="880" y="145" width="240" height="85" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="895" y="172" font-family="'Geist Mono', monospace" font-size="12" font-weight="600" fill="#2c2420">DAG Dependency Traversal</text>
+      <text x="895" y="195" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">TRM-Drive ➔ KB-Sync-Master</text>
+      <text x="895" y="215" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">➔ CIC-Nightly-Mining ➔ Status</text>
+
+      <rect x="880" y="245" width="240" height="90" rx="6" fill="#f2ece2" stroke="#d5cbbe" stroke-width="1"/>
+      <text x="895" y="272" font-family="'Geist Mono', monospace" font-size="12" font-weight="600" fill="#2c2420">Multi-Channel Reporting</text>
+      <text x="895" y="295" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">JSON audit: docs/audit/ironbot/</text>
+      <text x="895" y="315" font-family="'Barlow Condensed', sans-serif" font-size="12" fill="#5c5349">Slack Alerts & Notion DB Sync</text>
+    </svg>
+  </div>
+</body>
+</html>

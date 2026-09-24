@@ -282,8 +282,7 @@ export async function ingestDriveFindings(options = {}) {
       // Idempotency and conflict handling
       if (fs.existsSync(targetFile)) {
         const existingContent = fs.readFileSync(targetFile, 'utf8');
-        const existingSha = crypto.createHash('sha256').update(existingContent, 'utf8').digest('hex');
-        if (existingSha === content_sha256 || existingContent.includes(content_sha256)) {
+        if (existingContent.includes(content_sha256)) {
           // Idempotent skip: identical content already in place
           fs.renameSync(filePath, path.join(archiveMobileInboxDir, `${filename}.${utcSuffix}`));
           mobileIngestedCount++;
@@ -305,14 +304,6 @@ export async function ingestDriveFindings(options = {}) {
 
       // Archive source drop
       fs.renameSync(filePath, path.join(archiveMobileInboxDir, `${filename}.${utcSuffix}`));
-
-      // Release any matching lock
-      if (fs.existsSync(locksDir)) {
-        const locks = fs.readdirSync(locksDir).filter(f => f.startsWith(slug));
-        for (const l of locks) {
-          try { fs.unlinkSync(path.join(locksDir, l)); } catch {}
-        }
-      }
 
       mobileIngestedCount++;
     }

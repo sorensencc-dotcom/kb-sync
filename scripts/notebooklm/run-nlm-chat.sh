@@ -26,7 +26,7 @@ fi
 
 NOTEBOOK_ID_ARG="$1"
 PROMPT_ARG="$2"
-TIMEOUT_MS="${TIMEOUT_MS:-90000}"
+export TIMEOUT_MS="${TIMEOUT_MS:-90000}"
 
 if [[ ! "$PROMPT_ARG" =~ ^\[[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
   TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
