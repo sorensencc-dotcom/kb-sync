@@ -13,6 +13,27 @@ export function detectReadySignal(entry) {
   return null;
 }
 
+export function resolveTopicTargetDir({ topic, date, KB_SYNC_ROOT, conversationsDir, customTargets = {} }) {
+  const normalizedTopic = (topic || '').toLowerCase().trim();
+  if (customTargets[normalizedTopic]) return customTargets[normalizedTopic];
+
+  switch (normalizedTopic) {
+    case 'cic':
+      return path.join(conversationsDir || path.join(KB_SYNC_ROOT, 'obsidian', 'vault', 'wiki', 'conversations'), date);
+    case 'spec':
+    case 'specs':
+      return path.join(KB_SYNC_ROOT, 'wiki', 'specs', date);
+    case 'rewrite':
+      return path.join(KB_SYNC_ROOT, 'wiki', 'rewrite', date);
+    case 'trm':
+      return path.join(KB_SYNC_ROOT, 'wiki', 'research', date);
+    case 'kb':
+      return path.join(KB_SYNC_ROOT, 'wiki', 'concepts', date);
+    default:
+      return path.join(KB_SYNC_ROOT, 'wiki', 'inbox', date);
+  }
+}
+
 export function hashFile(filePath) {
   try {
     return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
@@ -248,15 +269,38 @@ export async function ingestDriveFindings(options = {}) {
   }
 
   // ==========================================
-  // 2. Ingest Unscheduled Mobile Inbox Drops
+  // 2. Ingest Unscheduled Mobile & Copilot Inbox Drops
   // ==========================================
-  if (fs.existsSync(mobileInboxDir)) {
-    const allMobileFiles = fs.readdirSync(mobileInboxDir).map(f => path.join(mobileInboxDir, f)).filter(f => fs.statSync(f).isFile());
+  const defaultOneDriveInbox = path.join(process.env.USERPROFILE || 'C:/Users/soren', 'OneDrive', 'Copilot', 'inbox');
+  const defaultOneDriveArchive = path.join(process.env.USERPROFILE || 'C:/Users/soren', 'OneDrive', 'Copilot', 'archive');
+  const defaultCoworkInbox = path.join(process.env.USERPROFILE || 'C:/Users/soren', 'OneDrive', 'Documents', 'Cowork', 'inbox');
+  const defaultCoworkArchive = path.join(process.env.USERPROFILE || 'C:/Users/soren', 'OneDrive', 'Documents', 'Cowork', 'archive');
+  const oneDriveInboxDir = options.oneDriveInboxDir || config.onedrive_inbox_root || defaultOneDriveInbox;
+  const oneDriveArchiveDir = options.oneDriveArchiveDir || config.onedrive_archive_root || defaultOneDriveArchive;
+  const coworkInboxDir = options.coworkInboxDir || config.cowork_inbox_root || defaultCoworkInbox;
+  const coworkArchiveDir = options.coworkArchiveDir || config.cowork_archive_root || defaultCoworkArchive;
+
+  const inboxSources = options.inboxSources || (
+    options.mobileInboxDir && !options.includeAllInboxes
+      ? [{ inboxDir: mobileInboxDir, archiveDir: archiveMobileInboxDir, name: 'gdrive-mobile-inbox' }]
+      : [
+          { inboxDir: mobileInboxDir, archiveDir: archiveMobileInboxDir, name: 'gdrive-mobile-inbox' },
+          { inboxDir: coworkInboxDir, archiveDir: coworkArchiveDir, name: 'cowork-inbox' },
+          { inboxDir: oneDriveInboxDir, archiveDir: oneDriveArchiveDir, name: 'onedrive-copilot-inbox' }
+        ]
+  );
+
+  for (const source of inboxSources) {
+    if (!fs.existsSync(source.inboxDir)) continue;
+    fs.mkdirSync(source.archiveDir, { recursive: true });
+
+    const allMobileFiles = fs.readdirSync(source.inboxDir).map(f => path.join(source.inboxDir, f)).filter(f => fs.statSync(f).isFile());
     const candidateMobileFiles = allMobileFiles.filter(f => !f.endsWith('.ready'));
 
     const stableMobileFiles = await batchDebounceFiles(candidateMobileFiles, debounceMs);
 
     for (const filePath of stableMobileFiles) {
+      if (!fs.existsSync(filePath)) continue;
       const filename = path.basename(filePath);
       let rawContent = '';
       try {
@@ -269,28 +313,39 @@ export async function ingestDriveFindings(options = {}) {
       const utcSuffix = new Date().toISOString().replace(/[:.]/g, '-');
 
       if (!validation.valid) {
-        fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`));
+        if (fs.existsSync(filePath)) {
+          try { fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`)); } catch {}
+        }
         continue;
       }
 
       const { date, slug, frontmatter, body, content_sha256 } = validation;
-      const targetDateDir = path.join(conversationsDir, date);
-      fs.mkdirSync(targetDateDir, { recursive: true });
+      const targetTopic = frontmatter.topic || 'default';
+      const targetDir = resolveTopicTargetDir({
+        topic: targetTopic,
+        date,
+        KB_SYNC_ROOT,
+        conversationsDir,
+        customTargets: options.topicTargets || {}
+      });
+      fs.mkdirSync(targetDir, { recursive: true });
 
-      let targetFile = path.join(targetDateDir, `${slug}.md`);
+      let targetFile = path.join(targetDir, `${slug}.md`);
 
       // Idempotency and conflict handling
       if (fs.existsSync(targetFile)) {
         const existingContent = fs.readFileSync(targetFile, 'utf8');
         if (existingContent.includes(content_sha256)) {
           // Idempotent skip: identical content already in place
-          fs.renameSync(filePath, path.join(archiveMobileInboxDir, `${filename}.${utcSuffix}`));
+          if (fs.existsSync(filePath)) {
+            try { fs.renameSync(filePath, path.join(source.archiveDir, `${filename}.${utcSuffix}`)); } catch {}
+          }
           mobileIngestedCount++;
           continue;
         }
         // Conflict with different content: use collision suffix
         const timeSuffix = new Date().toISOString().replace(/[:.]/g, '-').slice(11, 19);
-        targetFile = path.join(targetDateDir, `${slug}.${timeSuffix}.md`);
+        targetFile = path.join(targetDir, `${slug}.${timeSuffix}.md`);
       }
 
       const docContent = `---\nsource: ${frontmatter.source || 'grok'}\nskill: ${frontmatter.skill || 'drive-it'}\ntopic: ${frontmatter.topic || 'general'}\ntitle: "${(frontmatter.title || slug).replace(/"/g, '\\"')}"\ncreated: ${frontmatter.created || new Date().toISOString()}\nfolder_id: ${frontmatter.folder_id || ''}\nstatus: drop\nprovenance_type: mobile_inbox_drop\ncontent_sha256: ${content_sha256}\n---\n\n${body}\n`;
@@ -299,11 +354,13 @@ export async function ingestDriveFindings(options = {}) {
       touchedFiles.push(targetFile);
 
       if (fs.existsSync(logPath)) {
-        fs.appendFileSync(logPath, `\n- [${new Date().toISOString()}] Ingested mobile drop ${filename} into conversations/${date}/${path.basename(targetFile)}`);
+        fs.appendFileSync(logPath, `\n- [${new Date().toISOString()}] Ingested mobile drop ${filename} (${source.name}) into ${targetTopic}/${date}/${path.basename(targetFile)}`);
       }
 
       // Archive source drop
-      fs.renameSync(filePath, path.join(archiveMobileInboxDir, `${filename}.${utcSuffix}`));
+      if (fs.existsSync(filePath)) {
+        try { fs.renameSync(filePath, path.join(source.archiveDir, `${filename}.${utcSuffix}`)); } catch {}
+      }
 
       mobileIngestedCount++;
     }

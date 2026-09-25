@@ -106,3 +106,137 @@ Primary findings on FCSC decisions [1].
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
+
+test('ingestDriveFindings routes multi-topic drops to designated target subdirectories', async () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-topic-routing-test-'));
+  const driveRoot = path.join(tmpDir, 'TRM-Research');
+  const mobileInboxDir = path.join(driveRoot, 'mobile-inbox');
+  const logFile = path.join(tmpDir, 'Log.md');
+  fs.mkdirSync(mobileInboxDir, { recursive: true });
+  fs.writeFileSync(logFile, '# Log\n');
+
+  const topics = [
+    { topic: 'spec', slug: 'auth-contract' },
+    { topic: 'rewrite', slug: 'pipeline-refactor' },
+    { topic: 'trm', slug: 'gap-investigation' },
+    { topic: 'kb', slug: 'architecture-pattern' },
+    { topic: 'default', slug: 'unsorted-note' }
+  ];
+
+  for (const { topic, slug } of topics) {
+    const content = `---
+source: copilot
+skill: drive-it
+topic: ${topic}
+title: ${slug}
+created: 2026-09-25T12:00:00Z
+folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
+status: drop
+---
+
+# ${slug}
+Content for ${topic}
+`;
+    fs.writeFileSync(path.join(mobileInboxDir, `2026-09-25T120000Z__${topic}__${slug}.md`), content);
+  }
+
+  const res = await ingestDriveFindings({
+    driveRoot,
+    mobileInboxDir,
+    repoRoot: tmpDir,
+    logPath: logFile,
+    debounceMs: 10,
+    commit: false,
+    topicTargets: {
+      spec: path.join(tmpDir, 'wiki', 'specs', '2026-09-25'),
+      rewrite: path.join(tmpDir, 'wiki', 'rewrite', '2026-09-25'),
+      trm: path.join(tmpDir, 'wiki', 'research', '2026-09-25'),
+      kb: path.join(tmpDir, 'wiki', 'concepts', '2026-09-25'),
+      default: path.join(tmpDir, 'wiki', 'inbox', '2026-09-25')
+    }
+  });
+
+  assert.equal(res.mobileIngestedCount, 5);
+
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'specs', '2026-09-25', 'auth-contract.md')));
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'rewrite', '2026-09-25', 'pipeline-refactor.md')));
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'research', '2026-09-25', 'gap-investigation.md')));
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'concepts', '2026-09-25', 'architecture-pattern.md')));
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'inbox', '2026-09-25', 'unsorted-note.md')));
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
+test('ingestDriveFindings sweeps both GDrive and OneDrive inboxes simultaneously', async () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-dual-inbox-test-'));
+  const gdriveInbox = path.join(tmpDir, 'gdrive-inbox');
+  const gdriveArchive = path.join(tmpDir, 'gdrive-archive');
+  const onedriveInbox = path.join(tmpDir, 'onedrive-inbox');
+  const onedriveArchive = path.join(tmpDir, 'onedrive-archive');
+  const logFile = path.join(tmpDir, 'Log.md');
+
+  fs.mkdirSync(gdriveInbox, { recursive: true });
+  fs.mkdirSync(onedriveInbox, { recursive: true });
+  fs.writeFileSync(logFile, '# Log\n');
+
+  // GDrive drop
+  const gdriveDrop = `---
+source: grok
+skill: drive-it
+topic: spec
+title: GDrive Spec Drop
+created: 2026-09-25T14:00:00Z
+folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
+status: drop
+---
+
+# GDrive Spec Drop
+`;
+  fs.writeFileSync(path.join(gdriveInbox, '2026-09-25T140000Z__spec__gdrive-spec-drop.md'), gdriveDrop);
+
+  // OneDrive drop
+  const onedriveDrop = `---
+source: copilot
+skill: drive-it
+topic: kb
+title: OneDrive KB Drop
+created: 2026-09-25T14:00:00Z
+folder_id: onedrive-copilot
+status: drop
+---
+
+# OneDrive KB Drop
+`;
+  fs.writeFileSync(path.join(onedriveInbox, '2026-09-25T140000Z__kb__onedrive-kb-drop.md'), onedriveDrop);
+
+  const res = await ingestDriveFindings({
+    driveRoot: tmpDir,
+    logPath: logFile,
+    debounceMs: 10,
+    commit: false,
+    inboxSources: [
+      { inboxDir: gdriveInbox, archiveDir: gdriveArchive, name: 'gdrive-inbox' },
+      { inboxDir: onedriveInbox, archiveDir: onedriveArchive, name: 'onedrive-inbox' }
+    ],
+    topicTargets: {
+      spec: path.join(tmpDir, 'wiki', 'specs', '2026-09-25'),
+      kb: path.join(tmpDir, 'wiki', 'concepts', '2026-09-25')
+    }
+  });
+
+  assert.equal(res.mobileIngestedCount, 2);
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'specs', '2026-09-25', 'gdrive-spec-drop.md')));
+  assert.ok(fs.existsSync(path.join(tmpDir, 'wiki', 'concepts', '2026-09-25', 'onedrive-kb-drop.md')));
+
+  // Check both source folders are now empty
+  assert.equal(fs.readdirSync(gdriveInbox).length, 0);
+  assert.equal(fs.readdirSync(onedriveInbox).length, 0);
+
+  // Check both archive folders have 1 file
+  assert.equal(fs.readdirSync(gdriveArchive).length, 1);
+  assert.equal(fs.readdirSync(onedriveArchive).length, 1);
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
+
