@@ -195,18 +195,20 @@ if (isMainScript) {
           // Namespace Collision Guard: ensure duplicate basenames don't exist.
           // Exempt 'index' and 'log' — these are intentional per-section home/log pages
           // and are folder-namespaced by convention (e.g. kb-sync/index, notebooklm/index).
-          const lowerBasename = note.basename.toLowerCase();
+          // Files under conversations/ are date-partitioned daily synthesis logs.
+          const isDatePartitioned = relPath.replace(/\\/g, '/').startsWith('conversations/');
+          const collisionKey = isDatePartitioned ? relPath.replace(/\\/g, '/').toLowerCase() : note.basename.toLowerCase();
           const EXEMPT_BASENAMES = new Set(['index', 'log']);
-          if (!EXEMPT_BASENAMES.has(lowerBasename)) {
-            if (basenameCollisionMap.has(lowerBasename)) {
+          if (!EXEMPT_BASENAMES.has(note.basename.toLowerCase())) {
+            if (basenameCollisionMap.has(collisionKey)) {
               validationErrors.push({
                 file: relPath,
                 rule_id: 'DOC_ID_COLLISION',
                 rule: 'Namespace Collision Guard',
-                message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(lowerBasename)}'`
+                message: `Filename collision detected. Basename '${note.basename}' matches file already seen: '${basenameCollisionMap.get(collisionKey)}'`
               });
             } else {
-              basenameCollisionMap.set(lowerBasename, relPath);
+              basenameCollisionMap.set(collisionKey, relPath);
             }
           }
         } catch (err) {

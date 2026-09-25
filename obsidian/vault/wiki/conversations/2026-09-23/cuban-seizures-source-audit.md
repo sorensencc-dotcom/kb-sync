@@ -2,12 +2,14 @@
 source: grok
 skill: drive-it
 topic: cic
-title: "Cuban Seizures Source Audit"
+title: Cuban Seizures Source Audit
 created: Wed Sep 23 2026 18:56:25 GMT-0400 (Eastern Daylight Time)
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
-status: drop
+status: proposed
 provenance_type: mobile_inbox_drop
 content_sha256: 9246e0990fae785cf28908e6230678e608ed34818879a71f883c7c8c2e8da77e
+category: wiki
+sourceRepository: kb-sync
 ---
 
 # Cuban Seizures Source Audit

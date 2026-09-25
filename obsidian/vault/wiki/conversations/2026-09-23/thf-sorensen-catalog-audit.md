@@ -2,12 +2,14 @@
 source: grok
 skill: drive-it
 topic: cic
-title: "THF Sorensen Catalog Audit"
+title: THF Sorensen Catalog Audit
 created: Tue Sep 22 2026 22:26:18 GMT-0400 (Eastern Daylight Time)
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
-status: drop
+status: proposed
 provenance_type: mobile_inbox_drop
 content_sha256: 682580fde33c4a53f0da5825d142ec676e6a85067aa1bcdbb9cc49a66a61189b
+category: wiki
+sourceRepository: kb-sync
 ---
 
 # THF Sorensen Catalog Audit
