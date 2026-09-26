@@ -303,10 +303,25 @@ export async function ingestDriveFindings(options = {}) {
       if (!fs.existsSync(filePath)) continue;
       const filename = path.basename(filePath);
       let rawContent = '';
-      try {
-        rawContent = fs.readFileSync(filePath, 'utf8');
-      } catch {
-        continue;
+      const isGDoc = filePath.endsWith('.gdoc');
+
+      if (isGDoc) {
+        const docId = await resolveGoogleDocId(filePath);
+        if (docId) {
+          const docContent = await fetchGoogleDocContent(docId, options);
+          if (docContent) {
+            rawContent = docContent;
+          }
+        }
+        if (!rawContent) {
+          try { rawContent = fs.readFileSync(filePath, 'utf8'); } catch {}
+        }
+      } else {
+        try {
+          rawContent = fs.readFileSync(filePath, 'utf8');
+        } catch {
+          continue;
+        }
       }
 
       const validation = validateMobileInboxDrop(rawContent, filename);
@@ -314,7 +329,11 @@ export async function ingestDriveFindings(options = {}) {
 
       if (!validation.valid) {
         if (fs.existsSync(filePath)) {
-          try { fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`)); } catch {}
+          try {
+            fs.renameSync(filePath, path.join(archiveRejectedDir, `${filename}.${utcSuffix}`));
+          } catch {
+            try { fs.unlinkSync(filePath); } catch {}
+          }
         }
         continue;
       }

@@ -144,7 +144,7 @@ export function validateMobileInboxDrop(rawContent, filename = '') {
   // Determine slug
   let slug = '';
   if (filename) {
-    const fnSlugMatch = filename.match(/^\d{4}-\d{2}-\d{2}T[0-9A-Z_-]+?__[a-zA-Z0-9_-]+?__(.+)\.md$/i);
+    const fnSlugMatch = filename.match(/^\d{4}-\d{2}-\d{2}T[0-9A-Z_-]+?__[a-zA-Z0-9_-]+?__(.+?)(?:\.md(?:\.gdoc)?|\.gdoc)?$/i);
     if (fnSlugMatch) {
       slug = sanitizeSlug(fnSlugMatch[1]);
     }

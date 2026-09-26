@@ -239,4 +239,57 @@ status: drop
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
 
+test('ingestDriveFindings processes mobile .gdoc drops with docFetcher and archives', async () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-gdoc-mobile-test-'));
+  const driveRoot = path.join(tmpDir, 'TRM-Research');
+  const mobileInboxDir = path.join(driveRoot, 'mobile-inbox');
+  const conversationsDir = path.join(tmpDir, 'conversations');
+  const logFile = path.join(tmpDir, 'Log.md');
+  fs.mkdirSync(mobileInboxDir, { recursive: true });
+  fs.mkdirSync(conversationsDir, { recursive: true });
+  fs.writeFileSync(logFile, '# Log\n');
+
+  const gdocFilename = '2026-09-26T140000Z__cic__gdoc-mobile-test.md.gdoc';
+  const gdocStub = JSON.stringify({ doc_id: 'doc-123-abc' });
+  fs.writeFileSync(path.join(mobileInboxDir, gdocFilename), gdocStub);
+
+  const mockDocContent = `---
+source: grok
+skill: drive-it
+topic: cic
+title: GDoc Mobile Ingest Test
+created: 2026-09-26T14:00:00Z
+folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
+status: drop
+---
+
+# GDoc Mobile Ingest Test
+Body fetched via docFetcher [1].
+`;
+
+  const res = await ingestDriveFindings({
+    driveRoot,
+    mobileInboxDir,
+    conversationsDir,
+    logPath: logFile,
+    debounceMs: 10,
+    commit: false,
+    docFetcher: async (docId) => {
+      assert.equal(docId, 'doc-123-abc');
+      return { ok: true, content: mockDocContent };
+    }
+  });
+
+  assert.equal(res.mobileIngestedCount, 1);
+  const targetFile = path.join(conversationsDir, '2026-09-26', 'gdoc-mobile-test.md');
+  assert.ok(fs.existsSync(targetFile));
+  assert.ok(fs.readFileSync(targetFile, 'utf8').includes('GDoc Mobile Ingest Test'));
+
+  // Inbox should be clean
+  assert.equal(fs.readdirSync(mobileInboxDir).length, 0);
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
+
 
