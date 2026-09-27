@@ -54,7 +54,7 @@ if ($existingMaster) {
 # Principal
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 $principal = if ($isAdmin) {
-    New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Highest
+    New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType S4U -RunLevel Highest
 } else {
     New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive
 }
@@ -62,7 +62,7 @@ $principal = if ($isAdmin) {
 # Action
 $action = New-ScheduledTaskAction `
     -Execute "pwsh.exe" `
-    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$MasterScript`"" `
+    -Argument "-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$MasterScript`"" `
     -WorkingDirectory "$RepoRoot"
 
 # Trigger: Daily at 8:00 PM (20:00)

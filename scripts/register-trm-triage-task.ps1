@@ -48,7 +48,7 @@ if (-not (Test-Path $WrapperScript)) {
 # Principal
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 $principal = if ($isAdmin) {
-    New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Highest
+    New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType S4U -RunLevel Highest
 } else {
     New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive
 }
@@ -56,7 +56,7 @@ $principal = if ($isAdmin) {
 # Action
 $action = New-ScheduledTaskAction `
     -Execute "pwsh.exe" `
-    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$WrapperScript`"" `
+    -Argument "-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$WrapperScript`"" `
     -WorkingDirectory "$RepoRoot"
 
 # Trigger: Daily
