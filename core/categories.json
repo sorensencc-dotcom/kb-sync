@@ -248,6 +248,19 @@
       ],
       "status": "canonical",
       "exclude_from_master_kb": true
+    },
+    "research-deltas": {
+      "title": "CIC - Research Deltas & Living Matrix",
+      "target": "48322e1d-d601-4f65-89e0-76282343680d",
+      "description": "Daily research delta analysis, question matrices, and living truth vectors",
+      "aliases": [
+        "research_deltas",
+        "living-matrix",
+        "living_matrix",
+        "deltas",
+        "matrix"
+      ],
+      "status": "canonical"
     }
   },
   "placeholders": {}
