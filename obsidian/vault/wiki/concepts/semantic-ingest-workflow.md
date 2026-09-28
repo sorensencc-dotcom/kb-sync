@@ -1,7 +1,8 @@
 ---
-title: "Semantic Ingest Workflow"
-category: "wiki"
-status: "active"
+title: Semantic Ingest Workflow
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Semantic Ingest Workflow

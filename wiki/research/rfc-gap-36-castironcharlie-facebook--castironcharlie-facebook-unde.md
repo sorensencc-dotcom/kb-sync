@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-36--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - The Spoken Dialogue of the October 26, 1942 Boardroom Clash)**
+title: RFC: GAP-36--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - The Source Deficit
 category: research
 topic: rfc-gap-36-castironcharlie-facebook--castironcharlie-facebook-unde
 gap_id: GAP-36--castironcharlie-facebook
 status: draft
-created_at: 2026-09-19T21:17:57.031Z
+created_at: 2026-09-25T10:39:29.043Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md"]
+citations: ["wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-06.md","wiki/research/rfc-gap-55-castironcharlie-facebook--castironcharlie-facebook-unde.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-36--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - The Spoken Dialogue of the October 26, 1942 Boardroom Clash)**
+# RFC: GAP-36--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - The Source Deficit
 
 ## 1. Problem Statement & Context
-**The Spoken Dialogue of the October 26, 1942 Boardroom Clash**: The specific verbal exchange where Edsel Ford retorts to Charles Sorensen, *"But a lot of people told us it was,"*
+)**: **The Source Deficit:** Accounts of this solo midnight breakthrough rely on **Sorensen's personal recollections in his memoir** (*My Forty Years with Ford*) and secondary press pro
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
+- **rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [hybrid]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-03--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-03--castironcharlie-facebook-unde.md`) [lexical_only]:
+- **rfc-gap-06** (`wiki/research/rfc-gap-06.md`) [lexical_only]:
   >
+- **rfc-gap-55-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-55-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [vector_only]:
+  > --- title: "RFC: GAP-55--castironcharlie-facebook - **CastIronCharlie-Facebook under-sourced - The Source Deficit" category: "research" topic: "rfc-gap-55-castironcharlie-facebook--castironcharlie-facebook-unde" gap_id: "GAP-55--castironcharlie-faceb
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

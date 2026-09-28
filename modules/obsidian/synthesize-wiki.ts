@@ -284,6 +284,9 @@ function parseCLIArgs(): CLIConfig {
       enrichLessons = true;
     } else if (arg === "--provider") {
       providerName = args[++i];
+    } else if (arg === "--source") {
+      // Ignored or source-specific staging selector
+      i++;
     } else if (arg === "--dry-run") {
       dryRun = true;
     } else if (arg === "--force") {
@@ -630,6 +633,56 @@ status: "active"
 `;
     fs.writeFileSync(transactLogPath, initialLogHeader, "utf-8");
   }
+
+  // 10c. Safeguard: Pre-Flight Frontmatter Self-Healing on Transaction Workspace
+  logInfo("Running pre-flight frontmatter sanitization and schema self-healing on transaction workspace...");
+  const sanitizeTransactionWorkspaceFrontmatter = (dir: string) => {
+    if (!fs.existsSync(dir)) return;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        sanitizeTransactionWorkspaceFrontmatter(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        const content = fs.readFileSync(fullPath, "utf-8");
+        const base = path.basename(entry.name, ".md");
+        const rel = path.relative(transactWikiRoot, fullPath).replace(/\\/g, "/");
+        const title = base.replace(/[-_]+/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+        const isResearch = rel.includes("research/");
+        const defaultCategory = isResearch ? "research" : "wiki";
+        const now = new Date().toISOString().slice(0, 10);
+
+        if (!content.startsWith("---")) {
+          const header = `---\ntitle: "${title}"\ncategory: "${defaultCategory}"\nstatus: "active"\ncreated_at: "${now}"\ntags:\n  - auto-healed\n  - ${defaultCategory}\n---\n\n`;
+          fs.writeFileSync(fullPath, header + content.trimStart(), "utf-8");
+        } else {
+          const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+          if (match) {
+            let fm = match[1];
+            const body = match[2];
+            let changed = false;
+
+            if (fm.includes('category: "knowledge"') || fm.includes("category: knowledge")) {
+              fm = fm.replace(/category:\s*["']?knowledge["']?/g, 'category: "wiki"');
+              changed = true;
+            }
+            if (!/category:\s*/.test(fm)) {
+              fm += `\ncategory: "${defaultCategory}"`;
+              changed = true;
+            }
+            if (fm.includes('status: "drop"') || fm.includes("status: drop")) {
+              fm = fm.replace(/status:\s*["']?drop["']?/g, 'status: "draft"');
+              changed = true;
+            }
+            if (changed) {
+              fs.writeFileSync(fullPath, `---\n${fm}\n---\n${body}`, "utf-8");
+            }
+          }
+        }
+      }
+    }
+  };
+  sanitizeTransactionWorkspaceFrontmatter(transactWikiRoot);
 
   // 11. Phase 5 Contract Validator Integration
   logInfo("Executing Phase 5 Contract Validator (validate-contract.mjs) on transaction workspace...");

@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-01--willow-run-videos - **Willow Run Videos (follow-up - 1. Official USAAF Serial Acceptance Logs (Settle the B-24 vs. B-17 Mismatch))**
-category: research
-topic: rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1
-gap_id: GAP-01--willow-run-videos
-status: draft
-created_at: 2026-09-19T20:36:17.253Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-01--willow-run-videos - **Willow Run Videos (follow-up - 1. Albert Kahn Architectural Drawing Audit (Bentley Historical Library))**"
+category: "research"
+topic: "rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1"
+gap_id: "GAP-01--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:39:22.688Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/error-boundaries.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1.md","wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-follow-up-o.md"]
 ---
 
-# RFC: GAP-01--willow-run-videos - **Willow Run Videos (follow-up - 1. Official USAAF Serial Acceptance Logs (Settle the B-24 vs. B-17 Mismatch))**
+# RFC: GAP-01--willow-run-videos - **Willow Run Videos (follow-up - 1. Albert Kahn Architectural Drawing Audit (Bentley Historical Library))**
 
 ## 1. Problem Statement & Context
-**1. Official USAAF Serial Acceptance Logs (Settle the B-24 vs. B-17 Mismatch)**
+**1. Albert Kahn Architectural Drawing Audit (Bentley Historical Library)**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-willow-run-b-24-knock-down-kit** (`wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md`) [hybrid]:
-  >
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  >
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1** (`wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-follow-up-1.md`) [hybrid]:
+  > 
+- **rfc-gap-16-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
+  > 
+- **rfc-gap-08-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

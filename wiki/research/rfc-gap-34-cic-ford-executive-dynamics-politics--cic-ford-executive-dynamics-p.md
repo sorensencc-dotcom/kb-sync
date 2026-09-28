@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-34--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
-category: research
-topic: rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-34--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:18.521Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-34--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Cryptographic Integrity"
+category: "research"
+topic: "rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-34--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:14.123Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-108-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/historical-revocation-verification.md"]
 ---
 
-# RFC: GAP-34--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
+# RFC: GAP-34--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Cryptographic Integrity
 
 ## 1. Problem Statement & Context
-)**: **The Asserted Claim:** To counter the growing shadow authority of Harry Bennett’s Service Department, Sorensen allegedly attempted to recruit and deploy **John Gillespie** as an e
+)**: **Cryptographic Integrity:** Administrative protocols from Accession 42, Box 12 outline verification standards under the **Sigil Trust Engine**, where signatures generated before a
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-36-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-20-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  >
-- **rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-42--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics under-sourced - The Asserted Claim" category: "research" topic: "rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+- **rfc-gap-108-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-108-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

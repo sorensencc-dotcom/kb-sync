@@ -1,3 +1,9 @@
+---
+title: trm-drive-transport-adapter-spec
+category: research
+status: draft
+sourceRepository: kb-sync
+---
 # TRM Google Drive Transport Adapter Architecture & Operator Specification
 
 **Version:** 2.5  
@@ -18,7 +24,27 @@ The system enables zero-token, high-capacity mobile research workflows without c
 
 1. **Single Git Write Authority**: Git-tracked markdown files (`wiki/research/rfc-gap-*.md`, `trm-research-gaps.md`, and `wiki/Log.md`) are the sole canonical truth. Derived databases (SQLite, caches) are strictly secondary and downstream.
 2. **Inbound Status Invariant**: Remote agent findings arrive as candidate evidence (`provenance_type: remote_agent_finding`, `verification_status: inferred`, `not_primary_evidence: true`). Automated ingest pipelines never mark a research gap as `resolved`.
-3. **Frozen Identifier Pattern**: All gap identifiers must strictly match `^GAP-[0-9]{2,3}(-[A-Z0-9]+)?$` (e.g., `GAP-03-VIDEOS`, `GAP-00-FIXTURE`, `GAP-001-V2`, `GAP-000`).
+3. **Frozen Identifier Pattern**: All gap identifiers must strictly match `^GAP-[0-9]{2,3}(-[A-Z0-9]+)?# TRM Google Drive Transport Adapter Architecture & Operator Specification
+
+**Version:** 2.5  
+**Authority Reference:** Locked 2026-09-20 TRM Git Write Authority Model  
+**Module:** `kb-sync` (`scripts/trm-drive-common.mjs`, `scripts/trm-export-gaps.mjs`, `scripts/trm-ingest-drive.mjs`, `scripts/trm-review-queue.mjs`)
+
+---
+
+## 1. Executive Summary & Goals
+
+The TRM Google Drive Transport Adapter provides an asynchronous, out-of-band communication bridge between local knowledge-base orchestration and remote/mobile LLM research agents (such as Grok Mobile, DeepSearch, Microsoft 365 Copilot, and Copilot Chat).
+
+The system enables zero-token, high-capacity mobile research workflows without compromising repository integrity or bypassing strict Git-tracked provenance rules.
+
+---
+
+## 2. Core Architectural Invariants
+
+1. **Single Git Write Authority**: Git-tracked markdown files (`wiki/research/rfc-gap-*.md`, `trm-research-gaps.md`, and `wiki/Log.md`) are the sole canonical truth. Derived databases (SQLite, caches) are strictly secondary and downstream.
+2. **Inbound Status Invariant**: Remote agent findings arrive as candidate evidence (`provenance_type: remote_agent_finding`, `verification_status: inferred`, `not_primary_evidence: true`). Automated ingest pipelines never mark a research gap as `resolved`.
+3. **Frozen Identifier Pattern**: All gap identifiers must strictly match  (e.g., `GAP-03-VIDEOS`, `GAP-00-FIXTURE`, `GAP-001-V2`, `GAP-000`).
 4. **Delimited Finding Identity**: Finding IDs are cryptographically derived using the unit separator byte (`0x1f`):
    $$\text{finding\_id} = \text{SHA-256}(\text{gap\_id} \mathbin{\Vert} \mathtt{0x1f} \mathbin{\Vert} \text{canonical\_payload\_sha256})$$
    This prevents delimiter and prefix collision attacks across variable-length identifiers.
@@ -109,7 +135,6 @@ flowchart LR
    - **Path B (Unscheduled research drops)**: Mobile Grok operators run `drive-it` drops (`topic`, `status: drop`) directly into `mobile-inbox/`.
 3. **Ingest**: Local ingestion batches files, applies content-hash debounce (15s default), validates schemas and finding IDs, appends candidate evidence blocks to `wiki/research/rfc-{gap_id}.md` (Path A) or writes daily conversation files to `obsidian/vault/wiki/conversations/YYYY-MM-DD/<slug>.md` (Path B), logs audit records to `wiki/Log.md`, and archives processed artifacts to `04_archive/`.
 4. **Promotion**: Human reviewers evaluate candidate evidence using `node scripts/trm-review-queue.mjs` and promote verified findings via `trm-review-queue.mjs promote --gap=<GAP_ID> --finding=<FINDING_ID>`.
-
 
 ---
 

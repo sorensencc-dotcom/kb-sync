@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-23--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The High-Volume Imperative
+title: RFC: GAP-23--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - 6. Fire Control Systems Science & Biomechanical "Low-Pass Filters")**
 category: research
 topic: rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja
 gap_id: GAP-23--castironcharlie-facebook
 status: draft
-created_at: 2026-09-20T11:01:54.624Z
+created_at: 2026-09-25T10:38:57.741Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+citations: ["wiki/research/rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-21-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-23--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The High-Volume Imperative
+# RFC: GAP-23--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - 6. Fire Control Systems Science & Biomechanical "Low-Pass Filters")**
 
 ## 1. Problem Statement & Context
-)**: **The High-Volume Imperative:** Out of 250,000 aircraft produced nationwide by late 1943, only **23,000 first-line combat planes remained active worldwide** due to rapid combat los
+**6. Fire Control Systems Science & Biomechanical "Low-Pass Filters"**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-26-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+- **rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
   >
-- **rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+- **rfc-gap-21-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-21-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
   >
-- **rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  >
+- **rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
+  > --- title: "RFC: GAP-23--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - Fire Suppression and Parking Lot Patrols" category: "research" topic: "rfc-gap-23-castironcharlie-facebook--castironcharlie-facebook-adja" gap_id: "GAP-2
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

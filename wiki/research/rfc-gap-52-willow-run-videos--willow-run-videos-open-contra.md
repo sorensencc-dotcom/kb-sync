@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-52--willow-run-videos - **Willow Run Videos (open-contradictions - December 1942
-category: research
-topic: rfc-gap-52-willow-run-videos--willow-run-videos-open-contra
-gap_id: GAP-52--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:53:06.824Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-52--willow-run-videos - **Willow Run Videos (open-contradictions - Primary Verification"
+category: "research"
+topic: "rfc-gap-52-willow-run-videos--willow-run-videos-open-contra"
+gap_id: "GAP-52--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:40:23.955Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-119-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-71-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-99-willow-run-videos--willow-run-videos-open-contra.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-40-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md"]
 ---
 
-# RFC: GAP-52--willow-run-videos - **Willow Run Videos (open-contradictions - December 1942
+# RFC: GAP-52--willow-run-videos - **Willow Run Videos (open-contradictions - Primary Verification
 
 ## 1. Problem Statement & Context
-)**: **December 1942:** Other narratives describe late 1942 rollouts as rattling, crooked mechanical failures requiring extensive rework [25, 30].
+)**: **Primary Verification:** Sorensen's firsthand oral dictation records (*Accession 65*) and published memoirs confirm he stayed at the **Hotel del Coronado** and sketched the 11 maj
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-119-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-119-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
-- **rfc-gap-71-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-71-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
-- **rfc-gap-99-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-99-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
+- **rfc-gap-40-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-40-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
+  > 
+- **rfc-gap-76-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
+  > --- title: RFC: GAP-76--willow-run-videos - **Willow Run Videos open-contradictions - The Contradiction category: research topic: rfc-gap-76-willow-run-videos--willow-run-videos-open-contra gap_id: GAP-76--willow-run-videos status: draft created_at:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

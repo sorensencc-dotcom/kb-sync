@@ -1,5 +1,10 @@
+---
+title: rfc-gap-02
+category: research
+status: draft
+sourceRepository: kb-sync
+---
 # RFC: GAP-02
-
 
 ## Candidate Evidence: Remote Agent Finding (2026-09-22T19:08:53.313Z)
 <!-- finding_id: 1c3e383ac919fb96863148eb71ec5985560701f72a7a789cc21e3a91e6bd9d27 -->

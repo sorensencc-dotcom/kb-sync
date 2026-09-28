@@ -1,9 +1,10 @@
 ---
-title: "TrmPipeline.Test.Ts"
-category: "wiki"
-status: "active"
+title: TrmPipeline.Test.Ts
+category: wiki
+status: active
 draft: true
-created: "2026-09-04T01:06:57.863Z"
+created: 2026-09-04T01:06:57.863Z
+sourceRepository: kb-sync
 ---
 
 # TrmPipeline.Test.Ts

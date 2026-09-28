@@ -1,9 +1,10 @@
 ---
-title: "RfcGap76CastIronCharlieResearchLogsCastIronCharlieResearchLo"
-category: "wiki"
-status: "active"
+title: RfcGap76CastIronCharlieResearchLogsCastIronCharlieResearchLo
+category: wiki
+status: active
 draft: true
-created: "2026-09-19T20:48:53.803Z"
+created: 2026-09-19T20:48:53.803Z
+sourceRepository: kb-sync
 ---
 
 # RfcGap76CastIronCharlieResearchLogsCastIronCharlieResearchLo

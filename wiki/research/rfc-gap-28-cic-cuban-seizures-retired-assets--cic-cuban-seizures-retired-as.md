@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Actuarial Death Awards
-category: research
-topic: rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
-gap_id: GAP-28--cic-cuban-seizures-retired-assets
-status: draft
-created_at: 2026-09-20T11:10:16.831Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - FCSC Docket Misattributions"
+category: "research"
+topic: "rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
+gap_id: "GAP-28--cic-cuban-seizures-retired-assets"
+status: "draft"
+created_at: "2026-09-27T12:15:53.472Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-77-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-32-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Actuarial Death Awards
+# RFC: GAP-28--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - FCSC Docket Misattributions
 
 ## 1. Problem Statement & Context
-)**: **Actuarial Death Awards:** For wrongful death claims under Section 503(b) (such as the firing squad execution of *Robert Otis Fuller*), losses are measured **actuarially by expect
+)**: **FCSC Docket Misattributions:** Secondary briefs linked Sorensen's agricultural equity to FCSC claims **CU-3440** and **CU-5843** [8]. **Audit Finding:** CU-3440 is the claim of *
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  >
-- **rfc-gap-77-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-77-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  >
-- **rfc-gap-32-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-32-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: "RFC: GAP-32--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets adjacent-topics - Cuban Community Property Laws" category: "research" topic: "rfc-gap-32-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retire
+- **rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

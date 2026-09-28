@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action
-category: research
-topic: rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland
-gap_id: GAP-08--cic-post-war-willys-overland
-status: draft
-created_at: 2026-09-20T11:17:32.179Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Target Archival Action"
+category: "research"
+topic: "rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland"
+gap_id: "GAP-08--cic-post-war-willys-overland"
+status: "draft"
+created_at: "2026-09-27T12:37:39.780Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland.md","trm-research-gaps.md","wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
-# RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action
+# RFC: GAP-08--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Target Archival Action
 
 ## 1. Problem Statement & Context
-)**: **Action:** Obtain **Claim CU-2067** within the **Foreign Claims Settlement Commission (FCSC)** records at the Department of Justice / National Archives to establish verified docum
+)**: **Target Archival Action:** Retrieve case files under **Claim CU-2067** [8, 22] within the **Foreign Claims Settlement Commission (FCSC)** Cuba Claims database at the **U.S. Depart
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-08-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
+  > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
-- **rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: "RFC: GAP-26--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim" category: "research" topic: "rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland" gap_id: "GAP-26--cic-post-war-wi
+  > 
+- **rfc-gap-17-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: RFC: GAP-17--cic-daily-research - **CIC - Daily Research follow-up - The Target category: research topic: rfc-gap-17-cic-daily-research--cic-daily-research-follow-up gap_id: GAP-17--cic-daily-research status: draft created_at: 2026-09-19T2
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-24--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status
-category: research
-topic: rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland
-gap_id: GAP-24--cic-post-war-willys-overland
-status: draft
-created_at: 2026-09-20T11:17:40.427Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-24--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status"
+category: "research"
+topic: "rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland"
+gap_id: "GAP-24--cic-post-war-willys-overland"
+status: "draft"
+created_at: "2026-09-27T12:38:01.255Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-27-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-39-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-01.md","wiki/research/rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 ---
 
 # RFC: GAP-24--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - Status
 
 ## 1. Problem Statement & Context
-)**: **Status:** Day-to-day accounts of his meetings with Soviet economic minister Valery Mezhlauk remain under-corroborated because his unedited personal meeting logs and Amtorg tradin
+)**: **Status:** While Sorensen detailed this trip in his 1956 memoir (*My Forty Years with Ford*) [9, 10] and oral history interviews [223–228], day-to-day accounts of his meetings wit
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-27-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-27-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
-- **rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
-- **rfc-gap-39-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-39-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
+- **rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  > 
+- **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [lexical_only]:
+  > 
+- **rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
+  > --- title: RFC: GAP-75--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - Status category: research topic: rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-75--cic-post-war-willys-overl
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

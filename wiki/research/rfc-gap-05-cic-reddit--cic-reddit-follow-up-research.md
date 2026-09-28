@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-05--cic-reddit - **CIC-Reddit (follow-up - Research Strategy
-category: research
-topic: rfc-gap-05-cic-reddit--cic-reddit-follow-up-research
-gap_id: GAP-05--cic-reddit
-status: draft
-created_at: 2026-09-20T11:05:19.268Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-05--cic-reddit - **CIC-Reddit (follow-up - Research Target"
+category: "research"
+topic: "rfc-gap-05-cic-reddit--cic-reddit-follow-up-research"
+gap_id: "GAP-05--cic-reddit"
+status: "draft"
+created_at: "2026-09-27T12:09:10.197Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-research.md","wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-the-rese.md","wiki/research/rfc-gap-09-cic-reddit--cic-reddit-follow-up-research.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-target.md","wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-research.md","wiki/research/rfc-gap-77-cic-reddit--cic-reddit-open-contradiction.md"]
 ---
 
-# RFC: GAP-05--cic-reddit - **CIC-Reddit (follow-up - Research Strategy
+# RFC: GAP-05--cic-reddit - **CIC-Reddit (follow-up - Research Target
 
 ## 1. Problem Statement & Context
-)**: **Research Strategy:** Investigating **receiving logs, production diaries, and manager correspondence at the Fort Worth and Tulsa assembly plants** [16] would document how traditio
+)**: **Research Target:** Trace material control systems and subassembly shipments for the verified split of **6,792 completed B-24s + 1,893 KD kits** delivered to Consolidated Aircraft
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
+- **rfc-gap-05-cic-reddit--cic-reddit-follow-up-target** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-target.md`) [hybrid]:
+  > 
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-research.md`) [hybrid]:
-  >
-- **rfc-gap-04-cic-reddit--cic-reddit-follow-up-the-rese** (`wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-the-rese.md`) [hybrid]:
-  >
-- **rfc-gap-09-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-09-cic-reddit--cic-reddit-follow-up-research.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-77-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-77-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

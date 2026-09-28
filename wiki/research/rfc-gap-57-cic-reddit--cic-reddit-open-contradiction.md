@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-57--cic-reddit - **CIC-Reddit (open-contradictions - Post-War Property Tax Avoidance
-category: research
-topic: rfc-gap-57-cic-reddit--cic-reddit-open-contradiction
-gap_id: GAP-57--cic-reddit
-status: draft
-created_at: 2026-09-19T21:26:40.043Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-57--cic-reddit - **CIC-Reddit (open-contradictions - Secondary & Reference Counts"
+category: "research"
+topic: "rfc-gap-57-cic-reddit--cic-reddit-open-contradiction"
+gap_id: "GAP-57--cic-reddit"
+status: "draft"
+created_at: "2026-09-27T12:09:56.942Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-conf.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-57-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-78-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-08.md"]
 ---
 
-# RFC: GAP-57--cic-reddit - **CIC-Reddit (open-contradictions - Post-War Property Tax Avoidance
+# RFC: GAP-57--cic-reddit - **CIC-Reddit (open-contradictions - Secondary & Reference Counts
 
 ## 1. Problem Statement & Context
-)**: **Post-War Property Tax Avoidance:** *Willow Run - Images of Aviation* records that plant construction manager **Harry Hanson** turned the line 90 degrees south at Frame 141 specif
+)**: **Secondary & Reference Counts:** Wikipedia records **6,972 complete aircraft** alongside the 1,893 KD kits [12], while other wartime summaries and documentary references report **
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-conf** (`wiki/research/rfc-gap-02-cic-reddit--cic-reddit-follow-up-the-conf.md`) [lexical_only]:
-  >
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
-  > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
+- **rfc-gap-57-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-57-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-78-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-78-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-44--willow-run-videos - **Willow Run Videos (open-contradictions - The Consensus
+title: RFC: GAP-44--willow-run-videos - **Willow Run Videos (open-contradictions - May 17, 1942
 category: research
 topic: rfc-gap-44-willow-run-videos--willow-run-videos-open-contra
 gap_id: GAP-44--willow-run-videos
 status: draft
-created_at: 2026-09-20T10:53:04.946Z
+created_at: 2026-09-26T13:10:11.762Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-60-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc.md"]
+citations: ["wiki/research/rfc-gap-55-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-117-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-97-willow-run-videos--willow-run-videos-open-contra.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-44--willow-run-videos - **Willow Run Videos (open-contradictions - The Consensus
+# RFC: GAP-44--willow-run-videos - **Willow Run Videos (open-contradictions - May 17, 1942
 
 ## 1. Problem Statement & Context
-)**: **The Consensus:** Primary production logs, War Production Board summaries, and all other video scripts flatly contradict this error, confirming Willow Run manufactured the **Conso
+)**: **May 17, 1942:** One script claims an early rollout was flatly rejected by Army inspectors after documenting **1,847 separate defects** [34, 39-45].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-52-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-55-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-55-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-60-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-60-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-117-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-117-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
+- **rfc-gap-97-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-97-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

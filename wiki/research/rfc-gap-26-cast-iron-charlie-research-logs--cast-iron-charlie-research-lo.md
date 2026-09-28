@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Nominee Theory)**
+title: RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Single Trade Citation
 category: research
 topic: rfc-gap-26-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-26--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:33.312Z
+created_at: 2026-09-23T12:18:29.948Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-77-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Nominee Theory)**
+# RFC: GAP-26--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Single Trade Citation
 
 ## 1. Problem Statement & Context
-**The Nominee Theory**: Official filings show that Claim **CU-2067** (pertaining to stock in *Compania Litografica de la Habana, S.A.* / Havana Lithographing Company) is registered
+)**: **Single Trade Citation:** The assertion that Sorensen remained on the Willys-Overland payroll into the 1950s (retaining the vice-chairmanship) after stepping down as an active exe
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-77-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-77-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

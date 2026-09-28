@@ -1,7 +1,8 @@
 ---
-title: "Fail-Soft Orchestration"
-category: "wiki"
-status: "active"
+title: Fail-Soft Orchestration
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Fail-Soft Orchestration

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-39--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unverified Holding Structures & Early Ties
+title: RFC: GAP-39--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 5. Studebaker Episode & Unexamined Primary Archives)**
 category: research
 topic: rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-39--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.272Z
+created_at: 2026-09-23T12:18:40.968Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-108-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-91-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-74-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-57-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-59-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-39--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unverified Holding Structures & Early Ties
+# RFC: GAP-39--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 5. Studebaker Episode & Unexamined Primary Archives)**
 
 ## 1. Problem Statement & Context
-)**: **Unverified Holding Structures & Early Ties:** It remains unresolved whether the physical land was incorporated under the entity **"CESOR S.A."**, registered under specific estate
+**5. Studebaker Episode & Unexamined Primary Archives**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-108-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-108-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-57-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-57-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-91-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-91-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-74-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-74-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-59-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-59-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

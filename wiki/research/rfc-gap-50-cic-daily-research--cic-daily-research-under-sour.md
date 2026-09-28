@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-50--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
+title: RFC: GAP-50--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
 category: research
 topic: rfc-gap-50-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-50--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:50:37.108Z
+created_at: 2026-09-22T13:44:58.112Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-43-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-50--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
+# RFC: GAP-50--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **The Refutation:** Sorensen's unedited Accession 65 dictations refute this as a legal fiction [21, 23-25]. Sorensen documents that Ferguson was **"not a graduate engineer," had "n
+)**: **The Claim:** In his 1956 memoir *My Forty Years with Ford*, Charles E. Sorensen asserts that he personally conceived the moving final assembly line during a Sunday trial at Pique
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-03-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-11-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-11--cic-daily-research" status: "draft" created_at: "2
-- **rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-21-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-43-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-43-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+  >
+- **rfc-gap-28-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

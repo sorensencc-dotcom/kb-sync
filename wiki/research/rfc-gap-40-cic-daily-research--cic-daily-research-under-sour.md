@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-40--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
+title: RFC: GAP-40--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
 category: research
 topic: rfc-gap-40-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-40--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:50:16.251Z
+created_at: 2026-09-21T12:37:37.224Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/concepts/fail-soft-orchestration.md","wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-15-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-85-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-60-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-40--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
+# RFC: GAP-40--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** A 1974 *Automobile Quarterly* article by Mike Mueller asserts that engineers **Lew Walters and Bob Heime** were secret design contributors to the 1932 Ford Flathead
+)**: **The Refutation:** War Production Board and Ford plant records confirm that Willow Run produced **8,685 B-24 Liberators** (6,792 complete aircraft plus 1,893 knock-down kits) and
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-15-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-15-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **fail-soft-orchestration** (`wiki/concepts/fail-soft-orchestration.md`) [lexical_only]:
+- **rfc-gap-85-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-85-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-01--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Cuban Seizures & Retired Assets follow-up** category: research topic: rfc-gap-01--cic-cuban-seizures-retired-as gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.520Z expansion_method: heuristic retrieval_m
+- **rfc-gap-60-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-60-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

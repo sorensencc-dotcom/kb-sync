@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-09--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:25.769Z
+created_at: 2026-09-25T10:33:36.226Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/the-henry-ford-sorensen-photographic-accessions.md","wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-09--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up - Winston Churchill & Henry Morgenthau Jr.)**: **Winston Churchill & Henry Morgenthau Jr.**: Locating official itineraries, secret service logs, and Treasury records will corroborate Churchill's plant tour (Photo 76901) [1, 2]
+Industrial Giants at Willow Run (open-contradictions - Series Labeling Conflation)**: **Series Labeling Conflation**: Secondary literature frequently conflates manuscript collection **Acc. 38** (Charles E. Sorensen Office Files) with the **64.167** photograph access
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [lexical_only]:
   >
-- **rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  >
+- **rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
+  > --- title: "RFC: GAP-19--the-sorensen-photographic-archive - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc" gap_id: "GAP-19--the-sorensen-photographic-arc
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

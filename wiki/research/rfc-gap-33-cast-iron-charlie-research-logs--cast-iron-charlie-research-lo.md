@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-33--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Contested Date of Death)**
+title: RFC: GAP-33--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unretrieved Marriage & Press Records)**
 category: research
 topic: rfc-gap-33-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-33--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.113Z
+created_at: 2026-09-23T12:18:34.389Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-86-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-40-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-33--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Contested Date of Death)**
+# RFC: GAP-33--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unretrieved Marriage & Press Records)**
 
 ## 1. Problem Statement & Context
-**Contested Date of Death**: Wikipedia and secondary published biographies list Sorensen's date of death as **August 28, 1968** [1, 10]. In contrast, Find A Grave entries, cemetery
+**Unretrieved Marriage & Press Records**: Sorensen married **Edith Thompson Montgomery** on **January 16, 1960**, in Palm Beach, Florida [2, 3]. While confirmed by newspaper weddin
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-86-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-86-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-40-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-40-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
+- **rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
+  > --- title: RFC: GAP-106--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - FOIA Denials vs. Seizure Narrative category: research topic: rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-58--cic-daily-research - **CIC - Daily Research (under-sourced - 7.)**
+title: RFC: GAP-58--cic-daily-research - **CIC - Daily Research (under-sourced - Emigration Year & Age
 category: research
 topic: rfc-gap-58-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-58--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:50:55.599Z
+created_at: 2026-09-22T13:45:00.800Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-10-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-03--cic-daily-research-under-sour.md"]
+citations: ["wiki/research/rfc-gap-36-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-55-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-58--cic-daily-research - **CIC - Daily Research (under-sourced - 7.)**
+# RFC: GAP-58--cic-daily-research - **CIC - Daily Research (under-sourced - Emigration Year & Age
 
 ## 1. Problem Statement & Context
-7. B-17 Flying Fortress Production at Willow Run
+)**: **Emigration Year & Age:** Secondary sources cite conflicting arrival years: **1883** (making him two years old) in publisher author bios, **1885** (age four) in BFRC Accession 38
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
+- **rfc-gap-36-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-36-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-10-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-10-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--cic-daily-research - **CIC - Daily Research follow-up - 4.**" category: "research" topic: "rfc-gap-10-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-10--cic-daily-research" status: "draft" created_at: "2026-09
-- **rfc-gap-03--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03--cic-daily-research-under-sour.md`) [lexical_only]:
+- **rfc-gap-11-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+  >
+- **rfc-gap-55-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-55-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

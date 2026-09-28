@@ -1,28 +1,28 @@
 ---
-title: RFC: GAP-13--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
+title: RFC: GAP-13--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective)**
 category: research
 topic: rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll
 gap_id: GAP-13--castironcharlie-facebook
 status: draft
-created_at: 2026-09-20T11:01:47.837Z
+created_at: 2026-09-21T12:51:55.131Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-11-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-40-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["wiki/research/rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-40-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-13--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
+# RFC: GAP-13--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective)**
 
 ## 1. Problem Statement & Context
-)**: **Research Objective:** Inspect Custom House sales and licensing registers to verify whether the 33-foot Hacker runabout *Evangeline* was titled under Ford Motor Company corporate
+**Research Objective**: Inspect Custom House sales and licensing registers to verify whether the 33-foot Hacker runabout *Evangeline* was titled under Ford Motor Company corporate
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-11-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-11-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
-  >
 - **rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+  >
+- **rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
   >
 - **rfc-gap-40-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-40-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
   >

@@ -1,7 +1,8 @@
 ---
-title: "Local SQLite Context Cache"
-category: "wiki"
-status: "active"
+title: Local SQLite Context Cache
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Local SQLite Context Cache

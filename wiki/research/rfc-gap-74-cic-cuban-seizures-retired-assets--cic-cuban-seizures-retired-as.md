@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-74--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Warren and Arthur Smadbeck, Inc. (Varadero Beach Real Estate — Claim CU-2465)
+title: RFC: GAP-74--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Prospective Film Rentals & Management Fees
 category: research
 topic: rfc-gap-74-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-74--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-19T20:58:03.036Z
+created_at: 2026-09-22T13:45:07.182Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","trm-research-gaps.md","wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-43-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-98-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-44-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-74--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Warren and Arthur Smadbeck, Inc. (Varadero Beach Real Estate — Claim CU-2465)
+# RFC: GAP-74--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Prospective Film Rentals & Management Fees
 
 ## 1. Problem Statement & Context
-)**: **Warren and Arthur Smadbeck, Inc. (Varadero Beach Real Estate — Claim CU-2465):** Smadbeck claimed **\$70,600.00** for Havana apartments and Varadero Beach lots based merely on "b
+)**: **Prospective Film Rentals & Management Fees:** In *Twentieth Century-Fox Film Corporation* (Claim CU-2114) and *Intercontinental Hotels Corporation* (Claim CU-2521), claims for pr
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **rfc-gap-43-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-43-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-98-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-98-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-44-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-44-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

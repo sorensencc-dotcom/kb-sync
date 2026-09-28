@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Target Facilities
-category: research
-topic: rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-23--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:12.246Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Battle of the Overpass"
+category: "research"
+topic: "rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-23--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:43:49.917Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-99-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-97-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-93-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Target Facilities
+# RFC: GAP-23--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Battle of the Overpass
 
 ## 1. Problem Statement & Context
-)**: **Target Facilities:** Restitution covered wartime damage and asset controls over assembly plant machinery and parts depots in **Poissy, France (Ford SAF)** and **Antwerp, Belgium*
+)**: **The Battle of the Overpass:** On **May 26, 1937**, Service Department agents violently assaulted UAW organizers Walter Reuther and Richard Frankensteen on Bridge 4 outside Gate 4
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-23-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-99-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-99-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-97-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-97-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-93-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-93-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

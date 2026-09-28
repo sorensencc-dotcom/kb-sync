@@ -1,7 +1,8 @@
 ---
-title: "Daily Synthesis Log: AI-Ideas — 2026-09-20"
-category: "wiki"
-status: "active"
+title: Daily Synthesis Log: AI-Ideas — 2026-09-20
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Daily Synthesis Log: AI-Ideas — 2026-09-20
@@ -35,7 +36,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-20. Gro
 ### **1. The "Interactive Web Rebuild" Tripwire Offer**
 * **The Concept:** Instead of cold-pitching generic AI services, use visual AI c...
 - **Q:** Compare it against my echo system
-  **Finding:** Comparing the **Fractional CAIO / AI Business ideas** against your **Ecosystem Architecture Guide** reveals that you already possess a huge unfair advantage [1, 2]. 
+  **Finding:** Comparing the **Fractional CAIO / AI Business ideas** against your **Ecosystem Architecture Guide** reveals that you already possess a huge unfair advantage [1, 2].
 
 While typical AI agencies rely on expensive third-party SaaS, messy Zapier webs, or raw API calls that blow through token budgets, yo...
 - **Q:** Tell me about what I just added
@@ -57,7 +58,7 @@ In your current **Ecosystem Architecture**, IronLedger is focused on Phase 15 In
 
 ## Unresolved questions & open contradictions
 - What is a fractional al officer model: Setting up a **Fractional Chief AI Officer (CAIO)** model involves building a high-value B2B advisory and implementation service [1, 2]. Rather than selling one-off chatbots or generic software, you s...
-- Compare it against my echo system: Comparing the **Fractional CAIO / AI Business ideas** against your **Ecosystem Architecture Guide** reveals that you already possess a huge unfair advantage [1, 2]. 
+- Compare it against my echo system: Comparing the **Fractional CAIO / AI Business ideas** against your **Ecosystem Architecture Guide** reveals that you already possess a huge unfair advantage [1, 2].
 
 While typical AI agencies rely on...
 - Anything good in this book: Ethan Mollick’s ***Co-Intelligence: Living and Working with AI*** [1] is one of the most practical playbooks available for working alongside Large Language Models. Rather than treating AI as tradition...

@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-26--willow-run-videos - **Willow Run Videos (adjacent-topics - The "Flying Coffin" Legacy
-category: research
-topic: rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to
-gap_id: GAP-26--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:53:01.130Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-26--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike"
+category: "research"
+topic: "rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to"
+gap_id: "GAP-26--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:39:35.574Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-follow-up-i.md","wiki/research/rfc-gap-63-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-25-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md"]
 ---
 
-# RFC: GAP-26--willow-run-videos - **Willow Run Videos (adjacent-topics - The "Flying Coffin" Legacy
+# RFC: GAP-26--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
 
 ## 1. Problem Statement & Context
-)**: **The "Flying Coffin" Legacy:** The B-24 Liberator carried a dark reputation among crews as a **"flying coffin"** because its flat bomb bay doors would crush the fuselage if forced
+)**: **The June 1943 Packard Strike:** Racial tension in the region peaked when **25,000 white workers walked off the line at the Packard plant** (which built B-24 and P-51 engines) to
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-35-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
-- **rfc-gap-03-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-follow-up-i.md`) [lexical_only]:
-  >
-- **rfc-gap-63-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-63-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: "RFC: GAP-63--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland adjacent-topics - Beyond the December 1963 LCMV concept, the sour...**" category: "research" topic: "rfc-gap-63-cic-post-war-willys-overland--cic-post-war-will
+- **rfc-gap-25-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-25-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,15 +1,14 @@
 ---
-title: RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Automotive Reconversion
-category: research
-topic: rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
-gap_id: GAP-13--cic-willow-run-aviation-engineering
-status: draft
-created_at: 2026-09-20T11:13:38.272Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Automotive Reconversion"
+category: "research"
+topic: "rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
+gap_id: "GAP-13--cic-willow-run-aviation-engineering"
+status: "draft"
+created_at: "2026-09-27T12:29:52.605Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md"]
 ---
 
 # RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Automotive Reconversion
@@ -20,12 +19,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
-- **rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-17-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  >
-- **rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: "RFC: GAP-18--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - The Limited-Access Solution" category: "research" topic: "rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviati
+- **rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
+- **rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
+  > --- title: RFC: GAP-57--willow-run-videos - **Willow Run Videos under-sourced - The Claim category: research topic: rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-57--willow-run-videos status: draft created_at: 2026-09-19T20:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

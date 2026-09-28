@@ -1,7 +1,8 @@
 ---
-title: "kb-sync Core Module"
-category: "wiki"
-status: "active"
+title: kb-sync Core Module
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # kb-sync Core Module

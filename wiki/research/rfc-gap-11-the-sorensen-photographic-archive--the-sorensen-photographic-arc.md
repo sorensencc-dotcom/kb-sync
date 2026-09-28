@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-11--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:29.926Z
+created_at: 2026-09-25T10:33:36.694Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-33-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-24-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-11--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up - The "GPD Inc" Mystery)**: **The "GPD Inc" Mystery**: Photo 76926 lists "GPD Inc Lindbergh" [2]. Defining this acronym will clarify how Charles Lindbergh's private technical consultancy and flight-testing du
+Industrial Giants at Willow Run (open-contradictions - Limits of Visual Evidence)**: **Limits of Visual Evidence**: Photographs prove physical presence rather than operational authority [13]. While photos keep Sorensen visually central through late 1943 (such as ne
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **rfc-gap-33-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-33-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
-  > --- title: "RFC: GAP-08--the-sorensen-photographic-archive - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc" gap_id: "GAP-08--the-sorensen-photographic-arc
+- **rfc-gap-24-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-24-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-44--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Complicity in Edsel Ford's Strain
+title: RFC: GAP-44--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Second Marriage Record)**
 category: research
 topic: rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-44--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.667Z
+created_at: 2026-09-22T13:56:03.536Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-113-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-96-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-44--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Complicity in Edsel Ford's Strain
+# RFC: GAP-44--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Second Marriage Record)**
 
 ## 1. Problem Statement & Context
-)**: **Complicity in Edsel Ford's Strain:** Although Sorensen portrayed himself in his memoir as Edsel Ford's defender against Henry Ford and Harry Bennett [30-32], reviewers like H. L.
+**Second Marriage Record**: Sorensen married **Edith Thompson Montgomery** on **January 16, 1960**, in Palm Beach, Florida [2], but an official Florida marriage certificate image/p
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-113-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-113-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-96-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-96-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

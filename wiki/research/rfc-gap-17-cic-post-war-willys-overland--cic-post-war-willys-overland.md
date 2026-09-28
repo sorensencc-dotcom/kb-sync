@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-17--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Contradiction
-category: research
-topic: rfc-gap-17-cic-post-war-willys-overland--cic-post-war-willys-overland
-gap_id: GAP-17--cic-post-war-willys-overland
-status: draft
-created_at: 2026-09-20T11:17:40.238Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-17--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Contradiction"
+category: "research"
+topic: "rfc-gap-17-cic-post-war-willys-overland--cic-post-war-willys-overland"
+gap_id: "GAP-17--cic-post-war-willys-overland"
+status: "draft"
+created_at: "2026-09-27T12:37:56.817Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-65-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-83-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-31-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-83-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-19-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 ---
 
 # RFC: GAP-17--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Contradiction
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** One foundational dossier asserts that Sorensen hosted the national **July 18, 1945 "Jeep Day"** press demonstration debuting the civilian Jeep (CJ-2A) at **C
+)**: **The Contradiction:** One foundational research dossier asserts that Charles E. Sorensen hosted the national **July 18, 1945 "Jeep Day"** press demonstration debuting the civilian
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-65-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-65-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
+- **rfc-gap-31-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-31-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  > 
 - **rfc-gap-83-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-83-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
-- **rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: "RFC: GAP-20--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Contradiction" category: "research" topic: "rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland" gap_id: "GAP-20--cic-pos
+  > 
+- **rfc-gap-19-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-19-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

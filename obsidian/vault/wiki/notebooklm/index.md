@@ -1,7 +1,8 @@
 ---
-title: "notebooklm Integration"
-category: "wiki"
-status: "active"
+title: notebooklm Integration
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # notebooklm Integration

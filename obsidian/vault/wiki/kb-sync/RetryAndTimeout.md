@@ -1,11 +1,12 @@
 ---
-title: "Retry and Timeout Strategy"
-category: "utilities"
-status: "active"
-type: "infrastructure"
-source_path: "_kb-sync-staging/kb-sync/20260725-213400"
-last_ingest_date: "2026-07-25"
+title: Retry and Timeout Strategy
+category: utilities
+status: active
+type: infrastructure
+source_path: _kb-sync-staging/kb-sync/20260725-213400
+last_ingest_date: 2026-07-25
 tags: ["reliability", "resilience", "automation", "error-handling"]
+sourceRepository: kb-sync
 ---
 
 # Retry and Timeout Strategy

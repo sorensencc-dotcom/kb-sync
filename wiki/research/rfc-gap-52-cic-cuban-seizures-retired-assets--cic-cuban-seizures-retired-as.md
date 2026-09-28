@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-52--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Intangibles & Secret Formulas
+title: RFC: GAP-52--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Wrongful Death Awards
 category: research
 topic: rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-52--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-20T11:10:28.490Z
+created_at: 2026-09-26T13:43:01.154Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-110-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-130-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-51-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-37-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-52--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Intangibles & Secret Formulas
+# RFC: GAP-52--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Wrongful Death Awards
 
 ## 1. Problem Statement & Context
-)**: **Intangibles & Secret Formulas:** In *The Coca-Cola Company* (Claim CU-1743), capitalizing average net earnings at 10x produced \$7,724,320.00—which was less than the value of phy
+)**: **Wrongful Death Awards:** In ***Jennie M. Fuller et al.*** (Claim CU-2803), wrongful death losses resulting from the firing squad execution of Robert Otis Fuller were certified ac
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-110-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-110-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-51-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-51-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-130-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-130-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-37-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-37-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

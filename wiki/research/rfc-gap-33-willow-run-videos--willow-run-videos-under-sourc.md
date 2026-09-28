@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-33--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
-category: research
-topic: rfc-gap-33-willow-run-videos--willow-run-videos-under-sourc
-gap_id: GAP-33--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:53:03.015Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-33--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality"
+category: "research"
+topic: "rfc-gap-33-willow-run-videos--willow-run-videos-under-sourc"
+gap_id: "GAP-33--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:39:46.801Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-44-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-78-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-58-willow-run-videos--willow-run-videos-under-sourc.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc.md"]
 ---
 
 # RFC: GAP-33--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
 
 ## 1. Problem Statement & Context
-)**: **Historical Reality:** This high-stakes personal drama is single-sourced to Charles E. Sorensen's memoir (*My Forty Years with Henry Ford*) as a private, first-person recollection
+)**: **Historical Reality:** This assertion is single-sourced to a single video script [2, 3]. Production ledgers, War Production Board summaries, and all other sources confirm that Wil
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-44-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-44-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  >
-- **rfc-gap-78-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-78-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  >
-- **rfc-gap-58-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-58-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  >
+- **rfc-gap-21-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
+- **rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
+- **rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

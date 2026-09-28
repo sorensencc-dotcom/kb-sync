@@ -1,15 +1,14 @@
 ---
-title: RFC: GAP-34--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Contradictory Memoirs
-category: research
-topic: rfc-gap-34-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
-gap_id: GAP-34--cic-willow-run-aviation-engineering
-status: draft
-created_at: 2026-09-20T11:13:55.567Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-34--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Contradictory Memoirs"
+category: "research"
+topic: "rfc-gap-34-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
+gap_id: "GAP-34--cic-willow-run-aviation-engineering"
+status: "draft"
+created_at: "2026-09-27T12:31:55.785Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-35-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-72-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-89-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-89-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-34-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-105-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 ---
 
 # RFC: GAP-34--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - Contradictory Memoirs
@@ -20,12 +19,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-35-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-35-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
-- **rfc-gap-72-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-72-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
 - **rfc-gap-89-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-89-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
+  > 
+- **rfc-gap-34-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-34-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  > 
+- **rfc-gap-105-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-105-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

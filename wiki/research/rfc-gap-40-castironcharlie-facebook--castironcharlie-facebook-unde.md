@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-40--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - Logan Miller's Solo San Diego Tooling Study)**
+title: RFC: GAP-40--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - The Source Deficit
 category: research
 topic: rfc-gap-40-castironcharlie-facebook--castironcharlie-facebook-unde
 gap_id: GAP-40--castironcharlie-facebook
 status: draft
-created_at: 2026-09-19T21:18:03.297Z
+created_at: 2026-09-25T10:39:34.613Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md","docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md"]
+citations: ["wiki/research/rfc-gap-39-castironcharlie-facebook--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-open.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-40--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - Logan Miller's Solo San Diego Tooling Study)**
+# RFC: GAP-40--castironcharlie-facebook - **CastIronCharlie-Facebook (under-sourced - The Source Deficit
 
 ## 1. Problem Statement & Context
-**Logan Miller's Solo San Diego Tooling Study**: Descriptions of Ford engineer Logan Miller spending several months on Consolidated Aircraft's assembly floor in San Diego making fr
+)**: **The Source Deficit:** This claim is based on **local Warrendale community memory and oral tradition** [13, 14]. Formal federal USO charters or civilian leases confirming it was a
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
+- **rfc-gap-39-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-39-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [hybrid]:
   >
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
-- **rfc-gap-02--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-02--castironcharlie-facebook-adja.md`) [lexical_only]:
+- **rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [hybrid]:
+  >
+- **rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

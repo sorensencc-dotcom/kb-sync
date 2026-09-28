@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-06--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action
-category: research
-topic: rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland
-gap_id: GAP-06--cic-post-war-willys-overland
-status: draft
-created_at: 2026-09-20T11:17:27.998Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-06--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Target Archival Action"
+category: "research"
+topic: "rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland"
+gap_id: "GAP-06--cic-post-war-willys-overland"
+status: "draft"
+created_at: "2026-09-27T12:37:20.899Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-12-cic-post-war-willys-overland--cic-post-war-willys-overland.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
 ---
 
-# RFC: GAP-06--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Action
+# RFC: GAP-06--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (follow-up - Target Archival Action
 
 ## 1. Problem Statement & Context
-)**: **Action:** Inspect **Accession 65, Box 66-4** at the Benson Ford Research Center to review Sorensen's unedited meeting logs and Amtorg Trading Corporation transcripts detailing hi
+)**: **Target Archival Action:** Inspect **Accession 65, Box 66-4** (*Sorensen Soviet Negotiations / GAZ*) at the **Benson Ford Research Center** [8, 14, 15] to review Sorensen's unedit
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
+  > 
 - **rfc-gap-12-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-12-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
+  > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  >
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

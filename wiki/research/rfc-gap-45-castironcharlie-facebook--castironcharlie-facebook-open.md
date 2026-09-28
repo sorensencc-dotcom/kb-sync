@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Contradiction)**
+title: RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - Henry Ford's Secret River Route
 category: research
 topic: rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-open
 gap_id: GAP-45--castironcharlie-facebook
 status: draft
-created_at: 2026-09-19T21:18:14.895Z
+created_at: 2026-09-26T13:31:29.615Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","trm-research-gaps.md","wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md"]
+citations: ["wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-unde.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Contradiction)**
+# RFC: GAP-45--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - Henry Ford's Secret River Route
 
 ## 1. Problem Statement & Context
-**The Contradiction**: Production chief Charles Sorensen operated under a monocratic **"get it started" / "act first, plan later" doctrine**, believing engineers should be forced t
+)**: **Henry Ford's Secret River Route:** Henry Ford's secret upstream electric boat trips along the Rouge River from Fairlane to the Dahlinger estate rely on **John Dahlinger's memoir*
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04--castironcharlie-facebook-open** (`wiki/research/rfc-gap-04--castironcharlie-facebook-open.md`) [hybrid]:
+- **rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-open.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-open.md`) [hybrid]:
   >
-- **rfc-gap-04--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-04--cic-reddit-open-contradiction.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **CIC-Reddit open-contradictions** category: research topic: rfc-gap-04--cic-reddit-open-contradiction gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:52.704Z expansion_method: heuristic retrieval_mode: hybrid-rrf a
+- **rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

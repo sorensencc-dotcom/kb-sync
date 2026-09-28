@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-48--cic-daily-research - **CIC - Daily Research (under-sourced - 4.)**
+title: RFC: GAP-48--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
 category: research
 topic: rfc-gap-48-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-48--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:50:32.819Z
+created_at: 2026-09-22T13:44:57.989Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-10-cic-daily-research--cic-daily-research-follow-up.md"]
+citations: ["wiki/research/rfc-gap-65-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-open-contr.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-48--cic-daily-research - **CIC - Daily Research (under-sourced - 4.)**
+# RFC: GAP-48--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-4. Harry Ferguson's "Final Control" Over Ford Tractor Production
+)**: **The Claim:** A 1974 *Automobile Quarterly* article by Mike Mueller asserts that engineers **Lew Walters and Bob Heime** were secret design contributors to the 1932 Ford Flathead
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
+- **rfc-gap-65-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-65-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
+- **rfc-gap-26-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
-- **rfc-gap-10-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-10-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--cic-daily-research - **CIC - Daily Research follow-up - 4.**" category: "research" topic: "rfc-gap-10-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-10--cic-daily-research" status: "draft" created_at: "2026-09
+- **rfc-gap-53-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
+  > --- title: RFC: GAP-53--cic-daily-research - **CIC - Daily Research open-contradictions - The Contradiction category: research topic: rfc-gap-53-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-53--cic-daily-research status: draft create
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

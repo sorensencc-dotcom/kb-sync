@@ -1,7 +1,8 @@
 ---
-title: "Wiki Lint Rules"
-category: "sync-tools"
-status: "active"
+title: Wiki Lint Rules
+category: sync-tools
+status: active
+sourceRepository: kb-sync
 ---
 
 # Wiki Lint Rules

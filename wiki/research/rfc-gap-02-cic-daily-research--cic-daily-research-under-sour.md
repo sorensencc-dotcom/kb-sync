@@ -4,11 +4,11 @@ category: research
 topic: rfc-gap-02-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-02--cic-daily-research
 status: draft
-created_at: 2026-09-20T10:49:34.973Z
+created_at: 2026-09-24T11:49:14.304Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-41-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-66-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-54-cic-daily-research--cic-daily-research-open-contr.md"]
+citations: ["wiki/research/rfc-gap-41-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-27-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-49-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
@@ -22,9 +22,9 @@ The following related context nodes were retrieved from the local knowledge base
 
 - **rfc-gap-41-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-41-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-66-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-66-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+- **rfc-gap-27-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-27-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
-- **rfc-gap-54-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-54-cic-daily-research--cic-daily-research-open-contr.md`) [lexical_only]:
+- **rfc-gap-49-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-49-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

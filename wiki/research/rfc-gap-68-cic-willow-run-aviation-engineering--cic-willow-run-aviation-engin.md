@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Inkster Secession Attempt (1943)
+title: RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Next Research Target
 category: research
 topic: rfc-gap-68-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-68--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:06:04.140Z
+created_at: 2026-09-21T13:07:10.763Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-06-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Inkster Secession Attempt (1943)
+# RFC: GAP-68--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Next Research Target
 
 ## 1. Problem Statement & Context
-)**: **The Inkster Secession Attempt (1943):** Fearing that the growing Black population in federal war housing (Carver Homes) would win political control of Inkster, white residents pe
+)**: **Next Research Target:** Cross-reference **Ford Transportation Archives Accession 390** with **NARA RG 156** (Ordnance Procurement Files) and **WPB Form 124** to locate original b
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece** (`wiki/research/rfc-gap-15-cic-kb--cic-kb-adjacent-topics-2-dece.md`) [lexical_only]:
+- **rfc-gap-06-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-06-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+  >
+- **rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

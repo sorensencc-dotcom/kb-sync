@@ -1,7 +1,8 @@
 ---
-title: "Deterministic Sync Pipeline"
-category: "wiki"
-status: "active"
+title: Deterministic Sync Pipeline
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Deterministic Sync Pipeline

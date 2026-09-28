@@ -4,27 +4,27 @@ category: research
 topic: rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-23--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T21:11:23.916Z
+created_at: 2026-09-24T12:03:18.085Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-22-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-32-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-37-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-23--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions - "Kanglet")**: **"Kanglet"**: Listed in catalog entry 76901 alongside Henry Ford ("HF1"), Edsel Ford, Charles Sorensen, and British Prime Minister Winston Churchill at Willow Run ("WR") [2].
+Industrial Giants at Willow Run (open-contradictions - Primary Defect ("Squawk") Data)**: **Primary Defect ("Squawk") Data**: Narrative accounts record average defect counts dropping from up to 800 per aircraft early on down to fewer than 10 by May 1945 [9, 10], but an
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-32-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-32-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-22-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-22-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-37-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-37-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

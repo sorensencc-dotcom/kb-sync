@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-51--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Sorensen's Depiction
-category: research
-topic: rfc-gap-51-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-51--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:28.813Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-51--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Executive Alliance"
+category: "research"
+topic: "rfc-gap-51-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-51--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:45:10.625Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-58-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-06.md","wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-51--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Sorensen's Depiction
+# RFC: GAP-51--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Executive Alliance
 
 ## 1. Problem Statement & Context
-)**: **Sorensen's Depiction:** Sorensen portrays Ford as small-minded, suspicious, jealous, malicious, and lacking sincerity, offering a depiction of Ford’s post-stroke years that revie
+)**: **The Executive Alliance:** Sorensen portrayed himself in his 1956 memoir (*My Forty Years with Ford*) and oral histories as Edsel Ford's loyal corporate protector against Harry Be
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-58-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-58-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
+- **rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-06** (`wiki/research/rfc-gap-06.md`) [lexical_only]:
+  > 
+- **rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics under-sourced - The Asserted Claim category: research topic: rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p gap_
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

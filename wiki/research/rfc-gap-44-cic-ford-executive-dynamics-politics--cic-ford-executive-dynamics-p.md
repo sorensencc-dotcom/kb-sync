@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-44--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Top-Down Executive Claims
-category: research
-topic: rfc-gap-44-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-44--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:28.141Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-44--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim"
+category: "research"
+topic: "rfc-gap-44-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-44--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:54.617Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-62-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-111-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-51-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-44-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-08.md","wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-44--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Top-Down Executive Claims
+# RFC: GAP-44--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
 
 ## 1. Problem Statement & Context
-)**: **Top-Down Executive Claims:** Published memoirs by Henry Ford (1922) trace continuous assembly generally to Chicago packing houses without naming individual contributors, while Ch
+)**: **The Asserted Claim:** Published memoirs by Henry Ford (1922) and Sorensen (1956) frame the moving assembly line as an anonymous top-down idea inspired generally by Chicago meatpa
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-62-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-62-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-111-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-111-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-51-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-51-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
+- **rfc-gap-44-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-44-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
+  > 
+- **rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics under-sourced - The Asserted Claim category: research topic: rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p gap_
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

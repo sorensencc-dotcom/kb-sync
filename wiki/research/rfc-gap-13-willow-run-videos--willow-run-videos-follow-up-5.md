@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - 5. Library of Congress & NARA Photo Provenance ("Rosie" Geography))**
+title: RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - 5. Library of Congress & NARA Press Photo Catalog Records ("Rosie" Provenance))**
 category: research
 topic: rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5
 gap_id: GAP-13--willow-run-videos
 status: draft
-created_at: 2026-09-19T20:36:38.045Z
+created_at: 2026-09-25T10:23:14.931Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md","trm-research-gaps.md","wiki/research/.catalog.json"]
+citations: ["wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-5.md","wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md","wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - 5. Library of Congress & NARA Photo Provenance ("Rosie" Geography))**
+# RFC: GAP-13--willow-run-videos - **Willow Run Videos (follow-up - 5. Library of Congress & NARA Press Photo Catalog Records ("Rosie" Provenance))**
 
 ## 1. Problem Statement & Context
-**5. Library of Congress & NARA Photo Provenance ("Rosie" Geography)**
+**5. Library of Congress & NARA Press Photo Catalog Records ("Rosie" Provenance)**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-5.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-follow-up-5.md`) [hybrid]:
   >
-- **-catalog** (`wiki/research/.catalog.json`) [vector_only]:
-  > {   "generated": "2026-08-22T01:52:02.931Z",   "files":      {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",       "title": "RFC: GAP-01 - **Willow Run Videos under-sourced**",       "description": nu
+- **rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5** (`wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-5.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

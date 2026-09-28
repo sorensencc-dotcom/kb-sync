@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-43--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Polarized Memoir Reception
+title: RFC: GAP-43--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Helen Sorensen's Press Obituary)**
 category: research
 topic: rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-43--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.655Z
+created_at: 2026-09-22T13:56:03.536Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-112-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-95-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-13-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-104-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-43--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Polarized Memoir Reception
+# RFC: GAP-43--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Helen Sorensen's Press Obituary)**
 
 ## 1. Problem Statement & Context
-)**: **Polarized Memoir Reception:** Contemporary newspaper reviews in 1956 split dramatically [22, 23]. Hostile critics like Anson Campbell (*The Pittsburgh Press*) condemned the memoi
+**Helen Sorensen's Press Obituary**: While family notes and cemetery records confirm his first wife Helen Mitchell Sorensen died on **March 4, 1959**, in Miami [2], her physical pr
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-112-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-112-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-95-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-95-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-104-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-104-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-13-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-13-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

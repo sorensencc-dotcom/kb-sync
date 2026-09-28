@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-20--willow-run-videos - **Willow Run Videos (adjacent-topics - The Downfall of C. Harold Wills
-category: research
-topic: rfc-gap-20-willow-run-videos--willow-run-videos-adjacent-to
-gap_id: GAP-20--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:52:54.858Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-20--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap"
+category: "research"
+topic: "rfc-gap-20-willow-run-videos--willow-run-videos-adjacent-to"
+gap_id: "GAP-20--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:39:33.176Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-29-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-adjacent-to.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-65-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-85-willow-run-videos--willow-run-videos-under-sourc.md"]
 ---
 
-# RFC: GAP-20--willow-run-videos - **Willow Run Videos (adjacent-topics - The Downfall of C. Harold Wills
+# RFC: GAP-20--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap
 
 ## 1. Problem Statement & Context
-)**: **The Downfall of C. Harold Wills:** Early Ford engineering genius Harold Wills grew wealthy, sloppy, and built an overly complex luxury car (*Wills Sainte Claire*) that garage mec
+)**: **The John Dodge Office Slap:** Early Ford shareholder John Dodge ran over a man's horse and carriage while driving heavily intoxicated through Detroit [7, 8]. When the victim late
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-21-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
-- **rfc-gap-29-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-29-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
-- **rfc-gap-49-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  >
+- **rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-19-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-65-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-65-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
+- **rfc-gap-85-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-85-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

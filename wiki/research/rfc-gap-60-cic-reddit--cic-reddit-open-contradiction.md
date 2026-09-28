@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-60--cic-reddit - **CIC-Reddit (open-contradictions - Airfield Taxiway Clearance
-category: research
-topic: rfc-gap-60-cic-reddit--cic-reddit-open-contradiction
-gap_id: GAP-60--cic-reddit
-status: draft
-created_at: 2026-09-19T21:26:49.286Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-60--cic-reddit - **CIC-Reddit (open-contradictions - Digital Footprint Takeover"
+category: "research"
+topic: "rfc-gap-60-cic-reddit--cic-reddit-open-contradiction"
+gap_id: "GAP-60--cic-reddit"
+status: "draft"
+created_at: "2026-09-27T12:10:00.684Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token.md","wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-60-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-10-cic-reddit--cic-reddit-follow-up-4-digita.md"]
 ---
 
-# RFC: GAP-60--cic-reddit - **CIC-Reddit (open-contradictions - Airfield Taxiway Clearance
+# RFC: GAP-60--cic-reddit - **CIC-Reddit (open-contradictions - Digital Footprint Takeover
 
 ## 1. Problem Statement & Context
-)**: **Airfield Taxiway Clearance:** Wikipedia entries and airport historical summaries indicate overhead views suggest a straight line would have **encroached directly onto active airp
+)**: **Digital Footprint Takeover:** The original campaign URL `savethebomberplant.org` was lost following a lapsed domain registration [16]. The live domain now resolves to **Gamdom Ca
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-adjacent-topics-token.md`) [lexical_only]:
-  >
-- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-27--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs adjacent-topics - "Finca" Estate Corporate Names & Nominees" category: "research" topic: "rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-res
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
+- **rfc-gap-60-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-60-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-69-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-10-cic-reddit--cic-reddit-follow-up-4-digita** (`wiki/research/rfc-gap-10-cic-reddit--cic-reddit-follow-up-4-digita.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

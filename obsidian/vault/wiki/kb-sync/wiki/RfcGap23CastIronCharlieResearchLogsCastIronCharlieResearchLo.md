@@ -1,9 +1,10 @@
 ---
-title: "RfcGap23CastIronCharlieResearchLogsCastIronCharlieResearchLo"
-category: "wiki"
-status: "active"
+title: RfcGap23CastIronCharlieResearchLogsCastIronCharlieResearchLo
+category: wiki
+status: active
 draft: true
-created: "2026-09-19T20:43:16.159Z"
+created: 2026-09-19T20:43:16.159Z
+sourceRepository: kb-sync
 ---
 
 # RfcGap23CastIronCharlieResearchLogsCastIronCharlieResearchLo

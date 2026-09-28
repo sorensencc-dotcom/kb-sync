@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-15--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Daily Life on North Bay Drive
-category: research
-topic: rfc-gap-15-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
-gap_id: GAP-15--cast-iron-charlie-research-logs
-status: draft
-created_at: 2026-09-20T10:56:32.676Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-15--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Unverified Family Memory)**"
+category: "research"
+topic: "rfc-gap-15-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
+gap_id: "GAP-15--cast-iron-charlie-research-logs"
+status: "draft"
+created_at: "2026-09-27T11:50:03.304Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-45-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 ---
 
-# RFC: GAP-15--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Daily Life on North Bay Drive
+# RFC: GAP-15--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Unverified Family Memory)**
 
 ## 1. Problem Statement & Context
-)**: **Daily Life on North Bay Drive:** Beyond references to his burial and yacht, Sorensen's day-to-day life during his long retirement at his winter home (**5185 N. Bay Dr.** in Miami
+**Unverified Family Memory**: Mentions of a retirement location or real estate asset in the U.S. Virgin Islands alongside his Florida residence stem solely from secondary reference
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-17-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  >
+- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  > 
+- **rfc-gap-45-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-45-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  > 
+- **rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

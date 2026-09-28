@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-24--cic-reddit - **CIC-Reddit (adjacent-topics - The core development team included Hungarian en...)**
+title: RFC: GAP-24--cic-reddit - **CIC-Reddit (adjacent-topics - The Shift to the B-29 Superfortress
 category: research
 topic: rfc-gap-24-cic-reddit--cic-reddit-adjacent-topics-th
 gap_id: GAP-24--cic-reddit
 status: draft
-created_at: 2026-09-19T21:25:04.945Z
+created_at: 2026-09-25T10:45:16.008Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-24-cic-kb--cic-kb-adjacent-topics-push-t.md","wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-th.md","wiki/research/rfc-gap-18-cic-reddit--cic-reddit-adjacent-topics-th.md","wiki/research/rfc-gap-13-cic-reddit--cic-reddit-adjacent-topics-th.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-24--cic-reddit - **CIC-Reddit (adjacent-topics - The core development team included Hungarian en...)**
+# RFC: GAP-24--cic-reddit - **CIC-Reddit (adjacent-topics - The Shift to the B-29 Superfortress
 
 ## 1. Problem Statement & Context
-The core development team included Hungarian engineers **József Galamb, Jenő Farkas, Jules Haltenberger, and Charles Balough**, who conversed in Hungarian during planning sessions
+)**: **The Shift to the B-29 Superfortress:** As the Boeing B-29 Superfortress assumed long-range bombing roles in the Pacific, no new B-24 units were scheduled for deployment in Europe
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-th.md`) [hybrid]:
   >
-- **rfc-gap-24-cic-kb--cic-kb-adjacent-topics-push-t** (`wiki/research/rfc-gap-24-cic-kb--cic-kb-adjacent-topics-push-t.md`) [lexical_only]:
+- **rfc-gap-18-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-18-cic-reddit--cic-reddit-adjacent-topics-th.md`) [hybrid]:
   >
-- **rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-24--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs adjacent-topics - The Rumored Virgin Islands Property" category: "research" topic: "rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-
+- **rfc-gap-13-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-13-cic-reddit--cic-reddit-adjacent-topics-th.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

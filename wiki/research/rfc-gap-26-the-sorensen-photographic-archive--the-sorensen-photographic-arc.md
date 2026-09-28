@@ -4,27 +4,27 @@ category: research
 topic: rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-26--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T21:11:23.938Z
+created_at: 2026-09-24T12:03:22.209Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-24-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-22-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-100-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-26--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions - "Reynolds")**: **"Reynolds"**: Listed meeting Edsel Ford and Sorensen in entry 77100 [2].
+Industrial Giants at Willow Run (open-contradictions - Unconfirmed Itineraries and Calendar Days)**: **Unconfirmed Itineraries and Calendar Days**:
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-22-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-22-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   >
-- **rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  >
-- **rfc-gap-24-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-24-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-100-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-100-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
+  > --- title: RFC: GAP-100--willow-run-videos - **Willow Run Videos open-contradictions - 5. Identity and Location of "Rosie the Riveter"** category: research topic: rfc-gap-100-willow-run-videos--willow-run-videos-open-contra gap_id: GAP-100--willow-ru
+- **rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-23-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

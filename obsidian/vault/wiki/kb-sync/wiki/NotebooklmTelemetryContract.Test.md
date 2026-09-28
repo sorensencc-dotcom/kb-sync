@@ -1,9 +1,10 @@
 ---
-title: "NotebooklmTelemetryContract.Test"
-category: "wiki"
-status: "active"
+title: NotebooklmTelemetryContract.Test
+category: wiki
+status: active
 draft: true
-created: "2026-08-26T13:09:59.884Z"
+created: 2026-08-26T13:09:59.884Z
+sourceRepository: kb-sync
 ---
 
 # NotebooklmTelemetryContract.Test

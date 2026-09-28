@@ -1,7 +1,8 @@
 ---
-title: "obsidian Vault Integration"
-category: "wiki"
-status: "active"
+title: obsidian Vault Integration
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # obsidian Vault Integration

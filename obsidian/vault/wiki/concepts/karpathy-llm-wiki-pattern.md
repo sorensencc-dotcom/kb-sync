@@ -1,7 +1,8 @@
 ---
-title: "Karpathy LLM-Wiki Pattern"
-category: "wiki"
-status: "active"
+title: Karpathy LLM-Wiki Pattern
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Karpathy LLM-Wiki Pattern

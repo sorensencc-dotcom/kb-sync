@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-73--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Coca-Cola Company (Holguin Land — Claim CU-1743)
+title: RFC: GAP-73--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Seed Rice Development
 category: research
 topic: rfc-gap-73-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-73--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-19T20:58:01.067Z
+created_at: 2026-09-22T13:45:07.182Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md"]
+citations: ["wiki/research/rfc-gap-121-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-141-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-97-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-73--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Coca-Cola Company (Holguin Land — Claim CU-1743)
+# RFC: GAP-73--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Seed Rice Development
 
 ## 1. Problem Statement & Context
-)**: **The Coca-Cola Company (Holguin Land — Claim CU-1743):** Coca-Cola claimed **\$37,460.00** for expenses in connection with land in Holguin intended for a new bottling plant [26].
+)**: **Seed Rice Development:** In *Robert L. Cheaney* (Claim CU-0915), Cheaney claimed \$150,000.00 for three sets of experimental seed rice samples developed over five years [65]. The
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-121-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-121-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-03--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-03 - **CIC - Cuban Seizures & Retired Assets open-contradictions** category: research topic: rfc-gap-03--cic-cuban-seizures-retired-as gap_id: GAP-03 status: draft created_at: 2026-09-05T03:17:49.522Z expansion_method: heuristic r
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **rfc-gap-141-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-141-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-97-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-97-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

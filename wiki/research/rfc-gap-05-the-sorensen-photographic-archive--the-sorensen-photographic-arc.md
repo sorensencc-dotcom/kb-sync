@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-05--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:23.839Z
+created_at: 2026-09-25T10:33:27.416Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","trm-research-gaps.md","wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-05--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up - Mead L. Bricker)**: **Mead L. Bricker**: While narrative sources document Bricker's key role as general manager instituting the "505 Program" outsourcing strategy [6, 7], research should clarify his e
+Industrial Giants at Willow Run (adjacent-topics - Federal War Finance, Tax Policy, & County Line Architecture)**: **Federal War Finance, Tax Policy, & County Line Architecture**: Treasury Secretary Henry Morgenthau Jr. made two tarmac visits on **April 6, 1943** and **September 2, 1943** [1],
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
-- **rfc-gap-01--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01--the-sorensen-photographic-arc.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **The Sorensen Photographic Archive category: research topic: rfc-gap-01--the-sorensen-photographic-arc gap_id: GAP-01 status: draft created_at: 2026-09-05T03:18:28.827Z expansion_method: heuristic retrieval_mode: hybrid-rrf
+- **rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
+  > --- title: "RFC: GAP-03--the-sorensen-photographic-archive - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc" gap_id: "GAP-03--the-sorensen-photographic-arc
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

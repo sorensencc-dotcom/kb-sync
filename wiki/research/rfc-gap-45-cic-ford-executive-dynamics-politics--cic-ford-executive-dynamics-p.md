@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-45--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Machinist’s Testimony
-category: research
-topic: rfc-gap-45-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-45--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:28.158Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-45--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap"
+category: "research"
+topic: "rfc-gap-45-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-45--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:57.061Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-112-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-45-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-49-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-45--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - The Machinist’s Testimony
+# RFC: GAP-45--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
 
 ## 1. Problem Statement & Context
-)**: **The Machinist’s Testimony:** This top-down framing is directly contradicted by machinist **William "Pa" Klann's** 400-page 1955 oral history transcript in BFRC Accession 65 [3-5]
+)**: **The Archival Gap:** These executive narratives flatten shop-floor innovations and are directly challenged by machinist **William "Pa" Klann’s** 400-page 1955 oral history transcr
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-52-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-112-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-112-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
+- **rfc-gap-45-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-45-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-49-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-49-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
+  > --- title: RFC: GAP-63--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics open-contradictions - The Machinist’s Record category: research topic: rfc-gap-63-cic-ford-executive-dynamics-politics--cic-ford-executive-dynam
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

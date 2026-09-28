@@ -1,5 +1,10 @@
+---
+title: rfc-gap-07
+category: research
+status: draft
+sourceRepository: kb-sync
+---
 # RFC: GAP-07
-
 
 ## Candidate Evidence: Remote Agent Finding (2026-09-24T04:00:34.376Z)
 <!-- finding_id: 98c398d7fd558dcee5538613f65e5e2e706c2a46584d1bd3a4c357601da44ff5 -->

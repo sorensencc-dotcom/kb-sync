@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-67--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 6. Civil Rights Front Lines
+title: RFC: GAP-67--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The Unresolved Question
 category: research
 topic: rfc-gap-67-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-67--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:06:02.325Z
+created_at: 2026-09-21T13:07:10.749Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-46-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-67--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 6. Civil Rights Front Lines
+# RFC: GAP-67--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The Unresolved Question
 
 ## 1. Problem Statement & Context
-Siting Disputes & The "Westwood" Secession)**: **6. Civil Rights Front Lines: Siting Disputes & The "Westwood" Secession**
+)**: **The Unresolved Question:** Ford engineered custom 60-foot articulated truck-trailers to ship 1,893 B-24 knock-down kits to Tulsa and Fort Worth [52-54]. Sorensen does not explain
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-46-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-46-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
-- **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
+  > --- title: RFC: GAP-43--willow-run-videos - **Willow Run Videos under-sourced - The Claim category: research topic: rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-43--willow-run-videos status: draft created_at: 2026-09-19T20:
+- **rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

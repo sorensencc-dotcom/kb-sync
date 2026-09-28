@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
-category: research
-topic: rfc-gap-33-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-33--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:16.684Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Frank Kulick (1903–1926)"
+category: "research"
+topic: "rfc-gap-33-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-33--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:13.657Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-71-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-33-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-106-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-09.md"]
 ---
 
-# RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
+# RFC: GAP-33--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Frank Kulick (1903–1926)
 
 ## 1. Problem Statement & Context
-)**: **The Archival Gap:** This high-stakes narrative of family political intervention relies entirely on the single-sourced assertion of executive advisor **Ernest Kanzler** [1]. Prima
+)**: **Frank Kulick (1903–1926):** One of Ford's first five employees in 1903, top race car driver (1904–1913), transcontinental publicity driver with the 10-millionth Model T, and trav
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-34-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-71-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-71-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  >
-- **rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: "RFC: GAP-43--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics under-sourced - The Archival Gap" category: "research" topic: "rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+- **rfc-gap-33-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-33-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-106-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-106-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-09** (`wiki/research/rfc-gap-09.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

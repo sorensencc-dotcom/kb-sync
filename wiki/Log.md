@@ -215,3 +215,37 @@ sourceRepository: kb-sync
 - [2026-09-22T19:00:11.426Z] Ingested remote finding 45df4587190c857a4e344d58521ceef32ab233445b593d0316bf8c6e94510aa9 for GAP-01
 - [2026-09-22T19:08:53.322Z] Ingested remote finding 1c3e383ac919fb96863148eb71ec5985560701f72a7a789cc21e3a91e6bd9d27 for GAP-02
 - [2026-09-22T19:11:19.091Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-22T19:11:44.913Z] Ingested remote finding 66a2c40084a74fd4dcbf58e747c18bd047382c7a6f42e75bd9715f81ed6390a6 for GAP-03
+- [2026-09-22T19:11:44.948Z] Ingested remote finding 309bea4286a89bdbec80baf93c51a80483ae0e2cb6e90711b202613f6804fbea for GAP-04
+- [2026-09-22T20:00:24.712Z] Ingested remote finding 05cc255e4ed3426db330e869ea855116ee54e78d4d03663433d8ec55a9b95d14 for GAP-05
+- [2026-09-22T20:38:41.420Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-22T20:38:57.106Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-22T20:39:14.359Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-22T21:31:00.144Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-23T02:30:44.447Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-23T07:08:44.869Z] Ingested remote finding ce9ef3095363541af637a8a4efdabd1958bc49d48e15b43ba63e4eb900dc3cfd for GAP-06
+- [2026-09-23T23:06:58.295Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-24T01:23:59.954Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-24T01:24:40.590Z] Ingested mobile drop 2026-09-23T022618Z__cic__thf-sorensen-catalog-audit.md into conversations/2026-09-23/thf-sorensen-catalog-audit.md
+- [2026-09-24T01:24:40.609Z] Ingested mobile drop 2026-09-23T225625Z__cic__cuban-seizures-source-audit.md into conversations/2026-09-23/cuban-seizures-source-audit.md
+- [2026-09-24T01:27:24.104Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-24T01:35:36.003Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-24T01:55:30.396Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-24T04:00:34.421Z] Ingested remote finding 98c398d7fd558dcee5538613f65e5e2e706c2a46584d1bd3a4c357601da44ff5 for GAP-07
+- [2026-09-25T04:00:21.352Z] Ingested remote finding 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a for GAP-08
+- [2026-09-25T19:56:08.961Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-25T20:00:36.183Z] Ingested mobile drop 2026-09-25T195529Z__trm__closed-loop-pipeline-adversarial.md into conversations/2026-09-25/closed-loop-pipeline-adversarial.md
+- [2026-09-25T20:09:22.772Z] Ingested mobile drop 2026-09-25T200602Z__rewrite__cjs-to-esm-monorepo.md into conversations/2026-09-25/cjs-to-esm-monorepo.md
+- [2026-09-25T20:09:22.781Z] Ingested mobile drop 2026-09-25T200602Z__trm__rfc-gap-01.md into conversations/2026-09-25/rfc-gap-01.md
+- [2026-09-25T20:09:22.790Z] Ingested mobile drop 2026-09-25T200602Z__spec__mcp-stream-transports.md into conversations/2026-09-25/mcp-stream-transports.md
+- [2026-09-25T20:23:30.570Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-25T20:23:41.110Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-25T21:01:17.520Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-25T21:02:06.083Z] Ingested mobile drop 2026-09-25T210000Z__spec__cowork-artifact-smoke-test.md (cowork-inbox) into spec/2026-09-25/cowork-artifact-smoke-test.md
+- [2026-09-25T22:43:10.115Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-25T22:43:32.699Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-26T02:35:44.167Z] Ingested remote finding cc8fd0ec86e31fb805e38c68def0230d4bcd4cc68b2d4d34096babe24b441079 for GAP-09
+- [2026-09-27T04:00:24.131Z] Ingested remote finding 42396d35afdfad9b54d2781ccda756d8be42679c0f6419064475bba3f7bd75db for GAP-10
+- [2026-09-27T19:43:21.925Z] Ingested mobile drop 2026-09-27T142745Z__cic__dannebrog-protocol-verified.md (gdrive-mobile-inbox) into cic/2026-09-27/dannebrog-protocol-verified.md
+- [2026-09-28T02:51:13.697Z] Ingested remote finding 925d9ce14fa090e64c7bdf573da49ee07d37b8556f5af2c896a4e05cfd123383 for GAP-11
+- [2026-09-28T02:51:40.394Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01

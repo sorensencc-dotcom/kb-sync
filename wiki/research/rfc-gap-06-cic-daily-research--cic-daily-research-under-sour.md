@@ -4,11 +4,11 @@ category: research
 topic: rfc-gap-06-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-06--cic-daily-research
 status: draft
-created_at: 2026-09-20T10:49:35.052Z
+created_at: 2026-09-24T11:49:26.347Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-47-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-72-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-57-cic-daily-research--cic-daily-research-open-contr.md"]
+citations: ["wiki/research/rfc-gap-31-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-47-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
@@ -20,11 +20,11 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-47-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-47-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+- **rfc-gap-31-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-31-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
-- **rfc-gap-72-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-72-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  >
-- **rfc-gap-57-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-57-cic-daily-research--cic-daily-research-open-contr.md`) [lexical_only]:
+- **rfc-gap-47-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-47-cic-daily-research--cic-daily-research-under-sour.md`) [vector_only]:
+  > --- title: RFC: GAP-47--cic-daily-research - **CIC - Daily Research under-sourced - The Primary Account category: research topic: rfc-gap-47-cic-daily-research--cic-daily-research-under-sour gap_id: GAP-47--cic-daily-research status: draft created_at
+- **rfc-gap-53-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-04--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction
+title: RFC: GAP-04--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction & Multi-Vocal Record
 category: research
 topic: rfc-gap-04-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-04--cic-daily-research
 status: draft
-created_at: 2026-09-20T10:49:35.030Z
+created_at: 2026-09-24T11:49:22.019Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-44-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-69-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-51-cic-daily-research--cic-daily-research-open-contr.md"]
+citations: ["wiki/research/rfc-gap-51-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-44-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-69-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-04--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction
+# RFC: GAP-04--cic-daily-research - **CIC - Daily Research (under-sourced - The Contradiction & Multi-Vocal Record
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** This claim of singular conceptual credit is single-sourced to Sorensen's published autobiography [5, 7] and is flatly contradicted by floor-level contemporar
+)**: **The Contradiction & Multi-Vocal Record:** This claim of singular conceptual credit is single-sourced to Sorensen's published autobiography [cite: 192, 360]. Floor contemporaries—
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
+- **rfc-gap-51-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-51-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+  >
 - **rfc-gap-44-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-44-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
 - **rfc-gap-69-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-69-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  >
-- **rfc-gap-51-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-51-cic-daily-research--cic-daily-research-open-contr.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

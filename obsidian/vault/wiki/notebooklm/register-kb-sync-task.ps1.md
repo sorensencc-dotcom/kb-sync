@@ -1,7 +1,8 @@
 ---
-title: "register-kb-sync-task.ps1"
-category: "utilities"
-status: "active"
+title: register-kb-sync-task.ps1
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # register-kb-sync-task.ps1

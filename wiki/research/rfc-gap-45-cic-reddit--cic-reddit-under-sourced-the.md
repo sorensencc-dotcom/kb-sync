@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-45--cic-reddit - **CIC-Reddit (under-sourced - The Claim
+title: RFC: GAP-45--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
 category: research
 topic: rfc-gap-45-cic-reddit--cic-reddit-under-sourced-the
 gap_id: GAP-45--cic-reddit
 status: draft
-created_at: 2026-09-19T21:26:07.275Z
+created_at: 2026-09-25T10:45:31.749Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-08-cic-kb--cic-kb-under-sourced-2-histor.md"]
+citations: ["wiki/research/rfc-gap-03.md","wiki/research/rfc-gap-29-cic-reddit--cic-reddit-under-sourced-the.md","trm-research-gaps.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-45--cic-reddit - **CIC-Reddit (under-sourced - The Claim
+# RFC: GAP-45--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** A Reddit comment on a photograph of the Willow Run facility asserts that *"it was said that one could visibly see the curvature of the earth looking from one end to
+)**: **The Grounded Reality:** Internal source audits confirm **no such ordinance, county board minute, or press report exists** from 1941–1945 [5, 6]. Furthermore, factory layout maps
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-08-cic-kb--cic-kb-under-sourced-2-histor** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-under-sourced-2-histor.md`) [lexical_only]:
+- **rfc-gap-29-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-29-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
+  > --- title: "RFC: GAP-29--cic-reddit - **CIC-Reddit under-sourced - The Grounded Reality" category: "research" topic: "rfc-gap-29-cic-reddit--cic-reddit-under-sourced-the" gap_id: "GAP-29--cic-reddit" status: "draft" created_at: "2026-09-21T12:55:49.1
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

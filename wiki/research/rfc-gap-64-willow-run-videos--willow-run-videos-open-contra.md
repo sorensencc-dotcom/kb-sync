@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-64--willow-run-videos - **Willow Run Videos (open-contradictions - 3. Motive Behind the 90-Degree L-Bend
-category: research
-topic: rfc-gap-64-willow-run-videos--willow-run-videos-open-contra
-gap_id: GAP-64--willow-run-videos
-status: draft
-created_at: 2026-09-19T20:40:23.694Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-64--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts"
+category: "research"
+topic: "rfc-gap-64-willow-run-videos--willow-run-videos-open-contra"
+gap_id: "GAP-64--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:40:35.141Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--willow-run-videos-follow-up.md","docs/kb/notebooklm-sync/error-boundaries.md","wiki/research/.catalog.json"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-79-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-63-willow-run-videos--willow-run-videos-open-contra.md"]
 ---
 
-# RFC: GAP-64--willow-run-videos - **Willow Run Videos (open-contradictions - 3. Motive Behind the 90-Degree L-Bend
+# RFC: GAP-64--willow-run-videos - **Willow Run Videos (open-contradictions - Part Counts
 
 ## 1. Problem Statement & Context
-Airfield Geometry vs. County Tax Evasion)**: **3. Motive Behind the 90-Degree L-Bend: Airfield Geometry vs. County Tax Evasion**
+)**: **Part Counts:** Transcripts fluctuate wildly from **30,000 components** to **450,000 parts**, **1.2 million parts**, **1.225 million parts**, **1.25 million parts**, and **1.5 mil
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--willow-run-videos-follow-up** (`wiki/research/rfc-gap-01--willow-run-videos-follow-up.md`) [lexical_only]:
-  >
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
-  >
+- **rfc-gap-52-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-79-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-79-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-63-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-63-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

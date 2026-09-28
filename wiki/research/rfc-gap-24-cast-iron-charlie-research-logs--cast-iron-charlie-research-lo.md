@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-24--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Expropriation Narrative)**
+title: RFC: GAP-24--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Lineage
 category: research
 topic: rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-24--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:33.237Z
+created_at: 2026-09-23T12:18:29.793Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-75-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-33-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-24--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Expropriation Narrative)**
+# RFC: GAP-24--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Lineage
 
 ## 1. Problem Statement & Context
-**The Expropriation Narrative**: Secondary reference entries like Wikipedia and family research notes assert that Fidel Castro's government seized Sorensen's agricultural land hold
+)**: **Secondary Source Lineage:** The story of an 82-year-old Sorensen meeting designer Brooks Stevens on December 12, 1963, in Florida to conceive a \$560 unit-cost molding machine fo
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
+- **rfc-gap-33-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-33-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 - **rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-75-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-75-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

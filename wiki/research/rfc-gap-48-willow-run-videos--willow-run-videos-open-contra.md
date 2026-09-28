@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-48--willow-run-videos - **Willow Run Videos (open-contradictions - Architectural / Academic Record
-category: research
-topic: rfc-gap-48-willow-run-videos--willow-run-videos-open-contra
-gap_id: GAP-48--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:53:05.026Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-48--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction"
+category: "research"
+topic: "rfc-gap-48-willow-run-videos--willow-run-videos-open-contra"
+gap_id: "GAP-48--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:40:07.830Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-114-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-94-willow-run-videos--willow-run-videos-open-contra.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-36-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-89-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-109-willow-run-videos--willow-run-videos-open-contra.md"]
 ---
 
-# RFC: GAP-48--willow-run-videos - **Willow Run Videos (open-contradictions - Architectural / Academic Record
+# RFC: GAP-48--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
 
 ## 1. Problem Statement & Context
-)**: **Architectural / Academic Record:** Primary architectural blueprints and academic research (*Planning the Home Front* by Sarah Jo Peterson) confirm the 90-degree turn was an **air
+)**: **The Contradiction:** One video script in the collection explicitly asserts that Boeing's **B-17 Flying Fortress** was the primary heavy bomber built at Willow Run, claiming Ford
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-66-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
-- **rfc-gap-114-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-114-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
-- **rfc-gap-94-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-94-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
+- **rfc-gap-36-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-36-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-89-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-89-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-109-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-109-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

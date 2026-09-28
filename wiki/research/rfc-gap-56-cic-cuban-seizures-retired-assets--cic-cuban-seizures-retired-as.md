@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Unproved vs. Discounted Reserves
+title: RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - FCSC Docket Misattributions
 category: research
 topic: rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-56--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-20T11:10:28.599Z
+created_at: 2026-09-26T13:43:12.879Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-115-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-135-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-57-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Unproved vs. Discounted Reserves
+# RFC: GAP-56--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - FCSC Docket Misattributions
 
 ## 1. Problem Statement & Context
-)**: **Unproved vs. Discounted Reserves:** In *John El Koury* (Claim CU-0384) and *Archibald S. Abbey* (Claim CU-0352), raw tonnage projections were rejected due to lack of production h
+)**: **FCSC Docket Misattributions:** **Purged.** CU-3440 is the claim of *Central West Company* (a Havana Lithographing stock valuation precedent at \$2.51/share) [68, 70]. CU-5843 is
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-115-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-115-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-57-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-57-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-135-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-135-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-54-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

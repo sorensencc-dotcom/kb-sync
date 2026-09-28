@@ -1,9 +1,10 @@
 ---
-title: "SecretScan"
-category: "wiki"
-status: "active"
+title: SecretScan
+category: wiki
+status: active
 draft: true
-created: "2026-08-26T13:08:16.956Z"
+created: 2026-08-26T13:08:16.956Z
+sourceRepository: kb-sync
 ---
 
 # SecretScan

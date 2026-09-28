@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-40--cic-reddit - **CIC-Reddit (open-contradictions - Shareholder Primacy Precedent
+title: RFC: GAP-40--cic-reddit - **CIC-Reddit (open-contradictions - Architectural Miscalculation
 category: research
 topic: rfc-gap-40-cic-reddit--cic-reddit-open-contradiction
 gap_id: GAP-40--cic-reddit
 status: draft
-created_at: 2026-09-20T11:06:11.344Z
+created_at: 2026-09-21T12:55:54.187Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-35-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-61-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-51-cic-reddit--cic-reddit-under-sourced-the.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-40--cic-reddit - **CIC-Reddit (open-contradictions - Shareholder Primacy Precedent
+# RFC: GAP-40--cic-reddit - **CIC-Reddit (open-contradictions - Architectural Miscalculation
 
 ## 1. Problem Statement & Context
-)**: **Shareholder Primacy Precedent:** Legal thread discussions document how the Dodge brothers sued Henry Ford over withheld dividends, resulting in the landmark ruling establishing *
+)**: **Architectural Miscalculation:** An article in *Assembly Magazine* asserts that Albert Kahn's industrial architects simply **miscalculated the assembly line's length during initia
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-69-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+- **rfc-gap-35-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-35-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
   >
-- **rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+- **rfc-gap-61-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-61-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-51-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-51-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

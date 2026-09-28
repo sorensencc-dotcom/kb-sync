@@ -1,7 +1,8 @@
 ---
-title: "Pack-Based Knowledge Management"
-category: "wiki"
-status: "active"
+title: Pack-Based Knowledge Management
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Pack-Based Knowledge Management

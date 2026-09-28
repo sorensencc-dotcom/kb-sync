@@ -2,10 +2,12 @@
 source: copilot
 skill: drive-it
 topic: spec
-title: "OAuth 2.1 vs RFC 9700 Security Best Current Practice Comparison"
+title: OAuth 2.1 vs RFC 9700 Security Best Current Practice Comparison
 created: 2026-09-25T20:06:48Z
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
+category: wiki
+sourceRepository: kb-sync
 ---
 
 ## Findings Summary

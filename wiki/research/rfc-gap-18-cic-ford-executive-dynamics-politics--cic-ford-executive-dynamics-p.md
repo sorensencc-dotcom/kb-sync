@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Private Security Apparatus
-category: research
-topic: rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-18--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:11.817Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus"
+category: "research"
+topic: "rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-18--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:43:13.733Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-86-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-84-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Private Security Apparatus
+# RFC: GAP-18--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus
 
 ## 1. Problem Statement & Context
-)**: **Private Security Apparatus:** Harry Bennett operated the **Ford Service Department** as a private internal security force of approximately **3,000 agents, ex-boxers, underworld f
+)**: **Research Focus:** Audit Purchasing Director A.M. Wibel’s March 1941 contractual proviso demanding terms as favorable as rival automakers [41, 45]. Investigate how Mead Bricker’s
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-18-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-86-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-86-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-84-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-84-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

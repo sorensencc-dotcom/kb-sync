@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Second Marriage Documentation
+title: RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Certificate
 category: research
 topic: rfc-gap-23-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-23--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:33.225Z
+created_at: 2026-09-24T11:58:45.481Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-46-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Second Marriage Documentation
+# RFC: GAP-23--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Certificate
 
 ## 1. Problem Statement & Context
-)**: **Second Marriage Documentation:** His January 1960 marriage to **Edith Thompson Montgomery** in Milwaukee at age 78 remains a biographical footnote requiring official marriage rec
+)**: **Second Marriage Certificate:** His January 16, 1960 marriage to Edith Thompson Montgomery in Palm Beach is verified in press notices, but the primary Florida marriage certificate
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-46-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-46-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

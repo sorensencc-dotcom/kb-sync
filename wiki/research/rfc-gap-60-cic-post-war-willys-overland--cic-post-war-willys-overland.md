@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-60--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - In July 1945, Willys-Overland partnered with To...)**
+title: RFC: GAP-60--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - The Open Question
 category: research
 topic: rfc-gap-60-cic-post-war-willys-overland--cic-post-war-willys-overland
 gap_id: GAP-60--cic-post-war-willys-overland
 status: draft
-created_at: 2026-09-19T21:12:39.275Z
+created_at: 2026-09-22T14:24:44.681Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-21-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-89-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-60--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - In July 1945, Willys-Overland partnered with To...)**
+# RFC: GAP-60--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - The Open Question
 
 ## 1. Problem Statement & Context
-In July 1945, Willys-Overland partnered with Toledo model maker **Al-Toy (Aluminum Toy Company)** to produce 1:16-scale sand-cast aluminum CJ-2A models [18].
+)**: **The Open Question:** Sorensen held extensive sugar and agricultural estates in pre-revolutionary Cuba structured under nominee entities and a holding company named **"CESOR S.A."
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
   >
-- **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-21-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-21-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
   >
-- **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  >
+- **rfc-gap-89-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-89-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
+  > --- title: RFC: GAP-89--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland open-contradictions - The Open Question category: research topic: rfc-gap-89-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-89--cic-post
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

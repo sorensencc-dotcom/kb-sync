@@ -1,9 +1,10 @@
 ---
-title: "McpContextServer"
-category: "wiki"
-status: "active"
+title: McpContextServer
+category: wiki
+status: active
 draft: true
-created: "2026-09-10T00:59:32.725Z"
+created: 2026-09-10T00:59:32.725Z
+sourceRepository: kb-sync
 ---
 
 # McpContextServer

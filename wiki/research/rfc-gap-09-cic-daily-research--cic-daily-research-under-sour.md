@@ -4,11 +4,11 @@ category: research
 topic: rfc-gap-09-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-09--cic-daily-research
 status: draft
-created_at: 2026-09-20T10:49:35.544Z
+created_at: 2026-09-24T11:49:29.106Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-52-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-77-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-77-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-56-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-34-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
@@ -20,11 +20,11 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-52-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-52-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  >
 - **rfc-gap-77-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-77-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+- **rfc-gap-56-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-56-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+  >
+- **rfc-gap-34-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-34-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

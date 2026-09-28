@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-30--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
+title: RFC: GAP-30--cic-reddit - **CIC-Reddit (under-sourced - The Claim
 category: research
 topic: rfc-gap-30-cic-reddit--cic-reddit-under-sourced-the
 gap_id: GAP-30--cic-reddit
 status: draft
-created_at: 2026-09-20T11:05:59.370Z
+created_at: 2026-09-21T12:55:49.215Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-55-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-64-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md"]
+citations: ["wiki/research/rfc-gap-48-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-25-cic-reddit--cic-reddit-under-sourced-the.md","trm-research-gaps.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-30--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
+# RFC: GAP-30--cic-reddit - **CIC-Reddit (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **The Grounded Reality:** The actual web text retrieved under `savethebomberplant.org` contains no historic preservation information because the domain was taken over by an offshor
+)**: **The Claim:** Local blog posts and oral accounts assert Henry Ford spent \$300,000 installing two giant floor turntables to rotate B-24 bombers 90 degrees so they would exit in Wa
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-55-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-55-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+- **rfc-gap-48-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-48-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **rfc-gap-64-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-64-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
+- **rfc-gap-25-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-25-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
-  > --- title: "RFC: GAP-40--cic-reddit - **CIC-Reddit under-sourced - The Grounded Reality" category: "research" topic: "rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the" gap_id: "GAP-40--cic-reddit" status: "draft" created_at: "2026-09-19T21:25:55.5
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

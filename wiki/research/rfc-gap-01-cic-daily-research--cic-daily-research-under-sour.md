@@ -4,11 +4,11 @@ category: research
 topic: rfc-gap-01-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-01--cic-daily-research
 status: draft
-created_at: 2026-09-20T10:49:34.942Z
+created_at: 2026-09-24T11:49:21.673Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-40-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-65-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-open-contr.md"]
+citations: ["wiki/research/rfc-gap-65-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-open-contr.md"]
 sourceRepository: kb-sync
 ---
 
@@ -20,12 +20,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-40-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-40-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  >
 - **rfc-gap-65-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-65-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-53-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-open-contr.md`) [hybrid]:
+- **rfc-gap-26-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
+- **rfc-gap-53-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-53-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
+  > --- title: RFC: GAP-53--cic-daily-research - **CIC - Daily Research open-contradictions - The Contradiction category: research topic: rfc-gap-53-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-53--cic-daily-research status: draft create
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

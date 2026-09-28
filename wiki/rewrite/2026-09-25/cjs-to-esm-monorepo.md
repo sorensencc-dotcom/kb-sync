@@ -2,12 +2,14 @@
 source: grok
 skill: drive-it
 topic: rewrite
-title: "CJS to ESM migration pitfalls in large Node monorepos"
+title: CJS to ESM migration pitfalls in large Node monorepos
 created: Fri Sep 25 2026 16:06:02 GMT-0400 (Eastern Daylight Time)
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
 provenance_type: mobile_inbox_drop
 content_sha256: d4e30167d350a5d2a567164599af0eeb2026fba6d0ab60d0ceb12d9d6a34fc1b
+category: wiki
+sourceRepository: kb-sync
 ---
 
 # CJS → ESM in large Node monorepos — live pitfalls

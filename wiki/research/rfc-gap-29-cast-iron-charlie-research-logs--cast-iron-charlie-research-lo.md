@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-29--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Unexplored Primary Archive)**
+title: RFC: GAP-29--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Contested Death Date
 category: research
 topic: rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-29--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.024Z
+created_at: 2026-09-23T12:18:30.090Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-80-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-29--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Unexplored Primary Archive)**
+# RFC: GAP-29--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Contested Death Date
 
 ## 1. Problem Statement & Context
-**Unexplored Primary Archive**: The exact date in December 1963 remains unconfirmed, and the primary archive that could validate the meeting—the **Brooks Stevens Archive at the Mil
+)**: **Contested Death Date:** Published biographies list August 28, 1968 [1, 13], while cemetery records list August 11, 1968 [13], and *The New York Times* obituary establishes August
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-80-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-80-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-39-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-93--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - Unexplored Primary Archive" category: "research" topic: "rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" g
+- **rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

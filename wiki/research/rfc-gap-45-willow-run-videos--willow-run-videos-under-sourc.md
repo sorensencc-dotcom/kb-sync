@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-45--willow-run-videos - **Willow Run Videos (under-sourced - 4. Naomi Parker Fraley as the Willow Run "Rosie" Model)**
-category: research
-topic: rfc-gap-45-willow-run-videos--willow-run-videos-under-sourc
-gap_id: GAP-45--willow-run-videos
-status: draft
-created_at: 2026-09-19T20:39:43.196Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-45--willow-run-videos - **Willow Run Videos (under-sourced - Harold Wills' Time-Clock Rejection"
+category: "research"
+topic: "rfc-gap-45-willow-run-videos--willow-run-videos-under-sourc"
+gap_id: "GAP-45--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:39:57.738Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-47-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md"]
 ---
 
-# RFC: GAP-45--willow-run-videos - **Willow Run Videos (under-sourced - 4. Naomi Parker Fraley as the Willow Run "Rosie" Model)**
+# RFC: GAP-45--willow-run-videos - **Willow Run Videos (under-sourced - Harold Wills' Time-Clock Rejection
 
 ## 1. Problem Statement & Context
-**4. Naomi Parker Fraley as the Willow Run "Rosie" Model**
+)**: **Harold Wills' Time-Clock Rejection:** Early Ford pioneer Harold Wills went broke with his luxury car company (*Wills Sainte Claire*) and turned down a job at Ford because he refu
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-01--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-01--willow-run-videos-under-sourc.md`) [lexical_only]:
-  >
-- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **Willow Run Videos open-contradictions** category: research topic: rfc-gap-04--willow-run-videos-open-contra gap_id: GAP-04 status: draft created_at: 2026-09-05T03:18:15.023Z expansion_method: heuristic retrieval_mode: hybri
-- **rfc-gap-02--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-02--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  >
+- **rfc-gap-47-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-47-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
+- **rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
+  > --- title: RFC: GAP-66--willow-run-videos - **Willow Run Videos under-sourced - Harold Wills' Time-Clock Rejection category: research topic: rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-66--willow-run-videos status: draft c
+- **rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

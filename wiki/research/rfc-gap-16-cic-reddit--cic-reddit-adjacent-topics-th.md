@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - The Jet Age Shift
+title: RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - The Ploesti Oil Raid
 category: research
 topic: rfc-gap-16-cic-reddit--cic-reddit-adjacent-topics-th
 gap_id: GAP-16--cic-reddit
 status: draft
-created_at: 2026-09-20T11:05:36.332Z
+created_at: 2026-09-24T12:12:53.133Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-34-cic-reddit--cic-reddit-adjacent-topics-th.md","wiki/research/rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-bi.md","wiki/research/rfc-gap-29-cic-reddit--cic-reddit-adjacent-topics-in.md"]
+citations: ["wiki/research/rfc-gap-12-cic-reddit--cic-reddit-adjacent-topics-th.md","wiki/research/rfc-gap-11-cic-reddit--cic-reddit-adjacent-topics-th.md","trm-research-gaps.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - The Jet Age Shift
+# RFC: GAP-16--cic-reddit - **CIC-Reddit (adjacent-topics - The Ploesti Oil Raid
 
 ## 1. Problem Statement & Context
-)**: **The Jet Age Shift:** Willow Run served as Detroit's primary commercial passenger airport until scheduled airlines shifted to **Detroit Metropolitan Airport (DTW)** between 1958 a
+)**: **The Ploesti Oil Raid:** On August 1, 1943, several hundred B-24 Liberators launched from Libya on a 2,700-mile round-trip bombing mission against Nazi-controlled oil refineries i
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-34-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-34-cic-reddit--cic-reddit-adjacent-topics-th.md`) [hybrid]:
+- **rfc-gap-12-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-12-cic-reddit--cic-reddit-adjacent-topics-th.md`) [hybrid]:
   >
-- **rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-bi** (`wiki/research/rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-bi.md`) [lexical_only]:
+- **rfc-gap-11-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-11-cic-reddit--cic-reddit-adjacent-topics-th.md`) [hybrid]:
   >
-- **rfc-gap-29-cic-reddit--cic-reddit-adjacent-topics-in** (`wiki/research/rfc-gap-29-cic-reddit--cic-reddit-adjacent-topics-in.md`) [vector_only]:
-  > --- title: "RFC: GAP-29--cic-reddit - **CIC-Reddit adjacent-topics - In 1947, the federal government sold the airpor...**" category: "research" topic: "rfc-gap-29-cic-reddit--cic-reddit-adjacent-topics-in" gap_id: "GAP-29--cic-reddit" status: "draft"
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,7 +1,8 @@
 ---
-title: "flatten.sh"
-category: "utilities"
-status: "active"
+title: flatten.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # flatten.sh

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-34--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Helen Sorensen's Press Obituary)**
+title: RFC: GAP-34--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Virgin Islands Asset)**
 category: research
 topic: rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-34--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.169Z
+created_at: 2026-09-23T12:18:34.531Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-85-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-25-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-34--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Helen Sorensen's Press Obituary)**
+# RFC: GAP-34--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - The Virgin Islands Asset)**
 
 ## 1. Problem Statement & Context
-**Helen Sorensen's Press Obituary**: Her death on March 4, 1959, in Miami is confirmed by family notes, but her physical press obituary in the *Miami Herald* has not yet been retri
+**The Virgin Islands Asset**: Family memory and reference entries mention a retirement property in the **U.S. Virgin Islands** alongside his Florida residence ("another big secret"
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-25-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-25-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-85-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-85-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

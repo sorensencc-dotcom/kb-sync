@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-31--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Late-Filing Relief
-category: research
-topic: rfc-gap-31-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
-gap_id: GAP-31--cic-cuban-seizures-retired-assets
-status: draft
-created_at: 2026-09-20T11:10:22.713Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-31--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Freeport Sulphur / Islexco (Claim CU-2625)"
+category: "research"
+topic: "rfc-gap-31-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
+gap_id: "GAP-31--cic-cuban-seizures-retired-assets"
+status: "draft"
+created_at: "2026-09-27T12:15:53.740Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-31-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-70-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-30-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-89-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-46-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-31--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Late-Filing Relief
+# RFC: GAP-31--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Freeport Sulphur / Islexco (Claim CU-2625)
 
 ## 1. Problem Statement & Context
-)**: **Late-Filing Relief:** In *Claim of John Korenda* (Claim CU-8255), the FCSC established that **claims submitted after the formal May 1, 1967 statutory deadline** could still be ac
+)**: **Freeport Sulphur / Islexco (Claim CU-2625):** The vice president submitted an internal appraisal calculating the gross value of unmined ore in the ground at **over \$1.11 billion
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-31-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-31-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  >
-- **rfc-gap-70-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-70-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  >
-- **rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: "RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Statutory Framework" category: "research" topic: "rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as" gap_id: "G
+- **rfc-gap-30-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-30-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-89-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-89-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-46-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-46-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

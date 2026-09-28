@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-05--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Logistics Framework
-category: research
-topic: rfc-gap-05-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
-gap_id: GAP-05--cic-willow-run-aviation-engineering
-status: draft
-created_at: 2026-09-20T11:13:29.482Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-05--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Logistics Framework"
+category: "research"
+topic: "rfc-gap-05-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
+gap_id: "GAP-05--cic-willow-run-aviation-engineering"
+status: "draft"
+created_at: "2026-09-27T12:29:01.832Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-05-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-119-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 ---
 
 # RFC: GAP-05--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - The Logistics Framework
 
 ## 1. Problem Statement & Context
-)**: **The Logistics Framework:** Ford engineered custom 60-foot articulated truck-trailer rigs (and 75-foot rigs powered by twin synchronized Ford Flathead V-8 engines running at a con
+)**: **The Logistics Framework:** Ford engineered custom 60-foot articulated truck-trailer rigs powered by twin synchronized Ford Flathead V-8 engines to ship 1,893 complete B-24 knock-
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-05-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
+  > 
 - **rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-102-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
-- **rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-119-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-119-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

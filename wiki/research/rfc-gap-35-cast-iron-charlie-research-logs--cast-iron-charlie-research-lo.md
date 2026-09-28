@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Documentation)**
+title: RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Land Expropriation vs. Official Absence)**
 category: research
 topic: rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-35--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.183Z
+created_at: 2026-09-23T12:18:36.637Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-69-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-70-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-47-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Second Marriage Documentation)**
+# RFC: GAP-35--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Land Expropriation vs. Official Absence)**
 
 ## 1. Problem Statement & Context
-**Second Marriage Documentation**: His January 1960 marriage to Edith Thompson Montgomery in Milwaukee at age 78 is supported by family memory, but no official marriage certificate
+**Land Expropriation vs. Official Absence**: Secondary sources and family notes assert that Fidel Castro’s government seized Sorensen’s extensive agricultural holdings (**"CESOR"**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-69-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-69-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-31-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **rfc-gap-70-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-70-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-105-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
+  > --- title: RFC: GAP-89--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - FOIA Denials vs. Seizure Narrative category: research topic: rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+- **rfc-gap-47-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-47-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

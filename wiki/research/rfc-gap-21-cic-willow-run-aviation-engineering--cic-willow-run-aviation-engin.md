@@ -1,15 +1,14 @@
 ---
-title: RFC: GAP-21--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver
-category: research
-topic: rfc-gap-21-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
-gap_id: GAP-21--cic-willow-run-aviation-engineering
-status: draft
-created_at: 2026-09-20T11:13:51.140Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-21--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver"
+category: "research"
+topic: "rfc-gap-21-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
+gap_id: "GAP-21--cic-willow-run-aviation-engineering"
+status: "draft"
+created_at: "2026-09-27T12:30:32.864Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-22-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-58-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-21-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-08.md"]
 ---
 
 # RFC: GAP-21--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver
@@ -20,12 +19,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-22-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-22-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
-- **rfc-gap-58-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-58-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
+- **rfc-gap-21-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-21-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  > 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
+  > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

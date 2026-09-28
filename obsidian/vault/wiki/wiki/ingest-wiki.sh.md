@@ -1,7 +1,8 @@
 ---
-title: "ingest-wiki.sh"
-category: "sync-tools"
-status: "active"
+title: ingest-wiki.sh
+category: sync-tools
+status: active
+sourceRepository: kb-sync
 ---
 
 # ingest-wiki.sh

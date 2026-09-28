@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-58--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - This diplomatic legacy reached into the present...)**
+title: RFC: GAP-58--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - The Open Question
 category: research
 topic: rfc-gap-58-cic-post-war-willys-overland--cic-post-war-willys-overland
 gap_id: GAP-58--cic-post-war-willys-overland
 status: draft
-created_at: 2026-09-19T21:12:35.550Z
+created_at: 2026-09-22T14:24:42.763Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-31-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-86-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-58--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - This diplomatic legacy reached into the present...)**
+# RFC: GAP-58--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - The Open Question
 
 ## 1. Problem Statement & Context
-This diplomatic legacy reached into the present day when his great-grandson, Chris Sorensen, hand-delivered a commemorative letter to King Frederik X at Amalienborg Palace in March
+)**: **The Open Question:** Sorensen blocked board proposals to construct traditional passenger sedans, opting instead for his simple, die-stamping-free **"Utility Line"** (the 1946 Jee
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-31-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-31-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
   >
-- **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+- **rfc-gap-86-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-86-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

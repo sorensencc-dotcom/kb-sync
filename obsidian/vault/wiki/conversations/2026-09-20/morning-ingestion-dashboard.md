@@ -1,7 +1,8 @@
 ---
-title: "Daily Synthesis Log: Morning Ingestion Dashboard — 2026-09-20"
-category: "wiki"
-status: "active"
+title: Daily Synthesis Log: Morning Ingestion Dashboard — 2026-09-20
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Daily Synthesis Log: Morning Ingestion Dashboard — 2026-09-20
@@ -23,11 +24,11 @@ Consolidated 4 discussion turn(s) across 1 active session(s) on 2026-09-20. Grou
 
 ## Technical discoveries & entity linkages
 - **Q:** tell me something
-  **Finding:** **I don't see any sources in your notebook yet**, so I don't have any specific documents or data to draw from. 
+  **Finding:** **I don't see any sources in your notebook yet**, so I don't have any specific documents or data to draw from.
 
 **Would you like me to do some web research** on a particular topic of interest, or do you plan to upload some files to your notebook first? Let me know what you'd like to explore!...
 - **Q:** hmm my mcp  was supposed to push some info today
-  **Finding:** It looks like **the MCP push might not have gone through yet**. 
+  **Finding:** It looks like **the MCP push might not have gone through yet**.
 
 I checked behind the scenes in the workspace folders (including the ingestion and scratch areas), and **both the notebook and the workspace are currently completely empty**. There are no files or sources loaded.
 
@@ -45,10 +46,10 @@ Here is a quick digest of the most critical items from today's briefing (**Tuesd
 Here is ...
 
 ## Unresolved questions & open contradictions
-- tell me something: **I don't see any sources in your notebook yet**, so I don't have any specific documents or data to draw from. 
+- tell me something: **I don't see any sources in your notebook yet**, so I don't have any specific documents or data to draw from.
 
 **Would you like me to do some web research** on a particular topic of interest, or do ...
-- hmm my mcp  was supposed to push some info today: It looks like **the MCP push might not have gone through yet**. 
+- hmm my mcp  was supposed to push some info today: It looks like **the MCP push might not have gone through yet**.
 
 I checked behind the scenes in the workspace folders (including the ingestion and scratch areas), and **both the notebook and the work...
 

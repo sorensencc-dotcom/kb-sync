@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-54--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - 2.)**
+title: RFC: GAP-54--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Polarized 1956 Press Reviews)**
 category: research
 topic: rfc-gap-54-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-54--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-19T20:46:59.803Z
+created_at: 2026-09-22T13:56:11.115Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-112-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-95-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-54--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - 2.)**
+# RFC: GAP-54--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Polarized 1956 Press Reviews)**
 
 ## 1. Problem Statement & Context
-2. The December 1963 Studebaker "Ferris Wheel" Episode
+**Polarized 1956 Press Reviews**: Releasing *My Forty Years with Ford* in November 1956 sparked a sharp split among reviewers [24, 25]. Hostile critics like Anson Campbell (*The Pi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-112-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-112-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-95-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-95-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Audit Library & Kroll Collections" category: "research" topic: "rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_
+- **rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

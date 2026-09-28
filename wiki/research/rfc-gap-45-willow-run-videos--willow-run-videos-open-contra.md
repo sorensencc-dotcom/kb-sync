@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-45--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+title: RFC: GAP-45--willow-run-videos - **Willow Run Videos (open-contradictions - October 1, 1942
 category: research
 topic: rfc-gap-45-willow-run-videos--willow-run-videos-open-contra
 gap_id: GAP-45--willow-run-videos
 status: draft
-created_at: 2026-09-20T10:53:04.957Z
+created_at: 2026-09-26T13:10:11.762Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-62-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-111-willow-run-videos--willow-run-videos-open-contra.md"]
+citations: ["wiki/research/rfc-gap-56-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-70-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-118-willow-run-videos--willow-run-videos-open-contra.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-45--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+# RFC: GAP-45--willow-run-videos - **Willow Run Videos (open-contradictions - October 1, 1942
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** Transcripts split on where Charles E. Sorensen spent his sleepless night in January 1941 deconstructing the B-24 layout onto paper [9-11]. Multiple accounts
+)**: **October 1, 1942:** Multiple sources cite October 1, 1942, as the official public rollout of the flight-ready *Spirit of Ypsilanti* [39-44, 46-49].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-54-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-56-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-56-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-62-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-62-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-70-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-70-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-111-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-111-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-118-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-118-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

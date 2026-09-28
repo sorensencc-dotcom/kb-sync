@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-59--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 4. Class Standoffs & The Threat to Michigan State Normal School)**
+title: RFC: GAP-59--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - 2. New Questions & Discoveries to Research Next)**
 category: research
 topic: rfc-gap-59-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-59--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:05:44.525Z
+created_at: 2026-09-21T13:06:55.868Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md"]
+citations: ["wiki/research/rfc-gap-104-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-30-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-121-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-59--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 4. Class Standoffs & The Threat to Michigan State Normal School)**
+# RFC: GAP-59--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - 2. New Questions & Discoveries to Research Next)**
 
 ## 1. Problem Statement & Context
-**4. Class Standoffs & The Threat to Michigan State Normal School**
+**2. New Questions & Discoveries to Research Next**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [hybrid]:
+- **rfc-gap-104-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-104-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   >
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
-  > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
-- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
+- **rfc-gap-30-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-30-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
+- **rfc-gap-121-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-121-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-121--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - 2. Contradictory Memoirs & Corporate Intrigue** category: research topic: rfc-gap-121-cic-willow-run-aviation-engineering--
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

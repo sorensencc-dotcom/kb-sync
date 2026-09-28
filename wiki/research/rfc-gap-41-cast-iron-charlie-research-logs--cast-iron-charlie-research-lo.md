@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unexplored Primary Archive
+title: RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 6. Willys-Overland Financial & Payroll Terms)**
 category: research
 topic: rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-41--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.352Z
+created_at: 2026-09-23T12:18:41.128Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unexplored Primary Archive
+# RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 6. Willys-Overland Financial & Payroll Terms)**
 
 ## 1. Problem Statement & Context
-)**: **Unexplored Primary Archive:** The meeting's exact date in December 1963 is unconfirmed, and the primary archive that could validate the event—the **Brooks Stevens Archive at the
+**6. Willys-Overland Financial & Payroll Terms**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-16-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-60-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

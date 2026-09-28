@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Biomechanical Input Smoothing
+title: RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept"
 category: research
 topic: rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-adja
 gap_id: GAP-31--castironcharlie-facebook
 status: draft
-created_at: 2026-09-19T21:17:47.875Z
+created_at: 2026-09-22T14:03:51.352Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Biomechanical Input Smoothing
+# RFC: GAP-31--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - General Arnold's "Block Concept"
 
 ## 1. Problem Statement & Context
-)**: **Biomechanical Input Smoothing:** Sperry engineers treated operators as "manual servomechanisms" who provided operational feedback while using visual judgment and muscle memory to
+)**: **General Arnold's "Block Concept":** To prevent military engineering changes from constantly halting assembly lines, Ford persuaded Gen. Henry "Hap" Arnold to freeze design specif
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-02--castironcharlie-facebook-unde.md`) [lexical_only]:
+- **rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-38-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
   >
-- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [vector_only]:
-  > --- title: "RFC: GAP-10--willow-run-videos - **Willow Run Videos follow-up - Objective" category: "research" topic: "rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o" gap_id: "GAP-10--willow-run-videos" status: "draft" created_at: "2026-09
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [lexical_only]:
+- **rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
   >
+- **rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
+  > --- title: RFC: GAP-35--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - General Arnold's "Block Concept" category: research topic: rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja gap_id: GAP-35--castironchar
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

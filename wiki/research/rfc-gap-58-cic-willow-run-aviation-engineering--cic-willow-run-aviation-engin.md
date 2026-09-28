@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-58--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver
+title: RFC: GAP-58--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Answer
 category: research
 topic: rfc-gap-58-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-58--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:05:42.206Z
+created_at: 2026-09-21T13:06:54.260Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","trm-research-gaps.md","wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md"]
+citations: ["wiki/research/rfc-gap-64-cic-kb--cic-kb-open-contradictions-ed.md","wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","trm-research-gaps.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-58--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The 1949 Swampy Lot Deed Maneuver
+# RFC: GAP-58--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Answer
 
 ## 1. Problem Statement & Context
-)**: **The 1949 Swampy Lot Deed Maneuver:** Michigan state law required citizens to own physical property to vote on school board members or bond issues, disenfranchising thousands of w
+)**: **Answer:** Sorensen considers Henry Ford's treatment of his only son his "greatest failure" [2, 35, 36]. Henry attempted to force Edsel to be a carbon copy of himself, used Harry
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-64-cic-kb--cic-kb-open-contradictions-ed** (`wiki/research/rfc-gap-64-cic-kb--cic-kb-open-contradictions-ed.md`) [lexical_only]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi** (`wiki/research/rfc-gap-22-cic-kb--cic-kb-adjacent-topics-4-sigi.md`) [lexical_only]:
+- **rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-103--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - Arnold–Edsel Ford Strategic Correspondence category: research topic: rfc-gap-103-cic-willow-run-aviation-engineering--cic-w
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

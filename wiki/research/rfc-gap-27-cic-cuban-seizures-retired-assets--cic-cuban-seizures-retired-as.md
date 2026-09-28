@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-27--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Bond Indenture Trustees
-category: research
-topic: rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
-gap_id: GAP-27--cic-cuban-seizures-retired-assets
-status: draft
-created_at: 2026-09-20T11:10:14.745Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-27--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Bentley Historical Library "Box 14" Claim"
+category: "research"
+topic: "rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
+gap_id: "GAP-27--cic-cuban-seizures-retired-assets"
+status: "draft"
+created_at: "2026-09-27T12:15:53.238Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-26-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md"]
 ---
 
-# RFC: GAP-27--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Bond Indenture Trustees
+# RFC: GAP-27--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Bentley Historical Library "Box 14" Claim
 
 ## 1. Problem Statement & Context
-)**: **Bond Indenture Trustees:** In *Claim of Samuel J. Winkler* (Claim CU-2571) and *Claim of Morgan Guaranty Trust Company of New York*, the FCSC held that a trustee under a bond ind
+)**: **The Bentley Historical Library "Box 14" Claim:** Research briefs asserted that original land deeds and title manifests for Sorensen's citrus and cattle tracts in Matanzas and Pin
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  >
-- **rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  >
-- **rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: "RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Statutory Framework" category: "research" topic: "rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as" gap_id: "G
+- **rfc-gap-26-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-26-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

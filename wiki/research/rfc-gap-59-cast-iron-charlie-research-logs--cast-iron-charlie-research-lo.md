@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-59--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - FOIA Denials
+title: RFC: GAP-59--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unexamined Primary Record)**
 category: research
 topic: rfc-gap-59-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-59--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-19T21:05:53.203Z
+created_at: 2026-09-22T13:56:16.320Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","trm-research-gaps.md","wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md"]
+citations: ["wiki/research/rfc-gap-63-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-80-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-59--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - FOIA Denials
+# RFC: GAP-59--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Unexamined Primary Record)**
 
 ## 1. Problem Statement & Context
-)**: **FOIA Denials:** Official Freedom of Information Act (FOIA) requests to the Foreign Claims Settlement Commission (FCSC) returned no records under the personal name "Charles E. Sor
+**Unexamined Primary Record**: Primary validation—Brooks Stevens' personal appointment diaries, meeting notes, and LCMV sketches from December 1963—remains unexamined at the **Broo
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-63-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-63-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-80-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-80-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-08-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-08-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-08--cic-daily-research" status: "draft" created_at: "2
+- **rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-56-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,7 +1,8 @@
 ---
-title: "Wiki Schema"
-category: "sync-tools"
-status: "active"
+title: Wiki Schema
+category: sync-tools
+status: active
+sourceRepository: kb-sync
 ---
 
 # Wiki Schema

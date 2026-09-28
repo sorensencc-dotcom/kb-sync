@@ -4,27 +4,27 @@ category: research
 topic: rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-15--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:32.131Z
+created_at: 2026-09-24T12:03:05.499Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","trm-research-gaps.md","wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/the-henry-ford-sorensen-photographic-accessions.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-15--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (adjacent-topics - Charles Lindbergh’s Flight Testing & The "GPD Inc" Entity)**: **Charles Lindbergh’s Flight Testing & The "GPD Inc" Entity**: Photo 76926 is captioned **"GPD Inc Lindbergh"** [2], and narrative accounts confirm Lindbergh joined Ford in spring
+Industrial Giants at Willow Run (open-contradictions - Series Conflation)**: **Series Conflation**: Secondary literature frequently conflates manuscript collection **Acc. 38** (Charles E. Sorensen Office Files) with the **64.167** photograph accession prefi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

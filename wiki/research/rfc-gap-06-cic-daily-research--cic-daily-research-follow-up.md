@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-06-cic-daily-research--cic-daily-research-follow-up
 gap_id: GAP-06--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:49:41.849Z
+created_at: 2026-09-21T12:36:58.771Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-follow-up.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-06--cic-daily-research - **CIC - Daily Research (follow-up - The Objective
 
 ## 1. Problem Statement & Context
-)**: **The Objective:** Unseal unredacted administrative files for **Claim CU-2067 / Decision CU-1491** filed by trustee/nominee **Ralph Oppenheim**. Retrieving underlying trust agreeme
+)**: **The Objective:** Unseal unredacted administrative files for **Claim CU-2067 / Decision CU-1491** filed by trustee/nominee **Ralph Oppenheim** [cite: 15, 260]. Retrieving underlyi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-09-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-09-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
+- **rfc-gap-06-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
   >
-- **rfc-gap-07-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
+- **rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-08-23" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje** (`wiki/research/rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje.md`) [vector_only]:
+  > --- title: RFC: GAP-07--cic-reddit - **CIC-Reddit follow-up - The Objective category: research topic: rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje gap_id: GAP-07--cic-reddit status: draft created_at: 2026-09-19T21:24:17.497Z expansion_method:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

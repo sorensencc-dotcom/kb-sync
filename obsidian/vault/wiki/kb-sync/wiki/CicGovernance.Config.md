@@ -1,9 +1,10 @@
 ---
-title: "CicGovernance.Config"
-category: "wiki"
-status: "active"
+title: CicGovernance.Config
+category: wiki
+status: active
 draft: true
-created: "2026-08-29T22:25:46.933Z"
+created: 2026-08-29T22:25:46.933Z
+sourceRepository: kb-sync
 ---
 
 # CicGovernance.Config
