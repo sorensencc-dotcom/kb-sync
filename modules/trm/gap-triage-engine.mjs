@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { getDatabase, DEFAULT_DB_PATH } from '../cache/db-schema.mjs';
 import { handleQueryContextCache, handleFetchTopicNote } from '../../scripts/mcp-memory-server.mjs';
 import {
@@ -14,6 +15,55 @@ import {
 } from './ast-grounding.mjs';
 import { searchWebFallback } from './web-search-fallback.mjs';
 import { filterMatchedDocuments } from './jev-filter.mjs';
+
+export function parseNumericRange(valString) {
+  if (!valString) return { min: 0, max: 0, unit: '' };
+  const cleaned = String(valString).replace(/,/g, '').trim();
+  const rangeMatch = cleaned.match(/^~?(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*(.*)$/);
+  if (rangeMatch) {
+    return {
+      min: Number.parseFloat(rangeMatch[1]),
+      max: Number.parseFloat(rangeMatch[2]),
+      unit: rangeMatch[3].trim(),
+    };
+  }
+  const singleMatch = cleaned.match(/^~?(\d+(?:\.\d+)?)\s*(.*)$/);
+  if (!singleMatch) return { min: 0, max: 0, unit: valString };
+  const value = Number.parseFloat(singleMatch[1]);
+  return { min: value, max: value, unit: singleMatch[2].trim() };
+}
+
+export function evaluateClaim(claim, settledFacts = {}) {
+  const parsed = parseNumericRange(claim.raw_value);
+  const entity = String(claim.entity || '').toLowerCase();
+  const attribute = String(claim.attribute || '').toLowerCase();
+
+  for (const fact of Object.values(settledFacts)) {
+    if (
+      String(fact.entity || '').toLowerCase() === entity &&
+      String(fact.attribute || '').toLowerCase() === attribute
+    ) {
+      const canonical = Number(fact.canonical_value);
+      const allowed = Math.abs(canonical) * (fact.tolerance_pct ?? 0);
+      const outside = parsed.max < canonical - allowed || parsed.min > canonical + allowed;
+      if (!outside) return { action: 'FACT_CONFIRMED', fact_id: fact.fact_id };
+
+      const hash = crypto
+        .createHash('sha256')
+        .update(`${entity}:${attribute}:${claim.raw_value}`, 'utf8')
+        .digest('hex')
+        .slice(0, 8);
+      const notebook = String(claim.notebook_id || 'nb').replace(/[^a-z0-9-]/gi, '').slice(0, 12);
+      return {
+        action: 'CONTRADICTION_DETECTED',
+        fact_id: fact.fact_id,
+        conflictDraftFilename: `rfc-gap-conflict-${notebook}-${fact.fact_id}-${hash}.md`.slice(0, 64),
+      };
+    }
+  }
+
+  return { action: 'UNSETTLED_CLAIM' };
+}
 
 /**
  * Derive a stable topic slug fragment from a gap title for namespaced gap IDs.
