@@ -44,7 +44,15 @@ export function atomicWriteJson(filePath, data) {
   const tmpPath = `${filePath}.tmp.${process.pid}.${Date.now()}`;
   try {
     fs.writeFileSync(tmpPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
-    fs.renameSync(tmpPath, filePath);
+    try {
+      fs.renameSync(tmpPath, filePath);
+    } catch (err) {
+      if (err.code === 'EXDEV' || err.code === 'EPERM' || err.code === 'EBUSY') {
+        fs.copyFileSync(tmpPath, filePath);
+      } else {
+        throw err;
+      }
+    }
   } finally {
     try {
       fs.unlinkSync(tmpPath);
