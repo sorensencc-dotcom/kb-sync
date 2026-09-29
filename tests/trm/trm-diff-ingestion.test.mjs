@@ -204,26 +204,55 @@ test('TEST-DIFF-16: Reconstruct lineage metadata from markdown comment', () => {
   assert.equal(meta.generation, 1);
 });
 
-test('TEST-DIFF-17: runClosedLoopResearch routes --mode active and --mode weekly', async () => {
+test('TEST-DIFF-17: runClosedLoopResearch routes --mode active, demotes idle >72h, and executes 6-stage pipeline', async () => {
   const tmpDir = fs.mkdtempSync(path.join(process.cwd(), 'tmp-test-diff-17-'));
   try {
+    const fingerprintsPath = path.join(tmpDir, 'notebook_fingerprints.json');
+    const cadencePath = path.join(tmpDir, 'cadence_state.json');
+
+    // Setup: nb-idle (idle 80h) and nb-active (idle 10h)
+    const past80h = new Date(Date.now() - 80 * 3600 * 1000).toISOString();
+    const past10h = new Date(Date.now() - 10 * 3600 * 1000).toISOString();
+
+    fs.writeFileSync(fingerprintsPath, JSON.stringify({
+      'nb-idle': { source_ids: ['s_old'], generation: 1, inventory_hash: 'h_old' },
+      'nb-active': { source_ids: ['s_old'], generation: 1, inventory_hash: 'h_old' }
+    }));
+    fs.writeFileSync(cadencePath, JSON.stringify({
+      'nb-idle': { last_source_delta_utc: past80h, cadence: 'ACTIVE_DAILY' },
+      'nb-active': { last_source_delta_utc: past10h, cadence: 'ACTIVE_DAILY' }
+    }));
+
+    // 1. Run in active mode: nb-idle should be demoted to PASSIVE_WEEKLY, nb-active should be mined
     const resActive = await runClosedLoopResearch({
       mode: 'active',
-      notebook: 'nb-test-active',
       baseDir: tmpDir,
-      mockSources: [{ id: 's1', modified_at: new Date().toISOString() }]
+      mockSources: [{ id: 's_new', modified_at: new Date().toISOString() }]
     });
-    assert.equal(resActive.mode, 'active');
-    assert.equal(resActive.results[0].status, 'MINED_DELTA');
 
+    assert.equal(resActive.results.find(r => r.notebookId === 'nb-idle').status, 'DEMOTED_TO_WEEKLY');
+    const activeMined = resActive.results.find(r => r.notebookId === 'nb-active');
+    assert.equal(activeMined.status, 'MINED_DELTA');
+    assert.ok(activeMined.evaluator);
+    assert.ok(activeMined.triageAction);
+
+    // Verify cadence state file persisted demotion and active delta
+    const updatedCadence = JSON.parse(fs.readFileSync(cadencePath, 'utf8'));
+    assert.equal(updatedCadence['nb-idle'].cadence, 'PASSIVE_WEEKLY');
+    assert.equal(updatedCadence['nb-active'].cadence, 'ACTIVE_DAILY');
+
+    // Verify promoted_spans.json was written by WAL transaction commit
+    const promotedSpans = JSON.parse(fs.readFileSync(path.join(tmpDir, 'promoted_spans.json'), 'utf8'));
+    assert.ok(Object.keys(promotedSpans).length > 0);
+
+    // 2. Run in weekly mode: nb-active should be skipped, nb-idle should be processed
     const resWeekly = await runClosedLoopResearch({
       mode: 'weekly',
-      notebook: 'nb-test-weekly',
       baseDir: tmpDir,
-      mockSources: [{ id: 's1', modified_at: new Date().toISOString() }]
+      mockSources: [{ id: 's_weekly_new', modified_at: new Date().toISOString() }]
     });
-    assert.equal(resWeekly.mode, 'weekly');
-    assert.equal(resWeekly.results[0].status, 'MINED_DELTA');
+    assert.equal(resWeekly.results.find(r => r.notebookId === 'nb-active').status, 'SKIPPED_ACTIVE_MODE');
+    assert.equal(resWeekly.results.find(r => r.notebookId === 'nb-idle').status, 'MINED_DELTA');
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }
