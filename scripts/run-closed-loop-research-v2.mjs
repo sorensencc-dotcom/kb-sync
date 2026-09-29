@@ -57,6 +57,26 @@ export function cascadeSourceDeletion(removedSourceIds, settledFactsPath) {
   if (changed) atomicWriteJson(settledFactsPath, facts);
 }
 
+function collectFilesFromDirs(dirs, maxDepth = 2) {
+  const files = [];
+  function scan(dir, depth) {
+    if (depth > maxDepth || !fs.existsSync(dir)) return;
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const e of entries) {
+        const full = path.join(dir, e.name);
+        if (e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules') {
+          scan(full, depth + 1);
+        } else if (e.isFile()) {
+          files.push({ name: e.name, fullPath: full });
+        }
+      }
+    } catch {}
+  }
+  for (const d of dirs) scan(d, 1);
+  return files;
+}
+
 export function getRealSourcesForNotebook(nbId, options = {}) {
   if (options.mockSources) {
     return options.mockSources;
@@ -76,67 +96,104 @@ export function getRealSourcesForNotebook(nbId, options = {}) {
             title: s.title || s.name || s.id,
             modified_at: s.updated_at || s.modified_at || s.created_at || new Date().toISOString(),
             size_bytes: s.size_bytes || s.size || 0,
+            fullPath: s.fullPath || null,
           }));
         }
       } catch {}
     }
   }
 
-  // Discover real grounded source files from wiki/research matching notebook domain
-  const researchDir = path.join(process.cwd(), 'wiki', 'research');
-  if (fs.existsSync(researchDir)) {
-    try {
-      const nbKey = String(nbId).toLowerCase().replace(/[-_]/g, '');
-      const files = fs.readdirSync(researchDir).filter((f) => {
-        if (!f.endsWith('.md')) return false;
-        const norm = f.toLowerCase().replace(/[-_]/g, '');
-        return norm.includes(nbKey) || (nbId === 'willow-run' && (norm.includes('willow') || norm.includes('aviation'))) ||
-          (nbId === 'ford-politics' && (norm.includes('ford') || norm.includes('politics') || norm.includes('executive'))) ||
-          (nbId === 'post-war' && (norm.includes('willys') || norm.includes('postwar') || norm.includes('overland'))) ||
-          (nbId === 'cuba-claims' && norm.includes('cuba')) ||
-          (nbId === 'miami-estate' && (norm.includes('miami') || norm.includes('florida'))) ||
-          (nbId === 'assembly-line' && (norm.includes('rouge') || norm.includes('assembly') || norm.includes('modelt'))) ||
-          (nbId === 'daily' && norm.includes('daily'));
-      });
+  let aliases = [];
+  try {
+    const catData = loadCategoriesData();
+    if (catData?.categories?.[nbId]?.aliases) {
+      aliases = catData.categories[nbId].aliases;
+    }
+  } catch {}
 
-      if (files.length > 0) {
-        return files.slice(0, 5).map((f) => {
-          const full = path.join(researchDir, f);
-          const st = fs.statSync(full);
-          return {
+  const normNb = String(nbId).toLowerCase().replace(/[-_]/g, '');
+  const normAliases = aliases.map((a) => a.toLowerCase().replace(/[-_]/g, ''));
+  const allKeys = [normNb, ...normAliases].filter((k) => k.length >= 3);
+
+  const searchRoots = [
+    path.join(process.cwd(), 'docs'),
+    path.join(process.cwd(), 'wiki'),
+    path.join(process.cwd(), 'skills'),
+    path.join(process.cwd(), 'modules'),
+    path.join(process.cwd(), 'core'),
+    'C:/Users/soren/trm-vault/trm/research-gaps',
+    'C:/Users/soren/trm-vault/intake/notebooklm',
+    'C:/dev/IronLedger',
+    'C:/dev/sigil-repo',
+    'C:/dev/rewrite-docs',
+    'C:/dev/rewrite-mcp'
+  ];
+
+  const candidateFiles = collectFilesFromDirs(searchRoots, 2);
+  const matched = [];
+  const seen = new Set();
+
+  for (const item of candidateFiles) {
+    const ext = path.extname(item.name).toLowerCase();
+    if (!['.md', '.txt', '.json', '.docx', '.ts', '.mjs'].includes(ext)) continue;
+    if (seen.has(item.name)) continue;
+
+    const normName = item.name.toLowerCase().replace(/[-_]/g, '');
+    const normPath = item.fullPath.toLowerCase().replace(/[-_]/g, '');
+
+    const isMatch = allKeys.some((k) => {
+      if (['doc', 'kb', 'ops', 'gov'].includes(k)) {
+        return normName.startsWith(k) || normPath.includes('/' + k) || normPath.includes('\\' + k);
+      }
+      return normName.includes(k) || normPath.includes(k);
+    });
+
+    if (isMatch) {
+      seen.add(item.name);
+      try {
+        const st = fs.statSync(item.fullPath);
+        matched.push({
+          id: item.name,
+          title: item.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+          modified_at: st.mtime.toISOString(),
+          size_bytes: st.size,
+          fullPath: item.fullPath,
+        });
+      } catch {}
+    }
+  }
+
+  // Staged packs check: ONLY match specific pack prefix/stem
+  const nlmDirs = [path.join(process.cwd(), '.nlm_pack'), 'C:/dev/.nlm_pack'];
+  for (const dir of nlmDirs) {
+    if (!fs.existsSync(dir)) continue;
+    try {
+      const files = fs.readdirSync(dir).filter((f) => f.startsWith('pack_') && (f.endsWith('.txt') || f.endsWith('.md')));
+      for (const f of files) {
+        if (seen.has(f)) continue;
+        const normPack = f.toLowerCase().replace(/^pack_/, '').replace(/\.(txt|md)$/, '').replace(/[-_]/g, '');
+        if (normPack === normNb || normAliases.includes(normPack) || normPack.includes(normNb)) {
+          seen.add(f);
+          const fullPath = path.join(dir, f);
+          const st = fs.statSync(fullPath);
+          matched.push({
             id: f,
-            title: f.replace(/\.md$/, '').replace(/[-_]/g, ' '),
+            title: f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
             modified_at: st.mtime.toISOString(),
             size_bytes: st.size,
-          };
-        });
+            fullPath,
+          });
+        }
       }
     } catch {}
   }
 
-  // Check local staged packs
-  const stagingPackDir = path.join(process.cwd(), '.nlm_pack');
-  if (fs.existsSync(stagingPackDir)) {
-    try {
-      const packs = fs.readdirSync(stagingPackDir).filter((f) => f.includes(nbId) || f.endsWith('.txt') || f.endsWith('.md'));
-      if (packs.length > 0) {
-        return packs.map((p) => {
-          const full = path.join(stagingPackDir, p);
-          const st = fs.statSync(full);
-          return {
-            id: p,
-            title: p,
-            modified_at: st.mtime.toISOString(),
-            size_bytes: st.size,
-          };
-        });
-      }
-    } catch {}
+  if (matched.length > 0) {
+    return matched.slice(0, 10);
   }
 
-  // Default fallback for unit test isolation / initial runs
   return [
-    { id: `${nbId}_spec.pdf`, modified_at: new Date().toISOString(), size_bytes: 1024 }
+    { id: `${nbId}-manifest.json`, modified_at: new Date().toISOString(), size_bytes: 1024 }
   ];
 }
 
@@ -149,6 +206,19 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
     };
   }
 
+  let aliases = [];
+  try {
+    const catData = loadCategoriesData();
+    if (catData?.categories?.[nbId]?.aliases) {
+      aliases = catData.categories[nbId].aliases;
+    }
+  } catch {}
+
+  const normNb = String(nbId).toLowerCase().replace(/[-_]/g, '');
+  const normAliases = aliases.map((a) => a.toLowerCase().replace(/[-_]/g, ''));
+  const allKeys = [normNb, ...normAliases, nbId.toLowerCase().replace(/[-_]/g, ' ')].filter((k) => k.length >= 3);
+
+  // 1. Search in trm-research-gaps.md
   if (fs.existsSync(gapsFilePath)) {
     try {
       const gapsContent = fs.readFileSync(gapsFilePath, 'utf8');
@@ -162,20 +232,8 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
           const header = match[2];
           const body = match[3];
 
-          const headerLower = header.toLowerCase();
-          const nbLower = nbId.toLowerCase().replace(/[-_]/g, ' ');
-          const words = nbLower.split(' ');
-
-          const isMatch = words.some((w) => w.length > 3 && headerLower.includes(w)) ||
-            (nbId === 'willow-run' && (headerLower.includes('willow') || headerLower.includes('aviation'))) ||
-            (nbId === 'ford-politics' && (headerLower.includes('ford') || headerLower.includes('politics') || headerLower.includes('executive'))) ||
-            (nbId === 'post-war' && (headerLower.includes('willys') || headerLower.includes('post-war') || headerLower.includes('overland'))) ||
-            (nbId === 'cuba-claims' && headerLower.includes('cuba')) ||
-            (nbId === 'miami-estate' && (headerLower.includes('miami') || headerLower.includes('florida'))) ||
-            (nbId === 'assembly-line' && (headerLower.includes('rouge') || headerLower.includes('assembly') || headerLower.includes('model t'))) ||
-            (nbId === 'daily' && headerLower.includes('daily'));
-
-          if (isMatch) {
+          const headerNorm = header.toLowerCase().replace(/[-_]/g, '');
+          if (allKeys.some((k) => headerNorm.includes(k.replace(/ /g, '')))) {
             return {
               targetGap: options.targetGap || gapId,
               rawExcerpt: options.mockExcerpt || body.replace(/\(Drafted:.*?\)/, '').trim(),
@@ -187,29 +245,33 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
     } catch {}
   }
 
-  const researchDir = path.join(process.cwd(), 'wiki', 'research');
-  if (fs.existsSync(researchDir)) {
-    try {
-      const files = fs.readdirSync(researchDir).filter((f) => f.endsWith('.md') && (f.includes(nbId) || f.includes(nbId.slice(0, 4))));
-      if (files.length > 0) {
-        const sampleFile = files[0];
-        const content = fs.readFileSync(path.join(researchDir, sampleFile), 'utf8');
-        const lines = content.split('\n').filter((l) => l.trim().length > 30 && !l.startsWith('#') && !l.startsWith('---'));
-        if (lines.length > 0) {
-          return {
-            targetGap: options.targetGap || `GAP-${nbId.toUpperCase()}`,
-            rawExcerpt: options.mockExcerpt || lines[0].trim(),
-            sourceTitle: sampleFile,
-          };
-        }
+  // 2. Extract grounded excerpt from real discovered sources
+  const currentSources = options.currentSources || getRealSourcesForNotebook(nbId, options);
+  if (Array.isArray(currentSources) && currentSources.length > 0) {
+    for (const src of currentSources) {
+      const srcPath = src.fullPath || (src.id && fs.existsSync(src.id) ? src.id : null);
+      if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
+        try {
+          const content = fs.readFileSync(srcPath, 'utf8');
+          const lines = content.split('\n')
+            .map((l) => l.trim())
+            .filter((l) => l.length > 25 && !l.startsWith('#') && !l.startsWith('---') && !l.startsWith('>') && !l.startsWith('|'));
+          if (lines.length > 0) {
+            return {
+              targetGap: options.targetGap || `GAP-${nbId.toUpperCase()}`,
+              rawExcerpt: options.mockExcerpt || lines[0],
+              sourceTitle: src.id,
+            };
+          }
+        } catch {}
       }
-    } catch {}
+    }
   }
 
   return {
     targetGap: options.targetGap || `GAP-${nbId.toUpperCase()}`,
-    rawExcerpt: options.mockExcerpt || `Findings for ${nbId}: production volume confirmed in sources.`,
-    sourceTitle: `${nbId}_spec`,
+    rawExcerpt: options.mockExcerpt || `Domain research analysis and truth vector verification for ${nbId}.`,
+    sourceTitle: `${nbId}_domain`,
   };
 }
 
@@ -280,7 +342,9 @@ export async function runClosedLoopResearch(options = {}) {
 
     if (delta.deltaType === 'NO_DELTA') {
       const logLine = `[${new Date().toISOString()}] TRM-DIFF-GATE: Notebook ${nbId} unchanged; skipping mining pass (mode: ${mode})\n`;
-      try { fs.appendFileSync(logFile, logLine); } catch {}
+      if (!dryRun) {
+        try { fs.appendFileSync(logFile, logLine); } catch {}
+      }
       results.push({ notebookId: nbId, status: 'SKIPPED_NO_DELTA', mode });
       continue;
     }
@@ -298,7 +362,7 @@ export async function runClosedLoopResearch(options = {}) {
 
     // Stage 2: Two-Tier Query Engine Execution (Governed Evaluator)
     const runId = `run_${Date.now()}_${nbId}`;
-    const minedGap = getRealGapForNotebook(nbId, gapsFilePath, options);
+    const minedGap = getRealGapForNotebook(nbId, gapsFilePath, { ...options, currentSources });
     const evalPayload = {
       targetGap: minedGap.targetGap,
       sourceTitle: minedGap.sourceTitle || currentSources[0]?.id || 'unknown_source'
@@ -340,7 +404,7 @@ export async function runClosedLoopResearch(options = {}) {
     const isDuplicate = paragraphHashes[nbId]?.hashes?.[paraHash] && triageResult.action !== 'CONTRADICTION_DETECTED';
 
     // Stage 6: Promotion & WAL Transactional Commit
-    const tx = createTransaction(runId, nbId, nbFingerprint.generation || 1, { baseDir });
+    const tx = createTransaction(runId, nbId, nbFingerprint.generation || 1, { baseDir, dryRun });
     if (!isDuplicate) {
       tx.stageMutation('promoted_spans', {
         id: spanHash,

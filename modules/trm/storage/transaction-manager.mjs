@@ -73,15 +73,19 @@ export function createTransaction(runId, notebookId, sourceGeneration, options =
   const baseDir = options.baseDir || path.join(process.cwd(), '_kb-sync-staging', 'trm');
   const walPath = path.join(baseDir, 'transactions', `${runId}.wal.json`);
   const stagedMutations = {};
+  const dryRun = Boolean(options.dryRun);
 
   return {
     stageMutation(table, mutation) {
       stagedMutations[table] ??= [];
       stagedMutations[table].push(mutation);
-      atomicWriteJson(walPath, { runId, notebookId, sourceGeneration, stagedMutations });
+      if (!dryRun) {
+        atomicWriteJson(walPath, { runId, notebookId, sourceGeneration, stagedMutations });
+      }
     },
 
     commitTransaction(currentGeneration) {
+      if (dryRun) return true;
       if (currentGeneration !== sourceGeneration) {
         this.rollback();
         return false;
@@ -102,9 +106,11 @@ export function createTransaction(runId, notebookId, sourceGeneration, options =
     },
 
     rollback() {
-      try {
-        fs.unlinkSync(walPath);
-      } catch {}
+      if (!dryRun) {
+        try {
+          fs.unlinkSync(walPath);
+        } catch {}
+      }
     },
   };
 }

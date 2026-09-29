@@ -6,7 +6,7 @@ import { acquireLock, atomicWriteJson, createTransaction } from '../../modules/t
 import { canonicalizeSpanText, computeSpanHash, normalizeGapText, formatLineageHeader, parseLineageHeader } from '../../modules/trm/gap-normalizer.mjs';
 import { canDispatchCloudCall, recordCloudCallSuccess, recordCloudCallRateLimit } from '../../modules/trm/evaluators/cloud-budget.mjs';
 import { dispatchEvaluator } from '../../modules/trm/evaluators/index.mjs';
-import { computeManifestHash, evaluateSourceDelta, cascadeSourceDeletion, runClosedLoopResearch } from '../../scripts/run-closed-loop-research-v2.mjs';
+import { computeManifestHash, evaluateSourceDelta, cascadeSourceDeletion, runClosedLoopResearch, getRealSourcesForNotebook, getRealGapForNotebook } from '../../scripts/run-closed-loop-research-v2.mjs';
 import { parseNumericRange, evaluateClaim } from '../../modules/trm/gap-triage-engine.mjs';
 
 test('TEST-DIFF-01: Manifest unchanged exits early with NO_DELTA', () => {
@@ -270,3 +270,41 @@ test('TEST-DIFF-18: Crash recovery staging file parsing', () => {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }
 });
+
+test('TEST-DIFF-19: Dry-run execution generates zero WAL staging files or disk mutations', async () => {
+  const tmpDir = fs.mkdtempSync(path.join(process.cwd(), 'tmp-test-diff-19-'));
+  try {
+    const res = await runClosedLoopResearch({
+      mode: 'active',
+      dryRun: true,
+      baseDir: tmpDir,
+      targetNotebook: 'willow-run',
+      mockSources: [{ id: 's_dry_run_1', modified_at: new Date().toISOString() }]
+    });
+
+    assert.ok(res.results.length > 0);
+    const walDir = path.join(tmpDir, 'transactions');
+    const walFiles = fs.existsSync(walDir) ? fs.readdirSync(walDir).filter(f => f.endsWith('.wal.json')) : [];
+    assert.equal(walFiles.length, 0);
+
+    const spansFile = path.join(tmpDir, 'promoted_spans.json');
+    assert.equal(fs.existsSync(spansFile), false);
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+});
+
+test('TEST-DIFF-20: Discovery resolves grounded sources and gaps without synthetic placeholders', () => {
+  const targets = ['willow-run', 'ford-politics', 'post-war', 'cuba-claims', 'skills', 'governance', 'meta', 'modules'];
+  for (const nb of targets) {
+    const sources = getRealSourcesForNotebook(nb, { useCli: false });
+    assert.ok(Array.isArray(sources) && sources.length > 0, `Expected real sources for ${nb}`);
+    assert.ok(!sources[0].id.includes('_spec.pdf'), `Expected grounded source, got synthetic for ${nb}`);
+
+    const gap = getRealGapForNotebook(nb, path.join(process.cwd(), 'trm-research-gaps.md'), { currentSources: sources });
+    assert.ok(gap.targetGap, `Expected targetGap for ${nb}`);
+    assert.ok(gap.rawExcerpt, `Expected rawExcerpt for ${nb}`);
+    assert.ok(!gap.rawExcerpt.includes('production volume confirmed in sources'), `Expected real gap excerpt for ${nb}`);
+  }
+});
+
