@@ -62,135 +62,141 @@ const DOMAIN_DISCOVERY = {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-willow-run-aviation-engineering', 'C:/Users/soren/trm-vault/intake/notebooklm/willow-run-videos', 'C:/Users/soren/trm-vault/intake/notebooklm/the-sorensen-photographic-archive-industrial-giants-at-willow-run'],
     pack: 'pack_willow_run.txt',
     matchKeywords: ['willow', 'aviation', 'b24', 'b-24', 'bomber'],
-    gapDomain: 'willow'
+    gapHeaderPrefix: 'CIC - Willow Run & Aviation Engineering'
   },
   'ford-politics': {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-ford-executive-dynamics-politics', 'C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs'],
     pack: 'pack_ford_politics.txt',
     matchKeywords: ['ford', 'politics', 'executive', 'labor', 'sorensen', 'bennett', 'bombard'],
-    gapDomain: 'ford'
+    gapHeaderPrefix: 'CIC - Ford Executive Dynamics & Politics'
   },
   'post-war': {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-post-war-willys-overland'],
     pack: 'pack_willys_overland.txt',
     matchKeywords: ['willys', 'overland', 'post-war', 'postwar', 'jeep'],
-    gapDomain: 'post-war'
+    gapHeaderPrefix: 'CIC - Post-War & Willys-Overland'
   },
   'cuba-claims': {
     dirs: ['wiki/research/properties', 'wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-cuban-seizures-retired-assets'],
     pack: 'pack_cuban_seizures.txt',
     matchKeywords: ['cuba', 'cuban', 'moa-bay', 'nicaro'],
-    gapDomain: 'cuba'
+    gapHeaderPrefix: 'CIC - Cuban Seizures & Retired Assets'
   },
   'miami-estate': {
     dirs: ['wiki/research/properties', 'C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-daily-research'],
     pack: null,
     matchKeywords: ['miami', 'florida', 'estate', 'yacht', 'helene'],
-    gapDomain: 'miami'
+    gapHeaderPrefix: 'Cast Iron Charlie - Research Logs'
   },
   'assembly-line': {
     dirs: ['C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs', 'wiki/research'],
     pack: null,
     matchKeywords: ['assembly', 'rouge', 'model-t', 'modelt', 'moving-assembly'],
-    gapDomain: 'assembly'
+    gapHeaderPrefix: 'Cast Iron Charlie - Research Logs'
   },
   'master-kb': {
     dirs: ['wiki', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-kb'],
     pack: 'pack_master_kb.txt',
     matchKeywords: ['cic-kb', 'master', 'wiki', 'index', 'log'],
-    gapDomain: 'cic-kb'
+    gapHeaderPrefix: 'CIC-KB'
   },
   'daily': {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-daily-research'],
     pack: 'pack_daily.txt',
     matchKeywords: ['daily', 'ironbots-daily', 'intake'],
-    gapDomain: 'daily'
+    gapHeaderPrefix: 'CIC - Daily Research'
   },
   'research-deltas': {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-research-deltas-living-matrix'],
     pack: null,
     matchKeywords: ['research-deltas', 'living-matrix', 'matrix', 'delta'],
-    gapDomain: 'research-deltas'
+    gapHeaderPrefix: 'CIC - Research Deltas'
   },
   'ironledger': {
     dirs: ['C:/dev/IronLedger', 'wiki/specs', 'wiki/concepts'],
     pack: null,
-    matchKeywords: ['ironledger', 'financial', 'ledger', 'balance'],
-    gapDomain: null
+    matchKeywords: ['financial-design-guidelines', 'financial', 'ledger', 'balance', 'tax', 'guidelines'],
+    gapHeaderPrefix: null
   },
   'sigil': {
     dirs: ['C:/dev/sigil-repo', 'wiki/concepts', 'wiki/research'],
     pack: null,
-    matchKeywords: ['sigil', 'protocol', 'federation'],
-    gapDomain: null
+    matchKeywords: ['sigil-dep-audit', 'sigil', 'protocol', 'federation', 'relay'],
+    gapHeaderPrefix: null
   },
   'agent-harness': {
     dirs: ['wiki/concepts', 'wiki/entities', 'C:/dev/graft', 'docs/targets'],
     pack: null,
     matchKeywords: ['graft', 'harness', 'herdr', 'sam-safeguards'],
-    gapDomain: null
+    gapHeaderPrefix: null
   },
   'rewrite-labs': {
     dirs: ['C:/dev/rewrite-docs', 'C:/dev/rewrite-mcp', 'wiki/rewrite'],
     pack: null,
-    matchKeywords: ['rewrite', 'ssg', 'redesign', 'claude', 'readme', 'roadmap'],
-    gapDomain: null
+    matchKeywords: ['roadmap', 'reconstruction', 'batches', 'rewrite', 'ssg'],
+    gapHeaderPrefix: null
   },
   'dev-triage': {
     dirs: ['docs/superpowers/specs', 'wiki/entities', 'docs/operations', 'docs/audit/ironbot'],
     pack: null,
-    matchKeywords: ['triage', 'ironbot', 'audit', 'ci-watchdog', 'gap-triage', 'monitor'],
-    gapDomain: null
+    matchKeywords: ['ironbot-task-monitor', 'triage', 'ironbot', 'watchdog', 'gap-triage'],
+    gapHeaderPrefix: null
   },
   'personal-os': {
     dirs: ['docs', 'C:/dev/.nlm_pack', '.nlm_pack'],
     pack: 'pack_personal_os.txt',
     matchKeywords: ['personal_os', 'personal-os', 'household', 'utilities'],
-    gapDomain: null
+    gapHeaderPrefix: null
   },
   'governance': {
     dirs: ['docs/governance'],
     pack: null,
-    matchKeywords: ['governance', 'policy', 'charter', 'approval'],
-    gapDomain: null
+    matchKeywords: ['automation-policy', 'governance', 'policy', 'charter', 'approval'],
+    gapHeaderPrefix: null
   },
   'meta': {
     dirs: ['docs/meta/specs', 'docs/meta/plans', 'docs/meta'],
     pack: null,
-    matchKeywords: ['meta', 'compacted-context', 'architecture', 'spec'],
-    gapDomain: null
+    matchKeywords: ['compacted-context', 'architecture', 'spec', 'meta'],
+    gapHeaderPrefix: null
   },
   'modules': {
     dirs: ['docs/modules', 'modules'],
     pack: 'pack_modules.txt',
-    matchKeywords: ['modules', 'artifact-generator', 'module'],
-    gapDomain: null
+    matchKeywords: ['artifact-generator', 'modules', 'module'],
+    gapHeaderPrefix: null
   },
   'operations': {
     dirs: ['docs/operations', 'docs/operations/kb-sync-nightly-reports'],
     pack: null,
-    matchKeywords: ['operations', 'nightly-audit', 'task-scheduler', 'runbook'],
-    gapDomain: null
+    matchKeywords: ['nightly-audit', 'operations', 'task-scheduler', 'runbook'],
+    gapHeaderPrefix: null
   },
   'skills': {
     dirs: ['docs/skills', 'skills', 'docs/governance'],
     pack: null,
-    matchKeywords: ['skills', 'skill', 'obsidian-ingest', 'skill-approval'],
-    gapDomain: null
+    matchKeywords: ['obsidian-ingest', 'skill-approval', 'skills', 'skill'],
+    gapHeaderPrefix: null
   },
   'superpowers': {
     dirs: ['docs/superpowers/plans', 'docs/superpowers/specs', 'docs/superpowers'],
     pack: null,
-    matchKeywords: ['superpowers', 'superpower', 'enhancements', 'coverage-remediation'],
-    gapDomain: null
+    matchKeywords: ['coverage-remediation', 'superpowers', 'superpower', 'enhancements'],
+    gapHeaderPrefix: null
   },
   'targets': {
     dirs: ['docs/targets'],
     pack: null,
-    matchKeywords: ['targets', 'target', 'notebooklm', 'obsidian'],
-    gapDomain: null
+    matchKeywords: ['notebooklm', 'obsidian', 'targets', 'target'],
+    gapHeaderPrefix: null
   }
 };
+
+const GENERIC_META_FILES = new Set([
+  'agents.md', 'claude.md', 'gemini.md', 'wayland.md', 'status.md',
+  '.mcp.json', 'package.json', 'package-lock.json', 'tsconfig.json',
+  'yarn.lock', 'pnpm-lock.yaml'
+]);
 
 function extractFirstContentParagraph(text) {
   if (!text || typeof text !== 'string') return null;
@@ -267,14 +273,14 @@ export function getRealSourcesForNotebook(nbId, options = {}) {
       for (const e of entries) {
         if (!e.isFile()) continue;
         const name = e.name;
+        if (GENERIC_META_FILES.has(name.toLowerCase())) continue;
         if (!['.md', '.txt', '.json', '.ts', '.mjs', '.ps1'].some((ext) => name.endsWith(ext))) continue;
         if (seen.has(name)) continue;
 
         const lower = name.toLowerCase();
-        const isExclusiveDir = dir.startsWith('docs/') || dir.startsWith('C:/dev/IronLedger') || dir.startsWith('C:/dev/sigil') || dir.startsWith('C:/dev/rewrite');
         const matchesKeyword = config.matchKeywords.some((kw) => lower.includes(kw));
 
-        if (isExclusiveDir || matchesKeyword) {
+        if (matchesKeyword) {
           seen.add(name);
           const fullPath = path.join(fullDir, name);
           const st = fs.statSync(fullPath);
@@ -329,7 +335,7 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
   const config = DOMAIN_DISCOVERY[canonicalId];
 
   // 1. If historical domain with gaps in trm-research-gaps.md
-  if (config?.gapDomain && fs.existsSync(gapsFilePath)) {
+  if (config?.gapHeaderPrefix && fs.existsSync(gapsFilePath)) {
     try {
       const gapsContent = fs.readFileSync(gapsFilePath, 'utf8');
       const lines = gapsContent.split('\n');
@@ -342,20 +348,7 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
           const header = match[2];
           const body = match[3];
 
-          const headerLower = header.toLowerCase();
-          let isMatch = false;
-
-          if (config.gapDomain === 'willow' && (headerLower.includes('willow') || headerLower.includes('aviation'))) isMatch = true;
-          else if (config.gapDomain === 'ford' && (headerLower.includes('ford') || headerLower.includes('politics') || headerLower.includes('executive'))) isMatch = true;
-          else if (config.gapDomain === 'post-war' && (headerLower.includes('willys') || headerLower.includes('post-war') || headerLower.includes('overland'))) isMatch = true;
-          else if (config.gapDomain === 'cuba' && headerLower.includes('cuban')) isMatch = true;
-          else if (config.gapDomain === 'miami' && (headerLower.includes('miami') || headerLower.includes('florida'))) isMatch = true;
-          else if (config.gapDomain === 'assembly' && (headerLower.includes('assembly') || headerLower.includes('rouge') || headerLower.includes('model t'))) isMatch = true;
-          else if (config.gapDomain === 'cic-kb' && headerLower.includes('cic-kb')) isMatch = true;
-          else if (config.gapDomain === 'daily' && headerLower.includes('daily')) isMatch = true;
-          else if (config.gapDomain === 'research-deltas' && headerLower.includes('research deltas')) isMatch = true;
-
-          if (isMatch) {
+          if (header.trim().startsWith(config.gapHeaderPrefix)) {
             return {
               targetGap: options.targetGap || gapId,
               rawExcerpt: body.replace(/\(Drafted:.*?\)/, '').trim(),
