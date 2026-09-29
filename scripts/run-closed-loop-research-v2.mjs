@@ -37,7 +37,7 @@ export function evaluateSourceDelta(cachedManifest = {}, currentSources = []) {
   return { deltaType: 'NO_DELTA', removedSourceIds: [] };
 }
 
-export function cascadeSourceDeletion(removedSourceIds, settledFactsPath) {
+export function cascadeSourceDeletion(removedSourceIds, settledFactsPath, options = {}) {
   if (!fs.existsSync(settledFactsPath)) return;
   const removed = new Set(removedSourceIds);
   let facts;
@@ -54,27 +54,165 @@ export function cascadeSourceDeletion(removedSourceIds, settledFactsPath) {
       changed = true;
     }
   }
-  if (changed) atomicWriteJson(settledFactsPath, facts);
+  if (changed && !options.dryRun) atomicWriteJson(settledFactsPath, facts);
 }
 
-function collectFilesFromDirs(dirs, maxDepth = 2) {
-  const files = [];
-  function scan(dir, depth) {
-    if (depth > maxDepth || !fs.existsSync(dir)) return;
+const DOMAIN_DISCOVERY = {
+  'willow-run': {
+    dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-willow-run-aviation-engineering', 'C:/Users/soren/trm-vault/intake/notebooklm/willow-run-videos', 'C:/Users/soren/trm-vault/intake/notebooklm/the-sorensen-photographic-archive-industrial-giants-at-willow-run'],
+    pack: 'pack_willow_run.txt',
+    matchKeywords: ['willow', 'aviation', 'b24', 'b-24', 'bomber'],
+    gapDomain: 'willow'
+  },
+  'ford-politics': {
+    dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-ford-executive-dynamics-politics', 'C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs'],
+    pack: 'pack_ford_politics.txt',
+    matchKeywords: ['ford', 'politics', 'executive', 'labor', 'sorensen', 'bennett', 'bombard'],
+    gapDomain: 'ford'
+  },
+  'post-war': {
+    dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-post-war-willys-overland'],
+    pack: 'pack_willys_overland.txt',
+    matchKeywords: ['willys', 'overland', 'post-war', 'postwar', 'jeep'],
+    gapDomain: 'post-war'
+  },
+  'cuba-claims': {
+    dirs: ['wiki/research/properties', 'wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-cuban-seizures-retired-assets'],
+    pack: 'pack_cuban_seizures.txt',
+    matchKeywords: ['cuba', 'cuban', 'moa-bay', 'nicaro'],
+    gapDomain: 'cuba'
+  },
+  'miami-estate': {
+    dirs: ['wiki/research/properties', 'C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-daily-research'],
+    pack: null,
+    matchKeywords: ['miami', 'florida', 'estate', 'yacht', 'helene'],
+    gapDomain: 'miami'
+  },
+  'assembly-line': {
+    dirs: ['C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs', 'wiki/research'],
+    pack: null,
+    matchKeywords: ['assembly', 'rouge', 'model-t', 'modelt', 'moving-assembly'],
+    gapDomain: 'assembly'
+  },
+  'master-kb': {
+    dirs: ['wiki', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-kb'],
+    pack: 'pack_master_kb.txt',
+    matchKeywords: ['cic-kb', 'master', 'wiki', 'index', 'log'],
+    gapDomain: 'cic-kb'
+  },
+  'daily': {
+    dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-daily-research'],
+    pack: 'pack_daily.txt',
+    matchKeywords: ['daily', 'ironbots-daily', 'intake'],
+    gapDomain: 'daily'
+  },
+  'research-deltas': {
+    dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-research-deltas-living-matrix'],
+    pack: null,
+    matchKeywords: ['research-deltas', 'living-matrix', 'matrix', 'delta'],
+    gapDomain: 'research-deltas'
+  },
+  'ironledger': {
+    dirs: ['C:/dev/IronLedger', 'wiki/specs', 'wiki/concepts'],
+    pack: null,
+    matchKeywords: ['ironledger', 'financial', 'ledger', 'balance'],
+    gapDomain: null
+  },
+  'sigil': {
+    dirs: ['C:/dev/sigil-repo', 'wiki/concepts', 'wiki/research'],
+    pack: null,
+    matchKeywords: ['sigil', 'protocol', 'federation'],
+    gapDomain: null
+  },
+  'agent-harness': {
+    dirs: ['wiki/concepts', 'wiki/entities', 'C:/dev/graft', 'docs/targets'],
+    pack: null,
+    matchKeywords: ['graft', 'harness', 'herdr', 'sam-safeguards'],
+    gapDomain: null
+  },
+  'rewrite-labs': {
+    dirs: ['C:/dev/rewrite-docs', 'C:/dev/rewrite-mcp', 'wiki/rewrite'],
+    pack: null,
+    matchKeywords: ['rewrite', 'ssg', 'redesign', 'claude', 'readme', 'roadmap'],
+    gapDomain: null
+  },
+  'dev-triage': {
+    dirs: ['docs/superpowers/specs', 'wiki/entities', 'docs/operations', 'docs/audit/ironbot'],
+    pack: null,
+    matchKeywords: ['triage', 'ironbot', 'audit', 'ci-watchdog', 'gap-triage', 'monitor'],
+    gapDomain: null
+  },
+  'personal-os': {
+    dirs: ['docs', 'C:/dev/.nlm_pack', '.nlm_pack'],
+    pack: 'pack_personal_os.txt',
+    matchKeywords: ['personal_os', 'personal-os', 'household', 'utilities'],
+    gapDomain: null
+  },
+  'governance': {
+    dirs: ['docs/governance'],
+    pack: null,
+    matchKeywords: ['governance', 'policy', 'charter', 'approval'],
+    gapDomain: null
+  },
+  'meta': {
+    dirs: ['docs/meta/specs', 'docs/meta/plans', 'docs/meta'],
+    pack: null,
+    matchKeywords: ['meta', 'compacted-context', 'architecture', 'spec'],
+    gapDomain: null
+  },
+  'modules': {
+    dirs: ['docs/modules', 'modules'],
+    pack: 'pack_modules.txt',
+    matchKeywords: ['modules', 'artifact-generator', 'module'],
+    gapDomain: null
+  },
+  'operations': {
+    dirs: ['docs/operations', 'docs/operations/kb-sync-nightly-reports'],
+    pack: null,
+    matchKeywords: ['operations', 'nightly-audit', 'task-scheduler', 'runbook'],
+    gapDomain: null
+  },
+  'skills': {
+    dirs: ['docs/skills', 'skills', 'docs/governance'],
+    pack: null,
+    matchKeywords: ['skills', 'skill', 'obsidian-ingest', 'skill-approval'],
+    gapDomain: null
+  },
+  'superpowers': {
+    dirs: ['docs/superpowers/plans', 'docs/superpowers/specs', 'docs/superpowers'],
+    pack: null,
+    matchKeywords: ['superpowers', 'superpower', 'enhancements', 'coverage-remediation'],
+    gapDomain: null
+  },
+  'targets': {
+    dirs: ['docs/targets'],
+    pack: null,
+    matchKeywords: ['targets', 'target', 'notebooklm', 'obsidian'],
+    gapDomain: null
+  }
+};
+
+function extractFirstContentParagraph(text) {
+  if (!text || typeof text !== 'string') return null;
+  let body = text.trim();
+  if (body.startsWith('{') && body.endsWith('}')) {
     try {
-      const entries = fs.readdirSync(dir, { withFileTypes: true });
-      for (const e of entries) {
-        const full = path.join(dir, e.name);
-        if (e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules') {
-          scan(full, depth + 1);
-        } else if (e.isFile()) {
-          files.push({ name: e.name, fullPath: full });
-        }
-      }
+      const obj = JSON.parse(body);
+      const desc = obj.description || obj.summary || obj.title || obj.name || obj.status || obj.message;
+      if (desc && typeof desc === 'string' && desc.length > 10) return desc;
     } catch {}
   }
-  for (const d of dirs) scan(d, 1);
-  return files;
+  // Strip YAML frontmatter if present
+  if (body.startsWith('---')) {
+    const endIdx = body.indexOf('\n---', 3);
+    if (endIdx !== -1) {
+      body = body.slice(endIdx + 4);
+    }
+  }
+  const lines = body.split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.length > 20 && !l.startsWith('#') && !l.startsWith('>') && !l.startsWith('|') && !l.startsWith('<!--') && !l.startsWith('```') && !l.startsWith('title:') && !l.startsWith('- ') && !l.startsWith('* '));
+  return lines.length > 0 ? lines[0] : null;
 }
 
 export function getRealSourcesForNotebook(nbId, options = {}) {
@@ -103,82 +241,45 @@ export function getRealSourcesForNotebook(nbId, options = {}) {
     }
   }
 
-  let aliases = [];
-  try {
-    const catData = loadCategoriesData();
-    if (catData?.categories?.[nbId]?.aliases) {
-      aliases = catData.categories[nbId].aliases;
-    }
-  } catch {}
+  const config = DOMAIN_DISCOVERY[nbId];
+  if (!config) {
+    if (options.mockSources) return options.mockSources;
+    throw new Error(`Unrecognized notebook domain: ${nbId}`);
+  }
 
-  const normNb = String(nbId).toLowerCase().replace(/[-_]/g, '');
-  const normAliases = aliases.map((a) => a.toLowerCase().replace(/[-_]/g, ''));
-  const allKeys = [normNb, ...normAliases].filter((k) => k.length >= 3);
-
-  const searchRoots = [
-    path.join(process.cwd(), 'docs'),
-    path.join(process.cwd(), 'wiki'),
-    path.join(process.cwd(), 'skills'),
-    path.join(process.cwd(), 'modules'),
-    path.join(process.cwd(), 'core'),
-    'C:/Users/soren/trm-vault/trm/research-gaps',
-    'C:/Users/soren/trm-vault/intake/notebooklm',
-    'C:/dev/IronLedger',
-    'C:/dev/sigil-repo',
-    'C:/dev/rewrite-docs',
-    'C:/dev/rewrite-mcp'
-  ];
-
-  const candidateFiles = collectFilesFromDirs(searchRoots, 2);
   const matched = [];
   const seen = new Set();
 
-  for (const item of candidateFiles) {
-    const ext = path.extname(item.name).toLowerCase();
-    if (!['.md', '.txt', '.json', '.docx', '.ts', '.mjs'].includes(ext)) continue;
-    if (seen.has(item.name)) continue;
-
-    const normName = item.name.toLowerCase().replace(/[-_]/g, '');
-    const normPath = item.fullPath.toLowerCase().replace(/[-_]/g, '');
-
-    const isMatch = allKeys.some((k) => {
-      if (['doc', 'kb', 'ops', 'gov'].includes(k)) {
-        return normName.startsWith(k) || normPath.includes('/' + k) || normPath.includes('\\' + k);
-      }
-      return normName.includes(k) || normPath.includes(k);
-    });
-
-    if (isMatch) {
-      seen.add(item.name);
-      try {
-        const st = fs.statSync(item.fullPath);
-        matched.push({
-          id: item.name,
-          title: item.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
-          modified_at: st.mtime.toISOString(),
-          size_bytes: st.size,
-          fullPath: item.fullPath,
-        });
-      } catch {}
-    }
-  }
-
-  // Staged packs check: ONLY match specific pack prefix/stem
-  const nlmDirs = [path.join(process.cwd(), '.nlm_pack'), 'C:/dev/.nlm_pack'];
-  for (const dir of nlmDirs) {
-    if (!fs.existsSync(dir)) continue;
+  // 1. Scan assigned domain directories
+  for (const dir of config.dirs) {
+    const fullDir = path.isAbsolute(dir) ? dir : path.join(process.cwd(), dir);
+    if (!fs.existsSync(fullDir)) continue;
     try {
-      const files = fs.readdirSync(dir).filter((f) => f.startsWith('pack_') && (f.endsWith('.txt') || f.endsWith('.md')));
-      for (const f of files) {
-        if (seen.has(f)) continue;
-        const normPack = f.toLowerCase().replace(/^pack_/, '').replace(/\.(txt|md)$/, '').replace(/[-_]/g, '');
-        if (normPack === normNb || normAliases.includes(normPack) || normPack.includes(normNb)) {
-          seen.add(f);
-          const fullPath = path.join(dir, f);
+      const entries = fs.readdirSync(fullDir, { withFileTypes: true });
+      entries.sort((a, b) => {
+        const aIsDoc = a.name.endsWith('.md') || a.name.endsWith('.txt');
+        const bIsDoc = b.name.endsWith('.md') || b.name.endsWith('.txt');
+        if (aIsDoc && !bIsDoc) return -1;
+        if (!aIsDoc && bIsDoc) return 1;
+        return a.name.localeCompare(b.name);
+      });
+      for (const e of entries) {
+        if (!e.isFile()) continue;
+        const name = e.name;
+        if (!['.md', '.txt', '.json', '.ts', '.mjs', '.ps1'].some((ext) => name.endsWith(ext))) continue;
+        if (seen.has(name)) continue;
+
+        const lower = name.toLowerCase();
+        const isExclusiveDir = dir.startsWith('docs/') || dir.startsWith('C:/dev/IronLedger') || dir.startsWith('C:/dev/sigil') || dir.startsWith('C:/dev/rewrite');
+        const matchesKeyword = config.matchKeywords.some((kw) => lower.includes(kw));
+
+        if (isExclusiveDir || matchesKeyword) {
+          seen.add(name);
+          const fullPath = path.join(fullDir, name);
           const st = fs.statSync(fullPath);
           matched.push({
-            id: f,
-            title: f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+            id: name,
+            title: name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
             modified_at: st.mtime.toISOString(),
             size_bytes: st.size,
             fullPath,
@@ -188,38 +289,45 @@ export function getRealSourcesForNotebook(nbId, options = {}) {
     } catch {}
   }
 
+  // 2. Exact pack file if specified
+  if (config.pack) {
+    const packDirs = [path.join(process.cwd(), '.nlm_pack'), 'C:/dev/.nlm_pack'];
+    for (const pd of packDirs) {
+      const packPath = path.join(pd, config.pack);
+      if (fs.existsSync(packPath) && !seen.has(config.pack)) {
+        seen.add(config.pack);
+        const st = fs.statSync(packPath);
+        matched.push({
+          id: config.pack,
+          title: config.pack.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+          modified_at: st.mtime.toISOString(),
+          size_bytes: st.size,
+          fullPath: packPath,
+        });
+      }
+    }
+  }
+
   if (matched.length > 0) {
     return matched.slice(0, 10);
   }
 
-  return [
-    { id: `${nbId}-manifest.json`, modified_at: new Date().toISOString(), size_bytes: 1024 }
-  ];
+  throw new Error(`No grounded source files discovered for notebook: ${nbId}`);
 }
 
 export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
-  if (options.targetGap && options.mockExcerpt) {
+  if (options.mockExcerpt) {
     return {
-      targetGap: options.targetGap,
+      targetGap: options.targetGap || `GAP-${String(nbId).toUpperCase()}`,
       rawExcerpt: options.mockExcerpt,
       sourceTitle: options.sourceTitle || `${nbId}_source`,
     };
   }
 
-  let aliases = [];
-  try {
-    const catData = loadCategoriesData();
-    if (catData?.categories?.[nbId]?.aliases) {
-      aliases = catData.categories[nbId].aliases;
-    }
-  } catch {}
+  const config = DOMAIN_DISCOVERY[nbId];
 
-  const normNb = String(nbId).toLowerCase().replace(/[-_]/g, '');
-  const normAliases = aliases.map((a) => a.toLowerCase().replace(/[-_]/g, ''));
-  const allKeys = [normNb, ...normAliases, nbId.toLowerCase().replace(/[-_]/g, ' ')].filter((k) => k.length >= 3);
-
-  // 1. Search in trm-research-gaps.md
-  if (fs.existsSync(gapsFilePath)) {
+  // 1. If historical domain with gaps in trm-research-gaps.md
+  if (config?.gapDomain && fs.existsSync(gapsFilePath)) {
     try {
       const gapsContent = fs.readFileSync(gapsFilePath, 'utf8');
       const lines = gapsContent.split('\n');
@@ -232,11 +340,23 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
           const header = match[2];
           const body = match[3];
 
-          const headerNorm = header.toLowerCase().replace(/[-_]/g, '');
-          if (allKeys.some((k) => headerNorm.includes(k.replace(/ /g, '')))) {
+          const headerLower = header.toLowerCase();
+          let isMatch = false;
+
+          if (config.gapDomain === 'willow' && (headerLower.includes('willow') || headerLower.includes('aviation'))) isMatch = true;
+          else if (config.gapDomain === 'ford' && (headerLower.includes('ford') || headerLower.includes('politics') || headerLower.includes('executive'))) isMatch = true;
+          else if (config.gapDomain === 'post-war' && (headerLower.includes('willys') || headerLower.includes('post-war') || headerLower.includes('overland'))) isMatch = true;
+          else if (config.gapDomain === 'cuba' && headerLower.includes('cuban')) isMatch = true;
+          else if (config.gapDomain === 'miami' && (headerLower.includes('miami') || headerLower.includes('florida'))) isMatch = true;
+          else if (config.gapDomain === 'assembly' && (headerLower.includes('assembly') || headerLower.includes('rouge') || headerLower.includes('model t'))) isMatch = true;
+          else if (config.gapDomain === 'cic-kb' && headerLower.includes('cic-kb')) isMatch = true;
+          else if (config.gapDomain === 'daily' && headerLower.includes('daily')) isMatch = true;
+          else if (config.gapDomain === 'research-deltas' && headerLower.includes('research deltas')) isMatch = true;
+
+          if (isMatch) {
             return {
               targetGap: options.targetGap || gapId,
-              rawExcerpt: options.mockExcerpt || body.replace(/\(Drafted:.*?\)/, '').trim(),
+              rawExcerpt: body.replace(/\(Drafted:.*?\)/, '').trim(),
               sourceTitle: header.trim(),
             };
           }
@@ -245,7 +365,7 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
     } catch {}
   }
 
-  // 2. Extract grounded excerpt from real discovered sources
+  // 2. Extract grounded excerpt from the top primary source document
   const currentSources = options.currentSources || getRealSourcesForNotebook(nbId, options);
   if (Array.isArray(currentSources) && currentSources.length > 0) {
     for (const src of currentSources) {
@@ -253,13 +373,11 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
       if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
         try {
           const content = fs.readFileSync(srcPath, 'utf8');
-          const lines = content.split('\n')
-            .map((l) => l.trim())
-            .filter((l) => l.length > 25 && !l.startsWith('#') && !l.startsWith('---') && !l.startsWith('>') && !l.startsWith('|'));
-          if (lines.length > 0) {
+          const excerpt = extractFirstContentParagraph(content);
+          if (excerpt) {
             return {
-              targetGap: options.targetGap || `GAP-${nbId.toUpperCase()}`,
-              rawExcerpt: options.mockExcerpt || lines[0],
+              targetGap: options.targetGap || `GAP-${String(nbId).toUpperCase()}`,
+              rawExcerpt: excerpt,
               sourceTitle: src.id,
             };
           }
@@ -268,17 +386,22 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
     }
   }
 
-  return {
-    targetGap: options.targetGap || `GAP-${nbId.toUpperCase()}`,
-    rawExcerpt: options.mockExcerpt || `Domain research analysis and truth vector verification for ${nbId}.`,
-    sourceTitle: `${nbId}_domain`,
-  };
+  // Fallback for ad-hoc / test harness notebooks where mockSources was provided without real disk files
+  if (options.mockSources || !config) {
+    return {
+      targetGap: options.targetGap || `GAP-${String(nbId).toUpperCase()}`,
+      rawExcerpt: `Mock research delta payload for test fixture ${nbId}.`,
+      sourceTitle: `${nbId}_test_fixture`,
+    };
+  }
+
+  throw new Error(`Could not derive grounded gap for notebook: ${nbId}`);
 }
 
 export async function runClosedLoopResearch(options = {}) {
   const mode = options.mode || 'active';
   const dryRun = Boolean(options.dryRun);
-  const targetNotebook = options.notebook;
+  const targetNotebook = options.notebook || options.targetNotebook;
   const baseDir = options.baseDir || path.join(process.cwd(), '_kb-sync-staging', 'trm');
   const logFile = path.join(process.cwd(), 'wiki', 'Log.md');
   const gapsFilePath = options.gapsFilePath || path.join(process.cwd(), 'trm-research-gaps.md');
@@ -350,7 +473,7 @@ export async function runClosedLoopResearch(options = {}) {
     }
 
     if (delta.deltaType === 'SOURCE_DELETED') {
-      cascadeSourceDeletion(delta.removedSourceIds, settledFactsPath);
+      cascadeSourceDeletion(delta.removedSourceIds, settledFactsPath, { dryRun });
       nbFingerprint.generation = (nbFingerprint.generation || 1) + 1;
       nbFingerprint.source_ids = currentSources.map((s) => s.id);
       nbFingerprint.inventory_hash = currentHash;
