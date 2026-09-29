@@ -378,7 +378,7 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
           const excerpt = extractFirstContentParagraph(content);
           if (excerpt) {
             return {
-              targetGap: options.targetGap || `GAP-${String(nbId).toUpperCase()}`,
+              targetGap: options.targetGap || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
               rawExcerpt: excerpt,
               sourceTitle: src.id,
             };
@@ -388,10 +388,31 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
     }
   }
 
+  // If current sources (e.g. from NotebookLM CLI) lacked local file paths, fall back to local disk discovery
+  if (options.useCli !== false) {
+    try {
+      const localSources = getRealSourcesForNotebook(canonicalId, { ...options, useCli: false, mockSources: null });
+      for (const src of localSources) {
+        const srcPath = src.fullPath || (src.id && fs.existsSync(src.id) ? src.id : null);
+        if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
+          const content = fs.readFileSync(srcPath, 'utf8');
+          const excerpt = extractFirstContentParagraph(content);
+          if (excerpt) {
+            return {
+              targetGap: options.targetGap || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
+              rawExcerpt: excerpt,
+              sourceTitle: src.id,
+            };
+          }
+        }
+      }
+    } catch {}
+  }
+
   // Fallback for ad-hoc / test harness notebooks where mockSources was provided without real disk files
   if (options.mockSources || !config) {
     return {
-      targetGap: options.targetGap || `GAP-${String(nbId).toUpperCase()}`,
+      targetGap: options.targetGap || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
       rawExcerpt: `Mock research delta payload for test fixture ${nbId}.`,
       sourceTitle: `${nbId}_test_fixture`,
     };
@@ -504,11 +525,16 @@ export async function runClosedLoopResearch(options = {}) {
     };
 
     const defaultOllamaUrl = process.env.OLLAMA_URL || process.env.OLLAMA_HOST || 'http://localhost:11434/api/generate';
-    const evalResult = await dispatchEvaluator(evalPayload, nbConfig, {
-      ollamaUrl: options.ollamaUrl !== undefined ? options.ollamaUrl : defaultOllamaUrl,
-      budgetPath: path.join(baseDir, 'cloud_evaluator_budget.json'),
-      ollamaTimeoutMs: options.ollamaTimeoutMs ?? 500
-    });
+    let evalResult;
+    if (dryRun) {
+      evalResult = { evaluator_used: 'deterministic:dry-run', generated_text: 'Dry-run evaluation mock' };
+    } else {
+      evalResult = await dispatchEvaluator(evalPayload, nbConfig, {
+        ollamaUrl: options.ollamaUrl !== undefined ? options.ollamaUrl : defaultOllamaUrl,
+        budgetPath: path.join(baseDir, 'cloud_evaluator_budget.json'),
+        ollamaTimeoutMs: options.ollamaTimeoutMs ?? 500
+      });
+    }
 
     // Stage 3: Attribution Extraction & Canonical Span Normalization
     const rawExcerpt = minedGap.rawExcerpt;
