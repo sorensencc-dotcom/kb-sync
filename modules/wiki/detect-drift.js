@@ -249,7 +249,19 @@ export function acquireLock(stagingRoot) {
           const now = Date.now();
           const isStale = now - lockTime > 10 * 60 * 1000; // 10 minutes
 
-          if (isStale) {
+          let isProcessDead = false;
+          const currentHost = process.env.COMPUTERNAME || process.env.HOSTNAME || "unknown";
+          if (lockData.pid && (!lockData.hostname || lockData.hostname === currentHost)) {
+            try {
+              process.kill(lockData.pid, 0);
+            } catch (e) {
+              if (e.code === "ESRCH") {
+                isProcessDead = true;
+              }
+            }
+          }
+
+          if (isStale || isProcessDead) {
             // Verify lock content hasn't changed before unlinking to prevent race with concurrent acquirer
             try {
               const recheckContent = fs.readFileSync(lockFile, "utf8");
