@@ -308,3 +308,14 @@ test('TEST-DIFF-20: Discovery resolves grounded sources and gaps without synthet
   }
 });
 
+test('TEST-DIFF-21: Configured category aliases resolve correctly to canonical domains for discovery and gaps', () => {
+  const aliases = ['cuba', 'gov', 'module', 'b24', 'rouge', 'willys', 'living-matrix'];
+  for (const alias of aliases) {
+    const sources = getRealSourcesForNotebook(alias, { useCli: false });
+    assert.ok(Array.isArray(sources) && sources.length > 0, `Expected resolved sources for alias ${alias}`);
+    const gap = getRealGapForNotebook(alias, path.join(process.cwd(), 'trm-research-gaps.md'), { currentSources: sources });
+    assert.ok(gap.targetGap, `Expected resolved targetGap for alias ${alias}`);
+    assert.ok(gap.rawExcerpt, `Expected resolved rawExcerpt for alias ${alias}`);
+  }
+});
+

@@ -6,7 +6,7 @@ import { atomicWriteJson, createTransaction } from '../modules/trm/storage/trans
 import { dispatchEvaluator } from '../modules/trm/evaluators/index.mjs';
 import { canonicalizeSpanText, computeSpanHash, normalizeGapText, formatLineageHeader } from '../modules/trm/gap-normalizer.mjs';
 import { evaluateClaim } from '../modules/trm/gap-triage-engine.mjs';
-import { NOTEBOOK_TARGETS, resolveNotebookId } from '../core/targets.mjs';
+import { NOTEBOOK_TARGETS, resolveNotebookId, resolveCategoryKey } from '../core/targets.mjs';
 import { loadCategoriesData } from '../core/config.mjs';
 import { listNotebookSources } from './nlm-pack-replace-gate.mjs';
 
@@ -241,7 +241,8 @@ export function getRealSourcesForNotebook(nbId, options = {}) {
     }
   }
 
-  const config = DOMAIN_DISCOVERY[nbId];
+  const canonicalId = resolveCategoryKey(nbId) || nbId;
+  const config = DOMAIN_DISCOVERY[canonicalId];
   if (!config) {
     if (options.mockSources) return options.mockSources;
     throw new Error(`Unrecognized notebook domain: ${nbId}`);
@@ -324,7 +325,8 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
     };
   }
 
-  const config = DOMAIN_DISCOVERY[nbId];
+  const canonicalId = resolveCategoryKey(nbId) || nbId;
+  const config = DOMAIN_DISCOVERY[canonicalId];
 
   // 1. If historical domain with gaps in trm-research-gaps.md
   if (config?.gapDomain && fs.existsSync(gapsFilePath)) {
@@ -401,7 +403,8 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
 export async function runClosedLoopResearch(options = {}) {
   const mode = options.mode || 'active';
   const dryRun = Boolean(options.dryRun);
-  const targetNotebook = options.notebook || options.targetNotebook;
+  const rawTarget = options.notebook || options.targetNotebook;
+  const targetNotebook = rawTarget ? (resolveCategoryKey(rawTarget) || rawTarget) : null;
   const baseDir = options.baseDir || path.join(process.cwd(), '_kb-sync-staging', 'trm');
   const logFile = path.join(process.cwd(), 'wiki', 'Log.md');
   const gapsFilePath = options.gapsFilePath || path.join(process.cwd(), 'trm-research-gaps.md');
