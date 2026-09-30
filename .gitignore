@@ -36,3 +36,6 @@ schedule-task-wrapper-*.ps1
 
 # Local SQLite knowledge base cache
 .kb_cache/
+
+# Generated nightly by kb:drift; a committed copy goes stale and gets read as current
+.drift-report.json

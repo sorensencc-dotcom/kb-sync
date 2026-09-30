@@ -56,14 +56,15 @@ export function readConfigValue(filePath, key, isArray = false) {
   }
 
   if (isArray) {
-    const combined = rawValueLines.join(' ');
-    // Strip comments
-    const noComments = combined.replace(/#.*$/gm, '');
-    // Clean brackets, quotes, list markers
-    const cleaned = noComments
+    // Strip comments and leading list markers per line, so hyphens inside
+    // values (package-lock.json, _kb-sync-staging) survive.
+    const combined = rawValueLines
+      .map(l => l.replace(/#.*$/, '').replace(/^-\s*/, ''))
+      .join(' ');
+    // Clean brackets, quotes
+    const cleaned = combined
       .replace(/[\[\]"]/g, '')
       .replace(/'/g, '')
-      .replace(/-\s*/g, ' ')
       .replace(/,/g, ' ');
 
     const tokens = cleaned

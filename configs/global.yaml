@@ -39,6 +39,7 @@ skip_patterns:
   - "*_kb-sync-staging/*"
   - "*.nlm_pack*"
   - "*.test_*"
+  - "*.ijfw/*"
 
 # Timeout and Retry Policy
 automation:

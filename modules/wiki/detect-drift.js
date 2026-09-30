@@ -657,6 +657,15 @@ function appendToTodos(taskLine, signatureKey) {
   } catch {}
 }
 
+// A staged copy is the ground truth for what the wiki pipeline ingested; the
+// commit-vs-publish date comparison is only a fallback for unstaged files.
+export function classifySourceDrift({ commitDate, lastSyncDate, sourceHash, stagedHash }) {
+  if (sourceHash && stagedHash) {
+    return sourceHash === stagedHash ? null : "HASH_MISMATCH";
+  }
+  return commitDate > lastSyncDate ? "STALE" : null;
+}
+
 export function runDriftDetection() {
   const lastSync = getWikiSyncTimestamp();
 
@@ -711,21 +720,14 @@ export function runDriftDetection() {
     }
 
     const wikiPage = path.join(matchedFolder, path.basename(fileRel)).replace(/\\/g, "/");
-    let isDrifted = commitDate > lastSyncDate;
-    let statusReason = "STALE";
+    const statusReason = classifySourceDrift({
+      commitDate,
+      lastSyncDate,
+      sourceHash: stagingBase ? getFileSha256(fullSourcePath) : null,
+      stagedHash: stagingBase ? getFileSha256(path.join(stagingBase, fileRel)) : null,
+    });
 
-    if (stagingBase) {
-      const stagedFilePath = path.join(stagingBase, fileRel);
-      const sourceHash = getFileSha256(fullSourcePath);
-      const stagedHash = getFileSha256(stagedFilePath);
-
-      if (sourceHash && stagedHash && sourceHash !== stagedHash) {
-        isDrifted = true;
-        statusReason = "HASH_MISMATCH";
-      }
-    }
-
-    if (isDrifted) {
+    if (statusReason) {
       driftedSources.push({
         repo: "kb-sync",
         file: fileRel,
