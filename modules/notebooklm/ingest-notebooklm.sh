@@ -289,7 +289,7 @@ import_cookie_json() {
 
   if [ -z "$auth_json" ]; then return 1; fi
 
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     # uv-project's `login --manual` reads cookies from a --file path, not
     # stdin -- there is no `auth import-cookies` command in this dialect.
     local cookie_file
@@ -322,7 +322,7 @@ verify_auth_or_die() {
   if nlm_auth_check >/dev/null 2>&1; then return 0; fi
   log_warn "CLI auth state missing/invalid. Recovering..."
 
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     # No `auth refresh` equivalent in this dialect -- login --check above
     # already reflects live token validity, nothing to refresh separately.
     :
@@ -332,8 +332,8 @@ verify_auth_or_die() {
   fi
 
   if [ -n "${NOTEBOOKLM_MASTER_TOKEN:-}" ]; then
-    if [ "$NLM_MODE" = "uv-project" ]; then
-      log_warn "Master-token login is not supported by the local uv-project nlm CLI; skipping this recovery path."
+    if [ "$NLM_DIALECT" = "nlm" ]; then
+      log_warn "Master-token login is not supported by the nlm CLI; skipping this recovery path."
     else
       run_nlm_cli login --master-token --oauth-token "$NOTEBOOKLM_MASTER_TOKEN" --quiet 2>/dev/null || true
       if nlm_auth_check >/dev/null 2>&1; then return 0; fi
