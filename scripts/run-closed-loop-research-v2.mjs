@@ -121,7 +121,7 @@ const DOMAIN_DISCOVERY = {
     gapHeaderPrefix: null
   },
   'sigil': {
-    dirs: ['C:/dev/sigil-repo', 'wiki/concepts', 'wiki/research'],
+    dirs: ['C:/dev/sigil-repo', 'wiki/concepts'],
     pack: null,
     matchKeywords: ['sigil-dep-audit', 'sigil', 'protocol', 'federation', 'relay'],
     gapHeaderPrefix: null
@@ -218,7 +218,7 @@ function extractFirstContentParagraph(text) {
     }
   }
   const lines = body.split(/\r?\n/)
-    .map((l) => l.trim())
+    .map((l) => l.trim().replace(/^[\/\*#\s]+/, '').trim())
     .filter((l) => l.length > 20 && !l.startsWith('#') && !l.startsWith('>') && !l.startsWith('|') && !l.startsWith('<!--') && !l.startsWith('```') && !l.startsWith('title:') && !l.startsWith('- ') && !l.startsWith('* '));
   return lines.length > 0 ? lines[0] : null;
 }
@@ -372,11 +372,13 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
   if (Array.isArray(currentSources) && currentSources.length > 0) {
     for (const src of currentSources) {
       const srcPath = src.fullPath || (src.id && fs.existsSync(src.id) ? src.id : null);
-      if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
+      if (srcPath && fs.existsSync(srcPath) && (['.md', '.txt', '.mjs', '.js', '.ts', '.json', '.ps1'].some((ext) => srcPath.endsWith(ext)))) {
         try {
           const content = fs.readFileSync(srcPath, 'utf8');
           const gapIdMatch = content.match(/^gap_id:\s*["']?([^"'\r\n]+)/m);
-          const docGapId = gapIdMatch ? gapIdMatch[1].trim() : null;
+          const docGapId = (gapIdMatch && (canonicalId === 'research-deltas' || gapIdMatch[1].toLowerCase().includes(canonicalId)))
+            ? gapIdMatch[1].trim()
+            : null;
           const excerpt = extractFirstContentParagraph(content);
           if (excerpt) {
             return {
@@ -396,10 +398,12 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
       const localSources = getRealSourcesForNotebook(canonicalId, { ...options, useCli: false, mockSources: null });
       for (const src of localSources) {
         const srcPath = src.fullPath || (src.id && fs.existsSync(src.id) ? src.id : null);
-        if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
+        if (srcPath && fs.existsSync(srcPath) && (['.md', '.txt', '.mjs', '.js', '.ts', '.json', '.ps1'].some((ext) => srcPath.endsWith(ext)))) {
           const content = fs.readFileSync(srcPath, 'utf8');
           const gapIdMatch = content.match(/^gap_id:\s*["']?([^"'\r\n]+)/m);
-          const docGapId = gapIdMatch ? gapIdMatch[1].trim() : null;
+          const docGapId = (gapIdMatch && (canonicalId === 'research-deltas' || gapIdMatch[1].toLowerCase().includes(canonicalId)))
+            ? gapIdMatch[1].trim()
+            : null;
           const excerpt = extractFirstContentParagraph(content);
           if (excerpt) {
             return {

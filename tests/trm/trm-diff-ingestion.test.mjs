@@ -335,6 +335,10 @@ test('TEST-DIFF-22: Shared gap prefixes disambiguate by keywords and markdown fr
   const rdGap = getRealGapForNotebook('research-deltas', gapsPath, { useCli: false });
   assert.equal(rdGap.targetGap, 'GAP-01--cic-research-deltas-living-matrix');
 
+  // Sigil gap resolves to GAP-SIGIL and does not inherit cross-domain frontmatter gap
+  const sigilGap = getRealGapForNotebook('sigil', gapsPath, { useCli: false });
+  assert.equal(sigilGap.targetGap, 'GAP-SIGIL');
+
   // Exact keyword priority sources
   const ilSources = getRealSourcesForNotebook('ironledger', { useCli: false });
   assert.equal(ilSources[0].id, 'FINANCIAL-DESIGN-GUIDELINES.md');
