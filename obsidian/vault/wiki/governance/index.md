@@ -1,7 +1,8 @@
 ---
-title: "CIC Governance & Policy"
-category: "wiki"
-status: "active"
+title: CIC Governance & Policy
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # CIC Governance & Policy

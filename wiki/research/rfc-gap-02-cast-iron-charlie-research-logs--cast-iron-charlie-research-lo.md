@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Locate Helen Sorensen's Press Obituary
-category: research
-topic: rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
-gap_id: GAP-02--cast-iron-charlie-research-logs
-status: draft
-created_at: 2026-09-20T10:56:20.194Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Florida Marriage Certificate"
+category: "research"
+topic: "rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
+gap_id: "GAP-02--cast-iron-charlie-research-logs"
+status: "draft"
+created_at: "2026-09-27T11:49:04.306Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-23-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 ---
 
-# RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Locate Helen Sorensen's Press Obituary
+# RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Florida Marriage Certificate
 
 ## 1. Problem Statement & Context
-)**: **Locate Helen Sorensen's Press Obituary:** Search *Miami Herald* archives around March 5, 1959, to retrieve her physical press obituary following her death in Miami on March 4, 19
+)**: **Florida Marriage Certificate:** Request an official marriage certificate from the **Palm Beach County Clerk** for his January 16, 1960 wedding to Edith Thompson Montgomery [1, 2]
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  >
-- **rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs adjacent-topics - Helen Sorensen’s Press Obituary" category: "research" topic: "rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
+  > 
+- **rfc-gap-23-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-23-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  > 
+- **rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,15 +1,14 @@
 ---
-title: RFC: GAP-25--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Tailless Experiment
-category: research
-topic: rfc-gap-25-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
-gap_id: GAP-25--cic-willow-run-aviation-engineering
-status: draft
-created_at: 2026-09-20T11:13:52.417Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-25--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Tailless Experiment"
+category: "research"
+topic: "rfc-gap-25-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
+gap_id: "GAP-25--cic-willow-run-aviation-engineering"
+status: "draft"
+created_at: "2026-09-27T12:31:23.589Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-26-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-64-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-63-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-25-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-18-cic-reddit--cic-reddit-adjacent-topics-3.md","wiki/research/rfc-gap-08.md"]
 ---
 
 # RFC: GAP-25--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Tailless Experiment
@@ -20,12 +19,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-26-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-26-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
-- **rfc-gap-64-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-64-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  >
-- **rfc-gap-63-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-63-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  >
+- **rfc-gap-25-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-25-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  > 
+- **rfc-gap-18-cic-reddit--cic-reddit-adjacent-topics-3** (`wiki/research/rfc-gap-18-cic-reddit--cic-reddit-adjacent-topics-3.md`) [lexical_only]:
+  > 
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
+  > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

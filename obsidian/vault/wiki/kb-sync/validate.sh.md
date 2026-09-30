@@ -1,7 +1,8 @@
 ---
-title: "validate.sh"
-category: "utilities"
-status: "active"
+title: validate.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # validate.sh

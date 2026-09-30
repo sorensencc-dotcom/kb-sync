@@ -1,9 +1,10 @@
 ---
-title: "NotebooklmPolling.Test"
-category: "utilities"
-status: "active"
+title: NotebooklmPolling.Test
+category: utilities
+status: active
 draft: true
-created: "2026-09-19T17:23:51.817Z"
+created: 2026-09-19T17:23:51.817Z
+sourceRepository: kb-sync
 ---
 
 # NotebooklmPolling.Test

@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-19--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Battle of the Overpass
-category: research
-topic: rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-19--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:11.895Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-19--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Dividend Conflict"
+category: "research"
+topic: "rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-19--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:43:32.913Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-93-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-19--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Battle of the Overpass
+# RFC: GAP-19--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The Dividend Conflict
 
 ## 1. Problem Statement & Context
-)**: **The Battle of the Overpass:** On **May 26, 1937**, Service Department agents violently assaulted UAW organizers Walter Reuther and Richard Frankensteen on Bridge 4 outside Gate 4
+)**: **The Dividend Conflict:** In **1916**, John and Horace Dodge (holding a 10% minority equity stake) sued Henry Ford over his refusal to distribute an accumulated **\$58 million sur
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-19-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-93-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-93-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-88-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

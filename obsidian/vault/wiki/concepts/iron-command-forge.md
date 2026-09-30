@@ -1,7 +1,8 @@
 ---
-title: "Iron Command Forge Architecture"
-category: "wiki"
-status: "active"
+title: Iron Command Forge Architecture
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Iron Command Forge Architecture

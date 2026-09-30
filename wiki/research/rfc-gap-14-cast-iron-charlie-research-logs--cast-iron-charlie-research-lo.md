@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
-category: research
-topic: rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
-gap_id: GAP-14--cast-iron-charlie-research-logs
-status: draft
-created_at: 2026-09-20T10:56:32.664Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Single Secondary Narrative Chain)**"
+category: "research"
+topic: "rfc-gap-14-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
+gap_id: "GAP-14--cast-iron-charlie-research-logs"
+status: "draft"
+created_at: "2026-09-27T11:50:03.304Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 ---
 
-# RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Automotive Establishment Response
+# RFC: GAP-14--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Single Secondary Narrative Chain)**
 
 ## 1. Problem Statement & Context
-)**: **Automotive Establishment Response:** Whether **Henry Ford II** or the broader Ford Motor Company / automotive establishment issued public or private rebuttals to Sorensen’s candi
+**Single Secondary Narrative Chain**: The narrative of an 82-year-old Sorensen meeting industrial designer Brooks Stevens on December 12, 1963, in Florida to conceive a \$560 unit-
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-20-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-35-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
-- **rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  >
+- **rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-24-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  > 
+- **rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-58-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  > 
+- **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

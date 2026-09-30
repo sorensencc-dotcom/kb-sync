@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
-category: research
-topic: rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to
-gap_id: GAP-23--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:52:54.941Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - The Downfall of C. Harold Wills"
+category: "research"
+topic: "rfc-gap-23-willow-run-videos--willow-run-videos-adjacent-to"
+gap_id: "GAP-23--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:39:33.456Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-69-willow-run-videos--willow-run-videos-adjacent-to.md"]
 ---
 
-# RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - The June 1943 Packard Strike
+# RFC: GAP-23--willow-run-videos - **Willow Run Videos (adjacent-topics - The Downfall of C. Harold Wills
 
 ## 1. Problem Statement & Context
-)**: **The June 1943 Packard Strike:** Racial friction in the region peaked when **25,000 white workers walked off the line at the Packard plant** (which built B-24 engines) to protest
+)**: **The Downfall of C. Harold Wills:** Early Ford engineering pioneer Harold Wills grew wealthy, drifted from his work ethic, and built an overly complex luxury car (*Wills Sainte Cl
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
-- **rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-72-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
-- **rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  >
+- **rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-22-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-49-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-69-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-69-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

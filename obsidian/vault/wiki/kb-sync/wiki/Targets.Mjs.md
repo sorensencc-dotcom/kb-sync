@@ -1,9 +1,10 @@
 ---
-title: "Targets.Mjs"
-category: "wiki"
-status: "active"
+title: Targets.Mjs
+category: wiki
+status: active
 draft: true
-created: "2026-09-14T17:03:53.784Z"
+created: 2026-09-14T17:03:53.784Z
+sourceRepository: kb-sync
 ---
 
 # Targets.Mjs

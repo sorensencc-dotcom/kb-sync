@@ -1,7 +1,8 @@
 ---
-title: "ingest-notebooklm.sh"
-category: "utilities"
-status: "active"
+title: ingest-notebooklm.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # ingest-notebooklm.sh

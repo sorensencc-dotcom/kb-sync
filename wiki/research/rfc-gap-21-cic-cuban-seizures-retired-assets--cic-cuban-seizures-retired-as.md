@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-21--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Act of State Doctrine & Legislative Override
-category: research
-topic: rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
-gap_id: GAP-21--cic-cuban-seizures-retired-assets
-status: draft
-created_at: 2026-09-20T11:09:59.479Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-21--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Actuarial Wrongful Death vs. Penal Confiscations"
+category: "research"
+topic: "rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
+gap_id: "GAP-21--cic-cuban-seizures-retired-assets"
+status: "draft"
+created_at: "2026-09-27T12:15:24.399Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-16-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-53-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-21--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Act of State Doctrine & Legislative Override
+# RFC: GAP-21--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Actuarial Wrongful Death vs. Penal Confiscations
 
 ## 1. Problem Statement & Context
-)**: **Act of State Doctrine & Legislative Override:** In *Banco Nacional de Cuba v. Sabbatino*, the Supreme Court applied the Act of State doctrine to decline judging foreign confiscat
+)**: **Actuarial Wrongful Death vs. Penal Confiscations:** Wrongful death resulting from the firing squad execution of *Robert Otis Fuller* (Claim CU-2803) was certified actuarially und
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-21-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  >
-- **rfc-gap-16-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-16-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  >
-- **rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: "RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Statutory Framework" category: "research" topic: "rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as" gap_id: "G
+  > 
+- **rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-52-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-53-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-53-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

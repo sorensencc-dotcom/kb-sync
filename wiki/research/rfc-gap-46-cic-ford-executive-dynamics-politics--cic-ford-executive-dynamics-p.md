@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Contested Division of Credit
-category: research
-topic: rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-46--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:28.210Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim"
+category: "research"
+topic: "rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-46--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:57.385Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-113-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-64-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01.md","wiki/research/rfc-gap-08.md"]
 ---
 
-# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (open-contradictions - Contested Division of Credit
+# RFC: GAP-46--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Asserted Claim
 
 ## 1. Problem Statement & Context
-)**: **Contested Division of Credit:** Archival records also credit **Clarence Avery** (Sorensen's chief development engineer) for establishing Highland Park's final assembly and subass
+)**: **The Asserted Claim:** The published text of *My Forty Years with Ford* (1956) is presented as an unvarnished account of Sorensen's career and observations [13, 16].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-53-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-113-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-113-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-64-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-64-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
+- **rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-46-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [hybrid]:
+  > 
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -4,27 +4,27 @@ category: research
 topic: rfc-gap-13-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-13--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:32.128Z
+created_at: 2026-09-24T12:03:03.526Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-13-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-29-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-59-cic-kb--cic-kb-open-contradictions-4.md","wiki/research/rfc-gap-27-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-13--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up - Operational Quality Metrics & Logistics)**: **Operational Quality Metrics & Logistics**: Cross-referencing trade school ground breaking (Photo 76518) [2] and Sperry Gyroscope hardware integration (Photo 76225) [2] to documen
+Industrial Giants at Willow Run (open-contradictions - Key Open Questions & Archival Contradictions)**: Key Open Questions & Archival Contradictions
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-13-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-13-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-29-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-29-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   >
-- **rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  >
-- **rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-11-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **rfc-gap-59-cic-kb--cic-kb-open-contradictions-4** (`wiki/research/rfc-gap-59-cic-kb--cic-kb-open-contradictions-4.md`) [vector_only]:
+  > --- title: RFC: GAP-59--cic-kb - **CIC-KB open-contradictions - 4. Historical, Industrial & Archival Contradictions TRM Dossiers** category: research topic: rfc-gap-59-cic-kb--cic-kb-open-contradictions-4 gap_id: GAP-59--cic-kb status: draft created_
+- **rfc-gap-27-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-27-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,7 +1,8 @@
 ---
-title: "Daily Synthesis Log: KB - Modules — 2026-09-20"
-category: "wiki"
-status: "active"
+title: Daily Synthesis Log: KB - Modules — 2026-09-20
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Daily Synthesis Log: KB - Modules — 2026-09-20

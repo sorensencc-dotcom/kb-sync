@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Plant Architecture & Production Systems
-category: research
-topic: rfc-gap-34-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
-gap_id: GAP-34--cic-cuban-seizures-retired-assets
-status: draft
-created_at: 2026-09-20T11:10:26.326Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Coca-Cola Company (Holguin Land — Claim CU-1743)"
+category: "research"
+topic: "rfc-gap-34-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
+gap_id: "GAP-34--cic-cuban-seizures-retired-assets"
+status: "draft"
+created_at: "2026-09-27T12:15:53.972Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-61-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-33-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-93-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-45-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Plant Architecture & Production Systems
+# RFC: GAP-34--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - The Coca-Cola Company (Holguin Land — Claim CU-1743)
 
 ## 1. Problem Statement & Context
-)**: **Plant Architecture & Production Systems:** Albert Kahn designed the Willow Run plant with a 90-degree southern turn at Frame 141 to keep the facility inside Washtenaw County for
+)**: **The Coca-Cola Company (Holguin Land — Claim CU-1743):** Coca-Cola claimed **\$37,460.00** (\$35,000.00 for land plus \$2,460.00 for plans) for a proposed bottling plant site in H
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-61-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-61-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  >
-- **rfc-gap-57-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  >
-- **rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
-  > --- title: "RFC: GAP-33--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - The Frame 141 "Tax Dodge" Pivot" category: "research" topic: "rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-adja" gap_id: "GAP-33--castir
+- **rfc-gap-33-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-33-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-93-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-93-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  > 
+- **rfc-gap-45-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-45-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

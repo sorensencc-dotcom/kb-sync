@@ -1,7 +1,8 @@
 ---
-title: "artifact-generator.sh"
-category: "utilities"
-status: "active"
+title: artifact-generator.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # Artifact Generator Module

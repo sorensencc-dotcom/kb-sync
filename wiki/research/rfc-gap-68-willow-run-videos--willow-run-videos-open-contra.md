@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-68--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+title: RFC: GAP-68--willow-run-videos - **Willow Run Videos (open-contradictions - 7. Engineering Metric Fluctuations)**
 category: research
 topic: rfc-gap-68-willow-run-videos--willow-run-videos-open-contra
 gap_id: GAP-68--willow-run-videos
 status: draft
-created_at: 2026-09-19T20:40:32.764Z
+created_at: 2026-09-23T12:13:20.762Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-harry-bennett-service-departme.md","wiki/research/rfc-gap-04--willow-run-videos-open-contra.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-78-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-56-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-29-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-68--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
+# RFC: GAP-68--willow-run-videos - **Willow Run Videos (open-contradictions - 7. Engineering Metric Fluctuations)**
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** Accounts conflict regarding the date and success of the plant's first completed aircraft:
+**7. Engineering Metric Fluctuations**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
+- **rfc-gap-78-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-78-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-04--willow-run-videos-open-contra** (`wiki/research/rfc-gap-04--willow-run-videos-open-contra.md`) [vector_only]:
-  > --- title: RFC: GAP-04 - **Willow Run Videos open-contradictions** category: research topic: rfc-gap-04--willow-run-videos-open-contra gap_id: GAP-04 status: draft created_at: 2026-09-05T03:18:15.023Z expansion_method: heuristic retrieval_mode: hybri
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-56-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-56-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
+- **rfc-gap-29-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-29-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: "RFC: GAP-29--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - Ypsilanti's First Black Alderman" category: "research" topic: "rfc-gap-29-cic-willow-run-aviation-engineering--cic-willow-run-a
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

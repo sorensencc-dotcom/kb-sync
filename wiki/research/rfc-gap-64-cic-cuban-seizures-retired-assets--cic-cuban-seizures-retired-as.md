@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-64--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Knowledge Synchronization Pipeline (KIS-P)
+title: RFC: GAP-64--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Capitalization Multipliers
 category: research
 topic: rfc-gap-64-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-64--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-19T21:01:57.333Z
+created_at: 2026-09-22T13:45:01.075Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-129-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-109-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-110-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-64--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Knowledge Synchronization Pipeline (KIS-P)
+# RFC: GAP-64--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Capitalization Multipliers
 
 ## 1. Problem Statement & Context
-)**: **Knowledge Synchronization Pipeline (KIS-P):** Technical records outline the Multi-Notebook TRM Knowledge Ingestion & Synchronization Pipeline specification to resolve scope isola
+)**: **Capitalization Multipliers:** In *Colgate-Palmolive Company* (Claim CU-0730), the FCSC initially capitalized average net earnings at 10% [11, 12]. Upon appeal, after expert testi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-129-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-129-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
-  > --- title: "RFC: GAP-26--willow-run-videos - **Willow Run Videos adjacent-topics - The John Dodge Office Slap" category: "research" topic: "rfc-gap-26-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "GAP-26--willow-run-videos" status: "draf
-- **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-109-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-109-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+  >
+- **rfc-gap-110-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-110-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

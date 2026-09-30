@@ -1,9 +1,10 @@
 ---
-title: "WatchCompetitorsV2"
-category: "wiki"
-status: "active"
+title: WatchCompetitorsV2
+category: wiki
+status: active
 draft: true
-created: "2026-08-25T02:39:11.982Z"
+created: 2026-08-25T02:39:11.982Z
+sourceRepository: kb-sync
 ---
 
 # WatchCompetitorsV2

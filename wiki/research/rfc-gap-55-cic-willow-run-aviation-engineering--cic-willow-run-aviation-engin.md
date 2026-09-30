@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-55-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-55--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:37:29.709Z
+created_at: 2026-09-22T14:24:40.739Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-113-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-130-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-32-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-55--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Mobile WebSocket Specification
 
 ## 1. Problem Statement & Context
-)**: **Mobile WebSocket Specification:** Filed under "Accession 65, Box 69," the source collection includes a modern software engineering specification labeled **"Workstream H"** [33, 3
+)**: **Mobile WebSocket Specification:** Filed under "Accession 65, Box 69," the source collection includes a modern software engineering specification labeled **"Workstream H"** [31].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
+- **rfc-gap-113-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-113-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   >
-- **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
+- **rfc-gap-130-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-130-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   >
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
+- **rfc-gap-32-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-32-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

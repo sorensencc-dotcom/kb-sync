@@ -1,7 +1,8 @@
 ---
-title: "Wiki Update Rules"
-category: "sync-tools"
-status: "active"
+title: Wiki Update Rules
+category: sync-tools
+status: active
+sourceRepository: kb-sync
 ---
 
 # Wiki Update Rules

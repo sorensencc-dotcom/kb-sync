@@ -2,12 +2,14 @@
 source: grok
 skill: drive-it
 topic: trm
-title: "Closed-loop TRM pipeline: NLM pack split vs live limits"
+title: Closed-loop TRM pipeline: NLM pack split vs live limits
 created: Fri Sep 25 2026 15:55:29 GMT-0400 (Eastern Daylight Time)
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
 provenance_type: mobile_inbox_drop
 content_sha256: 592f1f8e11599147fe0766531e883132e435f833f25ae619726436f764c55e5b
+category: research
+sourceRepository: kb-sync
 ---
 
 # Closed-loop TRM pipeline — adversarial review

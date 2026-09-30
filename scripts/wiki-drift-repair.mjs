@@ -10,7 +10,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 
 function parseReport(stdout) { try { return JSON.parse(stdout); } catch { return null; } }
 
-async function runCommand(command, stagingPath, timeoutMs = 60000) {
+async function runCommand(command, stagingPath, timeoutMs = 300000) {
   const name = typeof command === 'string' ? command : command.name;
   const commands = {
     detect: ['node', ['modules/wiki/detect-drift.js']],

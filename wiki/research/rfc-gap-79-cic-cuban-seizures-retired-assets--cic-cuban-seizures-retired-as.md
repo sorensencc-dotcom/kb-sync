@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-79--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Intercontinental Hotels Corporation (Claim CU-2521)
+title: RFC: GAP-79--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Next Research Steps
 category: research
 topic: rfc-gap-79-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-79--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-19T20:58:10.377Z
+created_at: 2026-09-21T13:02:13.018Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-119-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-79--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Intercontinental Hotels Corporation (Claim CU-2521)
+# RFC: GAP-79--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Next Research Steps
 
 ## 1. Problem Statement & Context
-)**: **Intercontinental Hotels Corporation (Claim CU-2521):** IHC claimed **\$3,138,192.00** for lost management fees based on 25% net operating income [29]. The FCSC denied this as pro
+)**: **Next Research Steps:** Trace Department of State and NARA records regarding post-war Lend-Lease auditing to verify whether the Rouge tire plant machinery or Gorki automotive tool
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   >
-- **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [lexical_only]:
+- **rfc-gap-119-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-119-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   >
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
+  > --- title: RFC: GAP-134--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets open-contradictions - Reserve Depletion & Plant Depreciation category: research topic: rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizu
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

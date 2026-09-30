@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Cryptographic Integrity
-category: research
-topic: rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-30--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:13.024Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)"
+category: "research"
+topic: "rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-30--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:01.430Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-108-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/historical-revocation-verification.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-103-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - Cryptographic Integrity
+# RFC: GAP-30--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - John Wandersee (1902–1947)
 
 ## 1. Problem Statement & Context
-)**: **Cryptographic Integrity:** Administrative protocols from Accession 42, Box 12 outline verification standards under the **Sigil Trust Engine**, where signatures generated before a
+)**: **John Wandersee (1902–1947):** Handyman who studied metallurgy, set up Ford's first material-testing laboratory in 1907, and served as head of the Metallurgical Department establi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-30-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-108-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-108-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **historical-revocation-verification** (`wiki/research/historical-revocation-verification.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-103-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-103-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

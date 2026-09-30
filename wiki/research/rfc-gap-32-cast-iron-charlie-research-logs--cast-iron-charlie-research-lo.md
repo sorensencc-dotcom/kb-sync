@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Undocumented Industry Reaction)**
+title: RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 1. Biographical Discrepancies & Date Conflicts)**
 category: research
 topic: rfc-gap-32-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-32--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.101Z
+created_at: 2026-09-23T12:18:32.061Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-66-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-83-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-04--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Undocumented Industry Reaction)**
+# RFC: GAP-32--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 1. Biographical Discrepancies & Date Conflicts)**
 
 ## 1. Problem Statement & Context
-**Undocumented Industry Reaction**: While *My Forty Years with Ford* generated a sharp split among contemporary newspaper reviewers upon its 1956 release [7], any official public o
+**1. Biographical Discrepancies & Date Conflicts**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-66-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-66-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-83-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-83-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-04--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-04--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-34-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  >
+- **rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
+  > --- title: "RFC: GAP-41--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - 1. Biographical & Personal Contradictions**" category: "research" topic: "rfc-gap-41-cast-iron-charlie-research-logs--cast-iron-charl
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

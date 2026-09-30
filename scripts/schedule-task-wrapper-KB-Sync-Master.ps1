@@ -74,14 +74,14 @@ if ($AuthCheckExitCode -eq 0) {
     Write-LogWarn "Pre-flight auth check requires recovery; Stage 3 will run the same recovery path."
 }
 
-# --- STAGE 1: OBSIDIAN STAGING & VALIDATION ---
+# --- STAGE 1: OBSIDIAN STAGING, VALIDATION & SYNTHESIS ---
 Write-LogInfo "================================================================================"
-Write-LogInfo "STAGE 1: Obsidian Staging & Validation"
+Write-LogInfo "STAGE 1: Obsidian Staging, Validation & Synthesis"
 Write-LogInfo "================================================================================"
 
 try {
-    Write-LogInfo "Staging Obsidian sources..."
-    & cmd /c "npm run kb:sync:obsidian" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    Write-LogInfo "Staging Obsidian sources (incremental)..."
+    & cmd /c "npm run kb:sync:obsidian:incremental" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-LogError "Obsidian staging failed with exit code $LASTEXITCODE"
         $OverallStatus = 1
@@ -93,21 +93,28 @@ try {
         Write-LogError "Staging validation failed with exit code $LASTEXITCODE"
         $OverallStatus = 1
     }
+
+    Write-LogInfo "Synthesizing Obsidian wiki sources..."
+    & cmd /c "npm run wiki:ingest:obsidian:offline" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogError "Obsidian wiki synthesis failed with exit code $LASTEXITCODE"
+        $OverallStatus = 1
+    }
 } catch {
     Write-LogError "Stage 1 encountered error: $_"
     $OverallStatus = 1
 }
 
-# --- STAGE 2: WIKI METADATA & FRONTMATTER ---
+# --- STAGE 2: WIKI METADATA & SENTINEL HEALING ---
 Write-LogInfo "================================================================================"
-Write-LogInfo "STAGE 2: Wiki Metadata & Frontmatter"
+Write-LogInfo "STAGE 2: Wiki Metadata & Sentinel Auto-Healing"
 Write-LogInfo "================================================================================"
 
 try {
-    Write-LogInfo "Auto-filling frontmatter metadata..."
-    & cmd /c "npm run wiki:autofill-frontmatter" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    Write-LogInfo "Running KB Sentinel frontmatter auto-healing..."
+    & cmd /c "npm run bot:kb:sentinel -- --fix" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
 } catch {
-    Write-LogWarn "Stage 2 frontmatter auto-fill encountered warning: $_"
+    Write-LogWarn "Stage 2 sentinel check encountered warning: $_"
 }
 
 # --- STAGE 3: NOTEBOOKLM INGESTION & ARTIFACT REPORT ---

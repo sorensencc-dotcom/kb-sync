@@ -1,7 +1,8 @@
 ---
-title: "Raw Source Staging"
-category: "wiki"
-status: "active"
+title: Raw Source Staging
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Raw Source Staging

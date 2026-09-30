@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-50--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Expropriation Narrative
+title: RFC: GAP-50--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 3. Contested Assembly Line Credit & Taylorism)**
 category: research
 topic: rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-50--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-19T20:46:50.019Z
+created_at: 2026-09-22T13:56:11.006Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-36-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-49-cic-daily-research--cic-daily-research-open-contr.md","wiki/research/rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-50--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - The Expropriation Narrative
+# RFC: GAP-50--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 3. Contested Assembly Line Credit & Taylorism)**
 
 ## 1. Problem Statement & Context
-)**: **The Expropriation Narrative:** While Wikipedia and family notes assert that Fidel Castro's government seized Sorensen's agricultural land holdings ("CESOR"), there is currently z
+**3. Contested Assembly Line Credit & Taylorism**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-36-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-36-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **rfc-gap-03--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-49-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-49-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
+  > --- title: RFC: GAP-49--cic-daily-research - **CIC - Daily Research open-contradictions - 3.** category: research topic: rfc-gap-49-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-49--cic-daily-research status: draft created_at: 2026-09
+- **rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -2,10 +2,12 @@
 source: copilot
 skill: drive-it
 topic: rewrite
-title: "SQLite FTS5 Tokenizer Architecture Guidelines"
+title: SQLite FTS5 Tokenizer Architecture Guidelines
 created: 2026-09-25T20:06:49Z
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
+category: wiki
+sourceRepository: kb-sync
 ---
 
 ## Findings Summary

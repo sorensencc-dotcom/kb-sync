@@ -1,9 +1,10 @@
 ---
-title: "Server"
-category: "wiki"
-status: "active"
+title: Server
+category: wiki
+status: active
 draft: true
-created: "2026-09-14T02:15:54.910Z"
+created: 2026-09-14T02:15:54.910Z
+sourceRepository: kb-sync
 ---
 
 # Server

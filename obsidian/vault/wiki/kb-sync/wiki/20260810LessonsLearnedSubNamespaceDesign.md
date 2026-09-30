@@ -1,9 +1,10 @@
 ---
-title: "20260810LessonsLearnedSubNamespaceDesign"
-category: "wiki"
-status: "active"
+title: 20260810LessonsLearnedSubNamespaceDesign
+category: wiki
+status: active
 draft: true
-created: "2026-08-21T14:07:29.695Z"
+created: 2026-08-21T14:07:29.695Z
+sourceRepository: kb-sync
 ---
 
 # 20260810LessonsLearnedSubNamespaceDesign

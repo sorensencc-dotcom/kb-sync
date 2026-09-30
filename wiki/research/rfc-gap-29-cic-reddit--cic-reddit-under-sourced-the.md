@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-29--cic-reddit - **CIC-Reddit (under-sourced - The Claim
+title: RFC: GAP-29--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
 category: research
 topic: rfc-gap-29-cic-reddit--cic-reddit-under-sourced-the
 gap_id: GAP-29--cic-reddit
 status: draft
-created_at: 2026-09-20T11:05:57.713Z
+created_at: 2026-09-21T12:55:49.195Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-54-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-63-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-11-cic-reddit--cic-reddit-follow-up-the-cont.md"]
+citations: ["wiki/research/rfc-gap-46-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-24-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-27-cic-reddit--cic-reddit-adjacent-topics-up.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-29--cic-reddit - **CIC-Reddit (under-sourced - The Claim
+# RFC: GAP-29--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** Historical reference entries and Wikipedia cite `savethebomberplant.org` as the official fundraising portal used by the Yankee Air Museum to raise \$1.2 million to s
+)**: **The Grounded Reality:** Although the Albert Kahn-designed factory spanned 3.5 million square feet with an assembly line over a mile long [7], human vision cannot physically detec
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-54-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-54-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+- **rfc-gap-46-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-46-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **rfc-gap-63-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-63-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+- **rfc-gap-24-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-24-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **rfc-gap-11-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-11-cic-reddit--cic-reddit-follow-up-the-cont.md`) [hybrid]:
+- **rfc-gap-27-cic-reddit--cic-reddit-adjacent-topics-up** (`wiki/research/rfc-gap-27-cic-reddit--cic-reddit-adjacent-topics-up.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-16-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-16--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:34.366Z
+created_at: 2026-09-24T12:03:06.980Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","trm-research-gaps.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/the-henry-ford-sorensen-photographic-accessions.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-16--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (adjacent-topics - Pratt & Whitney Radial Engine Mass Production)**: **Pratt & Whitney Radial Engine Mass Production**: Photo captions record early engine tests (**"PW Eng . Test"**) [2] and the completion of the **"3000th Engine"** milestone [2], w
+Industrial Giants at Willow Run (open-contradictions - Flow Chart Citation Mismatch)**: **Flow Chart Citation Mismatch**: The *Material Control Flow Chart* often cited as Object `64.167.38.7` (dated April 1, 1944) is a citation mismatch for Object `64.167.435.3` in th
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-26-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

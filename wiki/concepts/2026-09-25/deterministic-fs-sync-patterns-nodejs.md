@@ -2,10 +2,12 @@
 source: copilot
 skill: drive-it
 topic: kb
-title: "Deterministic File System Sync Patterns in Node.js"
+title: Deterministic File System Sync Patterns in Node.js
 created: 2026-09-25T20:06:50Z
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
+category: wiki
+sourceRepository: kb-sync
 ---
 
 ## Findings Summary

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-56--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 8. Modern Technical Anomaly
+title: RFC: GAP-56--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Answer
 category: research
 topic: rfc-gap-56-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-56--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:05:45.900Z
+created_at: 2026-09-21T13:06:48.752Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-05-websocket-heartbeat-throttling.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo.md","wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-56--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - 8. Modern Technical Anomaly
+# RFC: GAP-56--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Answer
 
 ## 1. Problem Statement & Context
-Mobile Browser Heartbeats)**: **8. Modern Technical Anomaly: Mobile Browser Heartbeats**
+)**: **Answer:** No [30]. On January 14, 1944, exhausted by Henry Ford’s failing mental state and Bennett’s political maneuvering following Edsel’s death, Sorensen told Henry Ford direc
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [vector_only]:
-  > --- title: RFC: GAP-02 - **CIC - Willow Run & Aviation Engineering adjacent-topics** category: research topic: rfc-gap-02--cic-willow-run-aviation-engin gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:49.496Z expansion_method: heuristic ret
-- **rfc-gap-05-websocket-heartbeat-throttling** (`wiki/research/rfc-gap-05-websocket-heartbeat-throttling.md`) [lexical_only]:
+- **rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo** (`wiki/research/rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo.md`) [vector_only]:
+  > --- title: RFC: GAP-44--cic-kb - **CIC-KB under-sourced - Clara Ford's 1944 Succession Ultimatum & The Gillespie Gambit** category: research topic: rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo gap_id: GAP-44--cic-kb status: draft created_at: 2026
+- **rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-22--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Helen Sorensen's Press Obituary"
-category: "research"
-topic: "rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
-gap_id: "GAP-22--cast-iron-charlie-research-logs"
-status: "draft"
-created_at: "2026-09-24T11:58:45.481Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-22--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Helen Sorensen's Press Obituary
+category: research
+topic: rfc-gap-22-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
+gap_id: GAP-22--cast-iron-charlie-research-logs
+status: draft
+created_at: 2026-09-24T11:58:45.481Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-85-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-22--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Helen Sorensen's Press Obituary
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-68-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-85-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-85-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

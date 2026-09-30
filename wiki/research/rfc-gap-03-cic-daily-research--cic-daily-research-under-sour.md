@@ -4,11 +4,11 @@ category: research
 topic: rfc-gap-03-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-03--cic-daily-research
 status: draft
-created_at: 2026-09-20T10:49:34.960Z
+created_at: 2026-09-24T11:49:18.862Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-43-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-68-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-43-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
@@ -20,12 +20,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-43-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-43-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+- **rfc-gap-03-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-68-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-68-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+- **rfc-gap-28-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
-- **rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  >
+- **rfc-gap-43-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-43-cic-daily-research--cic-daily-research-under-sour.md`) [vector_only]:
+  > --- title: RFC: GAP-43--cic-daily-research - **CIC - Daily Research under-sourced - The Claim category: research topic: rfc-gap-43-cic-daily-research--cic-daily-research-under-sour gap_id: GAP-43--cic-daily-research status: draft created_at: 2026-09-
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

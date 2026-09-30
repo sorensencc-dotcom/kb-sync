@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-21--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Claim
-category: research
-topic: rfc-gap-21-cic-post-war-willys-overland--cic-post-war-willys-overland
-gap_id: GAP-21--cic-post-war-willys-overland
-status: draft
-created_at: 2026-09-20T11:17:40.351Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-21--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Claim"
+category: "research"
+topic: "rfc-gap-21-cic-post-war-willys-overland--cic-post-war-willys-overland"
+gap_id: "GAP-21--cic-post-war-willys-overland"
+status: "draft"
+created_at: "2026-09-27T12:37:58.840Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-35-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-18-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 ---
 
 # RFC: GAP-21--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** Sorensen held extensive agricultural estates in pre-revolutionary Cuba structured under nominee entities and a holding company named **"CESOR S.A."**, which were nat
+)**: **The Claim:** Sorensen held extensive sugar and agricultural land holdings in pre-revolutionary Cuba structured under nominee entities and a holding company named **"CESOR S.A."**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-24-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
-- **rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
-- **rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-45-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  >
+- **rfc-gap-35-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-35-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+  > 
+- **rfc-gap-18-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-18-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+  > 
+- **rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
+  > --- title: RFC: GAP-71--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-71-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-71--cic-post-war-willys-ov
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

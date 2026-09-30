@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-15--willow-run-videos - **Willow Run Videos (adjacent-topics - The Domestic Leverage
+title: RFC: GAP-15--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap
 category: research
 topic: rfc-gap-15-willow-run-videos--willow-run-videos-adjacent-to
 gap_id: GAP-15--willow-run-videos
 status: draft
-created_at: 2026-09-20T10:52:54.691Z
+created_at: 2026-09-21T12:41:32.632Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-46-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-15--willow-run-videos - **Willow Run Videos (adjacent-topics - The Domestic Leverage
+# RFC: GAP-15--willow-run-videos - **Willow Run Videos (adjacent-topics - The John Dodge Office Slap
 
 ## 1. Problem Statement & Context
-)**: **The Domestic Leverage:** While Henry Ford was widely mythologized as an absolute dictator who ruled his industrial empire unchallenged, his wife **Clara Ford** served as his sing
+)**: **The John Dodge Office Slap:** Early Ford shareholders John and Horace Dodge were boisterous, chaotic figures [6, 7]. After a heavily intoxicated John Dodge ran over a man's horse
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+- **rfc-gap-46-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-46-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
   >
-- **rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+- **rfc-gap-66-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

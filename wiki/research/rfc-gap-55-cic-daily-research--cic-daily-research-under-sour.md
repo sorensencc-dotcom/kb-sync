@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-55--cic-daily-research - **CIC - Daily Research (under-sourced - Emigration Year & Age
+title: RFC: GAP-55--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
 category: research
 topic: rfc-gap-55-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-55--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:50:47.917Z
+created_at: 2026-09-22T13:44:58.445Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-50-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-75-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-33-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-55--cic-daily-research - **CIC - Daily Research (under-sourced - Emigration Year & Age
+# RFC: GAP-55--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
 
 ## 1. Problem Statement & Context
-)**: **Emigration Year & Age:** Secondary sources cite conflicting arrival years: **1883** (making him two years old) in publisher author bios, **1885** (age four) in BFRC Accession 38
+)**: **The Refutation:** Sorensen's unedited Accession 65 dictations refute this as a legal fiction [23, 26, 27]. Sorensen documents that Ferguson was **"not a graduate engineer," had "
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-12-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-follow-up.md`) [lexical_only]:
+- **rfc-gap-50-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-50-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-11-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-11--cic-daily-research" status: "draft" created_at: "2
-- **rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-19-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-75-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-75-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
+  >
+- **rfc-gap-33-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-33-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

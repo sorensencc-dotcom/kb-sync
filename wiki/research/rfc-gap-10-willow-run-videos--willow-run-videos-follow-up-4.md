@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-10--willow-run-videos - **Willow Run Videos (follow-up - 4. Ford Purchasing Department Records (Fact-Check the Coffin Scrap Story))**
+title: RFC: GAP-10--willow-run-videos - **Willow Run Videos (follow-up - 4. Clara Ford Personal Papers & Diaries (April–June 1941))**
 category: research
 topic: rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-4
 gap_id: GAP-10--willow-run-videos
 status: draft
-created_at: 2026-09-19T20:36:31.831Z
+created_at: 2026-09-23T12:12:26.040Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/.catalog.json","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-4.md","wiki/research/rfc-gap-03.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-t.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-10--willow-run-videos - **Willow Run Videos (follow-up - 4. Ford Purchasing Department Records (Fact-Check the Coffin Scrap Story))**
+# RFC: GAP-10--willow-run-videos - **Willow Run Videos (follow-up - 4. Clara Ford Personal Papers & Diaries (April–June 1941))**
 
 ## 1. Problem Statement & Context
-**4. Ford Purchasing Department Records (Fact-Check the Coffin Scrap Story)**
+**4. Clara Ford Personal Papers & Diaries (April–June 1941)**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-4** (`wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-follow-up-4.md`) [hybrid]:
   >
-- **-catalog** (`wiki/research/.catalog.json`) [lexical_only]:
+- **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
   >
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-t** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-t.md`) [vector_only]:
+  > --- title: "RFC: GAP-14--willow-run-videos - **Willow Run Videos follow-up - Target" category: "research" topic: "rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-t" gap_id: "GAP-14--willow-run-videos" status: "draft" created_at: "2026-09-22
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

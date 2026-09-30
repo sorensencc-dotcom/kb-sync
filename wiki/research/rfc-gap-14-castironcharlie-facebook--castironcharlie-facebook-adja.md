@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-14--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Self-Sealing Rubber Architecture
+title: RFC: GAP-14--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - 2. Flight Calibration Infrastructure
 category: research
 topic: rfc-gap-14-castironcharlie-facebook--castironcharlie-facebook-adja
 gap_id: GAP-14--castironcharlie-facebook
 status: draft
-created_at: 2026-09-20T11:01:48.400Z
+created_at: 2026-09-26T13:30:01.013Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-16-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-42-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-41-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+citations: ["wiki/research/rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-14--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Self-Sealing Rubber Architecture
+# RFC: GAP-14--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - 2. Flight Calibration Infrastructure
 
 ## 1. Problem Statement & Context
-)**: **Self-Sealing Rubber Architecture:** Each B-24 carried nearly 3,600 gallons of fuel across 18 fabric-reinforced molded rubber cells distributed throughout the wings [1]. When hit
+Compass Rose & On-Site Gun Range)**: **2. Flight Calibration Infrastructure: Compass Rose & On-Site Gun Range**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-16-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-16-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+- **rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
   >
-- **rfc-gap-42-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-42-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+- **rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-15-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
   >
-- **rfc-gap-41-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-41-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  >
+- **rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
+  > --- title: RFC: GAP-58--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - Flight Statistics category: research topic: rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-adja gap_id: GAP-58--castironcharlie-facebook st
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

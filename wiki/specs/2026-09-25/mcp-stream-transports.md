@@ -2,12 +2,14 @@
 source: grok
 skill: drive-it
 topic: spec
-title: "MCP stream transports: edge cases and breaking changes"
+title: MCP stream transports: edge cases and breaking changes
 created: Fri Sep 25 2026 16:06:02 GMT-0400 (Eastern Daylight Time)
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
 provenance_type: mobile_inbox_drop
 content_sha256: 31d173ea231e35a31e016f1257cf9db83f7cd8ae6fbcfa40646a52f466f25b54
+category: wiki
+sourceRepository: kb-sync
 ---
 
 # MCP stream transports — edge cases and breaking changes

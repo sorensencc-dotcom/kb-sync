@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-11--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
-category: research
-topic: rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-11--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:11.605Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-11--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories"
+category: "research"
+topic: "rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-11--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:42:59.528Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-82-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-07.md","wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
 # RFC: GAP-11--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** **Michigan Supreme Court Records** (*Dodge v. Ford Motor Co.*, Docket No. 58, 1918–1919) [18] and **BFRC Accession 1** (*Henry Ford Office Papers — Minorit
+)**: **Target Repositories:** **William C. Klann Papers (BFRC Accession 499)**, **Clarence W. Avery Papers (BFRC Accession 433)**, **Peter E. Martin Records (BFRC Accession 823)**, and
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-82-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-82-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
+- **rfc-gap-07** (`wiki/research/rfc-gap-07.md`) [hybrid]:
+  > 
 - **rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-11-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-16-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-76-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

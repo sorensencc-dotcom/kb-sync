@@ -1,7 +1,8 @@
 ---
-title: "Manifest Mode"
-category: "wiki"
-status: "active"
+title: Manifest Mode
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Manifest Mode

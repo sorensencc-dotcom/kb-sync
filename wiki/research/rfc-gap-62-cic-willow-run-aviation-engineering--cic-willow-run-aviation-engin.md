@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-62--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Door-Knocking Compromise
+title: RFC: GAP-62--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Next Research Target
 category: research
 topic: rfc-gap-62-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-62--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:05:51.916Z
+created_at: 2026-09-21T13:07:02.374Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-04-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-62--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - The Door-Knocking Compromise
+# RFC: GAP-62--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - Next Research Target
 
 ## 1. Problem Statement & Context
-)**: **The Door-Knocking Compromise:** To protect the college, Ford Motor Company’s plant security force went door-to-door in Ypsilanti and Ann Arbor for a "room canvas", begging reside
+)**: **Next Research Target:** Investigate **National Archives (NACP) Record Group 179** (War Production Board) Entry 1 and Truman Committee hearing transcripts to unearth the internal
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-04-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
   >
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   >
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
+- **rfc-gap-01--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-01--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-01 - **CIC - Willow Run & Aviation Engineering follow-up** category: research topic: rfc-gap-01--cic-willow-run-aviation-engin gap_id: GAP-01 status: draft created_at: 2026-09-05T03:17:49.472Z expansion_method: heuristic retrieval
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

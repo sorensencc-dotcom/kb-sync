@@ -1,7 +1,8 @@
 ---
-title: "kb-sync-nightly.sh"
-category: "utilities"
-status: "active"
+title: kb-sync-nightly.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # kb-sync-nightly.sh

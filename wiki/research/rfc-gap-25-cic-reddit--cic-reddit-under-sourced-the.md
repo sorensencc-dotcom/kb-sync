@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-25--cic-reddit - **CIC-Reddit (under-sourced - The Claim
+title: RFC: GAP-25--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
 category: research
 topic: rfc-gap-25-cic-reddit--cic-reddit-under-sourced-the
 gap_id: GAP-25--cic-reddit
 status: draft
-created_at: 2026-09-20T11:05:51.928Z
+created_at: 2026-09-21T12:55:47.957Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-48-cic-reddit--cic-reddit-under-sourced-the.md","trm-research-gaps.md","wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md"]
+citations: ["wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-20-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-24-cic-reddit--cic-reddit-adjacent-topics-th.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-25--cic-reddit - **CIC-Reddit (under-sourced - The Claim
+# RFC: GAP-25--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** A local blog post and oral accounts assert Henry Ford spent \$300,000 installing two giant floor turntables to rotate B-24 bombers 90 degrees so they would exit in W
+)**: **The Grounded Reality:** Historical records cited within that same thread show that the Model T's core engineering team consisted of Henry Ford, Childe Harold Wills, József Galamb
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-48-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-48-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+- **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-20-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-20-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
-  > --- title: "RFC: GAP-43--willow-run-videos - **Willow Run Videos under-sourced - The Claim" category: "research" topic: "rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc" gap_id: "GAP-43--willow-run-videos" status: "draft" created_at: "202
+- **rfc-gap-24-cic-reddit--cic-reddit-adjacent-topics-th** (`wiki/research/rfc-gap-24-cic-reddit--cic-reddit-adjacent-topics-th.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

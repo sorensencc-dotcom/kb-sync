@@ -1,14 +1,15 @@
 ---
-title: "RFC: GAP-46--cic-reddit - **CIC-Reddit (open-contradictions - Land Easement & Property Boundary Disputes"
-category: "research"
-topic: "rfc-gap-46-cic-reddit--cic-reddit-open-contradiction"
-gap_id: "GAP-46--cic-reddit"
-status: "draft"
-created_at: "2026-09-23T12:36:05.109Z"
-expansion_method: "heuristic"
-retrieval_mode: "hybrid-rrf"
+title: RFC: GAP-46--cic-reddit - **CIC-Reddit (open-contradictions - Land Easement & Property Boundary Disputes
+category: research
+topic: rfc-gap-46-cic-reddit--cic-reddit-open-contradiction
+gap_id: GAP-46--cic-reddit
+status: draft
+created_at: 2026-09-23T12:36:05.109Z
+expansion_method: heuristic
+retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
 citations: ["wiki/research/rfc-gap-44-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-58-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-37-cic-reddit--cic-reddit-open-contradiction.md"]
+sourceRepository: kb-sync
 ---
 
 # RFC: GAP-46--cic-reddit - **CIC-Reddit (open-contradictions - Land Easement & Property Boundary Disputes
@@ -20,11 +21,11 @@ citations: ["wiki/research/rfc-gap-44-cic-reddit--cic-reddit-open-contradiction.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-44-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-44-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-58-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-58-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-37-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-37-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

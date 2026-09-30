@@ -61,7 +61,37 @@ try {
         Write-LogWarn "Cache sync completed with non-zero exit code: $LASTEXITCODE. Proceeding with triage..."
     }
 
-    # 2. Run TRM Triage
+    # 2. Evaluate UTC Cadence Mode
+    $CadenceStatePath = Join-Path $RepoRoot "_kb-sync-staging\trm\cadence_state.json"
+    $CadenceMode = "active"
+    if (Test-Path $CadenceStatePath) {
+        try {
+            $cadenceState = Get-Content $CadenceStatePath -Raw | ConvertFrom-Json
+            if ($cadenceState.last_source_delta_utc) {
+                $nowUtc = [DateTime]::UtcNow
+                $lastDeltaUtc = [DateTime]::Parse($cadenceState.last_source_delta_utc).ToUniversalTime()
+                $hoursIdle = ($nowUtc - $lastDeltaUtc).TotalHours
+                if ($hoursIdle -gt 72) {
+                    $CadenceMode = "weekly"
+                }
+            }
+        } catch {
+            Write-LogWarn "Failed reading cadence state: $_"
+        }
+    }
+    Write-LogInfo "TRM Cadence Mode: $CadenceMode"
+
+    if (Test-Path (Join-Path $RepoRoot "scripts\run-closed-loop-research-v2.mjs")) {
+        if ($CadenceMode -eq "active") {
+            Write-LogInfo "Running closed loop research pass (--mode active)..."
+            & node scripts/run-closed-loop-research-v2.mjs --mode active 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+        } else {
+            Write-LogInfo "Running closed loop research pass (--mode weekly)..."
+            & node scripts/run-closed-loop-research-v2.mjs --mode weekly 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+        }
+    }
+
+    # 3. Run TRM Triage
     Write-LogInfo "Executing TRM Gap Triage engine..."
     $triageArgs = @("scripts/trm-triage.mjs", "--provider=$Provider")
     if ($Model) {

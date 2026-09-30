@@ -4,27 +4,27 @@ category: research
 topic: rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc
 gap_id: GAP-08--the-sorensen-photographic-archive
 status: draft
-created_at: 2026-09-19T20:45:25.768Z
+created_at: 2026-09-25T10:33:34.173Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o.md"]
+citations: ["wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-08--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up - Senator Harry Truman)**: **Senator Harry Truman**: Entry 76707 records a "Willow Run Group with Sen Harry Truman" [2]. Investigating records from Truman's Senate Special Committee to Investigate the Nation
+Industrial Giants at Willow Run (under-sourced - Photo 76880 lists **"M Wedge"**, which was reca...)**: Photo 76880 lists **"M Wedge"**, which was recaptioned to Buick Melrose Park with Harlow Curtice and Jimmy Doolittle [1, 5].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-08-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-07-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   >
-- **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
+- **rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

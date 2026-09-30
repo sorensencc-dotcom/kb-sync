@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-50--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - 3. Automotive Repetition vs. Microscopic Precision (The Sperry M-7 Bottleneck))**
+title: RFC: GAP-50--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Contradiction
 category: research
 topic: rfc-gap-50-castironcharlie-facebook--castironcharlie-facebook-open
 gap_id: GAP-50--castironcharlie-facebook
 status: draft
-created_at: 2026-09-19T21:18:30.365Z
+created_at: 2026-09-25T10:39:58.055Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["wiki/research/rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-open.md","trm-research-gaps.md","wiki/research/rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-open.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-50--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - 3. Automotive Repetition vs. Microscopic Precision (The Sperry M-7 Bottleneck))**
+# RFC: GAP-50--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Contradiction
 
 ## 1. Problem Statement & Context
-**3. Automotive Repetition vs. Microscopic Precision (The Sperry M-7 Bottleneck)**
+)**: **The Contradiction:** While Ford promotional materials claimed standard automotive assembly lines could seamlessly adapt to any military hardware, internal reports admitted that p
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [lexical_only]:
+- **rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-open.md`) [hybrid]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
+- **rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-open.md`) [vector_only]:
+  > --- title: "RFC: GAP-44--castironcharlie-facebook - **CastIronCharlie-Facebook open-contradictions - The Contradiction" category: "research" topic: "rfc-gap-44-castironcharlie-facebook--castironcharlie-facebook-open" gap_id: "GAP-44--castironcharlie-
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

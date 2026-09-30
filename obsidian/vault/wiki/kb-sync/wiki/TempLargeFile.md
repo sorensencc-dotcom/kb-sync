@@ -1,9 +1,10 @@
 ---
-title: "TempLargeFile"
-category: "wiki"
-status: "active"
+title: TempLargeFile
+category: wiki
+status: active
 draft: true
-created: "2026-09-05T03:16:27.096Z"
+created: 2026-09-05T03:16:27.096Z
+sourceRepository: kb-sync
 ---
 
 # TempLargeFile

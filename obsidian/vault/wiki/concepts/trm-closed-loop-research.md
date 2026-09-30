@@ -1,7 +1,8 @@
 ---
-title: "TRM Closed Loop Research"
-category: "wiki"
-status: "active"
+title: TRM Closed Loop Research
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # TRM Closed Loop Research

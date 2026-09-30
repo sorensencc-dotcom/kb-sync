@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-64--cic-reddit - **CIC-Reddit (open-contradictions - Offshore Gambling Platform
-category: research
-topic: rfc-gap-64-cic-reddit--cic-reddit-open-contradiction
-gap_id: GAP-64--cic-reddit
-status: draft
-created_at: 2026-09-19T21:27:00.454Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-64--cic-reddit - **CIC-Reddit (open-contradictions - 5. Federal Title (RFC–DPC) vs. Municipal Tax Immunity)**"
+category: "research"
+topic: "rfc-gap-64-cic-reddit--cic-reddit-open-contradiction"
+gap_id: "GAP-64--cic-reddit"
+status: "draft"
+created_at: "2026-09-27T12:10:00.991Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["_kb-sync-staging/trm/current/raw_research_conformance.json","docs/kb/notebooklm-sync/architecture.md","wiki/research/mobile-websocket-heartbeats.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-70-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-64-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-rese.md"]
 ---
 
-# RFC: GAP-64--cic-reddit - **CIC-Reddit (open-contradictions - Offshore Gambling Platform
+# RFC: GAP-64--cic-reddit - **CIC-Reddit (open-contradictions - 5. Federal Title (RFC–DPC) vs. Municipal Tax Immunity)**
 
 ## 1. Problem Statement & Context
-)**: **Offshore Gambling Platform:** The active web page retrieved under `savethebomberplant.org` contains no historic preservation information, functioning instead as a landing page fo
+**5. Federal Title (RFC–DPC) vs. Municipal Tax Immunity**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **raw_research_conformance** (`_kb-sync-staging/trm/current/raw_research_conformance.json`) [lexical_only]:
-  >
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
-- **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
-  >
+- **rfc-gap-70-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-70-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-64-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-64-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-rese** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-rese.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Non-Magnetic Compass Rose
+title: RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Human "Manual Servomechanisms")**
 category: research
 topic: rfc-gap-17-castironcharlie-facebook--castironcharlie-facebook-adja
 gap_id: GAP-17--castironcharlie-facebook
 status: draft
-created_at: 2026-09-20T11:01:51.173Z
+created_at: 2026-09-26T13:30:10.700Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-18-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
+citations: ["wiki/research/rfc-gap-24-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - The Haughton Non-Magnetic Compass Rose
+# RFC: GAP-17--castironcharlie-facebook - **CastIronCharlie-Facebook (adjacent-topics - Human "Manual Servomechanisms")**
 
 ## 1. Problem Statement & Context
-)**: **The Haughton Non-Magnetic Compass Rose:** To calibrate internal magnetic compasses without interference from surrounding structural steel, the Haughton Elevator Company construct
+**Human "Manual Servomechanisms"**: In early Sperry anti-aircraft directors (from Major Thomas Wilson's T-1 through the T-6 to the M-7), up to nine human operators sat on revolving
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-19-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+- **rfc-gap-24-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-24-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
   >
-- **rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-45-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
+- **rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
   >
-- **rfc-gap-18-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-18-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  >
+- **rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
+  > --- title: RFC: GAP-61--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - The Frame 141 "Tax Dodge" Pivot category: research topic: rfc-gap-61-castironcharlie-facebook--castironcharlie-facebook-adja gap_id: GAP-61--castironcharl
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

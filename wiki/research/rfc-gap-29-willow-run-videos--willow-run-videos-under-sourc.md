@@ -4,27 +4,27 @@ category: research
 topic: rfc-gap-29-willow-run-videos--willow-run-videos-under-sourc
 gap_id: GAP-29--willow-run-videos
 status: draft
-created_at: 2026-09-20T10:53:02.923Z
+created_at: 2026-09-26T13:09:41.878Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-30-willow-run-videos--willow-run-videos-under-sourc.md"]
+citations: ["wiki/research/rfc-gap-62-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-39-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-82-willow-run-videos--willow-run-videos-under-sourc.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-29--willow-run-videos - **Willow Run Videos (under-sourced - Historical Reality
 
 ## 1. Problem Statement & Context
-)**: **Historical Reality:** This assertion is unique to a single video script. Every other source, primary production document, and War Production Board summary confirms Willow Run pro
+)**: **Historical Reality:** While early rollout delays and hard-die stamping variations are widely documented, the specific figure of 1,847 defects appears in only one video script [18
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+- **rfc-gap-62-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-62-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
   >
-- **rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-74-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+- **rfc-gap-39-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-39-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
   >
-- **rfc-gap-30-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-30-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+- **rfc-gap-82-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-82-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

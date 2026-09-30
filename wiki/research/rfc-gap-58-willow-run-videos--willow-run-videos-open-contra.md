@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts
-category: research
-topic: rfc-gap-58-willow-run-videos--willow-run-videos-open-contra
-gap_id: GAP-58--willow-run-videos
-status: draft
-created_at: 2026-09-20T10:53:08.576Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - December 1942"
+category: "research"
+topic: "rfc-gap-58-willow-run-videos--willow-run-videos-open-contra"
+gap_id: "GAP-58--willow-run-videos"
+status: "draft"
+created_at: "2026-09-27T11:40:34.819Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-80-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-119-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-46-willow-run-videos--willow-run-videos-open-contra.md"]
 ---
 
-# RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - Rivet Counts
+# RFC: GAP-58--willow-run-videos - **Willow Run Videos (open-contradictions - December 1942
 
 ## 1. Problem Statement & Context
-)**: **Rivet Counts:** Figures vary from **360,000 rivets** [41] to **550,000 rivets** [44], **700,000 rivets** [45], and **1.25 million rivets** [46].
+)**: **December 1942:** Other narratives describe late 1942 rollouts as rattling, crooked mechanical failures requiring extensive rework [23, 28].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-106-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
-- **rfc-gap-80-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-80-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
-- **rfc-gap-126-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  >
+- **rfc-gap-57-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-119-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-119-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
+  > 
+- **rfc-gap-46-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-46-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
+  > --- title: RFC: GAP-46--willow-run-videos - **Willow Run Videos open-contradictions - December 1942 category: research topic: rfc-gap-46-willow-run-videos--willow-run-videos-open-contra gap_id: GAP-46--willow-run-videos status: draft created_at: 2026
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,7 +1,8 @@
 ---
-title: "wiki Semantic Synthesis System"
-category: "wiki"
-status: "active"
+title: wiki Semantic Synthesis System
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # wiki Semantic Synthesis System

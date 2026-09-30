@@ -1,9 +1,10 @@
 ---
-title: "RfcGap71CicFordExecutiveDynamicsPoliticsCicFordExecutiveDynamicsP"
-category: "wiki"
-status: "active"
+title: RfcGap71CicFordExecutiveDynamicsPoliticsCicFordExecutiveDynamicsP
+category: wiki
+status: active
 draft: true
-created: "2026-09-19T19:30:22.861Z"
+created: 2026-09-19T19:30:22.861Z
+sourceRepository: kb-sync
 ---
 
 # RfcGap71CicFordExecutiveDynamicsPoliticsCicFordExecutiveDynamicsP

@@ -1,15 +1,14 @@
 ---
-title: RFC: GAP-15--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Precision Tooling Innovations
-category: research
-topic: rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland
-gap_id: GAP-15--cic-post-war-willys-overland
-status: draft
-created_at: 2026-09-20T11:17:38.300Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-15--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Precision Tooling Innovations"
+category: "research"
+topic: "rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland"
+gap_id: "GAP-15--cic-post-war-willys-overland"
+status: "draft"
+created_at: "2026-09-27T12:37:54.455Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-32-cic-daily-research--cic-daily-research-adjacent-t.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md","wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
 # RFC: GAP-15--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - Precision Tooling Innovations
@@ -21,11 +20,11 @@ sourceRepository: kb-sync
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  >
+  > 
 - **rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  >
-- **rfc-gap-32-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-32-cic-daily-research--cic-daily-research-adjacent-t.md`) [hybrid]:
-  >
+  > 
+- **rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

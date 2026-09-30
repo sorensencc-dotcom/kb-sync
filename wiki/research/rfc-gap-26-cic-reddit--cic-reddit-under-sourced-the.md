@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-26--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
+title: RFC: GAP-26--cic-reddit - **CIC-Reddit (under-sourced - The Claim
 category: research
 topic: rfc-gap-26-cic-reddit--cic-reddit-under-sourced-the
 gap_id: GAP-26--cic-reddit
 status: draft
-created_at: 2026-09-20T11:05:53.653Z
+created_at: 2026-09-21T12:55:47.971Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-49-cic-reddit--cic-reddit-under-sourced-the.md","trm-research-gaps.md","wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md"]
+citations: ["wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-21-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-67-cic-reddit--cic-reddit-open-contradiction.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-26--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
+# RFC: GAP-26--cic-reddit - **CIC-Reddit (under-sourced - The Claim
 
 ## 1. Problem Statement & Context
-)**: **The Grounded Reality:** This popular story is heavily contested across primary and secondary records. Production chief Charles Sorensen writes in his memoirs that the L-shape was
+)**: **The Claim:** In a forum discussion regarding Harry Bennett—head of Ford's internal Service Department who used ex-cons and boxers to violently suppress labor unions [3, 4]—a comm
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-49-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-49-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+- **rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-21-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-21-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
   >
-- **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
-  > --- title: "RFC: GAP-40--cic-reddit - **CIC-Reddit under-sourced - The Grounded Reality" category: "research" topic: "rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the" gap_id: "GAP-40--cic-reddit" status: "draft" created_at: "2026-09-19T21:25:55.5
+- **rfc-gap-67-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-67-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

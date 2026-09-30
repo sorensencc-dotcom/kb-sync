@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-70--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 1. Executive Espionage & The "Secret Codicil")**
+title: RFC: GAP-70--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The Unresolved Question
 category: research
 topic: rfc-gap-70-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-70--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:06:09.794Z
+created_at: 2026-09-21T13:07:16.435Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md"]
+citations: ["wiki/research/rfc-gap-07-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-43-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-70--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (under-sourced - 1. Executive Espionage & The "Secret Codicil")**
+# RFC: GAP-70--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - The Unresolved Question
 
 ## 1. Problem Statement & Context
-**1. Executive Espionage & The "Secret Codicil"**
+)**: **The Unresolved Question:** Sorensen claims Willow Run subassemblies were built to precision standards, but military records indicate high rejection rates at Fort Worth in early 1
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-03--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-07-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-07-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
-- **rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
-  > --- title: "RFC: GAP-24--willow-run-videos - **Willow Run Videos adjacent-topics - 1. Clara Ford" category: "research" topic: "rfc-gap-24-willow-run-videos--willow-run-videos-adjacent-to" gap_id: "GAP-24--willow-run-videos" status: "draft" created_at
-- **rfc-gap-02--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-02--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-60--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - The College Takeover Threat category: research topic: rfc-gap-60-cic-willow-run-aviation-engineering--cic-willow-run-aviation-en
+- **rfc-gap-43-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-43-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

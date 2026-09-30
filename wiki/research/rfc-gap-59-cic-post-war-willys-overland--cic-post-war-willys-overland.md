@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-59--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - 8.)**
+title: RFC: GAP-59--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - Current Status
 category: research
 topic: rfc-gap-59-cic-post-war-willys-overland--cic-post-war-willys-overland
 gap_id: GAP-59--cic-post-war-willys-overland
 status: draft
-created_at: 2026-09-19T21:12:39.272Z
+created_at: 2026-09-22T14:24:42.763Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-02--cic-post-war-willys-overland.md","wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
+citations: ["wiki/research/rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-32-cic-post-war-willys-overland--cic-post-war-willys-overland.md","wiki/research/rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-59--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (adjacent-topics - 8.)**
+# RFC: GAP-59--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland (open-contradictions - Current Status
 
 ## 1. Problem Statement & Context
-8. Early Corporate Promotional Merchandising (Al-Toy)
+)**: **Current Status:** The primary **1945–1946 Willys-Overland board minutes** documenting the specific executive debate between Canaday and Sorensen over cancelling the passenger car
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-03-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
   >
-- **rfc-gap-02--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02--cic-post-war-willys-overland.md`) [hybrid]:
+- **rfc-gap-32-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-32-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
   >
-- **rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
-  > --- title: "RFC: GAP-04--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland follow-up - 2.**" category: "research" topic: "rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland" gap_id: "GAP-04--cic-post-war-willys-over
+- **rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

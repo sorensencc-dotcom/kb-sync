@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Willow Run to Willys Transition
+title: RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Contested Death Date
 category: research
 topic: rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-21--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:33.156Z
+created_at: 2026-09-24T11:58:45.375Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Willow Run to Willys Transition
+# RFC: GAP-21--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Contested Death Date
 
 ## 1. Problem Statement & Context
-)**: **Willow Run to Willys Transition:** Historical details surrounding his 1944 transition from directing mass production at the **Willow Run bomber plant** during World War II to tak
+)**: **Contested Death Date:** Published biographies list August 28, 1968, while cemetery records list August 11, 1968, and *The New York Times* obituary establishes August 13, 1968 [10
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-29-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-30-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-44-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

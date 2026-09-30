@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - Impact
+title: RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - Impact on Findings
 category: research
 topic: rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-i
 gap_id: GAP-09--willow-run-videos
 status: draft
-created_at: 2026-09-20T10:52:54.348Z
+created_at: 2026-09-25T10:23:10.060Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-i.md","wiki/research/rfc-gap-29-willow-run-videos--willow-run-videos-follow-up-i.md","wiki/research/rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-w.md"]
+citations: ["wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-i.md","wiki/research/rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-i.md","wiki/research/rfc-gap-12-willow-run-videos--willow-run-videos-follow-up-i.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - Impact
+# RFC: GAP-09--willow-run-videos - **Willow Run Videos (follow-up - Impact on Findings
 
 ## 1. Problem Statement & Context
-)**: **Impact:** Disentangles popular local folklore—which claims Henry Ford bent the factory 90 degrees at Frame 141 to evade Wayne County taxes and union voters—from actual airfield g
+)**: **Impact on Findings:** Formally audits the single-sourced claim regarding **"South American aluminum coffins"** [13, 14]. Verifying aluminum alloy intake receipts will confirm whe
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
+- **rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-follow-up-i.md`) [hybrid]:
+  >
 - **rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-i.md`) [hybrid]:
   >
-- **rfc-gap-29-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-29-willow-run-videos--willow-run-videos-follow-up-i.md`) [hybrid]:
-  >
-- **rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-09-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+- **rfc-gap-12-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-12-willow-run-videos--willow-run-videos-follow-up-i.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

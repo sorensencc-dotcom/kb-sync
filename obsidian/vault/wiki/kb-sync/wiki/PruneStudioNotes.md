@@ -1,9 +1,10 @@
 ---
-title: "PruneStudioNotes"
-category: "wiki"
-status: "active"
+title: PruneStudioNotes
+category: wiki
+status: active
 draft: true
-created: "2026-09-13T03:17:29.098Z"
+created: 2026-09-13T03:17:29.098Z
+sourceRepository: kb-sync
 ---
 
 # PruneStudioNotes

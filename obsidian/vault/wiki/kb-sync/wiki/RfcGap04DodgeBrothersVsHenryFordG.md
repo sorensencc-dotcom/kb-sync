@@ -1,9 +1,10 @@
 ---
-title: "RfcGap04DodgeBrothersVsHenryFordG"
-category: "wiki"
-status: "active"
+title: RfcGap04DodgeBrothersVsHenryFordG
+category: wiki
+status: active
 draft: true
-created: "2026-08-22T14:49:20.732Z"
+created: 2026-08-22T14:49:20.732Z
+sourceRepository: kb-sync
 ---
 
 # RfcGap04DodgeBrothersVsHenryFordG

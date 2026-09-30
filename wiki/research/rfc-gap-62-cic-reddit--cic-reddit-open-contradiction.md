@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-62--cic-reddit - **CIC-Reddit (open-contradictions - 2. Why Is the Historic Preservation Site a Crypto Casino?)**
-category: research
-topic: rfc-gap-62-cic-reddit--cic-reddit-open-contradiction
-gap_id: GAP-62--cic-reddit
-status: draft
-created_at: 2026-09-19T21:26:54.508Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-62--cic-reddit - **CIC-Reddit (open-contradictions - Unverified Squawk Curve"
+category: "research"
+topic: "rfc-gap-62-cic-reddit--cic-reddit-open-contradiction"
+gap_id: "GAP-62--cic-reddit"
+status: "draft"
+created_at: "2026-09-27T12:10:00.843Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-reddit-under-sourced.md","trm-research-gaps.md","wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-62-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-50-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md"]
 ---
 
-# RFC: GAP-62--cic-reddit - **CIC-Reddit (open-contradictions - 2. Why Is the Historic Preservation Site a Crypto Casino?)**
+# RFC: GAP-62--cic-reddit - **CIC-Reddit (open-contradictions - Unverified Squawk Curve
 
 ## 1. Problem Statement & Context
-**2. Why Is the Historic Preservation Site a Crypto Casino?** A stark contradiction exists between historical reference records and active web content:
+)**: **Unverified Squawk Curve:** Secondary narrative summaries often assert a "squawk" curve where flight-test defects dropped from an early peak of 800 per ship down to under 20 by la
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-reddit-under-sourced** (`wiki/research/rfc-gap-03--cic-reddit-under-sourced.md`) [hybrid]:
-  >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
-- **rfc-gap-17-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-17--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-17-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-17--cic-daily-research" status: "draft" created_at: "2
+- **rfc-gap-62-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-62-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-50-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-50-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+  > 
+- **rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,9 +1,10 @@
 ---
-title: "ConfigLoader.Test"
-category: "wiki"
-status: "active"
+title: ConfigLoader.Test
+category: wiki
+status: active
 draft: true
-created: "2026-08-29T22:25:46.933Z"
+created: 2026-08-29T22:25:46.933Z
+sourceRepository: kb-sync
 ---
 
 # ConfigLoader.Test

@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-40--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
+title: RFC: GAP-40--cic-reddit - **CIC-Reddit (under-sourced - The Wayne County \$2 Delivery Tax
 category: research
 topic: rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the
 gap_id: GAP-40--cic-reddit
 status: draft
-created_at: 2026-09-19T21:25:55.591Z
+created_at: 2026-09-24T12:13:03.388Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03--cic-reddit-under-sourced.md","trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-47-cic-reddit--cic-reddit-under-sourced-4-th.md","wiki/research/rfc-gap-33-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-38-cic-reddit--cic-reddit-open-contradiction.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-40--cic-reddit - **CIC-Reddit (under-sourced - The Grounded Reality
+# RFC: GAP-40--cic-reddit - **CIC-Reddit (under-sourced - The Wayne County \$2 Delivery Tax
 
 ## 1. Problem Statement & Context
-)**: **The Grounded Reality:** Historical records cited within that same thread show that the Model T's core development team consisted of Henry Ford, Childe Harold Wills, József Galamb
+)**: **The Wayne County \$2 Delivery Tax:** Popular accounts describe Henry Ford spending \$300,000 on floor turntables to bypass a retaliatory \$2-per-bomber delivery tax passed by Way
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03--cic-reddit-under-sourced** (`wiki/research/rfc-gap-03--cic-reddit-under-sourced.md`) [hybrid]:
+- **rfc-gap-47-cic-reddit--cic-reddit-under-sourced-4-th** (`wiki/research/rfc-gap-47-cic-reddit--cic-reddit-under-sourced-4-th.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-33-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-33-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-38-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-38-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

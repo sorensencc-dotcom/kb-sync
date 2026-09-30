@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-06--cic-reddit - **CIC-Reddit (follow-up - Research Strategy
+title: RFC: GAP-06--cic-reddit - **CIC-Reddit (follow-up - Research Target
 category: research
 topic: rfc-gap-06-cic-reddit--cic-reddit-follow-up-research
 gap_id: GAP-06--cic-reddit
 status: draft
-created_at: 2026-09-19T20:53:15.545Z
+created_at: 2026-09-26T13:36:25.124Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md","wiki/research/rfc-gap-01--cic-daily-research-follow-up.md","wiki/research/rfc-gap-05-harry-bennett-service-departme.md"]
+citations: ["wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-target.md","wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-research.md","wiki/research/rfc-gap-77-cic-reddit--cic-reddit-open-contradiction.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-06--cic-reddit - **CIC-Reddit (follow-up - Research Strategy
+# RFC: GAP-06--cic-reddit - **CIC-Reddit (follow-up - Research Target
 
 ## 1. Problem Statement & Context
-)**: **Research Strategy:** Investigating **receiving logs, production diaries, and manager correspondence at the Fort Worth and Tulsa assembly plants** would document how traditional a
+)**: **Research Target:** Trace material control ledgers and subassembly shipments for the verified split of **6,792 completed B-24s + 1,893 KD kits** delivered to Consolidated Aircraft
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-willow-run-b-24-knock-down-kit** (`wiki/research/rfc-gap-06-willow-run-b-24-knock-down-kit.md`) [lexical_only]:
+- **rfc-gap-05-cic-reddit--cic-reddit-follow-up-target** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-target.md`) [hybrid]:
   >
-- **rfc-gap-01--cic-daily-research-follow-up** (`wiki/research/rfc-gap-01--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: RFC: GAP-01 - **CIC - Daily Research follow-up** category: research topic: rfc-gap-01--cic-daily-research-follow-up gap_id: GAP-01 status: draft created_at: 2026-09-05T03:18:17.589Z expansion_method: heuristic retrieval_mode: hybrid-rrf as
-- **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [lexical_only]:
+- **rfc-gap-06-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-research.md`) [hybrid]:
+  >
+- **rfc-gap-77-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-77-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

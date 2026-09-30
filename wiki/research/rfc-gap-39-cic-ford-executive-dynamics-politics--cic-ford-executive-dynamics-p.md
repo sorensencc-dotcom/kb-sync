@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-39--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
-category: research
-topic: rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-39--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:24.634Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-39--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap"
+category: "research"
+topic: "rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-39--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:44:32.491Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05.md","wiki/research/rfc-gap-08.md"]
 ---
 
 # RFC: GAP-39--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (under-sourced - The Archival Gap
 
 ## 1. Problem Statement & Context
-)**: **The Archival Gap:** Contemporary reviewers labeled this claim a prime example of Sorensen’s self-glorifying **"egomania"** [5, 6]. His assertion of designing the facility single-
+)**: **The Archival Gap:** Frank Campsall files (Accession SE-007) and Peter E. Martin papers (Accession 823) show that Bennett recognized the threat, complained directly to Henry Ford
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-43-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-42-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
+- **rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-05** (`wiki/research/rfc-gap-05.md`) [lexical_only]:
+  > 
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
+  > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Expropriation vs. Official Absence
+title: RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Invention Myth vs. Collaborative Engineering)**
 category: research
 topic: rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-37--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.246Z
+created_at: 2026-09-23T12:18:39.039Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-94-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-51-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Expropriation vs. Official Absence
+# RFC: GAP-37--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Invention Myth vs. Collaborative Engineering)**
 
 ## 1. Problem Statement & Context
-)**: **Expropriation vs. Official Absence:** Secondary sources and family tradition assert that Fidel Castro's government seized Sorensen's extensive Cuban agricultural holdings ("CESOR
+**Invention Myth vs. Collaborative Engineering**: In *My Forty Years with Ford*, Sorensen claimed he and Charles Lewis single-handedly conceived the moving assembly line during sec
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-94-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-94-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-51-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-51-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

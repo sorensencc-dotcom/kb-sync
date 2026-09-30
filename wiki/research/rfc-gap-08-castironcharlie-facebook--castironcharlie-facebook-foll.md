@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-08--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 4. University of Michigan Wind Tunnel Logs & Flying Wing Files)**
-category: research
-topic: rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-foll
-gap_id: GAP-08--castironcharlie-facebook
-status: draft
-created_at: 2026-09-20T11:01:42.631Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-08--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories"
+category: "research"
+topic: "rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-foll"
+gap_id: "GAP-08--castironcharlie-facebook"
+status: "draft"
+created_at: "2026-09-27T12:04:02.592Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-03.md","wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
 ---
 
-# RFC: GAP-08--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 4. University of Michigan Wind Tunnel Logs & Flying Wing Files)**
+# RFC: GAP-08--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-**4. University of Michigan Wind Tunnel Logs & Flying Wing Files**
+)**: **Target Repositories:** **Bentley Historical Library** (*University of Michigan Department of Aerospace Engineering Archives*) and **Civil Aeronautics Authority (CAA) Registry Fil
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
-  >
-- **rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [lexical_only]:
-  >
-- **rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [vector_only]:
-  > --- title: "RFC: GAP-13--castironcharlie-facebook - **CastIronCharlie-Facebook follow-up - Target Repositories" category: "research" topic: "rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-foll" gap_id: "GAP-13--castironcharlie-facebook
+- **rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+  > 
+- **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
+  > 
+- **rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [vector_only]:
+  > --- title: RFC: GAP-30--castironcharlie-facebook - **CastIronCharlie-Facebook follow-up - Target Repositories category: research topic: rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll gap_id: GAP-30--castironcharlie-facebook status
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

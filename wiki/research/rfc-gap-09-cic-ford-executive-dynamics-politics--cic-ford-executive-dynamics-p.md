@@ -1,46 +1,33 @@
 ---
-title: RFC: GAP-09--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
-category: research
-topic: rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-09--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:09.932Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
-ast_grounded_symbols: ["consolidate-pack.mjs"]
-citations: ["wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-79-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md"]
-sourceRepository: kb-sync
+title: "RFC: GAP-09--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories"
+category: "research"
+topic: "rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-09--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:42:56.267Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
+ast_grounded_symbols: []
+citations: ["wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-73-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-05.md"]
 ---
 
 # RFC: GAP-09--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** **E.G. Liebold Papers** and **Frank Campsall Files (BFRC Accession SE-007)** [2].
+)**: **Target Repositories:** **Peter E. Martin Papers (BFRC Accession 823)** and **Frank Campsall Files (BFRC Accession SE-007)** [3, 27, 28].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-09-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-79-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-79-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+  > 
+- **rfc-gap-73-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-73-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-05** (`wiki/research/rfc-gap-05.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
-
-Static analysis computed via Graft symbol indexing:
-
-#### Symbol: `consolidate-pack.mjs`
-
-* **Callees**: `[graft] tokens saved ≈ 2,651 (97%) — this output ≈ 82 tok vs reading the 1 file(s) it covers whole ≈ 2,733 tok (estimate). At the end of your reply, tell the user the total graft tokens saved this turn — sum each such line across your graft calls — e.g. "🌱 graft saved ~N tokens this turn".`
-
-```text
-[graft] tokens saved ≈ 2,651 (97%) — this output ≈ 82 tok vs reading the 1 file(s) it covers whole ≈ 2,733 tok (estimate). At the end of your reply, tell the user the total graft tokens saved this turn — sum each such line across your graft calls — e.g. "🌱 graft saved ~N tokens this turn".
-
-consolidate-pack.mjs · file · scripts/consolidate-pack.mjs:L1-L283
-  no indexed callers — the graph has no incoming call/reference edges for this symbol as written. Check the name (try the bare symbol, or "T
-```
+*No static call-graph symbols detected in target codebase for this item.*
 
 ## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.

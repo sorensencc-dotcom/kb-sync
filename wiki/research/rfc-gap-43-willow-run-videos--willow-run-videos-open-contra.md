@@ -4,28 +4,28 @@ category: research
 topic: rfc-gap-43-willow-run-videos--willow-run-videos-open-contra
 gap_id: GAP-43--willow-run-videos
 status: draft
-created_at: 2026-09-20T10:53:04.934Z
+created_at: 2026-09-26T13:10:11.762Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-51-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-109-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-89-willow-run-videos--willow-run-videos-open-contra.md"]
+citations: ["wiki/research/rfc-gap-96-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-116-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-open-contra.md"]
 sourceRepository: kb-sync
 ---
 
 # RFC: GAP-43--willow-run-videos - **Willow Run Videos (open-contradictions - The Contradiction
 
 ## 1. Problem Statement & Context
-)**: **The Contradiction:** One video transcript in the collection explicitly asserts that Boeing’s **B-17 Flying Fortress** was the primary heavy bomber built at Willow Run, claiming F
+)**: **The Contradiction:** Sources conflict regarding the date and quality of the plant's first completed aircraft:
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-51-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-51-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-96-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-96-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-109-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-109-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+- **rfc-gap-116-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-116-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
   >
-- **rfc-gap-89-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-89-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
-  > --- title: "RFC: GAP-89--willow-run-videos - **Willow Run Videos open-contradictions - The Contradiction" category: "research" topic: "rfc-gap-89-willow-run-videos--willow-run-videos-open-contra" gap_id: "GAP-89--willow-run-videos" status: "draft" cr
+- **rfc-gap-54-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-54-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

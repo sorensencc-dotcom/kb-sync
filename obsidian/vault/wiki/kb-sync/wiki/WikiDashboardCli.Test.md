@@ -1,9 +1,10 @@
 ---
-title: "WikiDashboardCli.Test"
-category: "wiki"
-status: "active"
+title: WikiDashboardCli.Test
+category: wiki
+status: active
 draft: true
-created: "2026-09-09T01:52:45.742Z"
+created: 2026-09-09T01:52:45.742Z
+sourceRepository: kb-sync
 ---
 
 # WikiDashboardCli.Test

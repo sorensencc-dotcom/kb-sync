@@ -1,7 +1,8 @@
 ---
-title: "Skill Approval & Installation Rules"
-category: "wiki"
-status: "active"
+title: Skill Approval & Installation Rules
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Skill Approval & Installation Rules

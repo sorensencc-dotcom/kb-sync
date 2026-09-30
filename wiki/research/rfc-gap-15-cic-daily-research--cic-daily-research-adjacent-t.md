@@ -4,11 +4,11 @@ category: research
 topic: rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t
 gap_id: GAP-15--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:49:58.458Z
+created_at: 2026-09-21T12:37:13.764Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","docs/kb/notebooklm-sync/architecture.md"]
+citations: ["wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t.md","wiki/research/rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
@@ -20,12 +20,12 @@ sourceRepository: kb-sync
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-28-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-28-cic-daily-research--cic-daily-research-adjacent-t.md`) [hybrid]:
   >
-- **rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-27-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-15-cic-daily-research--cic-daily-research-adjacent-t.md`) [hybrid]:
   >
-- **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
-  > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
+- **rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

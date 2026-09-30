@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-36--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Contradictory Primary Records
+title: RFC: GAP-36--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 3. Contested Mass Production Pedigree & Taylorism)**
 category: research
 topic: rfc-gap-36-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-36--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.195Z
+created_at: 2026-09-23T12:18:38.851Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-32-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-36--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Contradictory Primary Records
+# RFC: GAP-36--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - 3. Contested Mass Production Pedigree & Taylorism)**
 
 ## 1. Problem Statement & Context
-)**: **Contradictory Primary Records:** Published biographies, reference entries, and Wikipedia list Sorensen's death date as **August 28, 1968** [1, 2]. In contrast, cemetery records,
+**3. Contested Mass Production Pedigree & Taylorism**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-84-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-67-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-52-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   >
-- **rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-103-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  >
+- **rfc-gap-32-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-32-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [vector_only]:
+  > --- title: RFC: GAP-32--castironcharlie-facebook - **CastIronCharlie-Facebook follow-up - 3. San Diego Blueprint Translation & Joint Engineering Logs** category: research topic: rfc-gap-32-castironcharlie-facebook--castironcharlie-facebook-foll gap_i
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

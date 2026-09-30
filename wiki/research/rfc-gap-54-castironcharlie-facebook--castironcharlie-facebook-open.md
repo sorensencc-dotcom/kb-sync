@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-54--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Contradiction)**
+title: RFC: GAP-54--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Biomechanical Trade-off
 category: research
 topic: rfc-gap-54-castironcharlie-facebook--castironcharlie-facebook-open
 gap_id: GAP-54--castironcharlie-facebook
 status: draft
-created_at: 2026-09-19T21:18:38.978Z
+created_at: 2026-09-25T10:40:05.268Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04--castironcharlie-facebook-open.md","trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md"]
+citations: ["wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/rfc-gap-52-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-open.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-54--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Contradiction)**
+# RFC: GAP-54--castironcharlie-facebook - **CastIronCharlie-Facebook (open-contradictions - The Biomechanical Trade-off
 
 ## 1. Problem Statement & Context
-**The Contradiction**: National wartime press coverage in 1942 (*Fortune*’s "Sorensen of the Rouge" and companion magazine profiles) elevated Sorensen as an independent industrial
+)**: **The Biomechanical Trade-off:** Sperry engineers initially hesitated to replace human operators with automated electrical servomechanisms because erratic tracking inputs ("data no
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04--castironcharlie-facebook-open** (`wiki/research/rfc-gap-04--castironcharlie-facebook-open.md`) [hybrid]:
+- **rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-open.md`) [hybrid]:
   >
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-52-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-52-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
   >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-open.md`) [vector_only]:
+  > --- title: "RFC: GAP-49--castironcharlie-facebook - **CastIronCharlie-Facebook open-contradictions - The Precision Gap" category: "research" topic: "rfc-gap-49-castironcharlie-facebook--castironcharlie-facebook-open" gap_id: "GAP-49--castironcharlie-
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

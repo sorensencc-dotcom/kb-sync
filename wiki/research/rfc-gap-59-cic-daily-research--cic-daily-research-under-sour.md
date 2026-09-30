@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-59--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
+title: RFC: GAP-59--cic-daily-research - **CIC - Daily Research (under-sourced - Father's Trade
 category: research
 topic: rfc-gap-59-cic-daily-research--cic-daily-research-under-sour
 gap_id: GAP-59--cic-daily-research
 status: draft
-created_at: 2026-09-19T20:50:57.692Z
+created_at: 2026-09-22T13:45:00.800Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md"]
+citations: ["wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-56-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-37-cic-daily-research--cic-daily-research-under-sour.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-59--cic-daily-research - **CIC - Daily Research (under-sourced - The Claim
+# RFC: GAP-59--cic-daily-research - **CIC - Daily Research (under-sourced - Father's Trade
 
 ## 1. Problem Statement & Context
-)**: **The Claim:** Certain secondary media transcripts mistakenly state that Willow Run manufactured Boeing B-17 Flying Fortresses.
+)**: **Father's Trade:** Popular web accounts describe his father Søren as a **blacksmith** (*smed*), whereas primary Danish parish registers and oral transcripts identify him as a ***m
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
+- **rfc-gap-12-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-12-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-03--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md`) [lexical_only]:
+- **rfc-gap-56-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-56-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
   >
-- **rfc-gap-08-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research follow-up - The Target" category: "research" topic: "rfc-gap-08-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-08--cic-daily-research" status: "draft" created_at: "2
+- **rfc-gap-37-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-37-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Workstream H
+title: RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - What Was the Real Nature of Henry Ford’s Treatment of Edsel?)**
 category: research
 topic: rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 gap_id: GAP-57--cic-willow-run-aviation-engineering
 status: draft
-created_at: 2026-09-19T21:05:49.018Z
+created_at: 2026-09-21T13:06:50.475Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/mobile-websocket-heartbeats.md","wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t.md"]
+citations: ["wiki/research/rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-56-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (adjacent-topics - Workstream H
+# RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (open-contradictions - What Was the Real Nature of Henry Ford’s Treatment of Edsel?)**
 
 ## 1. Problem Statement & Context
-)**: **Workstream H:** Embedded in the research pack (Accession 65, Box 69) is a modern software engineering specification labeled **"Workstream H"** [23, 24]. It details how to bypass
+**What Was the Real Nature of Henry Ford’s Treatment of Edsel?**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-11-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-11-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
+- **rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-14-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
-- **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
+- **rfc-gap-56-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-56-cic-reddit--cic-reddit-open-contradiction.md`) [vector_only]:
+  > --- title: RFC: GAP-56--cic-reddit - **CIC-Reddit open-contradictions - 1. What Was the True Origin of the Frame 141 "Tax Turn"?** category: research topic: rfc-gap-56-cic-reddit--cic-reddit-open-contradiction gap_id: GAP-56--cic-reddit status: draft
+- **rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-47-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
   >
-- **rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
-  > --- title: "RFC: GAP-26--cic-daily-research - **CIC - Daily Research adjacent-topics - The Floating Sawmill" category: "research" topic: "rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t" gap_id: "GAP-26--cic-daily-research" status: "draf
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

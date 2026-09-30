@@ -1,15 +1,12 @@
 ---
-title: "The Henry Ford: Charles E. Sorensen Archival & Photographic Accessions"
-category: "research"
-topic: "the-henry-ford-sorensen-photographic-accessions"
-status: "verified"
-created_at: "2026-09-22"
-citations:
-  - "https://www.thehenryford.org/collections/explore/artifact/119103"
-  - "https://www.thehenryford.org/collections/explore/artifact/261979"
-  - "https://www.thehenryford.org/collections/explore/artifact/180560"
-  - "https://www.thehenryford.org/collections/explore/artifact/359145"
-  - "https://www.thehenryford.org/collections/explore/artifact/62490"
+title: The Henry Ford: Charles E. Sorensen Archival & Photographic Accessions
+category: research
+topic: the-henry-ford-sorensen-photographic-accessions
+status: verified
+created_at: 2026-09-22
+citations: 
+- "https: //www.thehenryford.org/collections/explore/artifact/62490
+sourceRepository: kb-sync
 ---
 
 # The Henry Ford: Charles E. Sorensen Archival & Photographic Accessions

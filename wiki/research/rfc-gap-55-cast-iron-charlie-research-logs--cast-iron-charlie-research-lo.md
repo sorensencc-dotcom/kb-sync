@@ -1,31 +1,31 @@
 ---
-title: RFC: GAP-55--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Only
+title: RFC: GAP-55--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Complicity in Edsel Ford's Strain)**
 category: research
 topic: rfc-gap-55-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-55--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-19T20:47:02.261Z
+created_at: 2026-09-22T13:56:12.043Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-113-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-96-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-55--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (under-sourced - Secondary Source Only
+# RFC: GAP-55--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Complicity in Edsel Ford's Strain)**
 
 ## 1. Problem Statement & Context
-)**: **Secondary Source Only:** The story of an 82-year-old Sorensen meeting industrial designer Brooks Stevens in Florida and conceiving a "Ferris Wheel" molding machine for Studebaker
+**Complicity in Edsel Ford's Strain**: While Sorensen portrayed himself in his memoir as Edsel Ford's defender against Henry Ford and Harry Bennett [17, 31], reviewers (such as H.
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-43-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-113-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-113-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: "RFC: GAP-11--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - Audit Library & Kroll Collections" category: "research" topic: "rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_
+- **rfc-gap-96-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-96-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -2,12 +2,14 @@
 source: grok
 skill: drive-it
 topic: trm
-title: "RFC-GAP-01 live discussions and disputes"
+title: RFC-GAP-01 live discussions and disputes
 created: Fri Sep 25 2026 16:06:02 GMT-0400 (Eastern Daylight Time)
 folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g
 status: drop
 provenance_type: mobile_inbox_drop
 content_sha256: df66a70fcd22f52ffc627847d21a84a0933791958608039303f560993a702c16
+category: research
+sourceRepository: kb-sync
 ---
 
 # RFC-GAP-01 — live discussions or disputes

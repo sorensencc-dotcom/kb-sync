@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Virgin Islands Property
+title: RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Claim CU-2067 & Ralph Oppenheim)**
 category: research
 topic: rfc-gap-48-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
 gap_id: GAP-48--cast-iron-charlie-research-logs
 status: draft
-created_at: 2026-09-20T10:56:35.755Z
+created_at: 2026-09-22T13:56:09.039Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-90-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Virgin Islands Property
+# RFC: GAP-48--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (open-contradictions - Claim CU-2067 & Ralph Oppenheim)**
 
 ## 1. Problem Statement & Context
-)**: **Virgin Islands Property:** Mention of a retirement property or land asset in the U.S. Virgin Islands stems solely from vague family rumor ("another big secret") and lacks legal o
+**Claim CU-2067 & Ralph Oppenheim**: FCSC Claim **CU-2067** is officially registered under **Ralph Oppenheim** for 2,500 common shares of *Compañía Litografica de la Habana, S.A.*
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-115-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-107-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-98-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-73-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
-- **rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-65-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-90-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-90-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

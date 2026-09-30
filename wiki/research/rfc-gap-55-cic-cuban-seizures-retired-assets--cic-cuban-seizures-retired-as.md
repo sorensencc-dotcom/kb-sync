@@ -1,30 +1,30 @@
 ---
-title: RFC: GAP-55--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Reserve Depletion & Plant Depreciation
+title: RFC: GAP-55--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Bentley Historical Library Box 14
 category: research
 topic: rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as
 gap_id: GAP-55--cic-cuban-seizures-retired-assets
 status: draft
-created_at: 2026-09-20T11:10:28.585Z
+created_at: 2026-09-26T13:43:12.879Z
 expansion_method: heuristic
 retrieval_mode: hybrid-rrf
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-114-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-53-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","trm-research-gaps.md"]
 sourceRepository: kb-sync
 ---
 
-# RFC: GAP-55--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Reserve Depletion & Plant Depreciation
+# RFC: GAP-55--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (open-contradictions - Bentley Historical Library Box 14
 
 ## 1. Problem Statement & Context
-)**: **Reserve Depletion & Plant Depreciation:** In *Moa Bay Mining Company* (Claim CU-2619), the FCSC evaluated a **22-year depletion model** of proven nickel-cobalt reserves (\$45.1M
+)**: **Bentley Historical Library Box 14:** **Purged.** No "Box 14 of the Charles E. Sorensen Papers (1904–1965) at Bentley" exists [68, 69]. Sorensen's corporate records sit in Accessi
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-134-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-114-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-114-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   >
-- **rfc-gap-53-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-53-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   >
 
 ### 3. AST Call-Graph & Blast Radius Analysis

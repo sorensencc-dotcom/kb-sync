@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The 100% Family Buyout
-category: research
-topic: rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
-gap_id: GAP-17--cic-ford-executive-dynamics-politics
-status: draft
-created_at: 2026-09-20T11:20:11.805Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories"
+category: "research"
+topic: "rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
+gap_id: "GAP-17--cic-ford-executive-dynamics-politics"
+status: "draft"
+created_at: "2026-09-27T12:43:13.733Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-90-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-85-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-07.md"]
 ---
 
-# RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (adjacent-topics - The 100% Family Buyout
+# RFC: GAP-17--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Target Repositories
 
 ## 1. Problem Statement & Context
-)**: **The 100% Family Buyout:** Following the ruling, Henry Ford threatened to resign and establish a competing firm (*Henry Ford & Son*), panicking minority shareholders [1]. This man
+)**: **Target Repositories:** **Mead L. Bricker Administrative Papers (BFRC Accession 65, Box 8)**, **A.M. Wibel Papers**, USAAF Materiel Command Rejection Logs, and Consolidated Aircra
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-17-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-90-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-90-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  >
-- **rfc-gap-69-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  >
+  > 
+- **rfc-gap-85-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-85-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+  > 
+- **rfc-gap-07** (`wiki/research/rfc-gap-07.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

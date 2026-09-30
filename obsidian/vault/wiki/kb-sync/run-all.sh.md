@@ -1,7 +1,8 @@
 ---
-title: "run-all.sh"
-category: "utilities"
-status: "active"
+title: run-all.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # run-all.sh

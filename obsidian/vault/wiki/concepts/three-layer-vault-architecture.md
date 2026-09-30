@@ -1,7 +1,8 @@
 ---
-title: "Three-Layer Vault Architecture"
-category: "wiki"
-status: "active"
+title: Three-Layer Vault Architecture
+category: wiki
+status: active
+sourceRepository: kb-sync
 ---
 
 # Three-Layer Vault Architecture

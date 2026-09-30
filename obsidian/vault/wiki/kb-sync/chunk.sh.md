@@ -1,7 +1,8 @@
 ---
-title: "chunk.sh"
-category: "utilities"
-status: "active"
+title: chunk.sh
+category: utilities
+status: active
+sourceRepository: kb-sync
 ---
 
 # chunk.sh

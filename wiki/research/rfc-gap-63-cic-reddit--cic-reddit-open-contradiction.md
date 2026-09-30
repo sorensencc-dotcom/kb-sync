@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-63--cic-reddit - **CIC-Reddit (open-contradictions - The Preservation Campaign
-category: research
-topic: rfc-gap-63-cic-reddit--cic-reddit-open-contradiction
-gap_id: GAP-63--cic-reddit
-status: draft
-created_at: 2026-09-19T21:26:56.938Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-63--cic-reddit - **CIC-Reddit (open-contradictions - Verified Quality Baseline"
+category: "research"
+topic: "rfc-gap-63-cic-reddit--cic-reddit-open-contradiction"
+gap_id: "GAP-63--cic-reddit"
+status: "draft"
+created_at: "2026-09-27T12:10:00.843Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-04--castironcharlie-facebook-open.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-63-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-74-cic-reddit--cic-reddit-open-contradiction.md","wiki/research/rfc-gap-09-cic-reddit--cic-reddit-follow-up-document.md"]
 ---
 
-# RFC: GAP-63--cic-reddit - **CIC-Reddit (open-contradictions - The Preservation Campaign
+# RFC: GAP-63--cic-reddit - **CIC-Reddit (open-contradictions - Verified Quality Baseline
 
 ## 1. Problem Statement & Context
-)**: **The Preservation Campaign:** Historical encyclopedia entries and Wikipedia cite `savethebomberplant.org` as the official fundraising portal used by the Yankee Air Museum to raise
+)**: **Verified Quality Baseline:** The documented early quality baseline comes from **Charles Lindbergh’s May 1942 inspection at Douglas in Tulsa**, where inspectors flagged "hundreds"
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-04--castironcharlie-facebook-open** (`wiki/research/rfc-gap-04--castironcharlie-facebook-open.md`) [lexical_only]:
-  >
+- **rfc-gap-63-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-63-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-74-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-74-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
+  > 
+- **rfc-gap-09-cic-reddit--cic-reddit-follow-up-document** (`wiki/research/rfc-gap-09-cic-reddit--cic-reddit-follow-up-document.md`) [hybrid]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,7 +1,8 @@
 ---
-title: "Wiki Operator Workflow"
-category: "sync-tools"
-status: "active"
+title: Wiki Operator Workflow
+category: sync-tools
+status: active
+sourceRepository: kb-sync
 ---
 
 # Wiki Operator Workflow
