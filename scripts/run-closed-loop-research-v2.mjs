@@ -86,13 +86,15 @@ const DOMAIN_DISCOVERY = {
     dirs: ['wiki/research/properties', 'C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-daily-research'],
     pack: null,
     matchKeywords: ['miami', 'florida', 'estate', 'yacht', 'helene'],
-    gapHeaderPrefix: 'Cast Iron Charlie - Research Logs'
+    gapHeaderPrefix: 'Cast Iron Charlie - Research Logs',
+    gapFilterKeywords: ['miami', 'florida', 'estate', 'yacht', 'helene', 'woodlawn', 'marriage', 'obituary', 'property']
   },
   'assembly-line': {
     dirs: ['C:/Users/soren/trm-vault/intake/notebooklm/cast-iron-charlie-research-logs', 'wiki/research'],
     pack: null,
     matchKeywords: ['assembly', 'rouge', 'model-t', 'modelt', 'moving-assembly'],
-    gapHeaderPrefix: 'Cast Iron Charlie - Research Logs'
+    gapHeaderPrefix: 'Cast Iron Charlie - Research Logs',
+    gapFilterKeywords: ['assembly', 'rouge', 'model-t', 'modelt', 'moving-assembly', 'taylorism', 'conveyor', 'klann']
   },
   'master-kb': {
     dirs: ['wiki', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-kb'],
@@ -110,7 +112,7 @@ const DOMAIN_DISCOVERY = {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-research-deltas-living-matrix'],
     pack: null,
     matchKeywords: ['research-deltas', 'living-matrix', 'matrix', 'delta'],
-    gapHeaderPrefix: 'CIC - Research Deltas'
+    gapHeaderPrefix: null
   },
   'ironledger': {
     dirs: ['C:/dev/IronLedger', 'wiki/specs', 'wiki/concepts'],
@@ -349,6 +351,11 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
           const body = match[3];
 
           if (header.trim().startsWith(config.gapHeaderPrefix)) {
+            if (config.gapFilterKeywords && config.gapFilterKeywords.length > 0) {
+              const fullText = `${header} ${body}`.toLowerCase();
+              const hasKeyword = config.gapFilterKeywords.some((kw) => fullText.includes(kw));
+              if (!hasKeyword) continue;
+            }
             return {
               targetGap: options.targetGap || gapId,
               rawExcerpt: body.replace(/\(Drafted:.*?\)/, '').trim(),
@@ -368,10 +375,12 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
       if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
         try {
           const content = fs.readFileSync(srcPath, 'utf8');
+          const gapIdMatch = content.match(/^gap_id:\s*["']?([^"'\r\n]+)/m);
+          const docGapId = gapIdMatch ? gapIdMatch[1].trim() : null;
           const excerpt = extractFirstContentParagraph(content);
           if (excerpt) {
             return {
-              targetGap: options.targetGap || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
+              targetGap: options.targetGap || docGapId || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
               rawExcerpt: excerpt,
               sourceTitle: src.id,
             };
@@ -389,10 +398,12 @@ export function getRealGapForNotebook(nbId, gapsFilePath, options = {}) {
         const srcPath = src.fullPath || (src.id && fs.existsSync(src.id) ? src.id : null);
         if (srcPath && fs.existsSync(srcPath) && (srcPath.endsWith('.md') || srcPath.endsWith('.txt'))) {
           const content = fs.readFileSync(srcPath, 'utf8');
+          const gapIdMatch = content.match(/^gap_id:\s*["']?([^"'\r\n]+)/m);
+          const docGapId = gapIdMatch ? gapIdMatch[1].trim() : null;
           const excerpt = extractFirstContentParagraph(content);
           if (excerpt) {
             return {
-              targetGap: options.targetGap || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
+              targetGap: options.targetGap || docGapId || `GAP-${String(canonicalId || nbId).toUpperCase()}`,
               rawExcerpt: excerpt,
               sourceTitle: src.id,
             };

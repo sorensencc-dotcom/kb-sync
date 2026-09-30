@@ -319,3 +319,34 @@ test('TEST-DIFF-21: Configured category aliases resolve correctly to canonical d
   }
 });
 
+test('TEST-DIFF-22: Shared gap prefixes disambiguate by keywords and markdown frontmatter gap_id is preserved', () => {
+  const gapsPath = path.join(process.cwd(), 'trm-research-gaps.md');
+  
+  // miami-estate vs assembly-line disambiguation under "Cast Iron Charlie - Research Logs"
+  const miamiGap = getRealGapForNotebook('miami-estate', gapsPath, { useCli: false });
+  assert.equal(miamiGap.targetGap, 'GAP-03');
+  assert.ok(miamiGap.rawExcerpt.toLowerCase().includes('marriage') || miamiGap.rawExcerpt.toLowerCase().includes('florida'));
+
+  const assemblyGap = getRealGapForNotebook('assembly-line', gapsPath, { useCli: false });
+  assert.equal(assemblyGap.targetGap, 'GAP-50');
+  assert.ok(assemblyGap.rawExcerpt.toLowerCase().includes('assembly') || assemblyGap.sourceTitle.toLowerCase().includes('assembly'));
+
+  // research-deltas extracts gap_id from frontmatter
+  const rdGap = getRealGapForNotebook('research-deltas', gapsPath, { useCli: false });
+  assert.equal(rdGap.targetGap, 'GAP-01--cic-research-deltas-living-matrix');
+
+  // Exact keyword priority sources
+  const ilSources = getRealSourcesForNotebook('ironledger', { useCli: false });
+  assert.equal(ilSources[0].id, 'FINANCIAL-DESIGN-GUIDELINES.md');
+
+  const sigilSources = getRealSourcesForNotebook('sigil', { useCli: false });
+  assert.equal(sigilSources[0].id, 'sigil-dep-audit.mjs');
+
+  const rlSources = getRealSourcesForNotebook('rewrite-labs', { useCli: false });
+  assert.equal(rlSources[0].id, 'ROADMAP.md');
+
+  const dtSources = getRealSourcesForNotebook('dev-triage', { useCli: false });
+  assert.equal(dtSources[0].id, '2026-09-24-ironbot-task-monitor-design.md');
+});
+
+
