@@ -18,6 +18,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
+import { resolveCitations } from '../../modules/notebooklm/lib/grounding-citations.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
@@ -79,11 +80,12 @@ try {
   fail(`CLI response was not valid JSON: ${err.message}`, 1);
 }
 
-if (!data.citations || data.citations.length === 0) {
+const citations = resolveCitations(data.query, data.sources);
+if (citations.length === 0) {
   fail('Zero structured citations returned.');
 }
 
-const hasValidAttribution = data.citations.some(
+const hasValidAttribution = citations.some(
   (c) => c && typeof c.source_name === 'string'
     && VALID_ATTRIBUTION_PREFIXES.some((prefix) => c.source_name.startsWith(prefix))
 );

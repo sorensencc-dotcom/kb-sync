@@ -186,17 +186,15 @@ nlm_auth_check() {
   fi
 }
 
-# UNVERIFIED DIALECT ASSUMPTION: unlike source list/add/delete above, this
-# repo has no live-confirmed record of `chat`'s argument shape on either
-# dialect (tools/notebooklm-mcp-cli is an empty stub here -- see RFC-NLM-05
-# Decision A). Mirrors the established --notebook-vs-positional split for
-# consistency; correct this the same way the source-* dialects were
-# originally corrected, i.e. against a real CLI response, if it's wrong.
+# Live-confirmed 2026-09-29 against the uv-project CLI: `chat` only
+# configures settings; querying is `query notebook <ID> <QUESTION>`. Its JSON
+# `citations` maps citation number -> source ID (no titles). The global
+# dialect is still unverified and mirrors the --notebook convention.
 nlm_chat_json() {
   local notebook_id="$1" prompt="$2"
   if [ "$NLM_MODE" = "uv-project" ]; then
-    run_nlm_cli chat "$notebook_id" "$prompt" --json
+    run_nlm_cli query notebook "$notebook_id" "$prompt" --json
   else
-    run_nlm_cli chat --notebook "$notebook_id" "$prompt" --json
+    run_nlm_cli query notebook --notebook "$notebook_id" "$prompt" --json
   fi
 }

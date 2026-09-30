@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Thin CLI bridge: runs a `chat` query against a NotebookLM notebook and
-# prints the raw JSON response to stdout, using the same dialect-safe
+# prints {"query": <response>, "sources": <source list>} to stdout, using the same dialect-safe
 # resolution as modules/notebooklm/ingest-notebooklm.sh.
 #
 # Exists so Node callers (e.g. scripts/notebooklm/verify-grounding-gate.mjs)
@@ -40,4 +40,8 @@ if ! resolve_nlm_cli; then
   exit 1
 fi
 
-nlm_chat_json "$NOTEBOOK_ID_ARG" "$PROMPT_ARG"
+# Emit {"query": ..., "sources": [...]}: citations carry only source IDs, so
+# the caller needs the source list to resolve them to titles.
+QUERY_JSON="$(nlm_chat_json "$NOTEBOOK_ID_ARG" "$PROMPT_ARG")"
+SOURCES_JSON="$(nlm_source_list_json "$NOTEBOOK_ID_ARG")"
+printf '{"query":%s,"sources":%s}\n' "$QUERY_JSON" "$SOURCES_JSON"
