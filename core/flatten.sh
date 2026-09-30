@@ -131,10 +131,12 @@ SKIP_PATTERNS=(
 if [ -n "$GLOBAL_CONFIG" ] && [ -f "$GLOBAL_CONFIG" ]; then
   log_info "Loading skip patterns from config: $GLOBAL_CONFIG"
   # Parse skip_patterns from config (each item on own line or comma-separated)
+  # Process substitution, not a pipe: a piped while-loop runs in a subshell and
+  # its appends are lost, leaving SKIP_PATTERNS empty.
   SKIP_PATTERNS=()
-  get_config_array "$GLOBAL_CONFIG" "skip_patterns" | while read -r pattern; do
+  while read -r pattern; do
     [ -n "$pattern" ] && SKIP_PATTERNS+=("$pattern")
-  done
+  done < <(get_config_array "$GLOBAL_CONFIG" "skip_patterns")
 fi
 
 # --- STEP 1: TRY PYRAGIFY FIRST (if explicitly enabled) -----------------------
