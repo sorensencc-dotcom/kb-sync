@@ -12,6 +12,7 @@ git init "$FIXTURE_DIR" --quiet
 cd "$FIXTURE_DIR"
 mkdir -p "$FIXTURE_DIR/core" "$FIXTURE_DIR/modules/notebooklm" "$FIXTURE_DIR/configs" "$FIXTURE_DIR/.nlm_pack"
 cp "$REPO_SRC/core/flatten.sh" "$FIXTURE_DIR/core/"
+cp "$REPO_SRC/core/config-loader.mjs" "$FIXTURE_DIR/core/"
 cp "$REPO_SRC/core/validate.sh" "$FIXTURE_DIR/core/"
 cp "$REPO_SRC/core/chunk.sh" "$FIXTURE_DIR/core/"
 cp "$REPO_SRC/core/rollback.sh" "$FIXTURE_DIR/core/"
@@ -139,10 +140,18 @@ add_count=$(grep -c "source add" "$CALL_LOG" || echo 0)
 del_count=$(grep -c "source delete" "$CALL_LOG" || echo 0)
 [ "$add_count" -gt 0 ] || (echo "FAIL: Expected at least 1 source add call!" >&2; exit 1)
 [ "$del_count" -gt 0 ] || (echo "FAIL: Expected at least 1 source delete call!" >&2; exit 1)
-first_del=$(grep -n "source delete" "$CALL_LOG" | head -1 | cut -d: -f1)
+# Step 0 may purge duplicate pack sources before uploading, but must keep one
+# (the fixture starts with 2). The staged purge of the survivor must follow
+# every upload.
+first_add=$(grep -n "source add" "$CALL_LOG" | head -1 | cut -d: -f1)
 last_add=$(grep -n "source add" "$CALL_LOG" | tail -1 | cut -d: -f1)
-if [ "$last_add" -ge "$first_del" ]; then
-  echo "FAIL: source add occurred after source delete!" >&2; exit 1
+pre_del=$(grep -n "source delete" "$CALL_LOG" | awk -F: -v a="$first_add" '$1 < a' | wc -l)
+first_post_del=$(grep -n "source delete" "$CALL_LOG" | awk -F: -v a="$first_add" '$1 > a {print $1; exit}')
+if [ "$pre_del" -gt 1 ]; then
+  echo "FAIL: pre-flight purged every pack source before upload!" >&2; exit 1
+fi
+if [ -z "$first_post_del" ] || [ "$last_add" -ge "$first_post_del" ]; then
+  echo "FAIL: source add occurred after staged source delete!" >&2; exit 1
 fi
 
 echo "[TEST 4] Upload failure preserves status 'FAILED' and ZERO purge calls..."
