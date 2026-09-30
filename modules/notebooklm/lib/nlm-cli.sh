@@ -42,11 +42,12 @@ fi
 export NOTEBOOK_ID="${NOTEBOOK_ID:-}"
 
 # --- RESOLVE NOTEBOOKLM CLI RUNTIME ------------------------------------------
-# Sets NLM_MODE (explicit|uv-project|global|none) and the associated exec
-# vars. Returns 1 (does not exit) if no runtime is available, so callers can
+# Sets NLM_MODE (explicit|uv-project|global|none), NLM_DIALECT (nlm|notebooklm)
+# and the associated exec vars. Returns 1 (does not exit) if no runtime is available, so callers can
 # decide their own failure handling (telemetry, exit code, etc).
 resolve_nlm_cli() {
   NLM_MODE=""
+  NLM_DIALECT="notebooklm"
   EXPLICIT_NLM_CLI="${NLM_CLI:-}"
   UV_PROJECT_UNPROVISIONED=false
 
@@ -66,6 +67,7 @@ resolve_nlm_cli() {
     log_info "CLI resolution mode: explicit (path: '$EXPLICIT_NLM_CLI')"
   elif (command -v uv >/dev/null 2>&1 || command -v uv.exe >/dev/null 2>&1) && [ -f "$REPO_ROOT/notebooklm-mcp-cli/pyproject.toml" ]; then
     NLM_MODE="uv-project"
+    NLM_DIALECT="nlm"
     UV_EXEC="uv"
     if ! command -v uv >/dev/null 2>&1 && command -v uv.exe >/dev/null 2>&1; then
       UV_EXEC="uv.exe"
@@ -81,10 +83,12 @@ resolve_nlm_cli() {
     log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
   elif command -v nlm >/dev/null 2>&1; then
     NLM_MODE="global"
+    NLM_DIALECT="nlm"
     GLOBAL_NLM_EXEC="nlm"
     log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
   elif command -v nlm.exe >/dev/null 2>&1; then
     NLM_MODE="global"
+    NLM_DIALECT="nlm"
     GLOBAL_NLM_EXEC="nlm.exe"
     log_info "CLI resolution mode: global ($GLOBAL_NLM_EXEC)"
   else
@@ -136,17 +140,19 @@ run_nlm_cli() {
   fi
 }
 
-# The local uv-project `nlm` CLI (notebooklm-mcp-cli) and the global
-# `notebooklm` CLI use incompatible argument dialects for the same
+# The `nlm` CLI (notebooklm-mcp-cli, whether run from the local uv project
+# or installed globally) and the `notebooklm` CLI use incompatible argument
+# dialects for the same
 # operations: uv-project takes NOTEBOOK_ID positionally and has no
 # --notebook flag at all on `source delete`, and requires --file (not a
 # bare positional) for local file uploads on `source add`. Calling
 # uv-project's `nlm` with the global CLI's --notebook flag fails outright
 # (exit 2, empty output) -- confirmed live against the CIC-KB notebook,
-# where it silently broke the pre-existing-source query every run.
+# where it silently broke the pre-existing-source query every run. Branch
+# on NLM_DIALECT, not NLM_MODE: a global `nlm` speaks the uv-project dialect.
 nlm_source_list_json() {
   local notebook_id="$1"
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli source list "$notebook_id" --json
   else
     run_nlm_cli source list --notebook "$notebook_id" --json
@@ -155,7 +161,7 @@ nlm_source_list_json() {
 
 nlm_source_add() {
   local notebook_id="$1" file_path="$2"
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli source add "$notebook_id" --file "$file_path"
   else
     run_nlm_cli source add --notebook "$notebook_id" "$file_path"
@@ -164,7 +170,7 @@ nlm_source_add() {
 
 nlm_source_delete() {
   local notebook_id="$1" source_id="$2"
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli source delete "$source_id" -y
   else
     run_nlm_cli source delete --notebook "$notebook_id" "$source_id" -y
@@ -179,7 +185,7 @@ nlm_source_delete() {
 # `login --check` returns "Authentication valid!" with the same profile
 # that `auth check` was failing against).
 nlm_auth_check() {
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli login --check
   else
     run_nlm_cli auth check
@@ -188,11 +194,12 @@ nlm_auth_check() {
 
 # Live-confirmed 2026-09-29 against the uv-project CLI: `chat` only
 # configures settings; querying is `query notebook <ID> <QUESTION>`. Its JSON
-# `citations` maps citation number -> source ID (no titles). The global
-# dialect is still unverified and mirrors the --notebook convention.
+# `citations` maps citation number -> source ID (no titles). The
+# `notebooklm` dialect is still unverified and mirrors the --notebook
+# convention.
 nlm_chat_json() {
   local notebook_id="$1" prompt="$2"
-  if [ "$NLM_MODE" = "uv-project" ]; then
+  if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli query notebook "$notebook_id" "$prompt" --json
   else
     run_nlm_cli query notebook --notebook "$notebook_id" "$prompt" --json
