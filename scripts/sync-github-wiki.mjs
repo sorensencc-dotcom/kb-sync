@@ -31,6 +31,7 @@ const repoUrl = value('--repo-url', process.env.WIKI_REPO_URL || deriveWikiSshUr
 const targetWikiDir = path.resolve(root, value('--target-dir', '.wiki-publish-temp'));
 const shouldPush = !args.includes('--no-push');
 const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all wiki pages, RFCs, and diagram assets');
+const buildOnlyDir = value('--build-only', null);
 
 // Text formats get read, scanned for secrets, and stripped of hidden markup
 // before they leave the machine -- everything else (raster images) is
@@ -194,7 +195,7 @@ function generateSidebar(wikiDir) {
 }
 
 function generateFooter(wikiDir) {
-  const footerContent = `---\n*Automated Knowledge Base Synchronization • Generated at ${new Date().toISOString()}*`;
+  const footerContent = `---\n*Automated Knowledge Base Synchronization*`;
   fs.writeFileSync(path.join(wikiDir, '_Footer.md'), footerContent, 'utf8');
 }
 
@@ -229,20 +230,27 @@ export async function publishWiki(customOptions = {}) {
   const currentRoot = customOptions.repoRoot || root;
   const currentSource = customOptions.sourceDir ? path.resolve(currentRoot, customOptions.sourceDir) : wikiSourceDir;
   const currentUrl = customOptions.repoUrl || repoUrl;
-  const currentTarget = customOptions.targetDir ? path.resolve(currentRoot, customOptions.targetDir) : targetWikiDir;
-  const pushEnabled = customOptions.push !== undefined ? customOptions.push : shouldPush;
+  let currentTarget = customOptions.targetDir ? path.resolve(currentRoot, customOptions.targetDir) : targetWikiDir;
+  const pushEnabled = buildOnlyDir ? false : (customOptions.push !== undefined ? customOptions.push : shouldPush);
 
   console.log(`=== [KB-SYNC WIKI PUBLISHER] ===`);
   console.log(`Source directory: ${currentSource}`);
   console.log(`Target publish directory: ${currentTarget}`);
   console.log(`Remote Wiki Repository: ${currentUrl}`);
 
-  if (fs.existsSync(currentTarget)) {
-    fs.rmSync(currentTarget, { recursive: true, force: true });
+  if (buildOnlyDir) {
+    currentTarget = path.resolve(buildOnlyDir);
+    fs.mkdirSync(currentTarget, { recursive: true });
   }
 
-  console.log(`Cloning remote wiki git repository...`);
-  execSync(`git clone "${currentUrl}" "${currentTarget}"`, { stdio: 'inherit' });
+  if (!buildOnlyDir) {
+    if (fs.existsSync(currentTarget)) {
+      fs.rmSync(currentTarget, { recursive: true, force: true });
+    }
+
+    console.log(`Cloning remote wiki git repository...`);
+    execSync(`git clone "${currentUrl}" "${currentTarget}"`, { stdio: 'inherit' });
+  }
 
   const rootDiagramPng = path.join(currentRoot, 'trm-gap-triage-architecture.png');
   if (fs.existsSync(rootDiagramPng)) {
@@ -319,9 +327,11 @@ export async function publishWiki(customOptions = {}) {
     sync_status: 'SYNCHRONIZED'
   };
 
-  const receiptPath = path.join(currentRoot, '.wiki-sync-receipt.json');
-  fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2), 'utf8');
-  console.log(`✓ Cryptographic sync receipt emitted at ${receiptPath}`);
+  if (!buildOnlyDir) {
+    const receiptPath = path.join(currentRoot, '.wiki-sync-receipt.json');
+    fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2), 'utf8');
+    console.log(`✓ Cryptographic sync receipt emitted at ${receiptPath}`);
+  }
 
   return receipt;
 }
