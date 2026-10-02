@@ -4,7 +4,8 @@
 // Emits modular packs into .nlm_pack/ partitioned by research category:
 // - .nlm_pack/pack_willow_run.txt      (Target: CIC - Willow Run & Aviation Engineering)
 // - .nlm_pack/pack_ford_politics.txt   (Target: CIC - Ford Executive Dynamics & Politics)
-// - .nlm_pack/pack_willys_overland.txt (Target: CIC - Post-War & Willys-Overland)
+// - .nlm_pack/pack_post_war.txt        (Target: CIC - Post-War)
+// - .nlm_pack/pack_willys_overland.txt (Target: CIC - Willys-Overland)
 // - .nlm_pack/pack_master_kb.txt       (Target: CIC-KB)
 // ==============================================================================
 
@@ -35,11 +36,16 @@ export const THEMATIC_PACK_MAP = [
     title: 'CIC - Ford Executive Dynamics & Politics'
   },
   {
-    category: 'willys-overland',
-    aliases: ['post-war', 'willys-overland'],
-    filename: 'pack_willys_overland.txt',
+    category: 'post-war',
+    filename: 'pack_post_war.txt',
     notebookId: NOTEBOOK_TARGETS['post-war'],
-    title: 'CIC - Post-War & Willys-Overland'
+    title: 'CIC - Post-War'
+  },
+  {
+    category: 'willys-overland',
+    filename: 'pack_willys_overland.txt',
+    notebookId: NOTEBOOK_TARGETS['willys-overland'],
+    title: 'CIC - Willys-Overland'
   },
   {
     category: 'master-kb',
@@ -122,6 +128,7 @@ export function consolidatePacks(options = {}) {
   const categorized = {
     'willow-run': [],
     'ford-politics': [],
+    'post-war': [],
     'willys-overland': [],
     'master-kb': []
   };
@@ -141,6 +148,8 @@ export function consolidatePacks(options = {}) {
       } else if (cat === 'ford-politics') {
         categorized['ford-politics'].push(item);
       } else if (cat === 'post-war') {
+        categorized['post-war'].push(item);
+      } else if (cat === 'willys-overland') {
         categorized['willys-overland'].push(item);
       }
 
