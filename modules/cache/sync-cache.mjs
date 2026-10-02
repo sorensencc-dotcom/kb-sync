@@ -173,7 +173,7 @@ export function syncKnowledgeCache(options = {}) {
     const content = fs.readFileSync(absPath, 'utf8');
     const sha256 = computeSha256(content);
     const { category, topic } = inferDocumentMetadata(relPath, content);
-    const id = relPath.replace(/\\/g, '/');
+    const id = (options.idPrefix || '') + relPath.replace(/\\/g, '/');
     const abstract = extractL0Abstract(content, relPath);
 
     foundDocIds.add(id);
@@ -233,10 +233,12 @@ export function syncKnowledgeCache(options = {}) {
 
   // Purge removed documents if syncing whole repo context
   let deleted = 0;
-  if (!options.scanPaths) {
+  const prefix = options.idPrefix;
+  if (prefix || !options.scanPaths) {
     const deleteStmt = db.prepare('DELETE FROM kb_documents WHERE id = ?');
     for (const [id] of existingDocs) {
-      if (!foundDocIds.has(id)) {
+      const inScope = prefix ? id.startsWith(prefix) : !id.startsWith('product:');
+      if (inScope && !foundDocIds.has(id)) {
         deleteStmt.run(id);
         deleted++;
         if (verbose) console.log(`[kb-cache] Deleted: ${id}`);
