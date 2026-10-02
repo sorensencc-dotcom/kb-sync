@@ -72,9 +72,15 @@ const DOMAIN_DISCOVERY = {
   },
   'post-war': {
     dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-post-war-willys-overland'],
+    pack: 'pack_post_war.txt',
+    matchKeywords: ['post-war', 'postwar'],
+    gapHeaderPrefix: 'CIC - Post-War'
+  },
+  'willys-overland': {
+    dirs: ['wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-post-war-willys-overland'],
     pack: 'pack_willys_overland.txt',
-    matchKeywords: ['willys', 'overland', 'post-war', 'postwar', 'jeep'],
-    gapHeaderPrefix: 'CIC - Post-War & Willys-Overland'
+    matchKeywords: ['willys', 'overland', 'jeep'],
+    gapHeaderPrefix: 'CIC - Willys-Overland'
   },
   'cuba-claims': {
     dirs: ['wiki/research/properties', 'wiki/research', 'C:/Users/soren/trm-vault/intake/notebooklm/cic-cuban-seizures-retired-assets'],
@@ -451,7 +457,7 @@ export async function runClosedLoopResearch(options = {}) {
   let paragraphHashes = {};
   try { paragraphHashes = JSON.parse(fs.readFileSync(paragraphHashesPath, 'utf8')); } catch {}
 
-  let canonicalTargets = ['willow-run', 'ford-politics', 'post-war', 'cuba-claims', 'miami-estate', 'assembly-line', 'daily', 'master-kb', 'ironledger'];
+  let canonicalTargets = ['willow-run', 'ford-politics', 'post-war', 'willys-overland', 'cuba-claims', 'miami-estate', 'assembly-line', 'daily', 'master-kb', 'ironledger'];
   try {
     const catData = loadCategoriesData();
     if (catData?.categories) {

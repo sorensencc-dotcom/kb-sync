@@ -1,6 +1,6 @@
 {
-  "version": "2026-09-17-1",
-  "updated_at": "2026-09-17T12:30:00.000Z",
+  "version": "2026-10-02-1",
+  "updated_at": "2026-10-02T20:28:48.000Z",
   "categories": {
     "willow-run": {
       "title": "CIC - Willow Run & Aviation Engineering",
@@ -29,12 +29,19 @@
       "status": "canonical"
     },
     "post-war": {
-      "title": "CIC - Post-War & Willys-Overland",
+      "title": "CIC - Post-War",
       "target": "9c469910-a900-43a4-877c-a43c9f545b5f",
       "aliases": [
-        "willys-overland",
-        "willys",
         "post_war",
+        "postwar"
+      ],
+      "status": "canonical"
+    },
+    "willys-overland": {
+      "title": "CIC - Willys-Overland",
+      "target": "fd4ebe29-9440-4f4b-97cf-0184ffbe29a0",
+      "aliases": [
+        "willys",
         "overland"
       ],
       "status": "canonical"
