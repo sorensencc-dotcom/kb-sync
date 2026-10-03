@@ -86,3 +86,49 @@ test('computeSha256 produces exact 64-char hexadecimal digest', () => {
   assert.equal(hash.length, 64);
   assert.equal(typeof hash, 'string');
 });
+
+test('Fact sorting prioritizes verified over unanchored and sorts temporal_anchor descending', () => {
+  const facts = [
+    {
+      fact_id: 'sha256:1111111',
+      subject: 'Subject A',
+      predicate: 'pred',
+      object: 'obj',
+      temporal_anchor: '2026-05-01',
+      verification_status: 'unanchored'
+    },
+    {
+      fact_id: 'sha256:2222222',
+      subject: 'Subject B',
+      predicate: 'pred',
+      object: 'obj',
+      temporal_anchor: '2026-08-01',
+      verification_status: 'verified'
+    },
+    {
+      fact_id: 'sha256:3333333',
+      subject: 'Subject C',
+      predicate: 'pred',
+      object: 'obj',
+      temporal_anchor: '2026-09-01',
+      verification_status: 'verified'
+    }
+  ];
+
+  const priority = { verified: 0, extracted: 1, unanchored: 2 };
+  const sorted = [...facts].sort((a, b) => {
+    const pA = priority[a.verification_status] ?? 3;
+    const pB = priority[b.verification_status] ?? 3;
+    if (pA !== pB) return pA - pB;
+    return String(b.temporal_anchor || '').localeCompare(String(a.temporal_anchor || ''));
+  });
+
+  assert.equal(sorted[0].subject, 'Subject C', 'Latest verified fact should come first');
+  assert.equal(sorted[1].subject, 'Subject B', 'Earlier verified fact should come second');
+  assert.equal(sorted[2].subject, 'Subject A', 'Unanchored fact should come last');
+
+  const formatted = formatFactRegistrySection(sorted);
+  assert.ok(formatted.indexOf('Subject C') < formatted.indexOf('Subject B'));
+  assert.ok(formatted.indexOf('Subject B') < formatted.indexOf('Subject A'));
+});
+

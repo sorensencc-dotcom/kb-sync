@@ -98,15 +98,21 @@ export function formatFactRegistrySection(facts = [], maxBytes = MAX_FACT_REGIST
 
   const entries = [];
   let currentBytes = Buffer.byteLength(headerLines.join('\n') + '\n' + footerLine, 'utf8');
+  let truncatedCount = 0;
 
   for (const fact of facts) {
     const line = formatFactEntry(fact);
     const lineBytes = Buffer.byteLength(line + '\n', 'utf8');
     if (currentBytes + lineBytes > maxBytes) {
-      break;
+      truncatedCount++;
+      continue;
     }
     entries.push(line);
     currentBytes += lineBytes;
+  }
+
+  if (truncatedCount > 0) {
+    logWarn(`Fact registry capped: ${truncatedCount} fact(s) truncated to stay within ${(maxBytes / 1024).toFixed(1)} KiB ceiling.`);
   }
 
   if (entries.length === 0) return '';
@@ -151,11 +157,15 @@ export function loadScopedFacts(rootDir, categoryKey, constituentItems = [], non
     return [];
   }
 
+  const targetPackDef = THEMATIC_PACK_MAP.find((p) => p.category === categoryKey);
+  const targetAliases = new Set([categoryKey, ...(targetPackDef?.aliases || [])]);
+
   const itemMap = new Map();
   for (const item of constituentItems) {
     itemMap.set(item.relPath, item);
   }
 
+  const diskHashCache = new Map();
   const validFacts = [];
 
   for (const fact of rawFacts) {
@@ -166,8 +176,7 @@ export function loadScopedFacts(rootDir, categoryKey, constituentItems = [], non
 
     if (!matchedItem && categoryKey !== 'master-kb') {
       const factCat = resolveCategoryKey(fact.category || '');
-      const isPostWar = (categoryKey === 'willys-overland' && (factCat === 'post-war' || factCat === 'willys-overland'));
-      if (factCat !== categoryKey && !isPostWar) {
+      if (!targetAliases.has(factCat)) {
         continue;
       }
     }
@@ -186,19 +195,28 @@ export function loadScopedFacts(rootDir, categoryKey, constituentItems = [], non
         status = 'unanchored';
       }
     } else if (sourcePath) {
-      const fullPath = path.join(rootDir, sourcePath);
-      if (fs.existsSync(fullPath)) {
-        try {
-          const content = fs.readFileSync(fullPath, 'utf8');
-          const liveHash = computeSha256(content);
-          if (fact.source_hash_sha256 && fact.source_hash_sha256 !== liveHash) {
-            status = 'unanchored';
+      let liveHash = diskHashCache.get(sourcePath);
+      if (liveHash === undefined) {
+        const fullPath = path.join(rootDir, sourcePath);
+        if (fs.existsSync(fullPath)) {
+          try {
+            const content = fs.readFileSync(fullPath, 'utf8');
+            liveHash = computeSha256(content);
+          } catch {
+            liveHash = null;
           }
-        } catch {
-          status = 'unanchored';
+        } else {
+          liveHash = null;
         }
-      } else {
-        continue; // Exclude deleted file facts
+        diskHashCache.set(sourcePath, liveHash);
+      }
+
+      if (liveHash === null) {
+        continue; // Exclude deleted or unreadable file facts
+      }
+
+      if (fact.source_hash_sha256 && fact.source_hash_sha256 !== liveHash) {
+        status = 'unanchored';
       }
     }
 
