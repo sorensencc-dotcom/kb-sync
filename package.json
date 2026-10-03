@@ -78,6 +78,7 @@
     "wiki:drift-repair": "node scripts/wiki-drift-repair.mjs",
     "test:cross-audit": "node --test tests/cross-audit.test.mjs",
     "test:replace-gate": "node --test tests/nlm-pack-replace-gate.test.mjs",
+    "test:facts": "node --test tests/fact-extraction-pack.test.mjs",
     "test:repair-audit": "node --test --experimental-strip-types modules/healing/repair-audit-gate.test.ts",
     "visual:verify": "node --test --experimental-strip-types skills/html-visual-verify/tests/render-quality.test.ts",
     "kb:pipeline:full": "npm run wiki:ingest && npm run wiki:validate-staging && npm run wiki:validate-contract && npm run wiki:cleanup-archives",
