@@ -45,10 +45,6 @@ status: "active"
 - `docs/targets/obsidian.md` — Three-layer vault schema (canonical)
 - `modules/wiki/operator-workflow.md` — 8-phase synthesis workflow
 
-## Tooling
-
-- `/usagecheck` — cross-CLI usage/rate-limit reporter for Claude Code, Codex, and Grok (toolforge skill, `toolforge/skills/usagecheck/`). Detects which agent is running and reports its usage data through that agent's own mechanism; see `toolforge/skills/usagecheck/docs/USAGE.md`.
-
 ## Principles
 
 - **Immutable staging:** Raw sources frozen in time; only new stagings allowed
