@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { getDatabase } from '../modules/cache/db-schema.mjs';
-import { syncKnowledgeCache } from '../modules/cache/sync-cache.mjs';
+import { syncKnowledgeCache, SUPPORTS_ID_PREFIX } from '../modules/cache/sync-cache.mjs';
 
 function tree(files) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cache-'));
@@ -39,4 +39,8 @@ test('a default run never deletes product rows', () => {
   const kb = tree({ 'wiki/research/note.md': '# n' });
   syncKnowledgeCache({ repoRoot: kb, dbPath });
   assert.deepEqual(ids(dbPath), ['product:p/Home.md', 'wiki/research/note.md']);
+});
+
+test('advertises idPrefix support so doc-sync can refuse an older kb-sync', () => {
+  assert.equal(SUPPORTS_ID_PREFIX, true);
 });

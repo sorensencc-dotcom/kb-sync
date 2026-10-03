@@ -4,6 +4,9 @@ import crypto from 'node:crypto';
 import { getDatabase, DEFAULT_DB_PATH } from './db-schema.mjs';
 import { storeVector, deterministicHeuristicVector } from './vector-store.mjs';
 
+// toolforge doc-sync refuses to load product pages into a kb-sync that lacks this.
+export const SUPPORTS_ID_PREFIX = true;
+
 /**
  * Computes sha256 of string content.
  * @param {string} content
