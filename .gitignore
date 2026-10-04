@@ -39,3 +39,4 @@ schedule-task-wrapper-*.ps1
 
 # Generated nightly by kb:drift; a committed copy goes stale and gets read as current
 .drift-report.json
+.wiki-sync-receipt.json
