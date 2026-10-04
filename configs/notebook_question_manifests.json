@@ -1,0 +1,142 @@
+{
+  "version": "2026-10-03-1",
+  "updated_at": "2026-10-03T20:20:00.000Z",
+  "groups": {
+    "group1_operational_architecture": {
+      "name": "Core Operational & Architecture Cluster",
+      "target_count": 17,
+      "injected_questions": [
+        "What are our major accomplishments in the last day?",
+        "Where are areas for improvement, and are any identified friction points already resolved or pending review in recent daily commit reports (last 3–5 days)?",
+        "What key enhancements should we be focusing on?",
+        "For new sources recently added, how can they help us, where do they fit into our architecture, which target repository (toolforge, rewrite-mcp, sigil, kb-sync, ironledger) or canonical KB module is responsible for implementation, and should this be an IMPLEMENT task or an EVALUATE spike?"
+      ],
+      "targets": [
+        {
+          "index": 1,
+          "name": "KB-Sync",
+          "uuid": "placeholder::kb-sync",
+          "domain": "Ingestion workbench, IronBot task monitor, DAG replay"
+        },
+        {
+          "index": 2,
+          "name": "Sigil Protocol & Federation",
+          "uuid": "26eacb85-2c97-443d-9d81-3bd99cc98412",
+          "domain": "FIX session layer, WAL persistence, key lifecycle, rooms"
+        },
+        {
+          "index": 3,
+          "name": "Grok Bot Automation",
+          "uuid": "52332bef-552c-427a-afb5-8cc48e6f0079",
+          "domain": "Grok bot listeners, mobile drops, X ingest telemetry"
+        },
+        {
+          "index": 4,
+          "name": "Toolforge Ecosystem",
+          "uuid": "39a71593-eb5b-4605-a4a4-f212ae010da2",
+          "domain": "Codified tools, system proposals, feature ideas"
+        },
+        {
+          "index": 5,
+          "name": "AI News and Tools",
+          "uuid": "bec5a197-8256-4eba-af78-c4881cc28fdd",
+          "domain": "Curated newsletters, model breakthroughs, agent architectures"
+        },
+        {
+          "index": 6,
+          "name": "Open Dev Issues",
+          "uuid": "cb0498ce-1ea5-4668-9f65-ac368753404e",
+          "domain": "CI/CD defect queue, test telemetry, PR review triage"
+        },
+        {
+          "index": 7,
+          "name": "KB - Operations",
+          "uuid": "1ab8f1a2-f066-4246-8489-75f223d5f9d2",
+          "domain": "Runbooks, telemetry, IronBot fleet management"
+        },
+        {
+          "index": 8,
+          "name": "Rewrite Labs",
+          "uuid": "140119ae-3496-45c9-bf0c-71c955136afc",
+          "domain": "SSG engine, rewrite-mcp, automated redesign platform"
+        },
+        {
+          "index": 9,
+          "name": "KB - Targets",
+          "uuid": "0cab9d12-0f0e-4cc0-9009-69ec809fce4a",
+          "domain": "Strategic milestones, sprint review goals, roadmap items"
+        },
+        {
+          "index": 10,
+          "name": "KB - Governance",
+          "uuid": "b42534be-a208-437e-828e-dad645631c66",
+          "domain": "ADRs, system charters, authority models"
+        },
+        {
+          "index": 11,
+          "name": "KB - Modules",
+          "uuid": "096b5b92-55d0-44b2-b074-3b3fef0a0d12",
+          "domain": "Core library crates, package specs, interfaces"
+        },
+        {
+          "index": 12,
+          "name": "KB - Skills",
+          "uuid": "3ac216cc-3379-4c9f-8393-ab28a248cecc",
+          "domain": "/why protocol, MCP skill specifications, tool routing"
+        },
+        {
+          "index": 13,
+          "name": "KB - Superpowers",
+          "uuid": "95867d03-1175-4516-9b38-d95592b1a321",
+          "domain": "High-leverage operational capabilities and automations"
+        },
+        {
+          "index": 14,
+          "name": "KB - Meta",
+          "uuid": "30f80cc0-80f7-421a-a79b-c510d98aaf94",
+          "domain": "Taxonomy, sync state, metadata standards"
+        },
+        {
+          "index": 15,
+          "name": "Agent Harnesses & Local Execution",
+          "uuid": "359b346c-6af7-4ba3-baef-b985c9e6e1af",
+          "domain": "Helix runtime, WhichLLM mapping, Graft context graph"
+        },
+        {
+          "index": 16,
+          "name": "Digital Operations & Network Troubleshooting",
+          "uuid": "92636b28-f5fe-47f3-a5ee-00e7dbe4cb05",
+          "domain": "Infrastructure runbooks, LAN/VPN, local workstation setups"
+        },
+        {
+          "index": 17,
+          "name": "Architectural Design Patterns for Advanced Artifact Interfaces",
+          "uuid": "a574fa62-68f5-4cd7-8589-57d35f04268a",
+          "domain": "Design system guidelines, HUD/card schemas, UI standards"
+        }
+      ]
+    },
+    "group2_executive_personal": {
+      "name": "Executive Operations & Personal Briefings Cluster",
+      "target_count": 2,
+      "injected_questions": [
+        "What are the major accomplishments in the last day, and what emerging trends do you see?",
+        "Where can we improve, and are there any identifiable skills, agents, or bots we should be building to help with repeated behavior? For any recommended automation, specify the trigger source, required tools/APIs, output deliverable, and estimated time saved per week."
+      ],
+      "targets": [
+        {
+          "index": 1,
+          "name": "Operations Briefings & Research Logs",
+          "uuid": "c17c2a18-3562-4fe4-9880-c1289ec5f506",
+          "domain": "Daily engineering intelligence, land summaries, pipeline health"
+        },
+        {
+          "index": 2,
+          "name": "Personal Morning Briefings",
+          "uuid": "a641e129-9eaf-4960-b7df-5a2b81420e51",
+          "domain": "Daily inbox signal triage, recurring obligations, calendar reconciliation"
+        }
+      ]
+    }
+  }
+}
