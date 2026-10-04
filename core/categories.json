@@ -268,6 +268,91 @@
         "matrix"
       ],
       "status": "canonical"
+    },
+    "grok-bot": {
+      "title": "Grok Bot Automation",
+      "target": "52332bef-552c-427a-afb5-8cc48e6f0079",
+      "description": "Grok bot listeners, mobile drops, and X ingest telemetry",
+      "aliases": [
+        "grok_bot",
+        "grok",
+        "grok-automation"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
+    },
+    "toolforge": {
+      "title": "Toolforge Ecosystem",
+      "target": "39a71593-eb5b-4605-a4a4-f212ae010da2",
+      "description": "Codified tools, system proposals, and feature ideas",
+      "aliases": [
+        "toolforge-ecosystem",
+        "ecosystem",
+        "plugins"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
+    },
+    "ai-news": {
+      "title": "AI News and Tools",
+      "target": "bec5a197-8256-4eba-af78-c4881cc28fdd",
+      "description": "Curated newsletters, model breakthroughs, and agent architectures",
+      "aliases": [
+        "ai_news",
+        "newsletters",
+        "model-news"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
+    },
+    "digital-ops": {
+      "title": "Digital Operations & Network Troubleshooting",
+      "target": "92636b28-f5fe-47f3-a5ee-00e7dbe4cb05",
+      "description": "Infrastructure runbooks, LAN/VPN, and local workstation setups",
+      "aliases": [
+        "digital_ops",
+        "network",
+        "workstation",
+        "infra"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
+    },
+    "artifact-design": {
+      "title": "Architectural Design Patterns for Advanced Artifact Interfaces",
+      "target": "a574fa62-68f5-4cd7-8589-57d35f04268a",
+      "description": "Design system guidelines, HUD/card schemas, and UI standards",
+      "aliases": [
+        "artifact_design",
+        "ui-design",
+        "hud-patterns"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
+    },
+    "operations-briefings": {
+      "title": "Operations Briefings & Research Logs",
+      "target": "c17c2a18-3562-4fe4-9880-c1289ec5f506",
+      "description": "Daily engineering intelligence, land summaries, and pipeline health",
+      "aliases": [
+        "operations_briefings",
+        "eng-intelligence",
+        "daily-briefings"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
+    },
+    "morning-briefings": {
+      "title": "Personal Morning Briefings",
+      "target": "a641e129-9eaf-4960-b7df-5a2b81420e51",
+      "description": "Daily inbox signal triage, recurring obligations, and calendar reconciliation",
+      "aliases": [
+        "morning_briefings",
+        "personal-briefing",
+        "morning-dashboard"
+      ],
+      "status": "canonical",
+      "exclude_from_master_kb": true
     }
   },
   "placeholders": {}
