@@ -70,7 +70,9 @@ const server = createServer(async (req, res) => {
   }
 
   // 2. Static File Serving (with path traversal guard)
-  let relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
+  let relativePath = (pathname === '/' || pathname === '/dashboard' || pathname === '/dashboard.html' || pathname === '/index.html')
+    ? 'modules/wiki/dashboard.html'
+    : pathname.replace(/^\/+/, '');
   const safePath = normalize(join(ROOT, relativePath));
 
   // Security check: path traversal prevention
