@@ -1,5 +1,6 @@
 {
   "generated_at": "2026-09-20T11:20:39.883930+00:00",
+  "patch_reason": "STUB 2026-10-05: Post-War rename + Willys + 8 KP notebooks; full regen needs Windows aggregate_status.py",
   "sources_checked": [
     "C:\\dev\\kb-sync\\.sync-status.json",
     "C:\\dev\\kb-sync\\.drift-report.json",
@@ -5435,7 +5436,7 @@
         "rfc_link": null
       }
     ],
-    "notebooks_total": 11,
+    "notebooks_total": 20,
     "notebooks": [
       {
         "id": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
@@ -5511,7 +5512,7 @@
       },
       {
         "id": "9c469910-a900-43a4-877c-a43c9f545b5f",
-        "title": "CIC - Post-War & Willys-Overland",
+        "title": "CIC - Post-War",
         "last_mined": "2026-09-20T11:17:20.825Z",
         "last_mined_age_hours": 0.1,
         "quarantined": 0,
@@ -5522,6 +5523,78 @@
         "title": "CIC - Ford Executive Dynamics & Politics",
         "last_mined": "2026-09-20T11:19:54.024Z",
         "last_mined_age_hours": 0.0,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "fd4ebe29-9440-4f4b-97cf-0184ffbe29a0",
+        "title": "CIC - Willys-Overland",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c",
+        "title": "CIC - Miami Estate & Florida Retirement",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "70be0df3-c58a-4711-b4d3-1e4b8726faf7",
+        "title": "CIC - Rouge, Model T & Moving Assembly Line",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "76e1932c-054a-4520-9e83-5e882dffc938",
+        "title": "IronLedger Architecture",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "26eacb85-2c97-443d-9d81-3bd99cc98412",
+        "title": "Sigil Protocol & Federation",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "359b346c-6af7-4ba3-baef-b985c9e6e1af",
+        "title": "Agent Harnesses & Local Execution (Graft, SAM, Herdr)",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "140119ae-3496-45c9-bf0c-71c955136afc",
+        "title": "Rewrite Labs SSG/Redesign Platform",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "cb0498ce-1ea5-4668-9f65-ac368753404e",
+        "title": "Open Dev Issues (CI/CD Triage Buffer)",
+        "last_mined": null,
+        "last_mined_age_hours": null,
+        "quarantined": 0,
+        "sources_count": 0
+      },
+      {
+        "id": "9724e682-c5ea-4693-8e21-caf8de68611e",
+        "title": "Personal OS (Household, Utilities, Florida Logistics)",
+        "last_mined": null,
+        "last_mined_age_hours": null,
         "quarantined": 0,
         "sources_count": 0
       }
@@ -6363,7 +6436,7 @@
         ]
       },
       "9c469910-a900-43a4-877c-a43c9f545b5f": {
-        "title": "CIC - Post-War & Willys-Overland",
+        "title": "CIC - Post-War",
         "id": "9c469910-a900-43a4-877c-a43c9f545b5f",
         "total_questions": 13,
         "contradictions": [

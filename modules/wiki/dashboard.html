@@ -713,7 +713,7 @@
     </button>
     <button type="button" class="tab-btn" id="btn-tab-trm" onclick="switchTab('tab-trm')">
       <span>04. TRM Cognitive Intelligence</span>
-      <span class="tag date" id="tabTrmBadge" style="background: rgba(196,80,26,0.15); color: var(--ember); border: 1px solid rgba(196,80,26,0.35);">11 Notebooks</span>
+      <span class="tag date" id="tabTrmBadge" style="background: rgba(196,80,26,0.15); color: var(--ember); border: 1px solid rgba(196,80,26,0.35);">20 Notebooks</span>
     </button>
     <button type="button" class="tab-btn" id="btn-tab-reporting" onclick="switchTab('tab-reporting')">
       <span>05. Weekly Reporting</span>
@@ -1113,7 +1113,7 @@
           <div class="stat-number" id="trmStatAnswers">44 Answered</div>
           <div class="stat-label">Questions Mined</div>
         </div>
-        <div class="stat-sub">Across 11 NotebookLM sources</div>
+        <div class="stat-sub">Across 20 NotebookLM sources</div>
       </div>
       <div>
         <div class="stat-block">
@@ -1135,11 +1135,20 @@
           <option value="fd0e0e4e-6890-4fb9-89bf-b9e568295e7a">The Sorensen Photographic Archive (fd0e0e4e...)</option>
           <option value="6fd7c40b-df90-444b-9c7a-a64682925856">CIC - Willow Run &amp; Aviation Engineering (6fd7c40b...)</option>
           <option value="ef78168d-b7b9-4952-8e0f-fcb353a21181">Willow Run Videos (ef78168d...)</option>
-          <option value="9c469910-a900-43a4-877c-a43c9f545b5f">CIC - Post-War &amp; Willys-Overland (9c469910...)</option>
+          <option value="9c469910-a900-43a4-877c-a43c9f545b5f">CIC - Post-War (9c469910...)</option>
+          <option value="fd4ebe29-9440-4f4b-97cf-0184ffbe29a0">CIC - Willys-Overland (fd4ebe29...)</option>
           <option value="c8360946-dbee-4a2c-b622-7f89b05695b0">CIC - Cuban Seizures &amp; Retired Assets (c8360946...)</option>
+          <option value="64949154-5892-4fa4-9ad0-e48b2bf5cc6c">CIC - Miami Estate &amp; Florida Retirement (64949154...)</option>
+          <option value="70be0df3-c58a-4711-b4d3-1e4b8726faf7">CIC - Rouge, Model T &amp; Moving Assembly Line (70be0df3...)</option>
           <option value="0c8dc979-319f-4e6d-8136-22275932c236">CastIronCharlie-Facebook (0c8dc979...)</option>
           <option value="039e2c13-75b3-4bf2-b58d-9bbce8f73a4d">CIC-Reddit (039e2c13...)</option>
           <option value="679b8bab-2d87-42cb-a726-6dc54c83acc2">CIC-KB (679b8bab...)</option>
+          <option value="76e1932c-054a-4520-9e83-5e882dffc938">IronLedger Architecture (76e1932c...)</option>
+          <option value="26eacb85-2c97-443d-9d81-3bd99cc98412">Sigil Protocol &amp; Federation (26eacb85...)</option>
+          <option value="359b346c-6af7-4ba3-baef-b985c9e6e1af">Agent Harnesses &amp; Local Execution (359b346c...)</option>
+          <option value="140119ae-3496-45c9-bf0c-71c955136afc">Rewrite Labs SSG/Redesign Platform (140119ae...)</option>
+          <option value="cb0498ce-1ea5-4668-9f65-ac368753404e">Open Dev Issues (CI/CD Triage Buffer) (cb0498ce...)</option>
+          <option value="9724e682-c5ea-4693-8e21-caf8de68611e">Personal OS (Household, Utilities, Florida Logistics) (9724e682...)</option>
         </select>
         <a id="trmExtNotebookLink" href="https://notebooklm.google.com/notebook/0caf6707-f8f2-4d2a-acd2-020acead55ba" target="_blank" class="tag high" style="text-decoration: none;">Open in NotebookLM ↗</a>
       </div>
@@ -1256,7 +1265,7 @@
     <div class="panel">
       <div class="section-label">Registry Surface</div>
       <div class="panel-header">
-        <div class="panel-title">Monitored NotebookLM Notebooks (11 Active)</div>
+        <div class="panel-title">Monitored NotebookLM Notebooks (20 Active)</div>
       </div>
       <table class="table-clean">
         <thead>
@@ -1332,7 +1341,7 @@
             <rect x="12" y="110" width="176" height="42" rx="3" fill="#140f0c" stroke="rgba(196,80,26,0.4)"/>
             <text x="20" y="127" font-family="monospace" font-size="11" fill="#B8922A">trm ingest-notebooklm</text>
             <text x="20" y="142" font-size="10" fill="#9a9088">Pulls Studio notes &amp; sources</text>
-            <text x="15" y="175" font-size="12" font-weight="700" fill="#5a9e6f">11 Active Notebooks</text>
+            <text x="15" y="175" font-size="12" font-weight="700" fill="#5a9e6f">20 Active Notebooks</text>
             <text x="15" y="193" font-size="11" fill="#9a9088">Automated Quarantine check</text>
             <text x="15" y="210" font-size="11" fill="#9a9088">Hash Registry Verification</text>
           </g>
@@ -1570,7 +1579,7 @@ flowchart TD
               <span style="font-family: monospace; font-size: 0.75rem; color: var(--ash);">Task Path: \TRM\</span>
             </div>
             <div class="step-body">
-              Pulls Studio notes and new attachments across all <strong>11 NotebookLM notebooks</strong> into <code>trm-vault/</code>, executes the 4 canonical query vectors (Contradictions, Under-Sourced claims, Adjacent leads, Follow-up tracks), and appends atomic inquiry items with SHA-256 keys to <code>trm-research-gaps.md</code>.
+              Pulls Studio notes and new attachments across all <strong>20 NotebookLM notebooks</strong> into <code>trm-vault/</code>, executes the 4 canonical query vectors (Contradictions, Under-Sourced claims, Adjacent leads, Follow-up tracks), and appends atomic inquiry items with SHA-256 keys to <code>trm-research-gaps.md</code>.
             </div>
             <div class="step-footer">
               <span>Principal: <strong style="color:var(--white);">soren (Password)</strong></span>
