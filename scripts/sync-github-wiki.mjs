@@ -29,7 +29,7 @@ export function deriveWikiSshUrl(repoRoot) {
 const wikiSourceDir = path.resolve(root, value('--source-dir', 'wiki'));
 const repoUrl = value('--repo-url', process.env.WIKI_REPO_URL || deriveWikiSshUrl(root));
 const targetWikiDir = path.resolve(root, value('--target-dir', '.wiki-publish-temp'));
-const shouldPush = !args.includes('--no-push');
+const shouldPush = args.includes('--push') || process.env.AUTO_PUSH === 'true';
 const commitMessage = value('--commit-msg', 'docs(wiki): flatten and publish all wiki pages, RFCs, and diagram assets');
 const buildOnlyDir = value('--build-only', null);
 
