@@ -1,22 +1,20 @@
 #!/usr/bin/env node
 // ==============================================================================
 // Thematic Knowledge Pack Consolidator (Stage 6)
-// Emits modular packs into .nlm_pack/ partitioned by research category:
+// Emits modular, self-describing packs into .nlm_pack/ partitioned by research category:
 // - .nlm_pack/pack_willow_run.txt      (Target: CIC - Willow Run & Aviation Engineering)
 // - .nlm_pack/pack_ford_politics.txt   (Target: CIC - Ford Executive Dynamics & Politics)
 // - .nlm_pack/pack_post_war.txt        (Target: CIC - Post-War)
 // - .nlm_pack/pack_willys_overland.txt (Target: CIC - Willys-Overland)
+// - .nlm_pack/pack_cuban_seizures.txt  (Target: CIC - Cuban Seizures & Retired Assets)
 // - .nlm_pack/pack_master_kb.txt       (Target: CIC-KB)
-// Injects Evidence-Mode Fact Registries at the header of each pack within
-// strict chunk ceilings (<= 380 KiB total, <= 38 KiB fact registry).
 // ==============================================================================
 
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { NOTEBOOK_TARGETS, resolveNotebookId, resolveCategoryKey, getMasterKbExclusions } from '../core/config.mjs';
-import { partitionPackIntoChunks } from '../core/nlm-chunker.mjs';
+import { loadCategoriesData, buildNotebookTargetMap, NOTEBOOK_TARGETS, resolveNotebookId, getMasterKbExclusions } from '../core/config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,218 +23,26 @@ const COLOR = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', reset: '
 const logInfo = (msg) => console.log(`${COLOR.green}[CONSOLIDATE-PACK] [INFO]${COLOR.reset} ${msg}`);
 const logWarn = (msg) => console.log(`${COLOR.yellow}[CONSOLIDATE-PACK] [WARN]${COLOR.reset} ${msg}`);
 const logError = (msg) => console.error(`${COLOR.red}[CONSOLIDATE-PACK] [ERROR]${COLOR.reset} ${msg}`);
+export const MAX_PACK_BYTES = 380 * 1024;
 
-export const MAX_FACT_REGISTRY_BYTES = 38 * 1024; // 38 KiB ceiling for fact registry
-export const MAX_PACK_BYTES = 380 * 1024; // 380 KiB chunk ceiling
+export function getCanonicalPacks() {
+  const data = loadCategoriesData();
+  const categories = data.categories || {};
+  const packList = [];
 
-export const THEMATIC_PACK_MAP = [
-  {
-    category: 'willow-run',
-    filename: 'pack_willow_run.txt',
-    notebookId: NOTEBOOK_TARGETS['willow-run'],
-    title: 'CIC - Willow Run & Aviation Engineering'
-  },
-  {
-    category: 'ford-politics',
-    filename: 'pack_ford_politics.txt',
-    notebookId: NOTEBOOK_TARGETS['ford-politics'],
-    title: 'CIC - Ford Executive Dynamics & Politics'
-  },
-  {
-    category: 'post-war',
-    filename: 'pack_post_war.txt',
-    notebookId: NOTEBOOK_TARGETS['post-war'],
-    title: 'CIC - Post-War'
-  },
-  {
-    category: 'willys-overland',
-    filename: 'pack_willys_overland.txt',
-    notebookId: NOTEBOOK_TARGETS['willys-overland'],
-    title: 'CIC - Willys-Overland'
-  },
-  {
-    category: 'master-kb',
-    filename: 'pack_master_kb.txt',
-    notebookId: NOTEBOOK_TARGETS['master-kb'],
-    title: 'CIC-KB (Master Knowledge Base)'
-  }
-];
-
-/**
- * Computes SHA-256 hash of a string.
- * @param {string} content
- * @returns {string} Hex hash
- */
-export function computeSha256(content) {
-  return crypto.createHash('sha256').update(content || '', 'utf8').digest('hex');
-}
-
-/**
- * Formats a single fact entry for the Evidence-Mode Fact Registry.
- * @param {Object} fact
- * @returns {string}
- */
-export function formatFactEntry(fact) {
-  const status = fact.verification_status || 'verified';
-  const shortHash = (fact.fact_id || '').replace(/^sha256:/, '').slice(0, 7);
-  const anchor = fact.temporal_anchor ? ` | ${fact.temporal_anchor}` : '';
-  const hashTag = shortHash ? ` [hash: ${shortHash}]` : '';
-  return `- [${status}] ${fact.subject} | ${fact.predicate} | ${fact.object}${anchor}${hashTag}`;
-}
-
-/**
- * Formats the full Fact Registry section within the byte ceiling.
- * @param {Array<Object>} facts
- * @param {number} maxBytes
- * @returns {string}
- */
-export function formatFactRegistrySection(facts = [], maxBytes = MAX_FACT_REGISTRY_BYTES) {
-  if (!Array.isArray(facts) || facts.length === 0) return '';
-  const headerLines = [
-    '=== FACT REGISTRY (EVIDENCE MODE) ==='
-  ];
-  const footerLine = '================================================================================\n\n';
-
-  const entries = [];
-  let currentBytes = Buffer.byteLength(headerLines.join('\n') + '\n' + footerLine, 'utf8');
-  let truncatedCount = 0;
-
-  for (const fact of facts) {
-    const line = formatFactEntry(fact);
-    const lineBytes = Buffer.byteLength(line + '\n', 'utf8');
-    if (currentBytes + lineBytes > maxBytes) {
-      truncatedCount++;
-      continue;
-    }
-    entries.push(line);
-    currentBytes += lineBytes;
-  }
-
-  if (truncatedCount > 0) {
-    logWarn(`Fact registry capped: ${truncatedCount} fact(s) truncated to stay within ${(maxBytes / 1024).toFixed(1)} KiB ceiling.`);
-  }
-
-  if (entries.length === 0) return '';
-
-  return `${headerLines.join('\n')}\n${entries.join('\n')}\n${footerLine}`;
-}
-
-/**
- * Loads and filters settled facts for a specific pack category.
- * @param {string} rootDir
- * @param {string} categoryKey
- * @param {Array<Object>} constituentItems
- * @param {Set<string>} nonHistoricalCategories
- * @returns {Array<Object>}
- */
-export function loadScopedFacts(rootDir, categoryKey, constituentItems = [], nonHistoricalCategories = new Set()) {
-  const stagingPaths = [
-    path.join(rootDir, '_kb-sync-staging', 'trm', 'settled_facts.json'),
-    path.join(rootDir, '_kb-sync-staging', 'settled_facts.json')
-  ];
-
-  let rawFacts = [];
-  for (const p of stagingPaths) {
-    if (fs.existsSync(p)) {
-      try {
-        const raw = fs.readFileSync(p, 'utf8');
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) {
-          rawFacts = parsed;
-          break;
-        } else if (parsed && Array.isArray(parsed.facts)) {
-          rawFacts = parsed.facts;
-          break;
-        }
-      } catch (err) {
-        logWarn(`Could not parse settled facts from ${p}: ${err.message}`);
-      }
-    }
-  }
-
-  if (rawFacts.length === 0) {
-    return [];
-  }
-
-  const targetPackDef = THEMATIC_PACK_MAP.find((p) => p.category === categoryKey);
-  const targetAliases = new Set([categoryKey, ...(targetPackDef?.aliases || [])]);
-
-  const itemMap = new Map();
-  for (const item of constituentItems) {
-    itemMap.set(item.relPath, item);
-  }
-
-  const diskHashCache = new Map();
-  const validFacts = [];
-
-  for (const fact of rawFacts) {
-    if (!fact || !fact.subject || !fact.predicate || !fact.object) continue;
-
-    const sourcePath = (fact.source_path || '').replace(/\\/g, '/');
-    const matchedItem = itemMap.get(sourcePath);
-
-    if (!matchedItem && categoryKey !== 'master-kb') {
-      const factCat = resolveCategoryKey(fact.category || '');
-      if (!targetAliases.has(factCat)) {
-        continue;
-      }
-    }
-
-    if (categoryKey === 'master-kb') {
-      const factCat = resolveCategoryKey(fact.category || (matchedItem?.frontmatter?.category) || '');
-      if (nonHistoricalCategories.has(factCat)) {
-        continue;
-      }
-    }
-
-    let status = fact.verification_status || 'verified';
-    if (matchedItem) {
-      const liveHash = computeSha256(matchedItem.content);
-      if (fact.source_hash_sha256 && fact.source_hash_sha256 !== liveHash) {
-        status = 'unanchored';
-      }
-    } else if (sourcePath) {
-      let liveHash = diskHashCache.get(sourcePath);
-      if (liveHash === undefined) {
-        const fullPath = path.join(rootDir, sourcePath);
-        if (fs.existsSync(fullPath)) {
-          try {
-            const content = fs.readFileSync(fullPath, 'utf8');
-            liveHash = computeSha256(content);
-          } catch {
-            liveHash = null;
-          }
-        } else {
-          liveHash = null;
-        }
-        diskHashCache.set(sourcePath, liveHash);
-      }
-
-      if (liveHash === null) {
-        continue; // Exclude deleted or unreadable file facts
-      }
-
-      if (fact.source_hash_sha256 && fact.source_hash_sha256 !== liveHash) {
-        status = 'unanchored';
-      }
-    }
-
-    validFacts.push({
-      ...fact,
-      verification_status: status
+  for (const [catKey, catDef] of Object.entries(categories)) {
+    const safeFilename = `pack_${catKey.replace(/-/g, '_').replace(/[^a-zA-Z0-9_]/g, '_')}.txt`;
+    packList.push({
+      category: catKey,
+      aliases: catDef.aliases || [],
+      filename: safeFilename,
+      notebookId: catDef.target,
+      title: catDef.title,
+      status: catDef.status || 'canonical'
     });
   }
 
-  // Deterministic sort: verified first, then unanchored, then by temporal_anchor descending
-  validFacts.sort((a, b) => {
-    const priority = { verified: 0, extracted: 1, unanchored: 2 };
-    const pA = priority[a.verification_status] ?? 3;
-    const pB = priority[b.verification_status] ?? 3;
-    if (pA !== pB) return pA - pB;
-    return String(b.temporal_anchor || '').localeCompare(String(a.temporal_anchor || ''));
-  });
-
-  return validFacts;
+  return packList;
 }
 
 export function extractFrontmatter(content) {
@@ -254,8 +60,198 @@ export function extractFrontmatter(content) {
   return data;
 }
 
+export function loadEntityManifest(rootDir = path.resolve(__dirname, '..')) {
+  const manifestPath = path.join(rootDir, '_kb-sync-staging', 'trm', 'master_entity_manifest.json');
+  return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+export function injectCrossNotebookDigests(content, currentCategory, manifest, categoriesData) {
+  let result = content;
+  const entities = manifest?.entities || {};
+  const categories = categoriesData?.categories || {};
+
+  for (const [entityKey, entity] of Object.entries(entities)) {
+    if (entity.primary_category === currentCategory) continue;
+    const targetNotebook = categories[entity.primary_category]?.target;
+    if (!targetNotebook) continue;
+
+    const aliases = Array.isArray(entity.aliases) ? entity.aliases : [];
+    const mentioned = aliases.some(alias => {
+      if (!alias) return false;
+      return new RegExp(`\\b${escapeRegExp(alias)}\\b`, 'i').test(content);
+    }) || content.includes(`[[${entityKey}]]`);
+    if (!mentioned || result.includes(`=== CROSS-NOTEBOOK DIGEST: ${entity.canonical_name} ===`)) continue;
+
+    result += `\n\n=== CROSS-NOTEBOOK DIGEST: ${entity.canonical_name} ===\n`;
+    result += `Target Notebook ID: ${targetNotebook}\n`;
+    result += `Entity Key: ${entityKey}\n`;
+    result += `${entity.l0_summary || ''}\n`;
+  }
+
+  return result;
+}
+
+export function normalizeWhitespace(content) {
+  if (typeof content !== 'string') return '';
+  return content
+    .replace(/\r\n/g, '\n')
+    .replace(/[ \t]+$/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+export function formatProvenanceHeader(item) {
+  return [
+    '=== PROVENANCE ===',
+    `source_path: ${item.relPath}`,
+    `source_type: ${item.sourceType}`,
+    `hash_sha256: ${item.sha256}`,
+    `ingested_at: ${new Date().toISOString()}`,
+    `source_title: ${item.frontmatter.source_title || 'N/A'}`,
+    `repository: ${item.frontmatter.repository || 'N/A'}`,
+    `document_date: ${item.frontmatter.document_date || 'N/A'}`,
+    `verification_status: ${item.frontmatter.verification_status || 'N/A'}`,
+    '===================',
+    '',
+  ].join('\n');
+}
+
+export function serializePackItem(item) {
+  const content = normalizeWhitespace(item.enrichedContent ?? item.content);
+  return `${formatProvenanceHeader(item)}${content}\n\n--- END OF FILE: ${item.relPath} ---\n\n`;
+}
+
+function splitItemIntoParts(item, budget, serialize) {
+  const contentToSplit = item.enrichedContent ?? item.content;
+  const paragraphs = contentToSplit.split(/\n\n+/);
+
+  const subItems = [];
+  let currentParagraphs = [];
+  let partIndex = 1;
+
+  function createSubItem(paras, partNum) {
+    const subContent = paras.join('\n\n');
+    const subRelPath = `${item.relPath} (part ${partNum})`;
+    const sub = {
+      ...item,
+      relPath: subRelPath,
+      content: subContent,
+    };
+    if (item.enrichedContent !== undefined) {
+      sub.enrichedContent = subContent;
+    }
+    return sub;
+  }
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    const p = paragraphs[i];
+
+    const testSub = createSubItem([p], partIndex);
+    if (Buffer.byteLength(serialize(testSub), 'utf8') > budget) {
+      if (currentParagraphs.length > 0) {
+        subItems.push(createSubItem(currentParagraphs, partIndex++));
+        currentParagraphs = [];
+      }
+
+      const lines = p.split('\n');
+      let currentLines = [];
+      for (const line of lines) {
+        const testLineSub = createSubItem([...currentLines, line], partIndex);
+        if (Buffer.byteLength(serialize(testLineSub), 'utf8') > budget) {
+          if (currentLines.length > 0) {
+            subItems.push(createSubItem(currentLines, partIndex++));
+            currentLines = [];
+          }
+          let remainingLine = line;
+          while (remainingLine.length > 0) {
+            let sliceLen = remainingLine.length;
+            while (sliceLen > 0) {
+              const sliceCandidate = remainingLine.slice(0, sliceLen);
+              const sliceSub = createSubItem([sliceCandidate], partIndex);
+              if (Buffer.byteLength(serialize(sliceSub), 'utf8') <= budget || sliceLen === 1) {
+                subItems.push(createSubItem([sliceCandidate], partIndex++));
+                remainingLine = remainingLine.slice(sliceLen);
+                break;
+              }
+              sliceLen = Math.floor(sliceLen * 0.8);
+            }
+          }
+        } else {
+          currentLines.push(line);
+        }
+      }
+      if (currentLines.length > 0) {
+        subItems.push(createSubItem(currentLines, partIndex++));
+      }
+      continue;
+    }
+
+    const candidateSub = createSubItem([...currentParagraphs, p], partIndex);
+    if (currentParagraphs.length > 0 && Buffer.byteLength(serialize(candidateSub), 'utf8') > budget) {
+      subItems.push(createSubItem(currentParagraphs, partIndex++));
+      currentParagraphs = [p];
+    } else {
+      currentParagraphs.push(p);
+    }
+  }
+
+  if (currentParagraphs.length > 0) {
+    subItems.push(createSubItem(currentParagraphs, partIndex++));
+  }
+
+  return subItems;
+}
+
+export function partitionPackItems(items, maxBytes = MAX_PACK_BYTES, options = {}) {
+  const serialize = options.itemSerializer || serializePackItem;
+  const prefix = options.prefix || '';
+  const suffix = options.suffix || '';
+  const budget = maxBytes - Buffer.byteLength(prefix + suffix, 'utf8');
+
+  const effectiveItems = [];
+  for (const item of items) {
+    const one = serialize(item);
+    if (Buffer.byteLength(one, 'utf8') > budget) {
+      const parts = splitItemIntoParts(item, budget, serialize);
+      effectiveItems.push(...parts);
+    } else {
+      effectiveItems.push(item);
+    }
+  }
+
+  const chunks = [];
+  for (const item of effectiveItems) {
+    const one = serialize(item);
+    if (Buffer.byteLength(prefix + one + suffix, 'utf8') > maxBytes) {
+      throw new Error(`ITEM_EXCEEDS_BUDGET: ${item.relPath}`);
+    }
+    const current = chunks.at(-1);
+    const candidate = [...(current || []), item];
+    if (current && Buffer.byteLength(prefix + candidate.map(serialize).join('') + suffix, 'utf8') > maxBytes) {
+      chunks.push([item]);
+    } else if (current) {
+      current.push(item);
+    } else {
+      chunks.push([item]);
+    }
+  }
+  return chunks;
+}
+
+function removePackFiles(outDir, category) {
+  const safe = category.replace(/-/g, '_').replace(/[^a-zA-Z0-9_]/g, '_');
+  const pattern = new RegExp(`^pack_${safe}(?:_part\\d+)?\\.txt$`);
+  for (const name of fs.readdirSync(outDir)) {
+    if (pattern.test(name)) fs.unlinkSync(path.join(outDir, name));
+  }
+}
+
 export function consolidatePacks(options = {}) {
-  const rootDir = options.rootDir || path.resolve(__dirname, '../..');
+  const rootDir = options.rootDir || path.resolve(__dirname, '..');
   const outDir = options.outDir || path.join(rootDir, '.nlm_pack');
 
   if (!fs.existsSync(outDir)) {
@@ -265,8 +261,20 @@ export function consolidatePacks(options = {}) {
   logInfo(`Consolidating thematic packs from root: ${rootDir}`);
   logInfo(`Output directory: ${outDir}`);
 
+  const canonicalPacks = getCanonicalPacks().filter(packDef => !options.category || packDef.category === options.category);
+  const exclusions = getMasterKbExclusions();
+
+  // Map category aliases to canonical category key
+  const aliasMap = new Map();
+  for (const packDef of canonicalPacks) {
+    aliasMap.set(packDef.category.toLowerCase().trim(), packDef.category);
+    for (const alias of packDef.aliases) {
+      aliasMap.set(alias.toLowerCase().trim(), packDef.category);
+    }
+  }
+
   // Collect candidate files from wiki
-  const scanDirs = [
+  const scanDirs = options.scanDirs || [
     path.join(rootDir, 'wiki')
   ];
 
@@ -278,14 +286,18 @@ export function consolidatePacks(options = {}) {
 
   function walk(dir) {
     if (!fs.existsSync(dir)) return;
+    const IGNORED_DIRS = new Set(['node_modules', '.git', '_archive', 'archive', 'dist', 'build', '.cache', '.tmp', 'coverage', '_kb-sync-staging']);
+    const IGNORED_FILES = new Set(['log.md']);
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) {
-        if (entry.name !== 'node_modules' && entry.name !== '.git' && entry.name !== '_kb-sync-staging') {
+        if (!IGNORED_DIRS.has(entry.name) && !entry.name.startsWith('.')) {
           walk(full);
         }
       } else if (entry.isFile() && entry.name.endsWith('.md')) {
-        candidateFiles.push(full);
+        if (!IGNORED_FILES.has(entry.name.toLowerCase())) {
+          candidateFiles.push(full);
+        }
       }
     }
   }
@@ -296,43 +308,45 @@ export function consolidatePacks(options = {}) {
 
   logInfo(`Discovered ${candidateFiles.length} markdown source files.`);
 
-  // Categories marked `exclude_from_master_kb` in core/categories.json (software,
-  // personal-os, and KB-documentation domains) must never bundle into the
-  // historical master-kb pack (see docs/targets isolation invariant).
-  const NON_HISTORICAL_CATEGORIES = getMasterKbExclusions();
+  // Initialize buckets
+  const categorized = {};
+  for (const packDef of canonicalPacks) {
+    categorized[packDef.category] = [];
+  }
 
-  // Parse and organize files by category
-  const categorized = {
-    'willow-run': [],
-    'ford-politics': [],
-    'post-war': [],
-    'willys-overland': [],
-    'master-kb': []
-  };
+  const dynamicPacks = new Map();
 
   for (const filePath of candidateFiles) {
     try {
       const relPath = path.relative(rootDir, filePath).replace(/\\/g, '/');
       const content = fs.readFileSync(filePath, 'utf8');
       const fm = extractFrontmatter(content);
-      const cat = resolveCategoryKey(fm.category || '');
+      const rawCat = (fm.category || '').toLowerCase().trim();
+      const sha256 = crypto.createHash('sha256').update(content.trim()).digest('hex');
 
-      const item = { relPath, filePath, content, frontmatter: fm };
+      const item = {
+        relPath,
+        filePath,
+        content,
+        frontmatter: fm,
+        sha256,
+        sourceType: 'markdown'
+      };
 
-      // Add to specific category bucket
-      if (cat === 'willow-run') {
-        categorized['willow-run'].push(item);
-      } else if (cat === 'ford-politics') {
-        categorized['ford-politics'].push(item);
-      } else if (cat === 'post-war') {
-        categorized['post-war'].push(item);
-      } else if (cat === 'willys-overland') {
-        categorized['willys-overland'].push(item);
+      let canonicalKey;
+      if (rawCat && aliasMap.has(rawCat)) {
+        canonicalKey = aliasMap.get(rawCat);
+        categorized[canonicalKey].push(item);
+      } else if (rawCat) {
+        // Unknown category: dynamically bucket
+        if (!dynamicPacks.has(rawCat)) {
+          dynamicPacks.set(rawCat, []);
+        }
+        dynamicPacks.get(rawCat).push(item);
       }
 
-      // Master KB includes all historical notes, excluding software and
-      // personal-os categories to preserve domain isolation.
-      if (!NON_HISTORICAL_CATEGORIES.has(cat)) {
+      // Master KB includes all valid notes
+      if (categorized['master-kb'] && !exclusions.has(canonicalKey)) {
         categorized['master-kb'].push(item);
       }
     } catch (err) {
@@ -340,38 +354,82 @@ export function consolidatePacks(options = {}) {
     }
   }
 
+  if (options.category) dynamicPacks.clear();
+
   const generatedPacks = [];
 
-  for (const packDef of THEMATIC_PACK_MAP) {
+  // Emit Canonical Packs
+  for (const packDef of canonicalPacks) {
+    removePackFiles(outDir, packDef.category);
     const items = categorized[packDef.category] || [];
-    const facts = loadScopedFacts(rootDir, packDef.category, items, NON_HISTORICAL_CATEGORIES);
 
-    const shards = partitionPackIntoChunks(packDef, items, facts, {
-      maxPackBytes: MAX_PACK_BYTES,
-      maxFactBytes: MAX_FACT_REGISTRY_BYTES
-    });
+    let payload = `# ==============================================================================\n`;
+    payload += `# PACK: ${packDef.category}\n`;
+    payload += `# TITLE: ${packDef.title}\n`;
+    payload += `# STATUS: ${packDef.status}\n`;
+    payload += `# TARGET_NOTEBOOK: ${packDef.notebookId}\n`;
+    payload += `# SOURCE: consolidate-pack.mjs\n`;
+    payload += `# GENERATED: ${new Date().toISOString()}\n`;
+    payload += `# FILE_COUNT: ${items.length}\n`;
+    payload += `# ==============================================================================\n\n`;
 
-    for (const shard of shards) {
-      const packFile = path.join(outDir, shard.filename);
-      fs.writeFileSync(packFile, shard.payload, 'utf8');
-      const bytes = fs.statSync(packFile).size;
-
-      if (bytes > MAX_PACK_BYTES) {
-        logWarn(`Pack ${shard.filename} (${(bytes / 1024).toFixed(2)} KB) exceeds ${MAX_PACK_BYTES / 1024} KiB chunk boundary!`);
-      } else {
-        logInfo(`✓ Emitted ${shard.filename} (${(bytes / 1024).toFixed(2)} KB, ${shard.itemCount} files, ${shard.factCount} facts) -> Target: ${packDef.notebookId}`);
-      }
-
-      generatedPacks.push({
-        packDef,
-        packFile,
-        bytes,
-        fileCount: shard.itemCount,
-        factCount: shard.factCount,
-        shardIndex: shard.shardIndex || 1,
-        totalShards: shard.totalShards || 1
-      });
+    let entityManifest;
+    try {
+      entityManifest = loadEntityManifest(rootDir);
+    } catch (_) {
+      entityManifest = { entities: {} };
     }
+    const categoriesData = loadCategoriesData();
+
+    const enrichedItems = items.map(item => ({
+      ...item,
+      enrichedContent: injectCrossNotebookDigests(item.content, packDef.category, entityManifest, categoriesData)
+    }));
+    const chunks = partitionPackItems(enrichedItems, MAX_PACK_BYTES, { prefix: payload });
+    chunks.forEach((chunk, index) => {
+      const filename = chunks.length === 1 ? packDef.filename : `pack_${packDef.category.replace(/-/g, '_')}_part${index + 1}.txt`;
+      const packFile = path.join(outDir, filename);
+      const serialized = payload + chunk.map(serializePackItem).join('');
+      fs.writeFileSync(packFile, serialized, 'utf8');
+      const bytes = Buffer.byteLength(serialized, 'utf8');
+      logInfo(`✓ Emitted ${filename} (${(bytes / 1024).toFixed(2)} KB, ${chunk.length} files) -> Target: ${packDef.notebookId}`);
+      generatedPacks.push({ packDef: { ...packDef, filename }, packFile, bytes, fileCount: chunk.length });
+    });
+  }
+
+  // Handle Dynamic Placeholder Packs
+  for (const [dynCat, dynItems] of dynamicPacks.entries()) {
+    const safeCatName = dynCat.replace(/[^a-zA-Z0-9_-]/g, '_');
+    const packFile = path.join(outDir, `pack_placeholder_${safeCatName}.txt`);
+    const fallbackTarget = NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8';
+
+    let payload = `# ==============================================================================\n`;
+    payload += `# PACK: placeholder::${dynCat}\n`;
+    payload += `# TITLE: Dynamic Unmapped Topic - ${dynCat}\n`;
+    payload += `# STATUS: unmapped\n`;
+    payload += `# TARGET_NOTEBOOK: ${fallbackTarget} (PENDING OPERATOR REGISTRATION)\n`;
+    payload += `# SOURCE: consolidate-pack.mjs\n`;
+    payload += `# GENERATED: ${new Date().toISOString()}\n`;
+    payload += `# FILE_COUNT: ${dynItems.length}\n`;
+    payload += `# OPERATOR_REQUIRED: true - do not ingest until mapped to canonical target\n`;
+    payload += `# ==============================================================================\n\n`;
+
+    for (const item of dynItems) {
+      payload += formatProvenanceHeader(item);
+      payload += `${item.content}\n\n`;
+      payload += `--- END OF FILE: ${item.relPath} ---\n\n`;
+    }
+
+    fs.writeFileSync(packFile, payload, 'utf8');
+    const bytes = fs.statSync(packFile).size;
+    logWarn(`[DYNAMIC-TOPIC] Emitted unmapped placeholder pack: ${packFile} (${(bytes / 1024).toFixed(2)} KB, ${dynItems.length} files) -> Operator action required.`);
+
+    generatedPacks.push({
+      packDef: { category: `placeholder::${dynCat}`, filename: `pack_placeholder_${safeCatName}.txt`, notebookId: fallbackTarget, title: `Placeholder - ${dynCat}`, status: 'unmapped' },
+      packFile,
+      bytes,
+      fileCount: dynItems.length
+    });
   }
 
   return generatedPacks;
@@ -381,7 +439,9 @@ const mainFile = process.argv[1] ? fs.realpathSync(process.argv[1]) : '';
 const thisFile = fs.realpathSync(__filename);
 if (mainFile === thisFile) {
   try {
-    consolidatePacks();
+    const categoryArg = process.argv.find(a => a.startsWith('--category=') || a.startsWith('-c='));
+    const category = categoryArg ? categoryArg.split('=')[1].trim().replace(/^['"]|['"]$/g, '') : null;
+    consolidatePacks({ category });
     logInfo('Thematic knowledge pack consolidation completed successfully.');
   } catch (err) {
     logError(`Consolidation failed: ${err.message}`);

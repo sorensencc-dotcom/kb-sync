@@ -146,20 +146,26 @@ if ($runtime.Mode -ne "none") {
     }
 }
 
-# --- STAGE 1: SYNC TO NOTEBOOKLM ---
+# --- STAGE 1: CONSOLIDATE THEMATIC PACKS ---
 Write-LogInfo "================================================================================"
-Write-LogInfo "STAGE 1: Syncing CIC & Rewrite Labs docs to NotebookLM"
+Write-LogInfo "STAGE 1: Consolidating Thematic Knowledge Packs"
 Write-LogInfo "================================================================================"
 
 Set-Location $RepoRoot
-& $BashPath "modules/notebooklm/ingest-notebooklm.sh"
-$Stage1ExitCode = $LASTEXITCODE
+$ConsolidateScript = Join-Path $RepoRoot "scripts\consolidate-pack.mjs"
+if (Test-Path $ConsolidateScript) {
+    & node "$ConsolidateScript"
+    $Stage1ExitCode = $LASTEXITCODE
+} else {
+    Write-LogError "Consolidate pack script not found: $ConsolidateScript"
+    $Stage1ExitCode = 1
+}
 
 if ($Stage1ExitCode -eq 0) {
-    Write-LogInfo "Stage 1 completed successfully."
+    Write-LogInfo "Stage 1 pack consolidation completed successfully."
 } else {
     Write-LogError "Stage 1 failed with exit code $Stage1ExitCode. Aborting pipeline."
-    Send-WebhookNotification -Title "Stage 1 Ingest Failed" -Message "NotebookLM Knowledge Base Ingest failed with exit code $Stage1ExitCode on $env:COMPUTERNAME." -Level "ERROR"
+    Send-WebhookNotification -Title "Stage 1 Ingest Failed" -Message "Thematic Pack Consolidation failed with exit code $Stage1ExitCode on $env:COMPUTERNAME." -Level "ERROR"
     exit 1
 }
 
