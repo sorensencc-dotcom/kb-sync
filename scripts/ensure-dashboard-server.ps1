@@ -8,6 +8,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $DashboardUrl = "http://127.0.0.1:$Port/modules/wiki/dashboard.html"
 $ApiUrl = "http://127.0.0.1:$Port/api/reporting/weekly-retro"
+$MeridianUrl = "http://127.0.0.1:$Port/api/reporting/meridian"
 $Node = (Get-Command node.exe -ErrorAction Stop).Source
 $ServerScript = Join-Path $RepoRoot 'server.mjs'
 
@@ -15,7 +16,8 @@ function Test-Dashboard {
     try {
         $response = Invoke-WebRequest -Uri $DashboardUrl -UseBasicParsing -TimeoutSec 3
         $api = Invoke-WebRequest -Uri $ApiUrl -UseBasicParsing -TimeoutSec 3
-        return $response.StatusCode -eq 200 -and $api.StatusCode -eq 200
+        $meridian = Invoke-WebRequest -Uri $MeridianUrl -UseBasicParsing -TimeoutSec 3
+        return $response.StatusCode -eq 200 -and $api.StatusCode -eq 200 -and $meridian.StatusCode -eq 200
     } catch {
         return $false
     }
