@@ -190,4 +190,18 @@ Write-LogInfo "=================================================================
 Write-LogInfo ("KB Sync Master Pipeline Finished (Duration: {0:F2}s, Status Code: {1})" -f $Duration, $OverallStatus)
 Write-LogInfo "================================================================================"
 
+$AlertDispatcher = "C:\dev\scripts\send-critical-alert.ps1"
+if (Test-Path $AlertDispatcher) {
+    if ($OverallStatus -ne 0) {
+        & pwsh -NoProfile -File $AlertDispatcher -Source "KB-Sync-Master-Pipeline" `
+            -Title "🚨 CRITICAL: KB-Sync Master Pipeline Failed" `
+            -Message "KB-Sync Master Pipeline finished with non-zero exit code ($OverallStatus)." `
+            -Severity "CRITICAL" `
+            -ActionRequired "Inspect log: $LogFile" `
+            -LogFile $LogFile
+    } else {
+        & pwsh -NoProfile -File $AlertDispatcher -Source "KB-Sync-Master-Pipeline" -ClearAlert
+    }
+}
+
 exit $OverallStatus
