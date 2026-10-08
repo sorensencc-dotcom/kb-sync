@@ -1,9 +1,10 @@
 # ==============================================================================
 # TRM Google Drive Transport Sync Scheduled Task Wrapper (Tier 3 IronBot)
 # Runs automated 4-hour sync between local Git repository and Google Drive:
-# 1. Ingests completed research findings from 03_grok_completed/
-# 2. Refreshes actionable gap cards in 01_actionable_gaps/ & context packs
-# 3. Purges expired research leases in _locks/
+# 1. Sweeps mobile action cards & emits Live Action Receipts (trm-ingress-watcher)
+# 2. Ingests completed research findings & topic drops from 03_grok_completed/
+# 3. Refreshes actionable gap cards in 01_actionable_gaps/ & context packs
+# 4. Purges expired research leases in _locks/
 # ==============================================================================
 [CmdletBinding()]
 param(
@@ -56,7 +57,20 @@ Set-Location $RepoRoot
 $ExitCode = 0
 
 try {
-    # 1. Ingest completed findings from Google Drive
+    # 1. Ingest mobile action cards and sync receipts to mobile-outbox (Live Action Receipts)
+    $devRoot = (Resolve-Path "$RepoRoot\..").Path
+    $watcherScript = Join-Path $devRoot "scripts\trm-ingress-watcher.mjs"
+    if (Test-Path $watcherScript) {
+        Write-LogInfo "Running TRM Action Card Ingress and Receipt Sync..."
+        & node $watcherScript --once --sync-receipts 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            Write-LogWarn "TRM Ingress Watcher exited with code $LASTEXITCODE"
+        } else {
+            Write-LogInfo "TRM Ingress Watcher completed successfully."
+        }
+    }
+
+    # 2. Ingest completed findings from Google Drive
     Write-LogInfo "Running TRM Drive Findings Ingestion..."
     $ingestArgs = @("scripts/trm-ingest-drive.mjs")
     if ($Commit) {
@@ -71,7 +85,7 @@ try {
         Write-LogInfo "TRM Drive Ingestion completed successfully."
     }
 
-    # 2. Refresh / top-up actionable gaps on Google Drive (only when explicitly requested)
+    # 3. Refresh / top-up actionable gaps on Google Drive (only when explicitly requested)
     if ($Export) {
         Write-LogInfo "Exporting priority actionable gaps to Google Drive..."
         & node scripts/trm-export-gaps.mjs 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
