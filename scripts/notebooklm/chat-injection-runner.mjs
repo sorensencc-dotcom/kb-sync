@@ -77,14 +77,10 @@ export function loadClusterRegistry(configPath = CONFIG_PATH) {
 // 2. Drive & Local Directory Provisioning
 // -----------------------------------------------------------------------------
 export function ensureSyncDirectories(slug, dateStr) {
-  const dirs = [];
-  if (DRIVE_ROOT) {
-    const driveDir = path.join(DRIVE_ROOT, slug);
-    if (!fs.existsSync(driveDir)) {
-      fs.mkdirSync(driveDir, { recursive: true });
-      console.log(`[PROVISION] Created Google Drive sync directory: ${driveDir}`);
-    }
-    dirs.push(driveDir);
+  const driveDir = DRIVE_ROOT ? path.join(DRIVE_ROOT, slug) : null;
+  if (driveDir && !fs.existsSync(driveDir)) {
+    fs.mkdirSync(driveDir, { recursive: true });
+    console.log(`[PROVISION] Created Google Drive sync directory: ${driveDir}`);
   }
 
   const localDateDir = path.join(LOCAL_CONVERSATIONS_ROOT, dateStr);
@@ -92,7 +88,7 @@ export function ensureSyncDirectories(slug, dateStr) {
     fs.mkdirSync(localDateDir, { recursive: true });
   }
 
-  return dirs;
+  return { localDir: localDateDir, driveDir, dirs: [driveDir, localDateDir].filter(Boolean) };
 }
 
 // -----------------------------------------------------------------------------
@@ -211,60 +207,108 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
         id: 'modules-crate-boundaries',
         text: `Examine the dependency structure between modules and libraries in this codebase. What interfaces prevent tight coupling between ingest and storage?${commitContext}`,
       });
+      questions.push({
+        id: 'modules-public-api-surface',
+        text: 'What shared utilities and public symbols are exposed across module package boundaries?',
+      });
     } else if (slug.includes('skills')) {
       questions.push({
         id: 'skills-manifest-compliance',
         text: 'What criteria must a toolforge skill fulfill in manifest.json and SKILL.md to achieve full operational compliance?',
+      });
+      questions.push({
+        id: 'skills-router-and-dispatch',
+        text: 'How does the skill routing table resolve user prompts to specialized tools and subagents?',
       });
     } else if (slug.includes('operations')) {
       questions.push({
         id: 'ops-process-janitor-preflight',
         text: 'How does the process-janitor preflight ensure clean daemon execution and prevent abandoned Node/Python processes on Windows?',
       });
+      questions.push({
+        id: 'ops-daemon-health-telemetry',
+        text: 'How are background daemon heartbeat, memory ceilings, and log file rotation audited across IronBot tasks?',
+      });
     } else if (slug.includes('meta')) {
       questions.push({
         id: 'meta-taxonomy-drift',
         text: 'How are knowledge base entities and documentation drift tracked and remediated across the wiki target roots?',
+      });
+      questions.push({
+        id: 'meta-schema-and-indexing',
+        text: 'What frontmatter schemas, link graphs, and index tables structure the persistent system memory?',
       });
     } else if (slug.includes('targets')) {
       questions.push({
         id: 'targets-milestone-gates',
         text: 'What are the active phase gates, deliverables, and acceptance criteria for current roadmap targets?',
       });
+      questions.push({
+        id: 'targets-roadmap-conformance',
+        text: 'How are sprint goals and roadmap checkpoints verified against project governance contracts?',
+      });
     } else if (slug.includes('superpowers')) {
       questions.push({
         id: 'superpowers-subagent-dispatch',
         text: 'What are the operational guidelines for subagent dispatch, cavecrew delegation, and token-compressed communication?',
+      });
+      questions.push({
+        id: 'superpowers-skill-orchestration',
+        text: 'How do high-leverage workflows orchestrate parallel worktrees and automated review cycles?',
       });
     } else if (slug.includes('ironledger')) {
       questions.push({
         id: 'ironledger-double-entry-invariants',
         text: 'How does IronLedger enforce double-entry mathematical balance invariants and KMS envelope encryption on audit transactions?',
       });
+      questions.push({
+        id: 'ironledger-tax-lot-and-hud-rendering',
+        text: 'How does IronLedger manage tax lot consistency, HUD rendering, and bank CSV ingest mapping across transaction ledgers?',
+      });
     } else if (slug.includes('sigil')) {
       questions.push({
         id: 'sigil-fix-wal-persistence',
         text: 'Explain the FIX session protocol state transitions, WAL persistence mechanism, and room federation in Sigil.',
+      });
+      questions.push({
+        id: 'sigil-key-lifecycle-and-reconciliation',
+        text: 'How are Ed25519 identity key rotation, heartbeat intervals, and message reconciliation handled in the Sigil client daemon?',
       });
     } else if (slug.includes('agent-harness')) {
       questions.push({
         id: 'agent-harness-graft-sam-mesh',
         text: 'How does the Graft context graph map repo hubs, and how does the SAM mesh coordinate multi-agent terminal workers?',
       });
+      questions.push({
+        id: 'agent-harness-terminal-multiplexing',
+        text: 'Detail Herdr terminal multiplexing, supervisor worker loops, and subagent process lifecycle controls.',
+      });
     } else if (slug.includes('rewrite-labs')) {
       questions.push({
         id: 'rewrite-labs-ssg-redesign',
         text: 'How does Rewrite Labs automate static site generation, asset compilation, and MCP tooling for redesign workflows?',
+      });
+      questions.push({
+        id: 'rewrite-labs-ast-compaction',
+        text: 'What AST transformation pipelines and layout engines power Rewrite Labs multi-tenant SSG output?',
       });
     } else if (slug.includes('dev-triage') || slug.includes('open-dev-issues')) {
       questions.push({
         id: 'ci-cd-defect-triage',
         text: `Review the top active defects and CI test telemetry. What root causes are currently tracked in the open issues buffer?${commitContext}`,
       });
+      questions.push({
+        id: 'ci-cd-triage-remediation-pipeline',
+        text: 'What automated repair scripts and health check gates validate triage queue recovery before landing?',
+      });
     } else {
       questions.push({
         id: 'software-architecture-verification',
         text: `What architectural patterns and invariants govern this subsystem?${commitContext}`,
+      });
+      questions.push({
+        id: 'software-testing-and-contracts',
+        text: `What verification tests and contracts validate this subsystem?${commitContext}`,
       });
     }
   }
@@ -286,6 +330,10 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
     questions.push({
       id: 'buffer-telemetry-status',
       text: `What new events, incoming signals, or telemetry cards have arrived in the ${notebook.title} buffer?`,
+    });
+    questions.push({
+      id: 'buffer-action-item-resolution',
+      text: `What open action items or dispatch receipts from the ${notebook.title} queue require processing?`,
     });
   }
 
@@ -621,7 +669,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
   const args = process.argv.slice(2);
   const options = {
     dryRun: args.includes('--dry-run'),
-    auditOnly: args.includes('--audit-only'),
+    auditOnly: args.includes('--audit-only') || args.includes('--audit'),
     targetSlugOrUuid: null,
   };
 
