@@ -98,6 +98,13 @@ export function getDatabase(dbPath = DEFAULT_DB_PATH, options = {}) {
   });
 
   if (!options.readonly) {
+    try {
+      db.exec(`
+        PRAGMA journal_mode = WAL;
+        PRAGMA synchronous = NORMAL;
+        PRAGMA busy_timeout = 5000;
+      `);
+    } catch {}
     db.exec(SCHEMA_SQL);
     try {
       const cols = db.prepare("PRAGMA table_info(kb_documents)").all();
@@ -106,7 +113,39 @@ export function getDatabase(dbPath = DEFAULT_DB_PATH, options = {}) {
         db.exec("ALTER TABLE kb_documents ADD COLUMN abstract TEXT");
       }
     } catch {}
+  } else {
+    try {
+      db.exec("PRAGMA busy_timeout = 5000;");
+    } catch {}
   }
 
   return db;
 }
+
+/**
+ * Runs a SQLite WAL checkpoint on the database.
+ * @param {DatabaseSync} db
+ * @param {'PASSIVE'|'FULL'|'RESTART'|'TRUNCATE'} [mode='PASSIVE']
+ * @returns {{ busy: number, log: number, checkpointed: number }}
+ */
+export function walCheckpoint(db, mode = 'PASSIVE') {
+  const valid = new Set(['PASSIVE', 'FULL', 'RESTART', 'TRUNCATE']);
+  const normalized = valid.has(String(mode).toUpperCase()) ? String(mode).toUpperCase() : 'PASSIVE';
+  const row = db.prepare(`PRAGMA wal_checkpoint(${normalized})`).get();
+  return {
+    busy: row?.busy ?? 0,
+    log: row?.log ?? 0,
+    checkpointed: row?.checkpointed ?? 0
+  };
+}
+
+/**
+ * Executes a full database compaction: WAL truncate checkpoint, VACUUM, and final checkpoint.
+ * @param {DatabaseSync} db
+ */
+export function compactDatabase(db) {
+  walCheckpoint(db, 'TRUNCATE');
+  db.exec('VACUUM;');
+  walCheckpoint(db, 'TRUNCATE');
+}
+
