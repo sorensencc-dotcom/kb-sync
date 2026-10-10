@@ -29,6 +29,7 @@ const DRIVE_ROOT = fs.existsSync('G:\\My Drive\\notebooklm')
       ? path.join(process.env.USERPROFILE || '', 'Google Drive', 'My Drive', 'notebooklm')
       : null);
 const LOCAL_CONVERSATIONS_ROOT = path.join(REPO_ROOT, 'wiki', 'conversations');
+const OBSIDIAN_CONVERSATIONS_ROOT = path.join(REPO_ROOT, 'obsidian', 'vault', 'wiki', 'conversations');
 const STATUS_FEED_DIR = path.join(REPO_ROOT, '_status-feed');
 const AUDIT_REPORT_PATH = path.join(STATUS_FEED_DIR, 'chat_injection_audit.json');
 
@@ -88,7 +89,12 @@ export function ensureSyncDirectories(slug, dateStr) {
     fs.mkdirSync(localDateDir, { recursive: true });
   }
 
-  return { localDir: localDateDir, driveDir, dirs: [driveDir, localDateDir].filter(Boolean) };
+  const obsidianDateDir = path.join(OBSIDIAN_CONVERSATIONS_ROOT, dateStr);
+  if (!fs.existsSync(obsidianDateDir)) {
+    fs.mkdirSync(obsidianDateDir, { recursive: true });
+  }
+
+  return { localDir: localDateDir, obsidianDir: obsidianDateDir, driveDir, dirs: [driveDir, localDateDir, obsidianDateDir].filter(Boolean) };
 }
 
 // -----------------------------------------------------------------------------
@@ -473,21 +479,43 @@ export function auditClusterLatency(registry) {
       }
     }
 
-    // Check local conversations directory
-    if (fs.existsSync(LOCAL_CONVERSATIONS_ROOT)) {
-      try {
-        const dateDirs = fs.readdirSync(LOCAL_CONVERSATIONS_ROOT);
-        for (const d of dateDirs) {
-          const targetFile = path.join(LOCAL_CONVERSATIONS_ROOT, d, `${nb.slug}.md`);
-          if (fs.existsSync(targetFile)) {
-            const stat = fs.statSync(targetFile);
-            if (!lastLogTime || stat.mtimeMs > lastLogTime) {
-              lastLogTime = stat.mtimeMs;
-              lastLogPath = targetFile;
-            }
+    // Check local conversations directories (both wiki/conversations and obsidian/vault/wiki/conversations)
+    const conversationRoots = [LOCAL_CONVERSATIONS_ROOT, OBSIDIAN_CONVERSATIONS_ROOT];
+    const slugTitle = (nb.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const candidateNames = new Set([
+      `${nb.slug}.md`,
+      `cic-${nb.slug}.md`,
+      `${slugTitle}.md`,
+      `${slugTitle.replace(/^cic-/, '')}.md`,
+    ]);
+
+    for (const root of conversationRoots) {
+      if (fs.existsSync(root)) {
+        try {
+          const dateDirs = fs.readdirSync(root);
+          for (const d of dateDirs) {
+            const dirPath = path.join(root, d);
+            try {
+              const dirFiles = fs.readdirSync(dirPath);
+              const slugParts = nb.slug.split('-').filter(p => p.length > 2);
+              for (const f of dirFiles) {
+                if (!f.endsWith('.md')) continue;
+                const fLower = f.toLowerCase();
+                const matchesCandidate = candidateNames.has(f) || candidateNames.has(fLower);
+                const matchesSlug = fLower.includes(nb.slug);
+                const matchesParts = slugParts.length > 0 && slugParts.every(part => fLower.includes(part));
+                if (matchesCandidate || matchesSlug || matchesParts) {
+                  const stat = fs.statSync(path.join(dirPath, f));
+                  if (!lastLogTime || stat.mtimeMs > lastLogTime) {
+                    lastLogTime = stat.mtimeMs;
+                    lastLogPath = path.join(dirPath, f);
+                  }
+                }
+              }
+            } catch {}
           }
-        }
-      } catch {}
+        } catch {}
+      }
     }
 
     const latencyHours = lastLogTime ? ((now - lastLogTime) / (1000 * 60 * 60)).toFixed(1) : 'INF';
@@ -621,13 +649,20 @@ export async function runChatInjection(options = {}) {
         }
       }
 
-      // 2. Local conversations mirror
+      // 2. Local conversations mirror (wiki and obsidian)
       const localLogPath = path.join(LOCAL_CONVERSATIONS_ROOT, dateStr, `${notebook.slug}.md`);
+      const obsidianLogPath = path.join(OBSIDIAN_CONVERSATIONS_ROOT, dateStr, `${notebook.slug}.md`);
       try {
         fs.writeFileSync(localLogPath, logContent, 'utf8');
         console.log(`[LOCAL-MIRROR] Synced local conversation -> ${localLogPath}`);
       } catch (err) {
         console.error(`[LOCAL-MIRROR-ERR] Failed writing to local wiki: ${err.message}`);
+      }
+      try {
+        fs.writeFileSync(obsidianLogPath, logContent, 'utf8');
+        console.log(`[OBSIDIAN-MIRROR] Synced obsidian conversation -> ${obsidianLogPath}`);
+      } catch (err) {
+        console.error(`[OBSIDIAN-MIRROR-ERR] Failed writing to obsidian vault: ${err.message}`);
       }
 
       runResults.push({
