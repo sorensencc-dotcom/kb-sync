@@ -248,4 +248,11 @@ sourceRepository: kb-sync
 - [2026-09-27T04:00:24.131Z] Ingested remote finding 42396d35afdfad9b54d2781ccda756d8be42679c0f6419064475bba3f7bd75db for GAP-10
 - [2026-09-27T19:43:21.925Z] Ingested mobile drop 2026-09-27T142745Z__cic__dannebrog-protocol-verified.md (gdrive-mobile-inbox) into cic/2026-09-27/dannebrog-protocol-verified.md
 - [2026-09-28T02:51:13.697Z] Ingested remote finding 925d9ce14fa090e64c7bdf573da49ee07d37b8556f5af2c896a4e05cfd123383 for GAP-11
-- [2026-09-28T02:51:40.394Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01
+- [2026-09-28T02:51:40.394Z] Ingested remote finding d6a37c8f7b85bc29c65b5df6ae61b94448b7cd5a105a89bbe96efa8631e6f017 for GAP-01[2026-10-06T00:30:05.799Z] TRM-DIFF-GATE: Notebook cuba-claims unchanged; skipping mining pass (mode: active)
+
+- [2026-10-06T04:37:54.468Z] Ingested remote finding 8689308ad13d5f533d9ddc32c7ca495aa0b699d10efa7127c1bfbabf36239f51 for GAP-19
+- [2026-10-07T02:54:08.923Z] Ingested remote finding c305cb27454fa9153a1e67b8c2e4cb3ecce32168cd85d06c12adf6e63b9eacf8 for GAP-20
+- [2026-10-08T01:46:07.655Z] Ingested remote finding 89a54073dbee5094eb90139b5565671023e915ef46b9b72d73b58f8521093d7e for GAP-21
+- [2026-10-09T01:06:43.571Z] Ingested mobile drop 2026-10-09T003759Z__cic__ferguson-bfrc-search-plan.md (gdrive-mobile-inbox) into cic/2026-10-09/ferguson-bfrc-search-plan.md
+- [2026-10-09T02:00:39.007Z] Ingested remote finding 3a8f2d3272f38f16605f3e79bc4c701f9d75b56c60b1ba3aecf2952fd02f3aa8 for GAP-22
+- [2026-10-09T10:37:51.324Z] Ingested mobile drop 2026-10-09T005800Z__action__kb-sync__act-fix-notebooklm-chat-injection-staleness.md (gdrive-mobile-inbox) into action-triage/2026-10-09/kb-sync__act-fix-notebooklm-chat-injection-staleness.md

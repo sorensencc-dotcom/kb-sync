@@ -62,7 +62,7 @@ try {
     $watcherScript = Join-Path $devRoot "scripts\trm-ingress-watcher.mjs"
     if (Test-Path $watcherScript) {
         Write-LogInfo "Running TRM Action Card Ingress and Receipt Sync..."
-        & node $watcherScript --once --sync-receipts 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+        & node $watcherScript --once 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
         if ($LASTEXITCODE -ne 0) {
             Write-LogWarn "TRM Ingress Watcher exited with code $LASTEXITCODE"
         } else {

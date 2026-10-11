@@ -1,0 +1,280 @@
+{
+  "auditedAt": "2026-10-10T17:57:53.137Z",
+  "preAudit": [
+    {
+      "slug": "willow-run",
+      "uuid": "6fd7c40b-df90-444b-9c7a-a64682925856",
+      "title": "CIC - Willow Run & Aviation Engineering",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:53:44.214Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\willow-run.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "ford-politics",
+      "uuid": "0caf6707-f8f2-4d2a-acd2-020acead55ba",
+      "title": "CIC - Ford Executive Dynamics & Politics",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:53:50.310Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\ford-politics.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "post-war",
+      "uuid": "9c469910-a900-43a4-877c-a43c9f545b5f",
+      "title": "CIC - Post-War",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:53:56.001Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\post-war.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "willys-overland",
+      "uuid": "fd4ebe29-9440-4f4b-97cf-0184ffbe29a0",
+      "title": "CIC - Willys-Overland",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:00.034Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\willys-overland.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "cuba-claims",
+      "uuid": "c8360946-dbee-4a2c-b622-7f89b05695b0",
+      "title": "CIC - Cuban Seizures & Retired Assets",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:05.357Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\cuba-claims.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "miami-estate",
+      "uuid": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c",
+      "title": "CIC - Miami Estate & Retirement",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:10.467Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\miami-estate.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "assembly-line",
+      "uuid": "70be0df3-c58a-4711-b4d3-1e4b8726faf7",
+      "title": "CIC - Rouge & Moving Assembly Line",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:15.623Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\assembly-line.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "master-kb",
+      "uuid": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
+      "title": "CIC-KB",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:20.647Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\master-kb.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "daily",
+      "uuid": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "title": "CIC - Daily Research",
+      "section": "historical",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:26.693Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\daily.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "ironledger",
+      "uuid": "76e1932c-054a-4520-9e83-5e882dffc938",
+      "title": "IronLedger Architecture",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:30.872Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\ironledger.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "sigil",
+      "uuid": "26eacb85-2c97-443d-9d81-3bd99cc98412",
+      "title": "Sigil Protocol",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:35.104Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\sigil.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "agent-harness",
+      "uuid": "359b346c-6af7-4ba3-baef-b985c9e6e1af",
+      "title": "Agent Harness Registry",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:39.093Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\agent-harness.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "rewrite-labs",
+      "uuid": "140119ae-3496-45c9-bf0c-71c955136afc",
+      "title": "Rewrite Labs",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:43.990Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\rewrite-labs.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "dev-triage",
+      "uuid": "cb0498ce-1ea5-4668-9f65-ac368753404e",
+      "title": "Open Dev Issues",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:48.468Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\dev-triage.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-governance",
+      "uuid": "b42534be-a208-437e-828e-dad645631c66",
+      "title": "KB - Governance",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:51.945Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-governance.md",
+      "latencyHours": "0.1",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-modules",
+      "uuid": "096b5b92-55d0-44b2-b074-3b3fef0a0d12",
+      "title": "KB - Modules",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:55.900Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-modules.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-skills",
+      "uuid": "3ac216cc-3379-4c9f-8393-ab28a248cecc",
+      "title": "KB - Skills",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:54:59.584Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-skills.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-operations",
+      "uuid": "1ab8f1a2-f066-4246-8489-75f223d5f9d2",
+      "title": "KB - Operations",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:55:03.327Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-operations.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-meta",
+      "uuid": "30f80cc0-80f7-421a-a79b-c510d98aaf94",
+      "title": "KB - Meta",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:55:06.950Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-meta.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-targets",
+      "uuid": "0cab9d12-0f0e-4cc0-9009-69ec809fce4a",
+      "title": "KB - Targets",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:55:10.702Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-targets.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "kb-superpowers",
+      "uuid": "95867d03-1175-4516-9b38-d95592b1a321",
+      "title": "KB - Superpowers",
+      "section": "software_dev",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:55:14.612Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\kb-superpowers.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "personal-os",
+      "uuid": "9724e682-c5ea-4693-8e21-caf8de68611e",
+      "title": "Personal OS",
+      "section": "personal_os",
+      "isCanonical": true,
+      "lastLogTime": "2026-10-10T17:55:18.904Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\personal-os.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "grok-bot",
+      "uuid": "52332bef-552c-427a-afb5-8cc48e6f0079",
+      "title": "Grok Bot Automation",
+      "section": "operational_buffers",
+      "isCanonical": false,
+      "lastLogTime": "2026-10-10T17:55:23.130Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\grok-bot.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "ai-news",
+      "uuid": "bec5a197-8256-4eba-af78-c4881cc28fdd",
+      "title": "AI News and Tools",
+      "section": "operational_buffers",
+      "isCanonical": false,
+      "lastLogTime": "2026-10-10T17:55:27.955Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\ai-news.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    },
+    {
+      "slug": "toolforge-eco",
+      "uuid": "39a71593-eb5b-4605-a4a4-f212ae010da2",
+      "title": "Toolforge Ecosystem",
+      "section": "operational_buffers",
+      "isCanonical": false,
+      "lastLogTime": "2026-10-10T17:55:32.708Z",
+      "lastLogPath": "c:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-10\\toolforge-eco.md",
+      "latencyHours": "0.0",
+      "status": "FRESH"
+    }
+  ]
+}
