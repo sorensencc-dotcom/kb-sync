@@ -1,11 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
 import {
   isPackFamilyTitle,
   filterPackFamilySources,
   purgePackFamilyBeforeUpload,
   buildNotebookLmUploadCommand,
 } from '../scripts/nlm-pack-replace-gate.mjs';
+
+const mockCli = `node "${fileURLToPath(new URL('./mock-nlm-cli.mjs', import.meta.url))}"`;
 
 test('isPackFamilyTitle matches pack family titles', () => {
   assert.equal(isPackFamilyTitle('pack_willow_run.txt'), true);
@@ -54,7 +57,6 @@ test('buildNotebookLmUploadCommand builds standard upload command', () => {
 test('purgePackFamilyBeforeUpload dry-run handles empty sources list', () => {
   let loggedInfo = [];
   let loggedWarn = [];
-  const mockCli = 'node tests/mock-nlm-cli.mjs';
   process.env.MOCK_NLM_MODE = 'empty';
   const result = purgePackFamilyBeforeUpload({
     cli: mockCli,
@@ -78,7 +80,6 @@ test('purgePackFamilyBeforeUpload dry-run identifies matching pack sources witho
     { id: 'src-1', title: 'pack_willow_run.txt' },
     { id: 'src-2', title: 'Daily Notes' },
   ];
-  const mockCli = 'node tests/mock-nlm-cli.mjs';
   process.env.MOCK_NLM_MODE = 'custom';
   process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
   const result = purgePackFamilyBeforeUpload({
@@ -105,7 +106,6 @@ test('purgePackFamilyBeforeUpload live mode purges matching sources', () => {
     { id: 'src-del-1', title: 'pack_ford_politics.txt' },
     { id: 'src-keep-1', title: 'Interview transcript' },
   ];
-  const mockCli = 'node tests/mock-nlm-cli.mjs';
   process.env.MOCK_NLM_MODE = 'custom';
   process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
   const result = purgePackFamilyBeforeUpload({
@@ -128,7 +128,6 @@ test('purgePackFamilyBeforeUpload live mode purges matching sources', () => {
 test('purgePackFamilyBeforeUpload fails closed when source list fails', () => {
   let loggedInfo = [];
   let loggedWarn = [];
-  const mockCli = 'node tests/mock-nlm-cli.mjs';
   process.env.MOCK_NLM_MODE = 'fail';
   assert.throws(
     () => {
