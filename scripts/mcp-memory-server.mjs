@@ -51,6 +51,14 @@ function invalidateStaleCache(database) {
 
 invalidateStaleCache(db);
 
+export function daemonDatabase() {
+  return db;
+}
+
+export function daemonDatabasePath() {
+  return DB_PATH;
+}
+
 const SERVER_NAME = 'local-context-cache';
 const SERVER_VERSION = '1.0.0';
 const PROTOCOL_VERSION = '2024-11-05';
