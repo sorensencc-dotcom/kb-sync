@@ -257,10 +257,35 @@ if [ -z "${NOTEBOOKLM_COOKIE:-}" ] && [ -z "${NOTEBOOKLM_TOKEN:-}" ] && [ -z "${
   exit 1
 fi
 
+# Fallback to default_notebook from configs/notebooklm.yaml if NOTEBOOK_ID not set
+DEFAULT_NOTEBOOK_ID=$(get_config_value "$MODULE_CONFIG" "default_notebook")
+if [ -z "$NOTEBOOK_ID" ] && [ -n "$DEFAULT_NOTEBOOK_ID" ]; then
+  NOTEBOOK_ID="$DEFAULT_NOTEBOOK_ID"
+  log_info "NOTEBOOK_ID not set in .env; defaulted to $NOTEBOOK_ID from $MODULE_CONFIG"
+fi
+
 if [ -z "$NOTEBOOK_ID" ]; then
-  log_error "NOTEBOOK_ID not set in .env"
+  log_error "NOTEBOOK_ID not set in .env and default_notebook missing from $MODULE_CONFIG"
   write_sync_telemetry "FAILED" 0 0
   exit 1
+fi
+
+# Routing Guard: Refuse software packs in historical notebooks
+HISTORICAL_NOTEBOOK_IDS=" 6fd7c40b-df90-444b-9c7a-a64682925856 0caf6707-f8f2-4d2a-acd2-020acead55ba 9c469910-a900-43a4-877c-a43c9f545b5f fd4ebe29-9440-4f4b-97cf-0184ffbe29a0 c8360946-dbee-4a2c-b622-7f89b05695b0 64949154-5892-4fa4-9ad0-e48b2bf5cc6c 70be0df3-c58a-4711-b4d3-1e4b8726faf7 679b8bab-2d87-42cb-a726-6dc54c83acc2 1b4861a3-931f-4632-8fc1-343a8dd37df8 "
+nb_lower=$(echo "$NOTEBOOK_ID" | tr '[:upper:]' '[:lower:]')
+pack_lower=$(echo "$PACK_FILE" | tr '[:upper:]' '[:lower:]')
+
+if [[ "$HISTORICAL_NOTEBOOK_IDS" =~ [[:space:]]"$nb_lower"[[:space:]] ]]; then
+  if [[ "$pack_lower" =~ (repo[_-]?knowledge[_-]?pack|pack_agent_harness|pack_ironledger|pack_sigil|pack_rewrite_labs|agent_harness|ironledger|sigil|\brepo\b.*pack) ]]; then
+    if [ -n "$DEFAULT_NOTEBOOK_ID" ] && [ "$DEFAULT_NOTEBOOK_ID" != "$NOTEBOOK_ID" ]; then
+      log_warn "ROUTING_GUARD: NOTEBOOK_ID ($NOTEBOOK_ID) is a historical notebook! Rerouting software pack '$PACK_FILE' to default_notebook ($DEFAULT_NOTEBOOK_ID)."
+      NOTEBOOK_ID="$DEFAULT_NOTEBOOK_ID"
+    else
+      log_error "ROUTING_GUARD_VIOLATION: Refusing to upload software pack '$PACK_FILE' to historical notebook '$NOTEBOOK_ID'."
+      write_sync_telemetry "FAILED" 0 0
+      exit 1
+    fi
+  fi
 fi
 
 import_cookie_json() {

@@ -1,14 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   isPackFamilyTitle,
   filterPackFamilySources,
   purgePackFamilyBeforeUpload,
   buildNotebookLmUploadCommand,
+  isSoftwarePack,
+  assertAllowedPackNotebook,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
-const mockCli = `node "${fileURLToPath(new URL('./mock-nlm-cli.mjs', import.meta.url))}"`;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = path.resolve(__dirname, '..');
+const mockCli = `node "${path.join(__dirname, 'mock-nlm-cli.mjs')}"`;
 
 test('isPackFamilyTitle matches pack family titles', () => {
   assert.equal(isPackFamilyTitle('pack_willow_run.txt'), true);
@@ -149,3 +155,77 @@ test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () 
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1 & dir', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack.txt | calc' }), /Unsafe NotebookLM file path/);
 });
+
+test('isSoftwarePack identifies repo packs and software categories', () => {
+  assert.equal(isSoftwarePack('repo_knowledge_pack.txt'), true);
+  assert.equal(isSoftwarePack('repo_knowledge_pack_part_aa.txt'), true);
+  assert.equal(isSoftwarePack('repo_knowledge_pack_part_as.txt'), true);
+  assert.equal(isSoftwarePack('pack_agent_harness.txt'), true);
+  assert.equal(isSoftwarePack('pack_ironledger.txt'), true);
+  assert.equal(isSoftwarePack('pack_sigil.txt'), true);
+  assert.equal(isSoftwarePack('agent_harness'), true);
+
+  assert.equal(isSoftwarePack('pack_master_kb.txt'), false);
+  assert.equal(isSoftwarePack('pack_master_kb_part1.txt'), false);
+  assert.equal(isSoftwarePack('pack_willow_run.txt'), false);
+  assert.equal(isSoftwarePack('pack_ford_politics.txt'), false);
+  assert.equal(isSoftwarePack('pack_cuba_claims.txt'), false);
+});
+
+test('assertAllowedPackNotebook blocks software pack uploads to historical notebooks', () => {
+  const cicKbId = '679b8bab-2d87-42cb-a726-6dc54c83acc2';
+  const willowRunId = '6fd7c40b-df90-444b-9c7a-a64682925856';
+
+  assert.throws(
+    () => assertAllowedPackNotebook(cicKbId, 'repo_knowledge_pack.txt'),
+    /ROUTING_GUARD_VIOLATION.*Refusing to upload software pack/
+  );
+  assert.throws(
+    () => assertAllowedPackNotebook(cicKbId, 'repo_knowledge_pack_part_aa.txt'),
+    /ROUTING_GUARD_VIOLATION.*Refusing to upload software pack/
+  );
+  assert.throws(
+    () => assertAllowedPackNotebook(willowRunId, 'repo_knowledge_pack.txt'),
+    /ROUTING_GUARD_VIOLATION.*Refusing to upload software pack/
+  );
+});
+
+test('assertAllowedPackNotebook allows software packs to Core Software notebooks and historical packs to historical notebooks', () => {
+  const agentHarnessId = '359b346c-6af7-4ba3-baef-b985c9e6e1af';
+  const ironLedgerId = '76e1932c-054a-4520-9e83-5e882dffc938';
+  const cicKbId = '679b8bab-2d87-42cb-a726-6dc54c83acc2';
+  const willowRunId = '6fd7c40b-df90-444b-9c7a-a64682925856';
+
+  // Allowed: Software packs into Core Software notebooks
+  assert.doesNotThrow(() => assertAllowedPackNotebook(agentHarnessId, 'repo_knowledge_pack.txt'));
+  assert.doesNotThrow(() => assertAllowedPackNotebook(agentHarnessId, 'repo_knowledge_pack_part_aa.txt'));
+  assert.doesNotThrow(() => assertAllowedPackNotebook(ironLedgerId, 'pack_ironledger.txt'));
+
+  // Allowed: Historical packs into historical notebooks
+  assert.doesNotThrow(() => assertAllowedPackNotebook(cicKbId, 'pack_master_kb.txt'));
+  assert.doesNotThrow(() => assertAllowedPackNotebook(cicKbId, 'pack_master_kb_part1.txt'));
+  assert.doesNotThrow(() => assertAllowedPackNotebook(willowRunId, 'pack_willow_run.txt'));
+});
+
+test('categories.json routes software pack aliases to agent-harness', () => {
+  const categoriesPath = path.join(REPO_ROOT, 'core', 'categories.json');
+  const categoriesData = JSON.parse(fs.readFileSync(categoriesPath, 'utf8'));
+  const agentHarness = categoriesData.categories['agent-harness'];
+
+  assert.ok(agentHarness, 'agent-harness must exist in categories.json');
+  assert.equal(agentHarness.target, '359b346c-6af7-4ba3-baef-b985c9e6e1af');
+  assert.ok(agentHarness.aliases.includes('repo_knowledge_pack'), 'must include repo_knowledge_pack alias');
+  assert.ok(agentHarness.aliases.includes('repo-knowledge-pack'), 'must include repo-knowledge-pack alias');
+  assert.ok(agentHarness.aliases.includes('software'), 'must include software alias');
+});
+
+test('configs/notebooklm.yaml specifies default_notebook as Core Software (agent-harness)', () => {
+  const yamlPath = path.join(REPO_ROOT, 'configs', 'notebooklm.yaml');
+  const yamlContent = fs.readFileSync(yamlPath, 'utf8');
+  const match = yamlContent.match(/^\s*default_notebook\s*:\s*["']?(.*?)["']?\s*$/m);
+
+  assert.ok(match, 'default_notebook must be specified in configs/notebooklm.yaml');
+  assert.equal(match[1], '359b346c-6af7-4ba3-baef-b985c9e6e1af', 'default_notebook must be agent-harness UUID');
+});
+
+

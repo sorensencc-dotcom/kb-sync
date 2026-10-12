@@ -20,6 +20,7 @@
     "trm:closed-loop": "node scripts/run-closed-loop-research.mjs",
     "nlm:chat:inject": "node scripts/notebooklm/chat-injection-runner.mjs",
     "nlm:chat:audit": "node scripts/notebooklm/chat-injection-runner.mjs --audit-only",
+    "nlm:ingest": "node scripts/notebooklm/ingest-nlm-runner.mjs",
     "kb:sync": "powershell.exe -ExecutionPolicy Bypass -File scripts/notebooklm/kb-sync-nightly.ps1",
     "kb:sync:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
     "kb:sync:repair-drift": "bash modules/notebooklm/ingest-notebooklm.sh --repair-drift",

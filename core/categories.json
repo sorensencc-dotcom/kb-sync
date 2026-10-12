@@ -130,7 +130,13 @@
         "agent_harness",
         "graft",
         "sam",
-        "herdr"
+        "herdr",
+        "repo_knowledge_pack",
+        "repo",
+        "repo-knowledge-pack",
+        "repo-pack",
+        "software",
+        "codebase"
       ],
       "status": "canonical",
       "exclude_from_master_kb": true

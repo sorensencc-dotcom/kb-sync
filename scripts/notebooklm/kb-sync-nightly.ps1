@@ -184,6 +184,16 @@ if (-not $NotebookIdForGate -and (Test-Path "$RepoRoot\.env")) {
         }
     }
 }
+if (-not $NotebookIdForGate -and (Test-Path "$RepoRoot\configs\notebooklm.yaml")) {
+    $YamlContent = Get-Content "$RepoRoot\configs\notebooklm.yaml" -ErrorAction SilentlyContinue
+    foreach ($Line in $YamlContent) {
+        if ($Line -match '^\s*default_notebook\s*:\s*(.+)$') {
+            $rawVal = $Matches[1].Trim() -replace '#.*$', ''
+            $NotebookIdForGate = $rawVal.Trim().Trim('"').Trim('''')
+            break
+        }
+    }
+}
 
 $GateNodeCmd = Get-Command "node.exe" -ErrorAction SilentlyContinue
 if ($GateNodeCmd -and (Test-Path $Stage1_5Script)) {
