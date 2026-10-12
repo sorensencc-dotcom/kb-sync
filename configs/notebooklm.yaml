@@ -12,6 +12,10 @@ output_dir: "./.nlm_pack"
 # Knowledge pack filename (without extension, .txt is added)
 pack_filename: "repo_knowledge_pack"
 
+# Default Notebook Target for software packs (Core Software: Agent Harness Registry)
+# Invariant: Software repo packs must route to Core Software notebooks, NEVER historical notebooks.
+default_notebook: "359b346c-6af7-4ba3-baef-b985c9e6e1af"
+
 # Execution & Retry parameters
 timeout_ms: 90000
 retry_attempts: 3

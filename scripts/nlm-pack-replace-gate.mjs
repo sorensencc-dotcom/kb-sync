@@ -27,6 +27,38 @@ export const PACK_FAMILY_TITLE_RE = [
   /^cic\b.*\bpack\b/i,
 ];
 
+/** Canonical 8+1 Historical Domain Notebook IDs where software packs are forbidden */
+export const HISTORICAL_NOTEBOOK_IDS = new Set([
+  '6fd7c40b-df90-444b-9c7a-a64682925856', // willow-run
+  '0caf6707-f8f2-4d2a-acd2-020acead55ba', // ford-politics
+  '9c469910-a900-43a4-877c-a43c9f545b5f', // post-war
+  'fd4ebe29-9440-4f4b-97cf-0184ffbe29a0', // willys-overland
+  'c8360946-dbee-4a2c-b622-7f89b05695b0', // cuba-claims
+  '64949154-5892-4fa4-9ad0-e48b2bf5cc6c', // miami-estate
+  '70be0df3-c58a-4711-b4d3-1e4b8726faf7', // assembly-line
+  '679b8bab-2d87-42cb-a726-6dc54c83acc2', // master-kb (CIC-KB)
+  '1b4861a3-931f-4632-8fc1-343a8dd37df8', // daily
+]);
+
+export const SOFTWARE_PACK_PATTERN = /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness|pack_ironledger|pack_sigil|pack_rewrite_labs|agent_harness|ironledger|sigil)|\brepo\b.*pack/i;
+
+export function isSoftwarePack(packFileOrCategory) {
+  const str = path.basename(String(packFileOrCategory || '')).toLowerCase();
+  return SOFTWARE_PACK_PATTERN.test(str);
+}
+
+export function assertAllowedPackNotebook(notebookId, packFile, category) {
+  const nbId = String(notebookId || '').toLowerCase().trim();
+  const isHistorical = HISTORICAL_NOTEBOOK_IDS.has(nbId);
+  const isSoftware = isSoftwarePack(packFile) || isSoftwarePack(category);
+  if (isHistorical && isSoftware) {
+    throw new Error(
+      `ROUTING_GUARD_VIOLATION: Refusing to upload software pack "${packFile || category}" to historical notebook "${notebookId}". ` +
+      `Software packs belong in Core Software notebooks (IronLedger, Sigil, or Agent Harness), never historical notebooks.`
+    );
+  }
+}
+
 /**
  * @param {string} title
  * @param {string} [incomingPackBaseName] optional basename of the pack about to upload
@@ -127,6 +159,7 @@ export function purgePackFamilyBeforeUpload({
   logInfo = console.log,
   logWarn = console.warn,
 }) {
+  assertAllowedPackNotebook(notebookId, packFile);
   const packBase = packFile ? path.basename(packFile) : undefined;
   logInfo(
     `Replace-gate: listing sources in notebook ${notebookId} before pack upload${packBase ? ` (${packBase})` : ''}...`,
