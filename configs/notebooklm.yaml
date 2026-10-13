@@ -89,6 +89,8 @@ notebook_registry:
       uuid: "76e1932c-054a-4520-9e83-5e882dffc938"
       title: "IronLedger Architecture"
       domain: "Double-entry bookkeeping, KMS envelope encryption, Prometheus metrics"
+      aliases:
+        - "financial-statement-and-docs"
     - slug: "sigil"
       uuid: "26eacb85-2c97-443d-9d81-3bd99cc98412"
       title: "Sigil Protocol"
@@ -155,4 +157,6 @@ notebook_registry:
       uuid: "39a71593-eb5b-4605-a4a4-f212ae010da2"
       title: "Toolforge Ecosystem"
       domain: "Toolforge scripts, CLI utilities, system proposals"
+      aliases:
+        - "ai-ideas"
 
