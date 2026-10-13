@@ -33,18 +33,31 @@ assert_not_contains() {
 }
 
 NODE_DIR="$(dirname "$(command -v node)")"
+GIT_DIR="$(dirname "$(command -v git)")"
 
 # --- Scenario 1: uv absent entirely, no global CLI --------------------------
 # (The local project being unprovisioned is irrelevant when uv itself isn't
 # even installed -- this must stay on the original generic error message.)
-OUT_1="$(PATH="/usr/bin:/bin:$NODE_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
+OUT_1="$(PATH="$GIT_DIR:/usr/bin:/bin:$NODE_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
 assert_contains "$OUT_1" "No valid NotebookLM CLI runtime found (explicit NLM_CLI, uv local project, or global notebooklm/nlm binaries)." \
   "Scenario 1 (no uv, no global CLI): generic FATAL message"
 assert_not_contains "$OUT_1" "git submodule update" \
   "Scenario 1: does not claim a submodule fix when uv was never installed"
 
 STUB_BIN="$(mktemp -d)"
-trap 'rm -rf "$STUB_BIN"' EXIT
+PYPROJECT_FILE="$(git rev-parse --show-toplevel 2>/dev/null || pwd)/notebooklm-mcp-cli/pyproject.toml"
+RESTORE_PYPROJECT=false
+if [ -f "$PYPROJECT_FILE" ]; then
+  mv "$PYPROJECT_FILE" "$PYPROJECT_FILE.bak"
+  RESTORE_PYPROJECT=true
+fi
+cleanup() {
+  rm -rf "$STUB_BIN"
+  if [ "$RESTORE_PYPROJECT" = true ] && [ -f "$PYPROJECT_FILE.bak" ]; then
+    mv "$PYPROJECT_FILE.bak" "$PYPROJECT_FILE"
+  fi
+}
+trap cleanup EXIT
 
 # A real `uv` is not guaranteed on the host running this test (it happens to
 # be present in some dev sandboxes but not on GitHub Actions' ubuntu-latest
@@ -59,9 +72,11 @@ chmod +x "$STUB_BIN/uv"
 UV_DIR="$STUB_BIN"
 
 # --- Scenario 2: uv present, local project unprovisioned, no global CLI -----
-OUT_2="$(PATH="$STUB_BIN:/usr/bin:/bin:$NODE_DIR:$UV_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
-assert_contains "$OUT_2" "Local uv project not found at $REPO_ROOT/notebooklm-mcp-cli (pyproject.toml missing)" \
+OUT_2="$(PATH="$STUB_BIN:$GIT_DIR:/usr/bin:/bin:$NODE_DIR:$UV_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
+assert_contains "$OUT_2" "Local uv project not found at" \
   "Scenario 2: warns about the unprovisioned local project"
+assert_contains "$OUT_2" "notebooklm-mcp-cli (pyproject.toml missing)" \
+  "Scenario 2: specifies missing pyproject.toml"
 assert_contains "$OUT_2" "git submodule update --init --recursive" \
   "Scenario 2: FATAL message gives the actionable provisioning command"
 
@@ -73,9 +88,11 @@ exit 0
 EOF
 chmod +x "$STUB_BIN/notebooklm"
 
-OUT_3="$(PATH="$STUB_BIN:/usr/bin:/bin:$NODE_DIR:$UV_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
-assert_contains "$OUT_3" "Local uv project not found at $REPO_ROOT/notebooklm-mcp-cli (pyproject.toml missing)" \
+OUT_3="$(PATH="$STUB_BIN:$GIT_DIR:/usr/bin:/bin:$NODE_DIR:$UV_DIR" bash "$SCRIPT" --check-auth-only 2>&1 || true)"
+assert_contains "$OUT_3" "Local uv project not found at" \
   "Scenario 3: still warns about the unprovisioned local project"
+assert_contains "$OUT_3" "notebooklm-mcp-cli (pyproject.toml missing)" \
+  "Scenario 3: specifies missing pyproject.toml"
 assert_contains "$OUT_3" "CLI resolution mode: global (notebooklm)" \
   "Scenario 3: falls back to the global CLI instead of crashing or FATAL-exiting"
 assert_not_contains "$OUT_3" "No valid NotebookLM CLI runtime found" \

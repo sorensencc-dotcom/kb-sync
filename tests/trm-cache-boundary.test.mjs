@@ -23,10 +23,15 @@ describe('TRM and local-cache boundary coverage', () => {
       '- [x] [GAP-03] Closed gap: Resolved'
     ].join('\n'));
 
-    assert.deepEqual(gaps.map((gap) => [gap.id, gap.status]), [
+    assert.deepEqual(gaps.map((gap) => [gap.localId, gap.status]), [
       ['GAP-01', 'pending'],
       ['GAP-02', 'in-progress'],
       ['GAP-03', 'resolved']
+    ]);
+    assert.deepEqual(gaps.map((gap) => gap.id), [
+      'GAP-01--pending-gap',
+      'GAP-02--active-gap',
+      'GAP-03--closed-gap'
     ]);
     assert.equal(gaps[0].title, 'Pending gap');
     assert.equal(gaps[0].description, 'Needs evidence');
@@ -91,7 +96,7 @@ describe('TRM and local-cache boundary coverage', () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'mcp-boundary-'));
     const db = getDatabase(path.join(root, 'cache.db'));
     try {
-      assert.equal(processRpcMessage(db, { jsonrpc: '2.0', method: 'notifications/initialized' }), null);
+      assert.equal(processRpcMessage(db, { jsonrpc: '2.0', method: 'notifications/progress' }), null);
       const response = processRpcMessage(db, {
         jsonrpc: '2.0',
         id: 7,

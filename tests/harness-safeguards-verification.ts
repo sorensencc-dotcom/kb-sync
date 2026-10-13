@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import {
   TARGET_DEFINITIONS,
   resolveTargetMaxAllowedMs,
+  runBenchmarks,
 } from "./performance-benchmark.js";
 
 console.log("================================================================================");
@@ -52,6 +53,13 @@ runUnitTest("resolveTargetMaxAllowedMs selects platform-specific baselines", () 
   }
   if (posixMax !== 2500) {
     throw new Error(`Expected posix threshold 2500ms, got ${posixMax}ms`);
+  }
+});
+
+// Test 2b: Benchmark harness export validation
+runUnitTest("runBenchmarks harness function is exported and callable", () => {
+  if (typeof runBenchmarks !== "function") {
+    throw new Error("Expected runBenchmarks to be an exported function");
   }
 });
 

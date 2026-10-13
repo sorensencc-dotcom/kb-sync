@@ -151,53 +151,70 @@ if [ "${ENABLE_PYRAGIFY:-false}" = "true" ] && [ "$USE_MANIFEST" = false ] && co
   fi
 fi
 
-# --- STEP 2: FALLBACK TO GIT-GREP MANUAL FLATTENER ----------------------------
-log_info "Compiling repository files via git grep..."
+# --- STEP 2: MANIFEST & FILE LIST GENERATION ---------------------------------
+log_info "Compiling repository files..."
 
 # Temporary file to hold file list
 TEMP_FILE_LIST=$(mktemp)
 trap "rm -f $TEMP_FILE_LIST" EXIT
 
-# Build list of files to include, filtering by skip patterns and extensions
-{
-  git -C "$REPO_ROOT" grep -I --name-only -e "" 2>/dev/null || true
-  git -C "$REPO_ROOT" ls-files --others --exclude-standard 2>/dev/null || true
-} | sort -u | while read -r file; do
-  # Skip patterns check
-  skip=false
-  for pattern in "${SKIP_PATTERNS[@]}"; do
-    # Use shell glob matching
-    if [[ "$file" == $pattern ]]; then
-      skip=true
-      break
-    fi
-  done
+MANIFEST_HELPER="$(dirname "$0")/flatten-manifest.mjs"
+USE_FAST_HELPER=false
 
-  if [ "$skip" = true ]; then
-    continue
+if command -v node >/dev/null 2>&1 && [ -f "$MANIFEST_HELPER" ]; then
+  log_info "Using fast Node.js manifest engine..."
+  if node "$MANIFEST_HELPER" \
+    --repo-root "$REPO_ROOT" \
+    --global-config "${GLOBAL_CONFIG:-}" \
+    --include-extensions "${INCLUDE_EXTENSIONS:-}" \
+    --output "$TEMP_FILE_LIST"; then
+    USE_FAST_HELPER=true
   fi
+fi
 
-  # Include extensions check (if specified)
-  if [ -n "$INCLUDE_EXTENSIONS" ]; then
-    skip=true
-    while IFS= read -r ext; do
-      [ -z "$ext" ] && continue
-      if [[ "$file" == *"$ext" ]]; then
-        skip=false
+if [ "$USE_FAST_HELPER" = false ]; then
+  log_info "Compiling repository files via git grep fallback..."
+  # Build list of files to include, filtering by skip patterns and extensions
+  {
+    git -C "$REPO_ROOT" grep -I --name-only -e "" 2>/dev/null || true
+    git -C "$REPO_ROOT" ls-files --others --exclude-standard 2>/dev/null || true
+  } | sort -u | while read -r file; do
+    # Skip patterns check
+    skip=false
+    for pattern in "${SKIP_PATTERNS[@]}"; do
+      # Use shell glob matching
+      if [[ "$file" == $pattern ]]; then
+        skip=true
         break
       fi
-    done <<< "$INCLUDE_EXTENSIONS"
+    done
 
     if [ "$skip" = true ]; then
       continue
     fi
-  fi
 
-  # Verify file exists
-  if [ -f "$REPO_ROOT/$file" ]; then
-    echo "$file"
-  fi
-done > "$TEMP_FILE_LIST"
+    # Include extensions check (if specified)
+    if [ -n "$INCLUDE_EXTENSIONS" ]; then
+      skip=true
+      while IFS= read -r ext; do
+        [ -z "$ext" ] && continue
+        if [[ "$file" == *"$ext" ]]; then
+          skip=false
+          break
+        fi
+      done <<< "$INCLUDE_EXTENSIONS"
+
+      if [ "$skip" = true ]; then
+        continue
+      fi
+    fi
+
+    # Verify file exists
+    if [ -f "$REPO_ROOT/$file" ]; then
+      echo "$file"
+    fi
+  done > "$TEMP_FILE_LIST"
+fi
 
 log_info "Found $(wc -l < "$TEMP_FILE_LIST") files to include."
 
@@ -236,25 +253,52 @@ else
   fi
 
   if [ "$USE_COMPACTION" = false ]; then
-    {
-      echo "================================================================================"
-      echo "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK"
-      echo "Generated: $(date)"
-      echo "Repo Root: $REPO_ROOT"
-      echo "================================================================================"
-      echo ""
+    if command -v node >/dev/null 2>&1; then
+      log_info "Fast Node.js pack concatenation engine..."
+      node -e '
+        const fs = require("fs");
+        const path = require("path");
+        const [manifestPath, outPath, repoRoot] = process.argv.slice(1);
+        const out = fs.createWriteStream(outPath);
+        out.write("================================================================================\n");
+        out.write("REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK\n");
+        out.write("Generated: " + new Date().toISOString() + "\n");
+        out.write("Repo Root: " + repoRoot + "\n");
+        out.write("================================================================================\n\n");
+        const files = fs.readFileSync(manifestPath, "utf8").split(/\r?\n/).filter(Boolean);
+        for (const f of files) {
+          const full = path.join(repoRoot, f);
+          try {
+            if (fs.statSync(full).isFile()) {
+              out.write("\n--- START FILE: " + f + " ---\n");
+              out.write(fs.readFileSync(full));
+              out.write("\n--- END FILE: " + f + " ---\n\n");
+            }
+          } catch (_) {}
+        }
+        out.end();
+      ' "$TEMP_FILE_LIST" "$FULL_PACK" "$REPO_ROOT"
+    else
+      {
+        echo "================================================================================"
+        echo "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK"
+        echo "Generated: $(date)"
+        echo "Repo Root: $REPO_ROOT"
+        echo "================================================================================"
+        echo ""
 
-      while IFS= read -r file; do
-        [ -z "$file" ] && continue
-        echo ""
-        echo "--- START FILE: $file ---"
-        if [ -f "$REPO_ROOT/$file" ]; then
-          cat "$REPO_ROOT/$file" || true
-        fi
-        echo "--- END FILE: $file ---"
-        echo ""
-      done < "$TEMP_FILE_LIST"
-    } > "$FULL_PACK"
+        while IFS= read -r file; do
+          [ -z "$file" ] && continue
+          echo ""
+          echo "--- START FILE: $file ---"
+          if [ -f "$REPO_ROOT/$file" ]; then
+            cat "$REPO_ROOT/$file" || true
+          fi
+          echo "--- END FILE: $file ---"
+          echo ""
+        done < "$TEMP_FILE_LIST"
+      } > "$FULL_PACK"
+    fi
 
     log_info "Standard uncompacted knowledge pack generated successfully."
   fi

@@ -45,6 +45,21 @@ function Write-LogError($Message) {
 Write-LogInfo "Starting KB Sync Master Pipeline..."
 Write-LogInfo "Repo Root: $RepoRoot"
 
+# Ensure Git Bash is prioritized on PATH over System32 WSL shim
+$GitBashCandidates = @(
+    "C:\Program Files\Git\bin",
+    "C:\Program Files\Git\usr\bin",
+    "${env:ProgramFiles}\Git\bin",
+    "${env:LOCALAPPDATA}\Programs\Git\bin"
+)
+foreach ($cand in $GitBashCandidates) {
+    if ($cand -and (Test-Path (Join-Path $cand "bash.exe"))) {
+        $env:PATH = "$cand;$env:PATH"
+        Write-LogInfo "Prioritized Git Bash on PATH: $cand"
+        break
+    }
+}
+
 # --- PREFLIGHT: Toolforge node process janitor (fail-soft) ---
 # Always dry-runs; -Apply because this wrapper is unattended/scheduled.
 # Override path via TOOLFORGE_JANITOR_PS1 / JANITOR_PS1. Missing/errors: warn + continue.

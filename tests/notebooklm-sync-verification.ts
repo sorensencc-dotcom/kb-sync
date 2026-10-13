@@ -17,10 +17,13 @@ const PYRAGIFY_CONFIG_PATH = path.join(REPO_ROOT, "pyragify.yaml");
 const SYNC_SCRIPT_PATH = "./modules/notebooklm/ingest-notebooklm.sh";
 
 console.log(`  Resolved REPO_ROOT: ${REPO_ROOT}`);
-console.log(`  Real path of REPO_ROOT: ${fs.realpathSync(REPO_ROOT)}`);
-console.log(`  process.cwd(): ${process.cwd()}`);
-console.log(`  Directory contents of REPO_ROOT:`, fs.readdirSync(REPO_ROOT));
-console.log(`  Resolved SYNC_SCRIPT_PATH: ${path.join(REPO_ROOT, SYNC_SCRIPT_PATH)}\n`);
+if (process.platform === "win32") {
+  const gitBin = "C:\\Program Files\\Git\\bin";
+  const gitUsrBin = "C:\\Program Files\\Git\\usr\\bin";
+  if (fs.existsSync(gitBin) && !process.env.PATH?.includes(gitBin)) {
+    process.env.PATH = `${gitBin};${gitUsrBin};${process.env.PATH || ""}`;
+  }
+}
 
 let allTestsPassed = true;
 

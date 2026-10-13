@@ -397,8 +397,8 @@ query_preexisting_pack_sources() {
       const input = fs.readFileSync(0, "utf8");
       let raw = JSON.parse(input || "[]");
       let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : null);
-      if (!list) process.exit(1);
-      const pattern = /^repo_knowledge_pack.*\.txt$/i;
+      // Match repo knowledge pack or any software/thematic pack in this notebook
+      const pattern = /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness|pack_.*)\.txt$/i;
       const matching = [];
       for (const s of list) {
         if (!s || typeof s.id !== "string" || !s.id) process.exit(1);

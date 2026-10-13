@@ -70,6 +70,10 @@ export function isPackFamilyTitle(title, incomingPackBaseName) {
     const base = path.basename(incomingPackBaseName).toLowerCase();
     const baseNoExt = base.replace(/\.[^.]+$/, '');
     if (t === base || t === baseNoExt || t.startsWith(baseNoExt)) return true;
+    // Treat pack_agent_harness and repo_knowledge_pack as the same pack family
+    const isAgentHarnessFamily = (s) =>
+      /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness)/i.test(s);
+    if (isAgentHarnessFamily(base) && isAgentHarnessFamily(t)) return true;
   }
   return PACK_FAMILY_TITLE_RE.some((re) => re.test(t));
 }
