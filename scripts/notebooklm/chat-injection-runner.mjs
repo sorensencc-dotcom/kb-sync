@@ -33,12 +33,38 @@ const OBSIDIAN_CONVERSATIONS_ROOT = path.join(REPO_ROOT, 'obsidian', 'vault', 'w
 const STATUS_FEED_DIR = path.join(REPO_ROOT, '_status-feed');
 const AUDIT_REPORT_PATH = path.join(STATUS_FEED_DIR, 'chat_injection_audit.json');
 
-const BANNED_BOILERPLATE_PATTERNS = [
+export const BANNED_BOILERPLATE_PATTERNS = [
   /what open questions or unresolved contradictions exist across these sources/i,
   /what claims are asserted but single-sourced or under-corroborated/i,
   /what adjacent topics do these sources point to that aren't covered yet/i,
   /what follow-up research would most strengthen current findings/i,
 ];
+
+export const MIN_ENTROPY_THRESHOLD = 3.0;
+
+export function calculateContentEntropy(text) {
+  if (!text || typeof text !== 'string') return 0;
+  const clean = text.trim();
+  if (clean.length === 0) return 0;
+  const freq = new Map();
+  for (let i = 0; i < clean.length; i++) {
+    const ch = clean[i];
+    freq.set(ch, (freq.get(ch) || 0) + 1);
+  }
+  let entropy = 0;
+  const total = clean.length;
+  for (const count of freq.values()) {
+    const p = count / total;
+    entropy -= p * Math.log2(p);
+  }
+  return parseFloat(entropy.toFixed(3));
+}
+
+export function calculateQuestionEntropy(questions) {
+  if (!Array.isArray(questions) || questions.length === 0) return 0;
+  const joined = questions.map((q) => (typeof q === 'string' ? q : q.text || '')).join(' ');
+  return calculateContentEntropy(joined);
+}
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -352,7 +378,24 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
     }
   }
 
-  return questions;
+  // Dynamic seed-based rotation for conversational entropy
+  const seedStr = String(options.seed || options.date || '');
+  let result = questions;
+  if (seedStr && questions.length > 2) {
+    const seedVal = Array.from(seedStr).reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    const shift = seedVal % questions.length;
+    if (shift > 0) {
+      result = [...questions.slice(shift), ...questions.slice(0, shift)];
+    }
+  }
+
+  // Validate question entropy
+  const entropy = calculateQuestionEntropy(result);
+  if (entropy < MIN_ENTROPY_THRESHOLD) {
+    throw new Error(`CRITICAL: Generated questions failed minimum entropy threshold (${entropy} < ${MIN_ENTROPY_THRESHOLD}) for ${notebook.slug}`);
+  }
+
+  return result;
 }
 
 // -----------------------------------------------------------------------------
@@ -458,6 +501,58 @@ export function auditClusterLatency(registry) {
   const now = Date.now();
   const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
+  // Build conversation index once for all notebooks
+  const conversationRoots = [LOCAL_CONVERSATIONS_ROOT, OBSIDIAN_CONVERSATIONS_ROOT];
+  const filesByUuid = new Map();
+  const filesByName = new Map();
+  const allIndexedFiles = [];
+
+  for (const root of conversationRoots) {
+    if (!fs.existsSync(root)) continue;
+    try {
+      const dateDirs = fs.readdirSync(root);
+      for (const d of dateDirs) {
+        const dirPath = path.join(root, d);
+        try {
+          const dirFiles = fs.readdirSync(dirPath);
+          const dirDateMs = /^\d{4}-\d{2}-\d{2}$/.test(d) ? Date.parse(`${d}T00:00:00Z`) : NaN;
+
+          for (const f of dirFiles) {
+            if (!f.endsWith('.md')) continue;
+            const filePath = path.join(dirPath, f);
+            try {
+              const stat = fs.statSync(filePath);
+              const effectiveTime = (!isNaN(dirDateMs) && dirDateMs > 0)
+                ? Math.max(stat.mtimeMs, dirDateMs)
+                : stat.mtimeMs;
+
+              const entry = { filePath, effectiveTime, mtimeMs: stat.mtimeMs, filename: f.toLowerCase() };
+              allIndexedFiles.push(entry);
+
+              const fLower = f.toLowerCase();
+              if (!filesByName.has(fLower)) filesByName.set(fLower, []);
+              filesByName.get(fLower).push(entry);
+
+              // Read head for UUID
+              const fd = fs.openSync(filePath, 'r');
+              const buf = Buffer.alloc(1024);
+              const bytesRead = fs.readSync(fd, buf, 0, 1024, 0);
+              fs.closeSync(fd);
+              const head = buf.toString('utf8', 0, bytesRead);
+
+              const uuidMatch = head.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
+              if (uuidMatch) {
+                const uuid = uuidMatch[0].toLowerCase();
+                if (!filesByUuid.has(uuid)) filesByUuid.set(uuid, []);
+                filesByUuid.get(uuid).push(entry);
+              }
+            } catch {}
+          }
+        } catch {}
+      }
+    } catch {}
+  }
+
   for (const nb of registry) {
     let lastLogTime = null;
     let lastLogPath = null;
@@ -479,47 +574,77 @@ export function auditClusterLatency(registry) {
       }
     }
 
-    // Check local conversations directories (both wiki/conversations and obsidian/vault/wiki/conversations)
-    const conversationRoots = [LOCAL_CONVERSATIONS_ROOT, OBSIDIAN_CONVERSATIONS_ROOT];
+    // 1. Match by UUID from indexed files
+    const uuidEntries = nb.uuid ? (filesByUuid.get(nb.uuid.toLowerCase()) || []) : [];
+    for (const entry of uuidEntries) {
+      if (!lastLogTime || entry.effectiveTime > lastLogTime) {
+        lastLogTime = entry.effectiveTime;
+        lastLogPath = entry.filePath;
+      }
+    }
+
+    // 2. Check candidate names and aliases
     const slugTitle = (nb.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    const candidateNames = new Set([
+    const candidateNames = [
       `${nb.slug}.md`,
       `cic-${nb.slug}.md`,
       `${slugTitle}.md`,
       `${slugTitle.replace(/^cic-/, '')}.md`,
-    ]);
-
-    for (const root of conversationRoots) {
-      if (fs.existsSync(root)) {
-        try {
-          const dateDirs = fs.readdirSync(root);
-          for (const d of dateDirs) {
-            const dirPath = path.join(root, d);
-            try {
-              const dirFiles = fs.readdirSync(dirPath);
-              const slugParts = nb.slug.split('-').filter(p => p.length > 2);
-              for (const f of dirFiles) {
-                if (!f.endsWith('.md')) continue;
-                const fLower = f.toLowerCase();
-                const matchesCandidate = candidateNames.has(f) || candidateNames.has(fLower);
-                const matchesSlug = fLower.includes(nb.slug);
-                const matchesParts = slugParts.length > 0 && slugParts.every(part => fLower.includes(part));
-                if (matchesCandidate || matchesSlug || matchesParts) {
-                  const stat = fs.statSync(path.join(dirPath, f));
-                  if (!lastLogTime || stat.mtimeMs > lastLogTime) {
-                    lastLogTime = stat.mtimeMs;
-                    lastLogPath = path.join(dirPath, f);
-                  }
-                }
-              }
-            } catch {}
-          }
-        } catch {}
+    ];
+    if (Array.isArray(nb.aliases)) {
+      for (const alias of nb.aliases) {
+        const cleanAlias = String(alias).toLowerCase().replace(/\.md$/, '');
+        candidateNames.push(`${cleanAlias}.md`);
+        candidateNames.push(`cic-${cleanAlias}.md`);
       }
+    }
+
+    for (const cand of candidateNames) {
+      const candEntries = filesByName.get(cand.toLowerCase()) || [];
+      for (const entry of candEntries) {
+        if (!lastLogTime || entry.effectiveTime > lastLogTime) {
+          lastLogTime = entry.effectiveTime;
+          lastLogPath = entry.filePath;
+        }
+      }
+    }
+
+    // 3. Fallback: slug parts matching across indexed files if still not found
+    if (!lastLogPath) {
+      const slugParts = nb.slug.split('-').filter((p) => p.length > 2);
+      for (const entry of allIndexedFiles) {
+        const matchesSlug = entry.filename.includes(nb.slug);
+        const matchesParts = slugParts.length > 0 && slugParts.every((part) => entry.filename.includes(part));
+        if (matchesSlug || matchesParts) {
+          if (!lastLogTime || entry.effectiveTime > lastLogTime) {
+            lastLogTime = entry.effectiveTime;
+            lastLogPath = entry.filePath;
+          }
+        }
+      }
+    }
+
+    // Inspect content of lastLogPath for boilerplate patterns and calculate entropy
+    let boilerplateDetected = false;
+    const bannedMatches = [];
+    let entropyScore = null;
+
+    if (lastLogPath && fs.existsSync(lastLogPath)) {
+      try {
+        const logContent = fs.readFileSync(lastLogPath, 'utf8');
+        for (const pattern of BANNED_BOILERPLATE_PATTERNS) {
+          if (pattern.test(logContent)) {
+            boilerplateDetected = true;
+            bannedMatches.push(pattern.source);
+          }
+        }
+        entropyScore = calculateContentEntropy(logContent);
+      } catch {}
     }
 
     const latencyHours = lastLogTime ? ((now - lastLogTime) / (1000 * 60 * 60)).toFixed(1) : 'INF';
     const isStale = !lastLogTime || (now - lastLogTime) > ONE_DAY_MS;
+    const status = isStale ? 'STALE' : 'FRESH';
 
     auditResults.push({
       slug: nb.slug,
@@ -530,7 +655,11 @@ export function auditClusterLatency(registry) {
       lastLogTime: lastLogTime ? new Date(lastLogTime).toISOString() : null,
       lastLogPath,
       latencyHours,
-      status: isStale ? 'STALE' : 'FRESH',
+      status,
+      auditStatus: (isStale || boilerplateDetected) ? 'FAIL' : 'PASS',
+      boilerplateDetected,
+      bannedMatches,
+      entropyScore,
     });
   }
 
@@ -559,13 +688,23 @@ export async function runChatInjection(options = {}) {
 
   // Pre-audit latency
   const preAudit = auditClusterLatency(registry);
-  const staleCanonical = preAudit.filter((a) => a.isCanonical && a.status === 'STALE');
-  console.log(`[AUDIT-PREFLIGHT] Canonical notebooks: ${preAudit.filter((a) => a.isCanonical).length} | Fresh: ${preAudit.filter((a) => a.isCanonical && a.status === 'FRESH').length} | Stale (>24h): ${staleCanonical.length}`);
+  const staleCanonical = preAudit.filter((a) => a.isCanonical && (a.status === 'STALE' || a.status === 'BOILERPLATE_FAIL'));
+  const boilerplateFailures = preAudit.filter((a) => a.isCanonical && a.boilerplateDetected);
+  console.log(`[AUDIT-PREFLIGHT] Canonical notebooks: ${preAudit.filter((a) => a.isCanonical).length} | Fresh: ${preAudit.filter((a) => a.isCanonical && a.status === 'FRESH').length} | Stale (>24h): ${staleCanonical.length} | Boilerplate violations: ${boilerplateFailures.length}`);
 
   if (options.auditOnly) {
     if (!fs.existsSync(STATUS_FEED_DIR)) fs.mkdirSync(STATUS_FEED_DIR, { recursive: true });
     fs.writeFileSync(AUDIT_REPORT_PATH, JSON.stringify({ auditedAt: new Date().toISOString(), preAudit }, null, 2), 'utf8');
     console.log(`[AUDIT-REPORT] Written telemetry to ${AUDIT_REPORT_PATH}`);
+
+    const isStrict = options.strict || options.failOnStale;
+    if (isStrict && (staleCanonical.length > 0 || boilerplateFailures.length > 0)) {
+      const err = new Error(`Audit failed in strict mode: ${staleCanonical.length} stale canonical notebook(s), ${boilerplateFailures.length} boilerplate violation(s).`);
+      err.code = 'AUDIT_FAILED';
+      err.audit = preAudit;
+      throw err;
+    }
+
     return { audit: preAudit };
   }
 
@@ -705,6 +844,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
   const options = {
     dryRun: args.includes('--dry-run'),
     auditOnly: args.includes('--audit-only') || args.includes('--audit'),
+    strict: args.includes('--strict') || args.includes('--fail-on-stale') || Boolean(process.env.STRICT_AUDIT),
     targetSlugOrUuid: null,
   };
 

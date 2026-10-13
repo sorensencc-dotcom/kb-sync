@@ -9,17 +9,15 @@ import {
   synthesizeDynamicQuestions,
   auditClusterLatency,
   ensureSyncDirectories,
+  calculateContentEntropy,
+  calculateQuestionEntropy,
+  MIN_ENTROPY_THRESHOLD,
+  BANNED_BOILERPLATE_PATTERNS,
+  runChatInjection,
 } from '../scripts/notebooklm/chat-injection-runner.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
-
-const BANNED_BOILERPLATE_PATTERNS = [
-  /what open questions or unresolved contradictions exist across these sources/i,
-  /what claims are asserted but single-sourced or under-corroborated/i,
-  /what adjacent topics do these sources point to that aren't covered yet/i,
-  /what follow-up research would most strengthen current findings/i,
-];
 
 describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
   describe('loadClusterRegistry()', () => {
@@ -197,6 +195,145 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
       // Clean up test directory if created
       const dummyFile = path.join(dirs.localDir, 'test-dummy-slug.md');
       if (fs.existsSync(dummyFile)) fs.unlinkSync(dummyFile);
+    });
+  });
+
+  describe('calculateContentEntropy() & calculateQuestionEntropy()', () => {
+    it('returns 0 for empty or null content', () => {
+      assert.equal(calculateContentEntropy(''), 0);
+      assert.equal(calculateContentEntropy(null), 0);
+      assert.equal(calculateQuestionEntropy([]), 0);
+    });
+
+    it('calculates low entropy for uniform repeating characters', () => {
+      const low = calculateContentEntropy('aaaaaaaaaaaaaaaa');
+      assert.equal(low, 0);
+    });
+
+    it('calculates high entropy for varied natural text (> 3.5 bits/char)', () => {
+      const high = calculateContentEntropy(
+        'Did early B-24 flush-rivet shear and dimple cracking originate from improper A17ST alloy temper in Rouge-modified cold-heading machines?'
+      );
+      assert.ok(high > 3.5, `Expected entropy > 3.5, got ${high}`);
+    });
+
+    it('enforces MIN_ENTROPY_THRESHOLD on all cluster synthesized questions', () => {
+      const registry = loadClusterRegistry();
+      for (const nb of registry) {
+        const questions = synthesizeDynamicQuestions(nb);
+        const score = calculateQuestionEntropy(questions);
+        assert.ok(
+          score >= MIN_ENTROPY_THRESHOLD,
+          `Entropy for ${nb.slug} was ${score}, expected >= ${MIN_ENTROPY_THRESHOLD}`
+        );
+      }
+    });
+  });
+
+  describe('Seed-based Dynamic Question Rotation', () => {
+    it('rotates synthesized question order when different seeds are supplied', () => {
+      const registry = loadClusterRegistry();
+      const ford = registry.find((n) => n.slug === 'ford-politics');
+      assert.ok(ford);
+
+      const q1 = synthesizeDynamicQuestions(ford, { seed: '2026-10-10' });
+      const q2 = synthesizeDynamicQuestions(ford, { seed: '2026-10-11' });
+
+      assert.equal(q1.length, q2.length);
+      assert.notEqual(q1[0].id, q2[0].id);
+    });
+  });
+
+  describe('Header UUID Matching & Boilerplate Detection in auditClusterLatency()', () => {
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const testDir = path.join(REPO_ROOT, 'wiki', 'conversations', todayStr);
+
+    it('matches daily logs by UUID in file header even when filename is mismatched', () => {
+      if (!fs.existsSync(testDir)) fs.mkdirSync(testDir, { recursive: true });
+      const testUuid = '12345678-abcd-ef01-2345-6789abcdef01';
+      const mismatchedFilePath = path.join(testDir, 'completely-unrelated-filename-xyz.md');
+
+      const fileContent = `# Daily Synthesis Log: Unrelated Title — ${todayStr}
+| Metadata | Value |
+|---|---|
+| **Notebook** | Target Notebook (\`${testUuid}\`) |
+| **Slug** | \`mismatched-test-slug\` |
+| **Date** | ${todayStr} |
+`;
+      try {
+        fs.writeFileSync(mismatchedFilePath, fileContent, 'utf8');
+
+        const mockRegistry = [
+          {
+            slug: 'mismatched-test-slug',
+            uuid: testUuid,
+            title: 'Target Notebook',
+            section: 'historical',
+            isCanonical: true,
+          },
+        ];
+
+        const audit = auditClusterLatency(mockRegistry);
+        assert.equal(audit.length, 1);
+        assert.equal(audit[0].status, 'FRESH');
+        assert.ok(audit[0].lastLogPath.includes('completely-unrelated-filename-xyz.md'));
+      } finally {
+        if (fs.existsSync(mismatchedFilePath)) fs.unlinkSync(mismatchedFilePath);
+      }
+    });
+
+    it('detects banned boilerplate patterns and flags boilerplateDetected', () => {
+      if (!fs.existsSync(testDir)) fs.mkdirSync(testDir, { recursive: true });
+      const testUuid = '87654321-dcba-10fe-5432-10fedcba9876';
+      const boilerplateFilePath = path.join(testDir, 'test-boilerplate-slug.md');
+
+      const fileContent = `# Daily Synthesis Log: Boilerplate Test — ${todayStr}
+| Metadata | Value |
+|---|---|
+| **Notebook** | Boilerplate Test (\`${testUuid}\`) |
+
+## Grounded inquiries
+1. What open questions or unresolved contradictions exist across these sources?
+2. What follow-up research would most strengthen current findings?
+`;
+      try {
+        fs.writeFileSync(boilerplateFilePath, fileContent, 'utf8');
+
+        const mockRegistry = [
+          {
+            slug: 'test-boilerplate-slug',
+            uuid: testUuid,
+            title: 'Boilerplate Test',
+            section: 'historical',
+            isCanonical: true,
+          },
+        ];
+
+        const audit = auditClusterLatency(mockRegistry);
+        assert.equal(audit.length, 1);
+        assert.equal(audit[0].boilerplateDetected, true);
+        assert.ok(audit[0].bannedMatches.length >= 2);
+        assert.equal(audit[0].auditStatus, 'FAIL');
+      } finally {
+        if (fs.existsSync(boilerplateFilePath)) fs.unlinkSync(boilerplateFilePath);
+      }
+    });
+  });
+
+  describe('runChatInjection() strict fail-closed mode', () => {
+    it('throws AUDIT_FAILED when strict: true and target notebook is stale', async () => {
+      await assert.rejects(
+        async () => {
+          await runChatInjection({
+            auditOnly: true,
+            strict: true,
+            targetSlugOrUuid: 'mock-non-existent-nb',
+          });
+        },
+        (err) => {
+          return err.message.includes('not found') || err.code === 'AUDIT_FAILED';
+        }
+      );
     });
   });
 });
