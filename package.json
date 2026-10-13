@@ -81,6 +81,7 @@
     "wiki:drift-repair": "node scripts/wiki-drift-repair.mjs",
     "test:cross-audit": "node --test tests/cross-audit.test.mjs",
     "test:replace-gate": "node --test tests/nlm-pack-replace-gate.test.mjs",
+    "test:manifest": "node --test tests/flatten-manifest.test.mjs",
     "test:facts": "node --test tests/fact-extraction-pack.test.mjs",
     "test:repair-audit": "node --test --experimental-strip-types modules/healing/repair-audit-gate.test.ts",
     "visual:verify": "node --test --experimental-strip-types skills/html-visual-verify/tests/render-quality.test.ts",
@@ -98,6 +99,7 @@
     "test:trm": "node --test --experimental-strip-types tests/trm-pipeline.test.ts",
     "kb:cache:sync": "node scripts/sync-kb-cache.mjs",
     "kb:cache:server": "node scripts/mcp-memory-server.mjs",
+    "kb:cache:daemon": "node scripts/mcp-memory-daemon.mjs",
     "trm:triage": "node scripts/trm-triage.mjs",
     "trm:triage:auto": "node scripts/trm-triage.mjs --provider=auto",
     "trm:triage:offline": "node scripts/trm-triage.mjs --provider=offline",
@@ -134,6 +136,10 @@
     "bot:reporter": "node ../scripts/ironbots-daily-reporter.mjs",
     "bot:all": "npm run bot:notebook:ingest && npm run bot:kb:sentinel && npm run bot:trm:triage && npm run bot:watchlist:mine && npm run bot:daemon:heal && npm run bot:ironledger:sentinel && npm run bot:ci:watchdog && npm run bot:trm:ingress && npm run bot:storage:pruner && npm run bot:report",
     "test:ironbots": "node --test ../tests/ironbots.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "2.1.1",
+    "@modelcontextprotocol/server": "2.3.1"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

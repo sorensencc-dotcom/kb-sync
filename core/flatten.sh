@@ -151,53 +151,70 @@ if [ "${ENABLE_PYRAGIFY:-false}" = "true" ] && [ "$USE_MANIFEST" = false ] && co
   fi
 fi
 
-# --- STEP 2: FALLBACK TO GIT-GREP MANUAL FLATTENER ----------------------------
-log_info "Compiling repository files via git grep..."
+# --- STEP 2: MANIFEST & FILE LIST GENERATION ---------------------------------
+log_info "Compiling repository files..."
 
 # Temporary file to hold file list
 TEMP_FILE_LIST=$(mktemp)
 trap "rm -f $TEMP_FILE_LIST" EXIT
 
-# Build list of files to include, filtering by skip patterns and extensions
-{
-  git -C "$REPO_ROOT" grep -I --name-only -e "" 2>/dev/null || true
-  git -C "$REPO_ROOT" ls-files --others --exclude-standard 2>/dev/null || true
-} | sort -u | while read -r file; do
-  # Skip patterns check
-  skip=false
-  for pattern in "${SKIP_PATTERNS[@]}"; do
-    # Use shell glob matching
-    if [[ "$file" == $pattern ]]; then
-      skip=true
-      break
-    fi
-  done
+MANIFEST_HELPER="$(dirname "$0")/flatten-manifest.mjs"
+USE_FAST_HELPER=false
 
-  if [ "$skip" = true ]; then
-    continue
+if command -v node >/dev/null 2>&1 && [ -f "$MANIFEST_HELPER" ]; then
+  log_info "Using fast Node.js manifest engine..."
+  if node "$MANIFEST_HELPER" \
+    --repo-root "$REPO_ROOT" \
+    --global-config "${GLOBAL_CONFIG:-}" \
+    --include-extensions "${INCLUDE_EXTENSIONS:-}" \
+    --output "$TEMP_FILE_LIST"; then
+    USE_FAST_HELPER=true
   fi
+fi
 
-  # Include extensions check (if specified)
-  if [ -n "$INCLUDE_EXTENSIONS" ]; then
-    skip=true
-    while IFS= read -r ext; do
-      [ -z "$ext" ] && continue
-      if [[ "$file" == *"$ext" ]]; then
-        skip=false
+if [ "$USE_FAST_HELPER" = false ]; then
+  log_info "Compiling repository files via git grep fallback..."
+  # Build list of files to include, filtering by skip patterns and extensions
+  {
+    git -C "$REPO_ROOT" grep -I --name-only -e "" 2>/dev/null || true
+    git -C "$REPO_ROOT" ls-files --others --exclude-standard 2>/dev/null || true
+  } | sort -u | while read -r file; do
+    # Skip patterns check
+    skip=false
+    for pattern in "${SKIP_PATTERNS[@]}"; do
+      # Use shell glob matching
+      if [[ "$file" == $pattern ]]; then
+        skip=true
         break
       fi
-    done <<< "$INCLUDE_EXTENSIONS"
+    done
 
     if [ "$skip" = true ]; then
       continue
     fi
-  fi
 
-  # Verify file exists
-  if [ -f "$REPO_ROOT/$file" ]; then
-    echo "$file"
-  fi
-done > "$TEMP_FILE_LIST"
+    # Include extensions check (if specified)
+    if [ -n "$INCLUDE_EXTENSIONS" ]; then
+      skip=true
+      while IFS= read -r ext; do
+        [ -z "$ext" ] && continue
+        if [[ "$file" == *"$ext" ]]; then
+          skip=false
+          break
+        fi
+      done <<< "$INCLUDE_EXTENSIONS"
+
+      if [ "$skip" = true ]; then
+        continue
+      fi
+    fi
+
+    # Verify file exists
+    if [ -f "$REPO_ROOT/$file" ]; then
+      echo "$file"
+    fi
+  done > "$TEMP_FILE_LIST"
+fi
 
 log_info "Found $(wc -l < "$TEMP_FILE_LIST") files to include."
 
