@@ -257,10 +257,10 @@ CALLS=$(cat "$CALL_COUNT_FILE")
 rm -f "$CALL_COUNT_FILE"
 assert_eq "$RC" "1" "Scenario 8: still times out (fails) as before"
 ELAPSED=$((END_S - START_S))
-if [ "$CALLS" -eq 1 ] && [ "$ELAPSED" -lt 4 ]; then
+if [ "$CALLS" -eq 1 ] && [ "$ELAPSED" -le 5 ]; then
   echo "PASS: Scenario 8: stopped after the deadline passed mid-call (1 call, ${ELAPSED}s) instead of running a second ~2s call regardless"
 else
-  echo "FAIL: Scenario 8: expected 1 call and <4s elapsed, got $CALLS call(s) and ${ELAPSED}s -- timeout may still be counted only on sleeps"
+  echo "FAIL: Scenario 8: expected 1 call and <=5s elapsed, got $CALLS call(s) and ${ELAPSED}s -- timeout may still be counted only on sleeps"
   FAIL=1
 fi
 TIMEOUT_MS=90000

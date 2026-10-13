@@ -253,25 +253,52 @@ else
   fi
 
   if [ "$USE_COMPACTION" = false ]; then
-    {
-      echo "================================================================================"
-      echo "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK"
-      echo "Generated: $(date)"
-      echo "Repo Root: $REPO_ROOT"
-      echo "================================================================================"
-      echo ""
+    if command -v node >/dev/null 2>&1; then
+      log_info "Fast Node.js pack concatenation engine..."
+      node -e '
+        const fs = require("fs");
+        const path = require("path");
+        const [manifestPath, outPath, repoRoot] = process.argv.slice(1);
+        const out = fs.createWriteStream(outPath);
+        out.write("================================================================================\n");
+        out.write("REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK\n");
+        out.write("Generated: " + new Date().toISOString() + "\n");
+        out.write("Repo Root: " + repoRoot + "\n");
+        out.write("================================================================================\n\n");
+        const files = fs.readFileSync(manifestPath, "utf8").split(/\r?\n/).filter(Boolean);
+        for (const f of files) {
+          const full = path.join(repoRoot, f);
+          try {
+            if (fs.statSync(full).isFile()) {
+              out.write("\n--- START FILE: " + f + " ---\n");
+              out.write(fs.readFileSync(full));
+              out.write("\n--- END FILE: " + f + " ---\n\n");
+            }
+          } catch (_) {}
+        }
+        out.end();
+      ' "$TEMP_FILE_LIST" "$FULL_PACK" "$REPO_ROOT"
+    else
+      {
+        echo "================================================================================"
+        echo "REWRITE LABS & CIC REPOSITORY KNOWLEDGE PACK"
+        echo "Generated: $(date)"
+        echo "Repo Root: $REPO_ROOT"
+        echo "================================================================================"
+        echo ""
 
-      while IFS= read -r file; do
-        [ -z "$file" ] && continue
-        echo ""
-        echo "--- START FILE: $file ---"
-        if [ -f "$REPO_ROOT/$file" ]; then
-          cat "$REPO_ROOT/$file" || true
-        fi
-        echo "--- END FILE: $file ---"
-        echo ""
-      done < "$TEMP_FILE_LIST"
-    } > "$FULL_PACK"
+        while IFS= read -r file; do
+          [ -z "$file" ] && continue
+          echo ""
+          echo "--- START FILE: $file ---"
+          if [ -f "$REPO_ROOT/$file" ]; then
+            cat "$REPO_ROOT/$file" || true
+          fi
+          echo "--- END FILE: $file ---"
+          echo ""
+        done < "$TEMP_FILE_LIST"
+      } > "$FULL_PACK"
+    fi
 
     log_info "Standard uncompacted knowledge pack generated successfully."
   fi

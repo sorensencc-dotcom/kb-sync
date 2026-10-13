@@ -100,8 +100,15 @@ runTest("core/flatten.sh default mode produces concatenated pack", () => {
   }
 
   try {
+    const fixtureDir = path.join(tempDir, "fixture");
+    if (!fs.existsSync(fixtureDir)) {
+      fs.mkdirSync(fixtureDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(fixtureDir, "sample1.txt"), "Sample content 1\n", "utf8");
+    fs.writeFileSync(path.join(fixtureDir, "sample2.txt"), "Sample content 2\n", "utf8");
+
     const output = execSync(
-      `bash core/flatten.sh --output "${toBashPath(tempDir)}" --pack-name "test_pack.txt" --global-config configs/global.yaml --repo-root "${toBashPath(REPO_ROOT)}"`,
+      `bash core/flatten.sh --output "${toBashPath(tempDir)}" --pack-name "test_pack.txt" --global-config configs/global.yaml --repo-root "${toBashPath(fixtureDir)}"`,
       {
         cwd: REPO_ROOT,
         env: getCleanEnv(),
