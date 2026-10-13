@@ -303,6 +303,56 @@ test('All 19 parts (part_aa..as) match the unified agent harness pack family', (
   }
 });
 
+test('Agent Harness: reverse purge - uploading repo_knowledge_pack purges pre-existing pack_agent_harness', () => {
+  let loggedInfo = [];
+  let loggedWarn = [];
+  const mockSources = [
+    { id: 'src-harness', title: 'pack_agent_harness.txt' },
+    { id: 'src-doc', title: 'Interview transcript.md' },
+  ];
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
+
+  const result = purgePackFamilyBeforeUpload({
+    cli: mockCli,
+    notebookId: '359b346c-6af7-4ba3-baef-b985c9e6e1af',
+    packFile: 'repo_knowledge_pack_part_aa.txt',
+    dryRun: true,
+    logInfo: (msg) => loggedInfo.push(msg),
+    logWarn: (msg) => loggedWarn.push(msg),
+  });
+
+  assert.equal(result.listed, 2);
+  assert.equal(result.matched.length, 1);
+  assert.equal(result.matched[0].id, 'src-harness');
+});
+
+test('Agent Harness: live purge executes notebooklm source delete for each matched family member', () => {
+  let loggedInfo = [];
+  let loggedWarn = [];
+  const mockSources = [
+    { id: 'src-harness-1', title: 'pack_agent_harness.txt' },
+    { id: 'src-part-aa', title: 'repo_knowledge_pack_part_aa.txt' },
+    { id: 'src-part-ab', title: 'repo_knowledge_pack_part_ab.txt' },
+  ];
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
+
+  const result = purgePackFamilyBeforeUpload({
+    cli: mockCli,
+    notebookId: '359b346c-6af7-4ba3-baef-b985c9e6e1af',
+    packFile: 'pack_agent_harness.txt',
+    dryRun: false,
+    logInfo: (msg) => loggedInfo.push(msg),
+    logWarn: (msg) => loggedWarn.push(msg),
+  });
+
+  assert.equal(result.listed, 3);
+  assert.equal(result.matched.length, 3);
+  assert.equal(result.purged, 3);
+  assert.equal(result.safeToUpload, true);
+});
+
 
 
 

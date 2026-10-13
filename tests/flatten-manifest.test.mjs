@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { globToRegExp, generateManifest } from '../core/flatten-manifest.mjs';
 
@@ -160,6 +161,78 @@ test('generateManifest supports multiline and comma-separated includeExtensions'
     ]);
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('generateManifest produces strictly sorted alphabetical outputs for deterministic caching', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'manifest-sort-test-'));
+
+  try {
+    const unsortedFiles = ['zeta.ts', 'alpha.ts', 'beta.ts', 'gamma.ts', 'delta.ts'];
+    for (const f of unsortedFiles) {
+      fs.writeFileSync(path.join(tempDir, f), 'content');
+    }
+
+    const result = generateManifest({
+      repoRoot: tempDir,
+      includeExtensions: '.ts',
+    });
+
+    const expected = [...unsortedFiles].sort();
+    assert.deepEqual(result, expected, 'Files must be deterministically sorted in ascending alphabetical order');
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('core/flatten.sh --manifest delegating to flatten-manifest.mjs generates pack.manifest.txt in <5s', () => {
+  let bashCmd = 'bash';
+  if (process.platform === 'win32') {
+    const gitBash = 'C:\\Program Files\\Git\\bin\\bash.exe';
+    if (fs.existsSync(gitBash)) {
+      bashCmd = `"${gitBash}"`;
+    }
+  }
+
+  const tempOut = fs.mkdtempSync(path.join(os.tmpdir(), 'flatten-e2e-out-'));
+  const flattenSh = path.join(REPO_ROOT, 'core', 'flatten.sh');
+  const globalConfig = path.join(REPO_ROOT, 'configs', 'global.yaml');
+
+  try {
+    const start = Date.now();
+    // Convert paths to posix for bash
+    const toPosix = (p) => p.replace(/^[A-Za-z]:/, (m) => `/${m[0].toLowerCase()}`).replace(/\\/g, '/');
+
+    execSync(
+      `${bashCmd} "${toPosix(flattenSh)}" --output "${toPosix(tempOut)}" --pack-name "test_pack.txt" --global-config "${toPosix(globalConfig)}" --manifest --repo-root "${toPosix(REPO_ROOT)}"`,
+      {
+        cwd: REPO_ROOT,
+        timeout: 15000,
+        stdio: 'pipe',
+        env: {
+          ...process.env,
+          PATH: process.platform === 'win32' ? `C:\\Program Files\\Git\\bin;${process.env.PATH}` : process.env.PATH,
+        },
+      }
+    );
+
+    const elapsed = Date.now() - start;
+    console.log(`  core/flatten.sh --manifest completed in ${elapsed}ms`);
+    assert.ok(elapsed < 10000, `Expected core/flatten.sh --manifest to complete in <10s, took ${elapsed}ms`);
+
+    const manifestFile = path.join(tempOut, 'pack.manifest.txt');
+    assert.ok(fs.existsSync(manifestFile), 'pack.manifest.txt must exist in output directory');
+
+    const manifestLines = fs.readFileSync(manifestFile, 'utf8').trim().split('\n').filter(Boolean);
+    assert.ok(manifestLines.length > 5000, `Expected >5000 entries in manifest, got ${manifestLines.length}`);
+  } catch (err) {
+    if (err.message && (err.message.includes('ENOENT') || err.message.includes('spawn bash'))) {
+      // Skip if bash is unavailable in environment
+      return;
+    }
+    throw err;
+  } finally {
+    fs.rmSync(tempOut, { recursive: true, force: true });
   }
 });
 

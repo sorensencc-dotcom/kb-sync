@@ -18,9 +18,17 @@ let passedCount = 0;
 let skippedCount = 0;
 let failedCount = 0;
 
+if (process.platform === "win32") {
+  const gitBin = "C:\\Program Files\\Git\\bin";
+  const gitUsrBin = "C:\\Program Files\\Git\\usr\\bin";
+  if (fs.existsSync(gitBin) && !process.env.PATH?.includes(gitBin)) {
+    process.env.PATH = `${gitBin};${gitUsrBin};${process.env.PATH || ""}`;
+  }
+}
+
 export function isBashAvailable(): boolean {
   try {
-    execSync("bash --version", { stdio: "ignore", timeout: 2000 });
+    execSync("bash --version", { stdio: "ignore", timeout: 5000 });
     return true;
   } catch {
     return false;
@@ -216,7 +224,7 @@ runTest("core/validate.sh classifies pack size correctly", () => {
       fs.rmSync(tempDir, { recursive: true });
     }
   }
-});
+}, true);
 
 // Test 4: core/chunk.sh splits large files
 runTest("core/chunk.sh splits oversized pack into line-safe chunks", () => {
@@ -261,7 +269,7 @@ runTest("core/chunk.sh splits oversized pack into line-safe chunks", () => {
       fs.rmSync(tempDir, { recursive: true });
     }
   }
-});
+}, true);
 
 // Test 5: core/rollback.sh backup/restore cycle
 runTest("core/rollback.sh creates and restores backups", () => {
@@ -323,7 +331,7 @@ runTest("core/rollback.sh creates and restores backups", () => {
       fs.rmSync(tempDir, { recursive: true });
     }
   }
-});
+}, true);
 
 // Test 6: Gap 1 - Infra-timeout / partial-run resilience (core/run-all.sh fail-soft isolation & error log)
 runTest("core/run-all.sh isolates target failures and logs error summary", () => {
@@ -408,7 +416,7 @@ runTest("core/run-all.sh isolates target failures and logs error summary", () =>
       } catch {}
     }
   }
-});
+}, true);
 
 // Test 7: Gap 2 - Immutable staging guarantee
 runTest("Staging directory files remain byte-identical across multiple runs", () => {
@@ -507,7 +515,7 @@ runTest("core/rollback.sh restores modified files from backup", () => {
       fs.rmSync(tempDir, { recursive: true, force: true });
     }
   }
-});
+}, true);
 
 // Tests 9-12: category alias resolution regression coverage (kb-sync PR #16 review)
 const configModule = await import(pathToFileURL(path.join(REPO_ROOT, "core", "config.mjs")).href);
