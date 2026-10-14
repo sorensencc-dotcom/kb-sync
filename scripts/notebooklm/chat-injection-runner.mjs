@@ -399,8 +399,85 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
 }
 
 // -----------------------------------------------------------------------------
-// 4. Source Inspection for Large Notebooks (>50 sources)
+// 4. Source Inspection, Synthetic Filtering & Token-Density Pruning
 // -----------------------------------------------------------------------------
+export const SYNTHETIC_SOURCE_PATTERNS = [
+  /^TRM\s+(?:Research|Operational)\s+Gaps\s+&\s+Synthesis/i,
+  /^Ecosystem\s+Architecture\s+Guide/i,
+  /^(?:repo_)?knowledge_pack/i,
+  /^pack_.*\.txt$/i,
+  /research\s+gaps\s+&\s+synthesis/i,
+  /foundational\s+dossier\s+&\s+research\s+gaps/i,
+  /\.nlm_pack/i,
+];
+
+export function isSyntheticSource(source) {
+  if (!source) return false;
+  const t = (source.title || source.name || '').trim();
+  return SYNTHETIC_SOURCE_PATTERNS.some((p) => p.test(t));
+}
+
+export function filterPrimarySources(sources) {
+  if (!Array.isArray(sources)) return [];
+  return sources.filter((s) => !isSyntheticSource(s));
+}
+
+export function estimateSourceTokens(source) {
+  if (!source) return 0;
+  if (typeof source.char_count === 'number') {
+    return Math.round(source.char_count / 4);
+  }
+  if (typeof source.token_count === 'number') {
+    return source.token_count;
+  }
+  const isPdf = source.type === 'pdf' || (source.title && source.title.toLowerCase().endsWith('.pdf'));
+  if (isPdf) {
+    return 100_000;
+  }
+  return 2000;
+}
+
+export function buildSourceFilter(sources, options = {}) {
+  const primary = filterPrimarySources(sources);
+  if (primary.length === 0) {
+    return {
+      sourceIds: Array.isArray(sources) && sources.length > 0 ? sources.slice(0, 20).map((s) => s.id) : null,
+      timeoutSeconds: 120,
+      isConstrained: false,
+      totalTokens: 0,
+      primaryCount: 0,
+      hasHeavyPdf: false,
+    };
+  }
+
+  const totalTokens = primary.reduce((acc, s) => acc + estimateSourceTokens(s), 0);
+  const hasHeavyPdf = primary.some((s) => {
+    const isPdf = s.type === 'pdf' || (s.title && s.title.toLowerCase().endsWith('.pdf'));
+    return isPdf && estimateSourceTokens(s) >= 100_000;
+  });
+  const shouldConstrain = primary.length > 50 || totalTokens > 250_000 || hasHeavyPdf || Boolean(options.large_source_threshold);
+
+  if (shouldConstrain) {
+    return {
+      sourceIds: primary.slice(0, 20).map((s) => s.id),
+      timeoutSeconds: 180,
+      isConstrained: true,
+      totalTokens,
+      primaryCount: primary.length,
+      hasHeavyPdf,
+    };
+  }
+
+  return {
+    sourceIds: primary.map((s) => s.id),
+    timeoutSeconds: 120,
+    isConstrained: false,
+    totalTokens,
+    primaryCount: primary.length,
+    hasHeavyPdf,
+  };
+}
+
 export function getNotebookSources(notebookUuid) {
   try {
     const res = spawnSync('nlm', ['source', 'list', notebookUuid, '--json'], {
@@ -427,6 +504,10 @@ export function executeNlmQuery(notebookUuid, questionText, options = {}) {
 
   const timeoutSec = options.timeoutSeconds || (options.sourceIds ? 180 : 120);
   args.push('--timeout', String(timeoutSec));
+
+  if (options.newConversation !== false) {
+    args.push('--new-conversation');
+  }
 
   const result = spawnSync('nlm', args, {
     encoding: 'utf8',
@@ -722,17 +803,22 @@ export async function runChatInjection(options = {}) {
     const questions = synthesizeDynamicQuestions(notebook);
     console.log(`[PROMPT-GEN] Generated ${questions.length} entity-anchored questions (0 boilerplate).`);
 
-    // Inspect sources for large notebooks
+    // Inspect, filter synthetic sources, and apply token/count pruning
     let sourceFilter = null;
-    let sourceCount = 0;
+    let queryTimeout = 120;
     try {
       const sources = getNotebookSources(notebook.uuid);
-      sourceCount = sources.length;
-      if (sourceCount > 50 || notebook.large_source_threshold) {
-        console.log(`[LARGE-NOTEBOOK-GUARD] Notebook has ${sourceCount} sources (>50). Constraining query to top 20 sources.`);
-        sourceFilter = sources.slice(0, 20).map((s) => s.id);
+      const filterResult = buildSourceFilter(sources, { large_source_threshold: Boolean(notebook.large_source_threshold) });
+      sourceFilter = filterResult.sourceIds;
+      queryTimeout = filterResult.timeoutSeconds;
+      if (filterResult.isConstrained) {
+        console.log(`[SOURCE-FILTER-GUARD] Constraining query to top ${sourceFilter.length} primary sources (${filterResult.primaryCount} primary sources found, ~${filterResult.totalTokens} tokens, heavyPdf: ${Boolean(filterResult.hasHeavyPdf)}). Excluded synthetic meta sources.`);
+      } else if (sourceFilter && sourceFilter.length > 0) {
+        console.log(`[SOURCE-FILTER-ALLOWLIST] Passing ${sourceFilter.length} primary sources (excluded synthetic meta sources).`);
       }
-    } catch {}
+    } catch (err) {
+      console.warn(`[SOURCE-FILTER-WARN] Could not retrieve sources for ${notebook.slug}: ${err.message}`);
+    }
 
     const turns = [];
 
@@ -750,7 +836,8 @@ export async function runChatInjection(options = {}) {
       } else {
         const queryRes = executeNlmQuery(notebook.uuid, q.text, {
           sourceIds: sourceFilter,
-          timeoutSeconds: sourceFilter ? 180 : 120,
+          timeoutSeconds: queryTimeout,
+          newConversation: true,
         });
 
         if (queryRes.ok) {
