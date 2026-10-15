@@ -245,7 +245,7 @@ function main() {
         report.ok = false;
         report.error = `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${lockData.pid}`;
         console.error(JSON.stringify(report, null, 2));
-        process.exit(3);
+        return 3;
       }
     } catch {
       fs.unlinkSync(lockPath);
@@ -261,7 +261,7 @@ function main() {
       report.ok = false;
       report.error = 'NLM_RUNTIME_NOT_FOUND: Neither nlm, notebooklm, nor uv-managed project found.';
       console.error(JSON.stringify(report, null, 2));
-      process.exit(3);
+      return 3;
     }
 
     // 4. Preflight Auth Check
@@ -271,7 +271,7 @@ function main() {
       report.ok = false;
       report.error = `AUTH_INVALID_RELOGIN_REQUIRED: ${authRes.stderr || authRes.stdout || 'Auth check returned non-zero'}`.trim();
       console.log(JSON.stringify(report, null, 2));
-      process.exit(2);
+      return 2;
     }
     console.error(`[✓] NotebookLM authentication valid.`);
 
@@ -285,8 +285,7 @@ function main() {
     if (isDryRun || stagedFiles.length === 0) {
       console.error(`[*] Staged: ${report.staged}. DryRun: ${isDryRun}. Exiting nominal.`);
       console.log(JSON.stringify(report, null, 2));
-      if (fs.existsSync(lockPath)) fs.unlinkSync(lockPath);
-      process.exit(0);
+      return 0;
     }
 
     // 6. Check Receipts
@@ -368,17 +367,20 @@ function main() {
     }
 
     console.log(JSON.stringify(report, null, 2));
-    process.exit(report.ok ? 0 : 1);
+    return report.ok ? 0 : 1;
 
   } finally {
     if (fs.existsSync(lockPath)) {
-      try { fs.unlinkSync(lockPath); } catch {}
+      try {
+        const lock = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+        if (lock.pid === process.pid) fs.unlinkSync(lockPath);
+      } catch {}
     }
   }
 }
 
 try {
-  main();
+  process.exitCode = main();
 } catch (fatalErr) {
   console.error(JSON.stringify({
     ok: false,

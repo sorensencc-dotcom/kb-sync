@@ -81,10 +81,14 @@ test('LIVE sandbox: real ingestion, source content readback, receipt, and repeat
   const run = () => {
     console.log('[LIVE] Executing ingestion runner');
     const result = spawnSync(process.execPath, [path.join(root, 'scripts/notebooklm/ingest-nlm-runner.mjs'), notebookId, '--staging-dir', staging], { encoding: 'utf8', timeout: 150000 });
+    save('ingestion-command-result.json', result);
+    assert.ifError(result.error);
+    assert.ok(result.stdout.trim(), `Ingestion returned no report: status=${result.status}, stderr=${result.stderr}`);
     const report = JSON.parse(result.stdout);
     ownedIds.push(...(report.uploadedSourceIds || []));
     save('ingestion-last-report.json', report);
     assert.equal(result.status, 0, result.stderr);
+    assert.equal(fs.existsSync(path.join(staging, '.nlm-sync.lock')), false, 'Completed live ingestion must release owned lock');
     return report;
   };
   const before = listed(cli(['source', 'list', notebookId, '--json']));
