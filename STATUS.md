@@ -23,6 +23,10 @@ Verification:
 - Mutation evidence: node_modules/.cache/kb-testing-final-20261014-02/console.log, process-result.json, replacement.json, ingestion-first.json, ingestion-second.json, uploaded-pack-grounding.json, stage1.5.json, and cleanup-source-list.json.
 - Reviewed and corrected earlier live holes: ephemeral --new-conversation sessions invisible remotely, missing CHARLIE citations, valid 3.5-second wording rejected, lost orchestrator stdout failure details, same-title receipt mismatch, ownership journal fallback, stale-answer transcript assertions, production response duplication, and buffered test progress.
 
-Delivery: Scoped commit and branch push pending final hooks and remote verification. No merge, deployment, production notebook execution, or fixture changes.
+Delivery: Implementation committed as cbbf9d0b on codex/kb-testing-live-sandbox, prepared for remote review. Exact delivered SHA and remote verification appear in final chat. No merge, deployment, production notebook execution, or fixture changes.
+
+Existing hook results: Markdown, contract, secret, and fail-soft sibling checks completed. Sibling gate logged 12 wiki siblings for regeneration. Post-commit autoheal reported 81 stale wiki pages, then aborted on schema validation; it stated target vault and Log.md remained untouched. Generated TODO and graph/cache-ignore state remain local, excluded from scoped commit.
+
+Next action: Review delivered branch for merge. Wiki regeneration/schema remediation remains a separate follow-up.
 
 Not checked: full unrelated kb-sync suite or remote CI. Raw live receipts remain ignored local artifacts; commits contain code, tests, configuration, and this status only.
