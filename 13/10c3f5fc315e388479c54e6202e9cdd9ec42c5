@@ -1,0 +1,35 @@
+tests/wiki-drift-hook-autoheal.test.mjs
+  s_9c76c2a4e23e47::t_8df36defeb2bbb 5-6,52-103
+scripts/install-git-hooks.mjs
+  s_9c76c2a4e23e47::t_8df36defeb2bbb 11,91-93,97,103,108
+STATUS.md
+  s_dabfadae156072::t_ed9f6302c1f58e 77-87
+modules/wiki/validate-contract.mjs
+  s_9c76c2a4e23e47::t_2c756800b0683b 366,403-404,406,409
+tests/validate-contract-json.test.js
+  s_9c76c2a4e23e47::t_f3b45532ee7f29 105-109
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1310c3f5fc315e388479c54e6202e9cdd9ec42c5",
+  "prompts": {},
+  "sessions": {
+    "s_9c76c2a4e23e47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13fd4-c649-7350-a698-7f277735abff",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_dabfadae156072": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13fa6-b0fc-7bf1-9b22-90440f083293",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
