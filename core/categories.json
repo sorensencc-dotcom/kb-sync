@@ -359,6 +359,16 @@
       ],
       "status": "canonical",
       "exclude_from_master_kb": true
+    },
+    "kb-testing": {
+      "exclude_from_master_kb": true,
+      "title": "KB - Testing Sandbox (Live Verification)",
+      "status": "sandbox",
+      "description": "Explicit sandbox verification only",
+      "target": "d721ed70-5b37-497f-a279-10ba362c744e",
+      "aliases": [
+        "testing-sandbox"
+      ]
     }
   },
   "placeholders": {}

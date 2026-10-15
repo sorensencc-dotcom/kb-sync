@@ -34,6 +34,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { assertLiveSandbox, findActiveUploadedSource } from './sandbox-contract.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,6 +63,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 const notebookUuid = positional[0] || flags['notebook'] || flags['notebook-id'] || process.env.NOTEBOOK_ID;
+if (process.env.NLM_LIVE_SANDBOX === '1') assertLiveSandbox(notebookUuid);
 if (!notebookUuid) {
   console.error(JSON.stringify({
     ok: false,
@@ -91,6 +93,7 @@ const report = {
   timestamp: new Date().toISOString(),
   staged: 0,
   ingested: 0,
+  uploadedSourceIds: [],
   skippedAlreadySynced: 0,
   failed: [],
   ok: true,
@@ -119,13 +122,13 @@ function resolveNlmRunner() {
     return { cmd: parts[0], dialect: 'nlm', prefix: parts.slice(1) };
   }
 
-  const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', shell: process.platform === 'win32' });
+  const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: process.platform === 'win32' });
   if (check.status === 0) return { cmd: 'nlm', dialect: 'nlm', prefix: [] };
 
-  const pyCheck = spawnSync('notebooklm', ['--version'], { encoding: 'utf8', shell: process.platform === 'win32' });
+  const pyCheck = spawnSync('notebooklm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: process.platform === 'win32' });
   if (pyCheck.status === 0) return { cmd: 'notebooklm', dialect: 'notebooklm', prefix: [] };
 
-  const uvCheck = spawnSync('uv', ['--version'], { encoding: 'utf8' });
+  const uvCheck = spawnSync('uv', ['--version'], { encoding: 'utf8', timeout: 5000 });
   const localPyproject = path.resolve(__dirname, '../../notebooklm-mcp-cli/pyproject.toml');
   if (uvCheck.status === 0 && fs.existsSync(localPyproject)) {
     return { cmd: 'uv', dialect: 'nlm', prefix: ['--directory', path.dirname(localPyproject), 'run', 'nlm'] };
@@ -136,7 +139,7 @@ function resolveNlmRunner() {
 
 function buildSourceAddArgs(runner, notebookUuid, filePath) {
   if (runner.dialect === 'nlm') {
-    return ['source', 'add', notebookUuid, '--file', filePath, '--wait'];
+    return ['source', 'add', notebookUuid, '--file', filePath, '--wait', ...(process.env.NLM_LIVE_SANDBOX === '1' ? ['--json'] : [])];
   }
   return ['source', 'add', '--notebook', notebookUuid, filePath, '--wait'];
 }
@@ -303,9 +306,17 @@ function main() {
           console.error(`    --> Uploading: ${fileName}`);
           const addArgs = buildSourceAddArgs(runner, notebookUuid, filePath);
           const addRes = runNlm(runner, addArgs, 90000);
+          let uploadedSourceId = null;
 
           if (addRes.status !== 0) {
             throw new Error(`CLI_SOURCE_ADD_FAILED (${addRes.status}): ${addRes.stderr || addRes.stdout}`);
+          }
+          if (process.env.NLM_LIVE_SANDBOX === '1') {
+            const added = JSON.parse(addRes.stdout);
+            const id = added.source_id || added.id || added.source?.id;
+            if (!id) throw new Error('UPLOAD_SOURCE_ID_MISSING');
+            uploadedSourceId = id;
+            report.uploadedSourceIds.push(id);
           }
 
           // Verify server-side source state if supported
@@ -316,13 +327,17 @@ function main() {
             if (listRes.status === 0 && listRes.stdout) {
               const parsed = JSON.parse(listRes.stdout);
               const sources = Array.isArray(parsed) ? parsed : (parsed.sources || []);
-              const found = sources.find(s => (s.title === fileName || s.title?.includes(path.parse(fileName).name)));
+              const found = process.env.NLM_LIVE_SANDBOX === '1' ? findActiveUploadedSource(sources, uploadedSourceId)
+                : sources.find(s => [s.title, s.name, s.displayName].some(title => title === fileName || title === path.parse(fileName).name));
               if (found) {
-                verifiedSourceId = found.id || found.source_id;
+                verifiedSourceId = found.id || found.sourceId || found.source_id;
               }
             }
           } catch {
             // Best effort verification
+          }
+          if (process.env.NLM_LIVE_SANDBOX === '1' && !verifiedSourceId) {
+            throw new Error('SOURCE_VERIFICATION_FAILED: no server source ID; receipt withheld');
           }
 
           saveReceipt(receiptsData, receiptKey, {

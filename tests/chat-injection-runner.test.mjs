@@ -24,9 +24,9 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 
 describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
   describe('loadClusterRegistry()', () => {
-    it('loads all 25 notebooks defined in configs/notebooklm.yaml', () => {
+    it('loads all 26 notebooks defined in configs/notebooklm.yaml', () => {
       const registry = loadClusterRegistry();
-      assert.equal(registry.length, 25);
+      assert.equal(registry.length, 26);
     });
 
     it('correctly maps canonical notebooks vs operational buffers', () => {
@@ -35,7 +35,7 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
       const buffers = registry.filter((n) => !n.isCanonical);
 
       assert.equal(canonical.length, 22);
-      assert.equal(buffers.length, 3);
+      assert.equal(buffers.length, 4);
 
       const bufferSlugs = buffers.map((b) => b.slug);
       assert.ok(bufferSlugs.includes('grok-bot'));
@@ -93,7 +93,7 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
   });
 
   describe('synthesizeDynamicQuestions() & Zero-Boilerplate Guarantee', () => {
-    it('never emits any of the 4 banned boilerplate fallback questions across all 25 notebooks', () => {
+    it('never emits any of the 4 banned boilerplate fallback questions across all 26 notebooks', () => {
       const registry = loadClusterRegistry();
 
       for (const nb of registry) {
@@ -159,7 +159,7 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
       const registry = loadClusterRegistry();
       const audit = auditClusterLatency(registry);
 
-      assert.equal(audit.length, 25);
+      assert.equal(audit.length, 26);
       for (const item of audit) {
         assert.ok(item.slug);
         assert.ok(item.uuid);

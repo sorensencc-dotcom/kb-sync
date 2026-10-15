@@ -170,6 +170,10 @@ nlm_source_add() {
 
 nlm_source_delete() {
   local notebook_id="$1" source_id="$2"
+  if [ "$source_id" = "cc06bd53-1793-4ea0-b723-6f77eb1dd490" ]; then
+    echo "PROTECTED_SANDBOX_FIXTURE: deletion forbidden" >&2
+    return 1
+  fi
   if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli source delete "$source_id" -y
   else
