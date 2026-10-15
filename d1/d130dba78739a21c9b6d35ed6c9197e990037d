@@ -1,0 +1,33 @@
+configs/obsidian.yaml
+  s_9c76c2a4e23e47::t_d8a3bb9b2d94e1 8
+tests/wiki-vault-root-default.test.mjs
+  s_9c76c2a4e23e47::t_9a2a5443039cef 1-6,8-10,12-25,35-45,51-54
+  s_9c76c2a4e23e47::t_bd60fdd4e909f6 46-50
+  s_9c76c2a4e23e47::t_0456cbf66c0d9c 7,11,26-34
+STATUS.md
+  s_dabfadae156072::t_8a36bf5da3c7e9 88-105
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d1d130dba78739a21c9b6d35ed6c9197e990037d",
+  "prompts": {},
+  "sessions": {
+    "s_9c76c2a4e23e47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13fd4-c649-7350-a698-7f277735abff",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_dabfadae156072": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13fa6-b0fc-7bf1-9b22-90440f083293",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
