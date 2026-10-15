@@ -14,6 +14,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 console.log(`  Resolved REPO_ROOT: ${REPO_ROOT}\n`);
 
 let allTestsPassed = true;
+let skippedTests = 0;
 
 // Preflight Shell Capability Detection
 function getBashExecutable(): string | null {
@@ -44,10 +45,16 @@ if (!HAS_BASH) {
   console.log(`[PREFLIGHT INFO] Resolved Bash runner: ${BASH_CMD}\n`);
 }
 
-function runTest(name: string, fn: () => void) {
+function runTest(name: string, fn: () => void | false) {
   console.log(`[TEST] Running: ${name}...`);
   try {
-    fn();
+    if (fn() === false) {
+      if (process.env.REQUIRE_BASH_COVERAGE === 'true') {
+        throw new Error('REQUIRE_BASH_COVERAGE=true forbids skipping Bash coverage');
+      }
+      skippedTests++;
+      return;
+    }
     console.log(`[PASS] ✓ ${name}\n`);
   } catch (error: any) {
     console.error(`[FAIL] ✗ ${name}`);
@@ -109,7 +116,7 @@ runTest("Parse and validate obsidian.yaml config structure", () => {
 runTest("Staging script fails fast when OBSIDIAN_VAULT_ROOT not set and vault_root invalid", () => {
   if (!HAS_BASH) {
     console.log("  [SKIPPED] Environment Unavailable: Bash executable not accessible.");
-    return;
+    return false;
   }
 
   const tempConfigDir = path.join(REPO_ROOT, "configs");
@@ -144,7 +151,7 @@ runTest("Staging script fails fast when OBSIDIAN_VAULT_ROOT not set and vault_ro
 runTest("Staging script stages raw sources into timestamped directory", () => {
   if (!HAS_BASH) {
     console.log("  [SKIPPED] Environment Unavailable: Bash executable not accessible.");
-    return;
+    return false;
   }
 
   const tempVaultRoot = path.join(REPO_ROOT, ".test_obsidian_vault");
@@ -181,7 +188,7 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
       (error.message && error.message.includes("ETIMEDOUT"));
     if (isTimeout) {
       console.log("  [SKIPPED] Environment Unavailable: Bash execution timed out (>30s) in this environment.");
-      return;
+      return false;
     }
     if (!error.stdout && error.stderr) error.stdout = error.stderr;
     throw error;
@@ -221,7 +228,7 @@ runTest("Schema document (docs/targets/obsidian.md) exists and contains key sect
 runTest("Staging script rejects conflicting flags (--incremental and --full)", () => {
   if (!HAS_BASH) {
     console.log("  [SKIPPED] Environment Unavailable: Bash executable not accessible.");
-    return;
+    return false;
   }
 
   try {
@@ -243,7 +250,7 @@ runTest("Staging script rejects conflicting flags (--incremental and --full)", (
 
 if (allTestsPassed) {
   console.log("================================================================================");
-  console.log("SUCCESS: All obsidian sync verification tests passed!");
+  console.log(`SUCCESS: All executed obsidian sync verification tests passed! (${skippedTests} skipped)`);
   console.log("================================================================================");
   process.exit(0);
 } else {

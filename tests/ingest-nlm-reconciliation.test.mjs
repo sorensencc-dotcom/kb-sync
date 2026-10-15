@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { findActiveUploadedSource } from '../scripts/notebooklm/sandbox-contract.mjs';
 
 const runner = fileURLToPath(new URL('../scripts/notebooklm/ingest-nlm-runner.mjs', import.meta.url));
@@ -25,6 +25,7 @@ else if(a[1]==='list') {
  else if (s.ambiguous) out=[...s.sources, {id:s.sources[0]?.id || 'old-1', title:'conflicting-copy', status:'FAILED'}];
  else out=s.badList ? {unexpected:true} : s.sources;
 } else if(a[1]==='add') {
+ if(s.replacementLock) fs.writeFileSync(path.join(path.dirname(a[a.indexOf('--file')+1]),'.nlm-sync.lock'),JSON.stringify(s.replacementLock));
  const title=path.basename(a[a.indexOf('--file')+1]);
  const source={id:'new-'+(++s.sequence),title,status:s.addStatus||'ACTIVE'};
  if(s.addFail) status=1;
@@ -51,8 +52,8 @@ function fixture(t, count = 1, healthy = 0, receipts = false) {
   const write=s=>fs.writeFileSync(statePath,JSON.stringify(s));
   write({sequence:0,calls:[],sources});
   return {staging,read,write,receipts:()=>JSON.parse(fs.readFileSync(path.join(staging,'.nlm-sync-receipt.json'),'utf8')).receipts,
-    run:()=>{
-      const p=spawnSync(process.execPath,[runner,notebook,'--staging-dir',staging],{encoding:'utf8',timeout:count === 15 ? 30000 : 10000,
+    run:(flags=[])=>{
+      const p=spawnSync(process.execPath,[runner,notebook,'--staging-dir',staging,...flags],{encoding:'utf8',timeout:count === 15 ? 30000 : 10000,
         env:{...process.env,NLM_CLI:`node "${mock}"`,NLM_LIVE_SANDBOX:'0',RECEIPT_STATE:statePath}});
       assert.equal(p.error,undefined,p.error?.message);
       const output=p.stdout || p.stderr.slice(p.stderr.indexOf('{'));
@@ -113,4 +114,55 @@ test('receipt for another notebook cannot suppress upload',t=>{
   const f=fixture(t,1,1,true);const stored=f.receipts();const key=Object.keys(stored)[0];stored[key.replace(notebook,'different-notebook')]=stored[key];delete stored[key];
   fs.writeFileSync(path.join(f.staging,'.nlm-sync-receipt.json'),JSON.stringify({receipts:stored}));
   const r=f.run();assert.equal(r.status,0,r.stderr);assert.equal(r.report.ingested,1);assert.equal(r.report.skippedAlreadySynced,0);
+});
+
+for (const [mode, expectedStatus] of [['upload', 0], ['skip', 0], ['partial', 1], ['auth-failure', 2], ['list-failure', 1], ['dry-run', 0], ['empty', 0]]) {
+  test(`ingestion releases owned lock after ${mode}`, context => {
+    const current = fixture(context, mode === 'empty' ? 0 : 1, mode === 'skip' ? 1 : 0, mode === 'skip');
+    const state = current.read();
+    state.addFail = mode === 'partial';
+    state.authFail = mode === 'auth-failure';
+    state.listFail = mode === 'list-failure';
+    current.write(state);
+    const result = current.run(mode === 'dry-run' ? ['--dry-run'] : []);
+    assert.equal(result.status, expectedStatus, result.stderr);
+    assert.equal(fs.existsSync(path.join(current.staging, '.nlm-sync.lock')), false, 'Exited runner must release owned lock');
+  });
+}
+
+test('ingestion releases owned lock when no CLI runtime is available', context => {
+  const current = fixture(context);
+  const preload = path.join(path.dirname(current.staging), 'no-runtime.mjs');
+  fs.writeFileSync(preload, `import childProcess from 'node:child_process';
+import { syncBuiltinESMExports } from 'node:module';
+childProcess.spawnSync = () => ({ status: 1, stdout: '', stderr: 'Runtime unavailable' });
+syncBuiltinESMExports();`);
+  const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, runner, notebook, '--staging-dir', current.staging], {
+    encoding: 'utf8', timeout: 10000, env: { ...process.env, NLM_CLI: '', NLM_LIVE_SANDBOX: '0' },
+  });
+  assert.ifError(result.error);
+  assert.equal(result.status, 3, result.stderr);
+  assert.match(JSON.parse(result.stderr).error, /NLM_RUNTIME_NOT_FOUND/);
+  assert.equal(fs.existsSync(path.join(current.staging, '.nlm-sync.lock')), false);
+});
+
+test('ingestion preserves live lock owned by another process', context => {
+  const current = fixture(context);
+  const lockPath = path.join(current.staging, '.nlm-sync.lock');
+  const lock = { pid: process.pid, createdAt: new Date().toISOString() };
+  fs.writeFileSync(lockPath, JSON.stringify(lock));
+  const result = current.run();
+  assert.equal(result.status, 3, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(lockPath, 'utf8')), lock);
+  assert.equal(current.read().calls.length, 0);
+});
+
+test('ingestion cleanup preserves lock replaced by another owner', context => {
+  const current = fixture(context);
+  const state = current.read();
+  state.replacementLock = { pid: process.pid, createdAt: new Date().toISOString() };
+  current.write(state);
+  const result = current.run();
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(current.staging, '.nlm-sync.lock'), 'utf8')), state.replacementLock);
 });

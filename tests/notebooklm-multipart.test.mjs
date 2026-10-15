@@ -25,6 +25,7 @@ function run(t, options = {}) {
   fs.cpSync(path.join(repo, 'modules', 'notebooklm'), path.join(dir, 'modules', 'notebooklm'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'configs'));
   fs.writeFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'output_dir: "./.nlm_pack"\npack_filename: "repo_knowledge_pack"\ntimeout_ms: 10000\nretry_attempts: 1\nbackoff_ms: 100\n');
+  fs.appendFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'default_notebook: "fixture-only"\n');
   // Scaled fixture exercises actual splitting without a production-size payload.
   fs.writeFileSync(path.join(dir, 'configs', 'global.yaml'), 'warning_bytes: 512\nhard_bytes: 1024\nchunk_size: 1K\n');
   fs.writeFileSync(path.join(dir, '.gitignore'), '*\n!payload.md\n');
@@ -38,7 +39,7 @@ import fs from 'node:fs'; import path from 'node:path';
 const a=process.argv.slice(2), file=process.env.FIXTURE_STATE;
 const state=JSON.parse(fs.readFileSync(file,'utf8'));
 const save=()=>fs.writeFileSync(file,JSON.stringify(state));
-state.calls.push({args:a, sources:structuredClone(state.sources)});save();
+state.calls.push({args:a, notebookId:process.env.NOTEBOOK_ID, sources:structuredClone(state.sources)});save();
 if(a[0]==='auth'&&['check','refresh'].includes(a[1]))process.exit(0);
 if(a[0]==='source'&&a[1]==='add'&&a[2]==='--help'){console.log(process.env.NO_JSON==='1'?'legacy help':'--json');process.exit(0);}
 if(a[0]!=='source'||a[2]!=='--notebook'||a[3]!=='fixture-only')process.exit(99);
@@ -54,6 +55,7 @@ if(a[1]==='delete') { if(a[5]!=='-y')process.exit(97); if(process.env.FAIL_DELET
 process.exit(96);
 `);
   const env = { ...process.env, NOTEBOOK_ID: 'fixture-only', NOTEBOOKLM_COOKIE: 'fake', NLM_CLI: posix(path.join(dir, 'mock-cli')), FIXTURE_STATE: statePath, COMPACTION_ENABLED: 'false', ENABLE_PYRAGIFY: 'false', ...options.env };
+  if (options.defaultNotebook) delete env.NOTEBOOK_ID;
   for (const key of Object.keys(env)) if (key.toUpperCase().startsWith('GIT_')) delete env[key];
   if (process.platform === 'win32') {
     const pathValue = env.PATH || env.Path || '';
@@ -78,6 +80,13 @@ test('audit preserves eight distinct ACTIVE chunks without uploads or deletes', 
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(state.sources, initial);
   assert.ok(state.calls.every(call => !['add', 'delete'].includes(call.args[1])));
+});
+
+for (const defaultNotebook of [true, false]) test(`child CLI receives ${defaultNotebook ? 'default' : 'rerouted'} notebook ID`, { timeout: 60000 }, context => {
+  const { result, state } = run(context, { audit: true, defaultNotebook, env: { NOTEBOOK_ID: '6fd7c40b-df90-444b-9c7a-a64682925856' } });
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(state.calls.length > 0);
+  for (const call of state.calls) assert.equal(call.notebookId, 'fixture-only');
 });
 
 test('CLI without structured upload support fails before any upload or deletion', { timeout: 60000 }, t => {

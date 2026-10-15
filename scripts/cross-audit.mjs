@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import { readFile } from 'node:fs/promises';
 import process from 'node:process';
-import { runAdversarialCrossAudit } from '../../modules/healing/adversarial-auditor.js';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export function validatePacket(packet) {
   if (!packet || typeof packet !== 'object') throw new Error('Packet must be an object');
@@ -18,6 +20,11 @@ export function validatePacket(packet) {
 
 export async function runCrossAudit(packet, provider) {
   validatePacket(packet);
+  const commonDirectory = execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-common-dir'], {
+    cwd: fileURLToPath(new URL('..', import.meta.url)), encoding: 'utf8', timeout: 5000,
+  }).trim();
+  const auditorPath = path.resolve(commonDirectory, '../../modules/healing/adversarial-auditor.js');
+  const { runAdversarialCrossAudit } = await import(pathToFileURL(auditorPath).href);
   const verdict = await runAdversarialCrossAudit(packet, provider);
   if (!verdict || typeof verdict.consensus !== 'boolean' ||
       typeof verdict.blockerAnalysis !== 'string' ||
@@ -36,7 +43,7 @@ async function main() {
   if (!verdict.consensus) process.exitCode = 2;
 }
 
-if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(`cross-audit: ${error.message}`);
     process.exitCode = 1;

@@ -135,6 +135,11 @@ npm run test:trm:watch
 ```
 
 ### Testing & Verification
+
+`npm run cross-audit -- <packet.json>` and `npm run test:cross-audit` require the shared CIC workspace auditor at `modules/healing/adversarial-auditor.js`, beside the canonical kb-sync repository. Linked worktrees resolve this dependency through Git's common directory, regardless of their checkout location. Standalone clones without that workspace dependency cannot run cross-audit; it remains outside `test:all`.
+
+Set `REQUIRE_BASH_COVERAGE=true` to fail Obsidian verification when Bash is unavailable or staging times out. Optional coverage reports skipped cases without marking them passed.
+
 ```bash
 # Run all unit tests for query expander, vector store, AST grounding, and triage
 node --test tests/vector-store.test.mjs tests/ast-grounding.test.mjs tests/query-expander.test.mjs tests/trm-gap-triage.test.ts tests/trm-cache-boundary.test.mjs
