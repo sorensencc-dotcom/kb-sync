@@ -74,3 +74,14 @@ Root-cause repair continuation, 2026-10-15:
 - Full local gate reached `test:manifest`; six manifest cases passed and its Bash E2E case failed before product logic with host status `3221225794`. Remaining non-Bash gates passed: core/obsidian completed DEGRADED with Bash checks skipped, incremental, worker, harness, v1.2 features, contract cleanup, path, and performance passed.
 - Closed-loop production mutation now requires `NLM_PRODUCTION_MUTATION_APPROVED=1` in addition to the existing live gate; sandbox live behavior remains unchanged.
 - Remote CI remains unverified because local fixes are uncommitted; branch remote still points to `9bca87a4`.
+
+Hook repair, 2026-10-15:
+- Isolated branch codex/hook-repair-20261015 from 4e340105; preserve ongoing ingestion work in separate checkout.
+- Contract schema errors now identify offending note, field, and value with both AJV error-path formats. Existing schema remains unchanged.
+- Drift hooks retain complete failure logs under Git metadata and print retained path. Installer resolves shared hook directory from linked worktrees.
+- Verification: 21 focused hook and metadata-preservation tests passed; three notification-bridge checks passed. Real notifier handled 1 MB stdin through bounded session/turn identity. Git Bash and Node-to-Bash probes pass with host access; restricted runner returns DLL initialization status 0xC0000142.
+- Global Git AI executable restored to configured path from official v1.7.5 release; published SHA256 verified. Empty-payload smoke launched successfully; it reported missing cwd, so this does not prove attribution capture.
+- Global Stop/Interrupt bridge installation was rejected by automatic approval review pending explicit human approval. Existing global configuration and notify command remain unchanged. Proposed hook JSON and bridge source: node_modules/.cache/hook-repair-20261015/.
+- Source vault validation still fails for 64 of 444 notes, including unsupported research statuses. No canonical vault edits, schema relaxation, or installed shared-hook overwrites performed.
+- Next action: approve global hook installation, review/trust new definitions through Codex /hooks, then retire legacy notify only after replacement is trusted. Review source-vault metadata mappings before remediation.
+- Limits: focused checks only; full unrelated suite and live attribution capture not verified. Repository diagnostics require normal delivery before installed hooks gain updated behavior.

@@ -363,7 +363,7 @@ if (contractSchema) {
   try {
     // Try to use AJV if available in the ecosystem
     const { default: Ajv } = await import('ajv');
-    const ajv = new Ajv({ allErrors: true });
+    const ajv = new Ajv({ allErrors: true, verbose: true });
     const validate = ajv.compile(contractSchema);
     
     // Map telemetry into contract schema format
@@ -400,11 +400,13 @@ if (contractSchema) {
     const valid = validate(contractPayload);
     if (!valid) {
       for (const err of validate.errors) {
+        const dataPath = err.instancePath || err.dataPath || '';
+        const noteIndex = dataPath.match(/(?:stagingNotes\/|stagingNotes\[)(\d+)/)?.[1];
         validationErrors.push({
-          file: 'Contract Schema Mapping',
+          file: noteIndex === undefined ? 'Contract Schema Mapping' : notesRegistry[Number(noteIndex)].path,
           rule_id: 'CONTRACT_SCHEMA_INVALID',
           rule: 'JSON Schema Validation',
-          message: `${err.instancePath || ''} ${err.message} (Value: ${JSON.stringify(err.data)})`
+          message: `${dataPath} ${err.message} (Value: ${JSON.stringify(err.data)})`
         });
       }
     } else {
