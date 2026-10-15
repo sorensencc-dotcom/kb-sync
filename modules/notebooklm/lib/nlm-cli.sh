@@ -162,9 +162,9 @@ nlm_source_list_json() {
 nlm_source_add() {
   local notebook_id="$1" file_path="$2"
   if [ "$NLM_DIALECT" = "nlm" ]; then
-    run_nlm_cli source add "$notebook_id" --file "$file_path"
+    run_nlm_cli source add "$notebook_id" --file "$file_path" "${@:3}"
   else
-    run_nlm_cli source add --notebook "$notebook_id" "$file_path"
+    run_nlm_cli source add --notebook "$notebook_id" "$file_path" "${@:3}"
   fi
 }
 

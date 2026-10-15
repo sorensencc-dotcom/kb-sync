@@ -104,6 +104,23 @@ test('LIVE sandbox: real ingestion, source content readback, receipt, and repeat
   assert.equal(second.ingested, 0);
   assert.equal(second.skippedAlreadySynced, 1);
   assert.equal(listed(cli(['source', 'list', notebookId, '--json'])).filter(s => s.id === receipt.sourceId).length, 1);
+  cli(['source', 'delete', receipt.sourceId, '-y'], false);
+  assert.ok(!listed(cli(['source', 'list', notebookId, '--json'])).some(s => s.id === receipt.sourceId));
+  const third = run();
+  save('ingestion-deleted-source-recovery.json', third);
+  assert.equal(third.ingested, 1, 'Missing receipted source must upload again');
+  assert.equal(third.skippedAlreadySynced, 0);
+  const repairedReceipts = JSON.parse(fs.readFileSync(path.join(staging, '.nlm-sync-receipt.json'), 'utf8'));
+  const repaired = Object.values(repairedReceipts.receipts)[0];
+  assert.ok(repaired.sourceId && repaired.sourceId !== receipt.sourceId);
+  assert.ok(third.uploadedSourceIds.includes(repaired.sourceId));
+  const repairedReadback = cli(['source', 'content', repaired.sourceId, '--json']);
+  save('ingestion-recovered-readback.json', repairedReadback);
+  assert.ok(JSON.stringify(repairedReadback).includes(runId));
+  const fourth = run();
+  save('ingestion-recovered-idempotency.json', fourth);
+  assert.equal(fourth.ingested, 0);
+  assert.equal(fourth.skippedAlreadySynced, 1);
   } finally { cleanupOwned(ownedIds, before); }
 });
 

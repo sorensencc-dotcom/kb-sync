@@ -3,7 +3,7 @@ import path from "path";
 import crypto from "crypto";
 import { spawnSync } from "child_process";
 import jsYaml from "js-yaml";
-import { validateLessonSchema } from "../wiki/validate-contract.mjs";
+import { validateLessonSchema, ALLOWED_CATEGORIES, ALLOWED_STATUSES } from "../wiki/validate-contract.mjs";
 import { createProvider, SynthesisProvider, SynthesisInput, SynthesisProposal, ProviderError } from "./providers/index.js";
 
 // --- LOG HELPERS ---
@@ -18,12 +18,6 @@ function logWarn(msg: string) {
 function logError(msg: string) {
   console.error(`\x1b[31m[WIKI-SYNTHESIZE] [ERROR] ${msg}\x1b[0m`);
 }
-
-// --- ALLOWED CONTRACT CONSTANTS ---
-const ALLOWED_CATEGORIES = new Set([
-  "daemons", "utilities", "sync-tools", "adapters", "mcp-servers", "scaffolds", "prototypes", "wiki", "lessons"
-]);
-const ALLOWED_STATUSES = new Set(["active", "beta", "archived"]);
 
 // --- CANONICAL PATH CONTAINMENT ---
 function normalizePath(p: string): string {
@@ -202,7 +196,7 @@ function computeManifestContentHash(stagingPath: string, manifestLines: string[]
 }
 
 // --- PROPOSAL SCHEMA VALIDATION ---
-function validateProposalSchema(proposal: SynthesisProposal, stagedManifestSet: Set<string>): string[] {
+export function validateProposalSchema(proposal: SynthesisProposal, stagedManifestSet: Set<string>): string[] {
   const errors: string[] = [];
 
   if (!proposal.title || typeof proposal.title !== "string" || proposal.title.trim().length === 0) {

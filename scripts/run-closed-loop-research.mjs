@@ -1,9 +1,8 @@
-import { execFileSync, execSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import { NOTEBOOK_TARGETS, resolveNotebookId, extractFrontmatterCategory } from '../core/targets.mjs';
-import { deleteNotebookSource, purgePackFamilyBeforeUpload, buildNotebookLmUploadCommand, replaceSandboxPack } from './nlm-pack-replace-gate.mjs';
-import { assertLiveSandbox } from './notebooklm/sandbox-contract.mjs';
+import { purgePackFamilyBeforeUpload, buildNotebookLmUploadCommand, replaceSandboxPack, uploadAndReplacePack } from './nlm-pack-replace-gate.mjs';
+import { assertLiveSandbox, KB_TESTING_SANDBOX_UUID } from './notebooklm/sandbox-contract.mjs';
 
 export { NOTEBOOK_TARGETS, resolveNotebookId, extractFrontmatterCategory };
 
@@ -220,6 +219,9 @@ When verifying historical signatures:
     logInfo(`Pushing ${pack.filename} to Target '${pack.category}' (Notebook ID: ${targetNbId})...`);
     // Pre-upload replace gate (query + purge pack family) -- keeps <=1 pack family even in dry/mock runs when CLI is available.
     const isLive = process.env.NLM_REPLACE_GATE_LIVE === '1';
+    if (isLive && targetNbId !== KB_TESTING_SANDBOX_UUID && process.env.NLM_PRODUCTION_MUTATION_APPROVED !== '1') {
+      throw new Error('PRODUCTION_MUTATION_APPROVAL_REQUIRED');
+    }
     let oldPackSources = [];
     try {
       oldPackSources = purgePackFamilyBeforeUpload({
@@ -241,11 +243,13 @@ When verifying historical signatures:
       logInfo(`Command: ${uploadCommand}`);
       continue;
     }
-    execFileSync(nlmCli, ['source', 'upload', '--notebook', targetNbId, '--file', packFilePath], { stdio: 'inherit' });
-    for (const source of oldPackSources) {
-      deleteNotebookSource(nlmCli, source.id || source.sourceId);
-    }
-    logInfo(`Uploaded ${pack.filename}; old pack sources remain until upload succeeds.`);
+    await uploadAndReplacePack({
+      cli: nlmCli,
+      notebookId: targetNbId,
+      packFile: packFilePath,
+      oldSources: oldPackSources,
+      logInfo,
+    });
   }
   
   logInfo('\n================================================================================');

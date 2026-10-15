@@ -48,3 +48,29 @@ Investigation and regression probes, 2026-10-14 (offline):
 - Diagnostic evidence is ignored and local. node_modules is a junction to canonical dependency directory; source reads explicitly target isolated worktree. No product fixes, dependency installs, production calls, merges, or unrelated generated changes made.
 - Next repair priority: prevent pre-upload deletion of multipart generations; reconcile receipts with exact ACTIVE remote IDs/content before skipping; bind receipts to returned upload IDs; preserve YAML with installed parser/serializer and align existing enum consumers without broadening governance.
 - Prior sandbox live passes do not establish production multipart safety. Avoid normal sync/repair-drift for the eight healthy production chunks until replacement ordering is fixed and independently retested.
+
+Root-cause repair contract, 2026-10-14 (operator invoked principle-fix-root-causes):
+- Operational scope: isolated delivered branch only; preserve unrelated dirty work. No production notebook writes, merges, schema-enum expansion, or canonical vault repairs.
+- Replacement acceptance: preserve every old multipart chunk until all replacement IDs are ACTIVE; fail closed on unverifiable status; never use list order to collapse distinct chunks; failed/partial upload preserves old coverage; cleanup telemetry reflects actual deletes.
+- Receipt acceptance: skip only unchanged content with an exact receipt source ID currently ACTIVE in the same notebook; missing/FAILED IDs retry; new receipts bind returned new IDs; title alone never proves content identity. Do not adopt unreceipted sources by title.
+- Wiki acceptance: installed YAML parser/serializer preserves title, arrays, version types, and unknown fields across both sweepers; reject malformed/unsupported metadata without destructive rewrite; synthesis uses existing validator category/status contract without changing allowed values.
+- Verification: executable regression tests first, bounded offline suites, independent review, then dispatch sandbox-only live tests when each mutation path is ready. Commit/push scoped files only; retain exact evidence and limits.
+
+QA-only checkpoint, 2026-10-15:
+- Scope changed to report-only via explicitly invoked gstack-workflows:qa-only; no product code/config edits, implementation commits, pushes, merges, or deployments during QA. Earlier root-cause fixes remain local/uncommitted; HEAD remains 9bca87a4.
+- 102 focused Node checks passed; ten actual-shell multipart cases passed individually with normalized Windows PATH; fifteen polling assertions passed. Existing thirteen-case shell suite completed 1-6, then failed at case seven because malformed preflight inventory exits without writing FAILED telemetry; 8-13 not reached.
+- Actual sandbox ingestion/readback/idempotency/deleted-source recovery/repeat skip passed in 98.20 seconds. Final exact source inventory restored sole ACTIVE pinned fixture. Independently cleaned the prior interrupted run's exact recorded owned ID before rerun; cleanup receipts retained.
+- Read-only production inventory remains fourteen ACTIVE sources, including eight healthy chunks aa, ah, ai, aj, al, am, an, ao. No production source was uploaded or deleted.
+- QA HOLD: optional live closed-loop production entrypoint still deletes old sources after upload command success without ACTIVE proof; normal shell preflight errors omit FAILED telemetry; contradictory duplicate receipt source IDs still produce successful skip; multipart test Windows PATH construction is not portable without environment normalization.
+- Report and exact logs: node_modules/.cache/qa-only-root-causes-20261015/QA-REPORT.md. Live receipts: node_modules/.cache/root-causes-receipt-20261015-qa01/. No full unrelated suite, remote CI, live multipart shell, or production-scale upload approval. Agents stopped on usage limits; preserve all current local work.
+
+Root-cause repair continuation, 2026-10-15:
+- Closed-loop live path now retains old pack sources until returned upload ID is uniquely present and ACTIVE, waits 3.5 seconds, then deletes old IDs through shared replacement code.
+- Normal and standalone shell preflight failures now publish FAILED telemetry before exiting; old SUCCESS telemetry cannot remain the reported result.
+- Receipt source listing rejects malformed entries and duplicate IDs before skip/upload decisions; regression covers contradictory same-ID ACTIVE/FAILED inventory.
+- Multipart child environment now normalizes Windows PATH casing before adding Git directories. Full shell ingestion suite passes all 13 cases.
+- Focused receipt and replacement-gate tests pass 48/48. Authorized sandbox live suite passes 4/4, including failed-upload retention, ACTIVE gating, 3.5-second pacing, idempotency, and Stage 1.5 grounding. Multipart Node harness remains unverified because Git Bash child launch returns host status 3221225794 under node spawnSync.
+- No production notebook mutation, merge, deployment, commit, or push performed.
+- Full local gate reached `test:manifest`; six manifest cases passed and its Bash E2E case failed before product logic with host status `3221225794`. Remaining non-Bash gates passed: core/obsidian completed DEGRADED with Bash checks skipped, incremental, worker, harness, v1.2 features, contract cleanup, path, and performance passed.
+- Closed-loop production mutation now requires `NLM_PRODUCTION_MUTATION_APPROVED=1` in addition to the existing live gate; sandbox live behavior remains unchanged.
+- Remote CI remains unverified because local fixes are uncommitted; branch remote still points to `9bca87a4`.

@@ -228,6 +228,38 @@ export function buildNotebookLmUploadCommand({ cli, notebookId, file }) {
   return `${cli} source upload --notebook "${notebookId}" --file="${file}"`;
 }
 
+export async function uploadAndReplacePack({
+  cli,
+  notebookId,
+  packFile,
+  oldSources = [],
+  logInfo = console.log,
+  runUpload = null,
+  waitMs = 3500,
+}) {
+  assertAllowedPackNotebook(notebookId, packFile);
+  const invoke = runUpload || (() => {
+    const result = spawnSync(cli, ['source', 'upload', '--notebook', notebookId, '--file', packFile, '--json'], {
+      encoding: 'utf8', timeout: 120000, shell: true,
+    });
+    if (result.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${result.stderr || result.stdout || result.error?.message}`);
+    return result.stdout;
+  });
+  const added = typeof invoke === 'function' ? invoke() : null;
+  let parsed;
+  try { parsed = typeof added === 'string' ? JSON.parse(added) : added; } catch { throw new Error('UPLOAD_SOURCE_ID_UNVERIFIABLE'); }
+  const uploadedId = parsed?.source_id || parsed?.id || parsed?.source?.id;
+  if (typeof uploadedId !== 'string' || !uploadedId) throw new Error('UPLOAD_SOURCE_ID_UNVERIFIABLE');
+  const sources = listNotebookSources(cli, notebookId);
+  const matches = sources.filter(source => (source.id || source.sourceId || source.source_id) === uploadedId);
+  if (matches.length !== 1) throw new Error('UPLOAD_SOURCE_ID_NOT_UNIQUE');
+  if (![2, '2', 'ACTIVE', 'active'].includes(matches[0].status)) throw new Error('UPLOAD_SOURCE_NOT_ACTIVE');
+  await new Promise(resolve => setTimeout(resolve, waitMs));
+  for (const source of oldSources) deleteNotebookSource(cli, source.id || source.sourceId || source.source_id);
+  logInfo(`Uploaded ${path.basename(packFile)} as ${uploadedId}; deleted ${oldSources.length} old source(s).`);
+  return { uploadedId, oldSourceIds: oldSources.map(source => source.id || source.sourceId || source.source_id) };
+}
+
 // Sandbox verification replaces only sources explicitly owned by this run.
 export async function replaceSandboxPack({ notebookId, file, runId, oldSourceIds = [], runNlm = null, onUploaded = () => {} }) {
   assertLiveSandbox(notebookId);

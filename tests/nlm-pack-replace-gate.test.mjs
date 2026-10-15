@@ -10,6 +10,7 @@ import {
   buildNotebookLmUploadCommand,
   isSoftwarePack,
   assertAllowedPackNotebook,
+  uploadAndReplacePack,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -148,6 +149,26 @@ test('purgePackFamilyBeforeUpload fails closed when source list fails', () => {
     },
     /Failed to list NotebookLM sources/,
   );
+});
+
+test('uploadAndReplacePack verifies returned ACTIVE ID before deleting old sources', async () => {
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify([
+    { id: 'old-1', title: 'pack_old.txt', status: 'ACTIVE' },
+    { id: 'new-1', title: 'pack_new.txt', status: 'ACTIVE' },
+  ]);
+  const deleted = [];
+  const result = await uploadAndReplacePack({
+    cli: mockCli,
+    notebookId: 'nb-live-test',
+    packFile: 'pack_new.txt',
+    oldSources: [{ id: 'old-1' }],
+    waitMs: 1,
+    runUpload: () => JSON.stringify({ source_id: 'new-1' }),
+  });
+  assert.equal(result.uploadedId, 'new-1');
+  assert.deepEqual(result.oldSourceIds, ['old-1']);
+  assert.equal(deleted.length, 0);
 });
 
 test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () => {

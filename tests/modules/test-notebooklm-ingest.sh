@@ -66,6 +66,11 @@ if [ "$subcmd" = "auth refresh" ]; then
   exit 0
 fi
 
+if [ "$subcmd" = "source add" ] && [ "${3:-}" = "--help" ]; then
+  echo "--json"
+  exit 0
+fi
+
 if [ "$subcmd" = "source list" ]; then
   if [ "${3:-}" != "--notebook" ] || [ "${4:-}" != "fixture-notebook-777" ] || [ "${5:-}" != "--json" ]; then
     echo "ERROR: Invalid source list syntax. Got: $*" >&2; exit 1
@@ -86,8 +91,9 @@ if [ "$subcmd" = "source add" ]; then
     const fs = require("fs");
     const state = JSON.parse(fs.readFileSync(process.env.FIXTURE_STATE_FILE, "utf8"));
     const uniqueId = "src-new-" + Date.now() + "-" + Math.random().toString(36).substring(2, 7);
-    state.push({ id: uniqueId, name: process.env.NEW_FILE });
+    state.push({ id: uniqueId, name: process.env.NEW_FILE, status: "ACTIVE" });
     fs.writeFileSync(process.env.FIXTURE_STATE_FILE, JSON.stringify(state, null, 2));
+    console.log(JSON.stringify({ source_id: uniqueId }));
   '
   exit 0
 fi
@@ -140,15 +146,13 @@ add_count=$(grep -c "source add" "$CALL_LOG" || echo 0)
 del_count=$(grep -c "source delete" "$CALL_LOG" || echo 0)
 [ "$add_count" -gt 0 ] || (echo "FAIL: Expected at least 1 source add call!" >&2; exit 1)
 [ "$del_count" -gt 0 ] || (echo "FAIL: Expected at least 1 source delete call!" >&2; exit 1)
-# Step 0 may purge duplicate pack sources before uploading, but must keep one
-# (the fixture starts with 2). The staged purge of the survivor must follow
-# every upload.
+# Every old part must survive until all replacements are verified.
 first_add=$(grep -n "source add" "$CALL_LOG" | head -1 | cut -d: -f1)
 last_add=$(grep -n "source add" "$CALL_LOG" | tail -1 | cut -d: -f1)
 pre_del=$(grep -n "source delete" "$CALL_LOG" | awk -F: -v a="$first_add" '$1 < a' | wc -l)
 first_post_del=$(grep -n "source delete" "$CALL_LOG" | awk -F: -v a="$first_add" '$1 > a {print $1; exit}')
-if [ "$pre_del" -gt 1 ]; then
-  echo "FAIL: pre-flight purged every pack source before upload!" >&2; exit 1
+if [ "$pre_del" -ne 0 ]; then
+  echo "FAIL: pre-flight deleted an old pack source before upload!" >&2; exit 1
 fi
 if [ -z "$first_post_del" ] || [ "$last_add" -ge "$first_post_del" ]; then
   echo "FAIL: source add occurred after staged source delete!" >&2; exit 1
