@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
+import { execFileSync, execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 console.log("================================================================================");
@@ -17,13 +17,13 @@ let allTestsPassed = true;
 
 // Preflight Shell Capability Detection
 function getBashExecutable(): string | null {
-  const candidates = [
-    "bash",
+  const candidates = process.platform === "win32" ? [
     "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
     "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\usr\\bin\\bash.exe",
     "C:\\Program Files\\Git\\bin\\bash.exe",
     "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
-  ];
+    "bash",
+  ] : ["bash"];
 
   for (const cmd of candidates) {
     try {
@@ -154,10 +154,14 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
 
   try {
     const vaultMount = toMountPath(tempVaultRoot);
-    const result = execSync(`"${BASH_CMD}" -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
+    const result = execFileSync(BASH_CMD, ["modules/obsidian/ingest-obsidian.sh"], {
       cwd: REPO_ROOT,
       encoding: "utf8",
       timeout: 30000,
+      env: {
+        ...process.env,
+        OBSIDIAN_VAULT_ROOT: vaultMount,
+      },
     });
 
     const stagingDir = path.join(tempVaultRoot, "_kb-sync-staging");

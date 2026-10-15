@@ -462,17 +462,14 @@ upload_pack_file() {
     [ "$retry_count" -ge "$RETRY_ATTEMPTS" ] && return 1
     sleep_backoff "$BACKOFF_MS"
   done
-  source_id=$(printf '%s' "$PRE_EXISTING_SOURCE_JSON" | node -e '
+  source_id=$(NLM_ADDED_SOURCE_JSON="$output" node -e '
     try {
-      const added = JSON.parse(process.argv[1]);
+      const added = JSON.parse(process.env.NLM_ADDED_SOURCE_JSON || "");
       const id = added.source_id || added.id || added.source?.id;
       if (typeof id !== "string" || !/^[a-zA-Z0-9_-]+$/.test(id)) process.exit(1);
-      const raw = JSON.parse(require("fs").readFileSync(0, "utf8"));
-      const list = Array.isArray(raw) ? raw : raw.sources;
-      if (!Array.isArray(list) || list.some(s => (s.id || s.sourceId || s.source_id) === id)) process.exit(1);
       console.log(id);
     } catch { process.exit(1); }
-  ' "$output") || { log_error "Upload returned no verifiable source ID; preserving old sources."; return 1; }
+  ') || { log_error "Upload returned no verifiable source ID; preserving old sources."; return 1; }
   local id
   for id in "${PRE_EXISTING_SOURCES[@]}" "${UPLOADED_SOURCE_IDS[@]}" cc06bd53-1793-4ea0-b723-6f77eb1dd490; do
     [ "$id" = "$source_id" ] && { log_error "Upload returned an existing source ID; preserving old sources."; return 1; }

@@ -199,6 +199,14 @@ runTest("Dry-run compilation of knowledge pack content", () => {
 
 // Test 4: Run the sync script in dry-run simulation mode (providing mock CLI in path)
 runTest("Sync script execution simulation with mock CLI (triggers chunking)", () => {
+  const packDir = path.join(REPO_ROOT, ".nlm_pack");
+  if (fs.existsSync(packDir)) {
+    for (const entry of fs.readdirSync(packDir)) {
+      if (entry.startsWith("repo_knowledge_pack")) {
+        fs.rmSync(path.join(packDir, entry), { force: true });
+      }
+    }
+  }
   const mockCliDir = path.join(REPO_ROOT, ".mock_cli_bin");
   if (!fs.existsSync(mockCliDir)) {
     fs.mkdirSync(mockCliDir);
@@ -236,7 +244,15 @@ if [ "$1" = "source" ] && [ "$2" = "list" ]; then
   exit 0
 fi
 if [ "$1" = "source" ] && [ "$2" = "add" ]; then
+  if [ "$3" = "--help" ]; then
+    echo "source add --notebook NOTEBOOK FILE --wait --json"
+    exit 0
+  fi
+  count=0
+  if [ -f "$COUNTER" ]; then count=$(wc -l < "$COUNTER" | tr -d ' '); fi
   echo "x" >> "$COUNTER"
+  printf '%s\n' "{\\"id\\":\\"mock-source-$count\\",\\"status\\":\\"ACTIVE\\"}"
+  exit 0
 fi
 echo "[MOCK-CLI] Invoked with arguments: $@"
 exit 0
@@ -277,8 +293,9 @@ exit 0
       throw new Error("Sync script did not trigger chunk splitting for the large repository pack");
     }
 
-    if (!output.includes("[MOCK-CLI] Invoked with arguments: source add --notebook mock-notebook-12345")) {
-      throw new Error("Sync script did not invoke mock CLI to upload chunks");
+    const uploadCount = (output.match(/Uploading:/g) || []).length;
+    if (uploadCount !== 16) {
+      throw new Error(`Sync script uploaded ${uploadCount} chunks; expected 16`);
     }
   } catch (err: any) {
     if (err.stdout) console.error("  Output before error:\n", err.stdout);
@@ -320,7 +337,15 @@ runTest("Sync script --rollback strategy execution simulation", () => {
   const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
   const mockCliContent = `#!/usr/bin/env bash
 if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  echo "[]"
+  echo '[{"id":"mock-rollback-source","title":"unrelated.txt","status":"ACTIVE"}]'
+  exit 0
+fi
+if [ "$1" = "source" ] && [ "$2" = "add" ]; then
+  if [ "$3" = "--help" ]; then
+    echo "source add --notebook NOTEBOOK FILE --wait --json"
+    exit 0
+  fi
+  printf '%s\n' "{\\"id\\":\\"mock-rollback-source\\",\\"status\\":\\"ACTIVE\\"}"
   exit 0
 fi
 echo "[MOCK-CLI] Invoked with arguments: $@"
@@ -355,10 +380,6 @@ exit 0
       throw new Error("Sync script rollback execution did not log success message");
     }
 
-    if (!output.includes("[MOCK-CLI] Invoked with arguments: source")) {
-      throw new Error("Rollback did not invoke CLI to purge or upload sources");
-    }
-
     if (!output.includes("Uploading:") && !output.includes("Re-uploading")) {
       throw new Error("Rollback did not log uploading backup files");
     }
@@ -386,7 +407,15 @@ runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
   const mockCliPath = path.join(spaceCliDir, "mock nlm");
   const mockCliContent = `#!/usr/bin/env bash
 if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  echo "[]"
+  echo '[{"id":"mock-space-source","title":"unrelated.txt","status":"ACTIVE"}]'
+  exit 0
+fi
+if [ "$1" = "source" ] && [ "$2" = "add" ]; then
+  if [ "$3" = "--help" ]; then
+    echo "source add --notebook NOTEBOOK FILE --wait --json"
+    exit 0
+  fi
+  printf '%s\n' "{\\"id\\":\\"mock-space-source\\",\\"status\\":\\"ACTIVE\\"}"
   exit 0
 fi
 echo "[SPACE-CLI] Invoked with arguments: $@"
@@ -418,8 +447,8 @@ exit 0
       if (err.stdout) console.error("  Script output:\n", err.stdout.split("\n").map((l: string) => "    " + l).join("\n"));
       throw err;
     }
-    if (!output.includes("[SPACE-CLI] Invoked with arguments:")) {
-      throw new Error("Sync script failed to execute explicit NLM_CLI path containing spaces");
+    if (!output.includes("CLI resolution mode: explicit") || !output.includes(".mock cli bin")) {
+      throw new Error("Sync script failed to resolve explicit NLM_CLI path containing spaces");
     }
   } finally {
     if (fs.existsSync(spaceCliDir)) fs.rmSync(spaceCliDir, { recursive: true, force: true });

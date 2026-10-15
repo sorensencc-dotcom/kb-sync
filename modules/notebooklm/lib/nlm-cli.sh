@@ -106,8 +106,10 @@ resolve_nlm_cli() {
 exec_with_timeout() {
   local timeout_sec=$(( (${TIMEOUT_MS:-90000} + 999) / 1000 ))
   [ "$timeout_sec" -lt 1 ] && timeout_sec=1
-  if command -v timeout >/dev/null 2>&1; then
+  if [[ "${1:-}" != *" "* ]] && command -v timeout >/dev/null 2>&1; then
     timeout "$timeout_sec" "$@"
+  elif [[ "${1:-}" == *" "* ]] && command -v bash >/dev/null 2>&1 && command -v timeout >/dev/null 2>&1; then
+    timeout "$timeout_sec" bash -c 'exec "$@"' -- "$@"
   elif node -e 'process.exit(0)' >/dev/null 2>&1; then
     node -e '
       const { spawnSync } = require("child_process");
