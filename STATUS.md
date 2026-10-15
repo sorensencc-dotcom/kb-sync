@@ -103,3 +103,10 @@ Remaining hook repairs, 2026-10-15:
 - Changed committed vault_root default to obsidian/vault, relative to current checkout. Explicit environment/.env overrides remain intact. No canonical research metadata rewrite or schema change required.
 - Regression proof: old C:/dev default fails both routing cases; corrected default passes. Focused suite passes 23 tests, including real TS/JS drift resolvers and synthesis entrypoint with explicit override.
 - Code remains on local codex/hook-repair-20261015. GitHub push still requires explicit destination approval after earlier automatic review rejection.
+
+PR #40 conflict resolution, 2026-10-15:
+- Isolated checkout C:/dev/dev-sandbox/kb-hook-conflicts-20261015 on codex/hook-repair-conflicts-20261015; original dirty hook worktree remains untouched.
+- Merge origin/main at 8e22567b6c168562b3b3ffcd400a3fd1acc4aa39 into PR head d1d130dba78739a21c9b6d35ed6c9197e990037d. Resolve six overlapping files while retaining multipart matching, exact upload IDs/ACTIVE gating, configurable audit path, synthetic-source filtering tests, and intended MCP behavior.
+- Adapt upstream polling scenarios to current exact-ID API, retaining partial visibility, custom pack/chunk naming, and slow-inventory wall-clock coverage. No conflict markers remain; schema and security gates unchanged.
+- Verified: 120 offline Node regressions passed; ten actual-shell multipart cases passed; twenty production polling assertions passed. Initial complete shell-suite attempt hit 100-second total bound; streamed rerun passed all thirteen cases within 240-second hard bound.
+- No live notebook writes, merge to main, force push, or deployment. Next: finish shell suite, commit merge with normal hooks, push HEAD to existing codex/hook-repair-20261015 PR branch, and verify live mergeability/checks.

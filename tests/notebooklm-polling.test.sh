@@ -53,4 +53,32 @@ for pending in 1 PROCESSING; do
   assert_poll 0 "pending $pending transitions to numeric ACTIVE"
   [ "$(cat "$COUNTER")" -eq 2 ] || exit 1
 done
+
+# Keep upstream partial-visibility coverage under the exact upload-ID contract.
+TIMEOUT_MS=1000
+UPLOADED_SOURCE_IDS=(new1 new2 new3)
+nlm_source_list_json() { echo '[{"id":"new1","status":"ACTIVE"}]'; }
+assert_poll 1 "one visible ACTIVE source cannot replace a three-part batch"
+nlm_source_list_json() { echo '[{"id":"new1","status":"ACTIVE"},{"id":"new2","status":2},{"id":"new3","status":"ACTIVE"}]'; }
+assert_poll 0 "every returned upload ID is visible and ACTIVE"
+
+# Custom pack names and chunk.sh's fixed prefix do not change upload ownership.
+PACK_FILE=my_org_kb_pack
+UPLOADED_SOURCE_IDS=(new1)
+for title in my_org_kb_pack_part_aa.txt repo_knowledge_pack_part_aa.txt; do
+  nlm_source_list_json() { printf '[{"id":"new1","title":"%s","status":"ACTIVE"}]' "$title"; }
+  assert_poll 0 "returned ID remains valid for custom pack title $title"
+done
+
+# A slow inventory call consumes the same wall-clock deadline as sleep.
+TIMEOUT_MS=800
+echo 0 > "$COUNTER"
+nlm_source_list_json() {
+  local n
+  n=$(cat "$COUNTER"); echo $((n + 1)) > "$COUNTER"
+  sleep 2
+  echo '[{"id":"new1","status":"PROCESSING"}]'
+}
+assert_poll 1 "slow inventory call exhausts wall-clock timeout"
+[ "$(cat "$COUNTER")" -eq 1 ] || { echo "FAIL: slow inventory was retried after deadline" >&2; exit 1; }
 echo "All poll contract cases passed."
