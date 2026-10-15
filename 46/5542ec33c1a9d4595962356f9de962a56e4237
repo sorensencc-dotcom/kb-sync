@@ -1,0 +1,33 @@
+tests/notebooklm-multipart.test.mjs
+  s_9c76c2a4e23e47::t_66e287f746da6f 83-103
+package.json
+  s_9c76c2a4e23e47::t_2edcbff04f99b2 64
+STATUS.md
+  s_a8c54205434b64::t_0fd85c6b9b9518 1-56,58-76,113-129
+tests/notebooklm-sync-verification.ts
+  s_9c76c2a4e23e47::t_c6d268c0c3d8d5 67-107,259-260,334-335,391-392
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "465542ec33c1a9d4595962356f9de962a56e4237",
+  "prompts": {},
+  "sessions": {
+    "s_9c76c2a4e23e47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13fd4-c649-7350-a698-7f277735abff",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_a8c54205434b64": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2a36691-8258-4ddb-9f0d-48310f3f8876",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
