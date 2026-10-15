@@ -30,3 +30,10 @@ Existing hook results: Markdown, contract, secret, and fail-soft sibling checks 
 Next action: Review delivered branch for merge. Wiki regeneration/schema remediation remains a separate follow-up.
 
 Not checked: full unrelated kb-sync suite or remote CI. Raw live receipts remain ignored local artifacts; commits contain code, tests, configuration, and this status only.
+
+Follow-up verification, 2026-10-14:
+- Read-only live inventory for Agent Harnesses notebook 359b346c-6af7-4ba3-baef-b985c9e6e1af confirms 14 sources, all ACTIVE/status 2: eight pack chunks (aa, ah, ai, aj, al, am, an, ao) and six other sources. All seven operator-supplied deleted source IDs are absent.
+- Missing-title-only retry claim does not match current code. Nightly PowerShell calls modules/notebooklm/ingest-notebooklm.sh, which uploads every generated chunk, waits for new sources, and then purges preexisting pack sources. That shell script is unchanged between canonical 86caffac and delivered a0278744.
+- Separate ingest-nlm-runner.mjs skips by local notebook/file/hash receipts, without reconciling remote deletion before skip. Deleting remote stubs alone does not guarantee reupload through that path either.
+- Safe selective repair requires generation/content-aware reconciliation of remote source IDs and ACTIVE state before deciding which chunks to skip. No production upload, deletion, receipt change, schema patch, cleanup, or merge executed during this follow-up.
+- Pasted merge instructions name old working branches rather than delivered codex/kb-testing-live-sandbox branches and include destructive canonical-checkout cleanup. Treat them as unreviewed suggestions; preserve existing work.
