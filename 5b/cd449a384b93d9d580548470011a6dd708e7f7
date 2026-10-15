@@ -1,0 +1,62 @@
+tests/cross-audit.test.mjs
+  s_c1c598677d678e::t_30938ded807236 3-6,39,41,43-48
+  s_c1c598677d678e::t_3f7b8c114b49fb 8-12,24,35-36
+  s_c1c598677d678e::t_1a97f75f8f4b94 40,42
+  s_c1c598677d678e::t_6e8094009791e4 7
+  s_c1c598677d678e::t_e7391f47a2a04b 49
+tests/ingest-nlm-reconciliation.test.mjs
+  s_c1c598677d678e::t_1796c8e7b76421 8,28,55-56,118-168
+tests/integration/nlm-live.test.mjs
+  s_c1c598677d678e::t_dc2e18e672a485 84-86
+  s_c1c598677d678e::t_1796c8e7b76421 91
+scripts/cross-audit.mjs
+  s_c1c598677d678e::t_a5831a7f26ae3a 46
+  s_c1c598677d678e::t_d59f758b17b061 4-6,23-27
+tests/obsidian-coverage-policy.test.mjs
+  s_c1c598677d678e::t_1a97f75f8f4b94 12,14
+  s_c1c598677d678e::t_3f7b8c114b49fb 1-11,13,15-18,20-21,23-37
+  s_c1c598677d678e::t_97bf39e2a7c928 19,22
+scripts/notebooklm/ingest-nlm-runner.mjs
+  s_c1c598677d678e::t_99337392620adf 248,264,274,288,370,374-377,383
+STATUS.md
+  s_c1c598677d678e::t_61716ba5a5ee1f 27-30
+  s_c1c598677d678e::t_1f534be4bee2f9 56-65
+  s_c1c598677d678e::t_9565f69d30685c 41-46
+  s_c1c598677d678e::t_118c29a62011b7 8-15,20
+  s_c1c598677d678e::t_1e416b42f06f95 16-17
+  s_c1c598677d678e::t_fabeb8db32ec45 18-19
+  s_c1c598677d678e::t_2c1c5012d85f6d 48-55,66
+  s_c1c598677d678e::t_ee3dc3a8795b7c 21-26,31
+  s_c1c598677d678e::t_cb0d0bf9e49586 32-40,47
+  s_c1c598677d678e::t_7b8f1fe014470b 3-7
+tests/notebooklm-telemetry-contract.test.mjs
+  s_c1c598677d678e::t_1a97f75f8f4b94 13,15
+  s_c1c598677d678e::t_3f7b8c114b49fb 6-7,14,16-28
+tests/obsidian-sync-verification.ts
+  s_c1c598677d678e::t_d59f758b17b061 17,48,51-57,119,154,191,231,253
+package.json
+  s_c1c598677d678e::t_99337392620adf 64
+  s_c1c598677d678e::t_caec80dc7bef78 66
+README.md
+  s_c1c598677d678e::t_caec80dc7bef78 138-142
+tests/notebooklm-multipart.test.mjs
+  s_c1c598677d678e::t_3f7b8c114b49fb 28,42,58,87-89
+  s_c1c598677d678e::t_1a97f75f8f4b94 85-86
+  s_c1c598677d678e::t_216147a0bf67e7 90-91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5bcd449a384b93d9d580548470011a6dd708e7f7",
+  "prompts": {},
+  "sessions": {
+    "s_c1c598677d678e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1412c-e0ae-75e3-a80b-287ae9979988",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
