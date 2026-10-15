@@ -64,6 +64,47 @@ function getCleanEnv() {
   return env;
 }
 
+// The fixture implements the same structured receipt contract as production CLI adapters.
+function mockCliContent(label: string): string {
+  return String.raw`#!/usr/bin/env bash
+set -eo pipefail
+COUNTER="$(dirname "$0")/.mock_upload_ids"
+printf '[${label}] Invoked with arguments: %s\n' "$*" >&2
+case "$1 $2 $3" in
+  "auth check "|"auth refresh ") exit 0 ;;
+  "source add --help") echo '--json'; exit 0 ;;
+  "source list --notebook")
+    [ "$5" = "--json" ] || exit 64
+    printf '['
+    separator=""
+    if [ -f "$COUNTER" ]; then
+      while IFS= read -r id; do
+        printf '%s{"id":"%s","title":"repo_knowledge_pack_part_%s.txt","status":"ACTIVE"}' "$separator" "$id" "$id"
+        separator=","
+      done < "$COUNTER"
+    fi
+    printf ']\n'
+    ;;
+  "source add --notebook")
+    [ "$6" = "--json" ] && [ -f "$5" ] || exit 64
+    count=0
+    if [ -f "$COUNTER" ]; then count=$(wc -l < "$COUNTER"); fi
+    id="mock-source-$count"
+    printf '%s\n' "$id" >> "$COUNTER"
+    printf '{"source_id":"%s"}\n' "$id"
+    ;;
+  "source delete --notebook")
+    [ "$6" = "-y" ] || exit 64
+    if [ -f "$COUNTER" ]; then
+      grep -vxF "$5" "$COUNTER" > "$COUNTER.tmp" || true
+      mv "$COUNTER.tmp" "$COUNTER"
+    fi
+    ;;
+  *) exit 64 ;;
+esac
+`;
+}
+
 // Test 1: Validate pyragify.yaml syntax and core keys
 runTest("Parse and validate pyragify.yaml config structure", () => {
   if (!fs.existsSync(PYRAGIFY_CONFIG_PATH)) {
@@ -206,7 +247,6 @@ runTest("Sync script execution simulation with mock CLI (triggers chunking)", ()
 
   // Write mock notebooklm binary
   const mockCliPath = path.join(mockCliDir, "mock-nlm");
-  const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
   // `source list` reports one ACTIVE pack source per `source add` call so
   // far, matching the real "each chunk becomes visible/active as it
   // finishes indexing" lifecycle closely enough for the Step 5b-poll gate
@@ -216,34 +256,8 @@ runTest("Sync script execution simulation with mock CLI (triggers chunking)", ()
   // waiting out its real 90s timeout (no sources ever reported) or
   // resolving early on a fixed single mock source regardless of how many
   // chunks were actually uploaded.
-  const mockCliContent = `#!/usr/bin/env bash
-COUNTER="$(dirname "$0")/.mock_upload_count"
-if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  count=0
-  if [ -f "$COUNTER" ]; then count=$(wc -l < "$COUNTER" | tr -d ' '); fi
-  if [ "$count" -eq 0 ]; then
-    echo "[]"
-  else
-    entries=""
-    i=0
-    while [ "$i" -lt "$count" ]; do
-      [ -n "$entries" ] && entries="$entries,"
-      entries="$entries{\\"id\\":\\"mock-source-$i\\",\\"title\\":\\"repo_knowledge_pack_part_mock$i.txt\\",\\"status\\":\\"ACTIVE\\"}"
-      i=$((i + 1))
-    done
-    echo "[$entries]"
-  fi
-  exit 0
-fi
-if [ "$1" = "source" ] && [ "$2" = "add" ]; then
-  echo "x" >> "$COUNTER"
-fi
-echo "[MOCK-CLI] Invoked with arguments: $@"
-exit 0
-`;
-  const mockCliCmdContent = `@echo off\r\nif "%1"=="source" if "%2"=="list" (echo []\r\nexit /b 0)\r\necho [MOCK-CLI] Invoked with arguments: %*\r\nexit /b 0\r\n`;
-  fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
-  fs.writeFileSync(mockCliCmdPath, mockCliCmdContent, { mode: 0o755 });
+  const cliContent = mockCliContent("MOCK-CLI");
+  fs.writeFileSync(mockCliPath, cliContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x ./.mock_cli_bin/mock-nlm"`, { cwd: REPO_ROOT }); } catch (_) {}
 
   // Create a 9MB temporary file and track it in git to force size boundary limit chunking (>8MB)
@@ -317,18 +331,8 @@ runTest("Sync script --rollback strategy execution simulation", () => {
 
   // Write mock notebooklm binary
   const mockCliPath = path.join(mockCliDir, "mock-nlm");
-  const mockCliCmdPath = path.join(mockCliDir, "mock-nlm.cmd");
-  const mockCliContent = `#!/usr/bin/env bash
-if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  echo "[]"
-  exit 0
-fi
-echo "[MOCK-CLI] Invoked with arguments: $@"
-exit 0
-`;
-  const mockCliCmdContent = `@echo off\r\nif "%1"=="source" if "%2"=="list" (echo []\r\nexit /b 0)\r\necho [MOCK-CLI] Invoked with arguments: %*\r\nexit /b 0\r\n`;
-  fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
-  fs.writeFileSync(mockCliCmdPath, mockCliCmdContent, { mode: 0o755 });
+  const cliContent = mockCliContent("MOCK-CLI");
+  fs.writeFileSync(mockCliPath, cliContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x ./.mock_cli_bin/mock-nlm"`, { cwd: REPO_ROOT }); } catch (_) {}
 
   // Seed a stale last_sync_pack_sha, as a prior successful sync would have
@@ -384,15 +388,8 @@ runTest("Sync script handles explicit NLM_CLI path containing spaces", () => {
     fs.mkdirSync(spaceCliDir);
   }
   const mockCliPath = path.join(spaceCliDir, "mock nlm");
-  const mockCliContent = `#!/usr/bin/env bash
-if [ "$1" = "source" ] && [ "$2" = "list" ]; then
-  echo "[]"
-  exit 0
-fi
-echo "[SPACE-CLI] Invoked with arguments: $@"
-exit 0
-`;
-  fs.writeFileSync(mockCliPath, mockCliContent, { mode: 0o755 });
+  const cliContent = mockCliContent("SPACE-CLI");
+  fs.writeFileSync(mockCliPath, cliContent, { mode: 0o755 });
   try { execSync(`bash -c "chmod +x './${toBashPath(mockCliPath)}'"`, { cwd: REPO_ROOT }); } catch (_) {}
 
   // --rollback needs at least one backup file to restore, otherwise the script

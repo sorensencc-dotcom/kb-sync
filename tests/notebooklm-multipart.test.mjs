@@ -80,6 +80,27 @@ test('audit preserves eight distinct ACTIVE chunks without uploads or deletes', 
   assert.ok(state.calls.every(call => !['add', 'delete'].includes(call.args[1])));
 });
 
+test('CLI without structured upload support fails before any upload or deletion', { timeout: 60000 }, t => {
+  const { result, state, telemetry, initial } = run(t, { env: { NO_JSON: '1' } });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /lacks verified --json support/);
+  assert.deepEqual(state.sources, initial);
+  assert.equal(state.sequence, 0);
+  assert.ok(state.calls.every(call => call.args[1] !== 'delete' && !(call.args[1] === 'add' && call.args[2] !== '--help')));
+  assert.equal(telemetry.status, 'FAILED');
+});
+
+test('ambiguous successful upload never triggers a second plaintext upload or old-source deletion', { timeout: 60000 }, t => {
+  const { result, state, telemetry, initial } = run(t, { env: { NO_ID: '1' } });
+  assert.equal(result.status, 1);
+  const adds = state.calls.filter(call => call.args[1] === 'add' && call.args[2] !== '--help');
+  assert.equal(adds.length, 1);
+  assert.ok(adds[0].args.includes('--json'));
+  assert.ok(initial.every(source => state.sources.some(current => current.id === source.id)));
+  assert.ok(state.calls.every(call => call.args[1] !== 'delete'));
+  assert.equal(telemetry.status, 'FAILED');
+});
+
 test('all fifteen replacement IDs become ACTIVE before deleting any old chunk', { timeout: 60000 }, t => {
   const { result, state, telemetry } = run(t, { parts: 15 });
   assert.equal(result.status, 0, result.stderr);

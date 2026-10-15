@@ -110,3 +110,20 @@ PR #40 conflict resolution, 2026-10-15:
 - Adapt upstream polling scenarios to current exact-ID API, retaining partial visibility, custom pack/chunk naming, and slow-inventory wall-clock coverage. No conflict markers remain; schema and security gates unchanged.
 - Verified: 120 offline Node regressions passed; ten actual-shell multipart cases passed; twenty production polling assertions passed. Initial complete shell-suite attempt hit 100-second total bound; streamed rerun passed all thirteen cases within 240-second hard bound.
 - No live notebook writes, merge to main, force push, or deployment. Next: finish shell suite, commit merge with normal hooks, push HEAD to existing codex/hook-repair-20261015 PR branch, and verify live mergeability/checks.
+
+PR #40 conflict delivery checkpoint:
+- Merge commit ff2f6e19babc1afdadf2c32cd60152d111650e7e has parents d1d130db and current main 8e22567b. Normal pre/post-commit hooks passed; offline wiki autoheal completed.
+- Normal fast-forward push updated existing codex/hook-repair-20261015 PR branch. Independent ls-remote verifies exact remote head ff2f6e19babc1afdadf2c32cd60152d111650e7e.
+- GitHub now reports MERGEABLE; mergeStateStatus UNSTABLE while Full Test Suite, Secret scan, drift-and-publish, and GitGuardian checks run. Devin Review reports SUCCESS. No remote CI pass claimed.
+- Completed local validation: 120 offline Node tests, ten mock-only actual-shell multipart cases, twenty polling checks, and thirteen shell-ingestion cases all passed. No live notebook operations or merge to main.
+- Retrospective: upstream squash merges produced conflicts despite mostly matching final code; retained behavior-specific coverage while adapting old title-based polling cases to exact returned IDs. Streamed output avoided confusing total runtime bounds with inactivity.
+- Preserve hook-generated local wiki/TODO artifacts and this checkpoint; they are outside pushed authored changes. Original dirty hook-repair checkout remains untouched.
+
+PR #40 CI mock repair, 2026-10-15:
+- Exact failed remote run 38758117637 at ff2f6e19 aborts three NotebookLM verification journeys because old mocks omit --json help and return prose instead of structured upload receipts. Reproduced locally: three failed, four passed.
+- Consolidated those three mock scripts into one test-only structured CLI fixture. Help advertises --json; uploads return unique source_id receipts; inventory reports matching ACTIVE IDs; diagnostics use stderr. Unknown/unstructured upload forms fail visibly.
+- All seven integration-verifier journeys now pass, including chunking, rollback, and explicit CLI path containing spaces. Added two actual-shell regressions: unsupported structured output fails before mutation; ambiguous successful upload triggers no second plaintext upload and preserves old sources. Both pass.
+- Production upload_pack_file and replace_pack_sources remain unchanged. Proposed heuristic plaintext fallback could duplicate an already successful upload and mistake non-ID output for identity; exact JSON ownership validation remains required.
+- Full local test:all first hit unrelated WSL/Windows worktree metadata mismatch in Obsidian test; rerun uses explicit Git Bash PATH with mandatory Bash coverage, 600-second total bound, and 60-second inactivity bound. Evidence: node_modules/.cache/hook-ci-20261015/.
+- Full local test:all passed in 120.86 seconds with mandatory Git Bash coverage; no skipped/degraded markers. Dependency/configuration checks passed 3/3. Added multipart safety suite to test:notebooklm so CI exercises all twelve cases.
+- Next: commit scoped tests, package script, and status, push existing PR branch, and verify current-head remote suite. No live notebook mutations or security gate bypass.
