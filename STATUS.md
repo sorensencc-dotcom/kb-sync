@@ -85,3 +85,21 @@ Hook repair, 2026-10-15:
 - Source vault validation still fails for 64 of 444 notes, including unsupported research statuses. No canonical vault edits, schema relaxation, or installed shared-hook overwrites performed.
 - Next action: approve global hook installation, review/trust new definitions through Codex /hooks, then retire legacy notify only after replacement is trusted. Review source-vault metadata mappings before remediation.
 - Limits: focused checks only; full unrelated suite and live attribution capture not verified. Repository diagnostics require normal delivery before installed hooks gain updated behavior.
+
+Hook repair delivery checkpoint:
+- Commit 1310c3f5 contains five scoped files; normal pre-commit checks passed. Existing post-commit autoheal still rejected invalid source-vault metadata and reported vault/Log.md untouched.
+- Push to https://github.com/sorensencc-dotcom/kb-sync branch codex/hook-repair-20261015 was rejected by automatic approval review because private-code egress requires explicit destination approval. No remote delivery occurred.
+- Global hook installation remains separately pending human approval. Do not retry either rejected action without approval. Preserve generated local TODOS.md change.
+- Retrospective: restricted Bash DLL startup differs from host behavior; stdin bridge removes argv-size failure; AJV v6 dataPath and verbose error values restore actionable diagnostics; linked worktrees require git-common-dir for effective hook installation.
+
+Global hook installation approved and completed, 2026-10-15:
+- Human explicitly approved Stop/Interrupt hook installation. Installed tested computer-use-turn-ended.cjs plus exact proposed definitions in user hooks.json; backup hooks.json.before-repair-20261015 retained. All previous hook definitions match backup exactly.
+- Installed Stop and Interrupt handlers each passed real-notifier smoke with synthetic IDs and 1 MB stdin. Codex hook trust state remains untouched; operator must review/trust new definitions through /hooks before activation.
+- Legacy notify remains configured until replacement trust is confirmed. GitHub push approval remains absent; commit 1310c3f5 remains local. Existing vault metadata blockers remain unresolved.
+
+Remaining hook repairs, 2026-10-15:
+- Recorded human trust now exists for installed Stop/Interrupt handlers. Retired legacy notify by setting notify=[] with backup config.toml.before-notify-retirement-20261015; semantic comparison confirmed all other TOML unchanged.
+- Corrected earlier source-vault diagnosis: canonical C:/dev/kb-sync/obsidian/vault/wiki validates 6,442 notes with zero failures. The 64 failing documents belong to legacy C:/dev/wiki, selected by committed C:/dev fallback when worktrees lack .env.
+- Changed committed vault_root default to obsidian/vault, relative to current checkout. Explicit environment/.env overrides remain intact. No canonical research metadata rewrite or schema change required.
+- Regression proof: old C:/dev default fails both routing cases; corrected default passes. Focused suite passes 23 tests, including real TS/JS drift resolvers and synthesis entrypoint with explicit override.
+- Code remains on local codex/hook-repair-20261015. GitHub push still requires explicit destination approval after earlier automatic review rejection.
