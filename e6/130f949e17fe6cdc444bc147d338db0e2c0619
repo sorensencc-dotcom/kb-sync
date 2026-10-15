@@ -1,0 +1,36 @@
+package.json
+  s_dabfadae156072::t_16cb5721510385 64
+tests/notebooklm-sync-verification.ts
+  s_dabfadae156072::t_5c794e53692105 296-298,450-451
+  s_dabfadae156072::t_de1cd9a1c7b876 340,410
+  s_dabfadae156072::t_b685771e5647d0 341-347,411-417
+  s_dabfadae156072::t_74c0d228556522 254,348,418
+  s_dabfadae156072::t_9baa09a0aee5f8 202-209
+  s_dabfadae156072::t_6cce0ae47719c7 247-252,255
+modules/notebooklm/ingest-notebooklm.sh
+  s_dabfadae156072::t_73aada59f65a02 467
+  s_dabfadae156072::t_6ff0843e9d9337 465,472
+modules/notebooklm/lib/nlm-cli.sh
+  s_dabfadae156072::t_c9a1be2133051b 109
+  s_dabfadae156072::t_f48db3af44be8a 111-112
+scripts/run-notebooklm-shell-tests.mjs
+  s_dabfadae156072::t_16cb5721510385 1-34
+tests/notebooklm-submodule-guard.test.sh
+  s_dabfadae156072::t_8e064f365f367f 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e6130f949e17fe6cdc444bc147d338db0e2c0619",
+  "prompts": {},
+  "sessions": {
+    "s_dabfadae156072": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13fa6-b0fc-7bf1-9b22-90440f083293",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
