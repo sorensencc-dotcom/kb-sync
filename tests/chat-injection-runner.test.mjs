@@ -14,6 +14,9 @@ import {
   MIN_ENTROPY_THRESHOLD,
   BANNED_BOILERPLATE_PATTERNS,
   runChatInjection,
+  buildSourceFilter,
+  isSyntheticSource,
+  filterPrimarySources,
 } from '../scripts/notebooklm/chat-injection-runner.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -21,9 +24,9 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 
 describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
   describe('loadClusterRegistry()', () => {
-    it('loads all 25 notebooks defined in configs/notebooklm.yaml', () => {
+    it('loads all 26 notebooks defined in configs/notebooklm.yaml', () => {
       const registry = loadClusterRegistry();
-      assert.equal(registry.length, 25);
+      assert.equal(registry.length, 26);
     });
 
     it('correctly maps canonical notebooks vs operational buffers', () => {
@@ -32,7 +35,7 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
       const buffers = registry.filter((n) => !n.isCanonical);
 
       assert.equal(canonical.length, 22);
-      assert.equal(buffers.length, 3);
+      assert.equal(buffers.length, 4);
 
       const bufferSlugs = buffers.map((b) => b.slug);
       assert.ok(bufferSlugs.includes('grok-bot'));
@@ -90,7 +93,7 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
   });
 
   describe('synthesizeDynamicQuestions() & Zero-Boilerplate Guarantee', () => {
-    it('never emits any of the 4 banned boilerplate fallback questions across all 25 notebooks', () => {
+    it('never emits any of the 4 banned boilerplate fallback questions across all 26 notebooks', () => {
       const registry = loadClusterRegistry();
 
       for (const nb of registry) {
@@ -156,7 +159,7 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
       const registry = loadClusterRegistry();
       const audit = auditClusterLatency(registry);
 
-      assert.equal(audit.length, 25);
+      assert.equal(audit.length, 26);
       for (const item of audit) {
         assert.ok(item.slug);
         assert.ok(item.uuid);
@@ -334,6 +337,65 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
           return err.message.includes('not found') || err.code === 'AUDIT_FAILED';
         }
       );
+    });
+  });
+
+  describe('buildSourceFilter() & Synthetic Source Exclusions', () => {
+    it('filters out synthetic meta sources including TRM gaps and knowledge packs', () => {
+      const mockSources = [
+        { id: 'src-1', title: '64-167-65_SorensenCharlesE.pdf', type: 'pdf' },
+        { id: 'src-syn-1', title: 'TRM Research Gaps & Synthesis', type: 'generated_text' },
+        { id: 'src-syn-2', title: 'Ecosystem Architecture Guide (Current).md', type: 'generated_text' },
+        { id: 'src-syn-3', title: 'pack_post_war.txt', type: 'generated_text' },
+        { id: 'src-2', title: 'Benson Ford Research Center Accessions', type: 'web_page' },
+      ];
+
+      const primary = filterPrimarySources(mockSources);
+      assert.equal(primary.length, 2);
+      assert.deepEqual(primary.map((s) => s.id), ['src-1', 'src-2']);
+
+      const filter = buildSourceFilter(mockSources);
+      assert.equal(filter.primaryCount, 2);
+      assert.deepEqual(filter.sourceIds, ['src-1', 'src-2']);
+      assert.ok(!filter.sourceIds.includes('src-syn-1'));
+      assert.ok(!filter.sourceIds.includes('src-syn-2'));
+      assert.ok(!filter.sourceIds.includes('src-syn-3'));
+    });
+
+    it('triggers constraint when total tokens exceed 250,000 even with <=50 sources', () => {
+      const mockSources = [
+        { id: 'src-heavy', title: '64-167-65_SorensenCharlesE.pdf', type: 'pdf', char_count: 1_600_000 }, // ~400k tokens
+        { id: 'src-small', title: 'Archive Overview.html', type: 'web_page', char_count: 8_000 },
+      ];
+
+      const filter = buildSourceFilter(mockSources);
+      assert.equal(filter.isConstrained, true);
+      assert.equal(filter.timeoutSeconds, 180);
+      assert.deepEqual(filter.sourceIds, ['src-heavy', 'src-small']);
+    });
+
+    it('triggers constraint when a single PDF exceeds 100,000 tokens', () => {
+      const mockSources = [
+        { id: 'src-heavy-pdf', title: 'My Forty Years with Ford.pdf', type: 'pdf', char_count: 600_000 }, // ~150k tokens
+        { id: 'src-note', title: 'Short Note', type: 'google_docs', char_count: 4_000 },
+      ];
+
+      const filter = buildSourceFilter(mockSources);
+      assert.equal(filter.isConstrained, true);
+      assert.equal(filter.hasHeavyPdf, true);
+      assert.equal(filter.timeoutSeconds, 180);
+    });
+
+    it('does not constrain when all sources are small and under 250k tokens', () => {
+      const mockSources = [
+        { id: 'src-1', title: 'Article 1', type: 'web_page', char_count: 20_000 },
+        { id: 'src-2', title: 'Article 2', type: 'web_page', char_count: 30_000 },
+      ];
+
+      const filter = buildSourceFilter(mockSources);
+      assert.equal(filter.isConstrained, false);
+      assert.equal(filter.timeoutSeconds, 120);
+      assert.deepEqual(filter.sourceIds, ['src-1', 'src-2']);
     });
   });
 });

@@ -3,6 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { execSync } from 'child_process';
 import { resolveVaultPaths } from './config-loader.mjs';
+import { parseWikiFrontmatter, formatWikiFrontmatter } from './frontmatter.mjs';
 import { VikingVFSMount } from './viking-vfs-mount-v4.mjs';
 
 export const DETERMINISTIC_RULES = new Set([
@@ -95,21 +96,11 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   const eol = fileContent.includes('\r\n') ? '\r\n' : '\n';
   
   let content = fileContent;
-  let frontmatter = {};
-  let body = fileContent;
-
-  const fmRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
-  const match = fileContent.match(fmRegex);
-  
-  if (match) {
-    body = match[2];
-    for (const line of match[1].split(/\r?\n/)) {
-      const idx = line.indexOf(':');
-      if (idx > 0) {
-        frontmatter[line.slice(0, idx).trim()] = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
-      }
-    }
-  } else {
+  const parsed = parseWikiFrontmatter(fileContent);
+  const frontmatter = parsed.frontmatter;
+  let body = parsed.body;
+  const match = parsed.hasFrontmatter;
+  if (!match) {
     repairs.push('injected_frontmatter');
     frontmatter.title = path.parse(filePath).name;
   }
@@ -194,9 +185,7 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   }
 
   // Reassemble YAML Frontmatter
-  const fmKeys = Object.keys(frontmatter);
-  const formattedFm = fmKeys.map(k => `${k}: ${frontmatter[k]}`).join(eol);
-  content = `---${eol}${formattedFm}${eol}---${eol}${body}`;
+  content = formatWikiFrontmatter(frontmatter, body, eol);
 
   return {
     content,
@@ -319,6 +308,7 @@ export async function sweepStagingVault(options = {}) {
         }
       }
     } catch (e) {
+      if (e.code === 'WIKI_METADATA_INVALID') throw e;
       if (verbose) console.error('Walk error:', e.message);
     }
   }

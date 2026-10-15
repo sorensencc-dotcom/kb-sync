@@ -23,6 +23,8 @@ const MOCK_CLI = path.join(__dirname, 'mock-nlm-cli-harness.mjs');
 
 // Create mock CLI harness
 fs.writeFileSync(MOCK_CLI, `
+import fs from 'node:fs';
+import path from 'node:path';
 const args = process.argv.slice(2);
 const mode = process.env.TEST_MOCK_MODE || 'success';
 
@@ -46,14 +48,13 @@ if (args[0] === 'source' && args[1] === 'add') {
     console.error('500 Internal Server Error: Upload rejected by backend');
     process.exit(1);
   }
+  fs.writeFileSync(process.env.TEST_MOCK_STATE, JSON.stringify([{ id: 'mock-src-123', title: path.basename(filePath), status: 'ACTIVE' }]));
   console.log(JSON.stringify({ ok: true, source_id: 'mock-src-123' }));
   process.exit(0);
 }
 
 if (args[0] === 'source' && args[1] === 'list') {
-  console.log(JSON.stringify([
-    { id: 'mock-src-123', title: 'test_file_1.txt' }
-  ]));
+  console.log(fs.existsSync(process.env.TEST_MOCK_STATE) ? fs.readFileSync(process.env.TEST_MOCK_STATE, 'utf8') : '[]');
   process.exit(0);
 }
 
@@ -77,8 +78,11 @@ test('ingest-nlm-runner: exits code 2 on auth check failure', (t) => {
   try {
     const res = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-auth', '--staging-dir', testDir], {
       encoding: 'utf8',
+      timeout: 10000,
       env: {
         ...process.env,
+        NLM_LIVE_SANDBOX: '0',
+        TEST_MOCK_STATE: path.join(testDir, '.mock-sources.json'),
         PATH: `${path.dirname(process.execPath)};${process.env.PATH}`,
         NLM_CLI: `node "${MOCK_CLI}"`,
         TEST_MOCK_MODE: 'auth_fail'
@@ -103,8 +107,11 @@ test('ingest-nlm-runner: payload budget rejects oversized file (> 380 KiB) to de
 
     const res = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-budget', '--staging-dir', testDir], {
       encoding: 'utf8',
+      timeout: 10000,
       env: {
         ...process.env,
+        NLM_LIVE_SANDBOX: '0',
+        TEST_MOCK_STATE: path.join(testDir, '.mock-sources.json'),
         PATH: `${path.dirname(process.execPath)};${process.env.PATH}`,
         NLM_CLI: `node "${MOCK_CLI}"`,
         TEST_MOCK_MODE: 'success'
@@ -135,8 +142,11 @@ test('ingest-nlm-runner: idempotent skip via receipts', (t) => {
     // Run 1: initial ingest
     const res1 = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-idempotent', '--staging-dir', testDir], {
       encoding: 'utf8',
+      timeout: 10000,
       env: {
         ...process.env,
+        NLM_LIVE_SANDBOX: '0',
+        TEST_MOCK_STATE: path.join(testDir, '.mock-sources.json'),
         PATH: `${path.dirname(process.execPath)};${process.env.PATH}`,
         NLM_CLI: `node "${MOCK_CLI}"`,
         TEST_MOCK_MODE: 'success'
@@ -151,8 +161,11 @@ test('ingest-nlm-runner: idempotent skip via receipts', (t) => {
     // Run 2: second ingest should skip
     const res2 = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-idempotent', '--staging-dir', testDir], {
       encoding: 'utf8',
+      timeout: 10000,
       env: {
         ...process.env,
+        NLM_LIVE_SANDBOX: '0',
+        TEST_MOCK_STATE: path.join(testDir, '.mock-sources.json'),
         PATH: `${path.dirname(process.execPath)};${process.env.PATH}`,
         NLM_CLI: `node "${MOCK_CLI}"`,
         TEST_MOCK_MODE: 'success'
@@ -177,8 +190,11 @@ test('ingest-nlm-runner: isolates single item failure and continues batch', (t) 
 
     const res = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-partial', '--staging-dir', testDir, '--batch-size', '1'], {
       encoding: 'utf8',
+      timeout: 10000,
       env: {
         ...process.env,
+        NLM_LIVE_SANDBOX: '0',
+        TEST_MOCK_STATE: path.join(testDir, '.mock-sources.json'),
         PATH: `${path.dirname(process.execPath)};${process.env.PATH}`,
         NLM_CLI: `node "${MOCK_CLI}"`,
         TEST_MOCK_MODE: 'fail_specific'
@@ -207,8 +223,11 @@ test('ingest-nlm-runner: rejects concurrent run when lock is held by live PID', 
 
     const res = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-lock', '--staging-dir', testDir], {
       encoding: 'utf8',
+      timeout: 10000,
       env: {
         ...process.env,
+        NLM_LIVE_SANDBOX: '0',
+        TEST_MOCK_STATE: path.join(testDir, '.mock-sources.json'),
         PATH: `${path.dirname(process.execPath)};${process.env.PATH}`,
         NLM_CLI: `node "${MOCK_CLI}"`,
         TEST_MOCK_MODE: 'success'

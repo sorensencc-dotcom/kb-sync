@@ -162,14 +162,18 @@ nlm_source_list_json() {
 nlm_source_add() {
   local notebook_id="$1" file_path="$2"
   if [ "$NLM_DIALECT" = "nlm" ]; then
-    run_nlm_cli source add "$notebook_id" --file "$file_path"
+    run_nlm_cli source add "$notebook_id" --file "$file_path" "${@:3}"
   else
-    run_nlm_cli source add --notebook "$notebook_id" "$file_path"
+    run_nlm_cli source add --notebook "$notebook_id" "$file_path" "${@:3}"
   fi
 }
 
 nlm_source_delete() {
   local notebook_id="$1" source_id="$2"
+  if [ "$source_id" = "cc06bd53-1793-4ea0-b723-6f77eb1dd490" ]; then
+    echo "PROTECTED_SANDBOX_FIXTURE: deletion forbidden" >&2
+    return 1
+  fi
   if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli source delete "$source_id" -y
   else

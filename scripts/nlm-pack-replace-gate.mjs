@@ -10,8 +10,10 @@
  *   3) caller uploads the fresh pack
  */
 
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { isProtectedSandboxFixture, assertLiveSandbox, KB_TESTING_FIXTURE_SOURCE_ID } from './notebooklm/sandbox-contract.mjs';
+export { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID, KB_TESTING_FIXTURE_TITLE, isProtectedSandboxFixture } from './notebooklm/sandbox-contract.mjs';
 
 export const PACK_FAMILY_TITLE_RE = [
   /^pack[_-]/i,
@@ -81,7 +83,7 @@ export function isPackFamilyTitle(title, incomingPackBaseName) {
 export function filterPackFamilySources(sources, incomingPackBaseName) {
   const list = Array.isArray(sources) ? sources : [];
   return list.filter((s) =>
-    isPackFamilyTitle(s?.title || s?.name || '', incomingPackBaseName),
+    !isProtectedSandboxFixture(s) && isPackFamilyTitle(s?.title || s?.name || s?.displayName || '', incomingPackBaseName),
   );
 }
 
@@ -91,6 +93,7 @@ function runCapture(cmd) {
     stdio: ['ignore', 'pipe', 'pipe'],
     windowsHide: true,
     shell: true,
+    timeout: 120000,
   });
 }
 
@@ -109,6 +112,7 @@ export function listNotebookSources(cli, notebookId) {
   assertSafeCliValue(cli, 'CLI');
   assertSafeCliValue(notebookId, 'notebook id');
   const attempts = [
+    ...(cli === 'nlm' ? [`${cli} source list "${notebookId}" --json`] : []),
     `${cli} source list --notebook "${notebookId}" --json`,
     `${cli} source list --notebook-id="${notebookId}" --json`,
   ];
@@ -130,6 +134,7 @@ export function listNotebookSources(cli, notebookId) {
 }
 
 export function deleteNotebookSource(cli, sourceId) {
+  if (isProtectedSandboxFixture({ id: sourceId })) throw new Error('PROTECTED_SANDBOX_FIXTURE: deletion forbidden');
   assertSafeCliValue(cli, 'CLI');
   assertSafeCliValue(sourceId, 'source id');
   const attempts = [
@@ -197,7 +202,7 @@ export function purgePackFamilyBeforeUpload({
 
   let purged = 0;
   for (const s of matched) {
-    const id = s.id || s.sourceId;
+    const id = s.id || s.sourceId || s.source_id;
     if (!id) {
       logWarn(`Replace-gate: skipping match without id ("${s.title || s.name}")`);
       continue;
@@ -221,4 +226,74 @@ export function buildNotebookLmUploadCommand({ cli, notebookId, file }) {
   assertSafeCliValue(notebookId, 'notebook id');
   assertSafeCliValue(file, 'file path');
   return `${cli} source upload --notebook "${notebookId}" --file="${file}"`;
+}
+
+export async function uploadAndReplacePack({
+  cli,
+  notebookId,
+  packFile,
+  oldSources = [],
+  logInfo = console.log,
+  runUpload = null,
+  waitMs = 3500,
+}) {
+  assertAllowedPackNotebook(notebookId, packFile);
+  const invoke = runUpload || (() => {
+    const result = spawnSync(cli, ['source', 'upload', '--notebook', notebookId, '--file', packFile, '--json'], {
+      encoding: 'utf8', timeout: 120000, shell: true,
+    });
+    if (result.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${result.stderr || result.stdout || result.error?.message}`);
+    return result.stdout;
+  });
+  const added = typeof invoke === 'function' ? invoke() : null;
+  let parsed;
+  try { parsed = typeof added === 'string' ? JSON.parse(added) : added; } catch { throw new Error('UPLOAD_SOURCE_ID_UNVERIFIABLE'); }
+  const uploadedId = parsed?.source_id || parsed?.id || parsed?.source?.id;
+  if (typeof uploadedId !== 'string' || !uploadedId) throw new Error('UPLOAD_SOURCE_ID_UNVERIFIABLE');
+  const sources = listNotebookSources(cli, notebookId);
+  const matches = sources.filter(source => (source.id || source.sourceId || source.source_id) === uploadedId);
+  if (matches.length !== 1) throw new Error('UPLOAD_SOURCE_ID_NOT_UNIQUE');
+  if (![2, '2', 'ACTIVE', 'active'].includes(matches[0].status)) throw new Error('UPLOAD_SOURCE_NOT_ACTIVE');
+  await new Promise(resolve => setTimeout(resolve, waitMs));
+  for (const source of oldSources) deleteNotebookSource(cli, source.id || source.sourceId || source.source_id);
+  logInfo(`Uploaded ${path.basename(packFile)} as ${uploadedId}; deleted ${oldSources.length} old source(s).`);
+  return { uploadedId, oldSourceIds: oldSources.map(source => source.id || source.sourceId || source.source_id) };
+}
+
+// Sandbox verification replaces only sources explicitly owned by this run.
+export async function replaceSandboxPack({ notebookId, file, runId, oldSourceIds = [], runNlm = null, onUploaded = () => {} }) {
+  assertLiveSandbox(notebookId);
+  if (!/^[0-9a-f-]{36}$/.test(runId || '') || !path.basename(file).startsWith(`pack_sandbox_${runId}.txt`)) throw new Error('SANDBOX_RUN_OWNERSHIP_REQUIRED');
+  if (oldSourceIds.some(id => isProtectedSandboxFixture({ id }))) throw new Error('PROTECTED_SANDBOX_FIXTURE');
+  const invoke = runNlm || ((args) => {
+    const res = spawnSync('nlm', args, { encoding: 'utf8', timeout: 120000 });
+    if (res.status !== 0) throw new Error(`NLM_COMMAND_FAILED: ${res.stderr || res.error?.message}`);
+    return args[1] === 'delete' ? res.stdout : JSON.parse(res.stdout);
+  });
+  const beforeRaw = invoke(['source', 'list', notebookId, '--json']);
+  const before = Array.isArray(beforeRaw) ? beforeRaw : beforeRaw.sources;
+  if (!Array.isArray(before) || !before.some(s => (s.id || s.sourceId || s.source_id) === KB_TESTING_FIXTURE_SOURCE_ID)) throw new Error('SANDBOX_FIXTURE_MISSING');
+  const ids = new Set(before.map(s => s.id || s.sourceId || s.source_id));
+  if (oldSourceIds.some(id => !ids.has(id))) throw new Error('OWNED_SOURCE_MISSING');
+  if (before.some(s => oldSourceIds.includes(s.id || s.sourceId || s.source_id)
+    && ![s.title, s.name, s.displayName].includes(`pack_sandbox_${runId}.txt`))) throw new Error('SOURCE_NOT_OWNED_BY_RUN');
+  const added = invoke(['source', 'add', notebookId, '--file', file, '--wait', '--json']);
+  const addedId = added.source_id || added.id;
+  if (addedId && !ids.has(addedId) && addedId !== KB_TESTING_FIXTURE_SOURCE_ID) onUploaded(addedId);
+  const afterRaw = invoke(['source', 'list', notebookId, '--json']);
+  const after = Array.isArray(afterRaw) ? afterRaw : afterRaw.sources;
+  const uploaded = after?.filter(s => !ids.has(s.id || s.sourceId || s.source_id)
+    && [s.title, s.name, s.displayName].includes(path.basename(file)));
+  if (uploaded?.length !== 1) throw new Error('NEW_SOURCE_NOT_VERIFIED: old sources retained');
+  const newSourceId = uploaded[0].id || uploaded[0].sourceId || uploaded[0].source_id;
+  if (newSourceId !== addedId) onUploaded(newSourceId);
+  if (addedId && newSourceId !== addedId) throw new Error('UPLOAD_ID_MISMATCH: old sources retained');
+  const source = uploaded[0];
+  if (![2, '2', 'ACTIVE', 'active', 'READY', 'ready'].includes(source.status)) {
+    throw new Error('NEW_SOURCE_NOT_ACTIVE: old sources retained');
+  }
+  const activeVerifiedAt = Date.now();
+  await new Promise(resolve => setTimeout(resolve, 3500));
+  for (const id of oldSourceIds) invoke(['source', 'delete', id, '-y']);
+  return { newSourceId, oldSourceIds, activeVerifiedAt, deletedAt: Date.now() };
 }

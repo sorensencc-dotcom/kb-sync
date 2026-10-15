@@ -34,6 +34,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { assertLiveSandbox, findActiveUploadedSource } from './sandbox-contract.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,6 +63,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 const notebookUuid = positional[0] || flags['notebook'] || flags['notebook-id'] || process.env.NOTEBOOK_ID;
+if (process.env.NLM_LIVE_SANDBOX === '1') assertLiveSandbox(notebookUuid);
 if (!notebookUuid) {
   console.error(JSON.stringify({
     ok: false,
@@ -91,6 +93,7 @@ const report = {
   timestamp: new Date().toISOString(),
   staged: 0,
   ingested: 0,
+  uploadedSourceIds: [],
   skippedAlreadySynced: 0,
   failed: [],
   ok: true,
@@ -119,13 +122,13 @@ function resolveNlmRunner() {
     return { cmd: parts[0], dialect: 'nlm', prefix: parts.slice(1) };
   }
 
-  const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', shell: process.platform === 'win32' });
+  const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: process.platform === 'win32' });
   if (check.status === 0) return { cmd: 'nlm', dialect: 'nlm', prefix: [] };
 
-  const pyCheck = spawnSync('notebooklm', ['--version'], { encoding: 'utf8', shell: process.platform === 'win32' });
+  const pyCheck = spawnSync('notebooklm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: process.platform === 'win32' });
   if (pyCheck.status === 0) return { cmd: 'notebooklm', dialect: 'notebooklm', prefix: [] };
 
-  const uvCheck = spawnSync('uv', ['--version'], { encoding: 'utf8' });
+  const uvCheck = spawnSync('uv', ['--version'], { encoding: 'utf8', timeout: 5000 });
   const localPyproject = path.resolve(__dirname, '../../notebooklm-mcp-cli/pyproject.toml');
   if (uvCheck.status === 0 && fs.existsSync(localPyproject)) {
     return { cmd: 'uv', dialect: 'nlm', prefix: ['--directory', path.dirname(localPyproject), 'run', 'nlm'] };
@@ -136,9 +139,9 @@ function resolveNlmRunner() {
 
 function buildSourceAddArgs(runner, notebookUuid, filePath) {
   if (runner.dialect === 'nlm') {
-    return ['source', 'add', notebookUuid, '--file', filePath, '--wait'];
+    return ['source', 'add', notebookUuid, '--file', filePath, '--wait', '--json'];
   }
-  return ['source', 'add', '--notebook', notebookUuid, filePath, '--wait'];
+  return ['source', 'add', '--notebook', notebookUuid, filePath, '--wait', '--json'];
 }
 
 function buildSourceListArgs(runner, notebookUuid) {
@@ -162,12 +165,31 @@ function runNlm(runner, nlmArgs, timeoutMs = 120000) {
 function loadReceipts() {
   if (fs.existsSync(receiptPath)) {
     try {
-      return JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
+      const parsed = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
+      return parsed?.receipts && typeof parsed.receipts === 'object' && !Array.isArray(parsed.receipts)
+        ? parsed : { receipts: {} };
     } catch {
       return { receipts: {} };
     }
   }
   return { receipts: {} };
+}
+
+function listSources(runner) {
+  const result = runNlm(runner, buildSourceListArgs(runner, notebookUuid), 30000);
+  if (result.status !== 0) throw new Error(`SOURCE_LIST_FAILED: ${result.stderr || result.stdout}`);
+  const parsed = JSON.parse(result.stdout);
+  const sources = Array.isArray(parsed) ? parsed : parsed?.sources;
+  if (!Array.isArray(sources)) throw new Error('SOURCE_LIST_INVALID: expected source array');
+  const seenIds = new Set();
+  for (const source of sources) {
+    if (!source || typeof source !== 'object') throw new Error('SOURCE_LIST_INVALID: source entry must be an object');
+    const id = source.id || source.sourceId || source.source_id;
+    if (typeof id !== 'string' || !id) throw new Error('SOURCE_LIST_INVALID: source entry missing ID');
+    if (seenIds.has(id)) throw new Error(`SOURCE_LIST_INVALID: duplicate source ID ${id}`);
+    seenIds.add(id);
+  }
+  return sources;
 }
 
 function saveReceipt(receiptsData, key, details) {
@@ -269,6 +291,8 @@ function main() {
 
     // 6. Check Receipts
     const receiptsData = loadReceipts();
+    const currentSources = listSources(runner);
+    const existingSourceIds = new Set(currentSources.map(source => source.id || source.sourceId || source.source_id));
     const pendingFiles = [];
 
     for (const filePath of stagedFiles) {
@@ -276,7 +300,7 @@ function main() {
       const hash = computeFileHash(filePath);
       const receiptKey = `${notebookUuid}::${fileName}::${hash}`;
 
-      if (!isForce && receiptsData.receipts[receiptKey]) {
+      if (!isForce && findActiveUploadedSource(currentSources, receiptsData.receipts[receiptKey]?.sourceId)) {
         report.skippedAlreadySynced++;
       } else {
         pendingFiles.push({ filePath, fileName, hash, receiptKey });
@@ -303,37 +327,28 @@ function main() {
           console.error(`    --> Uploading: ${fileName}`);
           const addArgs = buildSourceAddArgs(runner, notebookUuid, filePath);
           const addRes = runNlm(runner, addArgs, 90000);
-
           if (addRes.status !== 0) {
             throw new Error(`CLI_SOURCE_ADD_FAILED (${addRes.status}): ${addRes.stderr || addRes.stdout}`);
           }
-
-          // Verify server-side source state if supported
-          let verifiedSourceId = null;
-          try {
-            const listArgs = buildSourceListArgs(runner, notebookUuid);
-            const listRes = runNlm(runner, listArgs, 30000);
-            if (listRes.status === 0 && listRes.stdout) {
-              const parsed = JSON.parse(listRes.stdout);
-              const sources = Array.isArray(parsed) ? parsed : (parsed.sources || []);
-              const found = sources.find(s => (s.title === fileName || s.title?.includes(path.parse(fileName).name)));
-              if (found) {
-                verifiedSourceId = found.id || found.source_id;
-              }
-            }
-          } catch {
-            // Best effort verification
+          const added = JSON.parse(addRes.stdout);
+          const uploadedSourceId = added.source_id || added.id || added.source?.id;
+          if (typeof uploadedSourceId !== 'string' || !uploadedSourceId) throw new Error('UPLOAD_SOURCE_ID_MISSING');
+          if (existingSourceIds.has(uploadedSourceId)) throw new Error('UPLOAD_SOURCE_ID_REUSED: receipt withheld');
+          existingSourceIds.add(uploadedSourceId);
+          report.uploadedSourceIds.push(uploadedSourceId);
+          if (!findActiveUploadedSource(listSources(runner), uploadedSourceId)) {
+            throw new Error('SOURCE_VERIFICATION_FAILED: uploaded source is not ACTIVE; receipt withheld');
           }
 
           saveReceipt(receiptsData, receiptKey, {
             fileName,
             hash,
             sizeBytes: stats.size,
-            sourceId: verifiedSourceId
+            sourceId: uploadedSourceId
           });
 
           report.ingested++;
-          console.error(`    [✓] Ingested successfully: ${fileName}${verifiedSourceId ? ` (ID: ${verifiedSourceId})` : ''}`);
+          console.error(`    [✓] Ingested successfully: ${fileName} (ID: ${uploadedSourceId})`);
 
         } catch (itemErr) {
           console.error(`    [-] Ingest failed for ${fileName}: ${itemErr.message}`);

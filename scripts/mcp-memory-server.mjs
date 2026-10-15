@@ -59,10 +59,6 @@ export function daemonDatabasePath() {
   return DB_PATH;
 }
 
-const SERVER_NAME = 'local-context-cache';
-const SERVER_VERSION = '1.0.0';
-const PROTOCOL_VERSION = '2024-11-05';
-
 const TOOL_DEFINITIONS = [
   {
     name: 'query_context_cache',
@@ -304,22 +300,6 @@ export function processRpcMessage(dbInstance, message) {
   }
 
   switch (method) {
-    case 'initialize':
-      return {
-        jsonrpc: '2.0',
-        id,
-        result: {
-          protocolVersion: PROTOCOL_VERSION,
-          capabilities: {
-            tools: {}
-          },
-          serverInfo: {
-            name: SERVER_NAME,
-            version: SERVER_VERSION
-          }
-        }
-      };
-
     case 'ping':
       return {
         jsonrpc: '2.0',

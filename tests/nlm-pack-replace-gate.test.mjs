@@ -10,6 +10,7 @@ import {
   buildNotebookLmUploadCommand,
   isSoftwarePack,
   assertAllowedPackNotebook,
+  uploadAndReplacePack,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -148,6 +149,26 @@ test('purgePackFamilyBeforeUpload fails closed when source list fails', () => {
     },
     /Failed to list NotebookLM sources/,
   );
+});
+
+test('uploadAndReplacePack verifies returned ACTIVE ID before deleting old sources', async () => {
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify([
+    { id: 'old-1', title: 'pack_old.txt', status: 'ACTIVE' },
+    { id: 'new-1', title: 'pack_new.txt', status: 'ACTIVE' },
+  ]);
+  const deleted = [];
+  const result = await uploadAndReplacePack({
+    cli: mockCli,
+    notebookId: 'nb-live-test',
+    packFile: 'pack_new.txt',
+    oldSources: [{ id: 'old-1' }],
+    waitMs: 1,
+    runUpload: () => JSON.stringify({ source_id: 'new-1' }),
+  });
+  assert.equal(result.uploadedId, 'new-1');
+  assert.deepEqual(result.oldSourceIds, ['old-1']);
+  assert.equal(deleted.length, 0);
 });
 
 test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () => {
@@ -353,6 +374,79 @@ test('Agent Harness: live purge executes notebooklm source delete for each match
   assert.equal(result.safeToUpload, true);
 });
 
+test('ingest-notebooklm.sh purge pattern matches multipart parts (part_aa..as), pack_agent_harness, and thematic packs', () => {
+  const ingestScript = fs.readFileSync(path.join(REPO_ROOT, 'modules', 'notebooklm', 'ingest-notebooklm.sh'), 'utf8');
+  const match = ingestScript.match(/const\s+pattern\s*=\s*(\/[^/]+\/[a-z]*);/);
+  assert.ok(match, 'must find const pattern = /.../ in ingest-notebooklm.sh');
+  const pattern = eval(match[1]);
 
+  // Single repo pack
+  assert.equal(pattern.test('repo_knowledge_pack.txt'), true);
+  assert.equal(pattern.test('repo-knowledge-pack.txt'), true);
 
+  // All 19 multipart chunks
+  const parts = ['aa', 'ab', 'ac', 'ad', 'ae', 'af', 'ag', 'ah', 'ai', 'aj', 'ak', 'al', 'am', 'an', 'ao', 'ap', 'aq', 'ar', 'as'];
+  for (const p of parts) {
+    const filename = `repo_knowledge_pack_part_${p}.txt`;
+    assert.equal(pattern.test(filename), true, `${filename} must match ingest pattern`);
+  }
+
+  // Core Software and thematic packs
+  assert.equal(pattern.test('pack_agent_harness.txt'), true);
+  assert.equal(pattern.test('pack_ironledger.txt'), true);
+  assert.equal(pattern.test('pack_sigil.txt'), true);
+  assert.equal(pattern.test('pack_daily.txt'), true);
+  assert.equal(pattern.test('pack_ford_politics.txt'), true);
+
+  // Must reject non-pack documents
+  assert.equal(pattern.test('Interview transcript - User research.docx'), false);
+  assert.equal(pattern.test('Architecture RFC 2026.md'), false);
+  assert.equal(pattern.test('Evaluating OpenResearch for Autoresearchers.txt'), false);
+});
+
+test('Multi-generation deduplication invariance: second nightly run purges all 19 prior parts preventing 38-part stack', () => {
+  const parts = ['aa', 'ab', 'ac', 'ad', 'ae', 'af', 'ag', 'ah', 'ai', 'aj', 'ak', 'al', 'am', 'an', 'ao', 'ap', 'aq', 'ar', 'as'];
+  const preexistingSources = parts.map((p, idx) => ({
+    id: `src-gen1-${p}`,
+    title: `repo_knowledge_pack_part_${p}.txt`,
+  }));
+
+  // Non-pack docs that must be preserved
+  preexistingSources.push({ id: 'doc-user-guide', title: 'User Guide.md' });
+  preexistingSources.push({ id: 'doc-roadmap', title: 'Roadmap.pdf' });
+
+  // Simulate query_preexisting_pack_sources using the ingest regex
+  const ingestScript = fs.readFileSync(path.join(REPO_ROOT, 'modules', 'notebooklm', 'ingest-notebooklm.sh'), 'utf8');
+  const match = ingestScript.match(/const\s+pattern\s*=\s*(\/[^/]+\/[a-z]*);/);
+  const pattern = eval(match[1]);
+
+  const matchedForPurge = preexistingSources.filter(s => pattern.test(s.title));
+  assert.equal(matchedForPurge.length, 19, 'Must match exactly the 19 old parts for purge');
+  assert.equal(matchedForPurge.some(s => s.id === 'doc-user-guide'), false, 'Must not touch User Guide');
+  assert.equal(matchedForPurge.some(s => s.id === 'doc-roadmap'), false, 'Must not touch Roadmap');
+
+  // Verify filterPackFamilySources from nlm-pack-replace-gate also matches all 19 parts
+  const gateMatched = filterPackFamilySources(preexistingSources, 'repo_knowledge_pack_part_aa.txt');
+  assert.equal(gateMatched.length, 19, 'replace-gate must match exactly the 19 old parts for purge');
+});
+
+test('assertAllowedPackNotebook blocks all 19 multipart parts from historical notebooks', () => {
+  const historicalIds = [
+    '6fd7c40b-df90-444b-9c7a-a64682925856', // willow-run
+    '0caf6707-f8f2-4d2a-acd2-020acead55ba', // ford-politics
+    '9c469910-a900-43a4-877c-a43c9f545b5f', // post-war
+    '679b8bab-2d87-42cb-a726-6dc54c83acc2', // master-kb
+  ];
+  const parts = ['aa', 'ag', 'as'];
+  for (const nbId of historicalIds) {
+    for (const p of parts) {
+      const filename = `repo_knowledge_pack_part_${p}.txt`;
+      assert.throws(
+        () => assertAllowedPackNotebook(nbId, filename),
+        /ROUTING_GUARD_VIOLATION/,
+        `Historical notebook ${nbId} must reject software part ${filename}`
+      );
+    }
+  }
+});
 

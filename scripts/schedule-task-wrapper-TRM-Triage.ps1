@@ -115,6 +115,18 @@ try {
         } else {
             Write-LogInfo "TRM Gap Export completed successfully."
         }
+
+        # 4. Reconcile resolved TRM gaps and findings across canonical status feeds and registries
+        $reconcileScript = Join-Path (Resolve-Path "$RepoRoot\..").Path "scripts\reconcile-trm-gaps.mjs"
+        if (Test-Path $reconcileScript) {
+            Write-LogInfo "Reconciling TRM gaps and notebook findings across status surfaces..."
+            & node $reconcileScript 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+            if ($LASTEXITCODE -ne 0) {
+                Write-LogWarn "TRM Gap Reconciliation exited with code $LASTEXITCODE"
+            } else {
+                Write-LogInfo "TRM Gap Reconciliation completed successfully."
+            }
+        }
     } else {
         Write-LogError "TRM Gap Triage exited with code $ExitCode"
     }

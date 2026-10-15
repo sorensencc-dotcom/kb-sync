@@ -160,3 +160,8 @@ notebook_registry:
       aliases:
         - "ai-ideas"
 
+    - slug: "kb-testing"
+      uuid: "d721ed70-5b37-497f-a279-10ba362c744e"
+      title: "KB - Testing Sandbox (Live Verification)"
+      domain: "ALPHA-101, BRAVO-202, and CHARLIE-303 live verification"
+      aliases: ["testing-sandbox"]

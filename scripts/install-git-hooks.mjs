@@ -8,7 +8,7 @@ const repoRoot = path.resolve(here, '..');
 
 let gitDir;
 try {
-  gitDir = execFileSync('git', ['rev-parse', '--git-dir'], { cwd: repoRoot, encoding: 'utf8' }).trim();
+  gitDir = execFileSync('git', ['rev-parse', '--git-common-dir'], { cwd: repoRoot, encoding: 'utf8' }).trim();
 } catch {
   process.exit(0);
 }
@@ -88,22 +88,25 @@ if [ "$STATUS" = "DRIFT_DETECTED" ]; then
   echo "========================================================================"
   echo ""
 
-  INGEST_LOG="$(mktemp 2>/dev/null || echo .kb-sync-ingest-hook.log)"
+  LOG_DIR="$(git rev-parse --git-path kb-sync-hook-logs)"
+  mkdir -p "$LOG_DIR" || exit 0
+  INGEST_LOG="$LOG_DIR/$(date -u +%Y%m%dT%H%M%SZ)-$$.log"
   if ! bash modules/obsidian/ingest-obsidian.sh --incremental >"$INGEST_LOG" 2>&1; then
     log_warn "Incremental staging refresh failed. Skipping offline wiki autoheal."
     tail -n 20 "$INGEST_LOG" >&2 || true
-    rm -f "$INGEST_LOG"
+    log_warn "Full failure log retained: $INGEST_LOG"
     exit 0
   fi
 
   if bash modules/obsidian/ingest-wiki.sh --provider offline-template >"$INGEST_LOG" 2>&1; then
     log_info "✓ Offline wiki autoheal completed."
+    rm -f "$INGEST_LOG"
   else
     log_warn "Offline wiki autoheal failed. Manual fallback:"
     log_warn "  bash modules/obsidian/ingest-wiki.sh --provider offline-template"
     tail -n 20 "$INGEST_LOG" >&2 || true
+    log_warn "Full failure log retained: $INGEST_LOG"
   fi
-  rm -f "$INGEST_LOG"
 fi
 `;
 

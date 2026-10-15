@@ -1,8 +1,8 @@
-import { execFileSync, execSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import { NOTEBOOK_TARGETS, resolveNotebookId, extractFrontmatterCategory } from '../core/targets.mjs';
-import { deleteNotebookSource, purgePackFamilyBeforeUpload, buildNotebookLmUploadCommand } from './nlm-pack-replace-gate.mjs';
+import { purgePackFamilyBeforeUpload, buildNotebookLmUploadCommand, replaceSandboxPack, uploadAndReplacePack } from './nlm-pack-replace-gate.mjs';
+import { assertLiveSandbox, KB_TESTING_SANDBOX_UUID } from './notebooklm/sandbox-contract.mjs';
 
 export { NOTEBOOK_TARGETS, resolveNotebookId, extractFrontmatterCategory };
 
@@ -15,6 +15,23 @@ const logError = (msg) => console.log(`${COLOR.red}${TAG} [ERROR]${COLOR.reset} 
 const logStep = (step, title) => console.log(`\n${COLOR.cyan}=== [STEP ${step}] ${title} ===${COLOR.reset}`);
 
 async function run() {
+  if (process.argv.includes('--sandbox-pack')) {
+    if (process.env.NLM_REPLACE_GATE_LIVE !== '1') throw new Error('LIVE_SANDBOX_OPT_IN_REQUIRED');
+    const args = process.argv.slice(2);
+    const value = key => args.includes(key) ? args[args.indexOf(key) + 1] : undefined;
+    const notebookId = value('--notebook');
+    assertLiveSandbox(notebookId);
+    const file = value('--sandbox-pack');
+    if (!file || !path.isAbsolute(file)) throw new Error('SANDBOX_PACK_REQUIRED: absolute file path required');
+    const oldSourceIds = args.flatMap((arg, index) => arg === '--owned-source-id' ? [args[index + 1]] : []);
+    const receiptPath = `${file}.sources.json`;
+    const result = await replaceSandboxPack({ notebookId, file, runId: value('--sandbox-run-id'), oldSourceIds, onUploaded: sourceId => {
+      const owned = fs.existsSync(receiptPath) ? JSON.parse(fs.readFileSync(receiptPath, 'utf8')) : [];
+      fs.writeFileSync(receiptPath, JSON.stringify([...owned, sourceId]));
+    } });
+    console.log(JSON.stringify(result));
+    return;
+  }
   logInfo('Initializing Topic Research Mining (TRM) Closed-Loop Orchestrator...');
 
   const repoRoot = '.';
@@ -202,6 +219,9 @@ When verifying historical signatures:
     logInfo(`Pushing ${pack.filename} to Target '${pack.category}' (Notebook ID: ${targetNbId})...`);
     // Pre-upload replace gate (query + purge pack family) -- keeps <=1 pack family even in dry/mock runs when CLI is available.
     const isLive = process.env.NLM_REPLACE_GATE_LIVE === '1';
+    if (isLive && targetNbId !== KB_TESTING_SANDBOX_UUID && process.env.NLM_PRODUCTION_MUTATION_APPROVED !== '1') {
+      throw new Error('PRODUCTION_MUTATION_APPROVAL_REQUIRED');
+    }
     let oldPackSources = [];
     try {
       oldPackSources = purgePackFamilyBeforeUpload({
@@ -223,11 +243,13 @@ When verifying historical signatures:
       logInfo(`Command: ${uploadCommand}`);
       continue;
     }
-    execFileSync(nlmCli, ['source', 'upload', '--notebook', targetNbId, '--file', packFilePath], { stdio: 'inherit' });
-    for (const source of oldPackSources) {
-      deleteNotebookSource(nlmCli, source.id || source.sourceId);
-    }
-    logInfo(`Uploaded ${pack.filename}; old pack sources remain until upload succeeds.`);
+    await uploadAndReplacePack({
+      cli: nlmCli,
+      notebookId: targetNbId,
+      packFile: packFilePath,
+      oldSources: oldPackSources,
+      logInfo,
+    });
   }
   
   logInfo('\n================================================================================');

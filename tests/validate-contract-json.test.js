@@ -102,4 +102,9 @@ test('validate-contract --json mode reports rule_ids on failing directory', (t) 
   assert.ok(ruleIds.includes('CATEGORY_ENUM_INVALID'), 'Should contain CATEGORY_ENUM_INVALID');
   assert.ok(ruleIds.includes('STATUS_ENUM_INVALID'), 'Should contain STATUS_ENUM_INVALID');
   assert.ok(ruleIds.includes('DOC_ID_COLLISION'), 'Should contain DOC_ID_COLLISION');
+  const schemaError = res.json.errors.find(e => e.rule_id === 'CONTRACT_SCHEMA_INVALID' && e.file === 'bad-status.md');
+  assert.ok(schemaError, 'Schema error should name offending note');
+  assert.match(schemaError.message, /frontmatter.*status/);
+  assert.match(schemaError.message, /invalid_status/);
+  assert.doesNotMatch(schemaError.message, /Value: undefined/);
 });

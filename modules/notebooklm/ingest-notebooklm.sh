@@ -390,6 +390,7 @@ query_preexisting_pack_sources() {
     return 1
   fi
 
+  PRE_EXISTING_SOURCE_JSON="$sources_json"
   local parsed_ids
   parsed_ids=$(printf '%s' "$sources_json" | node -e '
     const fs = require("fs");
@@ -397,8 +398,8 @@ query_preexisting_pack_sources() {
       const input = fs.readFileSync(0, "utf8");
       let raw = JSON.parse(input || "[]");
       let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : null);
-      // Match repo knowledge pack or any software/thematic pack in this notebook
-      const pattern = /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness|pack_.*)\.txt$/i;
+      // Match repo knowledge pack (including multipart parts) or any software/thematic pack in this notebook
+      const pattern = /^(repo[_-]?knowledge[_-]?pack.*|pack_.*)\.txt$/i;
       const matching = [];
       for (const s of list) {
         if (!s || typeof s.id !== "string" || !s.id) process.exit(1);
@@ -423,31 +424,127 @@ query_preexisting_pack_sources() {
   return 0
 }
 
-# Pre-flight audit and automated drift correction
+# Audit cannot infer duplicate generations from source order or chunk titles.
 run_preflight_drift_audit() {
-  log_info "Step 0/5: Executing pre-flight source audit and drift check..."
-  if ! query_preexisting_pack_sources; then
-    log_warn "[AUDIT] Pre-flight source query failed. Proceeding with caution..."
-    return 0
-  fi
+  query_preexisting_pack_sources || return 1
+  log_info "[AUDIT] Found ${#PRE_EXISTING_SOURCES[@]} pack source(s); preserving all until verified replacement."
+}
 
-  local count="${#PRE_EXISTING_SOURCES[@]}"
-  if [ "$count" -gt 1 ]; then
-    log_warn "[AUDIT-DRIFT] Anomaly detected: Found $count matching knowledge pack sources (drift from interrupted prior run)."
-    log_info "[AUDIT-DRIFT] Executing automated drift correction... Purging $((count - 1)) duplicate stale source(s)."
+UPLOADED_SOURCE_IDS=()
+CLEANED_COUNT=0
+CLEANUP_FAILED_COUNT=0
+cleanup_uploaded_sources() {
+  local id
+  for id in "${UPLOADED_SOURCE_IDS[@]}"; do
+    if nlm_source_delete "$NOTEBOOK_ID" "$id" >/dev/null 2>&1; then
+      CLEANED_COUNT=$((CLEANED_COUNT + 1))
+    else
+      CLEANUP_FAILED_COUNT=$((CLEANUP_FAILED_COUNT + 1))
+      log_error "Failed to remove this run's uploaded source: $id"
+    fi
+  done
+}
 
-    local purged=0
-    for ((i=0; i<count-1; i++)); do
-      local src_id="${PRE_EXISTING_SOURCES[i]}"
-      if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
-        purged=$((purged + 1))
-      fi
-    done
-    log_info "[AUDIT-DRIFT] Automated drift correction complete: Purged $purged stale duplicate source(s)."
-  else
-    log_info "[AUDIT] Pre-flight audit passed cleanly ($count active pack source)."
+upload_pack_file() {
+  local file="$1" output source_id retry_count=0 target_upload_path="$1"
+  log_info "Uploading: $(basename "$file")"
+  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "$NLM_MODE" == "uv-project" ]]; then
+    local abs_file
+    abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
+    if command -v wslpath >/dev/null 2>&1; then
+      target_upload_path="$(wslpath -w "$abs_file")"
+    elif command -v cygpath >/dev/null 2>&1; then
+      target_upload_path="$(cygpath -w "$abs_file")"
+    fi
   fi
-  return 0
+  until output="$(nlm_source_add "$NOTEBOOK_ID" "$target_upload_path" --json)"; do
+    retry_count=$((retry_count + 1))
+    [ "$retry_count" -ge "$RETRY_ATTEMPTS" ] && return 1
+    sleep_backoff "$BACKOFF_MS"
+  done
+  source_id=$(printf '%s' "$PRE_EXISTING_SOURCE_JSON" | node -e '
+    try {
+      const added = JSON.parse(process.argv[1]);
+      const id = added.source_id || added.id || added.source?.id;
+      if (typeof id !== "string" || !/^[a-zA-Z0-9_-]+$/.test(id)) process.exit(1);
+      const raw = JSON.parse(require("fs").readFileSync(0, "utf8"));
+      const list = Array.isArray(raw) ? raw : raw.sources;
+      if (!Array.isArray(list) || list.some(s => (s.id || s.sourceId || s.source_id) === id)) process.exit(1);
+      console.log(id);
+    } catch { process.exit(1); }
+  ' "$output") || { log_error "Upload returned no verifiable source ID; preserving old sources."; return 1; }
+  local id
+  for id in "${PRE_EXISTING_SOURCES[@]}" "${UPLOADED_SOURCE_IDS[@]}" cc06bd53-1793-4ea0-b723-6f77eb1dd490; do
+    [ "$id" = "$source_id" ] && { log_error "Upload returned an existing source ID; preserving old sources."; return 1; }
+  done
+  UPLOADED_SOURCE_IDS+=("$source_id")
+}
+
+poll_new_sources_active() {
+  local deadline=$(( $(date +%s) + (TIMEOUT_MS + 999) / 1000 )) sources_json state
+  while true; do
+    sources_json="$(nlm_source_list_json "$NOTEBOOK_ID")" || return 1
+    state=$(printf '%s' "$sources_json" | node -e '
+      try {
+        const raw = JSON.parse(require("fs").readFileSync(0, "utf8"));
+        const list = Array.isArray(raw) ? raw : raw.sources;
+        if (!Array.isArray(list)) process.exit(1);
+        const ids = process.argv.slice(1);
+        if (ids.some(id => list.filter(s => (s.id || s.sourceId || s.source_id) === id).length > 1)) process.exit(1);
+        const sources = ids.map(id => list.find(s => (s.id || s.sourceId || s.source_id) === id));
+        if (sources.some(s => /^(ERROR|FAILED)$/i.test(String(s?.status)))) console.log("ERROR");
+        else if (sources.some(s => s && !/^(1|2|ACTIVE|PROCESSING|PENDING)$/i.test(String(s.status)))) console.log("ERROR");
+        else if (sources.every(s => s && /^(2|ACTIVE)$/i.test(String(s.status)))) console.log("ACTIVE");
+        else console.log("PROCESSING");
+      } catch { process.exit(1); }
+    ' "${UPLOADED_SOURCE_IDS[@]}") || return 1
+    [ "$state" = "ACTIVE" ] && return 0
+    [ "$state" = "ERROR" ] && return 1
+    [ "$(date +%s)" -ge "$deadline" ] && return 1
+    sleep_backoff 1000
+  done
+}
+
+replace_pack_sources() {
+  UPLOADED_COUNT=0
+  PURGED_COUNT=0
+  local file src_id help
+  if [ "$NLM_DIALECT" != "nlm" ]; then
+    help="$(run_nlm_cli source add --help)" || return 1
+    if [[ "$help" != *--json* ]]; then
+      log_error "CLI source add lacks verified --json support; install nlm or a structured-output CLI before retrying. No upload attempted."
+      write_sync_telemetry "FAILED" 0 0 "CLI source add requires --json support; no upload attempted"
+      return 1
+    fi
+  fi
+  for file in "${UPLOAD_FILES[@]}"; do
+    if ! upload_pack_file "$file"; then
+      cleanup_uploaded_sources
+      write_sync_telemetry "FAILED" "$CLEANED_COUNT" "$UPLOADED_COUNT" "Upload failed; old pack sources preserved; cleanup failures: $CLEANUP_FAILED_COUNT"
+      return 1
+    fi
+    UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
+  done
+  if ! poll_new_sources_active; then
+    cleanup_uploaded_sources
+    write_sync_telemetry "FAILED" "$CLEANED_COUNT" "$UPLOADED_COUNT" "Uploaded sources failed ACTIVE verification; old pack sources preserved; cleanup failures: $CLEANUP_FAILED_COUNT"
+    return 1
+  fi
+  # Preserve calibrated indexing propagation delay after terminal ACTIVE proof.
+  if [ "${#PRE_EXISTING_SOURCES[@]}" -gt 0 ]; then sleep_backoff 3500; fi
+  local purge_failed=false
+  for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
+    if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
+      PURGED_COUNT=$((PURGED_COUNT + 1))
+    else
+      log_error "Failed to purge old source ID: $src_id"
+      purge_failed=true
+    fi
+  done
+  if [ "$purge_failed" = true ]; then
+    write_sync_telemetry "PARTIAL_SUCCESS" "$PURGED_COUNT" "$UPLOADED_COUNT"
+    return 1
+  fi
 }
 
 # --- ARGUMENT PARSING --------------------------------------------------------
@@ -462,7 +559,10 @@ fi
 
 if [ "$RUN_REPAIR_DRIFT" = true ]; then
   log_info "Executing STANDALONE REPAIR DRIFT audit..."
-  run_preflight_drift_audit
+  if ! run_preflight_drift_audit; then
+    write_sync_telemetry "FAILED" 0 0 "Pre-flight source inventory failed"
+    exit 1
+  fi
   log_info "Standalone drift repair completed successfully."
   exit 0
 fi
@@ -497,52 +597,7 @@ if [ "$RUN_ROLLBACK" = true ]; then
     exit 1
   fi
 
-  # Staged Rollback Upload FIRST
-  log_info "Re-uploading ${#UPLOAD_FILES[@]} restored backup file(s)..."
-  UPLOADED_COUNT=0
-  for file in "${UPLOAD_FILES[@]}"; do
-    retry_count=0
-    target_upload_path="$file"
-    if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "$NLM_MODE" == "uv-project" ]]; then
-      abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-      if command -v wslpath >/dev/null 2>&1; then
-        target_upload_path="$(wslpath -w "$abs_file")"
-      elif command -v cygpath >/dev/null 2>&1; then
-        target_upload_path="$(cygpath -w "$abs_file")"
-      fi
-    fi
-
-    until nlm_source_add "$NOTEBOOK_ID" "$target_upload_path"; do
-      retry_count=$((retry_count + 1))
-      if [ "$retry_count" -ge "$RETRY_ATTEMPTS" ]; then
-        log_error "Rollback upload failed after $RETRY_ATTEMPTS attempts for file: $file"
-        write_sync_telemetry "FAILED" 0 $UPLOADED_COUNT
-        exit 1
-      fi
-      log_warn "Rollback upload failed for $file. Retrying in ${BACKOFF_MS}ms (attempt $retry_count/$RETRY_ATTEMPTS)..."
-      sleep_backoff "$BACKOFF_MS"
-    done
-    UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
-  done
-
-  # Purge pre-existing pack sources ONLY after rollback upload succeeds
-  log_info "Rollback upload complete. Purging ${#PRE_EXISTING_SOURCES[@]} old pack source(s)..."
-  PURGED_COUNT=0
-  PURGE_SUCCESS=true
-  for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
-    if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
-      PURGED_COUNT=$((PURGED_COUNT + 1))
-    else
-      log_error "Failed to purge old source ID during rollback: $src_id"
-      PURGE_SUCCESS=false
-    fi
-  done
-
-  if [ "$PURGE_SUCCESS" = false ]; then
-    log_error "Rollback completed with purge failures. Setting status to PARTIAL_SUCCESS."
-    write_sync_telemetry "PARTIAL_SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
-    exit 1
-  fi
+  replace_pack_sources || exit 1
 
   log_info "NotebookLM rollback completed successfully! Purged: $PURGED_COUNT, Uploaded: $UPLOADED_COUNT."
   write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT "" "__CLEAR__"
@@ -552,8 +607,11 @@ fi
 # --- NORMAL SYNC PATH (INGEST) -----------------------------------------------
 log_info "Starting normal sync pipeline..."
 
-# Step 0: Pre-flight audit & drift correction
-run_preflight_drift_audit
+# Step 0: Read-only pre-flight audit
+if ! run_preflight_drift_audit; then
+  write_sync_telemetry "FAILED" 0 0 "Pre-flight source inventory failed"
+  exit 1
+fi
 
 mkdir -p "$PACK_DIR"
 "$REPO_ROOT/modules/notebooklm/cleanup-pack-dir.sh" "$PACK_DIR"
@@ -660,221 +718,8 @@ if ! query_preexisting_pack_sources; then
 fi
 log_info "Found ${#PRE_EXISTING_SOURCES[@]} matching pre-existing knowledge pack source(s)."
 
-# Step 5b: Upload fresh chunks
-log_info "Step 5b: Uploading fresh pack chunks to Notebook $NOTEBOOK_ID..."
-UPLOADED_COUNT=0
-for file in "${UPLOAD_FILES[@]}"; do
-  retry_count=0
-  target_upload_path="$file"
-  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "$NLM_MODE" == "uv-project" ]]; then
-    abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-    if command -v wslpath >/dev/null 2>&1; then
-      target_upload_path="$(wslpath -w "$abs_file")"
-    elif command -v cygpath >/dev/null 2>&1; then
-      target_upload_path="$(cygpath -w "$abs_file")"
-    fi
-  fi
-
-  until nlm_source_add "$NOTEBOOK_ID" "$target_upload_path"; do
-    retry_count=$((retry_count + 1))
-    if [ "$retry_count" -ge "$RETRY_ATTEMPTS" ]; then
-      log_error "Upload failed after $RETRY_ATTEMPTS attempts for file: $file"
-      write_sync_telemetry "FAILED" 0 $UPLOADED_COUNT
-      exit 1
-    fi
-    log_warn "Upload failed for $file. Retrying in ${BACKOFF_MS}ms (attempt $retry_count/$RETRY_ATTEMPTS)..."
-    sleep_backoff "$BACKOFF_MS"
-  done
-  UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
-done
-
-# Step 5b-poll: Wait for freshly uploaded sources to finish indexing before
-# pruning old ones. Without this, Step 5c could purge the last known-good
-# sources while the new ones are still PROCESSING -- momentarily leaving an
-# active agent with zero grounded context. Any new source that reports an
-# ERROR-like state fails the sync immediately (no point waiting on it), and
-# on TIMEOUT_MS expiry, Step 5c is skipped entirely so the pre-existing
-# sources remain the notebook's only content, exactly as before.
-# Deletes the new sources this run uploaded but never reached ACTIVE. Left
-# in place, a future run_preflight_drift_audit call would see multiple
-# matching sources and purge "count - 1" by list order alone -- with no way
-# to tell the known-good pack apart from the rejected upload, list order
-# alone decides which one survives. Cleaning up here means the notebook
-# reverts to exactly its pre-sync state on failure, matching this script's
-# own "pre-existing sources remain intact" guarantee for the sources that
-# were never supposed to be temporary in the first place.
-cleanup_orphaned_new_sources() {
-  local ids_csv="$1"
-  [ -z "$ids_csv" ] && return 0
-  log_warn "Step 5-poll: Removing $(echo "$ids_csv" | tr ',' ' ') uploaded during this failed sync to avoid ambiguity on the next run."
-  local id
-  IFS=',' read -ra ids_arr <<< "$ids_csv"
-  for id in "${ids_arr[@]}"; do
-    [ -n "$id" ] && nlm_source_delete "$NOTEBOOK_ID" "$id" >/dev/null 2>&1
-  done
-}
-
-poll_new_sources_active() {
-  local expected_count="${1:-1}"
-  local timeout_sec=$(( (TIMEOUT_MS + 999) / 1000 ))
-  local poll_interval_sec=5
-  local last_new_ids=""
-  # Wall-clock deadline, not a counter incremented only between sleeps --
-  # each nlm_source_list_json call is itself allowed up to TIMEOUT_MS
-  # internally (exec_with_timeout), so a counter that only advances on the
-  # sleep path could let ~TIMEOUT_MS/poll_interval_sec slow-but-successful
-  # calls each burn close to TIMEOUT_MS before the loop's own budget
-  # registered as spent -- multiplying the intended timeout by however many
-  # polls fit, rather than bounding total wall time to it.
-  local deadline_epoch=$(( $(date +%s) + timeout_sec ))
-
-  while true; do
-    local sources_json
-    if ! sources_json="$(nlm_source_list_json "$NOTEBOOK_ID" 2>/dev/null)"; then
-      log_error "Step 5-poll: Failed to query source list while waiting for indexing to complete."
-      return 1
-    fi
-
-    local poll_result
-    poll_result=$(printf '%s' "$sources_json" | node -e '
-      const fs = require("fs");
-      const preExistingArg = process.argv[1];
-      const preExisting = new Set(preExistingArg ? preExistingArg.split(",").filter(Boolean) : []);
-      // PACK_FILE is configurable (configs/notebooklm.yaml pack_filename), but
-      // that only names the UNCHUNKED pack file ($PACK_FILE.txt, Step 3 "OK"
-      // branch). When chunking is triggered, core/chunk.sh emits parts under
-      // its own hardcoded CHUNK_PREFIX ("repo_knowledge_pack_part_") no
-      // matter what PACK_FILE was -- that is shared infra used by every
-      // sync target, not something to special-case from here -- and
-      // find(1) in the upload step matches that exact hardcoded prefix
-      // (modules/notebooklm/ingest-notebooklm.sh, Step 3 HARD branch). So a
-      // custom PACK_FILE with chunked uploads is STILL named
-      // repo_knowledge_pack_part_*.txt: matching PACK_FILE alone would
-      // never see them and hang until timeout every time chunking kicks in.
-      const packFileArg = process.argv[2] || "repo_knowledge_pack";
-      const expectedCount = parseInt(process.argv[3], 10) || 1;
-      const escapedPackFile = packFileArg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      try {
-        const input = fs.readFileSync(0, "utf8");
-        let raw = JSON.parse(input || "[]");
-        let list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.sources) ? raw.sources : []);
-        // "New" sources are whatever matches the pack-filename pattern
-        // (either the configured PACK_FILE itself, or the fixed chunk
-        // output prefix) and was NOT in the pre-existing snapshot taken
-        // before upload (Step 5a).
-        const pattern = new RegExp("^(" + escapedPackFile + "|repo_knowledge_pack_part_).*\\.txt$", "i");
-        const newSources = list.filter(s => {
-          if (!s || typeof s.id !== "string") return false;
-          const name = typeof s.title === "string" ? s.title : (typeof s.name === "string" ? s.name : "");
-          return pattern.test(name) && !preExisting.has(s.id);
-        });
-        // Every currently-visible new-source ID is reported alongside the
-        // status word (format "STATUS|id1,id2,...") regardless of outcome,
-        // so a failed poll can hand its caller exactly what to clean up --
-        // not just the errored subset, since even the ACTIVE ones are part
-        // of a batch this run is about to abort.
-        const newIds = newSources.map(s => s.id).join(",");
-        function emit(status) {
-          console.log(status + "|" + newIds);
-          process.exit(0);
-        }
-        // Require ALL uploaded chunks to be visible before evaluating any of
-        // them -- NotebookLM can expose sources to `source list` at
-        // different times, so checking status on a partial set (e.g. 1 of 3
-        // chunks visible and ACTIVE) would let Step 5c purge the complete
-        // old pack while most of the new one is not even indexed yet.
-        if (newSources.length < expectedCount) {
-          emit("NO_NEW_SOURCES_YET");
-        }
-        const withStatus = newSources.filter(s => typeof s.status === "string");
-        if (withStatus.length === 0) {
-          // No source in this response reports a status field at all --
-          // cannot verify indexing state either way, so degrade to "assume
-          // active" rather than block forever on data that will never arrive.
-          emit("NO_STATUS_FIELD");
-        }
-        const errored = withStatus.filter(s => /^(ERROR|FAILED)$/i.test(s.status));
-        if (errored.length > 0) {
-          emit("ERROR");
-        }
-        // A source lacking `status` counts as not-ready here, NOT as an
-        // automatic pass -- withStatus.length > 0 above already proved this
-        // CLI variant DOES report status on at least one source, so a
-        // status-less entry in a mixed batch means its status just has not
-        // landed yet, not that this variant never reports it. Treating it
-        // as ready would let one early-ACTIVE chunk green-light the whole
-        // batch while the indexing state of a sibling chunk is still unknown.
-        const notReady = newSources.filter(s => !(typeof s.status === "string" && /^(ACTIVE|READY)$/i.test(s.status)));
-        if (notReady.length > 0) {
-          emit("PROCESSING");
-        }
-        emit("ACTIVE");
-      } catch (e) {
-        console.log("PARSE_ERROR|");
-      }
-    ' "$(IFS=,; echo "${PRE_EXISTING_SOURCES[*]:-}")" "$PACK_FILE" "$expected_count" 2>/dev/null)
-
-    local poll_status="${poll_result%%|*}"
-    local poll_ids="${poll_result#*|}"
-    [ "$poll_status" = "$poll_result" ] && poll_ids=""
-
-    case "$poll_status" in
-      ACTIVE)
-        log_info "Step 5-poll: All newly uploaded sources report ACTIVE/READY."
-        return 0
-        ;;
-      NO_STATUS_FIELD)
-        # This branch always returns immediately (see below), so it only
-        # ever fires once per call -- no "warn once across polls" guard
-        # is needed here.
-        log_warn "Step 5-poll: source list response has no 'status' field for this CLI variant; skipping active-state verification."
-        return 0
-        ;;
-      ERROR)
-        log_error "Step 5-poll: Newly uploaded source(s) reported an error state."
-        cleanup_orphaned_new_sources "$poll_ids"
-        return 1
-        ;;
-      NO_NEW_SOURCES_YET|PROCESSING|PARSE_ERROR|"")
-        last_new_ids="$poll_ids"
-        ;;
-    esac
-
-    if [ "$(date +%s)" -ge "$deadline_epoch" ]; then
-      log_error "Step 5-poll: Newly uploaded sources did not reach ACTIVE state within ${timeout_sec}s."
-      cleanup_orphaned_new_sources "$last_new_ids"
-      return 1
-    fi
-
-    sleep_backoff $((poll_interval_sec * 1000))
-  done
-}
-
-log_info "Step 5b-poll: Waiting for newly uploaded sources to finish indexing..."
-if ! poll_new_sources_active "$UPLOADED_COUNT"; then
-  log_error "Aborting before Step 5c: pre-existing sources will NOT be purged. The previous knowledge pack remains intact and searchable."
-  write_sync_telemetry "FAILED" 0 "$UPLOADED_COUNT" "Uploaded sources failed to reach ACTIVE state within timeout"
-  exit 1
-fi
-
-# Step 5c: Delete pre-existing sources ONLY after upload succeeds
-log_info "Step 5c: Upload complete. Purging ${#PRE_EXISTING_SOURCES[@]} old source(s)..."
-PURGED_COUNT=0
-PURGE_SUCCESS=true
-for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
-  if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
-    PURGED_COUNT=$((PURGED_COUNT + 1))
-  else
-    log_error "Failed to purge old source ID: $src_id"
-    PURGE_SUCCESS=false
-  fi
-done
-
-if [ "$PURGE_SUCCESS" = false ]; then
-  log_error "Sync completed with purge failures. Setting status to PARTIAL_SUCCESS."
-  write_sync_telemetry "PARTIAL_SUCCESS" $PURGED_COUNT $UPLOADED_COUNT
-  exit 1
-fi
+# Verify every returned upload ID before deleting the old generation.
+replace_pack_sources || exit 1
 
 log_info "NotebookLM sync completed successfully! Purged: $PURGED_COUNT, Uploaded: $UPLOADED_COUNT."
 write_sync_telemetry "SUCCESS" $PURGED_COUNT $UPLOADED_COUNT "" "$PACK_SHA"

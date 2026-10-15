@@ -18,7 +18,9 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
-import { resolveCitations } from '../../modules/notebooklm/lib/grounding-citations.mjs';
+import { resolveCitations, hasPackGrounding } from '../../modules/notebooklm/lib/grounding-citations.mjs';
+import { executeNlmQuery, getNotebookSources, synthesizeDynamicQuestions } from './chat-injection-runner.mjs';
+import { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID } from './sandbox-contract.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
@@ -60,8 +62,10 @@ if (!notebookId) {
   fail('No NOTEBOOK_ID provided (pass as argv[1] or set NOTEBOOK_ID env var).', 1);
 }
 
-const bashExe = resolveBashExecutable();
-const result = spawnSync(bashExe, [BRIDGE_SCRIPT, notebookId, GROUNDING_PROMPT], {
+const isSandbox = notebookId === KB_TESTING_SANDBOX_UUID;
+const sandboxQuery = isSandbox ? executeNlmQuery(notebookId, synthesizeDynamicQuestions({ uuid: notebookId })[0].text, { sourceIds: [KB_TESTING_FIXTURE_SOURCE_ID] }) : null;
+if (isSandbox && !sandboxQuery.ok) fail(sandboxQuery.error, 1);
+const result = isSandbox ? { status: 0, stdout: JSON.stringify({ query: sandboxQuery.response, sources: getNotebookSources(notebookId) }) } : spawnSync(resolveBashExecutable(), [BRIDGE_SCRIPT, notebookId, GROUNDING_PROMPT], {
   encoding: 'utf8',
   timeout: Number(process.env.TIMEOUT_MS) || 90000,
 });
@@ -85,14 +89,13 @@ if (citations.length === 0) {
   fail('Zero structured citations returned.');
 }
 
-const hasValidAttribution = citations.some(
-  (c) => c && typeof c.source_name === 'string'
-    && VALID_ATTRIBUTION_PREFIXES.some((prefix) => c.source_name.startsWith(prefix))
-);
+const hasValidAttribution = isSandbox
+  ? citations.length > 0 && citations.every(c => c.source_id === KB_TESTING_FIXTURE_SOURCE_ID && c.source_name)
+  : hasPackGrounding(data.query, data.sources, VALID_ATTRIBUTION_PREFIXES);
 
 if (!hasValidAttribution) {
   fail('Citations do not reference active pack sources.');
 }
 
-console.log('[GROUNDING-GATE] PASSED: Grounding validated against active pack.');
+console.log(`[GROUNDING-GATE] PASSED: Grounding validated against ${isSandbox ? 'pinned sandbox fixture' : 'active pack'}.`);
 process.exit(0);

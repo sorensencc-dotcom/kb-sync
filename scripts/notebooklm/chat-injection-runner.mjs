@@ -19,6 +19,8 @@ import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
+import { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID } from './sandbox-contract.mjs';
+export { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID } from './sandbox-contract.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
@@ -100,6 +102,12 @@ export function loadClusterRegistry(configPath = CONFIG_PATH) {
   return notebooks;
 }
 
+export function selectChatTargets(registry, target) {
+  if (!target) return registry.filter(n => n.uuid !== KB_TESTING_SANDBOX_UUID);
+  const needle = target.toLowerCase();
+  return registry.filter(n => n.slug.toLowerCase() === needle || n.uuid.toLowerCase() === needle || n.title.toLowerCase().includes(needle));
+}
+
 // -----------------------------------------------------------------------------
 // 2. Drive & Local Directory Provisioning
 // -----------------------------------------------------------------------------
@@ -146,6 +154,13 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
   const slug = (notebook.slug || '').toLowerCase();
 
   // Historical Domain Questions
+  if (notebook.uuid === KB_TESTING_SANDBOX_UUID) {
+    return [
+      { id: 'sandbox-alpha-101', text: 'For Entity ALPHA-101, what gateway port, transport, persistence mode, and TRM authority guardrail does the fixture specify?' },
+      { id: 'sandbox-bravo-202', text: 'For Entity BRAVO-202, what exact Ordenskapitlet dates apply to Knight and Commander of Dannebrog, and which GAP IDs do they close?' },
+      { id: 'sandbox-charlie-303', text: 'For Entity CHARLIE-303, what hard byte budget in KiB and bytes applies to each serialized knowledge pack chunk, and what API pacing delay is mandatory? Cite the pinned fixture source for every fact using source references.' },
+    ];
+  }
   if (notebook.section === 'historical' || title.includes('cic')) {
     if (slug.includes('ford-politics') || title.includes('executive') || title.includes('politics')) {
       questions.push({
@@ -399,8 +414,85 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
 }
 
 // -----------------------------------------------------------------------------
-// 4. Source Inspection for Large Notebooks (>50 sources)
+// 4. Source Inspection, Synthetic Filtering & Token-Density Pruning
 // -----------------------------------------------------------------------------
+export const SYNTHETIC_SOURCE_PATTERNS = [
+  /^TRM\s+(?:Research|Operational)\s+Gaps\s+&\s+Synthesis/i,
+  /^Ecosystem\s+Architecture\s+Guide/i,
+  /^(?:repo_)?knowledge_pack/i,
+  /^pack_.*\.txt$/i,
+  /research\s+gaps\s+&\s+synthesis/i,
+  /foundational\s+dossier\s+&\s+research\s+gaps/i,
+  /\.nlm_pack/i,
+];
+
+export function isSyntheticSource(source) {
+  if (!source) return false;
+  const t = (source.title || source.name || '').trim();
+  return SYNTHETIC_SOURCE_PATTERNS.some((p) => p.test(t));
+}
+
+export function filterPrimarySources(sources) {
+  if (!Array.isArray(sources)) return [];
+  return sources.filter((s) => !isSyntheticSource(s));
+}
+
+export function estimateSourceTokens(source) {
+  if (!source) return 0;
+  if (typeof source.char_count === 'number') {
+    return Math.round(source.char_count / 4);
+  }
+  if (typeof source.token_count === 'number') {
+    return source.token_count;
+  }
+  const isPdf = source.type === 'pdf' || (source.title && source.title.toLowerCase().endsWith('.pdf'));
+  if (isPdf) {
+    return 100_000;
+  }
+  return 2000;
+}
+
+export function buildSourceFilter(sources, options = {}) {
+  const primary = filterPrimarySources(sources);
+  if (primary.length === 0) {
+    return {
+      sourceIds: Array.isArray(sources) && sources.length > 0 ? sources.slice(0, 20).map((s) => s.id) : null,
+      timeoutSeconds: 120,
+      isConstrained: false,
+      totalTokens: 0,
+      primaryCount: 0,
+      hasHeavyPdf: false,
+    };
+  }
+
+  const totalTokens = primary.reduce((acc, s) => acc + estimateSourceTokens(s), 0);
+  const hasHeavyPdf = primary.some((s) => {
+    const isPdf = s.type === 'pdf' || (s.title && s.title.toLowerCase().endsWith('.pdf'));
+    return isPdf && estimateSourceTokens(s) >= 100_000;
+  });
+  const shouldConstrain = primary.length > 50 || totalTokens > 250_000 || hasHeavyPdf || Boolean(options.large_source_threshold);
+
+  if (shouldConstrain) {
+    return {
+      sourceIds: primary.slice(0, 20).map((s) => s.id),
+      timeoutSeconds: 180,
+      isConstrained: true,
+      totalTokens,
+      primaryCount: primary.length,
+      hasHeavyPdf,
+    };
+  }
+
+  return {
+    sourceIds: primary.map((s) => s.id),
+    timeoutSeconds: 120,
+    isConstrained: false,
+    totalTokens,
+    primaryCount: primary.length,
+    hasHeavyPdf,
+  };
+}
+
 export function getNotebookSources(notebookUuid) {
   try {
     const res = spawnSync('nlm', ['source', 'list', notebookUuid, '--json'], {
@@ -419,6 +511,11 @@ export function getNotebookSources(notebookUuid) {
 // 5. Query NotebookLM Turn Execution
 // -----------------------------------------------------------------------------
 export function executeNlmQuery(notebookUuid, questionText, options = {}) {
+  if (notebookUuid === KB_TESTING_SANDBOX_UUID) {
+    if (!options.sourceIds || options.sourceIds.length !== 1 || options.sourceIds[0] !== KB_TESTING_FIXTURE_SOURCE_ID) {
+      throw new Error('SANDBOX_FIXTURE_REQUIRED: query must pin exact fixture source');
+    }
+  }
   const args = ['query', 'notebook', notebookUuid, questionText, '--json'];
 
   if (options.sourceIds && options.sourceIds.length > 0) {
@@ -427,6 +524,10 @@ export function executeNlmQuery(notebookUuid, questionText, options = {}) {
 
   const timeoutSec = options.timeoutSeconds || (options.sourceIds ? 180 : 120);
   args.push('--timeout', String(timeoutSec));
+
+  if (options.newConversation !== false && notebookUuid !== KB_TESTING_SANDBOX_UUID) {
+    args.push('--new-conversation');
+  }
 
   const result = spawnSync('nlm', args, {
     encoding: 'utf8',
@@ -451,7 +552,7 @@ export function executeNlmQuery(notebookUuid, questionText, options = {}) {
 
   try {
     const parsed = JSON.parse(result.stdout);
-    return { ok: true, data: parsed.answer || parsed };
+    return { ok: true, data: parsed.answer || parsed, response: parsed };
   } catch (err) {
     return { ok: false, error: `nlm produced non-JSON output: ${err.message}` };
   }
@@ -487,6 +588,7 @@ export function formatSynthesisLog(notebook, turns, dateStr) {
     lines.push('');
     lines.push(`**Response excerpt:**`);
     lines.push(t.answer ? t.answer.trim() : '*(No response received)*');
+    if (notebook.uuid === KB_TESTING_SANDBOX_UUID && t.response) lines.push('', '```json', JSON.stringify(t.response, null, 2), '```');
     lines.push('');
   }
 
@@ -675,12 +777,10 @@ export async function runChatInjection(options = {}) {
   console.log(`[CLUSTER-PARITY] Loaded ${registry.length} notebooks from configs/notebooklm.yaml.`);
 
   // Filter target notebooks
-  let targets = registry;
+  let targets = selectChatTargets(registry, options.targetSlugOrUuid);
+  const auditReportPath = targets.length === 1 && targets[0].uuid === KB_TESTING_SANDBOX_UUID
+    ? path.join(path.resolve(options.evidenceDir || path.join(STATUS_FEED_DIR, 'kb-testing', dateStr)), 'chat_injection_audit.json') : AUDIT_REPORT_PATH;
   if (options.targetSlugOrUuid) {
-    const needle = options.targetSlugOrUuid.toLowerCase();
-    targets = registry.filter(
-      (n) => n.slug.toLowerCase() === needle || n.uuid.toLowerCase() === needle || n.title.toLowerCase().includes(needle)
-    );
     if (targets.length === 0) {
       throw new Error(`Target "${options.targetSlugOrUuid}" not found in cluster registry.`);
     }
@@ -694,8 +794,9 @@ export async function runChatInjection(options = {}) {
 
   if (options.auditOnly) {
     if (!fs.existsSync(STATUS_FEED_DIR)) fs.mkdirSync(STATUS_FEED_DIR, { recursive: true });
-    fs.writeFileSync(AUDIT_REPORT_PATH, JSON.stringify({ auditedAt: new Date().toISOString(), preAudit }, null, 2), 'utf8');
-    console.log(`[AUDIT-REPORT] Written telemetry to ${AUDIT_REPORT_PATH}`);
+    fs.mkdirSync(path.dirname(auditReportPath), { recursive: true });
+    fs.writeFileSync(auditReportPath, JSON.stringify({ auditedAt: new Date().toISOString(), preAudit }, null, 2), 'utf8');
+    console.log(`[AUDIT-REPORT] Written telemetry to ${auditReportPath}`);
 
     const isStrict = options.strict || options.failOnStale;
     if (isStrict && (staleCanonical.length > 0 || boilerplateFailures.length > 0)) {
@@ -716,23 +817,36 @@ export async function runChatInjection(options = {}) {
     console.log(`================================================================================`);
 
     // Ensure sync directories exist (Google Drive + Local)
-    const syncDirs = ensureSyncDirectories(notebook.slug, dateStr);
+    const isSandbox = notebook.uuid === KB_TESTING_SANDBOX_UUID;
+    const sandboxDir = isSandbox ? path.resolve(options.evidenceDir || path.join(STATUS_FEED_DIR, 'kb-testing', dateStr)) : null;
+    if (sandboxDir) fs.mkdirSync(sandboxDir, { recursive: true });
+    const syncDirs = isSandbox ? { localDir: sandboxDir, obsidianDir: sandboxDir, driveDir: null } : ensureSyncDirectories(notebook.slug, dateStr);
 
     // Synthesize questions
     const questions = synthesizeDynamicQuestions(notebook);
     console.log(`[PROMPT-GEN] Generated ${questions.length} entity-anchored questions (0 boilerplate).`);
 
-    // Inspect sources for large notebooks
+    // Inspect, filter synthetic sources, and apply token/count pruning
     let sourceFilter = null;
-    let sourceCount = 0;
+    let queryTimeout = 120;
     try {
       const sources = getNotebookSources(notebook.uuid);
-      sourceCount = sources.length;
-      if (sourceCount > 50 || notebook.large_source_threshold) {
-        console.log(`[LARGE-NOTEBOOK-GUARD] Notebook has ${sourceCount} sources (>50). Constraining query to top 20 sources.`);
-        sourceFilter = sources.slice(0, 20).map((s) => s.id);
+      if (notebook.uuid === KB_TESTING_SANDBOX_UUID && !sources.some((s) => (s.id || s.sourceId || s.source_id) === KB_TESTING_FIXTURE_SOURCE_ID)) {
+        throw new Error('SANDBOX_FIXTURE_MISSING: refusing ungrounded query');
       }
-    } catch {}
+      const filterResult = buildSourceFilter(sources, { large_source_threshold: Boolean(notebook.large_source_threshold) });
+      sourceFilter = filterResult.sourceIds;
+      queryTimeout = filterResult.timeoutSeconds;
+      if (notebook.uuid === KB_TESTING_SANDBOX_UUID) sourceFilter = [KB_TESTING_FIXTURE_SOURCE_ID];
+      if (filterResult.isConstrained) {
+        console.log(`[SOURCE-FILTER-GUARD] Constraining query to top ${sourceFilter.length} primary sources (${filterResult.primaryCount} primary sources found, ~${filterResult.totalTokens} tokens, heavyPdf: ${Boolean(filterResult.hasHeavyPdf)}). Excluded synthetic meta sources.`);
+      } else if (sourceFilter && sourceFilter.length > 0) {
+        console.log(`[SOURCE-FILTER-ALLOWLIST] Passing ${sourceFilter.length} primary sources (excluded synthetic meta sources).`);
+      }
+    } catch (err) {
+      if (notebook.uuid === KB_TESTING_SANDBOX_UUID) throw err;
+      console.warn(`[SOURCE-FILTER-WARN] Could not retrieve sources for ${notebook.slug}: ${err.message}`);
+    }
 
     const turns = [];
 
@@ -750,7 +864,8 @@ export async function runChatInjection(options = {}) {
       } else {
         const queryRes = executeNlmQuery(notebook.uuid, q.text, {
           sourceIds: sourceFilter,
-          timeoutSeconds: sourceFilter ? 180 : 120,
+          timeoutSeconds: queryTimeout,
+          newConversation: true,
         });
 
         if (queryRes.ok) {
@@ -759,6 +874,7 @@ export async function runChatInjection(options = {}) {
             questionId: q.id,
             question: q.text,
             answer: typeof queryRes.data === 'string' ? queryRes.data : JSON.stringify(queryRes.data, null, 2),
+            ...(isSandbox ? { response: queryRes.response } : {}),
           });
         } else {
           console.warn(`  -> Query failed: ${queryRes.error}`);
@@ -778,7 +894,7 @@ export async function runChatInjection(options = {}) {
       const logFileName = `Daily Synthesis Log - ${dateStr}.md`;
 
       // 1. Google Drive mirror
-      if (DRIVE_ROOT) {
+      if (syncDirs.driveDir) {
         const driveLogPath = path.join(DRIVE_ROOT, notebook.slug, logFileName);
         try {
           fs.writeFileSync(driveLogPath, logContent, 'utf8');
@@ -789,8 +905,8 @@ export async function runChatInjection(options = {}) {
       }
 
       // 2. Local conversations mirror (wiki and obsidian)
-      const localLogPath = path.join(LOCAL_CONVERSATIONS_ROOT, dateStr, `${notebook.slug}.md`);
-      const obsidianLogPath = path.join(OBSIDIAN_CONVERSATIONS_ROOT, dateStr, `${notebook.slug}.md`);
+      const localLogPath = path.join(syncDirs.localDir, `${notebook.slug}.md`);
+      const obsidianLogPath = path.join(syncDirs.obsidianDir, `${notebook.slug}.md`);
       try {
         fs.writeFileSync(localLogPath, logContent, 'utf8');
         console.log(`[LOCAL-MIRROR] Synced local conversation -> ${localLogPath}`);
@@ -809,6 +925,7 @@ export async function runChatInjection(options = {}) {
         uuid: notebook.uuid,
         turns: turns.length,
         status: 'SUCCESS',
+        ...(isSandbox ? { turnRecords: turns, logPath: localLogPath } : {}),
       });
     } else {
       console.warn(`[INJECT-WARN] 0 turns completed for ${notebook.title}.`);
@@ -827,10 +944,10 @@ export async function runChatInjection(options = {}) {
   // Post-audit latency
   const postAudit = auditClusterLatency(registry);
   if (!fs.existsSync(STATUS_FEED_DIR)) fs.mkdirSync(STATUS_FEED_DIR, { recursive: true });
-  fs.writeFileSync(AUDIT_REPORT_PATH, JSON.stringify({ auditedAt: new Date().toISOString(), postAudit, runResults }, null, 2), 'utf8');
+  fs.writeFileSync(auditReportPath, JSON.stringify({ auditedAt: new Date().toISOString(), postAudit, runResults }, null, 2), 'utf8');
 
   console.log(`\n================================================================================`);
-  console.log(`[RUN-COMPLETE] Processed ${runResults.length} notebook(s). Audit report: ${AUDIT_REPORT_PATH}`);
+  console.log(`[RUN-COMPLETE] Processed ${runResults.length} notebook(s). Audit report: ${auditReportPath}`);
   console.log(`================================================================================`);
 
   return { runResults, postAudit };
