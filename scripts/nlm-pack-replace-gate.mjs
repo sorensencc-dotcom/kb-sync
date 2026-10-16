@@ -111,10 +111,12 @@ function assertSafeCliValue(value, label) {
 export function listNotebookSources(cli, notebookId) {
   assertSafeCliValue(cli, 'CLI');
   assertSafeCliValue(notebookId, 'notebook id');
+  const isNlm = /\bnlm(\.exe)?$/i.test(cli.trim());
   const attempts = [
-    ...(cli === 'nlm' ? [`${cli} source list "${notebookId}" --json`] : []),
+    ...(isNlm ? [`${cli} source list "${notebookId}" --json`] : []),
     `${cli} source list --notebook "${notebookId}" --json`,
     `${cli} source list --notebook-id="${notebookId}" --json`,
+    `${cli} source list "${notebookId}" --json`,
   ];
   let lastErr;
   for (const cmd of attempts) {
@@ -225,7 +227,10 @@ export function buildNotebookLmUploadCommand({ cli, notebookId, file }) {
   assertSafeCliValue(cli, 'CLI');
   assertSafeCliValue(notebookId, 'notebook id');
   assertSafeCliValue(file, 'file path');
-  return `${cli} source upload --notebook "${notebookId}" --file="${file}"`;
+  if (/\bnotebooklm(\.exe)?$/i.test(cli.trim())) {
+    return `${cli} source upload --notebook "${notebookId}" --file="${file}"`;
+  }
+  return `${cli} source add "${notebookId}" --file "${file}"`;
 }
 
 export async function uploadAndReplacePack({

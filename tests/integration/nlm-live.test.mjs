@@ -8,9 +8,12 @@ import { fileURLToPath } from 'node:url';
 import { runChatInjection, getNotebookSources, synthesizeDynamicQuestions } from '../../scripts/notebooklm/chat-injection-runner.mjs';
 import { KB_TESTING_SANDBOX_UUID as notebookId, KB_TESTING_FIXTURE_SOURCE_ID as fixtureId, assertLiveSandbox } from '../../scripts/notebooklm/sandbox-contract.mjs';
 import { resolveCitations, hasPackGrounding } from '../../modules/notebooklm/lib/grounding-citations.mjs';
+import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
+import { generateLessonFromFailure } from '../../modules/wiki/gated-climb-repair.mjs';
+import { buildNotebookLmUploadCommand, listNotebookSources, deleteNotebookSource } from '../../scripts/nlm-pack-replace-gate.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const enabled = process.env.NLM_LIVE_SANDBOX === '1';
+const enabled = process.env.NLM_LIVE_SANDBOX === '1' || process.env.NLM_LIVE_TEST === '1';
 const replacementEnabled = process.env.NLM_REPLACE_GATE_LIVE === '1';
 const evidenceDir = path.resolve(process.env.NLM_LIVE_EVIDENCE_DIR || path.join(root, '.tmp_test_staging', `live-${randomUUID()}`));
 function cli(args, json = true) {
@@ -181,3 +184,80 @@ test('LIVE sandbox: actual Stage 1.5 verifies pinned fixture without changing pr
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /PASSED.*pinned sandbox fixture/);
 });
+
+test('LIVE sandbox: bash chat wrapper bridge (run-nlm-chat.sh) queries pinned fixture', { skip: !enabled, timeout: 120000 }, () => {
+  assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
+  const chatScript = path.join(root, 'scripts/notebooklm/run-nlm-chat.sh');
+  const bashExe = resolveBashExecutable();
+  const prompt = 'What is the runtime configuration for Entity ALPHA-101 in this notebook?';
+  const result = spawnSync(bashExe, [chatScript, notebookId, prompt], {
+    encoding: 'utf8',
+    timeout: 90000,
+    env: { ...process.env, TIMEOUT_MS: '90000' },
+  });
+  assert.equal(result.status, 0, `run-nlm-chat.sh failed: ${result.stderr || result.error?.message}`);
+  const data = JSON.parse(result.stdout);
+  assert.ok(data.sources && Array.isArray(data.sources), 'Output must include sources array');
+  assert.ok(data.sources.some(s => s.id === fixtureId), `Expected sources to include fixture ${fixtureId}`);
+  assert.ok(data.query && data.query.answer, 'Expected query answer');
+  assert.match(data.query.answer, /8765/, 'Expected answer to mention port 8765');
+});
+
+test('LIVE sandbox: single-source incident push via push-source.sh and source cleanup', { skip: !enabled, timeout: 120000 }, () => {
+  assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
+  const origEnv = process.env.INCIDENT_NOTEBOOK_ID;
+  process.env.INCIDENT_NOTEBOOK_ID = notebookId;
+  const runId = `live-incident-${randomUUID()}`;
+  let lessonPath;
+  try {
+    lessonPath = generateLessonFromFailure({
+      runId,
+      error: 'UNALLOWED_DIFF_REJECTED: live test incident push',
+      targetPath: 'wiki/kb-sync/wiki/LiveIncident.md',
+      quarantinePath: `_quarantine/${runId}`,
+      vaultRoot: root,
+    });
+    assert.ok(fs.existsSync(lessonPath), 'Lesson note must be created locally');
+    const baseName = path.basename(lessonPath);
+
+    const after = listed(cli(['source', 'list', notebookId, '--json']));
+    const uploaded = after.find(s => s.title?.includes(runId) || s.name?.includes(runId) || s.title === baseName);
+    assert.ok(uploaded, 'Incident source must be pushed to sandbox notebook');
+    assert.ok(uploaded.id !== fixtureId, 'Must not delete pinned fixture');
+
+    deleteNotebookSource('nlm', uploaded.id);
+    const cleaned = listed(cli(['source', 'list', notebookId, '--json']));
+    assert.ok(!cleaned.some(s => s.id === uploaded.id), 'Incident source must be deleted from sandbox');
+  } finally {
+    if (origEnv !== undefined) process.env.INCIDENT_NOTEBOOK_ID = origEnv;
+    else delete process.env.INCIDENT_NOTEBOOK_ID;
+    if (lessonPath && fs.existsSync(lessonPath)) {
+      try { fs.unlinkSync(lessonPath); } catch {}
+    }
+  }
+});
+
+test('LIVE sandbox: bash ingestion pipeline --check-auth-only smoke check', { skip: !enabled, timeout: 60000 }, () => {
+  assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
+  const ingestScript = path.join(root, 'modules/notebooklm/ingest-notebooklm.sh');
+  const bashExe = resolveBashExecutable();
+  const result = spawnSync(bashExe, [ingestScript, '--check-auth-only'], {
+    encoding: 'utf8',
+    timeout: 45000,
+  });
+  assert.equal(result.status, 0, `ingest-notebooklm.sh exited ${result.status}: ${result.stderr}`);
+  assert.match(`${result.stdout}\n${result.stderr}`, /Auth check passed successfully/);
+});
+
+test('LIVE sandbox: replace-gate direct CLI helpers dialect alignment and source listing', { skip: !enabled, timeout: 60000 }, () => {
+  assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
+  const nlmCmd = buildNotebookLmUploadCommand({ cli: 'nlm', notebookId, file: 'test.txt' });
+  assert.equal(nlmCmd, `nlm source add "${notebookId}" --file "test.txt"`);
+  const legacyCmd = buildNotebookLmUploadCommand({ cli: 'notebooklm', notebookId, file: 'test.txt' });
+  assert.equal(legacyCmd, `notebooklm source upload --notebook "${notebookId}" --file="test.txt"`);
+
+  const sources = listNotebookSources('nlm', notebookId);
+  assert.ok(Array.isArray(sources));
+  assert.ok(sources.some(s => s.id === fixtureId));
+});
+

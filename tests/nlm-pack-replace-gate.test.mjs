@@ -61,6 +61,15 @@ test('buildNotebookLmUploadCommand builds standard upload command', () => {
   assert.equal(cmd, 'notebooklm source upload --notebook "nb-12345" --file="/tmp/pack_willow_run.txt"');
 });
 
+test('buildNotebookLmUploadCommand aligns to nlm source add dialect when cli is nlm', () => {
+  const cmd = buildNotebookLmUploadCommand({
+    cli: 'nlm',
+    notebookId: 'nb-12345',
+    file: '/tmp/pack_willow_run.txt',
+  });
+  assert.equal(cmd, 'nlm source add "nb-12345" --file "/tmp/pack_willow_run.txt"');
+});
+
 test('purgePackFamilyBeforeUpload dry-run handles empty sources list', () => {
   let loggedInfo = [];
   let loggedWarn = [];
