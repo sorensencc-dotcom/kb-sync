@@ -1,0 +1,16 @@
+.gitleaks.toml
+  h_5c172e9b435f5a 5-11
+tests/dynamic-question-battery.test.mjs
+  h_5c172e9b435f5a 21,25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8dcdb98045fbe7cb224aec28280de031e18453c1",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
