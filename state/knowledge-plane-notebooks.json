@@ -60,13 +60,13 @@
       "authority": "toolforge-registry",
       "target_count": 7,
       "notebooks": [
-        { "key": "governance", "uuid": "b42534be-a208-437e-828e-dad645631c66", "has_pack": true, "pack_family": "pack_governance" },
+        { "key": "governance", "uuid": "b42534be-a208-437e-828e-dad645631c66", "has_pack": false, "pack_family": "pack_governance" },
         { "key": "modules", "uuid": "096b5b92-55d0-44b2-b074-3b3fef0a0d12", "has_pack": true, "pack_family": "pack_modules" },
-        { "key": "skills", "uuid": "3ac216cc-3379-4c9f-8393-ab28a248cecc", "has_pack": true, "pack_family": "pack_skills" },
+        { "key": "skills", "uuid": "3ac216cc-3379-4c9f-8393-ab28a248cecc", "has_pack": false, "pack_family": "pack_skills" },
         { "key": "operations", "uuid": "1ab8f1a2-f066-4246-8489-75f223d5f9d2", "has_pack": true, "pack_family": "pack_operations" },
         { "key": "meta", "uuid": "30f80cc0-80f7-421a-a79b-c510d98aaf94", "has_pack": true, "pack_family": "pack_meta" },
-        { "key": "targets", "uuid": "0cab9d12-0f0e-4cc0-9009-69ec809fce4a", "has_pack": true, "pack_family": "pack_targets" },
-        { "key": "superpowers", "uuid": "95867d03-1175-4516-9b38-d95592b1a321", "has_pack": true, "pack_family": "pack_superpowers" }
+        { "key": "targets", "uuid": "0cab9d12-0f0e-4cc0-9009-69ec809fce4a", "has_pack": false, "pack_family": "pack_targets" },
+        { "key": "superpowers", "uuid": "95867d03-1175-4516-9b38-d95592b1a321", "has_pack": false, "pack_family": "pack_superpowers" }
       ]
     },
     "cluster_e_automation_ecosystem": {
