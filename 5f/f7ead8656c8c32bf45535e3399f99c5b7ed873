@@ -1,0 +1,23 @@
+scripts/nlm-pack-replace-gate.mjs
+  s_e636ac0c41889c::t_e666604af1684a 261,297
+tests/nlm-pack-replace-gate.test.mjs
+  s_e636ac0c41889c::t_acf29a2fa8fdd2 183-200
+tests/notebooklm-polling.test.sh
+  s_e636ac0c41889c::t_fff212dcee02e2 30,35-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5ff7ead8656c8c32bf45535e3399f99c5b7ed873",
+  "prompts": {},
+  "sessions": {
+    "s_e636ac0c41889c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1efb2915-6195-49cd-aaa5-ea6648e9e650",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
