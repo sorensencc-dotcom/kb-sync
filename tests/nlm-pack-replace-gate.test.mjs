@@ -180,6 +180,24 @@ test('uploadAndReplacePack verifies returned ACTIVE ID before deleting old sourc
   assert.equal(deleted.length, 0);
 });
 
+test('uploadAndReplacePack accepts returned source when status field is omitted by CLI build', async () => {
+  process.env.MOCK_NLM_MODE = 'custom';
+  process.env.MOCK_NLM_DATA = JSON.stringify([
+    { id: 'old-1', title: 'pack_old.txt' },
+    { id: 'new-1', title: 'pack_new.txt' },
+  ]);
+  const result = await uploadAndReplacePack({
+    cli: mockCli,
+    notebookId: 'nb-live-test',
+    packFile: 'pack_new.txt',
+    oldSources: [{ id: 'old-1' }],
+    waitMs: 1,
+    runUpload: () => JSON.stringify({ source_id: 'new-1' }),
+  });
+  assert.equal(result.uploadedId, 'new-1');
+  assert.deepEqual(result.oldSourceIds, ['old-1']);
+});
+
 test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () => {
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm; rm -rf /', notebookId: 'nb-1', file: 'pack.txt' }), /Unsafe NotebookLM CLI/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1 & dir', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);

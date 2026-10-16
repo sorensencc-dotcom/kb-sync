@@ -27,12 +27,14 @@ for status in READY unknown ERROR FAILED; do
   assert_poll 1 "reject unverifiable/error status $status"
 done
 nlm_source_list_json() { echo '[{"id":"new1"}]'; }
-assert_poll 1 "missing status fails closed"
+assert_poll 0 "missing status accepted as active when source is present"
 UPLOADED_SOURCE_IDS=(new1 new2)
 nlm_source_list_json() { echo '[{"id":"new1","status":"ACTIVE"},{"id":"unowned","status":"ACTIVE"}]'; }
 assert_poll 1 "unowned ACTIVE source cannot replace missing returned ID"
 nlm_source_list_json() { echo '[{"id":"new1","status":"ACTIVE"},{"id":"new2"}]'; }
-assert_poll 1 "mixed batch requires every status"
+assert_poll 0 "mixed batch with missing status accepted when all sources present"
+nlm_source_list_json() { echo '[{"id":"new1","status":"ACTIVE"},{"id":"new2","status":3}]'; }
+assert_poll 1 "numeric 3 error status in batch fails"
 nlm_source_list_json() { echo '{bad json'; }
 assert_poll 1 "malformed source inventory fails closed"
 nlm_source_list_json() { return 1; }

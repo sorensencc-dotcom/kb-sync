@@ -492,9 +492,9 @@ poll_new_sources_active() {
         const ids = process.argv.slice(1);
         if (ids.some(id => list.filter(s => (s.id || s.sourceId || s.source_id) === id).length > 1)) process.exit(1);
         const sources = ids.map(id => list.find(s => (s.id || s.sourceId || s.source_id) === id));
-        if (sources.some(s => /^(ERROR|FAILED)$/i.test(String(s?.status)))) console.log("ERROR");
-        else if (sources.some(s => s && !/^(1|2|ACTIVE|PROCESSING|PENDING)$/i.test(String(s.status)))) console.log("ERROR");
-        else if (sources.every(s => s && /^(2|ACTIVE)$/i.test(String(s.status)))) console.log("ACTIVE");
+        if (sources.some(s => /^(3|ERROR|FAILED)$/i.test(String(s?.status)))) console.log("ERROR");
+        else if (sources.some(s => s && s.status != null && !/^(1|2|ACTIVE|PROCESSING|PENDING)$/i.test(String(s.status)))) console.log("ERROR");
+        else if (sources.every(s => s && (s.status == null || /^(2|ACTIVE)$/i.test(String(s.status))))) console.log("ACTIVE");
         else console.log("PROCESSING");
       } catch { process.exit(1); }
     ' "${UPLOADED_SOURCE_IDS[@]}") || return 1
