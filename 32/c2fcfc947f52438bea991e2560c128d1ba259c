@@ -1,0 +1,78 @@
+tests/cross-audit.test.mjs
+  s_c1c598677d678e::t_30938ded807236 3-6,39,41,43-48
+  s_c1c598677d678e::t_3f7b8c114b49fb 8-12,24,35-36
+  s_c1c598677d678e::t_1a97f75f8f4b94 40,42
+  s_c1c598677d678e::t_6e8094009791e4 7
+  s_c1c598677d678e::t_e7391f47a2a04b 49
+tests/ingest-nlm-reconciliation.test.mjs
+  s_c1c598677d678e::t_1796c8e7b76421 8,28,55-56,118-135,137,139,148-149,151-154,156-178
+  s_9e0a8297087d47::t_9aadf16fa77fb1 136,138,140,146-147,150
+  s_9e0a8297087d47::t_8a98f28e948992 141-145,155
+tests/integration/nlm-live.test.mjs
+  s_c1c598677d678e::t_dc2e18e672a485 84-86
+  s_c1c598677d678e::t_1796c8e7b76421 91
+scripts/cross-audit.mjs
+  s_c1c598677d678e::t_a5831a7f26ae3a 46
+  s_c1c598677d678e::t_d59f758b17b061 4-6,23-27
+tests/obsidian-coverage-policy.test.mjs
+  s_c1c598677d678e::t_1a97f75f8f4b94 12,14
+  s_c1c598677d678e::t_3f7b8c114b49fb 1-11,13,15-18,20-21,23-37
+  s_c1c598677d678e::t_97bf39e2a7c928 19,22
+scripts/notebooklm/ingest-nlm-runner.mjs
+  s_c1c598677d678e::t_99337392620adf 248,264,274,288,370,374-377,383
+  s_9e0a8297087d47::t_6a23611f7a6c86 125,128,131
+STATUS.md
+  s_c1c598677d678e::t_61716ba5a5ee1f 35-38
+  s_c1c598677d678e::t_1f534be4bee2f9 64-73
+  s_c1c598677d678e::t_9565f69d30685c 49-54
+  s_c1c598677d678e::t_118c29a62011b7 16-23,28
+  s_c1c598677d678e::t_1e416b42f06f95 24-25
+  s_c1c598677d678e::t_fabeb8db32ec45 26-27
+  s_c1c598677d678e::t_2c1c5012d85f6d 56-63,74
+  s_c1c598677d678e::t_ee3dc3a8795b7c 29-34,39
+  s_c1c598677d678e::t_cb0d0bf9e49586 40-48,55
+  s_c1c598677d678e::t_7b8f1fe014470b 11-15
+  s_9e0a8297087d47::t_decbb84eaa02b7 3-10
+tests/notebooklm-telemetry-contract.test.mjs
+  s_c1c598677d678e::t_1a97f75f8f4b94 13,15
+  s_c1c598677d678e::t_3f7b8c114b49fb 6-7,14,16-28
+tests/obsidian-sync-verification.ts
+  s_c1c598677d678e::t_d59f758b17b061 17,48,51-57,119,154,191,231,253
+package.json
+  s_c1c598677d678e::t_99337392620adf 64
+  s_c1c598677d678e::t_caec80dc7bef78 66
+README.md
+  s_c1c598677d678e::t_caec80dc7bef78 138-142
+tests/notebooklm-multipart.test.mjs
+  s_c1c598677d678e::t_3f7b8c114b49fb 28,42,58,87-89
+  s_c1c598677d678e::t_1a97f75f8f4b94 85-86
+  s_c1c598677d678e::t_216147a0bf67e7 90-91
+tests/kb-testing-sandbox.test.mjs
+  s_9e0a8297087d47::t_83f85fa9f07865 37
+scripts/notebooklm/chat-injection-runner.mjs
+  s_9e0a8297087d47::t_ae75e2b4e6dfba 159-160
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "32c2fcfc947f52438bea991e2560c128d1ba259c",
+  "prompts": {},
+  "sessions": {
+    "s_9e0a8297087d47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a141e3-67d2-7fe0-8014-61e2c566ec46",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_c1c598677d678e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1412c-e0ae-75e3-a80b-287ae9979988",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}

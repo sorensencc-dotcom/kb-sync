@@ -1,0 +1,20 @@
+STATUS.md
+  h_5c172e9b435f5a 5-7,9-10
+scripts/notebooklm/ingest-nlm-runner.mjs
+  h_5c172e9b435f5a 125,128,131,160
+tests/ingest-nlm-reconciliation.test.mjs
+  h_5c172e9b435f5a 155-161
+tests/obsidian-sync-verification.ts
+  h_5c172e9b435f5a 19-26,29-37,42,177
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6cd9c1c77a71370298932554e6139df819e8d4e3",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
