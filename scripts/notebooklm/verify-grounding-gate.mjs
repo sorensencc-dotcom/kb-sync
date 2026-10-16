@@ -19,7 +19,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
 import { resolveCitations, hasPackGrounding } from '../../modules/notebooklm/lib/grounding-citations.mjs';
-import { executeNlmQuery, getNotebookSources, synthesizeDynamicQuestions } from './chat-injection-runner.mjs';
+import { synthesizeDynamicQuestions } from './chat-injection-runner.mjs';
 import { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID } from './sandbox-contract.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -63,9 +63,12 @@ if (!notebookId) {
 }
 
 const isSandbox = notebookId === KB_TESTING_SANDBOX_UUID;
-const sandboxQuery = isSandbox ? executeNlmQuery(notebookId, synthesizeDynamicQuestions({ uuid: notebookId })[0].text, { sourceIds: [KB_TESTING_FIXTURE_SOURCE_ID] }) : null;
-if (isSandbox && !sandboxQuery.ok) fail(sandboxQuery.error, 1);
-const result = isSandbox ? { status: 0, stdout: JSON.stringify({ query: sandboxQuery.response, sources: getNotebookSources(notebookId) }) } : spawnSync(resolveBashExecutable(), [BRIDGE_SCRIPT, notebookId, GROUNDING_PROMPT], {
+const prompt = isSandbox
+  ? synthesizeDynamicQuestions({ uuid: notebookId })[0].text
+  : GROUNDING_PROMPT;
+
+const bashExe = resolveBashExecutable();
+const result = spawnSync(bashExe, [BRIDGE_SCRIPT, notebookId, prompt], {
   encoding: 'utf8',
   timeout: Number(process.env.TIMEOUT_MS) || 90000,
 });

@@ -161,6 +161,15 @@ nlm_source_list_json() {
 
 nlm_source_add() {
   local notebook_id="$1" file_path="$2"
+  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "${NLM_MODE:-}" == "uv-project" ]]; then
+    local abs_file
+    abs_file="$(readlink -f "$file_path" 2>/dev/null || echo "$file_path")"
+    if command -v wslpath >/dev/null 2>&1; then
+      file_path="$(wslpath -w "$abs_file")"
+    elif command -v cygpath >/dev/null 2>&1; then
+      file_path="$(cygpath -w "$abs_file")"
+    fi
+  fi
   if [ "$NLM_DIALECT" = "nlm" ]; then
     run_nlm_cli source add "$notebook_id" --file "$file_path" "${@:3}"
   else
