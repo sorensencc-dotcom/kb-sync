@@ -1,0 +1,22 @@
+modules/notebooklm/lib/nlm-cli.sh
+  h_5c172e9b435f5a 164-172
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 114,116,119,230-233
+scripts/notebooklm/verify-grounding-gate.mjs
+  h_5c172e9b435f5a 22,66-71
+tests/integration/nlm-live.test.mjs
+  h_5c172e9b435f5a 11-13,16,187-263
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 64-72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "77ff86a46f732ecf2486777a04948bc3382b289c",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
