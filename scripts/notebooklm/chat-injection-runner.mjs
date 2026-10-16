@@ -156,8 +156,8 @@ export function synthesizeDynamicQuestions(notebook, options = {}) {
   // Historical Domain Questions
   if (notebook.uuid === KB_TESTING_SANDBOX_UUID) {
     return [
-      { id: 'sandbox-alpha-101', text: 'For Entity ALPHA-101, what gateway port, transport, persistence mode, and TRM authority guardrail does the fixture specify?' },
-      { id: 'sandbox-bravo-202', text: 'For Entity BRAVO-202, what exact Ordenskapitlet dates apply to Knight and Commander of Dannebrog, and which GAP IDs do they close?' },
+      { id: 'sandbox-alpha-101', text: 'For Entity ALPHA-101, what gateway port, transport, persistence mode, and TRM authority guardrail does the fixture specify? Cite the pinned fixture source for every fact using source references.' },
+      { id: 'sandbox-bravo-202', text: 'For Entity BRAVO-202, what exact Ordenskapitlet dates apply to Knight and Commander of Dannebrog, and which GAP IDs do they close? Cite the pinned fixture source for every fact using source references.' },
       { id: 'sandbox-charlie-303', text: 'For Entity CHARLIE-303, what hard byte budget in KiB and bytes applies to each serialized knowledge pack chunk, and what API pacing delay is mandatory? Cite the pinned fixture source for every fact using source references.' },
     ];
   }

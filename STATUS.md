@@ -1,5 +1,15 @@
 # Session status
 
+## Runtime and citation follow-up, 2026-10-15
+
+- Fixed Windows NotebookLM runtime discovery by probing `nlm`, `notebooklm`, and `uv` with `shell: false`, `windowsHide: true`, and `timeout: 15000` (covering cold starts around 6.4 seconds), plus `windowsHide: true` on `runNlm`.
+- Hardened `NLM_CLI` environment command parsing in `scripts/notebooklm/ingest-nlm-runner.mjs`: parses and strips quotes from command tokens, explicitly maps `node`/`nodejs` invocations to `process.execPath`, and restricts `shell: true` to `.cmd`/`.bat` files on Windows so Linux CI and spaces in mock paths execute without module resolution failures.
+- Fixed `tests/obsidian-sync-verification.ts` on Windows by prioritizing Git Bash before bare `bash` (avoiding WSL `bash.exe` linked-worktree failure), prepending Git `bin` to `PATH`, and aligning the full-repo staging test timeout to `90000` ms.
+- Added regression coverage for all three runtime probes (`nlm`, `notebooklm`, `uv`), quoted/spaced `NLM_CLI` paths, and sequential file execution (`--test-concurrency=1`) for `merged-regressions` in `.verification/extras.mjs`.
+- Fresh live verification evidence: `node_modules/.cache/live-retest-1792119885637/`. Four live tests pass, zero skips/failures in 274.320 seconds: strict three-answer citations/transcripts, ingestion upload/repeat/deleted-source recovery, replacement failure retention plus ACTIVE/pacing, and Stage 1.5. Final integrity shows only protected fixture `cc06bd53-1793-4ea0-b723-6f77eb1dd490`, unchanged SHA-256 `7d68a64385f031e020ffd21c77b15bcf42318f87fb5bb1999b628ae1e90dab16`, and zero remaining locks.
+- Full host gates pass outside the Windows AppContainer sandbox: `npm run test:all` (`.verification/test-all-host-green.json`, exit 0 in 352.122 seconds with `REQUIRE_BASH_COVERAGE=true`) and all 19 supplemental suites in `.verification/extras.mjs` (`.verification/extras-host-green.json`, exit 0 in 69.224 seconds, including `test:trm:drive` 27/27, `visual:verify` 2/2, and `merged-regressions` 87/87).
+- Generated wiki/report churn and `.verification` receipts remain preserved and uncommitted. No merge, deployment, or production notebook mutation performed.
+
 ## Scoped delivery, 2026-10-15
 
 - Human authorized commit/push after disclosure of incomplete full/live gates. Deliver authored code, regression tests, README, and STATUS only on codex/kb-sync-main-verification-20261015; exclude generated wiki/report churn and local .verification receipts.

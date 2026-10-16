@@ -93,7 +93,8 @@ test('conflicting duplicate source IDs fail closed before receipt skips or uploa
   const before = JSON.stringify(f.receipts());
   const r = f.run();
   assert.notEqual(r.status, 0);
-  assert.match(r.stderr, /SOURCE_LIST_INVALID: duplicate source ID/);
+  const combined = (r.stderr || '') + JSON.stringify(r.report || '');
+  assert.match(combined, /SOURCE_LIST_INVALID: duplicate source ID/);
   assert.equal(f.read().sequence, 0);
   assert.equal(JSON.stringify(f.receipts()), before);
 });
@@ -133,16 +134,32 @@ for (const [mode, expectedStatus] of [['upload', 0], ['skip', 0], ['partial', 1]
 test('ingestion releases owned lock when no CLI runtime is available', context => {
   const current = fixture(context);
   const preload = path.join(path.dirname(current.staging), 'no-runtime.mjs');
+  const probePath = path.join(path.dirname(current.staging), 'runtime-probes.json');
   fs.writeFileSync(preload, `import childProcess from 'node:child_process';
+import fs from 'node:fs';
 import { syncBuiltinESMExports } from 'node:module';
-childProcess.spawnSync = () => ({ status: 1, stdout: '', stderr: 'Runtime unavailable' });
+childProcess.spawnSync = (command, args, options) => {
+  const probes = fs.existsSync(process.env.RUNTIME_PROBE_PATH)
+    ? JSON.parse(fs.readFileSync(process.env.RUNTIME_PROBE_PATH, 'utf8'))
+    : [];
+  probes.push({ command, args, options });
+  fs.writeFileSync(process.env.RUNTIME_PROBE_PATH, JSON.stringify(probes));
+  return { status: 1, stdout: '', stderr: 'Runtime unavailable' };
+};
 syncBuiltinESMExports();`);
   const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, runner, notebook, '--staging-dir', current.staging], {
-    encoding: 'utf8', timeout: 10000, env: { ...process.env, NLM_CLI: '', NLM_LIVE_SANDBOX: '0' },
+    encoding: 'utf8', timeout: 10000, env: { ...process.env, NLM_CLI: '', NLM_LIVE_SANDBOX: '0', RUNTIME_PROBE_PATH: probePath },
   });
   assert.ifError(result.error);
   assert.equal(result.status, 3, result.stderr);
   assert.match(JSON.parse(result.stderr).error, /NLM_RUNTIME_NOT_FOUND/);
+  const probes = JSON.parse(fs.readFileSync(probePath, 'utf8'));
+  assert.deepEqual(probes.map(p => p.command), ['nlm', 'notebooklm', 'uv']);
+  for (const probe of probes) {
+    assert.equal(probe.options.shell, false);
+    assert.equal(probe.options.windowsHide, true);
+    assert.equal(probe.options.timeout, 15000);
+  }
   assert.equal(fs.existsSync(path.join(current.staging, '.nlm-sync.lock')), false);
 });
 
@@ -166,3 +183,30 @@ test('ingestion cleanup preserves lock replaced by another owner', context => {
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(current.staging, '.nlm-sync.lock'), 'utf8')), state.replacementLock);
 });
+
+test('NLM_CLI with spaces in path resolves and executes mock runner', t => {
+  const dirWithSpaces = fs.mkdtempSync(path.join(os.tmpdir(), 'nlm path spaces-'));
+  t.after(() => fs.rmSync(dirWithSpaces, { recursive: true, force: true }));
+  const mockPath = path.join(dirWithSpaces, 'my mock runner.mjs');
+  fs.writeFileSync(mockPath, `
+const args = process.argv.slice(2);
+if (args[0] === 'login' && args[1] === '--check') {
+  console.log('✓ Authentication valid!');
+  process.exit(0);
+}
+if (args[0] === 'source' && args[1] === 'list') {
+  console.log('[]');
+  process.exit(0);
+}
+process.exit(0);
+`);
+  const staging = path.join(dirWithSpaces, 'staging');
+  fs.mkdirSync(staging);
+  const p = spawnSync(process.execPath, [runner, notebook, '--staging-dir', staging, '--dry-run'], {
+    encoding: 'utf8',
+    timeout: 10000,
+    env: { ...process.env, NLM_CLI: `node "${mockPath}"`, NLM_LIVE_SANDBOX: '0' }
+  });
+  assert.equal(p.status, 0, p.stderr);
+});
+
