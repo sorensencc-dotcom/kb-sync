@@ -1,0 +1,28 @@
+STATUS.md
+  s_9e0a8297087d47::t_decbb84eaa02b7 3-10
+tests/ingest-nlm-reconciliation.test.mjs
+  s_9e0a8297087d47::t_9aadf16fa77fb1 136,138,140,146-147,150
+  s_9e0a8297087d47::t_8a98f28e948992 141-145,155
+scripts/notebooklm/ingest-nlm-runner.mjs
+  s_9e0a8297087d47::t_6a23611f7a6c86 125,128,131
+tests/kb-testing-sandbox.test.mjs
+  s_9e0a8297087d47::t_83f85fa9f07865 37
+scripts/notebooklm/chat-injection-runner.mjs
+  s_9e0a8297087d47::t_ae75e2b4e6dfba 159-160
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6841560794541ec0d020b30383b831e82fcd85c1",
+  "prompts": {},
+  "sessions": {
+    "s_9e0a8297087d47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a141e3-67d2-7fe0-8014-61e2c566ec46",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
