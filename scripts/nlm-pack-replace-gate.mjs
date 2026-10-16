@@ -258,7 +258,7 @@ export async function uploadAndReplacePack({
   const sources = listNotebookSources(cli, notebookId);
   const matches = sources.filter(source => (source.id || source.sourceId || source.source_id) === uploadedId);
   if (matches.length !== 1) throw new Error('UPLOAD_SOURCE_ID_NOT_UNIQUE');
-  if (matches[0].status != null && ![2, '2', 'ACTIVE', 'active', 'READY', 'ready'].includes(matches[0].status)) throw new Error('UPLOAD_SOURCE_NOT_ACTIVE');
+  if (![2, '2', 'ACTIVE', 'active'].includes(matches[0].status)) throw new Error('UPLOAD_SOURCE_NOT_ACTIVE');
   await new Promise(resolve => setTimeout(resolve, waitMs));
   for (const source of oldSources) deleteNotebookSource(cli, source.id || source.sourceId || source.source_id);
   logInfo(`Uploaded ${path.basename(packFile)} as ${uploadedId}; deleted ${oldSources.length} old source(s).`);
@@ -294,7 +294,7 @@ export async function replaceSandboxPack({ notebookId, file, runId, oldSourceIds
   if (newSourceId !== addedId) onUploaded(newSourceId);
   if (addedId && newSourceId !== addedId) throw new Error('UPLOAD_ID_MISMATCH: old sources retained');
   const source = uploaded[0];
-  if (source.status != null && ![2, '2', 'ACTIVE', 'active', 'READY', 'ready'].includes(source.status)) {
+  if (![2, '2', 'ACTIVE', 'active', 'READY', 'ready'].includes(source.status)) {
     throw new Error('NEW_SOURCE_NOT_ACTIVE: old sources retained');
   }
   const activeVerifiedAt = Date.now();

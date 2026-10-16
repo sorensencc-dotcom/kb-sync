@@ -17,5 +17,5 @@ export function assertLiveSandbox(notebookId, env = process.env) {
 export function findActiveUploadedSource(sources, sourceId) {
   if (typeof sourceId !== 'string' || !sourceId) return undefined;
   return sources.find(s => (s.id || s.sourceId || s.source_id) === sourceId
-    && (s.status == null || [2, '2', 'ACTIVE', 'active', 'READY', 'ready'].includes(s.status)));
+    && [2, '2', 'ACTIVE', 'active'].includes(s.status));
 }
