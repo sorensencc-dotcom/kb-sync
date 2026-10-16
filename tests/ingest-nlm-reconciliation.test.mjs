@@ -133,16 +133,26 @@ for (const [mode, expectedStatus] of [['upload', 0], ['skip', 0], ['partial', 1]
 test('ingestion releases owned lock when no CLI runtime is available', context => {
   const current = fixture(context);
   const preload = path.join(path.dirname(current.staging), 'no-runtime.mjs');
+  const probePath = path.join(path.dirname(current.staging), 'runtime-probes.json');
   fs.writeFileSync(preload, `import childProcess from 'node:child_process';
+import fs from 'node:fs';
 import { syncBuiltinESMExports } from 'node:module';
-childProcess.spawnSync = () => ({ status: 1, stdout: '', stderr: 'Runtime unavailable' });
+childProcess.spawnSync = (command, args, options) => {
+  const probes = fs.existsSync(process.env.RUNTIME_PROBE_PATH)
+    ? JSON.parse(fs.readFileSync(process.env.RUNTIME_PROBE_PATH, 'utf8'))
+    : [];
+  probes.push({ command, args, options });
+  fs.writeFileSync(process.env.RUNTIME_PROBE_PATH, JSON.stringify(probes));
+  return { status: 1, stdout: '', stderr: 'Runtime unavailable' };
+};
 syncBuiltinESMExports();`);
   const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, runner, notebook, '--staging-dir', current.staging], {
-    encoding: 'utf8', timeout: 10000, env: { ...process.env, NLM_CLI: '', NLM_LIVE_SANDBOX: '0' },
+    encoding: 'utf8', timeout: 10000, env: { ...process.env, NLM_CLI: '', NLM_LIVE_SANDBOX: '0', RUNTIME_PROBE_PATH: probePath },
   });
   assert.ifError(result.error);
   assert.equal(result.status, 3, result.stderr);
   assert.match(JSON.parse(result.stderr).error, /NLM_RUNTIME_NOT_FOUND/);
+  assert.equal(JSON.parse(fs.readFileSync(probePath, 'utf8'))[0].options.shell, false);
   assert.equal(fs.existsSync(path.join(current.staging, '.nlm-sync.lock')), false);
 });
 

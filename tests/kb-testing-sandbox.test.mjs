@@ -34,6 +34,7 @@ test('sandbox registry is explicit-only and master-excluded; all three text ques
   const questions = synthesizeDynamicQuestions({ uuid: notebookId });
   assert.equal(questions.length, 3);
   for (const [index, entity] of ['ALPHA-101', 'BRAVO-202', 'CHARLIE-303'].entries()) assert.ok(questions[index].text.includes(entity));
+  for (const question of questions) assert.match(question.text, /cite the pinned fixture source for every fact using source references/i);
   assert.ok(calculateQuestionEntropy(questions) >= MIN_ENTROPY_THRESHOLD);
 });
 

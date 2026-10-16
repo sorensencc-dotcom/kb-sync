@@ -122,13 +122,13 @@ function resolveNlmRunner() {
     return { cmd: parts[0], dialect: 'nlm', prefix: parts.slice(1) };
   }
 
-  const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: process.platform === 'win32' });
+  const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: false, windowsHide: true });
   if (check.status === 0) return { cmd: 'nlm', dialect: 'nlm', prefix: [] };
 
-  const pyCheck = spawnSync('notebooklm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: process.platform === 'win32' });
+  const pyCheck = spawnSync('notebooklm', ['--version'], { encoding: 'utf8', timeout: 5000, shell: false, windowsHide: true });
   if (pyCheck.status === 0) return { cmd: 'notebooklm', dialect: 'notebooklm', prefix: [] };
 
-  const uvCheck = spawnSync('uv', ['--version'], { encoding: 'utf8', timeout: 5000 });
+  const uvCheck = spawnSync('uv', ['--version'], { encoding: 'utf8', timeout: 5000, shell: false, windowsHide: true });
   const localPyproject = path.resolve(__dirname, '../../notebooklm-mcp-cli/pyproject.toml');
   if (uvCheck.status === 0 && fs.existsSync(localPyproject)) {
     return { cmd: 'uv', dialect: 'nlm', prefix: ['--directory', path.dirname(localPyproject), 'run', 'nlm'] };

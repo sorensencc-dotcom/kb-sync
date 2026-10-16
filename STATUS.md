@@ -1,5 +1,13 @@
 # Session status
 
+## Runtime and citation follow-up, 2026-10-15
+
+- Fixed Windows NotebookLM runtime discovery by probing `nlm`, `notebooklm`, and `uv` without `shell: true`; the installed `nlm.exe` starts in about 6.4 seconds and now resolves successfully instead of failing closed at the 5-second shell probe.
+- Added regression coverage for direct runtime probes. Focused reconciliation suite passes 33/33. Sandbox question coverage now requires structured citation instructions for all three entity prompts; focused question test passes.
+- Fresh live verification evidence: `node_modules/.cache/live-retest-1792119885637/`. Four live tests pass, zero skips/failures in 274.320 seconds: strict three-answer citations/transcripts, ingestion upload/repeat/deleted-source recovery, replacement failure retention plus ACTIVE/pacing, and Stage 1.5. Final integrity shows only protected fixture `cc06bd53-1793-4ea0-b723-6f77eb1dd490`, unchanged SHA-256 `7d68a64385f031e020ffd21c77b15bcf42318f87fb5bb1999b628ae1e90dab16`, and zero remaining locks.
+- Broader offline gates remain incomplete due host failures, not these changes: `test:all` and `test:notebooklm` hit Windows subprocess status `3221225794`; supplemental groups also hit temporary Git permission failure and unrelated TRM drive assertions. Live proof does not establish full-suite readiness.
+- Changes are local and uncommitted; generated wiki/report churn and `.verification` receipts remain preserved. No merge, deployment, or production notebook mutation performed.
+
 ## Scoped delivery, 2026-10-15
 
 - Human authorized commit/push after disclosure of incomplete full/live gates. Deliver authored code, regression tests, README, and STATUS only on codex/kb-sync-main-verification-20261015; exclude generated wiki/report churn and local .verification receipts.
