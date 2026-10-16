@@ -1,0 +1,29 @@
+modules/notebooklm/ingest-notebooklm.sh
+  s_45bddb49f83c59::t_f573ababd81921 495-497
+package.json
+  s_45bddb49f83c59::t_7b5cbdded6c400 25-28
+scripts/consolidate-pack.mjs
+  s_45bddb49f83c59::t_dbeff3ff2033f7 56-61,315,337-338
+scripts/mining/dynamic-question-battery.mjs
+  s_45bddb49f83c59::t_81399cff8de67a 1-310
+scripts/pipeline/cluster-sync-runner.mjs
+  s_45bddb49f83c59::t_86ee91d09034fb 1-297
+tests/dynamic-question-battery.test.mjs
+  s_45bddb49f83c59::t_2c68e20c0519b8 1-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "89465a311e293a24c7916936213911d0a49a50ca",
+  "prompts": {},
+  "sessions": {
+    "s_45bddb49f83c59": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "588abe99-cc40-463e-afdb-05d0681cc5b4",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
