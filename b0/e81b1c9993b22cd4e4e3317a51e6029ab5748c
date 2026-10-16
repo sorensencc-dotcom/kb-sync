@@ -1,0 +1,20 @@
+modules/notebooklm/ingest-notebooklm.sh
+  h_5c172e9b435f5a 496-497
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 261,297
+scripts/notebooklm/sandbox-contract.mjs
+  h_5c172e9b435f5a 20
+tests/notebooklm-polling.test.sh
+  h_5c172e9b435f5a 30,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b0e81b1c9993b22cd4e4e3317a51e6029ab5748c",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
