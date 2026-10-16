@@ -1,0 +1,23 @@
+STATUS.md
+  s_8dbecc43d9f29d::t_b0ab39c7725f9f 6,8
+scripts/notebooklm/ingest-nlm-runner.mjs
+  s_8dbecc43d9f29d::t_98154913365a31 119-139,142-145,179,183
+tests/ingest-nlm-reconciliation.test.mjs
+  s_8dbecc43d9f29d::t_809c4f05ab35f7 96-97,186-212
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a1490bf64f2e56d9b3e4c80c4ec725cc1869aa31",
+  "prompts": {},
+  "sessions": {
+    "s_8dbecc43d9f29d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "692647c0-f930-4062-b2b8-a22887786cb1",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
