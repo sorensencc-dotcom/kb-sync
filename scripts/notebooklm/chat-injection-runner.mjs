@@ -35,6 +35,11 @@ const OBSIDIAN_CONVERSATIONS_ROOT = path.join(REPO_ROOT, 'obsidian', 'vault', 'w
 const STATUS_FEED_DIR = path.join(REPO_ROOT, '_status-feed');
 const AUDIT_REPORT_PATH = path.join(STATUS_FEED_DIR, 'chat_injection_audit.json');
 
+import {
+  calculateContentEntropy,
+  calculateBatteryEntropy,
+} from '../mining/dynamic-question-battery.mjs';
+
 export const BANNED_BOILERPLATE_PATTERNS = [
   /what open questions or unresolved contradictions exist across these sources/i,
   /what claims are asserted but single-sourced or under-corroborated/i,
@@ -44,28 +49,10 @@ export const BANNED_BOILERPLATE_PATTERNS = [
 
 export const MIN_ENTROPY_THRESHOLD = 3.0;
 
-export function calculateContentEntropy(text) {
-  if (!text || typeof text !== 'string') return 0;
-  const clean = text.trim();
-  if (clean.length === 0) return 0;
-  const freq = new Map();
-  for (let i = 0; i < clean.length; i++) {
-    const ch = clean[i];
-    freq.set(ch, (freq.get(ch) || 0) + 1);
-  }
-  let entropy = 0;
-  const total = clean.length;
-  for (const count of freq.values()) {
-    const p = count / total;
-    entropy -= p * Math.log2(p);
-  }
-  return parseFloat(entropy.toFixed(3));
-}
+export { calculateContentEntropy };
 
 export function calculateQuestionEntropy(questions) {
-  if (!Array.isArray(questions) || questions.length === 0) return 0;
-  const joined = questions.map((q) => (typeof q === 'string' ? q : q.text || '')).join(' ');
-  return calculateContentEntropy(joined);
+  return calculateBatteryEntropy(questions);
 }
 
 function sleep(ms) {

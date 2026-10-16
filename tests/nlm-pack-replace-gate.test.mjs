@@ -11,6 +11,10 @@ import {
   isSoftwarePack,
   assertAllowedPackNotebook,
   uploadAndReplacePack,
+  matchesPackFamily,
+  pollFamilyUntilActive,
+  probeExistingPackSource,
+  replacePackFamilyAtomic,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -458,4 +462,216 @@ test('assertAllowedPackNotebook blocks all 19 multipart parts from historical no
     }
   }
 });
+
+test('matchesPackFamily recognizes legacy aliases and standardized filenames', () => {
+  assert.equal(matchesPackFamily('CIC - Ford Executive Dynamics & Politics Pack', 'pack_ford_politics'), true);
+  assert.equal(matchesPackFamily('CIC - Ford Executive Dynamics & Politics Pack', 'pack_ford_politics.txt'), true);
+  assert.equal(matchesPackFamily('pack_ford_politics.txt', 'pack_ford_politics'), true);
+  assert.equal(matchesPackFamily('CIC - Daily Research (Buffer/Intake) Pack', 'pack_daily'), true);
+  assert.equal(matchesPackFamily('CIC - Daily Research (Buffer/Intake) Pack', 'pack_daily.txt'), true);
+  assert.equal(matchesPackFamily('pack_daily.txt', 'pack_daily'), true);
+  assert.equal(matchesPackFamily('pack_willow_run.txt', 'pack_willow_run'), true);
+  assert.equal(matchesPackFamily('Unrelated Document', 'pack_daily'), false);
+});
+
+test('probeExistingPackSource detects active and in-flight sources, skips missing', () => {
+  const sources = [
+    { id: 'src-1', title: 'pack_daily.txt', status: 2 },
+    { id: 'src-2', title: 'pack_master_kb_part_aa.txt', status: 3 }, // in-flight
+    { id: 'src-3', title: 'pack_failed.txt', status: 'FAILED' },
+  ];
+
+  const probeActive = probeExistingPackSource(sources, 'pack_daily.txt');
+  assert.equal(probeActive.exists, true);
+  assert.equal(probeActive.status, 'EXISTS_ACTIVE');
+  assert.equal(probeActive.sourceId, 'src-1');
+
+  const probeInFlight = probeExistingPackSource(sources, 'pack_master_kb_part_aa.txt');
+  assert.equal(probeInFlight.exists, true);
+  assert.equal(probeInFlight.status, 'EXISTS_ACTIVE');
+  assert.equal(probeInFlight.sourceId, 'src-2');
+
+  const probeFailed = probeExistingPackSource(sources, 'pack_failed.txt');
+  assert.equal(probeFailed.exists, false);
+
+  const probeMissing = probeExistingPackSource(sources, 'pack_nonexistent.txt');
+  assert.equal(probeMissing.exists, false);
+});
+
+test('pollFamilyUntilActive waits on status 1 and 3, promotes on status 2, and probes missing status', async () => {
+  let calls = 0;
+  const mockList = async () => {
+    calls++;
+    if (calls === 1) {
+      // In-flight state: id-1 in status 1, id-2 in status 3
+      return [
+        { id: 'id-1', status: 1 },
+        { id: 'id-2', status: 3 },
+      ];
+    }
+    // Terminal state: both active (one with status 2, one with missing status field but valid size)
+    return [
+      { id: 'id-1', status: 2 },
+      { id: 'id-2', status: null, characterCount: 5000 },
+    ];
+  };
+
+  const res = await pollFamilyUntilActive('nb-test', ['id-1', 'id-2'], 50000, mockList);
+  assert.equal(res, true);
+  assert.equal(calls, 2);
+});
+
+test('pollFamilyUntilActive throws on explicit invalid/error status', async () => {
+  const mockList = async () => [
+    { id: 'id-err', status: 'FAILED' }
+  ];
+
+  await assert.rejects(
+    async () => pollFamilyUntilActive('nb-test', ['id-err'], 5000, mockList),
+    /invalid\/error status: FAILED/
+  );
+});
+
+test('replacePackFamilyAtomic handles hasPack false bypass immediately', async () => {
+  const res = await replacePackFamilyAtomic({
+    notebookId: '140119ae-3496-45c9-bf0c-71c955136afc', // rewrite-labs
+    hasPack: false,
+  });
+  assert.equal(res.bypassed, true);
+  assert.equal(res.reason, 'HAS_PACK_FALSE');
+});
+
+test('replacePackFamilyAtomic enforces multipart count and stages all before dropping any', async () => {
+  const deleted = [];
+  const uploaded = [];
+  let quarantinedMsg = null;
+
+  const mockList = async () => [
+    { id: 'old-1', title: 'pack_master_kb.txt', status: 2 }
+  ];
+  const mockUpload = async (nbId, file) => {
+    const id = `new-${uploaded.length + 1}`;
+    uploaded.push({ id, file });
+    return JSON.stringify({ source_id: id });
+  };
+  const mockDelete = async (id) => {
+    deleted.push(id);
+    return true;
+  };
+
+  // 1. Mismatch triggers quarantine without deletion
+  await assert.rejects(
+    async () => replacePackFamilyAtomic({
+      notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2', // master-kb
+      packFiles: ['pack_master_kb.txt'],
+      expectedPartCount: 2, // expected 2, given 1
+      quarantineHandler: (nbId, err) => { quarantinedMsg = err; },
+      runList: mockList,
+      runUpload: mockUpload,
+      runDelete: mockDelete,
+    }),
+    /MULTIPART_COUNT_MISMATCH/
+  );
+  assert.equal(quarantinedMsg.includes('MULTIPART_COUNT_MISMATCH'), true);
+  assert.equal(deleted.length, 0); // old pack not touched
+
+  // 2. Successful atomic replacement with stage-all-before-drop-any
+  let pollCycle = 0;
+  const mockListWithNew = async () => {
+    pollCycle++;
+    if (pollCycle === 1) {
+      // Before upload: only old pack exists
+      return [
+        { id: 'old-1', title: 'pack_master_kb_old.txt', status: 2 },
+      ];
+    }
+    // After upload: both old and new exist
+    return [
+      { id: 'old-1', title: 'pack_master_kb_old.txt', status: 2 },
+      { id: 'new-1', title: 'pack_master_kb.txt', status: 2 },
+    ];
+  };
+
+  const successRes = await replacePackFamilyAtomic({
+    notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    packFiles: ['pack_master_kb.txt'],
+    expectedPartCount: 1,
+    runList: mockListWithNew,
+    runUpload: mockUpload,
+    runDelete: mockDelete,
+    waitMs: 10,
+  });
+
+  assert.equal(successRes.success, true);
+  assert.deepEqual(successRes.newSourceIds, ['new-1']);
+  assert.deepEqual(successRes.purgedOldSourceIds, ['old-1']);
+  assert.equal(deleted.includes('old-1'), true);
+});
+
+test('replacePackFamilyAtomic preserves old generation on upload error and purges only orphaned partials', async () => {
+  const deleted = [];
+  const uploaded = [];
+  let quarantinedMsg = null;
+
+  const mockList = async () => [
+    { id: 'old-1', title: 'pack_master_kb.txt', status: 2 }
+  ];
+  const mockUpload = async (nbId, file) => {
+    if (file.includes('part_2')) {
+      throw new Error('TRANSPORT_DROP');
+    }
+    const id = 'orphan-part-1';
+    uploaded.push(id);
+    return JSON.stringify({ source_id: id });
+  };
+  const mockDelete = async (id) => {
+    deleted.push(id);
+    return true;
+  };
+
+  await assert.rejects(
+    async () => replacePackFamilyAtomic({
+      notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+      packFiles: ['pack_master_kb_part_1.txt', 'pack_master_kb_part_2.txt'],
+      expectedPartCount: 2,
+      quarantineHandler: (nbId, err) => { quarantinedMsg = err; },
+      runList: mockList,
+      runUpload: mockUpload,
+      runDelete: mockDelete,
+    }),
+    /TRANSPORT_DROP/
+  );
+
+  assert.equal(quarantinedMsg.includes('TRANSPORT_DROP'), true);
+  // Old generation 'old-1' is NOT deleted!
+  assert.equal(deleted.includes('old-1'), false);
+  // Orphaned upload 'orphan-part-1' is purged!
+  assert.equal(deleted.includes('orphan-part-1'), true);
+});
+
+test('replacePackFamilyAtomic rejects and preserves sources when multipart parts are missing', async () => {
+  const deleted = [];
+  let quarantinedMsg = null;
+
+  const mockList = async () => [
+    { id: 'old-1', title: 'pack_master_kb.txt', status: 2 }
+  ];
+
+  await assert.rejects(
+    async () => replacePackFamilyAtomic({
+      notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+      packFiles: ['pack_master_kb_part_1.txt'], // only 1 part provided
+      expectedPartCount: 2, // but 2 expected
+      quarantineHandler: (nbId, err) => { quarantinedMsg = err; },
+      runList: mockList,
+      runDelete: async (id) => { deleted.push(id); },
+    }),
+    /MULTIPART_COUNT_MISMATCH/
+  );
+
+  assert.equal(quarantinedMsg.includes('MULTIPART_COUNT_MISMATCH'), true);
+  assert.equal(deleted.length, 0); // zero deletions
+});
+
+
 

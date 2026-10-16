@@ -54,6 +54,12 @@ export const THEMATIC_PACK_MAP = [
     title: 'CIC - Willys-Overland'
   },
   {
+    category: 'daily',
+    filename: 'pack_daily.txt',
+    notebookId: NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8',
+    title: 'CIC - Daily Research (Buffer/Intake)'
+  },
+  {
     category: 'master-kb',
     filename: 'pack_master_kb.txt',
     notebookId: NOTEBOOK_TARGETS['master-kb'],
@@ -306,6 +312,7 @@ export function consolidatePacks(options = {}) {
     'ford-politics': [],
     'post-war': [],
     'willys-overland': [],
+    'daily': [],
     'master-kb': []
   };
 
@@ -327,6 +334,8 @@ export function consolidatePacks(options = {}) {
         categorized['post-war'].push(item);
       } else if (cat === 'willys-overland') {
         categorized['willys-overland'].push(item);
+      } else if (cat === 'daily') {
+        categorized['daily'].push(item);
       }
 
       // Master KB includes all historical notes, excluding software and

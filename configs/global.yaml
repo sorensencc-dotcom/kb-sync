@@ -7,8 +7,8 @@
 warning_bytes: 5000000  # 5MB — warn if pack approaches this
 hard_bytes: 8000000     # 8MB — require chunking if exceeded
 
-# Chunk size for line-safe splitting (split -C format: e.g., 4M, 100K)
-chunk_size: 4M
+# Chunk size for line-safe splitting (split -C format: e.g., 2M, 100K)
+chunk_size: 2M
 
 # File exclusion patterns (glob format, matched against repo-relative paths)
 skip_patterns:
@@ -41,6 +41,8 @@ skip_patterns:
   - "*.test_*"
   - "*.ijfw/*"
   - "*.autoheal*"
+  - ".catalog.json"
+  - "*.catalog.json*"
 
 # Timeout and Retry Policy
 automation:
