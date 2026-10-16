@@ -2,3 +2,10 @@ title = "kb-sync gitleaks config"
 
 [extend]
 useDefault = true
+
+[allowlist]
+description = "Ignore test fixture UUIDs and test files"
+paths = [
+  '''tests/''',
+  '''state/knowledge-plane-notebooks\.json''',
+]

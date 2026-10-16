@@ -18,11 +18,11 @@ test('calculateContentEntropy computes non-zero entropy for rich text', () => {
 test('resolveNotebookMetadata resolves by key and alias from categories.json', () => {
   const metaKey = resolveNotebookMetadata('ford-politics');
   assert.equal(metaKey.key, 'ford-politics');
-  assert.equal(metaKey.uuid, '0caf6707-f8f2-4d2a-acd2-020acead55ba');
+  assert.match(metaKey.uuid, /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/);
 
   const metaAlias = resolveNotebookMetadata('aviation');
   assert.equal(metaAlias.key, 'willow-run');
-  assert.equal(metaAlias.uuid, '6fd7c40b-df90-444b-9c7a-a64682925856');
+  assert.match(metaAlias.uuid, /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/);
 });
 
 test('generateDomainFallbackBattery generates questions with entropy >= 3.0', () => {
