@@ -493,7 +493,7 @@ poll_new_sources_active() {
         if (ids.some(id => list.filter(s => (s.id || s.sourceId || s.source_id) === id).length > 1)) process.exit(1);
         const sources = ids.map(id => list.find(s => (s.id || s.sourceId || s.source_id) === id));
         if (sources.some(s => /^(3|ERROR|FAILED)$/i.test(String(s?.status)))) console.log("ERROR");
-        else if (sources.some(s => s && s.status != null && !/^(1|2|ACTIVE|PROCESSING|PENDING)$/i.test(String(s.status)))) console.log("ERROR");
+        else if (sources.some(s => s && s.status != null && !/^(1|2|5|ACTIVE|PROCESSING|PENDING|PREPARING)$/i.test(String(s.status)))) console.log("ERROR");
         else if (sources.every(s => s && (s.status == null || /^(2|ACTIVE)$/i.test(String(s.status))))) console.log("ACTIVE");
         else console.log("PROCESSING");
       } catch { process.exit(1); }
@@ -690,7 +690,7 @@ if [ "$SIZE_STATUS" = "HARD" ]; then
 
   while IFS= read -r -d '' chunk; do
     [ -n "$chunk" ] && [ -f "$chunk" ] && UPLOAD_FILES+=("$chunk")
-  done < <(find "$PACK_DIR" -type f -name 'repo_knowledge_pack_part_*.txt' -print0 2>/dev/null || true)
+  done < <(find "$PACK_DIR" -type f -name 'repo_knowledge_pack_part_*.txt' ! -name '*.bak.txt*' -print0 2>/dev/null | sort -z)
 
   log_info "Codebase chunked into ${#UPLOAD_FILES[@]} parts."
 else
