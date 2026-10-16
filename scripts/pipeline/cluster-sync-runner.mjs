@@ -124,23 +124,33 @@ export function getClusterNotebooks(manifest, mode) {
   return notebooks;
 }
 
-export function findStagedPackFiles(notebook) {
+export const PACK_FAMILY_ALIASES = {
+  pack_agent_harness: ['repo_knowledge_pack'],
+};
+
+export const DEFAULT_PACK_CANDIDATE_DIRS = [
+  path.resolve(REPO_ROOT, '../.nlm_pack'),
+  path.resolve(REPO_ROOT, '.nlm_pack'),
+];
+
+export function findStagedPackFiles(notebook, candidateDirs = DEFAULT_PACK_CANDIDATE_DIRS) {
   const family = notebook.pack_family;
   if (!family) return [];
 
-  const candidateDirs = [
-    path.resolve(REPO_ROOT, '../.nlm_pack'),
-    path.resolve(REPO_ROOT, '.nlm_pack'),
-  ];
+  const aliases = PACK_FAMILY_ALIASES[family] || [];
+  const prefixes = [family, ...aliases].map(p => p.toLowerCase());
 
   for (const packDir of candidateDirs) {
     if (!fs.existsSync(packDir)) continue;
     const files = fs.readdirSync(packDir);
     const matched = files.filter(f => {
       const lower = f.toLowerCase();
-      if (lower === `${family.toLowerCase()}.txt`) return true;
-      if (lower.startsWith(`${family.toLowerCase()}_part_`) && lower.endsWith('.txt')) return true;
-      if (lower.startsWith(`${family.toLowerCase()}.`) && lower.endsWith('.txt')) return true;
+      if (lower.endsWith('.bak.txt')) return false;
+      for (const prefix of prefixes) {
+        if (lower === `${prefix}.txt`) return true;
+        if (lower.startsWith(`${prefix}_part_`) && lower.endsWith('.txt')) return true;
+        if (lower.startsWith(`${prefix}.`) && lower.endsWith('.txt')) return true;
+      }
       return false;
     }).sort().map(f => path.join(packDir, f));
 
@@ -151,7 +161,7 @@ export function findStagedPackFiles(notebook) {
 }
 
 export async function runNotebookSweep(notebook, options = {}) {
-  const { isDryRun = false, mode = 'ops', timeoutMs = 300000 } = options;
+  const { isDryRun = false, mode = 'ops', timeoutMs = 300000, candidateDirs = DEFAULT_PACK_CANDIDATE_DIRS } = options;
   logStep(`=== Running sync for [${notebook.key}] (${notebook.uuid}) ===`);
 
   const summary = {
@@ -169,12 +179,10 @@ export async function runNotebookSweep(notebook, options = {}) {
       logInfo(`[BYPASS] Notebook ${notebook.key} has_pack: false; bypassing pack upload gate.`);
     } else {
       summary.packDispatched = true;
-      let packFiles = findStagedPackFiles(notebook);
+      let packFiles = findStagedPackFiles(notebook, candidateDirs);
       if (packFiles.length === 0) {
-        logWarn(`No pre-staged pack files for pack family ${notebook.pack_family}; skipping upload.`);
-      }
-
-      if (packFiles.length > 0 && !isDryRun) {
+        logWarn(`WARN: No staged pack files found for pack family "${notebook.pack_family}" in directories searched: ${candidateDirs.join(', ')}; skipping upload.`);
+      } else if (!isDryRun) {
         await replacePackFamilyAtomic({
           cli: 'nlm',
           notebookId: notebook.uuid,
@@ -186,8 +194,6 @@ export async function runNotebookSweep(notebook, options = {}) {
           logInfo,
           logWarn,
         });
-      } else if (packFiles.length === 0) {
-        logWarn(`No pack files discovered for pack family ${notebook.pack_family}; skipping upload.`);
       }
     }
 
