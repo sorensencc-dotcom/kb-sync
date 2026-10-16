@@ -27,6 +27,8 @@ export const PACK_FAMILY_TITLE_RE = [
   /\bpolitics\b.*\bpack\b/i,
   /\bpack\b.*\bpolitics\b/i,
   /^cic\b.*\bpack\b/i,
+  /daily research \(buffer\/intake\) pack/i,
+  /ford executive dynamics & politics pack/i,
 ];
 
 /** Canonical 8+1 Historical Domain Notebook IDs where software packs are forbidden */
@@ -61,6 +63,20 @@ export function assertAllowedPackNotebook(notebookId, packFile, category) {
   }
 }
 
+export function matchesPackFamily(sourceTitle, familyKey) {
+  const t = String(sourceTitle || '').toLowerCase().trim();
+  const f = String(familyKey || '').toLowerCase().trim();
+  if (!t || !f) return false;
+  if (f === 'pack_daily' || f === 'pack_daily.txt' || f === 'daily') {
+    return t.includes('pack_daily') || t.includes('daily research (buffer/intake) pack') || t.includes('daily research');
+  }
+  if (f === 'pack_ford_politics' || f === 'pack_ford_politics.txt' || f === 'ford-politics' || f === 'ford_politics') {
+    return t.includes('pack_ford_politics') || t.includes('ford executive dynamics & politics pack') || t.includes('ford executive dynamics');
+  }
+  const cleanF = f.replace(/\.[^.]+$/, '');
+  return t.includes(cleanF);
+}
+
 /**
  * @param {string} title
  * @param {string} [incomingPackBaseName] optional basename of the pack about to upload
@@ -69,6 +85,7 @@ export function isPackFamilyTitle(title, incomingPackBaseName) {
   const t = String(title || '').toLowerCase().trim();
   if (!t) return false;
   if (incomingPackBaseName) {
+    if (matchesPackFamily(t, incomingPackBaseName)) return true;
     const base = path.basename(incomingPackBaseName).toLowerCase();
     const baseNoExt = base.replace(/\.[^.]+$/, '');
     if (t === base || t === baseNoExt || t.startsWith(baseNoExt)) return true;
@@ -302,3 +319,218 @@ export async function replaceSandboxPack({ notebookId, file, runId, oldSourceIds
   for (const id of oldSourceIds) invoke(['source', 'delete', id, '-y']);
   return { newSourceId, oldSourceIds, activeVerifiedAt, deletedAt: Date.now() };
 }
+
+/**
+ * Polls target notebook sources until all expected source IDs reach ACTIVE (status 2).
+ * Handles in-flight transient statuses (1, 3, PROCESSING, UPLOADING) and missing status probe fallback.
+ */
+export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeoutMs = 300000, nlmSourceList = null) {
+  const listFn = nlmSourceList || ((nbId) => listNotebookSources('nlm', nbId));
+  const start = Date.now();
+  const pollInterval = 4000;
+
+  while (Date.now() - start < timeoutMs) {
+    const liveSources = await listFn(notebookId);
+    let allActive = true;
+    let anyInFlight = false;
+
+    for (const id of expectedSourceIds) {
+      const src = liveSources.find(s => (s.id || s.sourceId || s.source_id) === id);
+      if (!src) {
+        allActive = false;
+        anyInFlight = true;
+        break;
+      }
+
+      // 1. Explicit Active Check
+      if (src.status === 2 || src.status === '2' || src.status === 'ACTIVE' || src.status === 'STATUS_ACTIVE') {
+        continue;
+      }
+
+      // 2. Transient In-Flight Check (Wait)
+      if (src.status === 1 || src.status === '1' || src.status === 3 || src.status === '3' ||
+          src.status === 'PROCESSING' || src.status === 'UPLOADING' || src.status === 'INDEXING' ||
+          src.status === 'PENDING' || src.status === 5 || src.status === 'PREPARING') {
+        allActive = false;
+        anyInFlight = true;
+        break;
+      }
+
+      // 3. Missing Status Field Fallback Probe
+      if (src.status === undefined || src.status === null) {
+        const hasSize = (src.characterCount > 0) || (src.sizeBytes > 0) || (src.wordCount > 0) ||
+                        (src.char_count > 0) || (src.size > 0);
+        if (hasSize && !src.error && !src.processingError) {
+          console.warn(`[NLM-WARN] Source ${id} in ${notebookId} lacks status field; accepted via size/error probe.`);
+          continue;
+        }
+      }
+
+      throw new Error(`Source ${id} entered invalid/error status: ${src.status}`);
+    }
+
+    if (allActive) return true;
+    if (anyInFlight) {
+      await new Promise(resolve => setTimeout(resolve, pollInterval));
+      continue;
+    }
+  }
+
+  throw new Error(`Timeout (${timeoutMs / 1000}s) waiting for pack family in ${notebookId} to reach status 2.`);
+}
+
+/**
+ * Probes existing sources to detect if matching part is already present and active.
+ */
+export function probeExistingPackSource(liveSources, filename, contentHash = null) {
+  const base = path.basename(filename).toLowerCase();
+  const baseNoExt = base.replace(/\.[^.]+$/, '');
+  const list = Array.isArray(liveSources) ? liveSources : [];
+  for (const s of list) {
+    const title = (s.title || s.name || s.displayName || '').toLowerCase().trim();
+    const isMatch = title === base || title === baseNoExt;
+    if (isMatch) {
+      const status = s.status;
+      const isActive = status === 2 || status === '2' || status === 'ACTIVE' || status === 'STATUS_ACTIVE';
+      const isInFlight = status === 1 || status === '1' || status === 3 || status === '3' ||
+        status === 'PROCESSING' || status === 'UPLOADING' || status === 'INDEXING';
+      if (isActive || isInFlight) {
+        return {
+          exists: true,
+          status: 'EXISTS_ACTIVE',
+          sourceId: s.id || s.sourceId || s.source_id,
+          source: s
+        };
+      }
+    }
+  }
+  return { exists: false };
+}
+
+/**
+ * Per-notebook atomic replace gate enforcing multipart atomicity,
+ * stage-all-before-drop-any, quarantine without deletion, and has_pack bypass.
+ */
+export async function replacePackFamilyAtomic({
+  cli = 'nlm',
+  notebookId,
+  packFiles = [],
+  expectedPartCount = null,
+  hasPack = true,
+  quarantineHandler = null,
+  logInfo = console.log,
+  logWarn = console.warn,
+  runUpload = null,
+  runList = null,
+  runDelete = null,
+  timeoutMs = 300000,
+  waitMs = 3500,
+}) {
+  // 1. has_pack: false Bypass: skip pack dispatcher entirely
+  if (!hasPack) {
+    logInfo(`[REPLACE-GATE] Notebook ${notebookId} has_pack: false; bypassing pack dispatcher.`);
+    return { bypassed: true, reason: 'HAS_PACK_FALSE', notebookId };
+  }
+
+  // 2. Multipart Pack Family Atomicity: Expected part count N must match staged part count N
+  if (typeof expectedPartCount === 'number' && packFiles.length !== expectedPartCount) {
+    const msg = `MULTIPART_COUNT_MISMATCH: Expected ${expectedPartCount} parts, got ${packFiles.length}`;
+    if (quarantineHandler) {
+      quarantineHandler(notebookId, msg);
+    }
+    throw new Error(msg);
+  }
+
+  for (const f of packFiles) {
+    assertAllowedPackNotebook(notebookId, f);
+  }
+
+  const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
+  const deleteFn = runDelete || ((srcId) => deleteNotebookSource(cli, srcId));
+  const uploadFn = runUpload || ((nbId, file) => {
+    const res = spawnSync(cli, ['source', 'upload', '--notebook', nbId, '--file', file, '--json'], {
+      encoding: 'utf8', timeout: 120000, shell: true
+    });
+    if (res.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${res.stderr || res.stdout || res.error?.message}`);
+    return res.stdout;
+  });
+
+  // Query live sources
+  const liveSources = await listFn(notebookId);
+  const oldPackSources = filterPackFamilySources(liveSources, packFiles[0] ? path.basename(packFiles[0]) : undefined);
+  const oldSourceIds = oldPackSources.map(s => s.id || s.sourceId || s.source_id).filter(Boolean);
+
+  const newGenerationSourceIds = [];
+  const newlyUploadedSourceIds = [];
+
+  try {
+    for (const file of packFiles) {
+      const fileName = path.basename(file);
+      // Existence probe: Idempotent pre-flight
+      const probe = probeExistingPackSource(liveSources, fileName);
+      if (probe.exists && probe.sourceId) {
+        logInfo(`[EXISTS_ACTIVE] Reusing existing source for ${fileName} (${probe.sourceId})`);
+        newGenerationSourceIds.push(probe.sourceId);
+        continue;
+      }
+
+      logInfo(`[UPLOAD] Uploading ${fileName} to ${notebookId}...`);
+      const uploadOut = await uploadFn(notebookId, file);
+      let parsed;
+      try {
+        parsed = typeof uploadOut === 'string' ? JSON.parse(uploadOut) : uploadOut;
+      } catch {
+        throw new Error(`UPLOAD_SOURCE_ID_UNVERIFIABLE for ${fileName}`);
+      }
+      const uploadedId = parsed?.source_id || parsed?.id || parsed?.source?.id;
+      if (!uploadedId) throw new Error(`UPLOAD_SOURCE_ID_MISSING for ${fileName}`);
+      newGenerationSourceIds.push(uploadedId);
+      newlyUploadedSourceIds.push(uploadedId);
+    }
+
+    // Stage-All-Before-Drop-Any: wait for every single part of new generation to reach status 2
+    logInfo(`[POLL] Polling ${newGenerationSourceIds.length} source(s) until ACTIVE...`);
+    await pollFamilyUntilActive(notebookId, newGenerationSourceIds, timeoutMs, listFn);
+
+    // Terminal ACTIVE verified! Apply calibrated indexing propagation delay
+    await new Promise(resolve => setTimeout(resolve, waitMs));
+
+    // Cutovers: purge old generation pack parts (excluding any in new generation)
+    const newGenSet = new Set(newGenerationSourceIds);
+    const toDelete = oldSourceIds.filter(id => !newGenSet.has(id));
+    const purgedIds = [];
+    for (const id of toDelete) {
+      try {
+        await deleteFn(id);
+        purgedIds.push(id);
+      } catch (delErr) {
+        logWarn(`[WARN] Failed to delete old source ${id}: ${delErr.message}`);
+      }
+    }
+
+    logInfo(`[CUTOVER_COMPLETE] Notebook ${notebookId}: promoted ${newGenerationSourceIds.length} source(s), purged ${purgedIds.length} old source(s).`);
+    return {
+      success: true,
+      notebookId,
+      newSourceIds: newGenerationSourceIds,
+      purgedOldSourceIds: purgedIds,
+    };
+  } catch (err) {
+    // Quarantine Without Deletion: leave previous working generation 100% intact!
+    // Purge only orphaned partial uploads from failed staging generation
+    logWarn(`[QUARANTINE] Notebook ${notebookId} failed replace-gate: ${err.message}. Preserving old sources.`);
+    for (const orphanId of newlyUploadedSourceIds) {
+      try {
+        await deleteFn(orphanId);
+        logInfo(`[CLEANUP] Purged orphaned partial upload ${orphanId}`);
+      } catch (cleanErr) {
+        logWarn(`[WARN] Failed to purge orphaned upload ${orphanId}: ${cleanErr.message}`);
+      }
+    }
+    if (quarantineHandler) {
+      quarantineHandler(notebookId, err.message);
+    }
+    throw err;
+  }
+}
+

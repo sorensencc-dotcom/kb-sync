@@ -1,0 +1,90 @@
+{
+  "version": "2026.10.16",
+  "authority": "First-Mate-State-Engine",
+  "total_registered": 31,
+  "total_active_swept": 30,
+  "clusters": {
+    "cluster_a_historical_core": {
+      "execution_target": "research_sync",
+      "target_count": 5,
+      "notebooks": [
+        { "key": "willow-run", "uuid": "6fd7c40b-df90-444b-9c7a-a64682925856", "has_pack": true, "pack_family": "pack_willow_run" },
+        { 
+          "key": "ford-politics", 
+          "uuid": "0caf6707-f8f2-4d2a-acd2-020acead55ba", 
+          "has_pack": true, 
+          "pack_family": "pack_ford_politics",
+          "legacy_title_alias": "CIC - Ford Executive Dynamics & Politics Pack"
+        },
+        { "key": "post-war", "uuid": "9c469910-a900-43a4-877c-a43c9f545b5f", "has_pack": true, "pack_family": "pack_post_war" },
+        { "key": "willys-overland", "uuid": "fd4ebe29-9440-4f4b-97cf-0184ffbe29a0", "has_pack": true, "pack_family": "pack_willys_overland" },
+        { "key": "cuba-claims", "uuid": "c8360946-dbee-4a2c-b622-7f89b05695b0", "has_pack": true, "pack_family": "pack_cuba_claims" }
+      ]
+    },
+    "cluster_b_historical_archival_media": {
+      "execution_target": "research_sync",
+      "target_count": 10,
+      "notebooks": [
+        { "key": "master-kb", "uuid": "679b8bab-2d87-42cb-a726-6dc54c83acc2", "has_pack": true, "pack_family": "pack_master_kb", "multipart": true },
+        { 
+          "key": "daily", 
+          "uuid": "1b4861a3-931f-4632-8fc1-343a8dd37df8", 
+          "has_pack": true, 
+          "pack_family": "pack_daily",
+          "legacy_title_alias": "CIC - Daily Research (Buffer/Intake) Pack"
+        },
+        { "key": "miami-estate", "uuid": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c", "has_pack": true, "pack_family": "pack_miami_estate" },
+        { "key": "assembly-line", "uuid": "70be0df3-c58a-4711-b4d3-1e4b8726faf7", "has_pack": true, "pack_family": "pack_assembly_line" },
+        { "key": "research-deltas-matrix", "uuid": "48322e1d-d601-4f65-89e0-76282343680d", "has_pack": false, "display_name": "CIC - Research Deltas & Living Matrix" },
+        { "key": "willow-run-videos", "uuid": "ef78168d-b7b9-4952-8e0f-fcb353a21181", "has_pack": false },
+        { "key": "research-logs", "uuid": "b8bc161d-495f-42f9-a7d1-ed8692141f6b", "has_pack": false },
+        { "key": "photo-archive", "uuid": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a", "has_pack": false },
+        { "key": "facebook-archive", "uuid": "0c8dc979-319f-4e6d-8136-22275932c236", "has_pack": false },
+        { "key": "reddit-archive", "uuid": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d", "has_pack": false }
+      ]
+    },
+    "cluster_c_core_dev_personal_os": {
+      "execution_target": "ops_sync",
+      "target_count": 6,
+      "notebooks": [
+        { "key": "ironledger", "uuid": "76e1932c-054a-4520-9e83-5e882dffc938", "has_pack": true, "pack_family": "pack_ironledger" },
+        { "key": "sigil", "uuid": "26eacb85-2c97-443d-9d81-3bd99cc98412", "has_pack": true, "pack_family": "pack_sigil" },
+        { "key": "agent-harness", "uuid": "359b346c-6af7-4ba3-baef-b985c9e6e1af", "has_pack": true, "pack_family": "pack_agent_harness", "multipart": true },
+        { "key": "personal-os", "uuid": "9724e682-c5ea-4693-8e21-caf8de68611e", "has_pack": true, "pack_family": "pack_personal_os" },
+        { "key": "rewrite-labs", "uuid": "140119ae-3496-45c9-bf0c-71c955136afc", "has_pack": false },
+        { "key": "dev-triage", "uuid": "cb0498ce-1ea5-4668-9f65-ac368753404e", "has_pack": false }
+      ]
+    },
+    "cluster_d_canonical_standards": {
+      "execution_target": "ops_sync",
+      "authority": "toolforge-registry",
+      "target_count": 7,
+      "notebooks": [
+        { "key": "governance", "uuid": "b42534be-a208-437e-828e-dad645631c66", "has_pack": true, "pack_family": "pack_governance" },
+        { "key": "modules", "uuid": "096b5b92-55d0-44b2-b074-3b3fef0a0d12", "has_pack": true, "pack_family": "pack_modules" },
+        { "key": "skills", "uuid": "3ac216cc-3379-4c9f-8393-ab28a248cecc", "has_pack": true, "pack_family": "pack_skills" },
+        { "key": "operations", "uuid": "1ab8f1a2-f066-4246-8489-75f223d5f9d2", "has_pack": true, "pack_family": "pack_operations" },
+        { "key": "meta", "uuid": "30f80cc0-80f7-421a-a79b-c510d98aaf94", "has_pack": true, "pack_family": "pack_meta" },
+        { "key": "targets", "uuid": "0cab9d12-0f0e-4cc0-9009-69ec809fce4a", "has_pack": true, "pack_family": "pack_targets" },
+        { "key": "superpowers", "uuid": "95867d03-1175-4516-9b38-d95592b1a321", "has_pack": true, "pack_family": "pack_superpowers" }
+      ]
+    },
+    "cluster_e_automation_ecosystem": {
+      "execution_target": "ops_sync",
+      "target_count": 2,
+      "notebooks": [
+        { "key": "grok-bot", "uuid": "52332bef-552c-427a-afb5-8cc48e6f0079", "has_pack": false },
+        { "key": "ai-news-radar", "uuid": "bec5a197-8256-4eba-af78-c4881cc28fdd", "has_pack": false }
+      ]
+    },
+    "excluded_not_swept": [
+      { 
+        "key": "toolforge-ecosystem", 
+        "uuid": "39a71593-eb5b-4605-a4a4-f212ae010da2", 
+        "display_name": "AI-Ideas", 
+        "sweep_status": "EXCLUDED_RETIRED", 
+        "reason": "Architecture Guide §5 Operational Pruning Rule (unvetted prototypes only)" 
+      }
+    ]
+  }
+}
