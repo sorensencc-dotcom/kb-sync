@@ -43,3 +43,18 @@ test('generateDynamicQuestionBattery falls back to domain battery when AST entit
   assert.ok(result.entropy >= 3.0, `Battery entropy must be >= 3.0 to protect circuit breaker`);
   assert.ok(result.questions.length >= 4);
 });
+
+test('generateDynamicQuestionBattery gracefully handles completely missing categories and gaps files', () => {
+  const result = generateDynamicQuestionBattery('ford-politics', {
+    dbPath: 'non-existent-db.db',
+    categoriesPath: 'non-existent-categories.json',
+    gapsPath: 'non-existent-gaps.md',
+  });
+
+  assert.equal(result.source, 'domain_fallback');
+  assert.equal(result.circuitBreakerSafe, true);
+  assert.equal(result.gapCount, 0);
+  assert.ok(result.entropy >= 3.0);
+  assert.ok(result.questions.length >= 4);
+});
+

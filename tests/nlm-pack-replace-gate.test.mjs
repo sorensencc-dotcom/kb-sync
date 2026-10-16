@@ -649,4 +649,29 @@ test('replacePackFamilyAtomic preserves old generation on upload error and purge
   assert.equal(deleted.includes('orphan-part-1'), true);
 });
 
+test('replacePackFamilyAtomic rejects and preserves sources when multipart parts are missing', async () => {
+  const deleted = [];
+  let quarantinedMsg = null;
+
+  const mockList = async () => [
+    { id: 'old-1', title: 'pack_master_kb.txt', status: 2 }
+  ];
+
+  await assert.rejects(
+    async () => replacePackFamilyAtomic({
+      notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+      packFiles: ['pack_master_kb_part_1.txt'], // only 1 part provided
+      expectedPartCount: 2, // but 2 expected
+      quarantineHandler: (nbId, err) => { quarantinedMsg = err; },
+      runList: mockList,
+      runDelete: async (id) => { deleted.push(id); },
+    }),
+    /MULTIPART_COUNT_MISMATCH/
+  );
+
+  assert.equal(quarantinedMsg.includes('MULTIPART_COUNT_MISMATCH'), true);
+  assert.equal(deleted.length, 0); // zero deletions
+});
+
+
 
