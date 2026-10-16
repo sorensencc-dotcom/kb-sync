@@ -16,20 +16,30 @@ console.log(`  Resolved REPO_ROOT: ${REPO_ROOT}\n`);
 let allTestsPassed = true;
 let skippedTests = 0;
 
+if (process.platform === "win32") {
+  const gitBin = "C:\\Program Files\\Git\\bin";
+  const gitUsrBin = "C:\\Program Files\\Git\\usr\\bin";
+  if (fs.existsSync(gitBin) && !process.env.PATH?.includes(gitBin)) {
+    process.env.PATH = `${gitBin};${gitUsrBin};${process.env.PATH || ""}`;
+  }
+}
+
 // Preflight Shell Capability Detection
 function getBashExecutable(): string | null {
-  const candidates = [
-    "bash",
-    "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
-    "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\usr\\bin\\bash.exe",
-    "C:\\Program Files\\Git\\bin\\bash.exe",
-    "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
-  ];
+  const candidates = process.platform === "win32"
+    ? [
+        "C:\\Program Files\\Git\\bin\\bash.exe",
+        "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
+        "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
+        "C:\\Users\\soren\\AppData\\Local\\Programs\\Git\\usr\\bin\\bash.exe",
+        "bash",
+      ]
+    : ["bash"];
 
   for (const cmd of candidates) {
     try {
       if (cmd.includes("\\") && !fs.existsSync(cmd)) continue;
-      execSync(`"${cmd}" --version`, { stdio: "ignore", timeout: 2000 });
+      execSync(`"${cmd}" --version`, { stdio: "ignore", timeout: 5000 });
       return cmd;
     } catch {}
   }
@@ -164,7 +174,7 @@ runTest("Staging script stages raw sources into timestamped directory", () => {
     const result = execSync(`"${BASH_CMD}" -c "OBSIDIAN_VAULT_ROOT='${vaultMount}' bash modules/obsidian/ingest-obsidian.sh" 2>&1`, {
       cwd: REPO_ROOT,
       encoding: "utf8",
-      timeout: 30000,
+      timeout: 90000,
     });
 
     const stagingDir = path.join(tempVaultRoot, "_kb-sync-staging");

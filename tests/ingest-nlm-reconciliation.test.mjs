@@ -152,7 +152,13 @@ syncBuiltinESMExports();`);
   assert.ifError(result.error);
   assert.equal(result.status, 3, result.stderr);
   assert.match(JSON.parse(result.stderr).error, /NLM_RUNTIME_NOT_FOUND/);
-  assert.equal(JSON.parse(fs.readFileSync(probePath, 'utf8'))[0].options.shell, false);
+  const probes = JSON.parse(fs.readFileSync(probePath, 'utf8'));
+  assert.deepEqual(probes.map(p => p.command), ['nlm', 'notebooklm', 'uv']);
+  for (const probe of probes) {
+    assert.equal(probe.options.shell, false);
+    assert.equal(probe.options.windowsHide, true);
+    assert.equal(probe.options.timeout, 15000);
+  }
   assert.equal(fs.existsSync(path.join(current.staging, '.nlm-sync.lock')), false);
 });
 
