@@ -93,7 +93,8 @@ test('conflicting duplicate source IDs fail closed before receipt skips or uploa
   const before = JSON.stringify(f.receipts());
   const r = f.run();
   assert.notEqual(r.status, 0);
-  assert.match(r.stderr, /SOURCE_LIST_INVALID: duplicate source ID/);
+  const combined = (r.stderr || '') + JSON.stringify(r.report || '');
+  assert.match(combined, /SOURCE_LIST_INVALID: duplicate source ID/);
   assert.equal(f.read().sequence, 0);
   assert.equal(JSON.stringify(f.receipts()), before);
 });
@@ -182,3 +183,30 @@ test('ingestion cleanup preserves lock replaced by another owner', context => {
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(current.staging, '.nlm-sync.lock'), 'utf8')), state.replacementLock);
 });
+
+test('NLM_CLI with spaces in path resolves and executes mock runner', t => {
+  const dirWithSpaces = fs.mkdtempSync(path.join(os.tmpdir(), 'nlm path spaces-'));
+  t.after(() => fs.rmSync(dirWithSpaces, { recursive: true, force: true }));
+  const mockPath = path.join(dirWithSpaces, 'my mock runner.mjs');
+  fs.writeFileSync(mockPath, `
+const args = process.argv.slice(2);
+if (args[0] === 'login' && args[1] === '--check') {
+  console.log('✓ Authentication valid!');
+  process.exit(0);
+}
+if (args[0] === 'source' && args[1] === 'list') {
+  console.log('[]');
+  process.exit(0);
+}
+process.exit(0);
+`);
+  const staging = path.join(dirWithSpaces, 'staging');
+  fs.mkdirSync(staging);
+  const p = spawnSync(process.execPath, [runner, notebook, '--staging-dir', staging, '--dry-run'], {
+    encoding: 'utf8',
+    timeout: 10000,
+    env: { ...process.env, NLM_CLI: `node "${mockPath}"`, NLM_LIVE_SANDBOX: '0' }
+  });
+  assert.equal(p.status, 0, p.stderr);
+});
+

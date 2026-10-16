@@ -116,10 +116,33 @@ function computeFileHash(filePath) {
   return hash.digest('hex');
 }
 
+function parseCommandLine(cliEnv) {
+  const cli = (cliEnv || '').trim();
+  if (!cli) return null;
+
+  const nodeMatch = cli.match(/^(?:node|nodejs)\s+["']?(.*?)["']?$/);
+  if (nodeMatch) {
+    return { cmd: process.execPath, args: [nodeMatch[1]] };
+  }
+
+  if (!/\s/.test(cli)) {
+    return { cmd: cli, args: [] };
+  }
+
+  const parts = cli.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [cli];
+  const cleaned = parts.map(p => p.replace(/^["']|["']$/g, ''));
+  if (cleaned[0] === 'node' || cleaned[0] === 'nodejs') {
+    return { cmd: process.execPath, args: cleaned.slice(1) };
+  }
+  return { cmd: cleaned[0], args: cleaned.slice(1) };
+}
+
 function resolveNlmRunner() {
   if (process.env.NLM_CLI) {
-    const parts = process.env.NLM_CLI.trim().split(/\s+/);
-    return { cmd: parts[0], dialect: 'nlm', prefix: parts.slice(1) };
+    const parsed = parseCommandLine(process.env.NLM_CLI);
+    if (parsed) {
+      return { cmd: parsed.cmd, dialect: 'nlm', prefix: parsed.args };
+    }
   }
 
   const check = spawnSync('nlm', ['--version'], { encoding: 'utf8', timeout: 15000, shell: false, windowsHide: true });
@@ -153,10 +176,11 @@ function buildSourceListArgs(runner, notebookUuid) {
 
 function runNlm(runner, nlmArgs, timeoutMs = 120000) {
   const fullArgs = [...runner.prefix, ...nlmArgs];
+  const isBatch = process.platform === 'win32' && /\.(cmd|bat)$/i.test(runner.cmd);
   const res = spawnSync(runner.cmd, fullArgs, {
     encoding: 'utf8',
     timeout: timeoutMs,
-    shell: process.platform === 'win32',
+    shell: isBatch,
     windowsHide: true,
     stdio: ['ignore', 'pipe', 'pipe']
   });
