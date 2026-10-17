@@ -27,8 +27,8 @@ export const PACK_FAMILY_TITLE_RE = [
   /\bpolitics\b.*\bpack\b/i,
   /\bpack\b.*\bpolitics\b/i,
   /^cic\b.*\bpack\b/i,
-  /daily research \(buffer\/intake\) pack/i,
-  /ford executive dynamics & politics pack/i,
+  /^cic - daily research \(buffer\/intake\) pack$/i,
+  /^cic - ford executive dynamics & politics pack$/i,
 ];
 
 /** Canonical 8+1 Historical Domain Notebook IDs where software packs are forbidden */
@@ -67,14 +67,38 @@ export function matchesPackFamily(sourceTitle, familyKey) {
   const t = String(sourceTitle || '').toLowerCase().trim();
   const f = String(familyKey || '').toLowerCase().trim();
   if (!t || !f) return false;
-  if (f === 'pack_daily' || f === 'pack_daily.txt' || f === 'daily') {
-    return t.includes('pack_daily') || t.includes('daily research (buffer/intake) pack') || t.includes('daily research');
+
+  const cleanF = path.basename(f)
+    .replace(/\.bak\.txt$/i, '')
+    .replace(/\.[^.]+$/, '')
+    .replace(/[_-]part[_-][a-z0-9]+$/i, '');
+
+  if (cleanF === 'pack_daily' || cleanF === 'daily') {
+    return (
+      /^pack_daily(?:[_-]part[_-][a-z0-9]+|\.[a-z0-9]+)*(?:\.bak)?(?:\.txt)?$/i.test(t) ||
+      t === 'cic - daily research (buffer/intake) pack'
+    );
   }
-  if (f === 'pack_ford_politics' || f === 'pack_ford_politics.txt' || f === 'ford-politics' || f === 'ford_politics') {
-    return t.includes('pack_ford_politics') || t.includes('ford executive dynamics & politics pack') || t.includes('ford executive dynamics');
+
+  if (cleanF === 'pack_ford_politics' || cleanF === 'ford-politics' || cleanF === 'ford_politics') {
+    return (
+      /^pack_ford_politics(?:[_-]part[_-][a-z0-9]+|\.[a-z0-9]+)*(?:\.bak)?(?:\.txt)?$/i.test(t) ||
+      t === 'cic - ford executive dynamics & politics pack'
+    );
   }
-  const cleanF = f.replace(/\.[^.]+$/, '');
-  return t.includes(cleanF);
+
+  const isAgentHarness = (s) =>
+    /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness|agent[_-]harness)/i.test(s);
+  if (isAgentHarness(cleanF)) {
+    return /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness)/i.test(t);
+  }
+
+  return (
+    t === cleanF ||
+    t.startsWith(`${cleanF}_`) ||
+    t.startsWith(`${cleanF}.`) ||
+    t.startsWith(`${cleanF}-`)
+  );
 }
 
 /**
@@ -87,7 +111,7 @@ export function isPackFamilyTitle(title, incomingPackBaseName) {
   if (incomingPackBaseName) {
     if (matchesPackFamily(t, incomingPackBaseName)) return true;
     const base = path.basename(incomingPackBaseName).toLowerCase();
-    const baseNoExt = base.replace(/\.[^.]+$/, '');
+    const baseNoExt = base.replace(/\.bak\.txt$/i, '').replace(/\.[^.]+$/, '');
     if (t === base || t === baseNoExt || t.startsWith(baseNoExt)) return true;
     // Treat pack_agent_harness and repo_knowledge_pack as the same pack family
     const isAgentHarnessFamily = (s) =>
@@ -322,7 +346,8 @@ export async function replaceSandboxPack({ notebookId, file, runId, oldSourceIds
 
 /**
  * Polls target notebook sources until all expected source IDs reach ACTIVE (status 2).
- * Handles in-flight transient statuses (1, 3, PROCESSING, UPLOADING) and missing status probe fallback.
+ * Handles in-flight transient statuses (1, 5, PROCESSING, UPLOADING, PENDING, PREPARING)
+ * and missing status probe fallback. Status 3 (and ERROR/FAILED) fails closed immediately.
  */
 export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeoutMs = 300000, nlmSourceList = null) {
   const listFn = nlmSourceList || ((nbId) => listNotebookSources('nlm', nbId));
@@ -335,28 +360,51 @@ export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeo
     let anyInFlight = false;
 
     for (const id of expectedSourceIds) {
-      const src = liveSources.find(s => (s.id || s.sourceId || s.source_id) === id);
+      const matches = Array.isArray(liveSources)
+        ? liveSources.filter(s => (s.id || s.sourceId || s.source_id) === id)
+        : [];
+      if (matches.length > 1) {
+        throw new Error(`Duplicate source ID ${id} in notebook ${notebookId}`);
+      }
+      const src = matches[0];
       if (!src) {
         allActive = false;
         anyInFlight = true;
-        break;
-      }
-
-      // 1. Explicit Active Check
-      if (src.status === 2 || src.status === '2' || src.status === 'ACTIVE' || src.status === 'STATUS_ACTIVE') {
         continue;
       }
 
-      // 2. Transient In-Flight Check (Wait)
-      if (src.status === 1 || src.status === '1' || src.status === 3 || src.status === '3' ||
-          src.status === 'PROCESSING' || src.status === 'UPLOADING' || src.status === 'INDEXING' ||
-          src.status === 'PENDING' || src.status === 5 || src.status === 'PREPARING') {
-        allActive = false;
-        anyInFlight = true;
-        break;
+      // 1. Explicit Error / Fail-Closed Check (Status 3, ERROR, FAILED)
+      if (
+        src.status === 3 ||
+        src.status === '3' ||
+        /^(3|ERROR|FAILED|STATUS_ERROR|STATUS_FAILED)$/i.test(String(src.status ?? ''))
+      ) {
+        throw new Error(`Source ${id} entered invalid/error status: ${src.status}`);
       }
 
-      // 3. Missing Status Field Fallback Probe
+      // 2. Explicit Active Check
+      if (
+        src.status === 2 ||
+        src.status === '2' ||
+        /^(2|ACTIVE|STATUS_ACTIVE)$/i.test(String(src.status ?? ''))
+      ) {
+        continue;
+      }
+
+      // 3. Transient In-Flight Check (Wait)
+      if (
+        src.status === 1 ||
+        src.status === '1' ||
+        src.status === 5 ||
+        src.status === '5' ||
+        /^(1|5|PROCESSING|UPLOADING|INDEXING|PENDING|PREPARING)$/i.test(String(src.status ?? ''))
+      ) {
+        allActive = false;
+        anyInFlight = true;
+        continue;
+      }
+
+      // 4. Missing Status Field Fallback Probe
       if (src.status === undefined || src.status === null) {
         const hasSize = (src.characterCount > 0) || (src.sizeBytes > 0) || (src.wordCount > 0) ||
                         (src.char_count > 0) || (src.size > 0);
@@ -381,30 +429,89 @@ export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeo
 
 /**
  * Probes existing sources to detect if matching part is already present and active.
+ * Only reports EXISTS_ACTIVE for actually ACTIVE sources (2 / ACTIVE / STATUS_ACTIVE).
+ * Same-title sources in error status 3 (or ERROR/FAILED) return EXISTS_ERROR (stale: true).
+ * Same-title sources in in-flight states return EXISTS_IN_FLIGHT (stale: true, not reused).
  */
 export function probeExistingPackSource(liveSources, filename, contentHash = null) {
-  const base = path.basename(filename).toLowerCase();
+  const base = path.basename(String(filename || '')).toLowerCase().trim();
   const baseNoExt = base.replace(/\.[^.]+$/, '');
+  if (!base) return { exists: false };
   const list = Array.isArray(liveSources) ? liveSources : [];
-  for (const s of list) {
+  const matches = list.filter((s) => {
+    if (!s || isProtectedSandboxFixture(s)) return false;
     const title = (s.title || s.name || s.displayName || '').toLowerCase().trim();
-    const isMatch = title === base || title === baseNoExt;
-    if (isMatch) {
-      const status = s.status;
-      const isActive = status === 2 || status === '2' || status === 'ACTIVE' || status === 'STATUS_ACTIVE';
-      const isInFlight = status === 1 || status === '1' || status === 3 || status === '3' ||
-        status === 'PROCESSING' || status === 'UPLOADING' || status === 'INDEXING';
-      if (isActive || isInFlight) {
-        return {
-          exists: true,
-          status: 'EXISTS_ACTIVE',
-          sourceId: s.id || s.sourceId || s.source_id,
-          source: s
-        };
-      }
+    return title === base || title === baseNoExt;
+  });
+
+  if (matches.length === 0) return { exists: false };
+
+  for (const s of matches) {
+    const status = s.status;
+    const isError =
+      status === 3 ||
+      status === '3' ||
+      /^(3|ERROR|FAILED|STATUS_ERROR|STATUS_FAILED)$/i.test(String(status ?? ''));
+    if (isError) {
+      return {
+        exists: true,
+        status: 'EXISTS_ERROR',
+        reusable: false,
+        stale: true,
+        sourceId: s.id || s.sourceId || s.source_id,
+        source: s,
+      };
     }
   }
-  return { exists: false };
+
+  for (const s of matches) {
+    const status = s.status;
+    const isInFlight =
+      status === 1 ||
+      status === '1' ||
+      status === 5 ||
+      status === '5' ||
+      /^(1|5|PROCESSING|UPLOADING|INDEXING|PENDING|PREPARING)$/i.test(String(status ?? ''));
+    if (isInFlight) {
+      return {
+        exists: true,
+        status: 'EXISTS_IN_FLIGHT',
+        reusable: false,
+        stale: true,
+        sourceId: s.id || s.sourceId || s.source_id,
+        source: s,
+      };
+    }
+  }
+
+  if (matches.length === 1) {
+    const s = matches[0];
+    const status = s.status;
+    const isActive =
+      status === 2 ||
+      status === '2' ||
+      /^(2|ACTIVE|STATUS_ACTIVE)$/i.test(String(status ?? ''));
+    if (isActive) {
+      return {
+        exists: true,
+        status: 'EXISTS_ACTIVE',
+        reusable: true,
+        stale: false,
+        sourceId: s.id || s.sourceId || s.source_id,
+        source: s,
+      };
+    }
+  }
+
+  const first = matches[0];
+  return {
+    exists: true,
+    status: 'EXISTS_ERROR',
+    reusable: false,
+    stale: true,
+    sourceId: first.id || first.sourceId || first.source_id,
+    source: first,
+  };
 }
 
 /**
@@ -442,6 +549,14 @@ export async function replacePackFamilyAtomic({
     throw new Error(msg);
   }
 
+  if (!Array.isArray(packFiles) || packFiles.length === 0) {
+    const msg = `EMPTY_PACK_FILES: Refusing atomic replace for ${notebookId} with 0 pack files`;
+    if (quarantineHandler) {
+      quarantineHandler(notebookId, msg);
+    }
+    throw new Error(msg);
+  }
+
   for (const f of packFiles) {
     assertAllowedPackNotebook(notebookId, f);
   }
@@ -469,8 +584,15 @@ export async function replacePackFamilyAtomic({
 
   // Query live sources
   const liveSources = await listFn(notebookId);
-  const oldPackSources = filterPackFamilySources(liveSources, packFiles[0] ? path.basename(packFiles[0]) : undefined);
-  const oldSourceIds = oldPackSources.map(s => s.id || s.sourceId || s.source_id).filter(Boolean);
+  const oldSourceIdSet = new Set();
+  for (const pf of packFiles) {
+    const matched = filterPackFamilySources(liveSources, path.basename(pf));
+    for (const s of matched) {
+      const sid = s.id || s.sourceId || s.source_id;
+      if (sid) oldSourceIdSet.add(sid);
+    }
+  }
+  const staleSourceIds = [];
 
   const newGenerationSourceIds = [];
   const newlyUploadedSourceIds = [];
@@ -478,12 +600,36 @@ export async function replacePackFamilyAtomic({
   try {
     for (const file of packFiles) {
       const fileName = path.basename(file);
-      // Existence probe: Idempotent pre-flight
+      // Existence probe: Idempotent pre-flight (only reuse actually ACTIVE sources)
       const probe = probeExistingPackSource(liveSources, fileName);
-      if (probe.exists && probe.sourceId) {
+      if (probe.exists && probe.status === 'EXISTS_ACTIVE' && probe.sourceId) {
         logInfo(`[EXISTS_ACTIVE] Reusing existing source for ${fileName} (${probe.sourceId})`);
         newGenerationSourceIds.push(probe.sourceId);
         continue;
+      }
+
+      if (probe.exists && probe.status === 'EXISTS_ERROR') {
+        logWarn(
+          `[WARN] [EXISTS_ERROR] Stale error source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
+        );
+        if (probe.sourceId) {
+          oldSourceIdSet.add(probe.sourceId);
+          staleSourceIds.push(probe.sourceId);
+        }
+      } else if (probe.exists && probe.status === 'EXISTS_IN_FLIGHT') {
+        logWarn(
+          `[WARN] [EXISTS_IN_FLIGHT] In-flight source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
+        );
+        if (probe.sourceId) {
+          oldSourceIdSet.add(probe.sourceId);
+          staleSourceIds.push(probe.sourceId);
+        }
+      } else if (probe.exists && probe.sourceId) {
+        logWarn(
+          `[WARN] Stale non-active source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
+        );
+        oldSourceIdSet.add(probe.sourceId);
+        staleSourceIds.push(probe.sourceId);
       }
 
       logInfo(`[UPLOAD] Uploading ${fileName} to ${notebookId}...`);
@@ -504,6 +650,13 @@ export async function replacePackFamilyAtomic({
       }
       const uploadedId = parsed?.source_id || parsed?.id || parsed?.source?.id;
       if (!uploadedId) throw new Error(`UPLOAD_SOURCE_ID_MISSING for ${fileName}`);
+      if (
+        oldSourceIdSet.has(uploadedId) ||
+        newGenerationSourceIds.includes(uploadedId) ||
+        isProtectedSandboxFixture({ id: uploadedId })
+      ) {
+        throw new Error(`UPLOAD_SOURCE_ID_REUSED for ${fileName}: ${uploadedId}`);
+      }
       newGenerationSourceIds.push(uploadedId);
       newlyUploadedSourceIds.push(uploadedId);
     }
@@ -516,6 +669,7 @@ export async function replacePackFamilyAtomic({
     await new Promise(resolve => setTimeout(resolve, waitMs));
 
     // Cutovers: purge old generation pack parts (excluding any in new generation)
+    const oldSourceIds = Array.from(oldSourceIdSet);
     const newGenSet = new Set(newGenerationSourceIds);
     const toDelete = oldSourceIds.filter(id => !newGenSet.has(id));
     const purgedIds = [];
@@ -534,6 +688,7 @@ export async function replacePackFamilyAtomic({
       notebookId,
       newSourceIds: newGenerationSourceIds,
       purgedOldSourceIds: purgedIds,
+      staleSourceIds,
     };
   } catch (err) {
     // Quarantine Without Deletion: leave previous working generation 100% intact!
