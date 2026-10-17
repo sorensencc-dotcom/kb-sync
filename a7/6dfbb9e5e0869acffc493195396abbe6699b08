@@ -1,0 +1,27 @@
+.ijfw/.session-style.jsonl
+  s_07f4a2660cd3c8::t_56354dc7ccf902 3-6
+.ijfw/metrics/.transcript-cursor.json
+  s_07f4a2660cd3c8::t_9a3eec4b1aa632 1
+.ijfw/metrics/sessions.jsonl
+  s_07f4a2660cd3c8::t_f645e7b0169826 36-39
+scripts/setup-master-schedule.ps1
+  s_07f4a2660cd3c8::t_03b124e9cb58c7 63-67,69
+tests/nlm-pack-replace-gate.test.mjs
+  s_07f4a2660cd3c8::t_80edbc56ced4e5 41-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a76dfbb9e5e0869acffc493195396abbe6699b08",
+  "prompts": {},
+  "sessions": {
+    "s_07f4a2660cd3c8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1906f8e-dd36-497c-acb7-aaf0a2a7eddd",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
