@@ -4,6 +4,7 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { scanAndSanitizeText } from '../modules/compactor/secret-pii-sanitizer.mjs';
+import { redactCredentialsInText, redactRemoteUrl } from '../modules/wiki/credential-redaction.mjs';
 import {
   PUBLISH_MANIFEST_NAME,
   applyOwnedRemovals,
@@ -276,6 +277,14 @@ export async function publishWiki(customOptions = {}) {
     ? path.resolve(currentRoot, customOptions.sourceDir)
     : (ownRoot ? path.resolve(currentRoot, 'wiki') : wikiSourceDir);
   const currentUrl = customOptions.repoUrl || repoUrl;
+  // currentUrl may carry a token (CI passes an https URL whose userinfo is the token). It is only handed to git.
+  // Everything logged or persisted (receipt, pipeline state, error text) uses safeUrl / redactError instead.
+  const safeUrl = redactRemoteUrl(currentUrl);
+  const redactError = (err) => {
+    if (err && typeof err.message === 'string') err.message = redactCredentialsInText(err.message, currentUrl);
+    if (err && typeof err.stack === 'string') err.stack = redactCredentialsInText(err.stack, currentUrl);
+    return err;
+  };
   let currentTarget = customOptions.targetDir
     ? path.resolve(currentRoot, customOptions.targetDir)
     : (ownRoot ? path.resolve(currentRoot, '.wiki-publish-temp') : targetWikiDir);
@@ -286,7 +295,7 @@ export async function publishWiki(customOptions = {}) {
   console.log(`=== [KB-SYNC WIKI PUBLISHER] ===`);
   console.log(`Source directory: ${currentSource}`);
   console.log(`Target publish directory: ${currentTarget}`);
-  console.log(`Remote Wiki Repository: ${currentUrl}`);
+  console.log(`Remote Wiki Repository: ${safeUrl}`);
 
   if (buildOnlyTarget) {
     currentTarget = path.resolve(buildOnlyTarget);
@@ -299,7 +308,11 @@ export async function publishWiki(customOptions = {}) {
     }
 
     console.log(`Cloning remote wiki git repository...`);
-    execSync(`git clone "${currentUrl}" "${currentTarget}"`, { stdio: 'inherit' });
+    try {
+      execSync(`git clone "${currentUrl}" "${currentTarget}"`, { stdio: 'inherit' });
+    } catch (err) {
+      throw redactError(err); // execSync puts the full command line, token included, in err.message
+    }
   }
 
   const rootDiagramPng = path.join(currentRoot, 'trm-gap-triage-architecture.png');
@@ -364,8 +377,12 @@ export async function publishWiki(customOptions = {}) {
 
       console.log(`Committing wiki updates...`);
       execSync(`git commit -m "${commitMessage}"`, { cwd: currentTarget, stdio: 'inherit' });
-      console.log(`Pushing to ${currentUrl}...`);
-      execSync('git push origin HEAD', { cwd: currentTarget, stdio: 'inherit' });
+      console.log(`Pushing to ${safeUrl}...`);
+      try {
+        execSync('git push origin HEAD', { cwd: currentTarget, stdio: 'inherit' });
+      } catch (err) {
+        throw redactError(err);
+      }
       pushedChanges = true;
       console.log(`\nGitHub Wiki push completed (remote head is verified below before a receipt is written).`);
     } else {
@@ -404,7 +421,8 @@ export async function publishWiki(customOptions = {}) {
   // Write cryptographic proof receipt
   const receipt = {
     repository: repositoryName,
-    remote_wiki_url: currentUrl,
+    // Credentials never reach disk: the receipt is printed in CI logs and may be uploaded as an artifact.
+    remote_wiki_url: safeUrl,
     local_code_head: localCodeHead,
     remote_wiki_head: remoteHeadSha,
     verified_at: new Date().toISOString(),

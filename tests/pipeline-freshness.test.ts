@@ -30,6 +30,7 @@ import { syncRepositoryWiki } from '../modules/wiki/fleet-wiki-reconciler.ts';
 import { runPipeline, evaluatePipelineStatus, type PipelineOptions } from '../modules/wiki/pipeline-runner.ts';
 import { publishWiki, removeDirRobust } from '../scripts/sync-github-wiki.mjs';
 import { getDatabase } from '../modules/cache/db-schema.mjs';
+import { redactCredentialsInText, redactRemoteUrl } from '../modules/wiki/credential-redaction.mjs';
 
 // Make commits inside the temporary clones independent of the machine's git identity.
 process.env.GIT_AUTHOR_NAME = 'kb-sync-test';
@@ -697,4 +698,180 @@ test('11. the KB-Sync-Master wrapper calls the one pipeline command, fails the r
   assert.match(stage, /if \(\$env:KB_PIPELINE_PUBLISH[^\n]*\{\s*\n\s*\$PipelineCmd \+= " -- --publish"/);
   // No competing scheduler is introduced by the wrapper.
   assert.doesNotMatch(src, /Register-ScheduledTask|schtasks|New-ScheduledTask/i);
+});
+
+
+// ---- Credential hygiene: a push token must never reach receipts, pipeline state, reports or error text ----
+// Built from parts so the secret scanner does not mistake this fixture for a real credential.
+const TOKEN = ['ghs', 'TESTONLYtoken0123456789abcdef'].join('_');
+const USERINFO = `x-access-token:${TOKEN}`;
+const TOKEN_URL = `https://${USERINFO}@github.example.invalid/acme/demo.wiki.git`;
+const CLEAN_URL = 'https://github.example.invalid/acme/demo.wiki.git';
+
+/** Make git resolve TOKEN_URL to a local bare repository (git's url.<base>.insteadOf), so no network is used. */
+async function withTokenUrlRewrittenTo<T>(remote: string, fn: () => Promise<T> | T): Promise<T> {
+  const keys = ['GIT_CONFIG_COUNT', 'GIT_CONFIG_KEY_0', 'GIT_CONFIG_VALUE_0'] as const;
+  const saved = Object.fromEntries(keys.map((k) => [k, process.env[k]]));
+  process.env.GIT_CONFIG_COUNT = '1';
+  process.env.GIT_CONFIG_KEY_0 = `url.${remote}.insteadOf`;
+  process.env.GIT_CONFIG_VALUE_0 = TOKEN_URL;
+  try {
+    return await fn();
+  } finally {
+    for (const k of keys) {
+      if (saved[k] === undefined) delete process.env[k];
+      else process.env[k] = saved[k];
+    }
+  }
+}
+
+async function captureConsole<T>(fn: () => Promise<T>): Promise<{ result: T; output: string }> {
+  const lines: string[] = [];
+  const orig = { log: console.log, warn: console.warn, error: console.error };
+  const grab = (...a: unknown[]) => void lines.push(a.map(String).join(' '));
+  console.log = grab;
+  console.warn = grab;
+  console.error = grab;
+  try {
+    return { result: await fn(), output: lines.join('\n') };
+  } finally {
+    Object.assign(console, orig);
+  }
+}
+
+test('12. redactRemoteUrl and redactCredentialsInText strip userinfo and leave credential-free values alone', () => {
+  assert.equal(redactRemoteUrl(TOKEN_URL), CLEAN_URL);
+  assert.equal(redactRemoteUrl(`https://${TOKEN}@github.com/o/r.wiki.git`), 'https://github.com/o/r.wiki.git', 'token-only userinfo');
+  assert.equal(redactRemoteUrl('git@github.com:o/r.wiki.git'), 'git@github.com:o/r.wiki.git', 'scp-style SSH remote has no secret');
+  assert.equal(redactRemoteUrl('prepare-only'), 'prepare-only');
+  assert.equal(redactRemoteUrl('C:\\remotes\\wiki.git'), 'C:\\remotes\\wiki.git');
+  assert.equal(redactRemoteUrl(CLEAN_URL), CLEAN_URL);
+  const msg = `Command failed: git clone "${TOKEN_URL}" "/tmp/x"\nfatal: unable to access '${TOKEN_URL}': boom`;
+  const out = redactCredentialsInText(msg, TOKEN_URL);
+  assert.doesNotMatch(out, new RegExp(TOKEN));
+  assert.match(out, /git clone "https:\/\/github\.example\.invalid\/acme\/demo\.wiki\.git"/);
+  // A bare token that lost its URL context is still masked when the URL is supplied.
+  assert.equal(redactCredentialsInText(`bad credentials ${TOKEN}`, TOKEN_URL), 'bad credentials ***');
+});
+
+test('13. publishWiki with a token-bearing remote URL writes a token-free receipt that still passes the freshness check', async () => {
+  const repo = mkRepo({ 'src/a.ts': 'export const a = 1;\n', 'wiki/Home.md': '# demo\n', 'wiki/page.md': '# page\n' });
+  const remote = mkBareRemote();
+  const { result: receipt, output } = await captureConsole(() =>
+    withTokenUrlRewrittenTo(remote, () =>
+      publishWiki({ repoRoot: repo, repoName: 'demo', sourceDir: path.join(repo, 'wiki'), targetDir: path.join(repo, '.wiki-publish-temp'), repoUrl: TOKEN_URL, push: true }),
+    ),
+  );
+  assert.equal(receipt.sync_status, 'SYNCHRONIZED', 'the push really went through the token URL');
+  assert.equal(git(remote, 'log', '-1', '--format=%H', 'main'), receipt.remote_wiki_head);
+  const raw = read(repo, '.wiki-sync-receipt.json');
+  assert.doesNotMatch(raw, new RegExp(TOKEN), 'receipt on disk');
+  assert.doesNotMatch(output, new RegExp(TOKEN), 'console output');
+  const onDisk = JSON.parse(raw);
+  assert.equal(onDisk.remote_wiki_url, CLEAN_URL);
+  assert.equal(onDisk.remote_wiki_head, git(remote, 'rev-parse', 'main'));
+  // Redaction must not disturb the freshness comparison (repo, revision, age, non-empty remote head).
+  assert.equal(evaluateReceiptFreshness(onDisk, git(repo, 'rev-parse', 'HEAD'), { repository: 'demo' }).fresh, true);
+});
+
+test('14. a failed clone with a token URL does not leak the token through the thrown error or the pipeline state file', async () => {
+  const repo = mkRepo({ 'src/a.ts': 'export const a = 1;\n', 'wiki/Home.md': '# demo\n' });
+  // Nothing listens on 127.0.0.1:1, so the clone fails immediately; git's own message and execSync's command line both quote the URL.
+  const dead = `https://${USERINFO}@127.0.0.1:1/acme/demo.wiki.git`;
+  const { result: caught, output } = await captureConsole(async () => {
+    try {
+      await publishWiki({ repoRoot: repo, repoName: 'demo', sourceDir: path.join(repo, 'wiki'), targetDir: path.join(repo, '.wiki-publish-temp'), repoUrl: dead, push: true });
+      return null;
+    } catch (err: any) {
+      return err as Error;
+    }
+  });
+  assert.ok(caught, 'the clone must fail');
+  assert.doesNotMatch(String(caught.message) + String(caught.stack), new RegExp(TOKEN));
+  assert.doesNotMatch(output, new RegExp(TOKEN));
+
+  const state = await runPipeline({ repoRoot: repo, repoName: 'demo', dbPath: path.join(tmp('db'), 'k.db'), remoteWikiUrl: dead, publish: true, ...stubs });
+  assert.equal(state.overall, 'FAILED');
+  assert.equal(state.stages.publication_verified.status, 'failed');
+  assert.doesNotMatch(read(repo, '.pipeline-state.json'), new RegExp(TOKEN), '.pipeline-state.json');
+  assert.equal(fs.existsSync(path.join(repo, '.wiki-sync-receipt.json')), false, 'no receipt for an unverified publication');
+});
+
+test('15. the pipeline publishes through a token URL and leaves no token in the receipt or the state file', async () => {
+  const repo = mkRepo({ 'src/a.ts': 'export const a = 1;\n', 'wiki/Home.md': '# demo\n' });
+  const remote = mkBareRemote();
+  const opts: PipelineOptions = { repoRoot: repo, repoName: 'demo', dbPath: path.join(tmp('db'), 'k.db'), remoteWikiUrl: TOKEN_URL, publish: true, ...stubs };
+  const state = await withTokenUrlRewrittenTo(remote, () => runPipeline(opts));
+  assert.equal(state.overall, 'HEALTHY');
+  for (const file of ['.wiki-sync-receipt.json', '.pipeline-state.json']) {
+    assert.doesNotMatch(read(repo, file), new RegExp(TOKEN), file);
+  }
+  assert.equal(JSON.parse(read(repo, '.wiki-sync-receipt.json')).remote_wiki_url, CLEAN_URL);
+  assert.equal(evaluatePipelineStatus(opts).overall, 'HEALTHY', 'status check passes on the redacted receipt');
+});
+
+test('16. the fleet reconciler keeps the token out of its receipt and result', async () => {
+  const repo = mkRepo({ 'src/a.ts': 'export const a = 1;\n', 'wiki/Home.md': '# demo\n' });
+  const remote = mkBareRemote();
+  const result = await withTokenUrlRewrittenTo(remote, () => syncRepositoryWiki('demo', repo, { remoteWikiUrl: TOKEN_URL }));
+  assert.equal(result.status, 'SYNCHRONIZED');
+  assert.equal(result.remoteWikiUrl, CLEAN_URL);
+  assert.doesNotMatch(JSON.stringify(result), new RegExp(TOKEN));
+  const raw = read(repo, '.wiki-sync-receipt.json');
+  assert.doesNotMatch(raw, new RegExp(TOKEN));
+  assert.equal(evaluateReceiptFreshness(JSON.parse(raw), git(repo, 'rev-parse', 'HEAD'), { repository: 'demo' }).fresh, true);
+});
+
+// ---- Workflow publish scope and telemetry upload ----
+/** Evaluate a workflow `if:` expression (the subset used here is valid JavaScript once `github` is bound). */
+function evalIf(expr: string | undefined, github: { event_name: string; ref: string }): boolean {
+  if (expr === undefined) return true;
+  return Boolean(new Function('github', `return (${String(expr).replace(/^\$\{\{|\}\}$/g, '')});`)(github));
+}
+
+test('17. the workflow publishes only from refs/heads/main and every other ref runs local-only', () => {
+  const wf: any = yaml.load(fs.readFileSync(path.join(REPO_ROOT, '.github/workflows/wiki-drift-and-publish.yml'), 'utf8'));
+  const steps: any[] = wf.jobs['drift-and-publish'].steps;
+  const local = steps.find((s) => /kb:pipeline:e2e/.test(String(s.run)) && !/--publish/.test(String(s.run)));
+  const publish = steps.find((s) => /--publish/.test(String(s.run ?? '')));
+  assert.ok(local && publish);
+  const cases: Array<[string, string, boolean]> = [
+    ['push', 'refs/heads/main', true],
+    ['schedule', 'refs/heads/main', true],
+    ['workflow_dispatch', 'refs/heads/main', true],
+    ['push', 'refs/heads/autoheal-wrapper', false],
+    ['workflow_dispatch', 'refs/heads/autoheal-wrapper', false],
+    ['workflow_dispatch', 'refs/heads/fix/anything', false],
+    ['push', 'refs/heads/main-backup', false],
+    ['pull_request', 'refs/pull/49/merge', false],
+    ['pull_request', 'refs/heads/main', false],
+  ];
+  for (const [event_name, ref, shouldPublish] of cases) {
+    const gh = { event_name, ref };
+    assert.equal(evalIf(publish.if, gh), shouldPublish, `publish step: ${event_name} on ${ref}`);
+    assert.equal(evalIf(local.if, gh), !shouldPublish, `local-only step is the exact complement: ${event_name} on ${ref}`);
+  }
+  // Only the publish step ever sees the token-bearing URL.
+  for (const s of steps) if (s !== publish) assert.equal(s.env?.WIKI_REPO_URL, undefined);
+  // Serialized publishes are kept; non-main refs cannot join (and so cannot displace) the publish group.
+  assert.equal(wf.concurrency['cancel-in-progress'], false);
+  const groupFor = (ref: string) => String(new Function('github', `return (${String(wf.concurrency.group).replace(/^wiki-pipeline-\$\{\{|\}\}$/g, '')});`)({ event_name: 'push', ref }));
+  assert.equal(groupFor('refs/heads/main'), 'publish');
+  assert.notEqual(groupFor('refs/heads/autoheal-wrapper'), 'publish');
+});
+
+test('18. the telemetry artifact uploads its hidden files on purpose, after a credential check', () => {
+  const wf: any = yaml.load(fs.readFileSync(path.join(REPO_ROOT, '.github/workflows/wiki-drift-and-publish.yml'), 'utf8'));
+  const steps: any[] = wf.jobs['drift-and-publish'].steps;
+  const upIdx = steps.findIndex((s) => /upload-artifact/.test(String(s.uses ?? '')));
+  assert.ok(upIdx > 0);
+  const up = steps[upIdx];
+  const paths = String(up.with.path).split(/\s+/).filter(Boolean);
+  assert.ok(paths.length > 0 && paths.every((p) => p.startsWith('.') && !p.includes('*')), 'explicit dotfiles only, no wildcard');
+  // upload-artifact@v4.4+ silently skips dotfiles unless include-hidden-files is set.
+  assert.equal(up.with['include-hidden-files'], true);
+  const guard = steps.slice(0, upIdx).find((s) => /credential/i.test(String(s.name ?? '')) && /grep/.test(String(s.run ?? '')));
+  assert.ok(guard, 'a credential check runs before the upload');
+  assert.equal(String(guard.if), 'always()');
+  for (const p of paths) assert.ok(String(guard.run).includes(p), `credential check covers ${p}`);
 });

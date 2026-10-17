@@ -10,8 +10,10 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # Serialize wiki publishes (a second concurrent push would be rejected as non-fast-forward); PR runs never publish.
-  group: wiki-pipeline-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
+  # Only runs on refs/heads/main publish, so only they share the serialized 'publish' group (a second concurrent
+  # push would be rejected as non-fast-forward). Every other ref (pull requests, autoheal-wrapper, ...) is local-only
+  # and gets its own group so it can never queue ahead of, or displace, a pending main publish.
+  group: wiki-pipeline-${{ github.ref == 'refs/heads/main' && 'publish' || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -52,13 +54,15 @@ jobs:
 
       # One explicit, restart-safe path through the existing pipeline:
       # source check -> generation -> validation -> publish-tree prep -> cache index -> (publish + remote-head verify).
-      # Pull requests (including forks) only ever run the local stages: nothing is pushed from pull_request events.
+      # Publishing is allowed only from refs/heads/main: a push to main, the schedule (which GitHub runs on the default
+      # branch) or a manual dispatch started on main. Pull requests (including forks), pushes to any other branch
+      # (autoheal-wrapper included) and dispatches on other branches run the local stages only.
       - name: Run documentation pipeline (local stages only, no publish)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
         run: npm run kb:pipeline:e2e
 
-      - name: Run documentation pipeline and publish to GitHub Wiki (Main / Scheduled)
-        if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Run documentation pipeline and publish to GitHub Wiki (main only)
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
         env:
           WIKI_REPO_URL: "https://x-access-token:${{ secrets.WIKI_SYNC_PAT || secrets.GH_PAT || secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
         run: |
@@ -76,6 +80,21 @@ jobs:
             cat .wiki-sync-receipt.json
           fi
 
+      # Every telemetry file below starts with a dot, and upload-artifact@v4 (4.4+) skips hidden files unless told
+      # otherwise, so before this change the artifact was empty. They are uploaded on purpose now, but only these five
+      # named files, and only after a credential check: the receipt and pipeline state are written after
+      # credentials are redacted from the remote URL, and this step drops any file that still contains a URL with
+      # userinfo (anything between the scheme and the host, ending in @) so a regression cannot leak the push token into an artifact.
+      - name: Check telemetry files for credentials before upload
+        if: always()
+        run: |
+          for f in .drift-report.json .cross-repo-drift-report.json .wiki-sync-receipt.json .pipeline-state.json .repair-manifest.json; do
+            if [ -f "$f" ] && grep -qE '[A-Za-z][A-Za-z0-9+.-]*://[^/[:space:]"@]+@' "$f"; then
+              echo "::warning::$f contains a URL with embedded credentials; removed from the artifact set"
+              rm -f "$f"
+            fi
+          done
+
       - name: Upload drift and sync artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -87,4 +106,6 @@ jobs:
             .wiki-sync-receipt.json
             .pipeline-state.json
             .repair-manifest.json
+          include-hidden-files: true
+          if-no-files-found: warn
           retention-days: 30

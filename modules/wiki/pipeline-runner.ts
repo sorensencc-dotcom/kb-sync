@@ -29,6 +29,7 @@ import {
 import { GENERATED_MANIFEST_NAME, readOwnershipManifest, sha256Text, toPosix, writeJsonAtomic } from './generated-ownership.mjs';
 import { DEFAULT_RECEIPT_MAX_AGE_MS, evaluateReceiptFreshness } from './cross-repo-drift-scanner.ts';
 import { publishWiki, deriveWikiSshUrl } from '../../scripts/sync-github-wiki.mjs';
+import { redactCredentialsInText } from './credential-redaction.mjs';
 import { syncKnowledgeCache } from '../cache/sync-cache.mjs';
 import { getDatabase } from '../cache/db-schema.mjs';
 
@@ -242,7 +243,8 @@ export async function runPipeline(options: PipelineOptions = {}): Promise<Pipeli
         const detail = await fn();
         state.stages[name] = { status: 'ok', at: stamp(), key: key ?? undefined, detail: detail || undefined };
       } catch (err: any) {
-        const msg = String(err?.message || err);
+        // Stage errors are persisted to .pipeline-state.json; git failures quote the remote URL, token included.
+        const msg = redactCredentialsInText(String(err?.message || err), options.remoteWikiUrl, process.env.WIKI_REPO_URL);
         state.stages[name] = { status: 'failed', at: stamp(), key: key ?? undefined, error: msg };
         state.reasons.push(`${name}: ${msg}`);
         blockedBy = name;
