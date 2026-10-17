@@ -60,8 +60,13 @@ $principal = if ($isAdmin) {
 }
 
 # Action
+$PwshPath = (Get-Command pwsh.exe -ErrorAction SilentlyContinue)?.Source
+if (-not $PwshPath) {
+    $PwshPath = "pwsh.exe"
+}
+
 $action = New-ScheduledTaskAction `
-    -Execute "pwsh.exe" `
+    -Execute $PwshPath `
     -Argument "-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$MasterScript`"" `
     -WorkingDirectory "$RepoRoot"
 
