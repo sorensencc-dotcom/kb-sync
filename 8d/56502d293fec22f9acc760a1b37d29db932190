@@ -1,0 +1,36 @@
+.gitignore
+  h_5c172e9b435f5a 47-50
+docs/PIPELINE-FRESHNESS.md
+  h_5c172e9b435f5a 1-70
+modules/cache/sync-cache.mjs
+  h_5c172e9b435f5a 141-143
+modules/wiki/cross-repo-drift-scanner.ts
+  h_5c172e9b435f5a 48-106,121-122,152-158,282-299,303-306,344-351,418-426,481
+modules/wiki/entity-synthesizer.ts
+  h_5c172e9b435f5a 6-14,20-41,44-47,52,54-78,119-194,198-199,201-202,208,222-225,231-236,239,244-248,250,252,258,262-278,281-328,333-335,337-339,341-347,349-373,376-385,388-416,419-421,423-440,442-450,452-465,469-472,474-576,578-601,605,607
+modules/wiki/fleet-wiki-reconciler.ts
+  h_5c172e9b435f5a 3,7-17,69-70,75-79,94,310-343,345-346,349-375,378-381,383-384,386,389-390,392-402,404-419,426,442-452,454,458,471-479,482-497,511,527,531-532,537-541,545-547,554-566,568-588,597-600,603-604,612,626,658-659,666-668,683,688-694,707
+modules/wiki/generated-ownership.mjs
+  h_5c172e9b435f5a 1-160
+modules/wiki/pipeline-runner.ts
+  h_5c172e9b435f5a 1-484
+package.json
+  h_5c172e9b435f5a 81,128-130
+scripts/sync-github-wiki.mjs
+  h_5c172e9b435f5a 7-16,98-100,112,114,124,126,133-152,163,246-268,271-277,279-284,291-292,296,298,311-312,314-336,350,369-370,379-388,406,413-417,420-422,425-427
+tests/fleet-wiki-reconciler.test.ts
+  h_5c172e9b435f5a 42-43,175
+tests/pipeline-freshness.test.ts
+  h_5c172e9b435f5a 1-658
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8d56502d293fec22f9acc760a1b37d29db932190",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
