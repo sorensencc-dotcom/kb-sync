@@ -477,36 +477,52 @@ test('matchesPackFamily recognizes legacy aliases and standardized filenames', (
 test('probeExistingPackSource detects active and in-flight sources, skips missing', () => {
   const sources = [
     { id: 'src-1', title: 'pack_daily.txt', status: 2 },
-    { id: 'src-2', title: 'pack_master_kb_part_aa.txt', status: 3 }, // in-flight
+    { id: 'src-2', title: 'pack_master_kb_part_aa.txt', status: 3 }, // error status 3
     { id: 'src-3', title: 'pack_failed.txt', status: 'FAILED' },
+    { id: 'src-4', title: 'pack_willow_run.txt', status: 1 }, // in-flight
   ];
 
   const probeActive = probeExistingPackSource(sources, 'pack_daily.txt');
   assert.equal(probeActive.exists, true);
   assert.equal(probeActive.status, 'EXISTS_ACTIVE');
+  assert.equal(probeActive.reusable, true);
+  assert.equal(probeActive.stale, false);
   assert.equal(probeActive.sourceId, 'src-1');
 
-  const probeInFlight = probeExistingPackSource(sources, 'pack_master_kb_part_aa.txt');
+  const probeStatus3 = probeExistingPackSource(sources, 'pack_master_kb_part_aa.txt');
+  assert.equal(probeStatus3.exists, true);
+  assert.equal(probeStatus3.status, 'EXISTS_ERROR');
+  assert.equal(probeStatus3.reusable, false);
+  assert.equal(probeStatus3.stale, true);
+  assert.equal(probeStatus3.sourceId, 'src-2');
+
+  const probeInFlight = probeExistingPackSource(sources, 'pack_willow_run.txt');
   assert.equal(probeInFlight.exists, true);
-  assert.equal(probeInFlight.status, 'EXISTS_ACTIVE');
-  assert.equal(probeInFlight.sourceId, 'src-2');
+  assert.equal(probeInFlight.status, 'EXISTS_IN_FLIGHT');
+  assert.equal(probeInFlight.reusable, false);
+  assert.equal(probeInFlight.stale, true);
+  assert.equal(probeInFlight.sourceId, 'src-4');
 
   const probeFailed = probeExistingPackSource(sources, 'pack_failed.txt');
-  assert.equal(probeFailed.exists, false);
+  assert.equal(probeFailed.exists, true);
+  assert.equal(probeFailed.status, 'EXISTS_ERROR');
+  assert.equal(probeFailed.reusable, false);
+  assert.equal(probeFailed.stale, true);
+  assert.equal(probeFailed.sourceId, 'src-3');
 
   const probeMissing = probeExistingPackSource(sources, 'pack_nonexistent.txt');
   assert.equal(probeMissing.exists, false);
 });
 
-test('pollFamilyUntilActive waits on status 1 and 3, promotes on status 2, and probes missing status', async () => {
+test('pollFamilyUntilActive waits on status 1 and 5, promotes on status 2, probes missing status, and throws on status 3', async () => {
   let calls = 0;
   const mockList = async () => {
     calls++;
     if (calls === 1) {
-      // In-flight state: id-1 in status 1, id-2 in status 3
+      // In-flight state: id-1 in status 1, id-2 in status 5
       return [
         { id: 'id-1', status: 1 },
-        { id: 'id-2', status: 3 },
+        { id: 'id-2', status: 5 },
       ];
     }
     // Terminal state: both active (one with status 2, one with missing status field but valid size)
@@ -519,6 +535,11 @@ test('pollFamilyUntilActive waits on status 1 and 3, promotes on status 2, and p
   const res = await pollFamilyUntilActive('nb-test', ['id-1', 'id-2'], 50000, mockList);
   assert.equal(res, true);
   assert.equal(calls, 2);
+
+  await assert.rejects(
+    async () => pollFamilyUntilActive('nb-test', ['id-status3'], 5000, async () => [{ id: 'id-status3', status: 3 }]),
+    /invalid\/error status: 3/
+  );
 });
 
 test('pollFamilyUntilActive throws on explicit invalid/error status', async () => {
@@ -673,5 +694,315 @@ test('replacePackFamilyAtomic rejects and preserves sources when multipart parts
   assert.equal(deleted.length, 0); // zero deletions
 });
 
+test('pollFamilyUntilActive throws on status 3, "3", ERROR, FAILED but waits on 1, 5, PROCESSING', async () => {
+  for (const errStatus of [3, '3', 'ERROR', 'FAILED']) {
+    await assert.rejects(
+      async () => pollFamilyUntilActive('nb-test', ['src-err'], 5000, async () => [
+        { id: 'src-err', status: errStatus },
+      ]),
+      new RegExp(`invalid/error status: ${errStatus}`)
+    );
+  }
 
+  let calls = 0;
+  const mockWaitList = async () => {
+    calls++;
+    if (calls === 1) {
+      return [
+        { id: 'src-1', status: 1 },
+        { id: 'src-5', status: 5 },
+        { id: 'src-proc', status: 'PROCESSING' },
+      ];
+    }
+    return [
+      { id: 'src-1', status: 2 },
+      { id: 'src-5', status: '2' },
+      { id: 'src-proc', status: 'ACTIVE' },
+    ];
+  };
 
+  const ok = await pollFamilyUntilActive('nb-test', ['src-1', 'src-5', 'src-proc'], 50000, mockWaitList);
+  assert.equal(ok, true);
+  assert.equal(calls, 2);
+});
+
+test('probeExistingPackSource classifies same-title status-3 as EXISTS_ERROR, in-flight as EXISTS_IN_FLIGHT, and ACTIVE as EXISTS_ACTIVE', () => {
+  const liveSources = [
+    { id: 'err-3', title: 'pack_daily.txt', status: 3 },
+    { id: 'inflight-1', title: 'pack_ford_politics.txt', status: 1 },
+    { id: 'inflight-5', title: 'pack_willow_run.txt', status: 5 },
+    { id: 'inflight-proc', title: 'pack_post_war.txt', status: 'PROCESSING' },
+    { id: 'active-src', title: 'pack_master_kb.txt', status: 'ACTIVE' },
+  ];
+
+  const pErr = probeExistingPackSource(liveSources, 'pack_daily.txt');
+  assert.equal(pErr.exists, true);
+  assert.equal(pErr.status, 'EXISTS_ERROR');
+  assert.equal(pErr.stale, true);
+  assert.equal(pErr.reusable, false);
+  assert.equal(pErr.sourceId, 'err-3');
+
+  for (const [file, id] of [
+    ['pack_ford_politics.txt', 'inflight-1'],
+    ['pack_willow_run.txt', 'inflight-5'],
+    ['pack_post_war.txt', 'inflight-proc'],
+  ]) {
+    const pInFlight = probeExistingPackSource(liveSources, file);
+    assert.equal(pInFlight.exists, true);
+    assert.equal(pInFlight.status, 'EXISTS_IN_FLIGHT');
+    assert.equal(pInFlight.stale, true);
+    assert.equal(pInFlight.reusable, false);
+    assert.equal(pInFlight.sourceId, id);
+  }
+
+  const pActive = probeExistingPackSource(liveSources, 'pack_master_kb.txt');
+  assert.equal(pActive.exists, true);
+  assert.equal(pActive.status, 'EXISTS_ACTIVE');
+  assert.equal(pActive.stale, false);
+  assert.equal(pActive.reusable, true);
+  assert.equal(pActive.sourceId, 'active-src');
+});
+
+test('replacePackFamilyAtomic does not reuse same-title status-3 or in-flight sources, purges stale id only after new reaches ACTIVE, and preserves old if new ends in status 3', async () => {
+  // 1. Same-title status-3 source: not reused, uploaded fresh, purged only after new reaches ACTIVE
+  {
+    const events = [];
+    const deleted = [];
+    const uploaded = [];
+    const warnings = [];
+    let listCall = 0;
+
+    const runList = async () => {
+      listCall++;
+      if (listCall === 1) {
+        return [{ id: 'stale-status3', title: 'pack_master_kb.txt', status: 3 }];
+      }
+      events.push('polled-active');
+      return [
+        { id: 'stale-status3', title: 'pack_master_kb.txt', status: 3 },
+        { id: 'fresh-active-1', title: 'pack_master_kb.txt', status: 2 },
+      ];
+    };
+    const runUpload = async (nbId, file) => {
+      assert.equal(deleted.length, 0, 'must not delete stale status-3 source before upload completes');
+      events.push('uploaded');
+      uploaded.push(file);
+      return { source_id: 'fresh-active-1' };
+    };
+    const runDelete = async (id) => {
+      events.push(`deleted:${id}`);
+      deleted.push(id);
+      return true;
+    };
+
+    const res = await replacePackFamilyAtomic({
+      notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+      packFiles: ['pack_master_kb.txt'],
+      expectedPartCount: 1,
+      runList,
+      runUpload,
+      runDelete,
+      logInfo: () => {},
+      logWarn: (msg) => warnings.push(msg),
+      waitMs: 1,
+    });
+
+    assert.equal(res.success, true);
+    assert.equal(uploaded.length, 1);
+    assert.deepEqual(res.newSourceIds, ['fresh-active-1']);
+    assert.deepEqual(res.staleSourceIds, ['stale-status3']);
+    assert.deepEqual(res.purgedOldSourceIds, ['stale-status3']);
+    assert.deepEqual(events, ['uploaded', 'polled-active', 'deleted:stale-status3']);
+    assert.equal(warnings.some((w) => w.includes('EXISTS_ERROR')), true);
+  }
+
+  // 2. Same-title status-3 source when new upload also ends in status 3: nothing old is deleted
+  {
+    const deleted = [];
+    let listCall = 0;
+
+    const runList = async () => {
+      listCall++;
+      if (listCall === 1) {
+        return [{ id: 'stale-status3', title: 'pack_master_kb.txt', status: 3 }];
+      }
+      return [
+        { id: 'stale-status3', title: 'pack_master_kb.txt', status: 3 },
+        { id: 'new-failed-3', title: 'pack_master_kb.txt', status: 3 },
+      ];
+    };
+
+    await assert.rejects(
+      async () => replacePackFamilyAtomic({
+        notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+        packFiles: ['pack_master_kb.txt'],
+        expectedPartCount: 1,
+        runList,
+        runUpload: async () => ({ source_id: 'new-failed-3' }),
+        runDelete: async (id) => { deleted.push(id); return true; },
+        logInfo: () => {},
+        logWarn: () => {},
+        waitMs: 1,
+      }),
+      /invalid\/error status: 3/
+    );
+
+    assert.equal(deleted.includes('stale-status3'), false, 'pre-existing source must not be deleted when new source ends in status 3');
+    assert.deepEqual(deleted, ['new-failed-3']);
+  }
+
+  // 3. Same-title in-flight source: not reused, uploaded fresh, purged only after new reaches ACTIVE
+  {
+    const events = [];
+    const deleted = [];
+    const uploaded = [];
+    const warnings = [];
+    let listCall = 0;
+
+    const runList = async () => {
+      listCall++;
+      if (listCall === 1) {
+        return [{ id: 'stale-inflight', title: 'pack_master_kb.txt', status: 1 }];
+      }
+      events.push('polled-active');
+      return [
+        { id: 'stale-inflight', title: 'pack_master_kb.txt', status: 1 },
+        { id: 'fresh-active-2', title: 'pack_master_kb.txt', status: 2 },
+      ];
+    };
+    const runUpload = async (nbId, file) => {
+      assert.equal(deleted.length, 0, 'must not delete stale in-flight source before upload completes');
+      events.push('uploaded');
+      uploaded.push(file);
+      return { source_id: 'fresh-active-2' };
+    };
+    const runDelete = async (id) => {
+      events.push(`deleted:${id}`);
+      deleted.push(id);
+      return true;
+    };
+
+    const res = await replacePackFamilyAtomic({
+      notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+      packFiles: ['pack_master_kb.txt'],
+      expectedPartCount: 1,
+      runList,
+      runUpload,
+      runDelete,
+      logInfo: () => {},
+      logWarn: (msg) => warnings.push(msg),
+      waitMs: 1,
+    });
+
+    assert.equal(res.success, true);
+    assert.equal(uploaded.length, 1);
+    assert.deepEqual(res.newSourceIds, ['fresh-active-2']);
+    assert.deepEqual(res.staleSourceIds, ['stale-inflight']);
+    assert.deepEqual(res.purgedOldSourceIds, ['stale-inflight']);
+    assert.deepEqual(events, ['uploaded', 'polled-active', 'deleted:stale-inflight']);
+    assert.equal(warnings.some((w) => w.includes('EXISTS_IN_FLIGHT')), true);
+  }
+
+  // 4. Same-title in-flight source when new upload ends in status 3: nothing old is deleted
+  {
+    const deleted = [];
+    let listCall = 0;
+
+    const runList = async () => {
+      listCall++;
+      if (listCall === 1) {
+        return [{ id: 'stale-inflight', title: 'pack_master_kb.txt', status: 5 }];
+      }
+      return [
+        { id: 'stale-inflight', title: 'pack_master_kb.txt', status: 5 },
+        { id: 'new-failed-3b', title: 'pack_master_kb.txt', status: 3 },
+      ];
+    };
+
+    await assert.rejects(
+      async () => replacePackFamilyAtomic({
+        notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+        packFiles: ['pack_master_kb.txt'],
+        expectedPartCount: 1,
+        runList,
+        runUpload: async () => ({ source_id: 'new-failed-3b' }),
+        runDelete: async (id) => { deleted.push(id); return true; },
+        logInfo: () => {},
+        logWarn: () => {},
+        waitMs: 1,
+      }),
+      /invalid\/error status: 3/
+    );
+
+    assert.equal(deleted.includes('stale-inflight'), false, 'pre-existing in-flight source must not be deleted when new source ends in status 3');
+    assert.deepEqual(deleted, ['new-failed-3b']);
+  }
+});
+
+test('matchesPackFamily requires exact full-title match for Daily and Ford aliases while rejecting lookalike notes', () => {
+  assert.equal(matchesPackFamily('CIC - Daily Research (Buffer/Intake) Pack', 'pack_daily'), true);
+  assert.equal(matchesPackFamily('pack_daily', 'pack_daily'), true);
+  assert.equal(matchesPackFamily('pack_daily.txt', 'pack_daily'), true);
+  assert.equal(matchesPackFamily('Daily Research Notes', 'pack_daily'), false);
+  assert.equal(matchesPackFamily('Daily Research Intake Log', 'pack_daily'), false);
+
+  assert.equal(matchesPackFamily('CIC - Ford Executive Dynamics & Politics Pack', 'pack_ford_politics'), true);
+  assert.equal(matchesPackFamily('pack_ford_politics.txt', 'pack_ford_politics'), true);
+  assert.equal(matchesPackFamily('Ford Executive Dynamics Notes', 'pack_ford_politics'), false);
+});
+
+test('Agent Harness family: repo_knowledge_pack_part_aa.txt, .bak.txt, and pack_agent_harness_part_ab.txt match as one family', () => {
+  const familyVariants = [
+    'repo_knowledge_pack_part_aa.txt',
+    'repo_knowledge_pack_part_aa.txt.bak.txt',
+    'pack_agent_harness_part_ab.txt',
+  ];
+
+  for (const sourceTitle of familyVariants) {
+    for (const familyKey of familyVariants) {
+      assert.equal(
+        matchesPackFamily(sourceTitle, familyKey),
+        true,
+        `matchesPackFamily("${sourceTitle}", "${familyKey}") must be true`
+      );
+      assert.equal(
+        isPackFamilyTitle(sourceTitle, familyKey),
+        true,
+        `isPackFamilyTitle("${sourceTitle}", "${familyKey}") must be true`
+      );
+    }
+  }
+
+  const sources = familyVariants.map((title, idx) => ({ id: `ah-${idx}`, title }));
+  const matched = filterPackFamilySources(sources, 'repo_knowledge_pack_part_aa.txt.bak.txt');
+  assert.equal(matched.length, 3);
+});
+
+test('ingest-notebooklm.sh poll_new_sources_active treats status 3 as ERROR and preserves purge pattern', () => {
+  const ingestScript = fs.readFileSync(path.join(REPO_ROOT, 'modules', 'notebooklm', 'ingest-notebooklm.sh'), 'utf8');
+
+  const pollFnMatch = ingestScript.match(/poll_new_sources_active\(\)\s*\{[\s\S]*?\n\}/);
+  assert.ok(pollFnMatch, 'poll_new_sources_active function must exist in ingest-notebooklm.sh');
+  const pollBlock = pollFnMatch[0];
+
+  const errRegexMatch = pollBlock.match(/\/\^\(([^)]*)\)\$\/i\.test\(String\(s\?\.status\)\)\)+/);
+  assert.ok(errRegexMatch, 'must find explicit ERROR status regex in poll_new_sources_active');
+  const errRegex = new RegExp(`^(${errRegexMatch[1]})$`, 'i');
+  assert.equal(errRegex.test('3'), true, 'explicit error regex must match status 3');
+  assert.equal(errRegex.test('ERROR'), true);
+  assert.equal(errRegex.test('FAILED'), true);
+
+  const allowedRegexMatch = pollBlock.match(/!\/\^\(([^)]*)\)\$\/i\.test\(String\(s\.status\)\)\)+/);
+  assert.ok(allowedRegexMatch, 'must find allowed/in-flight status regex in poll_new_sources_active');
+  const allowedRegex = new RegExp(`^(${allowedRegexMatch[1]})$`, 'i');
+  assert.equal(allowedRegex.test('3'), false, 'in-flight/allowed status regex must not list 3');
+  assert.equal(allowedRegex.test('1'), true);
+  assert.equal(allowedRegex.test('2'), true);
+  assert.equal(allowedRegex.test('5'), true);
+
+  const purgePatternMatch = ingestScript.match(/const\s+pattern\s*=\s*(\/[^/]+\/[a-z]*);/);
+  assert.ok(purgePatternMatch, 'must find purge pattern in ingest-notebooklm.sh');
+  assert.equal(purgePatternMatch[1].includes('repo[_-]?knowledge[_-]?pack'), true);
+  assert.equal(purgePatternMatch[1].includes('pack_'), true);
+  assert.equal(purgePatternMatch[1].includes('\\.txt'), true);
+});
