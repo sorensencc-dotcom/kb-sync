@@ -41,6 +41,8 @@ schedule-task-wrapper-*.ps1
 # Generated nightly by kb:drift; a committed copy goes stale and gets read as current
 .drift-report.json
 .wiki-sync-receipt.json
+# Written by the NotebookLM ingest and the wiki publisher on every run; per-machine runtime state, not source
+.sync-status.json
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/

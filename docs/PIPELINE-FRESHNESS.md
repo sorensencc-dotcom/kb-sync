@@ -126,9 +126,9 @@ Checked on 2026-10-17 in a clean worktree of main (`df95f742`), with no real rem
   (`SYNCHRONIZED`), the second printed "already up to date with remote", made no commit, left the remote head unchanged
   and wrote an `UP_TO_DATE` receipt. The publisher only commits when `git status --porcelain` in the wiki clone is
   non-empty, and the generated navigation pages carry no timestamps.
-- `.wiki-sync-receipt.json` and `.sync-status.json` are tracked in git (despite the `.gitignore` entry), so every publish
-  run, including a no-op one, rewrites their timestamps in the working tree. That is expected and harmless on a CI runner,
-  which is discarded. On a developer checkout it shows up as two modified tracked files.
+- `.wiki-sync-receipt.json` and `.sync-status.json` are untracked and listed in `.gitignore`. Every publish run, including a
+  no-op one, rewrites their timestamps, so a tracked copy showed up as two modified files after each run. Existing checkouts
+  keep their local copies; a fresh checkout starts without them and the first run writes them.
 - A first run in a fresh checkout of main rewrites many tracked `wiki/entities/*.md` pages in the working tree: the committed
   copies predate the collision-safe page identity. Nothing is committed back from CI.
 
