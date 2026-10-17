@@ -45,14 +45,45 @@ const logError = (msg) => console.error(`${COLOR.red}[CLUSTER-SYNC] [ERROR]${COL
 const logStep = (msg) => console.log(`${COLOR.cyan}[CLUSTER-SYNC] [STEP]${COLOR.reset} ${msg}`);
 
 export function loadManifest() {
+  let manifest = null;
+  let canonicalPath = null;
+  let rawContent = null;
   for (const p of MANIFEST_PATHS) {
     if (fs.existsSync(p)) {
       try {
-        return JSON.parse(fs.readFileSync(p, 'utf8'));
+        const text = fs.readFileSync(p, 'utf8');
+        manifest = JSON.parse(text);
+        canonicalPath = p;
+        rawContent = text;
+        break;
       } catch (_) {}
     }
   }
-  throw new Error(`Knowledge plane manifest not found in expected paths: ${MANIFEST_PATHS.join(', ')}`);
+  if (!manifest) {
+    throw new Error(`Knowledge plane manifest not found in expected paths: ${MANIFEST_PATHS.join(', ')}`);
+  }
+
+  // Automatically propagate canonical manifest to alternate registered locations (e.g. First Mate)
+  for (const altPath of MANIFEST_PATHS) {
+    if (altPath === canonicalPath) continue;
+    try {
+      const parentDir = path.dirname(altPath);
+      if (fs.existsSync(parentDir)) {
+        let needsWrite = true;
+        if (fs.existsSync(altPath)) {
+          const existingText = fs.readFileSync(altPath, 'utf8');
+          if (existingText === rawContent) {
+            needsWrite = false;
+          }
+        }
+        if (needsWrite) {
+          fs.writeFileSync(altPath, rawContent, 'utf8');
+        }
+      }
+    } catch (_) {}
+  }
+
+  return manifest;
 }
 
 export function loadQuarantine() {

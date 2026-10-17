@@ -89,6 +89,18 @@ if ($AuthCheckExitCode -eq 0) {
     Write-LogWarn "Pre-flight auth check requires recovery; Stage 3 will run the same recovery path."
 }
 
+# Sync knowledge plane manifest to First Mate (WSL) if reachable
+$WslManifest = "//wsl$/Ubuntu/home/box/first-mate/state/knowledge-plane-notebooks.json"
+$LocalManifest = Join-Path $RepoRoot "state\knowledge-plane-notebooks.json"
+if ((Test-Path -LiteralPath $LocalManifest) -and (Test-Path -LiteralPath (Split-Path -Parent $WslManifest))) {
+    try {
+        Copy-Item -LiteralPath $LocalManifest -Destination $WslManifest -Force
+        Write-LogInfo "Synchronized knowledge-plane-notebooks.json to First Mate (WSL)."
+    } catch {
+        Write-LogWarn "Failed to sync manifest to First Mate: $_"
+    }
+}
+
 # --- STAGE 1: OBSIDIAN STAGING, VALIDATION & SYNTHESIS ---
 Write-LogInfo "================================================================================"
 Write-LogInfo "STAGE 1: Obsidian Staging, Validation & Synthesis"
@@ -228,6 +240,23 @@ try {
     & cmd /c "npm run logs:cleanup" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
 } catch {
     Write-LogWarn "Stage 6 cleanup encountered warning: $_"
+}
+
+# --- STAGE 7: SCHEDULED TASKS ROSTER REFRESH ---
+Write-LogInfo "================================================================================"
+Write-LogInfo "STAGE 7: Scheduled Tasks Master Roster Refresh"
+Write-LogInfo "================================================================================"
+
+$RosterScript = "C:\dev\scripts\generate-scheduled-tasks-roster.mjs"
+if (Test-Path $RosterScript) {
+    try {
+        Write-LogInfo "Regenerating Windows Scheduled Tasks Master Roster..."
+        & node $RosterScript 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    } catch {
+        Write-LogWarn "Scheduled tasks roster refresh encountered warning: $_"
+    }
+} else {
+    Write-LogWarn "Scheduled tasks roster generator not found at $RosterScript; skipping."
 }
 
 $EndTime = Get-Date

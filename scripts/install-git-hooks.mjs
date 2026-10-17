@@ -62,6 +62,13 @@ if [ -d "$GIT_DIR_PATH/rebase-merge" ] || [ -d "$GIT_DIR_PATH/rebase-apply" ] ||
   exit 0
 fi
 
+# Fail-soft sync knowledge plane manifest to First Mate (WSL)
+WSL_M_DIR="//wsl$/Ubuntu/home/box/first-mate/state"
+LOCAL_M="$REPO_ROOT/state/knowledge-plane-notebooks.json"
+if [ -f "$LOCAL_M" ] && [ -d "$WSL_M_DIR" ]; then
+  cp -f "$LOCAL_M" "$WSL_M_DIR/knowledge-plane-notebooks.json" 2>/dev/null || true
+fi
+
 [ -f "$DRIFT_SCRIPT" ] || exit 0
 
 log_info "Analyzing knowledge base for local documentation drift..."
