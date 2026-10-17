@@ -423,6 +423,7 @@ export async function replacePackFamilyAtomic({
   runUpload = null,
   runList = null,
   runDelete = null,
+  spawnFn = spawnSync,
   timeoutMs = 300000,
   waitMs = 3500,
 }) {
@@ -448,11 +449,22 @@ export async function replacePackFamilyAtomic({
   const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
   const deleteFn = runDelete || ((srcId) => deleteNotebookSource(cli, srcId));
   const uploadFn = runUpload || ((nbId, file) => {
-    const res = spawnSync(cli, ['source', 'upload', '--notebook', nbId, '--file', file, '--json'], {
+    const res = spawnFn(cli, ['source', 'add', nbId, '--file', file, '--json'], {
       encoding: 'utf8', timeout: 120000, shell: true
     });
     if (res.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${res.stderr || res.stdout || res.error?.message}`);
-    return res.stdout;
+    const out = res.stdout;
+    try {
+      const parsed = typeof out === 'string' ? JSON.parse(out) : out;
+      const id = parsed?.source_id || parsed?.id || parsed?.source?.id;
+      if (id) return { source_id: id, ...parsed };
+    } catch {
+      if (typeof out === 'string') {
+        const match = out.match(/"?(?:source_id|id)"?\s*[:=]\s*"?([0-9a-fA-F-]{8,}|[a-zA-Z0-9_-]+)"?/);
+        if (match) return { source_id: match[1] };
+      }
+    }
+    return out;
   });
 
   // Query live sources
@@ -476,10 +488,18 @@ export async function replacePackFamilyAtomic({
 
       logInfo(`[UPLOAD] Uploading ${fileName} to ${notebookId}...`);
       const uploadOut = await uploadFn(notebookId, file);
-      let parsed;
-      try {
-        parsed = typeof uploadOut === 'string' ? JSON.parse(uploadOut) : uploadOut;
-      } catch {
+      let parsed = null;
+      if (typeof uploadOut === 'string') {
+        try {
+          parsed = JSON.parse(uploadOut);
+        } catch {
+          const match = uploadOut.match(/"?(?:source_id|id)"?\s*[:=]\s*"?([0-9a-fA-F-]{8,}|[a-zA-Z0-9_-]+)"?/);
+          if (match) parsed = { source_id: match[1] };
+        }
+      } else {
+        parsed = uploadOut;
+      }
+      if (!parsed || typeof parsed !== 'object') {
         throw new Error(`UPLOAD_SOURCE_ID_UNVERIFIABLE for ${fileName}`);
       }
       const uploadedId = parsed?.source_id || parsed?.id || parsed?.source?.id;
