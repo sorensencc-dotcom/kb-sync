@@ -44,3 +44,7 @@ schedule-task-wrapper-*.ps1
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Written by kb:pipeline:e2e (run state + lock); local runtime state, not source
+.pipeline-state.json
+.pipeline.lock

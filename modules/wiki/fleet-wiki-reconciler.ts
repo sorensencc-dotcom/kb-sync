@@ -1,9 +1,20 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { CANONICAL_REPOSITORIES } from './cross-repo-drift-scanner.ts';
-import { synthesizeAllEntities } from './entity-synthesizer.ts';
+import { synthesizeAllEntities, type EntitySynthesisResult } from './entity-synthesizer.ts';
+import {
+  PUBLISH_MANIFEST_NAME,
+  applyOwnedRemovals,
+  planFlatCopies,
+  planOwnedRemovals,
+  readOwnershipManifest,
+  sha256File,
+  toPosix,
+  writeJsonAtomic,
+} from './generated-ownership.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,11 +66,17 @@ export interface FleetRepoSyncResult {
   repository: string;
   repoPath: string;
   remoteWikiUrl: string;
-  status: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'SKIPPED_NO_DOCS' | 'FAILED';
+  /** DRY_RUN_PENDING: a dry run found changes that a real run would publish (never "healthy"). */
+  status: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'SKIPPED_NO_DOCS' | 'FAILED' | 'DRY_RUN_PENDING';
   filesPublished: number;
   remoteWikiHead?: string;
   localCodeHead?: string;
   error?: string;
+  /** Which required stage failed ('generation' | 'publication'). */
+  stage?: 'generation' | 'publication';
+  generation?: { kind: string; sourcesHash: string };
+  flatCollisions?: number;
+  staleRemoved?: number;
 }
 
 export interface FleetReconcileReport {
@@ -74,6 +91,7 @@ export interface FleetReconcileReport {
     up_to_date_count: number;
     skipped_count: number;
     failed_count: number;
+    dry_run_pending_count: number;
     total_files_published: number;
   };
 }
@@ -289,60 +307,123 @@ export function applyGuardedSidebar(options: {
   };
 }
 
-function copyFlatAndPreserve(srcDir: string, destDir: string): number {
-  if (!fs.existsSync(srcDir)) return 0;
-  let copied = 0;
-
-  function walk(currentDir: string) {
-    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
-    for (const entry of entries) {
-      const fullSrc = path.join(currentDir, entry.name);
-      if (entry.isDirectory()) {
-        if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === '.wiki-publish-temp') continue;
-        walk(fullSrc);
-      } else if (entry.isFile() && /\.(md|png|svg|jpg|jpeg|gif|html|mermaid)$/i.test(entry.name)) {
-        // Never blindly stamp navigation from a source tree — sidebar is applied
-        // via applyGuardedSidebar so foreign kb-sync fragments cannot leak.
-        if (entry.name === '_Sidebar.md' || entry.name === '_Footer.md') continue;
-
-        const flatDest = path.join(destDir, entry.name);
-        fs.copyFileSync(fullSrc, flatDest);
-
-        const relPath = path.relative(srcDir, fullSrc);
-        const nestedDest = path.join(destDir, relPath);
-        fs.mkdirSync(path.dirname(nestedDest), { recursive: true });
-        fs.copyFileSync(fullSrc, nestedDest);
-
-        copied += 1;
-      }
-    }
-  }
-
-  walk(srcDir);
-  return copied;
+export interface DocCopyResult {
+  /** Source documents copied (each counted once, regardless of nested+flat copies). */
+  copied: number;
+  /** destination-relative path -> sha256 of what was written there */
+  written: Record<string, string>;
+  flatCollisions: Array<{ basename: string; files: string[]; flatWinner: string | null }>;
 }
 
-export function syncRepositoryWiki(repoName: string, repoPath: string, options: { dryRun?: boolean; force?: boolean } = {}): FleetRepoSyncResult {
-  const remoteWikiUrl = deriveRepoWikiUrl(repoPath, repoName);
-  const tempPublishDir = path.join(repoPath, '.wiki-publish-temp');
+const DOC_FILE_RE = /\.(md|png|svg|jpg|jpeg|gif|html|mermaid)$/i;
 
-  // Auto-synthesize entity documentation for the repository
+/**
+ * Copy documentation trees into the publish checkout.
+ *
+ * Every file is written at its nested (relative) path. A flat basename copy
+ * (for flat GitHub-wiki URLs) is added ONLY when it is unambiguous - previously
+ * any two files sharing a basename silently overwrote each other at the root.
+ * Later directories in `srcDirs` overlay earlier ones on identical relative paths.
+ */
+export function copyDocsCollisionSafe(srcDirs: string[], destDir: string): DocCopyResult {
+  const files = new Map<string, string>(); // rel(posix) -> absolute source
+  for (const srcDir of srcDirs) {
+    if (!fs.existsSync(srcDir)) continue;
+    const walk = (currentDir: string) => {
+      for (const entry of fs.readdirSync(currentDir, { withFileTypes: true })) {
+        const fullSrc = path.join(currentDir, entry.name);
+        if (entry.isDirectory()) {
+          if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === '.wiki-publish-temp') continue;
+          walk(fullSrc);
+        } else if (entry.isFile() && DOC_FILE_RE.test(entry.name)) {
+          // Never blindly stamp navigation from a source tree - sidebar is applied
+          // via applyGuardedSidebar so foreign kb-sync fragments cannot leak.
+          if (entry.name === '_Sidebar.md' || entry.name === '_Footer.md') continue;
+          files.set(toPosix(path.relative(srcDir, fullSrc)), fullSrc);
+        }
+      }
+    };
+    walk(srcDir);
+  }
+
+  const { flat, collisions } = planFlatCopies([...files.keys()]);
+  const written: Record<string, string> = {};
+  const put = (rel: string, fullSrc: string) => {
+    const dest = path.join(destDir, rel);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(fullSrc, dest);
+    written[rel] = sha256File(dest) ?? '';
+  };
+  for (const [rel, fullSrc] of files) {
+    put(rel, fullSrc);
+    if (rel.includes('/') && flat.has(rel)) put(path.posix.basename(rel), fullSrc);
+  }
+  return { copied: files.size, written, flatCollisions: collisions };
+}
+
+export interface SyncRepositoryOptions {
+  /**
+   * Genuinely non-mutating: nothing is written to the repository (no entity pages,
+   * manifest, receipt or temp files) and nothing is pushed. The remote is only read,
+   * into an OS temp directory.
+   */
+  dryRun?: boolean;
+  force?: boolean;
+  /** Override the derived wiki remote (tests use a local bare repository). */
+  remoteWikiUrl?: string;
+  /** Test seam for the generation stage. */
+  synthesize?: typeof synthesizeAllEntities;
+}
+
+export function syncRepositoryWiki(repoName: string, repoPath: string, options: SyncRepositoryOptions = {}): FleetRepoSyncResult {
+  const remoteWikiUrl = options.remoteWikiUrl || deriveRepoWikiUrl(repoPath, repoName);
+  const dryRun = !!options.dryRun;
+  const synthesize = options.synthesize || synthesizeAllEntities;
+
+  // REQUIRED stage: a failed generation must stop publication and must never be reported healthy.
+  let generation: EntitySynthesisResult;
   try {
-    synthesizeAllEntities({
+    generation = synthesize({
       repoName,
       repoRoot: repoPath,
-      targetWikiDir: path.join(repoPath, 'wiki')
+      targetWikiDir: path.join(repoPath, 'wiki'),
+      dryRun,
     });
-  } catch (err) {
-    console.error(`[FLEET-RECONCILER] Entity synthesis warning for ${repoName}:`, err);
+  } catch (err: any) {
+    console.error(`[FLEET-RECONCILER] Entity synthesis FAILED for ${repoName}:`, err);
+    return {
+      repository: repoName,
+      repoPath,
+      remoteWikiUrl,
+      status: 'FAILED',
+      filesPublished: 0,
+      stage: 'generation',
+      error: `entity synthesis threw: ${String(err?.message || err)}`,
+    };
   }
+  if (generation.status !== 'OK') {
+    const detail = generation.failures.slice(0, 5).map((f) => `${f.file} (${f.stage}: ${f.error})`).join('; ');
+    console.error(`[FLEET-RECONCILER] Entity synthesis FAILED for ${repoName}: ${detail}`);
+    return {
+      repository: repoName,
+      repoPath,
+      remoteWikiUrl,
+      status: 'FAILED',
+      filesPublished: 0,
+      stage: 'generation',
+      error: `entity synthesis failed for ${generation.failures.length} file(s): ${detail}`,
+      generation: { kind: generation.generationKind, sourcesHash: generation.sourcesHash },
+    };
+  }
+  const generationPending =
+    generation.entitiesGenerated + generation.entitiesUpdated + generation.removed.length + generation.aliasesWritten > 0;
 
   let docSourceDir = path.join(repoPath, 'wiki');
   if (!fs.existsSync(docSourceDir)) {
     const altDocs = path.join(repoPath, 'docs');
     if (fs.existsSync(altDocs)) {
       docSourceDir = altDocs;
-    } else {
+    } else if (!(dryRun && generationPending)) {
       return {
         repository: repoName,
         repoPath,
@@ -358,30 +439,61 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
     localCodeHead = execSync('git rev-parse HEAD', { cwd: repoPath, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
   } catch {}
 
+  // Dry run keeps every scratch file outside the repository.
+  const dryScratch = dryRun ? fs.mkdtempSync(path.join(os.tmpdir(), 'kb-fleet-dry-')) : '';
+  const tempPublishDir = dryRun ? path.join(dryScratch, 'wiki') : path.join(repoPath, '.wiki-publish-temp');
+  const curatedSidebarBackup = dryRun ? path.join(dryScratch, 'sidebar-curated-backup.md') : path.join(repoPath, '.wiki-sidebar-curated-backup.md');
+  const cleanup = () => {
+    try {
+      if (dryRun) fs.rmSync(dryScratch, { recursive: true, force: true });
+      else if (fs.existsSync(tempPublishDir)) fs.rmSync(tempPublishDir, { recursive: true, force: true });
+    } catch {}
+  };
+
   try {
-    if (fs.existsSync(tempPublishDir)) {
+    if (!dryRun && fs.existsSync(tempPublishDir)) {
       fs.rmSync(tempPublishDir, { recursive: true, force: true });
     }
 
-    console.log(`[FLEET-RECONCILER] Syncing ${repoName} -> ${remoteWikiUrl}...`);
+    console.log(`[FLEET-RECONCILER] ${dryRun ? '(dry-run) ' : ''}Syncing ${repoName} -> ${remoteWikiUrl}...`);
     execSync(`git clone "${remoteWikiUrl}" "${tempPublishDir}"`, { stdio: ['pipe', 'pipe', 'ignore'], timeout: 30000 });
 
     // Capture curated remote sidebar before doc copy (copy skips _Sidebar.md).
     const curatedRemoteSidebar = path.join(tempPublishDir, '_Sidebar.md');
-    const curatedSidebarBackup = path.join(repoPath, '.wiki-sidebar-curated-backup.md');
     if (fs.existsSync(curatedRemoteSidebar)) {
       fs.copyFileSync(curatedRemoteSidebar, curatedSidebarBackup);
     } else if (fs.existsSync(curatedSidebarBackup)) {
       fs.rmSync(curatedSidebarBackup, { force: true });
     }
 
-    const filesCopied = copyFlatAndPreserve(docSourceDir, tempPublishDir);
-
     // Also copy docs/ if wiki/ was primary
     const docsExtra = path.join(repoPath, 'docs');
-    if (docSourceDir !== docsExtra && fs.existsSync(docsExtra)) {
-      copyFlatAndPreserve(docsExtra, tempPublishDir);
+    const docDirs = [docSourceDir];
+    if (docSourceDir !== docsExtra && fs.existsSync(docsExtra)) docDirs.push(docsExtra);
+    const copy = copyDocsCollisionSafe(docDirs, tempPublishDir);
+    const filesCopied = copy.copied;
+    if (copy.flatCollisions.length > 0) {
+      console.warn(
+        `[FLEET-RECONCILER] ${repoName}: ${copy.flatCollisions.length} basename collision(s); flat copies skipped for ambiguous names (nested paths published): ` +
+          copy.flatCollisions.slice(0, 5).map((c) => c.basename).join(', ')
+      );
     }
+
+    // Reconcile pages this publisher wrote earlier but no longer produces. Only files recorded in the
+    // previous publish manifest AND still byte-identical are removed; anything else is left alone.
+    const manifestPath = path.join(tempPublishDir, PUBLISH_MANIFEST_NAME);
+    const removal = planOwnedRemovals({
+      baseDir: tempPublishDir,
+      previous: readOwnershipManifest(manifestPath),
+      keep: new Set(Object.keys(copy.written)),
+    });
+    const removedStale = applyOwnedRemovals(tempPublishDir, removal);
+    if (removal.preservedModified.length > 0) {
+      console.warn(`[FLEET-RECONCILER] ${repoName}: kept ${removal.preservedModified.length} previously published page(s) edited on the remote: ${removal.preservedModified.slice(0, 5).join(', ')}`);
+    }
+    const publishManifest: Record<string, { sha256: string }> = {};
+    for (const rel of Object.keys(copy.written).sort()) publishManifest[rel] = { sha256: copy.written[rel] };
+    writeJsonAtomic(manifestPath, { version: 1, generator: 'fleet-wiki-reconciler', repository: repoName, files: publishManifest });
 
     // Preserve curated Home.md if present, else fallback to README
     const homePath = path.join(tempPublishDir, 'Home.md');
@@ -396,7 +508,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       } else {
         homeContent = `# ${repoName} Documentation Wiki\n\nWelcome to the official documentation for **${repoName}**.`;
       }
-      homeContent += `\n\n---\n*Last Synchronized: ${new Date().toISOString()} · Fleet Reconciler*\n`;
+      homeContent += `\n\n---\n*Last Synchronized: ${new Date().toISOString()} - Fleet Reconciler*\n`;
       fs.writeFileSync(homePath, homeContent, 'utf8');
     }
 
@@ -412,44 +524,68 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
     }
 
     const footerPath = path.join(tempPublishDir, '_Footer.md');
-    fs.writeFileSync(footerPath, `---\n*Automated Fleet Wiki Sync · Generated at ${new Date().toISOString()}*`, 'utf8');
+    fs.writeFileSync(footerPath, `---\n*Automated Fleet Wiki Sync - Generated at ${new Date().toISOString()}*`, 'utf8');
 
     execSync('git add -A', { cwd: tempPublishDir, stdio: ['pipe', 'pipe', 'ignore'] });
     const status = execSync('git status --porcelain', { cwd: tempPublishDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+    // _Footer.md embeds a timestamp, so ignore it when deciding whether real content changed.
+    const pendingContent = status.split(/\r?\n/).filter((l) => l.trim() && !/_Footer\.md$/.test(l.trim())).length > 0;
 
     let remoteWikiHead = '';
     let syncStatus: FleetRepoSyncResult['status'] = 'UP_TO_DATE';
 
-    if (status && !options.dryRun) {
+    if (dryRun) {
+      // A dry run never claims the wiki is current while changes are pending.
+      syncStatus = pendingContent || generationPending ? 'DRY_RUN_PENDING' : 'UP_TO_DATE';
+      console.log(`[FLEET-RECONCILER] (dry-run) ${repoName}: ${syncStatus}; nothing pushed, no receipt written`);
+    } else if (pendingContent) {
       execSync(`git commit -m "docs(wiki): automated fleet reconciliation for ${repoName}"`, { cwd: tempPublishDir, stdio: ['pipe', 'pipe', 'ignore'] });
       execSync('git push origin HEAD', { cwd: tempPublishDir, stdio: ['pipe', 'pipe', 'ignore'], timeout: 30000 });
       syncStatus = 'SYNCHRONIZED';
-      console.log(`[FLEET-RECONCILER] ✓ Successfully pushed updates for ${repoName}`);
-    } else if (!status) {
-      console.log(`[FLEET-RECONCILER] ✓ ${repoName} wiki is already up to date`);
+      console.log(`[FLEET-RECONCILER] Pushed updates for ${repoName}`);
+    } else {
+      console.log(`[FLEET-RECONCILER] ${repoName} wiki is already up to date`);
     }
 
     try {
       remoteWikiHead = execSync('git rev-parse HEAD', { cwd: tempPublishDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
     } catch {}
 
-    // Emit receipt
-    const receipt = {
-      repository: repoName,
-      remote_wiki_url: remoteWikiUrl,
-      local_code_head: localCodeHead,
-      remote_wiki_head: remoteWikiHead,
-      verified_at: new Date().toISOString(),
-      system_time_epoch_ms: Date.now(),
-      total_pages_published: filesCopied,
-      sync_status: syncStatus
-    };
-    fs.writeFileSync(path.join(repoPath, '.wiki-sync-receipt.json'), JSON.stringify(receipt, null, 2), 'utf8');
+    if (!dryRun) {
+      // Verify against the remote itself: the receipt must name a head the remote actually has.
+      const branch = execSync('git rev-parse --abbrev-ref HEAD', { cwd: tempPublishDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+      let remoteSeen = '';
+      try {
+        remoteSeen = execSync(`git ls-remote origin "refs/heads/${branch}"`, { cwd: tempPublishDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'], timeout: 30000 })
+          .trim()
+          .split(/\s+/)[0] || '';
+      } catch {}
+      if (!remoteWikiHead || remoteSeen !== remoteWikiHead) {
+        throw new Error(`publication not verified: local wiki head ${remoteWikiHead || '<none>'} != remote head ${remoteSeen || '<none>'}`);
+      }
+    }
 
-    // Clean up temporary clone
-    try {
-      fs.rmSync(tempPublishDir, { recursive: true, force: true });
-    } catch {}
+    if (!dryRun) {
+      // Emit receipt (only after the remote head was verified above).
+      const receipt = {
+        repository: repoName,
+        remote_wiki_url: remoteWikiUrl,
+        local_code_head: localCodeHead,
+        remote_wiki_head: remoteWikiHead,
+        verified_at: new Date().toISOString(),
+        system_time_epoch_ms: Date.now(),
+        total_pages_published: filesCopied,
+        sync_status: syncStatus,
+        source_inputs_hash: generation.sourcesHash,
+        generation_kind: generation.generationKind,
+        semantic_regeneration: false,
+        flat_name_collisions: copy.flatCollisions.length,
+        stale_pages_removed: removedStale
+      };
+      fs.writeFileSync(path.join(repoPath, '.wiki-sync-receipt.json'), JSON.stringify(receipt, null, 2), 'utf8');
+    }
+
+    cleanup();
 
     return {
       repository: repoName,
@@ -458,14 +594,14 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       status: syncStatus,
       filesPublished: filesCopied,
       remoteWikiHead,
-      localCodeHead
+      localCodeHead,
+      generation: { kind: generation.generationKind, sourcesHash: generation.sourcesHash },
+      flatCollisions: copy.flatCollisions.length,
+      staleRemoved: removedStale
     };
   } catch (err: any) {
-    console.warn(`[FLEET-RECONCILER] ⚠ Warning: Failed to sync ${repoName}: ${err.message}`);
-    // Clean up temporary clone on failure
-    try {
-      if (fs.existsSync(tempPublishDir)) fs.rmSync(tempPublishDir, { recursive: true, force: true });
-    } catch {}
+    console.warn(`[FLEET-RECONCILER] Warning: Failed to sync ${repoName}: ${err.message}`);
+    cleanup();
 
     return {
       repository: repoName,
@@ -473,6 +609,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       remoteWikiUrl,
       status: 'FAILED',
       filesPublished: 0,
+      stage: 'publication',
       error: err.message
     };
   }
@@ -486,6 +623,7 @@ export function reconcileFleetWikis(options: { repoList?: string[]; dryRun?: boo
   let upToDateCount = 0;
   let skippedCount = 0;
   let failedCount = 0;
+  let dryRunPendingCount = 0;
   let totalFilesPublished = 0;
 
   for (const repoName of repoList) {
@@ -517,12 +655,17 @@ export function reconcileFleetWikis(options: { repoList?: string[]; dryRun?: boo
       skippedCount++;
     } else if (result.status === 'FAILED') {
       failedCount++;
+    } else if (result.status === 'DRY_RUN_PENDING') {
+      dryRunPendingCount++;
     }
   }
 
   let overallStatus: FleetReconcileReport['overall_status'] = 'SUCCESS';
   if (failedCount > 0) {
     overallStatus = synchronizedCount > 0 || upToDateCount > 0 ? 'PARTIAL' : 'FAILED';
+  } else if (dryRunPendingCount > 0) {
+    // A dry run that found pending work is not a clean fleet.
+    overallStatus = 'PARTIAL';
   }
 
   const report: FleetReconcileReport = {
@@ -537,14 +680,18 @@ export function reconcileFleetWikis(options: { repoList?: string[]; dryRun?: boo
       up_to_date_count: upToDateCount,
       skipped_count: skippedCount,
       failed_count: failedCount,
+      dry_run_pending_count: dryRunPendingCount,
       total_files_published: totalFilesPublished
     }
   };
 
-  const outputPath = options.outputPath || path.join(REPO_ROOT, '.fleet-wiki-sync-report.json');
-  try {
-    fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf8');
-  } catch {}
+  // A dry run must not mutate the repository: only write the report when a path was given explicitly.
+  const outputPath = options.outputPath || (options.dryRun ? '' : path.join(REPO_ROOT, '.fleet-wiki-sync-report.json'));
+  if (outputPath) {
+    try {
+      fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf8');
+    } catch {}
+  }
 
   return report;
 }

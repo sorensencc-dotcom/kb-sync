@@ -45,7 +45,65 @@ export interface WikiSyncReceipt {
   verified_at: string;
   system_time_epoch_ms?: number;
   total_pages_published: number;
-  sync_status: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'FAILED';
+  /** PREPARED_NOT_PUSHED: the publish tree was built but nothing reached the remote. */
+  sync_status: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'FAILED' | 'PREPARED_NOT_PUSHED';
+  source_inputs_hash?: string;
+}
+
+/** A receipt older than this can no longer establish that the wiki is current. */
+export const DEFAULT_RECEIPT_MAX_AGE_MS = 48 * 60 * 60 * 1000;
+/** A drift report older than this is historical evidence, not a current check. */
+export const DEFAULT_DRIFT_REPORT_MAX_AGE_MS = 48 * 60 * 60 * 1000;
+
+export interface ReceiptFreshness {
+  fresh: boolean;
+  reasons: string[];
+}
+
+/**
+ * Decide whether a sync receipt can establish CURRENT freshness. A receipt is
+ * evidence of one past publication only; it counts as current when it:
+ *   - reports a successful publication status,
+ *   - names the repository's current code HEAD (so it covers this revision),
+ *   - names a non-empty remote wiki head (the remote actually received it),
+ *   - is not future-dated and not older than maxAgeMs.
+ * An unverifiable repo HEAD is treated as not fresh (fail closed).
+ */
+export function evaluateReceiptFreshness(
+  receipt: Partial<WikiSyncReceipt> | null | undefined,
+  currentHead: string | null,
+  options: { maxAgeMs?: number; maxSkewMs?: number; now?: number; repository?: string } = {}
+): ReceiptFreshness {
+  const reasons: string[] = [];
+  const now = options.now ?? Date.now();
+  const maxAgeMs = options.maxAgeMs ?? DEFAULT_RECEIPT_MAX_AGE_MS;
+  const maxSkewMs = options.maxSkewMs ?? 60000;
+  if (!receipt || typeof receipt !== 'object') return { fresh: false, reasons: ['RECEIPT_MISSING_OR_UNREADABLE'] };
+
+  if (receipt.sync_status !== 'SYNCHRONIZED' && receipt.sync_status !== 'UP_TO_DATE') {
+    reasons.push(`RECEIPT_STATUS_NOT_PUBLISHED (${String(receipt.sync_status)})`);
+  }
+  if (options.repository && receipt.repository && receipt.repository !== options.repository) {
+    reasons.push(`RECEIPT_REPOSITORY_MISMATCH (${receipt.repository} != ${options.repository})`);
+  }
+
+  const verifiedAt = typeof receipt.verified_at === 'string' ? Date.parse(receipt.verified_at) : NaN;
+  if (isNaN(verifiedAt)) {
+    reasons.push('RECEIPT_TIMESTAMP_INVALID');
+  } else if (verifiedAt > now + maxSkewMs) {
+    reasons.push('RECEIPT_FUTURE_DATED');
+  } else if (now - verifiedAt > maxAgeMs) {
+    reasons.push(`RECEIPT_EXPIRED (age ${Math.round((now - verifiedAt) / 3600000)}h > max ${Math.round(maxAgeMs / 3600000)}h)`);
+  }
+
+  if (!receipt.local_code_head) reasons.push('RECEIPT_REVISION_MISSING');
+  if (!currentHead) reasons.push('RECEIPT_REPO_HEAD_UNAVAILABLE');
+  else if (receipt.local_code_head && receipt.local_code_head !== currentHead) {
+    reasons.push(`RECEIPT_REVISION_MISMATCH (receipt ${receipt.local_code_head.slice(0, 8)} != HEAD ${currentHead.slice(0, 8)})`);
+  }
+  if (!receipt.remote_wiki_head) reasons.push('RECEIPT_REMOTE_HEAD_MISSING');
+
+  return { fresh: reasons.length === 0, reasons };
 }
 
 export interface RepoScanResult {
@@ -60,7 +118,8 @@ export interface RepoScanResult {
   sources_checked: number;
   stale_pages_count: number;
   dirty_worktree_count: number;
-  remote_sync_status?: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'NOT_SYNCED' | 'FAILED';
+  /** STALE_RECEIPT: a success receipt exists but cannot establish current freshness (age/revision/remote head). */
+  remote_sync_status?: 'SYNCHRONIZED' | 'UP_TO_DATE' | 'NOT_SYNCED' | 'FAILED' | 'STALE_RECEIPT' | 'UNKNOWN' | 'WIKI_UNAVAILABLE';
   remote_sync_receipt?: WikiSyncReceipt;
   violations: string[];
 }
@@ -90,6 +149,13 @@ export interface ScannerOptions {
   allowDisallowedPaths?: boolean;
   executeSubCommands?: boolean;
   maxSkewMs?: number;
+  /** Max age of a sync receipt / native drift report before it stops counting as current. */
+  maxReceiptAgeMs?: number;
+  maxDriftReportAgeMs?: number;
+  /** Treat a missing receipt as degraded (default keeps the historical lenient behavior). */
+  requireReceipt?: boolean;
+  /** Test seam: override the current time. */
+  now?: number;
   outputPath?: string;
 }
 
@@ -213,11 +279,31 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
     try {
       remoteSyncReceipt = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
       if (remoteSyncReceipt?.sync_status === 'SYNCHRONIZED' || remoteSyncReceipt?.sync_status === 'UP_TO_DATE') {
-        remoteSyncStatus = remoteSyncReceipt.sync_status;
+        // A success status is only a claim about one past publication. It counts as CURRENT only if it
+        // names this repo's HEAD, a remote head, and is recent enough.
+        let currentHead: string | null = null;
+        try {
+          currentHead = execSync('git rev-parse HEAD', { cwd: repoPath, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim() || null;
+        } catch {}
+        const freshness = evaluateReceiptFreshness(remoteSyncReceipt, currentHead, {
+          maxAgeMs: options.maxReceiptAgeMs,
+          maxSkewMs,
+          now: options.now,
+          repository: repoName,
+        });
+        if (freshness.fresh) {
+          remoteSyncStatus = remoteSyncReceipt.sync_status;
+        } else {
+          remoteSyncStatus = 'STALE_RECEIPT';
+          for (const reason of freshness.reasons) violations.push(reason);
+        }
       } else {
         remoteSyncStatus = 'FAILED';
       }
-    } catch {}
+    } catch {
+      violations.push('MALFORMED_WIKI_SYNC_RECEIPT_JSON');
+      remoteSyncStatus = 'FAILED';
+    }
   } else {
     // Check if remote wiki exists or is unavailable
     try {
@@ -253,6 +339,14 @@ export function scanRepository(repoName: string, repoPath: string, options: Scan
         status = 'PARTIAL';
       } else if (rawReport.status === 'BLOCKED') {
         status = 'BLOCKED';
+      }
+
+      // An old "no drift" report is history, not a current check: it cannot make the repo clean.
+      const reportTs = Date.parse(rawReport.timestamp);
+      const reportMaxAge = options.maxDriftReportAgeMs ?? DEFAULT_DRIFT_REPORT_MAX_AGE_MS;
+      if (!isNaN(reportTs) && (options.now ?? Date.now()) - reportTs > reportMaxAge) {
+        violations.push(`STALE_DRIFT_REPORT (older than ${Math.round(reportMaxAge / 3600000)}h)`);
+        if (status === 'NO_DRIFT' || status === 'APPLIED') status = 'DEGRADED';
       }
 
       return {
@@ -321,7 +415,15 @@ export function scanCrossRepoDrift(options: ScannerOptions = {}): CrossRepoDrift
       driftedRepos++;
     } else if (result.status === 'BLOCKED') {
       blockedRepos++;
-    } else if (result.status === 'DEGRADED' || result.status === 'UNAVAILABLE' || result.violations.some(v => v.startsWith('INVALID_TIMESTAMP') || v.includes('MISSING_NATIVE_DRIFT_TELEMETRY'))) {
+    } else if (
+      result.status === 'DEGRADED' ||
+      result.status === 'UNAVAILABLE' ||
+      result.violations.some(v => v.startsWith('INVALID_TIMESTAMP') || v.includes('MISSING_NATIVE_DRIFT_TELEMETRY')) ||
+      // A receipt that exists but cannot establish current freshness (or says failed) must not read as clean.
+      result.remote_sync_status === 'STALE_RECEIPT' ||
+      result.remote_sync_status === 'FAILED' ||
+      (options.requireReceipt && result.remote_sync_status !== 'SYNCHRONIZED' && result.remote_sync_status !== 'UP_TO_DATE')
+    ) {
       degradedRepos++;
     } else if (result.status === 'NO_DRIFT' || result.status === 'APPLIED') {
       cleanRepos++;
@@ -376,6 +478,7 @@ if (process.argv[1] && process.argv[1].endsWith('cross-repo-drift-scanner.ts')) 
     if (args[i] === '--execute-checks') options.executeSubCommands = true;
     else if (args[i] === '--exit-zero' || args[i] === '--allow-drift') exitZeroOnDrift = true;
     else if (args[i] === '--use-self') options.useSelfForKbSync = true;
+    else if (args[i] === '--require-receipt') options.requireReceipt = true;
     else if (args[i] === '--allow-sandbox') options.allowDisallowedPaths = true;
     else if (args[i] === '--base-dir' && args[i + 1]) {
       options.baseDir = args[i + 1];
