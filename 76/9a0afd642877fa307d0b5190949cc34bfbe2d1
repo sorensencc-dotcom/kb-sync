@@ -1,0 +1,26 @@
+scripts/sync-github-wiki.mjs
+  h_5c172e9b435f5a 7,280-287,298,311-315,380-385,424-425
+tests/pipeline-freshness.test.ts
+  h_5c172e9b435f5a 33,702-877
+modules/wiki/pipeline-runner.ts
+  h_5c172e9b435f5a 32,246-247
+modules/wiki/credential-redaction.mjs
+  h_5c172e9b435f5a 1-44
+.github/workflows/wiki-drift-and-publish.yml
+  h_5c172e9b435f5a 13-16,57-59,61,64-65,83-97,109-110
+modules/wiki/fleet-wiki-reconciler.ts
+  h_5c172e9b435f5a 7,381-382,400,413,433,461-467,580,601,611,617,621
+docs/PIPELINE-FRESHNESS.md
+  h_5c172e9b435f5a 51-73,91-107,118-138,143-146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "769a0afd642877fa307d0b5190949cc34bfbe2d1",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
