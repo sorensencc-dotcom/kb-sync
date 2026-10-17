@@ -1,0 +1,14 @@
+.gitleaks.toml
+  h_5c172e9b435f5a 7,11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d3fe65003f494098d79be8171760b288f788acd9",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
