@@ -48,6 +48,29 @@ passes: status `SYNCHRONIZED`, same repository, not future-dated, younger than t
 result. The publisher no longer writes `SYNCHRONIZED` unless the push succeeded and the remote head was verified;
 a prepare-only run writes no receipt and never overwrites the last real one.
 
+## Credentials never reach disk
+
+In CI the remote URL carries the push token (`https://<userinfo>@github.com/<owner>/<repo>.wiki.git`, where the userinfo is the
+fixed user `x-access-token`, a colon and the token; passed through `WIKI_REPO_URL`). That URL is used only to talk to git. Anything the pipeline logs or persists uses the redacted
+form (`https://github.com/<owner>/<repo>.wiki.git`), produced by `redactRemoteUrl` in
+`modules/wiki/credential-redaction.mjs`:
+
+- `remote_wiki_url` in `.wiki-sync-receipt.json`, written by `scripts/sync-github-wiki.mjs` and by the fleet reconciler
+  (`modules/wiki/fleet-wiki-reconciler.ts`), and the `remoteWikiUrl` the reconciler returns in its report.
+- Error text. `execSync` puts the whole command line, token included, into `err.message` when `git clone` or `git push`
+  fails. The publisher, the reconciler and the pipeline runner pass those messages through `redactCredentialsInText`
+  before they are thrown, logged, or stored in `.pipeline-state.json` (`stages.*.error`, `reasons`).
+- The `Remote Wiki Repository:` and `Pushing to` log lines.
+
+Redaction does not change freshness: `evaluateReceiptFreshness` never reads `remote_wiki_url`; it checks status,
+repository, age, `revision == HEAD` and a non-empty `remote_wiki_head`. Tests 12-16 in
+`tests/pipeline-freshness.test.ts` publish through a token-bearing URL and assert the receipt, the state file, the
+command output and the thrown errors contain no token, and that the receipt still passes the freshness check.
+
+One thing this does not cover: `git clone <token url>` stores that URL in `.wiki-publish-temp/.git/config`. In CI the
+runner is discarded after the job. On a machine that publishes with a token URL, that scratch clone holds the token until
+the next run deletes it. The scheduled wrapper uses the SSH remote by default and holds no token.
+
 ## Removed and renamed sources
 
 Generated output is owned through manifests (`wiki/.generated-manifest.json`, and `.kb-sync-published-manifest.json`
@@ -65,12 +88,23 @@ run reports `semantic_regeneration: not_performed`. Only `--semantic <provider>`
 
 Both entry points call the one command above; neither adds a scheduler.
 
-- **CI** (`.github/workflows/wiki-drift-and-publish.yml`): after drift detection and the contract check, `pull_request`
-  runs `npm run kb:pipeline:e2e` (local stages only). `push` / `schedule` / `workflow_dispatch` run
-  `npm run kb:pipeline:e2e -- --publish`, with the token URL passed through the `WIKI_REPO_URL` environment variable (never
-  on a command line). Nothing is published from `pull_request` events. The step exits non-zero, failing the job, unless
-  the result is `HEALTHY`. Publishes are serialized with a `concurrency` group. `.pipeline-state.json` is uploaded with the
-  other telemetry artifacts.
+- **CI** (`.github/workflows/wiki-drift-and-publish.yml`): after drift detection and the contract check, the workflow
+  publishes **only when `github.ref == 'refs/heads/main'`**: a `push` to main, the `schedule` (GitHub runs it on the default
+  branch) or a `workflow_dispatch` started on main. That step runs `npm run kb:pipeline:e2e -- --publish`, with the token URL
+  passed through the `WIKI_REPO_URL` environment variable (never on a command line, and set on that step only). It exits
+  non-zero, failing the job, unless the result is `HEALTHY`. Every other trigger runs `npm run kb:pipeline:e2e` (local stages
+  only): `pull_request`, a `push` to any other branch (`autoheal-wrapper` is still a push trigger, so it gets CI but cannot
+  publish), and a dispatch on another branch. The two steps' conditions are exact complements (test 17 evaluates them
+  for each event/ref pair). Publishes are serialized with a `concurrency` group that only `refs/heads/main` runs share; other
+  refs get a per-ref group, so they cannot queue ahead of or displace a pending publish.
+- **Telemetry artifact** (`wiki-telemetry-reports`): the five reports are dotfiles (`.drift-report.json`,
+  `.cross-repo-drift-report.json`, `.wiki-sync-receipt.json`, `.pipeline-state.json`, `.repair-manifest.json`), and
+  `actions/upload-artifact@v4` (4.4 and later) skips hidden files by default, so the artifact was empty before this change.
+  The upload now sets `include-hidden-files: true` for those five named paths only (no wildcard). Before it runs, a step
+  deletes any of the five that contains a URL with userinfo (text between the scheme and the host, ending in `@`) and emits a warning, so a future
+  redaction regression drops the file instead of publishing a token. Keeping the artifact empty was the other option;
+  uploading is safe now because the receipt and state file no longer hold credentials, and the reports are useful when a
+  scheduled run fails.
 - **Windows** (`scripts/schedule-task-wrapper-KB-Sync-Master.ps1`, the script the existing `KB-Sync-Master-Pipeline`
   scheduled task runs): new `STAGE 2B` runs `npm run kb:pipeline:e2e` after Stage 2 and before NotebookLM ingestion. A
   non-zero exit (`FAILED`, `DEGRADED`, `IN_PROGRESS`, or a lock held by a live run) sets the wrapper's overall status to 1,
@@ -81,11 +115,34 @@ Both entry points call the one command above; neither adds a scheduler.
 - The pipeline names generated pages after the checkout directory name (`repoName` = basename of the repo root). Both
   entry points run in a directory named `kb-sync`; a differently named checkout produces a different repository identity
   (and a receipt for another name is reported as `RECEIPT_REPOSITORY_MISMATCH`).
+## Does a run with nothing changed do anything?
+
+Checked on 2026-10-17 in a clean worktree of main (`df95f742`), with no real remote involved:
+
+- Two consecutive `npm run kb:pipeline:e2e` runs (no `--publish`): the first regenerated the pages and the second changed
+  nothing. `git status` and `git diff` were byte-identical after both runs, generation and validation reported
+  `resumed`, and indexing reported `inserted=0 updated=0 deleted=0`.
+- Two consecutive `--publish` runs against a local bare repository standing in for the wiki: the first pushed
+  (`SYNCHRONIZED`), the second printed "already up to date with remote", made no commit, left the remote head unchanged
+  and wrote an `UP_TO_DATE` receipt. The publisher only commits when `git status --porcelain` in the wiki clone is
+  non-empty, and the generated navigation pages carry no timestamps.
+- `.wiki-sync-receipt.json` and `.sync-status.json` are tracked in git (despite the `.gitignore` entry), so every publish
+  run, including a no-op one, rewrites their timestamps in the working tree. That is expected and harmless on a CI runner,
+  which is discarded. On a developer checkout it shows up as two modified tracked files.
+- A first run in a fresh checkout of main rewrites many tracked `wiki/entities/*.md` pages in the working tree: the committed
+  copies predate the collision-safe page identity. Nothing is committed back from CI.
+
+Not checked: that two separate fresh checkouts produce byte-identical pages. Page content includes a `lastCommit` date taken
+from `git log` (the workflow uses `fetch-depth: 0`), which is stable for a given history, but this was not run twice from
+scratch.
+
 ## Not covered / needs runtime verification
 
 - Remote GitHub wiki push (tests use local bare repos only).
 - The first CI run of the new workflow steps (the PR run exercises the local stages on Linux; the publishing step only runs
-  on push/schedule/dispatch), and the first scheduled run of the updated wrapper. Both were validated here only by static
-  tests (`tests/pipeline-freshness.test.ts` tests 10-11) and a local Windows run; no scheduled task was run or changed.
+  on push/schedule/dispatch on main), and the first scheduled run of the updated wrapper. Both were validated here only by
+  static tests (`tests/pipeline-freshness.test.ts` tests 10-11 and 17-18) and a local Windows run; no scheduled task was run
+  or changed.
+- That the first artifact upload with `include-hidden-files: true` contains the five files and nothing else.
 - Dense vector (`kb_vectors`) freshness depends on the existing embedding step; only FTS5/sha currency is asserted.
 - Test: `npm run test:pipeline-freshness`.

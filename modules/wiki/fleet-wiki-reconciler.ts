@@ -4,6 +4,7 @@ import os from 'os';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { CANONICAL_REPOSITORIES } from './cross-repo-drift-scanner.ts';
+import { redactCredentialsInText, redactRemoteUrl } from './credential-redaction.mjs';
 import { synthesizeAllEntities, type EntitySynthesisResult } from './entity-synthesizer.ts';
 import {
   PUBLISH_MANIFEST_NAME,
@@ -377,6 +378,8 @@ export interface SyncRepositoryOptions {
 
 export function syncRepositoryWiki(repoName: string, repoPath: string, options: SyncRepositoryOptions = {}): FleetRepoSyncResult {
   const remoteWikiUrl = options.remoteWikiUrl || deriveRepoWikiUrl(repoPath, repoName);
+  // The real URL may embed a token; reports, receipts and logs only ever see the redacted form.
+  const safeRemoteUrl = redactRemoteUrl(remoteWikiUrl);
   const dryRun = !!options.dryRun;
   const synthesize = options.synthesize || synthesizeAllEntities;
 
@@ -394,7 +397,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
     return {
       repository: repoName,
       repoPath,
-      remoteWikiUrl,
+      remoteWikiUrl: safeRemoteUrl,
       status: 'FAILED',
       filesPublished: 0,
       stage: 'generation',
@@ -407,7 +410,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
     return {
       repository: repoName,
       repoPath,
-      remoteWikiUrl,
+      remoteWikiUrl: safeRemoteUrl,
       status: 'FAILED',
       filesPublished: 0,
       stage: 'generation',
@@ -427,7 +430,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       return {
         repository: repoName,
         repoPath,
-        remoteWikiUrl,
+        remoteWikiUrl: safeRemoteUrl,
         status: 'SKIPPED_NO_DOCS',
         filesPublished: 0
       };
@@ -455,8 +458,13 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       fs.rmSync(tempPublishDir, { recursive: true, force: true });
     }
 
-    console.log(`[FLEET-RECONCILER] ${dryRun ? '(dry-run) ' : ''}Syncing ${repoName} -> ${remoteWikiUrl}...`);
-    execSync(`git clone "${remoteWikiUrl}" "${tempPublishDir}"`, { stdio: ['pipe', 'pipe', 'ignore'], timeout: 30000 });
+    console.log(`[FLEET-RECONCILER] ${dryRun ? '(dry-run) ' : ''}Syncing ${repoName} -> ${safeRemoteUrl}...`);
+    try {
+      execSync(`git clone "${remoteWikiUrl}" "${tempPublishDir}"`, { stdio: ['pipe', 'pipe', 'ignore'], timeout: 30000 });
+    } catch (err: any) {
+      err.message = redactCredentialsInText(err.message, remoteWikiUrl); // execSync quotes the full command line
+      throw err;
+    }
 
     // Capture curated remote sidebar before doc copy (copy skips _Sidebar.md).
     const curatedRemoteSidebar = path.join(tempPublishDir, '_Sidebar.md');
@@ -569,7 +577,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       // Emit receipt (only after the remote head was verified above).
       const receipt = {
         repository: repoName,
-        remote_wiki_url: remoteWikiUrl,
+        remote_wiki_url: safeRemoteUrl,
         local_code_head: localCodeHead,
         remote_wiki_head: remoteWikiHead,
         verified_at: new Date().toISOString(),
@@ -590,7 +598,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
     return {
       repository: repoName,
       repoPath,
-      remoteWikiUrl,
+      remoteWikiUrl: safeRemoteUrl,
       status: syncStatus,
       filesPublished: filesCopied,
       remoteWikiHead,
@@ -600,17 +608,17 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
       staleRemoved: removedStale
     };
   } catch (err: any) {
-    console.warn(`[FLEET-RECONCILER] Warning: Failed to sync ${repoName}: ${err.message}`);
+    console.warn(`[FLEET-RECONCILER] Warning: Failed to sync ${repoName}: ${redactCredentialsInText(err.message, remoteWikiUrl)}`);
     cleanup();
 
     return {
       repository: repoName,
       repoPath,
-      remoteWikiUrl,
+      remoteWikiUrl: safeRemoteUrl,
       status: 'FAILED',
       filesPublished: 0,
       stage: 'publication',
-      error: err.message
+      error: redactCredentialsInText(err.message, remoteWikiUrl)
     };
   }
 }
