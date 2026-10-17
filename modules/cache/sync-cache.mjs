@@ -138,6 +138,9 @@ export function syncKnowledgeCache(options = {}) {
   const defaultScanPaths = [
     'wiki/research',
     'wiki/concepts',
+    // Generated entity pages (metadata inventories). Previously never indexed even though the
+    // TRM triage wrapper assumes "newly added wiki nodes/entities are indexed".
+    'wiki/entities',
     'trm-research-gaps.md',
     'docs/kb',
     '_kb-sync-staging/trm'

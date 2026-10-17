@@ -132,6 +132,37 @@ try {
     Write-LogWarn "Stage 2 sentinel check encountered warning: $_"
 }
 
+# --- STAGE 2B: DOCUMENTATION PIPELINE (generate -> validate -> prepare -> index [-> publish]) ---
+# One existing, restart-safe command (modules/wiki/pipeline-runner.ts; see docs/PIPELINE-FRESHNESS.md).
+# Not a second scheduler: it only sequences the existing stages, holds .pipeline.lock against concurrent runs and
+# records .pipeline-state.json so an interrupted run is re-run (never reported healthy). It exits non-zero unless every
+# required stage succeeded, which marks this run failed (HEALTHY, or LOCAL_ONLY when publishing is not requested, = ok).
+# Publishing to the live GitHub Wiki is opt-in: set KB_PIPELINE_PUBLISH=1 in the task's environment to add --publish.
+Write-LogInfo "================================================================================"
+Write-LogInfo "STAGE 2B: Documentation Pipeline (source -> synthesis -> validation -> wiki -> index)"
+Write-LogInfo "================================================================================"
+
+try {
+    $PipelineCmd = "npm run kb:pipeline:e2e"
+    if ($env:KB_PIPELINE_PUBLISH -match '^(1|true|yes)$') {
+        $PipelineCmd += " -- --publish"
+        Write-LogInfo "KB_PIPELINE_PUBLISH is set; the pipeline will publish the wiki and verify the remote head."
+    } else {
+        Write-LogInfo "Publishing not requested (set KB_PIPELINE_PUBLISH=1 to publish); running local stages only."
+    }
+    Write-LogInfo "Running: $PipelineCmd"
+    & cmd /c "$PipelineCmd" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogError "Documentation pipeline did not reach a healthy result (exit code $LASTEXITCODE); see $LogFile and .pipeline-state.json"
+        $OverallStatus = 1
+    } else {
+        Write-LogInfo "Documentation pipeline completed with all required stages ok."
+    }
+} catch {
+    Write-LogError "Stage 2B documentation pipeline failed: $_"
+    $OverallStatus = 1
+}
+
 # --- STAGE 3: NOTEBOOKLM INGESTION & ARTIFACT REPORT ---
 Write-LogInfo "================================================================================"
 Write-LogInfo "STAGE 3: NotebookLM Ingestion & Telemetry Report"

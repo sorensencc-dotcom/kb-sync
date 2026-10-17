@@ -39,7 +39,8 @@ test('syncRepositoryWiki skips repositories without docs or wiki directory', () 
 test('reconcileFleetWikis handles non-existent paths gracefully', () => {
   const report = reconcileFleetWikis({
     repoList: ['non-existent-1', 'non-existent-2'],
-    dryRun: true
+    dryRun: true,
+    outputPath: path.join(os.tmpdir(), `fleet-report-${process.pid}.json`)
   });
   assert.equal(report.summary.total_repositories, 2);
   assert.equal(report.summary.failed_count, 2);

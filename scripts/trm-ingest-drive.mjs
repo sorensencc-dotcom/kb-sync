@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { loadDriveConfig, KB_SYNC_ROOT } from './trm-drive-common.mjs';
 import { validateFinding, validateMobileInboxDrop } from './validate-drive-findings.mjs';
+import { sweepStaleLocks } from './reconciler/stale-lock-sweeper.mjs';
 
 export function detectReadySignal(entry) {
   if (entry.hasSidecar) return 'sidecar';
@@ -170,6 +171,13 @@ export async function ingestDriveFindings(options = {}) {
   let ingestedCount = 0;
   let mobileIngestedCount = 0;
   const touchedFiles = [];
+
+  // Pre-flight: Proactively sweep stale ingestion locks across workspace
+  try {
+    sweepStaleLocks({ rootDir: repoRoot });
+  } catch (sweeperErr) {
+    console.warn('[WARN] Stale lock pre-flight sweep encountered non-blocking warning:', sweeperErr.message);
+  }
 
   // ==========================================
   // 1. Ingest Scheduled GAP RFC Findings

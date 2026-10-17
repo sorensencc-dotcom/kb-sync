@@ -4,6 +4,16 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { scanAndSanitizeText } from '../modules/compactor/secret-pii-sanitizer.mjs';
+import {
+  PUBLISH_MANIFEST_NAME,
+  applyOwnedRemovals,
+  planFlatCopies,
+  planOwnedRemovals,
+  readOwnershipManifest,
+  sha256Buffer,
+  toPosix,
+  writeJsonAtomic,
+} from '../modules/wiki/generated-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -85,7 +95,9 @@ function writeSanitized(fullSrc, dest, findings) {
     findings.push({ file: fullSrc, secretsFound, categories });
   }
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  fs.writeFileSync(dest, encodeTextFile(sanitizedText, encoding, bom));
+  const out = encodeTextFile(sanitizedText, encoding, bom);
+  fs.writeFileSync(dest, out);
+  return sha256Buffer(out);
 }
 
 /**
@@ -97,9 +109,9 @@ function writeSanitized(fullSrc, dest, findings) {
  * re-run rather than bypass the check here.
  */
 function copyFlatAndPreserve(srcDir, destDir) {
-  if (!fs.existsSync(srcDir)) return 0;
-  let copied = 0;
+  if (!fs.existsSync(srcDir)) return { copied: 0, written: {}, flatCollisions: [] };
   const findings = [];
+  const files = []; // { fullSrc, rel (posix), text }
 
   function walk(currentDir) {
     const entries = fs.readdirSync(currentDir, { withFileTypes: true });
@@ -109,29 +121,34 @@ function copyFlatAndPreserve(srcDir, destDir) {
         if (entry.name === '.git' || entry.name === 'node_modules') continue;
         walk(fullSrc);
       } else if (entry.isFile() && SANITIZED_EXTENSIONS.test(entry.name)) {
-        // 1. Copy (sanitized) directly to root of wiki repo for flat GitHub Wiki URL routing
-        writeSanitized(fullSrc, path.join(destDir, entry.name), findings);
-
-        // 2. Also preserve relative subfolder hierarchy
-        const relPath = path.relative(srcDir, fullSrc);
-        writeSanitized(fullSrc, path.join(destDir, relPath), findings);
-
-        copied += 1;
+        files.push({ fullSrc, rel: toPosix(path.relative(srcDir, fullSrc)), text: true });
       } else if (entry.isFile() && BINARY_EXTENSIONS.test(entry.name)) {
-        const flatDest = path.join(destDir, entry.name);
-        fs.copyFileSync(fullSrc, flatDest);
-
-        const relPath = path.relative(srcDir, fullSrc);
-        const nestedDest = path.join(destDir, relPath);
-        fs.mkdirSync(path.dirname(nestedDest), { recursive: true });
-        fs.copyFileSync(fullSrc, nestedDest);
-
-        copied += 1;
+        files.push({ fullSrc, rel: toPosix(path.relative(srcDir, fullSrc)), text: false });
       }
     }
   }
 
   walk(srcDir);
+
+  // Every file is written at its nested path. A flat (basename) copy is added only
+  // when unambiguous: two files sharing a basename used to silently overwrite each
+  // other at the wiki root (last writer won).
+  const { flat, collisions } = planFlatCopies(files.map((f) => f.rel));
+  const written = {};
+  const put = (f, destRel) => {
+    const dest = path.join(destDir, destRel);
+    if (f.text) {
+      written[destRel] = writeSanitized(f.fullSrc, dest, findings);
+    } else {
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.copyFileSync(f.fullSrc, dest);
+      written[destRel] = sha256Buffer(fs.readFileSync(dest));
+    }
+  };
+  for (const f of files) {
+    put(f, f.rel);
+    if (f.rel.includes('/') && flat.has(f.rel)) put(f, path.posix.basename(f.rel));
+  }
 
   if (findings.length > 0) {
     const summary = findings
@@ -143,7 +160,7 @@ function copyFlatAndPreserve(srcDir, destDir) {
     );
   }
 
-  return copied;
+  return { copied: files.length, written, flatCollisions: collisions };
 }
 
 function generateSidebar(wikiDir) {
@@ -226,26 +243,59 @@ function generateHome(wikiDir, repoRoot) {
   fs.writeFileSync(path.join(wikiDir, 'Home.md'), sanitizedText, 'utf8');
 }
 
+/**
+ * Remove a scratch directory. Git marks object/pack files read-only (and local clones hard-link them), which makes a
+ * plain fs.rmSync fail with EPERM on Windows; clear the read-only bit and retry before giving up.
+ */
+export function removeDirRobust(dir) {
+  const opts = { recursive: true, force: true, maxRetries: 5, retryDelay: 100 };
+  try {
+    fs.rmSync(dir, opts);
+    return;
+  } catch (error) {
+    if (!['EPERM', 'EACCES', 'EBUSY'].includes(error && error.code)) throw error;
+  }
+  const clear = (p) => {
+    let st;
+    try { st = fs.lstatSync(p); } catch { return; }
+    if (st.isSymbolicLink()) return;
+    try { fs.chmodSync(p, st.isDirectory() ? 0o777 : 0o666); } catch { /* best effort */ }
+    if (st.isDirectory()) for (const name of fs.readdirSync(p)) clear(path.join(p, name));
+  };
+  clear(dir);
+  fs.rmSync(dir, opts);
+}
+
 export async function publishWiki(customOptions = {}) {
   const currentRoot = customOptions.repoRoot || root;
-  const currentSource = customOptions.sourceDir ? path.resolve(currentRoot, customOptions.sourceDir) : wikiSourceDir;
+  // When a caller supplies its own repoRoot, EVERY default must derive from it. The module-level defaults
+  // point at kb-sync's own wiki/ and .wiki-publish-temp and must never be used for another root
+  // (the temp dir is deleted and re-cloned on every publish).
+  const ownRoot = !!customOptions.repoRoot;
+  const currentSource = customOptions.sourceDir
+    ? path.resolve(currentRoot, customOptions.sourceDir)
+    : (ownRoot ? path.resolve(currentRoot, 'wiki') : wikiSourceDir);
   const currentUrl = customOptions.repoUrl || repoUrl;
-  let currentTarget = customOptions.targetDir ? path.resolve(currentRoot, customOptions.targetDir) : targetWikiDir;
-  const pushEnabled = buildOnlyDir ? false : (customOptions.push !== undefined ? customOptions.push : shouldPush);
+  let currentTarget = customOptions.targetDir
+    ? path.resolve(currentRoot, customOptions.targetDir)
+    : (ownRoot ? path.resolve(currentRoot, '.wiki-publish-temp') : targetWikiDir);
+  const repositoryName = customOptions.repoName || path.basename(currentRoot);
+  const buildOnlyTarget = customOptions.buildOnly || buildOnlyDir;
+  const pushEnabled = buildOnlyTarget ? false : (customOptions.push !== undefined ? customOptions.push : shouldPush);
 
   console.log(`=== [KB-SYNC WIKI PUBLISHER] ===`);
   console.log(`Source directory: ${currentSource}`);
   console.log(`Target publish directory: ${currentTarget}`);
   console.log(`Remote Wiki Repository: ${currentUrl}`);
 
-  if (buildOnlyDir) {
-    currentTarget = path.resolve(buildOnlyDir);
+  if (buildOnlyTarget) {
+    currentTarget = path.resolve(buildOnlyTarget);
     fs.mkdirSync(currentTarget, { recursive: true });
   }
 
-  if (!buildOnlyDir) {
+  if (!buildOnlyTarget) {
     if (fs.existsSync(currentTarget)) {
-      fs.rmSync(currentTarget, { recursive: true, force: true });
+      removeDirRobust(currentTarget);
     }
 
     console.log(`Cloning remote wiki git repository...`);
@@ -258,8 +308,32 @@ export async function publishWiki(customOptions = {}) {
   }
 
   console.log(`Copying and flattening wiki documents and assets into publishing working tree...`);
-  const copiedCount = copyFlatAndPreserve(currentSource, currentTarget);
+  const copy = copyFlatAndPreserve(currentSource, currentTarget);
+  const copiedCount = copy.copied;
   console.log(`✓ Transferred ${copiedCount} file(s).`);
+  if (copy.flatCollisions.length > 0) {
+    console.warn(
+      `[KB-SYNC WIKI PUBLISHER] ${copy.flatCollisions.length} basename collision(s): flat copies skipped for ambiguous names ` +
+      `(nested paths are still published): ${copy.flatCollisions.slice(0, 8).map((c) => c.basename).join(', ')}`
+    );
+  }
+
+  // Reconcile pages this publisher wrote earlier but no longer produces. Only files recorded in the
+  // previous publish manifest AND still byte-identical are removed; unknown or edited files stay.
+  const publishManifestPath = path.join(currentTarget, PUBLISH_MANIFEST_NAME);
+  const removal = planOwnedRemovals({
+    baseDir: currentTarget,
+    previous: buildOnlyTarget ? null : readOwnershipManifest(publishManifestPath),
+    keep: new Set(Object.keys(copy.written)),
+  });
+  const staleRemoved = applyOwnedRemovals(currentTarget, removal);
+  if (staleRemoved > 0) console.log(`Removed ${staleRemoved} obsolete generated page(s) (ownership manifest).`);
+  if (removal.preservedModified.length > 0) {
+    console.warn(`[KB-SYNC WIKI PUBLISHER] Kept ${removal.preservedModified.length} previously published page(s) that changed on the remote: ${removal.preservedModified.slice(0, 8).join(', ')}`);
+  }
+  const manifestFiles = {};
+  for (const rel of Object.keys(copy.written).sort()) manifestFiles[rel] = { sha256: copy.written[rel] };
+  writeJsonAtomic(publishManifestPath, { version: 1, generator: 'sync-github-wiki', repository: repositoryName, files: manifestFiles });
 
   console.log(`Generating Home.md, _Sidebar.md, and _Footer.md navigation assets...`);
   generateHome(currentTarget, currentRoot);
@@ -273,6 +347,7 @@ export async function publishWiki(customOptions = {}) {
     localCodeHead = execSync('git rev-parse HEAD', { cwd: currentRoot, encoding: 'utf8' }).trim();
   } catch {}
 
+  let pushedChanges = false;
   if (pushEnabled) {
     console.log(`Staging and checking status in target wiki...`);
     execSync('git add -A', { cwd: currentTarget, stdio: 'pipe' });
@@ -291,7 +366,8 @@ export async function publishWiki(customOptions = {}) {
       execSync(`git commit -m "${commitMessage}"`, { cwd: currentTarget, stdio: 'inherit' });
       console.log(`Pushing to ${currentUrl}...`);
       execSync('git push origin HEAD', { cwd: currentTarget, stdio: 'inherit' });
-      console.log(`\n🎉 SUCCESS: GitHub Wiki is now fully published and live!`);
+      pushedChanges = true;
+      console.log(`\nGitHub Wiki push completed (remote head is verified below before a receipt is written).`);
     } else {
       console.log(`✓ GitHub Wiki working tree is already up to date with remote.`);
     }
@@ -299,6 +375,16 @@ export async function publishWiki(customOptions = {}) {
     try {
       remoteHeadSha = execSync('git rev-parse HEAD', { cwd: currentTarget, encoding: 'utf8' }).trim();
     } catch {}
+
+    // Verify against the remote itself. A receipt must never name a head the remote does not have.
+    let remoteSeen = '';
+    try {
+      const branch = execSync('git rev-parse --abbrev-ref HEAD', { cwd: currentTarget, encoding: 'utf8' }).trim();
+      remoteSeen = (execSync(`git ls-remote origin "refs/heads/${branch}"`, { cwd: currentTarget, encoding: 'utf8' }).trim().split(/\s+/)[0]) || '';
+    } catch {}
+    if (!remoteHeadSha || remoteSeen !== remoteHeadSha) {
+      throw new Error(`[KB-SYNC WIKI PUBLISHER] publication not verified: local wiki head ${remoteHeadSha || '<none>'} != remote head ${remoteSeen || '<none>'}`);
+    }
 
     // Update .sync-status.json
     const syncStatusPath = path.join(currentRoot, '.sync-status.json');
@@ -317,20 +403,28 @@ export async function publishWiki(customOptions = {}) {
 
   // Write cryptographic proof receipt
   const receipt = {
-    repository: path.basename(currentRoot),
+    repository: repositoryName,
     remote_wiki_url: currentUrl,
     local_code_head: localCodeHead,
     remote_wiki_head: remoteHeadSha,
     verified_at: new Date().toISOString(),
     system_time_epoch_ms: Date.now(),
     total_pages_published: copiedCount,
-    sync_status: 'SYNCHRONIZED'
+    // Honest status: nothing is "SYNCHRONIZED" unless a push happened and the remote head was verified.
+    sync_status: pushEnabled ? (pushedChanges ? 'SYNCHRONIZED' : 'UP_TO_DATE') : 'PREPARED_NOT_PUSHED',
+    published: pushEnabled,
+    flat_name_collisions: copy.flatCollisions.length,
+    stale_pages_removed: staleRemoved
   };
 
-  if (!buildOnlyDir) {
+  if (pushEnabled) {
+    // Only a verified publication replaces the receipt; a prepare-only run must not overwrite the
+    // evidence of the last real publication (its staleness is judged by age + revision instead).
     const receiptPath = path.join(currentRoot, '.wiki-sync-receipt.json');
     fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2), 'utf8');
-    console.log(`✓ Cryptographic sync receipt emitted at ${receiptPath}`);
+    console.log(`✓ Sync receipt (verified remote head ${remoteHeadSha}) written to ${receiptPath}`);
+  } else {
+    console.log(`Publish tree prepared only (push not enabled): status=PREPARED_NOT_PUSHED; no receipt written. Pass --push (or AUTO_PUSH=true) to publish.`);
   }
 
   return receipt;
