@@ -4,8 +4,9 @@ title = "kb-sync gitleaks config"
 useDefault = true
 
 [allowlist]
-description = "Ignore test fixture UUIDs and test files"
+description = "Ignore test fixture UUIDs, IJFW internal state, and test files"
 paths = [
   '''tests/''',
   '''state/knowledge-plane-notebooks\.json''',
+  '''\.ijfw/''',
 ]

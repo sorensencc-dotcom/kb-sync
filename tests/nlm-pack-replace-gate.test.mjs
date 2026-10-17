@@ -38,6 +38,9 @@ test('isPackFamilyTitle matches pack family titles', () => {
 test('isPackFamilyTitle rejects non-pack sources', () => {
   assert.equal(isPackFamilyTitle('random meeting notes'), false);
   assert.equal(isPackFamilyTitle('Daily Digest'), false);
+  assert.equal(isPackFamilyTitle('Daily standup notes', 'daily.txt'), false);
+  assert.equal(isPackFamilyTitle('Daily standup notes', 'daily'), false);
+  assert.equal(isPackFamilyTitle('Ford Foundation Grant.pdf', 'ford-politics'), false);
   assert.equal(isPackFamilyTitle('Interview transcript'), false);
   assert.equal(isPackFamilyTitle('Quarterly financial report'), false);
   assert.equal(isPackFamilyTitle(''), false);

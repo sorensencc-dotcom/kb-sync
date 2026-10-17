@@ -112,7 +112,7 @@ export function isPackFamilyTitle(title, incomingPackBaseName) {
     if (matchesPackFamily(t, incomingPackBaseName)) return true;
     const base = path.basename(incomingPackBaseName).toLowerCase();
     const baseNoExt = base.replace(/\.bak\.txt$/i, '').replace(/\.[^.]+$/, '');
-    if (t === base || t === baseNoExt || t.startsWith(baseNoExt)) return true;
+    if (t === base || t === baseNoExt) return true;
     // Treat pack_agent_harness and repo_knowledge_pack as the same pack family
     const isAgentHarnessFamily = (s) =>
       /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness)/i.test(s);
