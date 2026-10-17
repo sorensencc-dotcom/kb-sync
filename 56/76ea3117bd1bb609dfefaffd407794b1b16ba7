@@ -1,0 +1,20 @@
+docs/operations/nlm-pack-count-check.md
+  h_5c172e9b435f5a 77,79,81-109
+scripts/register-nlm-pack-count-task.ps1
+  h_5c172e9b435f5a 1-81
+scripts/schedule-task-wrapper-KB-Sync-Master.ps1
+  h_5c172e9b435f5a 201-220
+scripts/schedule-task-wrapper-KB-Sync-NLM-Pack-Count.ps1
+  h_5c172e9b435f5a 1-96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5676ea3117bd1bb609dfefaffd407794b1b16ba7",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
