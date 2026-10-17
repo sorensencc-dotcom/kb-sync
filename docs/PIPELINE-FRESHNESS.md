@@ -13,7 +13,7 @@ npm run kb:pipeline:status                 # read-only: is what exists current? 
 
 Useful flags: `--json`, `--force` (ignore resumable stages), `--require-published` (status: LOCAL_ONLY is not enough),
 `--repo-root`, `--db`, `--remote-url`, `--max-receipt-age-hours`, `--semantic <provider>` (opt-in; see "Labelling").
-Run it from the existing Windows `KB-Sync-Master` wrapper or CI by calling that same command; do not add a second
+The existing Windows `KB-Sync-Master` wrapper and the CI workflow both call that same command (see "Automation wiring"); do not add a second
 scheduler. Re-running is restart-safe: state is written atomically to `.pipeline-state.json` (an interrupted run is
 reported `IN_PROGRESS`, never healthy) and `.pipeline.lock` blocks concurrent runs (stale pid locks are taken over).
 
@@ -61,10 +61,31 @@ Entity pages are a **metadata inventory** (`generationKind: metadata-inventory`,
 run reports `semantic_regeneration: not_performed`. Only `--semantic <provider>` runs the existing
 `modules/obsidian/ingest-wiki.sh` path (the `offline-template` provider produces template drafts, not LLM prose).
 
+## Automation wiring
+
+Both entry points call the one command above; neither adds a scheduler.
+
+- **CI** (`.github/workflows/wiki-drift-and-publish.yml`): after drift detection and the contract check, `pull_request`
+  runs `npm run kb:pipeline:e2e` (local stages only). `push` / `schedule` / `workflow_dispatch` run
+  `npm run kb:pipeline:e2e -- --publish`, with the token URL passed through the `WIKI_REPO_URL` environment variable (never
+  on a command line). Nothing is published from `pull_request` events. The step exits non-zero, failing the job, unless
+  the result is `HEALTHY`. Publishes are serialized with a `concurrency` group. `.pipeline-state.json` is uploaded with the
+  other telemetry artifacts.
+- **Windows** (`scripts/schedule-task-wrapper-KB-Sync-Master.ps1`, the script the existing `KB-Sync-Master-Pipeline`
+  scheduled task runs): new `STAGE 2B` runs `npm run kb:pipeline:e2e` after Stage 2 and before NotebookLM ingestion. A
+  non-zero exit (`FAILED`, `DEGRADED`, `IN_PROGRESS`, or a lock held by a live run) sets the wrapper's overall status to 1,
+  which triggers the existing critical alert. **Publishing is opt-in:** set the machine/user environment variable
+  `KB_PIPELINE_PUBLISH=1` for the task to add `--publish`. Without it the wrapper never pushes, so the local
+  `.wiki-sync-receipt.json` ages out (48 h) and the drift audit will report `STALE_RECEIPT` unless CI or a manual
+  `--publish` run refreshes it. The scheduled task definition itself is unchanged.
+- The pipeline names generated pages after the checkout directory name (`repoName` = basename of the repo root). Both
+  entry points run in a directory named `kb-sync`; a differently named checkout produces a different repository identity
+  (and a receipt for another name is reported as `RECEIPT_REPOSITORY_MISMATCH`).
 ## Not covered / needs runtime verification
 
 - Remote GitHub wiki push (tests use local bare repos only).
-- The `.github/workflows/wiki-drift-and-publish.yml` publish step is unchanged and does not push; the Windows
-  scheduled-task wrappers are unchanged.
+- The first CI run of the new workflow steps (the PR run exercises the local stages on Linux; the publishing step only runs
+  on push/schedule/dispatch), and the first scheduled run of the updated wrapper. Both were validated here only by static
+  tests (`tests/pipeline-freshness.test.ts` tests 10-11) and a local Windows run; no scheduled task was run or changed.
 - Dense vector (`kb_vectors`) freshness depends on the existing embedding step; only FTS5/sha currency is asserted.
 - Test: `npm run test:pipeline-freshness`.

@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import yaml from 'js-yaml';
 import {
   synthesizeAllEntities,
   checkGeneratedFreshness,
@@ -655,4 +656,45 @@ test('9. publishWiki derives every default from the supplied repoRoot (never kb-
   assert.ok(fs.existsSync(path.join(repo, '.wiki-publish-temp', '.git')), 'scratch clone lives inside the supplied root');
   assert.equal(receipt.repository, 'demo');
   assert.match(read(cloneRemote(remote), 'page.md'), /# page/);
+});
+
+// ---- Automation wiring (static checks of the checked-in workflow and the Windows wrapper) ----
+const REPO_ROOT = path.resolve(import.meta.dirname, '..');
+
+test('10. the CI workflow runs the one pipeline command and never publishes from pull_request events', () => {
+  const wf: any = yaml.load(fs.readFileSync(path.join(REPO_ROOT, '.github/workflows/wiki-drift-and-publish.yml'), 'utf8'));
+  const steps: any[] = wf.jobs['drift-and-publish'].steps;
+  const pipelineSteps = steps.filter((s) => /kb:pipeline:e2e/.test(String(s.run ?? '')));
+  assert.equal(pipelineSteps.length, 2, 'one local-only step and one publishing step');
+  const local = pipelineSteps.find((s) => !/--publish/.test(s.run));
+  const publish = pipelineSteps.find((s) => /--publish/.test(s.run));
+  assert.ok(local && publish);
+  assert.match(String(local.if), /pull_request/);
+  const publishIf = String(publish.if);
+  assert.doesNotMatch(publishIf, /pull_request/);
+  assert.match(publishIf, /push/);
+  assert.match(publishIf, /schedule/);
+  assert.match(publishIf, /workflow_dispatch/);
+  // The remote URL (with token) comes from the environment, never from argv.
+  assert.match(String(publish.env?.WIKI_REPO_URL), /wiki\.git/);
+  assert.doesNotMatch(String(publish.run), /--remote-url|--repo-url/);
+  // The old non-pushing publisher invocation must be gone, and nothing else may push from a PR.
+  for (const s of steps) assert.doesNotMatch(String(s.run ?? ''), /sync-github-wiki\.mjs/);
+  for (const s of steps) {
+    if (/--publish|--push/.test(String(s.run ?? ''))) assert.doesNotMatch(String(s.if ?? 'pull_request'), /pull_request/);
+  }
+});
+
+test('11. the KB-Sync-Master wrapper calls the one pipeline command, fails the run on a bad result, and publishes only when opted in', () => {
+  const src = fs.readFileSync(path.join(REPO_ROOT, 'scripts/schedule-task-wrapper-KB-Sync-Master.ps1'), 'latin1');
+  assert.match(src, /npm run kb:pipeline:e2e/);
+  const stage = src.slice(src.indexOf('STAGE 2B'), src.indexOf('# --- STAGE 3'));
+  assert.ok(stage.length > 0, 'stage 2B sits before the NotebookLM stage');
+  assert.match(stage, /KB_PIPELINE_PUBLISH/);
+  assert.match(stage, /\$LASTEXITCODE -ne 0[\s\S]*\$OverallStatus = 1/);
+  // The publish flag is only appended inside the opt-in branch.
+  assert.equal((stage.match(/--publish/g) ?? []).length, 2, 'one in the opt-in command and one in a comment');
+  assert.match(stage, /if \(\$env:KB_PIPELINE_PUBLISH[^\n]*\{\s*\n\s*\$PipelineCmd \+= " -- --publish"/);
+  // No competing scheduler is introduced by the wrapper.
+  assert.doesNotMatch(src, /Register-ScheduledTask|schtasks|New-ScheduledTask/i);
 });

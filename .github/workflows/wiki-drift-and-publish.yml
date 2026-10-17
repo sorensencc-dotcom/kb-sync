@@ -9,6 +9,11 @@ on:
     - cron: '0 */4 * * *'
   workflow_dispatch:
 
+concurrency:
+  # Serialize wiki publishes (a second concurrent push would be rejected as non-fast-forward); PR runs never publish.
+  group: wiki-pipeline-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
+  cancel-in-progress: false
+
 jobs:
   drift-and-publish:
     runs-on: ubuntu-latest
@@ -45,14 +50,23 @@ jobs:
       - name: Run wiki contract verification
         run: npm run wiki:validate-contract
 
-      - name: Publish to GitHub Wiki (Main / Scheduled)
+      # One explicit, restart-safe path through the existing pipeline:
+      # source check -> generation -> validation -> publish-tree prep -> cache index -> (publish + remote-head verify).
+      # Pull requests (including forks) only ever run the local stages: nothing is pushed from pull_request events.
+      - name: Run documentation pipeline (local stages only, no publish)
+        if: github.event_name == 'pull_request'
+        run: npm run kb:pipeline:e2e
+
+      - name: Run documentation pipeline and publish to GitHub Wiki (Main / Scheduled)
         if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           WIKI_REPO_URL: "https://x-access-token:${{ secrets.WIKI_SYNC_PAT || secrets.GH_PAT || secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          node scripts/sync-github-wiki.mjs --repo-url "$WIKI_REPO_URL"
+          # Exits non-zero (failing the job) unless every required stage succeeded and the remote wiki head was verified (HEALTHY).
+          # The remote URL is read from WIKI_REPO_URL so the token never appears on a command line.
+          npm run kb:pipeline:e2e -- --publish
 
       - name: Verify cryptographic sync receipt
         if: always()
@@ -71,5 +85,6 @@ jobs:
             .drift-report.json
             .cross-repo-drift-report.json
             .wiki-sync-receipt.json
+            .pipeline-state.json
             .repair-manifest.json
           retention-days: 30
