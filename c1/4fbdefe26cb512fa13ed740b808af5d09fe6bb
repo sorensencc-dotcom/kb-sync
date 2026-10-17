@@ -1,0 +1,19 @@
+tests/stale-lock-sweeper.test.mjs
+  s_fa11606c187761::t_0599ca57600125 1-92
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c14fbdefe26cb512fa13ed740b808af5d09fe6bb",
+  "prompts": {},
+  "sessions": {
+    "s_fa11606c187761": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14674-d160-7dd2-98f1-0646f6f76765",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
