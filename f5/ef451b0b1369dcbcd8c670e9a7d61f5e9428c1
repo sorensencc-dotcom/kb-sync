@@ -1,0 +1,20 @@
+.github/workflows/wiki-drift-and-publish.yml
+  h_5c172e9b435f5a 12-16,53-60,67-69,88
+docs/PIPELINE-FRESHNESS.md
+  h_5c172e9b435f5a 16,64-83,87-89
+scripts/schedule-task-wrapper-KB-Sync-Master.ps1
+  h_5c172e9b435f5a 135-165
+tests/pipeline-freshness.test.ts
+  h_5c172e9b435f5a 12,660-700
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f5ef451b0b1369dcbcd8c670e9a7d61f5e9428c1",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
