@@ -212,6 +212,13 @@ function isErrorStatus(status) {
   return false;
 }
 
+export function looksLikePackFileTitle(rawTitle) {
+  const raw = String(rawTitle || '').trim();
+  if (!raw || /[\s:]/.test(raw)) return false;
+  const t = path.basename(raw).toLowerCase().trim();
+  return /^(pack_|repo_knowledge_pack)[a-z0-9_-]*?(_part_[a-z]{2})?(\.bak)?(\.(txt|md))?$/.test(t);
+}
+
 function isSoftwarePackTitle(rawTitle) {
   const t = path.basename(String(rawTitle || '')).toLowerCase().trim();
   if (isSoftwarePack(t)) return true;
@@ -355,7 +362,7 @@ export function classifyNotebook(notebook, rawSources = []) {
   if (isHistorical) {
     const softwarePolluting = sources.filter((s) => {
       const t = String(s?.title ?? s?.name ?? '').trim();
-      return isSoftwarePackTitle(t);
+      return looksLikePackFileTitle(t) && isSoftwarePackTitle(t);
     });
     if (softwarePolluting.length > 0) {
       addFinding(

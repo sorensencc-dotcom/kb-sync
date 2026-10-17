@@ -41,7 +41,7 @@ npm run nlm:pack-count
 | `BAK_UPLOADED` | `red` | Any source title ending in `.bak.txt` (case-insensitive). |
 | `PACK_ERROR_STATUS` | `red` | Any pack source with status `3`, `"3"`, `ERROR`, `FAILED`, `STATUS_ERROR`, `STATUS_FAILED`, or missing/`null`/`undefined`. |
 | `MULTIPART_GAP` | `red` | Multipart pack family labels do not form a contiguous two-letter sequence starting at `aa` (`aa`, `ab`, `ac`, ...). |
-| `POLLUTION` | `red` | Pack source present in a `has_pack: false` notebook, or software pack present in a historical domain notebook. |
+| `POLLUTION` | `red` | Pack source present in a `has_pack: false` notebook, or a software pack-file source (title starts with `pack_` or `repo_knowledge_pack`) present in a historical domain notebook; ordinary source titles that merely mention a software name (e.g. `sigil`) are not checked. |
 | `NO_PACK` | `info` | Notebook has `has_pack: true` in the manifest but currently has zero pack sources (does not turn overall status `RED`). |
 
 ## Output JSON Shape
