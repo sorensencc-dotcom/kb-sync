@@ -1,0 +1,18 @@
+scripts/install-git-hooks.mjs
+  h_5c172e9b435f5a 65-71
+scripts/pipeline/cluster-sync-runner.mjs
+  h_5c172e9b435f5a 48-50,54-58,62-86
+scripts/schedule-task-wrapper-KB-Sync-Master.ps1
+  h_5c172e9b435f5a 92-103,245-261
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bf39ccbe8847a3064f5487b30b6baa0e48bcf651",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
