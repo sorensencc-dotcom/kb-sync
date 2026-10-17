@@ -74,11 +74,37 @@ npm run nlm:pack-count
 | `2` | `RED` | One or more `red` severity findings were detected. |
 | `3` | `UNKNOWN` | Runner failed with `AUTH` (authentication expired/required), `CLI_MISSING`, or generic `ERROR` (retried once) with no `red` findings. An expired authentication result is always `UNKNOWN` (`3`), never `RED`. |
 
-## Suggested Schedule
+## Scheduled Tasks & Pipeline Integration
 
-Run this check after pack writers finish:
+The check is automated on Windows Task Scheduler and embedded into the master pipeline:
 
-- **After 3:45 AM ET** (following `1:30 AM` `CIC-Nightly-Notebook-Mining` and `3:30 AM` `CIC-TRM-ClosedLoop-Nightly-Miner`).
-- **After 8:45 PM ET** (following `8:00 PM` `KB-Sync-Master-Pipeline`).
+### 1. Standalone Scheduled Task (`KB-Sync-NLM-Pack-Count`)
 
-> **Note:** This script only performs the check and writes the status JSON file. It does **not** create, modify, or register any Windows Scheduled Task; registering a scheduled task is a separate operational step.
+- **Task Name**: `KB-Sync-NLM-Pack-Count`
+- **Location**: `\KB-SYNC\`
+- **Wrapper Script**: `scripts/schedule-task-wrapper-KB-Sync-NLM-Pack-Count.ps1`
+- **Schedule Triggers**:
+  - `03:45 AM` daily (post-mining: follows `01:30 AM` `CIC-Nightly-Notebook-Mining` and `03:30 AM` `CIC-TRM-ClosedLoop-Nightly-Miner`)
+  - `20:45` (`8:45 PM`) daily (post-master-sync: follows `20:00` `KB-Sync-Master-Pipeline`)
+- **Logging**: `logs/KB-Sync-NLM-Pack-Count-<timestamp>.log`
+- **Alerts**: Dispatches critical alert via `send-critical-alert.ps1` on exit code `2` (`RED`), warning on exit code `3` (`UNKNOWN`), and clears alerts on exit code `0` (`GREEN`).
+
+#### Registration & Management
+
+Register or inspect the scheduled task using `scripts/register-nlm-pack-count-task.ps1`:
+
+```powershell
+# Register the task
+powershell.exe -ExecutionPolicy Bypass -File scripts/register-nlm-pack-count-task.ps1
+
+# List status
+powershell.exe -ExecutionPolicy Bypass -File scripts/register-nlm-pack-count-task.ps1 -List
+
+# Unregister
+powershell.exe -ExecutionPolicy Bypass -File scripts/register-nlm-pack-count-task.ps1 -Uninstall
+```
+
+### 2. Master Pipeline Integration (`Stage 3B`)
+
+Embedded into `scripts/schedule-task-wrapper-KB-Sync-Master.ps1` as **Stage 3B: NotebookLM Pack-Count Invariant Verification** immediately following Stage 3 NotebookLM pack ingestion, providing immediate post-upload verification and updating `_status-feed/nlm_pack_counts.json`.
+

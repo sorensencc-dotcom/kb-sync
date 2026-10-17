@@ -198,6 +198,26 @@ try {
     $OverallStatus = 1
 }
 
+# --- STAGE 3B: NOTEBOOKLM PACK-COUNT INVARIANT CHECK ---
+Write-LogInfo "================================================================================"
+Write-LogInfo "STAGE 3B: NotebookLM Pack-Count Invariant Verification"
+Write-LogInfo "================================================================================"
+
+try {
+    Write-LogInfo "Running zero-token pack-count check across all active swept notebooks..."
+    & cmd /c "npm run nlm:pack-count" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    if ($LASTEXITCODE -eq 2) {
+        Write-LogError "NotebookLM pack invariant check reported RED findings (exit code 2); see _status-feed/nlm_pack_counts.json"
+        $OverallStatus = 1
+    } elseif ($LASTEXITCODE -eq 3) {
+        Write-LogWarn "NotebookLM pack invariant check reported UNKNOWN (auth expired or CLI unavailable)"
+    } else {
+        Write-LogInfo "NotebookLM pack invariant check verified GREEN."
+    }
+} catch {
+    Write-LogWarn "Stage 3B NotebookLM pack-count check encountered error: $_"
+}
+
 # --- STAGE 4: DRIFT & FRESHNESS AUDIT ---
 Write-LogInfo "================================================================================"
 Write-LogInfo "STAGE 4: Drift & Freshness Audit"
