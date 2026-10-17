@@ -238,6 +238,91 @@ test('POLLUTION: detects pack in has_pack:false notebook and software pack in hi
   assert.equal(resHist.findings.some((f) => f.code === 'POLLUTION' && f.severity === 'red'), true);
 });
 
+test('POLLUTION false-positive fix: master-kb historical notebook with ordinary Sigil research sources and 3-part pack is GREEN with no POLLUTION', async () => {
+  const masterKbManifest = {
+    clusters: {
+      cluster_b_historical_archival_media: {
+        notebooks: [
+          {
+            key: 'master-kb',
+            uuid: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+            has_pack: true,
+            pack_family: 'pack_master_kb',
+            multipart: true,
+          },
+        ],
+      },
+    },
+  };
+
+  const sources = [
+    {
+      id: 'r1',
+      title: 'GitHub - sorensencc-dotcom/sigil: Governed cryptographic task relay and host connector for Claude, Codex, Grok, Antigravity, and local LLMs. · GitHub',
+      status: 2,
+    },
+    {
+      id: 'r2',
+      title: 'Sigil Rooms vs. Switch Architecture',
+      status: 2,
+    },
+    { id: 'm1', title: 'pack_master_kb_part_aa.txt', status: 2 },
+    { id: 'm2', title: 'pack_master_kb_part_ab.txt', status: 2 },
+    { id: 'm3', title: 'pack_master_kb_part_ac.txt', status: 2 },
+  ];
+
+  const [masterKbNb] = loadNotebooks(masterKbManifest);
+  const classified = classifyNotebook(masterKbNb, sources);
+  assert.equal(classified.findings.some((f) => f.code === 'POLLUTION'), false);
+  assert.equal(classified.findings.length, 0);
+  assert.deepEqual(classified.counts, {
+    notebook_id: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    families: 1,
+    sources: 5,
+    pack_sources: 3,
+    parts: 3,
+  });
+
+  const report = await runCheck({
+    manifest: masterKbManifest,
+    runner: async () => ({ ok: true, sources }),
+    now: FIXED_NOW,
+  });
+  assert.equal(report.overall, 'GREEN');
+  assert.equal(report.findings.some((f) => f.code === 'POLLUTION'), false);
+  assert.equal(report.findings.length, 0);
+});
+
+test('POLLUTION: software pack file titles in a historical notebook each produce a red POLLUTION finding', () => {
+  const masterKb = {
+    id: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    alias: 'master-kb',
+    has_pack: true,
+    pack_family: 'pack_master_kb',
+    multipart: true,
+  };
+
+  const pollutingPackTitles = [
+    'pack_sigil.txt',
+    'pack_ironledger_part_aa.txt',
+    'repo_knowledge_pack_part_ab.txt',
+    'pack_agent_harness.txt',
+    'pack_agent_harness_part_ap.txt',
+  ];
+
+  for (const badTitle of pollutingPackTitles) {
+    const res = classifyNotebook(masterKb, [
+      { id: 'm1', title: 'pack_master_kb_part_aa.txt', status: 2 },
+      { id: 'bad', title: badTitle, status: 2 },
+    ]);
+    const pollutionFinding = res.findings.find(
+      (f) => f.code === 'POLLUTION' && f.severity === 'red'
+    );
+    assert.ok(pollutionFinding, `expected red POLLUTION finding for "${badTitle}"`);
+    assert.match(pollutionFinding.detail, new RegExp(badTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+});
+
 test('AUTH runner failure stops checking remaining notebooks and marks overall UNKNOWN (never RED)', async () => {
   let calls = 0;
   const authRunner = async (nbId) => {
