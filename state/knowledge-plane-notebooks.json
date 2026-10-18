@@ -50,7 +50,7 @@
         { "key": "ironledger", "uuid": "76e1932c-054a-4520-9e83-5e882dffc938", "has_pack": true, "pack_family": "pack_ironledger" },
         { "key": "sigil", "uuid": "26eacb85-2c97-443d-9d81-3bd99cc98412", "has_pack": true, "pack_family": "pack_sigil" },
         { "key": "agent-harness", "uuid": "359b346c-6af7-4ba3-baef-b985c9e6e1af", "has_pack": true, "pack_family": "pack_agent_harness", "multipart": true },
-        { "key": "personal-os", "uuid": "9724e682-c5ea-4693-8e21-caf8de68611e", "has_pack": true, "pack_family": "pack_personal_os" },
+        { "key": "personal-os", "uuid": "9724e682-c5ea-4693-8e21-caf8de68611e", "has_pack": true, "pack_family": "pack_personal_os", "legacy_title_alias": "Personal OS (Household, Utilities, Florida Logistics) Pack" },
         { "key": "rewrite-labs", "uuid": "140119ae-3496-45c9-bf0c-71c955136afc", "has_pack": false },
         { "key": "dev-triage", "uuid": "cb0498ce-1ea5-4668-9f65-ac368753404e", "has_pack": false }
       ]
@@ -61,7 +61,7 @@
       "target_count": 7,
       "notebooks": [
         { "key": "governance", "uuid": "b42534be-a208-437e-828e-dad645631c66", "has_pack": false, "pack_family": "pack_governance" },
-        { "key": "modules", "uuid": "096b5b92-55d0-44b2-b074-3b3fef0a0d12", "has_pack": true, "pack_family": "pack_modules" },
+        { "key": "modules", "uuid": "096b5b92-55d0-44b2-b074-3b3fef0a0d12", "has_pack": true, "pack_family": "pack_modules", "legacy_title_alias": "KB - Modules Pack" },
         { "key": "skills", "uuid": "3ac216cc-3379-4c9f-8393-ab28a248cecc", "has_pack": false, "pack_family": "pack_skills" },
         { "key": "operations", "uuid": "1ab8f1a2-f066-4246-8489-75f223d5f9d2", "has_pack": true, "pack_family": "pack_operations" },
         { "key": "meta", "uuid": "30f80cc0-80f7-421a-a79b-c510d98aaf94", "has_pack": true, "pack_family": "pack_meta" },

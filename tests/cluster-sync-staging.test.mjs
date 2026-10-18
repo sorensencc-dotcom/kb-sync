@@ -151,6 +151,32 @@ test('findStagedPackFiles still matches pack_willow_run and excludes .bak.txt', 
   assert.deepEqual(matched, [path.join(tmpDir, 'pack_willow_run.txt')]);
 });
 
+test('findStagedPackFiles matches numeric multipart parts and prefers parts over monolithic pack file', (t) => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-master-kb-'));
+  t.after(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  fs.writeFileSync(path.join(tmpDir, 'pack_master_kb_part1.txt'), 'part 1');
+  fs.writeFileSync(path.join(tmpDir, 'pack_master_kb_part2.txt'), 'part 2');
+  fs.writeFileSync(path.join(tmpDir, 'pack_master_kb_part3.txt'), 'part 3');
+  fs.writeFileSync(path.join(tmpDir, 'pack_master_kb.txt'), 'monolithic file');
+  fs.writeFileSync(path.join(tmpDir, 'pack_master_kb_part1.bak.txt'), 'backup part');
+
+  const matched = findStagedPackFiles(
+    { key: 'master-kb', pack_family: 'pack_master_kb', multipart: true },
+    [tmpDir]
+  );
+
+  assert.equal(matched.length, 3);
+  assert.deepEqual(
+    matched.map((f) => path.basename(f)),
+    ['pack_master_kb_part1.txt', 'pack_master_kb_part2.txt', 'pack_master_kb_part3.txt']
+  );
+  assert.equal(matched.some((f) => f.endsWith('.bak.txt')), false);
+  assert.equal(matched.some((f) => path.basename(f) === 'pack_master_kb.txt'), false);
+});
+
 test('runNotebookSweep logs a clear WARN naming pack family and directories searched when nothing is staged (does not throw)', async (t) => {
   const emptyDir1 = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-empty1-'));
   const emptyDir2 = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-empty2-'));

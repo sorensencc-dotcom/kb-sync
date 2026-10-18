@@ -1009,3 +1009,17 @@ test('ingest-notebooklm.sh poll_new_sources_active treats status 3 as ERROR and 
   assert.equal(purgePatternMatch[1].includes('pack_'), true);
   assert.equal(purgePatternMatch[1].includes('\\.txt'), true);
 });
+
+test('matchesPackFamily and isPackFamilyTitle recognize live H1 titles for modules and personal-os', () => {
+  assert.equal(matchesPackFamily('KB - Modules Pack', 'pack_modules'), true);
+  assert.equal(matchesPackFamily('KB - Modules Pack', 'modules'), true);
+  assert.equal(matchesPackFamily('pack_modules.txt', 'pack_modules'), true);
+
+  assert.equal(matchesPackFamily('Personal OS (Household, Utilities, Florida Logistics) Pack', 'pack_personal_os'), true);
+  assert.equal(matchesPackFamily('Personal OS (Household, Utilities, Florida Logistics) Pack', 'personal-os'), true);
+  assert.equal(matchesPackFamily('pack_personal_os.txt', 'pack_personal_os'), true);
+
+  assert.equal(isPackFamilyTitle('KB - Modules Pack'), true);
+  assert.equal(isPackFamilyTitle('Personal OS (Household, Utilities, Florida Logistics) Pack'), true);
+});
+

@@ -29,6 +29,8 @@ export const PACK_FAMILY_TITLE_RE = [
   /^cic\b.*\bpack\b/i,
   /^cic - daily research \(buffer\/intake\) pack$/i,
   /^cic - ford executive dynamics & politics pack$/i,
+  /^kb - modules pack$/i,
+  /^personal os \(household, utilities, florida logistics\) pack$/i,
 ];
 
 /** Canonical 8+1 Historical Domain Notebook IDs where software packs are forbidden */
@@ -91,6 +93,21 @@ export function matchesPackFamily(sourceTitle, familyKey) {
     /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness|agent[_-]harness)/i.test(s);
   if (isAgentHarness(cleanF)) {
     return /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness)/i.test(t);
+  }
+
+  if (cleanF === 'pack_modules' || cleanF === 'modules') {
+    return (
+      /^pack_modules(?:[_-]part[_-][a-z0-9]+|\.[a-z0-9]+)*(?:\.bak)?(?:\.txt)?$/i.test(t) ||
+      t === 'kb - modules pack'
+    );
+  }
+
+  if (cleanF === 'pack_personal_os' || cleanF === 'personal-os' || cleanF === 'personal_os') {
+    return (
+      /^pack_personal_os(?:[_-]part[_-][a-z0-9]+|\.[a-z0-9]+)*(?:\.bak)?(?:\.txt)?$/i.test(t) ||
+      t === 'personal os (household, utilities, florida logistics) pack' ||
+      /^personal os\b.*\bpack$/i.test(t)
+    );
   }
 
   return (

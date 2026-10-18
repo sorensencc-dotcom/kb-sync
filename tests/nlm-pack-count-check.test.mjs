@@ -479,3 +479,39 @@ test('atomic write and exit codes 0 (GREEN), 2 (RED), 3 (UNKNOWN) via main()', a
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
+
+test('modules and personal-os live H1 pack titles classify correctly as pack sources without NO_PACK findings', () => {
+  const modulesNb = {
+    id: '096b5b92-55d0-44b2-b074-3b3fef0a0d12',
+    alias: 'modules',
+    has_pack: true,
+    pack_family: 'pack_modules',
+    legacy_title_alias: 'KB - Modules Pack',
+  };
+  const modulesSources = [
+    { id: 'm1', title: 'Canonical Domain Purpose — KB - Modules', status: 2 },
+    { id: 'm2', title: 'Ecosystem Architecture Guide (Current)', status: 2 },
+    { id: 'm3', title: 'KB - Modules Pack', status: 2 },
+  ];
+  const modRes = classifyNotebook(modulesNb, modulesSources);
+  assert.equal(modRes.counts.pack_sources, 1);
+  assert.equal(modRes.counts.families, 1);
+  assert.equal(modRes.findings.length, 0);
+
+  const personalOsNb = {
+    id: '9724e682-c5ea-4693-8e21-caf8de68611e',
+    alias: 'personal-os',
+    has_pack: true,
+    pack_family: 'pack_personal_os',
+    legacy_title_alias: 'Personal OS (Household, Utilities, Florida Logistics) Pack',
+  };
+  const personalOsSources = [
+    { id: 'p1', title: 'Personal OS Spec', status: 2 },
+    { id: 'p2', title: 'Personal OS (Household, Utilities, Florida Logistics) Pack', status: 2 },
+  ];
+  const posRes = classifyNotebook(personalOsNb, personalOsSources);
+  assert.equal(posRes.counts.pack_sources, 1);
+  assert.equal(posRes.counts.families, 1);
+  assert.equal(posRes.findings.length, 0);
+});
+

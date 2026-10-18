@@ -179,13 +179,17 @@ export function findStagedPackFiles(notebook, candidateDirs = DEFAULT_PACK_CANDI
       if (lower.endsWith('.bak.txt')) return false;
       for (const prefix of prefixes) {
         if (lower === `${prefix}.txt`) return true;
-        if (lower.startsWith(`${prefix}_part_`) && lower.endsWith('.txt')) return true;
+        if (new RegExp(`^${prefix}[_-]part[_-]?[a-z0-9]+\\.txt$`, 'i').test(lower)) return true;
         if (lower.startsWith(`${prefix}.`) && lower.endsWith('.txt')) return true;
       }
       return false;
     }).sort().map(f => path.join(packDir, f));
 
-    if (matched.length > 0) return matched;
+    if (matched.length > 0) {
+      const parts = matched.filter(f => /[_-]part[_-]?[a-z0-9]+\.txt$/i.test(f));
+      if (parts.length > 0) return parts;
+      return matched;
+    }
   }
 
   return [];
