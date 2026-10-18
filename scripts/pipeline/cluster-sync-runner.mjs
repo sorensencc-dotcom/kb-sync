@@ -239,8 +239,14 @@ export async function runNotebookSweep(notebook, options = {}) {
     summary.batteryEntropy = battery.entropy;
     logInfo(`Mined ${summary.questionsMined} question(s) with entropy ${battery.entropy} (source: ${battery.source})`);
 
-    // Clear quarantine if previous run had quarantined this notebook
-    clearQuarantine(notebook.uuid);
+    // Clear quarantine if previous run had quarantined this notebook,
+    // but only on live runs where pack replacement completed or was intentionally bypassed.
+    if (!isDryRun) {
+      const packSkipped = notebook.has_pack !== false && findStagedPackFiles(notebook, candidateDirs).length === 0;
+      if (!packSkipped) {
+        clearQuarantine(notebook.uuid);
+      }
+    }
     return summary;
   } catch (err) {
     summary.status = 'FAILED';

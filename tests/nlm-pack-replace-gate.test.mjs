@@ -1021,5 +1021,9 @@ test('matchesPackFamily and isPackFamilyTitle recognize live H1 titles for modul
 
   assert.equal(isPackFamilyTitle('KB - Modules Pack'), true);
   assert.equal(isPackFamilyTitle('Personal OS (Household, Utilities, Florida Logistics) Pack'), true);
+
+  // Negative checks ensuring loose titles do not accidentally match
+  assert.equal(matchesPackFamily('Personal OS Notes and Brainstorming Pack', 'pack_personal_os'), false);
+  assert.equal(matchesPackFamily('Personal OS Tasks Pack', 'personal-os'), false);
 });
 

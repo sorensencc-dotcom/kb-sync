@@ -105,8 +105,7 @@ export function matchesPackFamily(sourceTitle, familyKey) {
   if (cleanF === 'pack_personal_os' || cleanF === 'personal-os' || cleanF === 'personal_os') {
     return (
       /^pack_personal_os(?:[_-]part[_-][a-z0-9]+|\.[a-z0-9]+)*(?:\.bak)?(?:\.txt)?$/i.test(t) ||
-      t === 'personal os (household, utilities, florida logistics) pack' ||
-      /^personal os\b.*\bpack$/i.test(t)
+      t === 'personal os (household, utilities, florida logistics) pack'
     );
   }
 

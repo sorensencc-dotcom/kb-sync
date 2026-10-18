@@ -219,3 +219,41 @@ test('runNotebookSweep logs a clear WARN naming pack family and directories sear
     `Expected WARN log to include pack_agent_harness and candidateDirs, got: ${warnLines.join('\n')}`
   );
 });
+
+test('runNotebookSweep does not clear quarantine when dryRun or when pack staging files are missing', async (t) => {
+  const { recordQuarantine, loadQuarantine, clearQuarantine } = await import('../scripts/pipeline/cluster-sync-runner.mjs');
+  const testId = 'test-quarantine-preservation-uuid';
+  recordQuarantine(testId, 'test-key', 'Upload status 3 failed');
+  t.after(() => {
+    clearQuarantine(testId);
+  });
+
+  assert.ok(loadQuarantine().quarantined[testId]);
+
+  // Dry-run should NOT clear quarantine even if sweep completes
+  await runNotebookSweep(
+    {
+      key: 'test-key',
+      uuid: testId,
+      pack_family: 'pack_test',
+      has_pack: true,
+    },
+    { isDryRun: true, candidateDirs: [] }
+  );
+
+  assert.ok(loadQuarantine().quarantined[testId], 'Quarantine must NOT be cleared on dryRun');
+
+  // Live run with missing staged pack files should also NOT clear quarantine
+  await runNotebookSweep(
+    {
+      key: 'test-key',
+      uuid: testId,
+      pack_family: 'pack_test',
+      has_pack: true,
+    },
+    { isDryRun: false, candidateDirs: [] }
+  );
+
+  assert.ok(loadQuarantine().quarantined[testId], 'Quarantine must NOT be cleared when pack upload is skipped');
+});
+
