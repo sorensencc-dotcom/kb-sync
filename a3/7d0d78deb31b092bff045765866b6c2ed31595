@@ -1,0 +1,20 @@
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 108
+scripts/pipeline/cluster-sync-runner.mjs
+  h_5c172e9b435f5a 242-249
+tests/cluster-sync-staging.test.mjs
+  h_5c172e9b435f5a 222-259
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 1024-1027
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a37d0d78deb31b092bff045765866b6c2ed31595",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
