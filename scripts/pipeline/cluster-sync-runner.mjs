@@ -160,8 +160,8 @@ export const PACK_FAMILY_ALIASES = {
 };
 
 export const DEFAULT_PACK_CANDIDATE_DIRS = [
-  path.resolve(REPO_ROOT, '../.nlm_pack'),
   path.resolve(REPO_ROOT, '.nlm_pack'),
+  path.resolve(REPO_ROOT, '../.nlm_pack'),
 ];
 
 export function findStagedPackFiles(notebook, candidateDirs = DEFAULT_PACK_CANDIDATE_DIRS) {
@@ -170,6 +170,27 @@ export function findStagedPackFiles(notebook, candidateDirs = DEFAULT_PACK_CANDI
 
   const aliases = PACK_FAMILY_ALIASES[family] || [];
   const prefixes = [family, ...aliases].map(p => p.toLowerCase());
+
+  // If multipart is expected, search all candidate dirs for part files first
+  if (notebook.multipart) {
+    for (const packDir of candidateDirs) {
+      if (!fs.existsSync(packDir)) continue;
+      const files = fs.readdirSync(packDir);
+      const parts = files.filter(f => {
+        const lower = f.toLowerCase();
+        if (lower.endsWith('.bak.txt')) return false;
+        for (const prefix of prefixes) {
+          if (new RegExp(`^${prefix}[_-]part[_-]?[a-z0-9]+\\.txt$`, 'i').test(lower)) return true;
+        }
+        return false;
+      }).sort().map(f => path.join(packDir, f));
+
+      if (parts.length > 0) return parts;
+    }
+
+    // Never return an unchunked pack file when multipart is expected
+    return [];
+  }
 
   for (const packDir of candidateDirs) {
     if (!fs.existsSync(packDir)) continue;
@@ -209,9 +230,11 @@ export async function runNotebookSweep(notebook, options = {}) {
   };
 
   try {
-    // 1. Pack Dispatcher (with has_pack: false bypass)
-    if (notebook.has_pack === false) {
-      logInfo(`[BYPASS] Notebook ${notebook.key} has_pack: false; bypassing pack upload gate.`);
+    // 1. Pack Dispatcher (with has_pack: false or pack_writer: "master" bypass)
+    const isMasterWriter = notebook.pack_writer === 'master' || notebook.skip_ops_pack_sync === true;
+    if (notebook.has_pack === false || isMasterWriter) {
+      const reason = isMasterWriter ? 'managed by Master pipeline' : 'has_pack: false';
+      logInfo(`[BYPASS] Notebook ${notebook.key} pack ${reason}; bypassing pack upload gate.`);
     } else {
       summary.packDispatched = true;
       let packFiles = findStagedPackFiles(notebook, candidateDirs);
@@ -242,7 +265,7 @@ export async function runNotebookSweep(notebook, options = {}) {
     // Clear quarantine if previous run had quarantined this notebook,
     // but only on live runs where pack replacement completed or was intentionally bypassed.
     if (!isDryRun) {
-      const packSkipped = notebook.has_pack !== false && findStagedPackFiles(notebook, candidateDirs).length === 0;
+      const packSkipped = (notebook.has_pack !== false && !isMasterWriter) && findStagedPackFiles(notebook, candidateDirs).length === 0;
       if (!packSkipped) {
         clearQuarantine(notebook.uuid);
       }

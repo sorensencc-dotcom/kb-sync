@@ -257,3 +257,76 @@ test('runNotebookSweep does not clear quarantine when dryRun or when pack stagin
   assert.ok(loadQuarantine().quarantined[testId], 'Quarantine must NOT be cleared when pack upload is skipped');
 });
 
+test('DEFAULT_PACK_CANDIDATE_DIRS prioritizes local .nlm_pack before parent ../.nlm_pack', async () => {
+  const { DEFAULT_PACK_CANDIDATE_DIRS } = await import('../scripts/pipeline/cluster-sync-runner.mjs');
+  assert.equal(DEFAULT_PACK_CANDIDATE_DIRS.length, 2);
+  assert.equal(path.basename(DEFAULT_PACK_CANDIDATE_DIRS[0]), '.nlm_pack');
+  assert.equal(DEFAULT_PACK_CANDIDATE_DIRS[0].includes('kb-sync'), true, 'Local kb-sync .nlm_pack must come first');
+});
+
+test('findStagedPackFiles multipart skips unchunked file in earlier candidate dir when parts exist in later candidate dir', (t) => {
+  const dirWithUnchunked = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-unchunked-'));
+  const dirWithParts = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-parts-'));
+  t.after(() => {
+    fs.rmSync(dirWithUnchunked, { recursive: true, force: true });
+    fs.rmSync(dirWithParts, { recursive: true, force: true });
+  });
+
+  fs.writeFileSync(path.join(dirWithUnchunked, 'repo_knowledge_pack.txt'), '32MB unchunked pack');
+  fs.writeFileSync(path.join(dirWithParts, 'repo_knowledge_pack_part_aa.txt'), 'part aa');
+  fs.writeFileSync(path.join(dirWithParts, 'repo_knowledge_pack_part_ab.txt'), 'part ab');
+
+  const matched = findStagedPackFiles(
+    { key: 'agent-harness', pack_family: 'pack_agent_harness', multipart: true },
+    [dirWithUnchunked, dirWithParts]
+  );
+
+  assert.equal(matched.length, 2);
+  assert.deepEqual(
+    matched.map((f) => path.basename(f)),
+    ['repo_knowledge_pack_part_aa.txt', 'repo_knowledge_pack_part_ab.txt']
+  );
+});
+
+test('findStagedPackFiles multipart returns empty array when no parts exist even if unchunked file is present', (t) => {
+  const dirWithUnchunked = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-unchunked-only-'));
+  t.after(() => {
+    fs.rmSync(dirWithUnchunked, { recursive: true, force: true });
+  });
+
+  fs.writeFileSync(path.join(dirWithUnchunked, 'repo_knowledge_pack.txt'), '32MB unchunked pack');
+
+  const matched = findStagedPackFiles(
+    { key: 'agent-harness', pack_family: 'pack_agent_harness', multipart: true },
+    [dirWithUnchunked]
+  );
+
+  assert.equal(matched.length, 0, 'Must never return unchunked file for multipart notebook');
+});
+
+test('runNotebookSweep bypasses pack upload when pack_writer is master', async (t) => {
+  const { recordQuarantine, loadQuarantine, clearQuarantine } = await import('../scripts/pipeline/cluster-sync-runner.mjs');
+  const testId = 'test-master-writer-bypass-uuid';
+  recordQuarantine(testId, 'agent-harness', 'prior error');
+  t.after(() => {
+    clearQuarantine(testId);
+  });
+
+  const summary = await runNotebookSweep(
+    {
+      key: 'agent-harness',
+      uuid: testId,
+      pack_family: 'pack_agent_harness',
+      has_pack: true,
+      multipart: true,
+      pack_writer: 'master',
+    },
+    { isDryRun: false, candidateDirs: [] }
+  );
+
+  assert.equal(summary.status, 'SUCCESS');
+  assert.equal(summary.packDispatched, false);
+  assert.equal(Boolean(loadQuarantine().quarantined[testId]), false, 'Quarantine must be cleared on successful bypass');
+});
+
+
