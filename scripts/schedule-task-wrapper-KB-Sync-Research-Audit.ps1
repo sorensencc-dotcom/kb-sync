@@ -54,13 +54,26 @@ try {
 # Verify clean state (no quarantined notebooks remaining)
 try {
     Write-LogInfo "Verifying zero remaining quarantined notebooks..."
-    & node scripts/pipeline/cluster-sync-runner.mjs --mode=catchup --dry-run 2>&1 | Tee-Object -FilePath $LogFile -Append
+    & node scripts/pipeline/cluster-sync-runner.mjs --check-quarantine 2>&1 | Tee-Object -FilePath $LogFile -Append
     if ($LASTEXITCODE -ne 0) {
-        Write-LogError "Catchup check detected unrecovered notebooks."
+        Write-LogError "Quarantine check detected unrecovered notebooks (exit code $LASTEXITCODE)."
         $OverallStatus = 1
     }
 } catch {
     Write-LogError "Quarantine audit failed: $_"
+    $OverallStatus = 1
+}
+
+# Dry-run catchup preview (non-destructive)
+try {
+    Write-LogInfo "Running catchup dry-run preview..."
+    & node scripts/pipeline/cluster-sync-runner.mjs --mode=catchup --dry-run 2>&1 | Tee-Object -FilePath $LogFile -Append
+    if ($LASTEXITCODE -ne 0) {
+        Write-LogError "Catchup dry-run preview failed with exit code $LASTEXITCODE."
+        $OverallStatus = 1
+    }
+} catch {
+    Write-LogError "Catchup dry-run preview failed: $_"
     $OverallStatus = 1
 }
 

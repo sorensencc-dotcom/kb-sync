@@ -23,7 +23,6 @@ import {
   listNotebookSources
 } from '../nlm-pack-replace-gate.mjs';
 import { consolidatePacks } from '../consolidate-pack.mjs';
-import { generateDynamicQuestionBattery } from '../mining/dynamic-question-battery.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +36,10 @@ export const MANIFEST_PATHS = [
 
 export const QUARANTINE_FILE = path.resolve(REPO_ROOT, '.nlm-quarantine.json');
 export const SYNC_STATUS_FILE = path.resolve(REPO_ROOT, '.sync-status.json');
+
+function resolveQuarantineFile(customPath) {
+  return customPath || process.env.NLM_QUARANTINE_FILE || QUARANTINE_FILE;
+}
 
 const COLOR = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', cyan: '\x1b[36m', reset: '\x1b[0m' };
 const logInfo = (msg) => console.log(`${COLOR.green}[CLUSTER-SYNC] [INFO]${COLOR.reset} ${msg}`);
@@ -86,10 +89,10 @@ export function loadManifest() {
   return manifest;
 }
 
-export function loadQuarantine() {
-  if (fs.existsSync(QUARANTINE_FILE)) {
+export function loadQuarantine(quarantineFile = resolveQuarantineFile()) {
+  if (fs.existsSync(quarantineFile)) {
     try {
-      return JSON.parse(fs.readFileSync(QUARANTINE_FILE, 'utf8'));
+      return JSON.parse(fs.readFileSync(quarantineFile, 'utf8'));
     } catch {
       return { quarantined: {} };
     }
@@ -97,22 +100,61 @@ export function loadQuarantine() {
   return { quarantined: {} };
 }
 
-export function recordQuarantine(notebookId, key, error) {
-  const data = loadQuarantine();
+export function checkQuarantineState(data = {}) {
+  if (!data || typeof data !== 'object') {
+    return { ok: true, quarantined: [] };
+  }
+  const sourceMap =
+    data.quarantined && typeof data.quarantined === 'object' && !Array.isArray(data.quarantined)
+      ? data.quarantined
+      : data;
+  const quarantined = [];
+  for (const [uuid, info] of Object.entries(sourceMap)) {
+    if (uuid === 'quarantined') continue;
+    if (info && typeof info === 'object') {
+      quarantined.push({
+        uuid,
+        key: info.key || 'unknown',
+        error: info.error || '',
+      });
+    }
+  }
+  return {
+    ok: quarantined.length === 0,
+    quarantined,
+  };
+}
+
+export function runQuarantineCheck(quarantineFile = resolveQuarantineFile()) {
+  const data = loadQuarantine(quarantineFile);
+  const result = checkQuarantineState(data);
+  if (result.ok) {
+    logInfo('[QUARANTINE-CHECK] 0 quarantined notebooks remaining.');
+    return result;
+  }
+  logError(`[QUARANTINE-CHECK] ${result.quarantined.length} quarantined notebook(s) remaining:`);
+  for (const entry of result.quarantined) {
+    logError(`  - key=${entry.key} uuid=${entry.uuid} error=${entry.error}`);
+  }
+  return result;
+}
+
+export function recordQuarantine(notebookId, key, error, quarantineFile = resolveQuarantineFile()) {
+  const data = loadQuarantine(quarantineFile);
   data.quarantined[notebookId] = {
     key,
     error,
     quarantinedAt: new Date().toISOString()
   };
-  fs.writeFileSync(QUARANTINE_FILE, JSON.stringify(data, null, 2), 'utf8');
+  fs.writeFileSync(quarantineFile, JSON.stringify(data, null, 2), 'utf8');
   logWarn(`[QUARANTINE-LOGGED] Notebook ${notebookId} (${key}) quarantined: ${error}`);
 }
 
-export function clearQuarantine(notebookId) {
-  const data = loadQuarantine();
+export function clearQuarantine(notebookId, quarantineFile = resolveQuarantineFile()) {
+  const data = loadQuarantine(quarantineFile);
   if (data.quarantined[notebookId]) {
     delete data.quarantined[notebookId];
-    fs.writeFileSync(QUARANTINE_FILE, JSON.stringify(data, null, 2), 'utf8');
+    fs.writeFileSync(quarantineFile, JSON.stringify(data, null, 2), 'utf8');
     logInfo(`[QUARANTINE-CLEARED] Notebook ${notebookId} cleared from quarantine.`);
   }
 }
@@ -207,7 +249,7 @@ export function findStagedPackFiles(notebook, candidateDirs = DEFAULT_PACK_CANDI
     }).sort().map(f => path.join(packDir, f));
 
     if (matched.length > 0) {
-      const parts = matched.filter(f => /[_-]part[_-]?[a-z0-9]+\.txt$/i.test(f));
+      const parts = matched.filter(f => PART_FILE_RE.test(f));
       if (parts.length > 0) return parts;
       return matched;
     }
@@ -216,8 +258,32 @@ export function findStagedPackFiles(notebook, candidateDirs = DEFAULT_PACK_CANDI
   return [];
 }
 
+export const PART_FILE_RE = /[_-]part[_-]?[a-z0-9]+\.txt$/i;
+
+export function resolveExpectedPartCount(notebook = {}, packFiles = []) {
+  if (typeof notebook?.expected_parts === 'number' && Number.isFinite(notebook.expected_parts)) {
+    return notebook.expected_parts;
+  }
+  const files = Array.isArray(packFiles) ? packFiles : [];
+  const partFiles = files.filter(f => PART_FILE_RE.test(path.basename(String(f))));
+  if (partFiles.length > 0) {
+    return partFiles.length;
+  }
+  if (notebook?.multipart && files.length > 0) {
+    return files.length;
+  }
+  return 1;
+}
+
 export async function runNotebookSweep(notebook, options = {}) {
-  const { isDryRun = false, mode = 'ops', timeoutMs = 300000, candidateDirs = DEFAULT_PACK_CANDIDATE_DIRS } = options;
+  const {
+    isDryRun = false,
+    mode = 'ops',
+    timeoutMs = 300000,
+    candidateDirs = DEFAULT_PACK_CANDIDATE_DIRS,
+    replacePackFn = replacePackFamilyAtomic,
+    generateQuestionBattery = null,
+  } = options;
   logStep(`=== Running sync for [${notebook.key}] (${notebook.uuid}) ===`);
 
   const summary = {
@@ -241,11 +307,11 @@ export async function runNotebookSweep(notebook, options = {}) {
       if (packFiles.length === 0) {
         logWarn(`WARN: No staged pack files found for pack family "${notebook.pack_family}" in directories searched: ${candidateDirs.join(', ')}; skipping upload.`);
       } else if (!isDryRun) {
-        await replacePackFamilyAtomic({
+        await replacePackFn({
           cli: 'nlm',
           notebookId: notebook.uuid,
           packFiles,
-          expectedPartCount: notebook.multipart ? packFiles.length : (notebook.expected_parts || 1),
+          expectedPartCount: resolveExpectedPartCount(notebook, packFiles),
           hasPack: true,
           timeoutMs,
           quarantineHandler: (id, err) => recordQuarantine(id, notebook.key, err),
@@ -257,7 +323,15 @@ export async function runNotebookSweep(notebook, options = {}) {
 
     // 2. Chat Injection & Dynamic Gap Mining
     logInfo(`Mining dynamic questions for ${notebook.key}...`);
-    const battery = generateDynamicQuestionBattery(notebook.key);
+    let batteryFn = generateQuestionBattery;
+    if (!batteryFn) {
+      try {
+        ({ generateDynamicQuestionBattery: batteryFn } = await import('../mining/dynamic-question-battery.mjs'));
+      } catch {
+        batteryFn = () => ({ questions: [], entropy: 0, source: 'fallback_unavailable' });
+      }
+    }
+    const battery = batteryFn(notebook.key);
     summary.questionsMined = battery.questions ? battery.questions.length : 0;
     summary.batteryEntropy = battery.entropy;
     logInfo(`Mined ${summary.questionsMined} question(s) with entropy ${battery.entropy} (source: ${battery.source})`);
@@ -347,12 +421,19 @@ if (mainFile === thisFile) {
   let mode = 'ops';
   let dryRun = false;
   let notebook = null;
+  let checkQuarantine = false;
 
   for (const a of args) {
-    if (a.startsWith('--mode=')) mode = a.split('=')[1];
+    if (a === '--check-quarantine') checkQuarantine = true;
+    else if (a.startsWith('--mode=')) mode = a.split('=')[1];
     else if (a === '--dry-run') dryRun = true;
     else if (a.startsWith('--notebook=')) notebook = a.split('=')[1];
     else if (!a.startsWith('--')) mode = a;
+  }
+
+  if (checkQuarantine) {
+    const checkResult = runQuarantineCheck();
+    process.exit(checkResult.ok ? 0 : 1);
   }
 
   executeClusterSync({ mode, dryRun, notebook })
