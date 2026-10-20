@@ -105,7 +105,7 @@ export function parseGapItems(content) {
   for (const line of lines) {
     const trimmed = line.trim();
     // Match - [ ] or - [x] or - [/] followed by optional [GAP-XXX] or text
-    const match = trimmed.match(/^-\s*\[([ xX/])\]\s*(?:\[([^\]]+)\])?\s*(.*)$/);
+    const match = trimmed.match(/^-\s*\[([ xX/])\]\s*(?:\[(GAP-\d+)\])?\s*(.*)$/);
     if (match) {
       const checkState = match[1].toLowerCase();
       let status = 'pending';

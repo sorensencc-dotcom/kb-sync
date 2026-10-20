@@ -339,7 +339,8 @@ export function copyDocsCollisionSafe(srcDirs: string[], destDir: string): DocCo
         } else if (entry.isFile() && DOC_FILE_RE.test(entry.name)) {
           // Never blindly stamp navigation from a source tree - sidebar is applied
           // via applyGuardedSidebar so foreign kb-sync fragments cannot leak.
-          if (entry.name === '_Sidebar.md' || entry.name === '_Footer.md') continue;
+          const lowerName = entry.name.toLowerCase();
+          if (lowerName === '_sidebar.md' || lowerName === '_footer.md') continue;
           files.set(toPosix(path.relative(srcDir, fullSrc)), fullSrc);
         }
       }
