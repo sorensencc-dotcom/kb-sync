@@ -473,6 +473,8 @@ function extractMetadata(file, content) {
   };
 }
 
+const wikiLinkCache = new Map();
+
 function validateFile(file, registry, repoRootPath, targetDir = null) {
   const errors = [];
   const warnings = [];
@@ -512,27 +514,37 @@ function validateFile(file, registry, repoRootPath, targetDir = null) {
 
     for (const match of scanContent.matchAll(WIKI_LINK_RE)) {
       const rawTarget = match[1].trim();
+
+      if (wikiLinkCache.has(rawTarget)) {
+        const cachedWarning = wikiLinkCache.get(rawTarget);
+        if (cachedWarning) warnings.push(cachedWarning);
+        continue;
+      }
+
+      let warningMsg = null;
       const name = rawTarget.toLowerCase().replace(/\.md$/, '');
       const cleanTarget = name.replace(/^kb-sync\/(?:wiki\/)?/, '');
       const baseName = path.basename(rawTarget, '.md').toLowerCase();
       const hit = registry.get(name) || registry.get(cleanTarget) || registry.get(baseName);
       if (!hit) {
         const suggestions = findSuggestions(name, registry);
-        let msg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
+        warningMsg = `unresolved wiki-link [[${rawTarget}]] (no matching page in wiki registry)`;
         if (suggestions.length > 0) {
           const suggStr = suggestions.map(s => `[[${s.name}]]`).join(' or ');
-          msg += `. Did you mean: ${suggStr}?`;
+          warningMsg += `. Did you mean: ${suggStr}?`;
         }
-        warnings.push(msg);
       } else if (hit.length > 1) {
         const exactMatch = hit.find(h => {
           const hLower = h.toLowerCase().replace(/\.md$/, '');
           return hLower === cleanTarget || hLower === name || hLower.endsWith('/' + cleanTarget);
         });
         if (!exactMatch) {
-          warnings.push(`ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`);
+          warningMsg = `ambiguous wiki-link [[${rawTarget}]] matches ${hit.length} pages: ${hit.join(', ')}`;
         }
       }
+
+      wikiLinkCache.set(rawTarget, warningMsg);
+      if (warningMsg) warnings.push(warningMsg);
     }
   }
 
