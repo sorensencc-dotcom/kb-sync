@@ -11,6 +11,7 @@ import {
   isForeignSidebarFragment,
   applyGuardedSidebar,
   listExistingWikiPageSlugs,
+  copyDocsCollisionSafe,
   KB_SYNC_ONLY_SIDEBAR_TARGETS,
   type FleetReconcileReport
 } from '../modules/wiki/fleet-wiki-reconciler.ts';
@@ -156,6 +157,28 @@ test('applyGuardedSidebar respects marketplace allowlist even when foreign pages
     assert.equal(written.includes('kb-sync-readme'), false);
   } finally {
     fs.rmSync(wikiDir, { recursive: true, force: true });
+  }
+});
+
+test('copyDocsCollisionSafe explicitly excludes all variants of _Sidebar.md and _Footer.md', () => {
+  const srcDir = fs.mkdtempSync(path.join(os.tmpdir(), 'copydocs-src-'));
+  const destDir = fs.mkdtempSync(path.join(os.tmpdir(), 'copydocs-dest-'));
+  try {
+    fs.writeFileSync(path.join(srcDir, '_sidebar.md'), 'test');
+    fs.writeFileSync(path.join(srcDir, '_Sidebar.MD'), 'test');
+    fs.writeFileSync(path.join(srcDir, '_FOOTER.md'), 'test');
+    fs.writeFileSync(path.join(srcDir, 'Home.md'), 'test');
+
+    const result = copyDocsCollisionSafe([srcDir], destDir);
+
+    assert.equal(result.copied, 1);
+    assert.ok(result.written['Home.md']);
+    assert.equal(fs.existsSync(path.join(destDir, '_sidebar.md')), false);
+    assert.equal(fs.existsSync(path.join(destDir, '_Sidebar.MD')), false);
+    assert.equal(fs.existsSync(path.join(destDir, '_FOOTER.md')), false);
+  } finally {
+    fs.rmSync(srcDir, { recursive: true, force: true });
+    fs.rmSync(destDir, { recursive: true, force: true });
   }
 });
 
