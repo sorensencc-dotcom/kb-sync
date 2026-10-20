@@ -8,6 +8,8 @@ status: "active"
 
 ## Open
 
+- [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-10-20) — 1 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate. Affected: wiki/entities/run-sibling-check.mjs.md <!-- todo-group: kb-sync-documentation-drift -->
+
 - [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-10-17) — 1 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
 
 - [ ] **[P2] kb-sync documentation drift remediation (batch)** (created 2026-10-15) — 12 sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.
