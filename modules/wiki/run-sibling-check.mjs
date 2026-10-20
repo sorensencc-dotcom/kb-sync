@@ -86,13 +86,15 @@ async function main() {
 
             // Extract the files mentioned in the existing open TODO item by matching
             // the wiki sibling names (e.g. `watch-competitors-v2.mjs.md`)
-            const existingFiles = new Set(
-              [...content.matchAll(/wiki\/entities\/([\w.\-]+\.md)/g)].map(m => m[1].replace(/\.md$/, ''))
-            );
-
-            // Also extract all previously recorded wiki siblings to merge
             const taskLineMatch = content.match(/- \[ \] \*\*\[P2\] kb-sync documentation drift remediation \(batch\)\*\*.*?(?:\r?\n|$)/);
+
+            const existingFiles = new Set();
             if (taskLineMatch) {
+              const matches = [...taskLineMatch[0].matchAll(/(?:wiki\/[^\s,]+?\/)?([\w.\-]+\.md)/g)];
+              for (const m of matches) {
+                existingFiles.add(m[1].replace(/\.md$/, ''));
+              }
+
               const affectedMatch = taskLineMatch[0].match(/Affected:\s+(.+)$/);
               if (affectedMatch) {
                 const oldFiles = affectedMatch[1].split(',').map(s => s.trim());
