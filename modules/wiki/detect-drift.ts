@@ -575,28 +575,69 @@ function parseWikiLogTimestamp(): string | null {
   ];
 
   let latestDate: Date | null = null;
+  const bufferSize = 64 * 1024;
+  const dateRegex = /##\s*\[([^\]]+)\]/g;
 
   for (const logPath of possibleLogPaths) {
     if (!fs.existsSync(logPath)) continue;
 
     try {
-      const content = fs.readFileSync(logPath, "utf8");
-      const matches = content.matchAll(/##\s*\[([^\]]+)\]/g);
+      const fd = fs.openSync(logPath, "r");
+      const buffer = Buffer.alloc(bufferSize);
+      let bytesRead = 0;
+      let leftOver = "";
 
-      for (const match of matches) {
-        let dateStr = match[1].trim();
-        if (dateStr.endsWith(" UTC")) {
-          dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
-        } else if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(dateStr)) {
-          dateStr = dateStr.replace(" ", "T") + ":00Z";
+      while ((bytesRead = fs.readSync(fd, buffer, 0, buffer.length, null)) > 0) {
+        const chunk = leftOver + buffer.toString("utf8", 0, bytesRead);
+
+        const lastNewline = chunk.lastIndexOf("\n");
+        let processStr = chunk;
+
+        if (lastNewline !== -1 && bytesRead === buffer.length) {
+          processStr = chunk.slice(0, lastNewline);
+          leftOver = chunk.slice(lastNewline);
+        } else {
+          leftOver = "";
         }
-        const d = new Date(dateStr);
-        if (!isNaN(d.getTime())) {
-          if (!latestDate || d > latestDate) {
-            latestDate = d;
+
+        let match;
+        dateRegex.lastIndex = 0;
+        while ((match = dateRegex.exec(processStr)) !== null) {
+          let dateStr = match[1].trim();
+          if (dateStr.endsWith(" UTC")) {
+            dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
+          } else if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(dateStr)) {
+            dateStr = dateStr.replace(" ", "T") + ":00Z";
+          }
+          const d = new Date(dateStr);
+          if (!isNaN(d.getTime())) {
+            if (!latestDate || d > latestDate) {
+              latestDate = d;
+            }
           }
         }
       }
+
+      if (leftOver) {
+        dateRegex.lastIndex = 0;
+        let match;
+        while ((match = dateRegex.exec(leftOver)) !== null) {
+          let dateStr = match[1].trim();
+          if (dateStr.endsWith(" UTC")) {
+            dateStr = dateStr.replace(" UTC", "Z").replace(" ", "T");
+          } else if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(dateStr)) {
+            dateStr = dateStr.replace(" ", "T") + ":00Z";
+          }
+          const d = new Date(dateStr);
+          if (!isNaN(d.getTime())) {
+            if (!latestDate || d > latestDate) {
+              latestDate = d;
+            }
+          }
+        }
+      }
+
+      fs.closeSync(fd);
     } catch {}
   }
 
