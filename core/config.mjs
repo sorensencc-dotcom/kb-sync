@@ -62,6 +62,7 @@ export function validateCategoriesData(data) {
           throw new Error(`CATEGORY_CONFLICT: Alias collision for '${normAlias}' across distinct categories`);
         }
         seenAliases.add(normAlias);
+        seenTargets.set(normAlias, catDef.target);
       }
     }
   }
