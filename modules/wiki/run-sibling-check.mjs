@@ -65,15 +65,13 @@ async function main() {
           console.log(`  - Missing wiki sibling update: ${COLOR.yellow}${warn.wikiSibling}${COLOR.reset}\n`);
         }
 
-        // Generate consolidated TODO item rather than flooding TODOS.md with per-file items
-        const today = new Date().toISOString().slice(0, 10);
         const signatureKey = '**[P2] kb-sync documentation drift remediation (batch)**';
-        const taskLine = `- [ ] ${signatureKey} (created ${today}) — ${warnings.length} sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate.`;
+        const driftedFiles = new Set(warnings.map(w => w.file));
+        const allWikiSiblings = new Set(warnings.map(w => w.wikiSibling));
 
         // Deduplication: compare the currently drifted file set against what is already open in TODOS.md.
         // If the open item already covers these exact files (or a superset), skip writing — it's the same
         // recurring drift, not a new event.
-        const driftedFiles = new Set(warnings.map(w => w.file));
         const isRecurringDrift = (() => {
           const possiblePaths = [
             path.join(repoRoot, 'TODOS.md'),
@@ -91,6 +89,23 @@ async function main() {
             const existingFiles = new Set(
               [...content.matchAll(/wiki\/entities\/([\w.\-]+\.md)/g)].map(m => m[1].replace(/\.md$/, ''))
             );
+
+            // Also extract all previously recorded wiki siblings to merge
+            const taskLineMatch = content.match(/- \[ \] \*\*\[P2\] kb-sync documentation drift remediation \(batch\)\*\*.*?(?:\r?\n|$)/);
+            if (taskLineMatch) {
+              const affectedMatch = taskLineMatch[0].match(/Affected:\s+(.+)$/);
+              if (affectedMatch) {
+                const oldFiles = affectedMatch[1].split(',').map(s => s.trim());
+                for (const f of oldFiles) {
+                  if (f) allWikiSiblings.add(f);
+                }
+              } else {
+                for (const match of taskLineMatch[0].matchAll(/(wiki\/[^\s,]+?\.md)/g)) {
+                  allWikiSiblings.add(match[1]);
+                }
+              }
+            }
+
             // Check if every currently-drifted file is already captured in the open item
             const allCovered = [...driftedFiles].every(f => {
               const base = path.basename(f);
@@ -100,6 +115,11 @@ async function main() {
           }
           return false;
         })();
+
+        // Generate consolidated TODO item rather than flooding TODOS.md with per-file items
+        const today = new Date().toISOString().slice(0, 10);
+        const affectedFiles = Array.from(allWikiSiblings).join(', ');
+        const taskLine = `- [ ] ${signatureKey} (created ${today}) — ${allWikiSiblings.size} sibling wiki file(s) out of sync with code changes across workspace. Run wiki synthesis to regenerate. Affected: ${affectedFiles}`;
 
         if (isRecurringDrift) {
           logInfo(`Recurring drift — open P2 item already covers these ${warnings.length} file(s). Skipping duplicate TODOS.md entry.`);
