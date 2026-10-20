@@ -1,0 +1,19 @@
+.sync-status.json
+  s_f95fc772d12a9e::t_f5b01ee5c98881 13-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "65b6dc482104431a470a26970371b9776add352f",
+  "prompts": {},
+  "sessions": {
+    "s_f95fc772d12a9e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "82144fcb-9d46-41c3-aea0-c79210e2d6c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
