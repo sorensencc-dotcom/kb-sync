@@ -200,7 +200,7 @@ function buildWikiRegistry(...wikiRoots) {
       const strippedDot = name.replace(/^\./, '');
       const relPath = path.relative(root, file).replace(/\\/g, '/');
       const relPathLower = relPath.toLowerCase().replace(/\.md$/, '');
-      const keys = new Set([
+      const keys = [
         name,
         kebab,
         strippedDot,
@@ -209,15 +209,36 @@ function buildWikiRegistry(...wikiRoots) {
         `kb-sync/${relPathLower}`,
         `kb-sync/wiki/${relPathLower}`,
         `wiki/${relPathLower}`
-      ]);
+      ];
 
-      for (const key of keys) {
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
         if (!key) continue;
-        if (!registry.has(key)) registry.set(key, [relPath]);
-        else if (!registry.get(key).includes(relPath)) registry.get(key).push(relPath);
+
+        let dup = false;
+        for (let j = 0; j < i; j++) {
+          if (keys[j] === key) {
+            dup = true;
+            break;
+          }
+        }
+        if (dup) continue;
+
+        let set = registry.get(key);
+        if (set === undefined) {
+          registry.set(key, new Set([relPath]));
+        } else {
+          set.add(relPath);
+        }
       }
     }
   }
+
+  // Convert Set values back to arrays for compatibility
+  for (const [key, val] of registry) {
+    registry.set(key, Array.from(val));
+  }
+
   return registry;
 }
 

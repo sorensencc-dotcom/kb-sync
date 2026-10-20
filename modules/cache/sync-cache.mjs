@@ -225,31 +225,39 @@ export function syncKnowledgeCache(options = {}) {
     }
   }
 
-  for (const target of scanTargets) {
-    const targetAbs = path.resolve(repoRoot, target);
-    if (!fs.existsSync(targetAbs)) continue;
-
-    const stat = fs.statSync(targetAbs);
-    if (stat.isDirectory()) {
-      walkDirectory(targetAbs, target);
-    } else if (stat.isFile()) {
-      processFile(targetAbs, target);
-    }
-  }
-
-  // Purge removed documents if syncing whole repo context
   let deleted = 0;
-  const prefix = options.idPrefix;
-  if (prefix || !options.scanPaths) {
-    const deleteStmt = db.prepare('DELETE FROM kb_documents WHERE id = ?');
-    for (const [id] of existingDocs) {
-      const inScope = prefix ? id.startsWith(prefix) : !id.startsWith('product:');
-      if (inScope && !foundDocIds.has(id)) {
-        deleteStmt.run(id);
-        deleted++;
-        if (verbose) console.log(`[kb-cache] Deleted: ${id}`);
+
+  db.exec('BEGIN TRANSACTION');
+  try {
+    for (const target of scanTargets) {
+      const targetAbs = path.resolve(repoRoot, target);
+      if (!fs.existsSync(targetAbs)) continue;
+
+      const stat = fs.statSync(targetAbs);
+      if (stat.isDirectory()) {
+        walkDirectory(targetAbs, target);
+      } else if (stat.isFile()) {
+        processFile(targetAbs, target);
       }
     }
+
+    // Purge removed documents if syncing whole repo context
+    const prefix = options.idPrefix;
+    if (prefix || !options.scanPaths) {
+      const deleteStmt = db.prepare('DELETE FROM kb_documents WHERE id = ?');
+      for (const [id] of existingDocs) {
+        const inScope = prefix ? id.startsWith(prefix) : !id.startsWith('product:');
+        if (inScope && !foundDocIds.has(id)) {
+          deleteStmt.run(id);
+          deleted++;
+          if (verbose) console.log(`[kb-cache] Deleted: ${id}`);
+        }
+      }
+    }
+    db.exec('COMMIT');
+  } catch (error) {
+    db.exec('ROLLBACK');
+    throw error;
   }
 
   const total = inserted + updated + skipped;
