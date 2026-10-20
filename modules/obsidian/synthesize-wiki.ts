@@ -217,7 +217,7 @@ export function validateProposalSchema(proposal: SynthesisProposal, stagedManife
 
   const ALLOWED_BOUNDARIES = ["kb-sync/", "entities/", "concepts/", "utilities/", "daemons/", "scripts/", "tests/", "lessons/", "kb-sync/lessons/", "research/", "wiki/research/", "wiki/concepts/"];
   const isRootSpecial = proposal.vaultPath === "Log.md" || proposal.vaultPath === "Index.md";
-  const isValidBoundary = ALLOWED_BOUNDARIES.some((b) => proposal.vaultPath.startsWith(b)) || isRootSpecial;
+  const isValidBoundary = ALLOWED_BOUNDARIES.some((b) => proposal.vaultPath?.startsWith(b)) || isRootSpecial;
   if (!isValidBoundary) {
     errors.push(`Invalid vaultPath '${proposal.vaultPath}'. Must start with a canonical vault directory boundary.`);
   }
