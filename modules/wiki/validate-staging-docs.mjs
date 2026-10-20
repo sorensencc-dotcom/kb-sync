@@ -235,6 +235,10 @@ const FRONTMATTER_SCHEMA = {
 
 // Levenshtein distance: measure similarity between two strings
 function levenshteinDistance(a, b) {
+  if (Math.abs(a.length - b.length) > LEVENSHTEIN_THRESHOLD) {
+    return LEVENSHTEIN_THRESHOLD + 1;
+  }
+
   const m = a.length;
   const n = b.length;
   const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
@@ -265,9 +269,18 @@ function findSuggestions(name, registry, maxDistance = LEVENSHTEIN_THRESHOLD) {
   return suggestions.sort((a, b) => a.distance - b.distance).slice(0, 3);
 }
 
+// Global cache for alias disambiguation distances tied to the registry object
+const aliasDistanceCache = new WeakMap();
+
 // Detect alias usage: [[page|alias]] and suggest disambiguation
 function detectAliasDisambiguation(content, registry) {
   const suggestions = [];
+
+  let currentRegistryCache = aliasDistanceCache.get(registry);
+  if (!currentRegistryCache) {
+    currentRegistryCache = new Map();
+    aliasDistanceCache.set(registry, currentRegistryCache);
+  }
   for (const match of content.matchAll(ALIAS_LINK_RE)) {
     const page = match[1].trim();
     const alias = match[2].trim();
@@ -276,20 +289,30 @@ function detectAliasDisambiguation(content, registry) {
     const targetPaths = registry.get(pageLower) || registry.get(pageLower.replace(/^kb-sync\/(?:wiki\/)?/, '')) || [];
 
     // Check if alias could resolve to a different page
+    let candidateMatches = currentRegistryCache.get(aliasLower);
+
+    if (!candidateMatches) {
+      candidateMatches = [];
+      const aliasAlnum = aliasLower.replace(/[^a-z0-9]/g, '');
+      for (const [regName, paths] of registry) {
+        // If the alias is the human-formatted version of this target's own slug, it's not a conflict
+        if (regName.replace(/[^a-z0-9]/g, '') === aliasAlnum) continue;
+
+        if (levenshteinDistance(aliasLower, regName) <= LEVENSHTEIN_THRESHOLD) {
+          candidateMatches.push({ regName, paths });
+        }
+      }
+      currentRegistryCache.set(aliasLower, candidateMatches);
+    }
+
     const candidates = [];
-    const aliasAlnum = aliasLower.replace(/[^a-z0-9]/g, '');
-    for (const [regName, paths] of registry) {
+    for (const { regName, paths } of candidateMatches) {
       if (regName === pageLower) continue;
       // If this registry entry points to the same underlying file, it's not a conflict
       const isSameFile = targetPaths.length > 0 && paths.some(p => targetPaths.includes(p));
       if (isSameFile) continue;
 
-      // If the alias is the human-formatted version of this target's own slug, it's not a conflict
-      if (regName.replace(/[^a-z0-9]/g, '') === aliasAlnum) continue;
-
-      if (levenshteinDistance(aliasLower, regName) <= LEVENSHTEIN_THRESHOLD) {
-        candidates.push(regName);
-      }
+      candidates.push(regName);
     }
 
     if (candidates.length > 0) {
