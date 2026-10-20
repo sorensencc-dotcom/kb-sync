@@ -229,11 +229,7 @@ export function appendDriftTodo(repoRoot, taskLine, signatureKey) {
   // If TODOS.md does not exist anywhere, auto-create a baseline one in repo root
   if (!targetPath) {
     targetPath = path.join(repoRoot, 'TODOS.md');
-    try {
-      fs.writeFileSync(targetPath, '# Task List\n\n## Open\n\n', 'utf8');
-    } catch (_) {
-      return; // If write fails, exit gracefully
-    }
+    fs.writeFileSync(targetPath, '# TODOS\n\n## Open\n\n', 'utf8');
   }
 
   try {
