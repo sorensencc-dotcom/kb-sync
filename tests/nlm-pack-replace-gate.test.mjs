@@ -1027,3 +1027,77 @@ test('matchesPackFamily and isPackFamilyTitle recognize live H1 titles for modul
   assert.equal(matchesPackFamily('Personal OS Tasks Pack', 'personal-os'), false);
 });
 
+test('replacePackFamilyAtomic does not reuse pre-existing ACTIVE source by default, uploads fresh, and purges old active source', async () => {
+  const events = [];
+  const deleted = [];
+  const uploaded = [];
+  const warnings = [];
+  let listCall = 0;
+
+  const runList = async () => {
+    listCall++;
+    if (listCall === 1) {
+      // Pre-existing generation with identical filename in status 2 (ACTIVE)
+      return [{ id: 'stale-active-1', title: 'pack_master_kb.txt', status: 2 }];
+    }
+    events.push('polled-active');
+    return [
+      { id: 'stale-active-1', title: 'pack_master_kb.txt', status: 2 },
+      { id: 'fresh-active-1', title: 'pack_master_kb.txt', status: 2 },
+    ];
+  };
+
+  const runUpload = async (nbId, file) => {
+    assert.equal(deleted.length, 0, 'must not delete stale active source before upload completes');
+    events.push('uploaded');
+    uploaded.push(file);
+    return { source_id: 'fresh-active-1' };
+  };
+
+  const runDelete = async (id) => {
+    events.push(`deleted:${id}`);
+    deleted.push(id);
+    return true;
+  };
+
+  const res = await replacePackFamilyAtomic({
+    notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    packFiles: ['pack_master_kb.txt'],
+    expectedPartCount: 1,
+    runList,
+    runUpload,
+    runDelete,
+    logInfo: () => {},
+    logWarn: (msg) => warnings.push(msg),
+    waitMs: 1,
+  });
+
+  assert.equal(res.success, true);
+  assert.equal(uploaded.length, 1, 'must upload fresh part instead of reusing pre-existing active source');
+  assert.deepEqual(res.newSourceIds, ['fresh-active-1']);
+  assert.deepEqual(res.staleSourceIds, ['stale-active-1']);
+  assert.deepEqual(res.purgedOldSourceIds, ['stale-active-1']);
+  assert.deepEqual(events, ['uploaded', 'polled-active', 'deleted:stale-active-1']);
+  assert.equal(warnings.some((w) => w.includes('EXISTS_ACTIVE')), true);
+
+  // When allowReuse: true is explicitly provided, existing active source is reused
+  let uploadCalledWithReuse = false;
+  const resReuse = await replacePackFamilyAtomic({
+    notebookId: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    packFiles: ['pack_master_kb.txt'],
+    expectedPartCount: 1,
+    allowReuse: true,
+    runList: async () => [{ id: 'stale-active-1', title: 'pack_master_kb.txt', status: 2 }],
+    runUpload: async () => { uploadCalledWithReuse = true; return { source_id: 'new-id' }; },
+    runDelete: async () => true,
+    logInfo: () => {},
+    logWarn: () => {},
+    waitMs: 1,
+  });
+
+  assert.equal(resReuse.success, true);
+  assert.equal(uploadCalledWithReuse, false, 'must skip upload when allowReuse is explicitly true');
+  assert.deepEqual(resReuse.newSourceIds, ['stale-active-1']);
+});
+
+

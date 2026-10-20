@@ -540,6 +540,7 @@ export async function replacePackFamilyAtomic({
   packFiles = [],
   expectedPartCount = null,
   hasPack = true,
+  allowReuse = false,
   quarantineHandler = null,
   logInfo = console.log,
   logWarn = console.warn,
@@ -616,15 +617,23 @@ export async function replacePackFamilyAtomic({
   try {
     for (const file of packFiles) {
       const fileName = path.basename(file);
-      // Existence probe: Idempotent pre-flight (only reuse actually ACTIVE sources)
+      // Existence probe: Idempotent pre-flight (reuse only when allowReuse is explicitly enabled)
       const probe = probeExistingPackSource(liveSources, fileName);
-      if (probe.exists && probe.status === 'EXISTS_ACTIVE' && probe.sourceId) {
+      if (allowReuse && probe.exists && probe.status === 'EXISTS_ACTIVE' && probe.sourceId) {
         logInfo(`[EXISTS_ACTIVE] Reusing existing source for ${fileName} (${probe.sourceId})`);
         newGenerationSourceIds.push(probe.sourceId);
         continue;
       }
 
-      if (probe.exists && probe.status === 'EXISTS_ERROR') {
+      if (probe.exists && probe.status === 'EXISTS_ACTIVE') {
+        logWarn(
+          `[WARN] [EXISTS_ACTIVE] Pre-existing active source collision for ${fileName} (${probe.sourceId}); not reusing without generation verification, marking stale for replacement after new generation reaches ACTIVE.`
+        );
+        if (probe.sourceId) {
+          oldSourceIdSet.add(probe.sourceId);
+          staleSourceIds.push(probe.sourceId);
+        }
+      } else if (probe.exists && probe.status === 'EXISTS_ERROR') {
         logWarn(
           `[WARN] [EXISTS_ERROR] Stale error source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
         );
