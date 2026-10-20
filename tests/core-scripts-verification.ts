@@ -580,6 +580,31 @@ runTest("core/targets.mjs resolveNotebookId stays pure/fail-soft for unknown cat
   }
 });
 
+runTest("core/targets.mjs extractFrontmatterCategory correctly parses frontmatter categories", () => {
+  const { extractFrontmatterCategory } = targetsModule;
+
+  if (extractFrontmatterCategory(null) !== 'daily') throw new Error("Missing content should return 'daily'");
+  if (extractFrontmatterCategory('') !== 'daily') throw new Error("Empty content should return 'daily'");
+
+  const contentNoCategory = `---\ntitle: test\n---\nbody`;
+  if (extractFrontmatterCategory(contentNoCategory) !== 'daily') throw new Error("No category in frontmatter should return 'daily'");
+
+  const contentWithCategory = `---\ncategory: willow-run\n---\nbody`;
+  if (extractFrontmatterCategory(contentWithCategory) !== 'willow-run') throw new Error("Category present should return 'willow-run'");
+
+  const contentWithCategoryQuoted = `---\ncategory: "willow-run"\n---\nbody`;
+  if (extractFrontmatterCategory(contentWithCategoryQuoted) !== 'willow-run') throw new Error("Quoted category should return 'willow-run'");
+
+  const contentWithCategorySingleQuoted = `---\ncategory: 'willow-run'\n---\nbody`;
+  if (extractFrontmatterCategory(contentWithCategorySingleQuoted) !== 'willow-run') throw new Error("Single quoted category should return 'willow-run'");
+
+  const contentWithSpaces = `---\ncategory:   willow-run   \n---\nbody`;
+  if (extractFrontmatterCategory(contentWithSpaces) !== 'willow-run') throw new Error("Category with spaces should return 'willow-run'");
+
+  const contentWithExtraQuotes = `---\ncategory: "'willow-run'"\n---\nbody`;
+  if (extractFrontmatterCategory(contentWithExtraQuotes) !== "'willow-run'") throw new Error("Category with nested quotes should return inner string");
+});
+
 runTest("scripts/consolidate-pack.mjs excludes aliased non-historical categories from master-kb", () => {
   const tempDir = path.join(REPO_ROOT, ".test_consolidate_alias_exclusion");
   if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true, force: true });
