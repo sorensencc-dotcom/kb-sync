@@ -1,6 +1,7 @@
-import { test, describe } from 'node:test';
+import fs from 'node:fs';
+import { test, describe, mock, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData } from '../../core/config.mjs';
+import { validateCategoriesData, loadCategoriesData } from '../../core/config.mjs';
 
 describe('validateCategoriesData', () => {
   test('returns true for a valid category data object', () => {
@@ -172,6 +173,50 @@ describe('validateCategoriesData', () => {
     assert.throws(
       () => validateCategoriesData(data),
       /CATEGORY_INVARIANT_VIOLATION: Placeholder 'placeholder::test' invalid status 'invalid-status'/
+    );
+  });
+});
+
+describe('loadCategoriesData', () => {
+  afterEach(() => {
+    mock.restoreAll();
+  });
+
+  test('returns parsed JSON when file exists and is valid', () => {
+    const fakeData = { categories: { 'test': { target: 'uuid', title: 'Test', status: 'canonical' } } };
+    mock.method(fs, 'existsSync', () => true);
+    mock.method(fs, 'readFileSync', () => JSON.stringify(fakeData));
+
+    const result = loadCategoriesData();
+    assert.deepEqual(result, fakeData);
+  });
+
+  test('throws if categories.json does not exist', () => {
+    mock.method(fs, 'existsSync', () => false);
+
+    assert.throws(
+      () => loadCategoriesData(),
+      /CATEGORY_REGISTRY_UNAVAILABLE: categories.json not found at/
+    );
+  });
+
+  test('throws if categories.json fails to read', () => {
+    mock.method(fs, 'existsSync', () => true);
+    mock.method(fs, 'readFileSync', () => { throw new Error('EACCES: permission denied'); });
+
+    assert.throws(
+      () => loadCategoriesData(),
+      /CATEGORY_REGISTRY_UNAVAILABLE: Failed to read categories.json: EACCES: permission denied/
+    );
+  });
+
+  test('throws if categories.json contains invalid JSON', () => {
+    mock.method(fs, 'existsSync', () => true);
+    mock.method(fs, 'readFileSync', () => 'invalid-json');
+
+    assert.throws(
+      () => loadCategoriesData(),
+      /CATEGORY_REGISTRY_UNAVAILABLE: Failed to parse categories.json:/
     );
   });
 });
