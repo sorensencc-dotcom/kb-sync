@@ -1,32 +1,19 @@
 ---
 title: run-closed-loop-research.py
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/run-closed-loop-research.py
-sha256: ce6ccf53208ed52223577ab487d606d299c034f895b9bea112a58bcf2b8b5f6a
-lastCommit: 2026-08-22T22:27:29-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for run-closed-loop-research.py; redirects to 1 entity page.
 ---
 
-# run-closed-loop-research.py
+# run-closed-loop-research.py (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/run-closed-loop-research.py` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/run-closed-loop-research.py`
-- **Lines of Code:** 266
-- **Last Modified:** `2026-08-22T22:27:29-04:00`
-- **SHA-256:** `ce6ccf53208ed52223577ab487d606d299c034f895b9bea112a58bcf2b8b5f6a`
+Moved to:
 
-## Exported Symbols & API
-- `resolve_notebook_id`
-- `extract_frontmatter_category`
-- `log_info`
-- `log_warn`
-- `log_error`
-- `log_step`
-- `main`
-
-## Source Citations
-- Source: `scripts/run-closed-loop-research.py`
-- Repository: `kb-sync`
+- [[scripts/run-closed-loop-research.py|kb-sync--scripts-run-closed-loop-research.py--392c6b33]]

@@ -1,23 +1,19 @@
 ---
 title: adversarial-compactor.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/adversarial-compactor.test.mjs
-sha256: 0911277dcebd12d76eb4cdf3a0bd74c8f7b24ae6993563a25b21c26044409337
-lastCommit: 2026-08-11T21:30:51-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for adversarial-compactor.test.mjs; redirects to 1 entity page.
 ---
 
-# adversarial-compactor.test.mjs
+# adversarial-compactor.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/adversarial-compactor.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/adversarial-compactor.test.mjs`
-- **Lines of Code:** 123
-- **Last Modified:** `2026-08-11T21:30:51-04:00`
-- **SHA-256:** `0911277dcebd12d76eb4cdf3a0bd74c8f7b24ae6993563a25b21c26044409337`
+Moved to:
 
-## Source Citations
-- Source: `tests/adversarial-compactor.test.mjs`
-- Repository: `kb-sync`
+- [[tests/adversarial-compactor.test.mjs|kb-sync--tests-adversarial-compactor.test.mjs--9df0e1ec]]

@@ -1,33 +1,19 @@
 ---
 title: build-dag.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/build-dag.mjs
-sha256: 0d958410e66385af6c93f95b6abb6770cc38c8bf14b76e63a545883d7276fe37
-lastCommit: 2026-08-08T13:46:44-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for build-dag.mjs; redirects to 1 entity page.
 ---
 
-# build-dag.mjs
+# build-dag.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/build-dag.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/build-dag.mjs`
-- **Lines of Code:** 340
-- **Last Modified:** `2026-08-08T13:46:44-04:00`
-- **SHA-256:** `0d958410e66385af6c93f95b6abb6770cc38c8bf14b76e63a545883d7276fe37`
+Moved to:
 
-## Exported Symbols & API
-- `getPaths`
-- `getDeterministicTimestamp`
-- `ensureDirs`
-- `validateGeneration`
-- `checkHealth`
-- `atomicRenameSync`
-- `runRecovery`
-- `runGC`
-
-## Source Citations
-- Source: `scripts/build-dag.mjs`
-- Repository: `kb-sync`
+- [[scripts/build-dag.mjs|kb-sync--scripts-build-dag.mjs--5465d38b]]

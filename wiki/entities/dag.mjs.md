@@ -1,28 +1,19 @@
 ---
 title: dag.mjs
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/dag.mjs
-sha256: dffe71f1824dbffc26345c367f452a055c4a2941dbbefbd145ea49814c13f913
-lastCommit: 2026-08-12T22:28:55-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for dag.mjs; redirects to 1 entity page.
 ---
 
-# dag.mjs
+# dag.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `core/dag.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/dag.mjs`
-- **Lines of Code:** 238
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `dffe71f1824dbffc26345c367f452a055c4a2941dbbefbd145ea49814c13f913`
+Moved to:
 
-## Exported Symbols & API
-- `countNonTrivialSCCs`
-- `canonicalize`
-- `buildDagGraph`
-
-## Source Citations
-- Source: `core/dag.mjs`
-- Repository: `kb-sync`
+- [[core/dag.mjs|kb-sync--core-dag.mjs--376bc893]]

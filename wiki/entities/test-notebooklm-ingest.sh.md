@@ -1,23 +1,19 @@
 ---
 title: test-notebooklm-ingest.sh
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/modules/test-notebooklm-ingest.sh
-sha256: 544cc7f5110ba1851d8ef8a10511b1e378afd99938342fe0b8e7aa549eaa8098
-lastCommit: 2026-08-08T17:13:03-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for test-notebooklm-ingest.sh; redirects to 1 entity page.
 ---
 
-# test-notebooklm-ingest.sh
+# test-notebooklm-ingest.sh (moved)
 
-## Overview
-Synthesized entity documentation for `tests/modules/test-notebooklm-ingest.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/modules/test-notebooklm-ingest.sh`
-- **Lines of Code:** 254
-- **Last Modified:** `2026-08-08T17:13:03-04:00`
-- **SHA-256:** `544cc7f5110ba1851d8ef8a10511b1e378afd99938342fe0b8e7aa549eaa8098`
+Moved to:
 
-## Source Citations
-- Source: `tests/modules/test-notebooklm-ingest.sh`
-- Repository: `kb-sync`
+- [[tests/modules/test-notebooklm-ingest.sh|kb-sync--tests-modules-test-notebooklm-ingest.sh--3b60c961]]

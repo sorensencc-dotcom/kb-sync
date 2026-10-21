@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-09--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
-category: research
-topic: rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc
-gap_id: GAP-09--the-sorensen-photographic-archive
-status: draft
-created_at: 2026-09-25T10:33:36.226Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-09--the-sorensen-photographic-archive - **The Sorensen Photographic Archive"
+category: "research"
+topic: "rfc-gap-09-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
+gap_id: "GAP-09--the-sorensen-photographic-archive"
+status: "draft"
+created_at: "2026-10-21T12:30:38.305Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/the-henry-ford-sorensen-photographic-accessions.md","wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-under-sourc.md","wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md","wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md"]
 ---
 
 # RFC: GAP-09--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions - Series Labeling Conflation)**: **Series Labeling Conflation**: Secondary literature frequently conflates manuscript collection **Acc. 38** (Charles E. Sorensen Office Files) with the **64.167** photograph access
+Industrial Giants at Willow Run (under-sourced - Rivet Volume and Fastening Methods:)**: **Rivet Volume and Fastening Methods:** Each B-24 Liberator required over 300,000 rivets across more than 500 sizes [1] (with general component breakdowns estimating up to 700,000
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-15-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  >
-- **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [lexical_only]:
-  >
-- **rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
-  > --- title: "RFC: GAP-19--the-sorensen-photographic-archive - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc" gap_id: "GAP-19--the-sorensen-photographic-arc
+- **rfc-gap-03-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
+  > 
+- **rfc-gap-126-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
+  > 
+- **rfc-gap-106-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

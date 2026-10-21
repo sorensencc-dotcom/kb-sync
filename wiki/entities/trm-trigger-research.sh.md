@@ -1,23 +1,19 @@
 ---
 title: trm-trigger-research.sh
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/trm-trigger-research.sh
-sha256: 4b600f80375a957e840059c46c52bbc4657a953fdc74b28c8f77b182525eacc8
-lastCommit: 2026-08-29T21:54:50-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-trigger-research.sh; redirects to 1 entity page.
 ---
 
-# trm-trigger-research.sh
+# trm-trigger-research.sh (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/trm-trigger-research.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/trm-trigger-research.sh`
-- **Lines of Code:** 56
-- **Last Modified:** `2026-08-29T21:54:50-04:00`
-- **SHA-256:** `4b600f80375a957e840059c46c52bbc4657a953fdc74b28c8f77b182525eacc8`
+Moved to:
 
-## Source Citations
-- Source: `scripts/trm-trigger-research.sh`
-- Repository: `kb-sync`
+- [[scripts/trm-trigger-research.sh|kb-sync--scripts-trm-trigger-research.sh--1b78e652]]

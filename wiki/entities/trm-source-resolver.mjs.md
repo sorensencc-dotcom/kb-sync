@@ -1,26 +1,19 @@
 ---
 title: trm-source-resolver.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/trm-source-resolver.mjs
-sha256: d400e5e542f9032546d8b37cf7e3ad7a06b70340f1d2acd8183b9be9fdaf3bb5
-lastCommit: 2026-08-22T18:06:47-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-source-resolver.mjs; redirects to 1 entity page.
 ---
 
-# trm-source-resolver.mjs
+# trm-source-resolver.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/trm-source-resolver.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/trm-source-resolver.mjs`
-- **Lines of Code:** 64
-- **Last Modified:** `2026-08-22T18:06:47-04:00`
-- **SHA-256:** `d400e5e542f9032546d8b37cf7e3ad7a06b70340f1d2acd8183b9be9fdaf3bb5`
+Moved to:
 
-## Exported Symbols & API
-- `TRMSourceResolver`
-
-## Source Citations
-- Source: `modules/wiki/trm-source-resolver.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/trm-source-resolver.mjs|kb-sync--modules-wiki-trm-source-resolver.mjs--b5c8d39b]]

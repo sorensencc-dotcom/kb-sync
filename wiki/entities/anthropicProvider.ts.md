@@ -1,26 +1,19 @@
 ---
 title: anthropicProvider.ts
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/obsidian/providers/anthropicProvider.ts
-sha256: 2abd12a6e72b0cacfbec0c03f6ece0e07b99dae0c6e599a830870c5f5357e5a3
-lastCommit: 2026-08-15T13:26:14-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for anthropicProvider.ts; redirects to 1 entity page.
 ---
 
-# anthropicProvider.ts
+# anthropicProvider.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/obsidian/providers/anthropicProvider.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/obsidian/providers/anthropicProvider.ts`
-- **Lines of Code:** 162
-- **Last Modified:** `2026-08-15T13:26:14-04:00`
-- **SHA-256:** `2abd12a6e72b0cacfbec0c03f6ece0e07b99dae0c6e599a830870c5f5357e5a3`
+Moved to:
 
-## Exported Symbols & API
-- `AnthropicProvider`
-
-## Source Citations
-- Source: `modules/obsidian/providers/anthropicProvider.ts`
-- Repository: `kb-sync`
+- [[modules/obsidian/providers/anthropicProvider.ts|kb-sync--modules-obsidian-providers-anthropicProvider.ts--d4de665a]]

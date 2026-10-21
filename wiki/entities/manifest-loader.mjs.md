@@ -1,26 +1,19 @@
 ---
 title: manifest-loader.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/manifest-loader.mjs
-sha256: 9d277657f4743f6035911fdb754dbe68f56029b08c3916d538af52778226e3aa
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for manifest-loader.mjs; redirects to 1 entity page.
 ---
 
-# manifest-loader.mjs
+# manifest-loader.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/manifest-loader.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/manifest-loader.mjs`
-- **Lines of Code:** 35
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `9d277657f4743f6035911fdb754dbe68f56029b08c3916d538af52778226e3aa`
+Moved to:
 
-## Exported Symbols & API
-- `loadNormalizedManifest`
-
-## Source Citations
-- Source: `modules/compactor/manifest-loader.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/manifest-loader.mjs|kb-sync--modules-compactor-manifest-loader.mjs--a42c89bf]]

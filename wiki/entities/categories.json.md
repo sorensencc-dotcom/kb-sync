@@ -1,23 +1,19 @@
 ---
 title: categories.json
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/categories.json
-sha256: 83c5cea37970dfaa4c14f77548f408d30622f66c70fac397e102078389cebaf3
-lastCommit: 2026-08-29T22:34:30-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for categories.json; redirects to 1 entity page.
 ---
 
-# categories.json
+# categories.json (moved)
 
-## Overview
-Synthesized entity documentation for `core/categories.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/categories.json`
-- **Lines of Code:** 73
-- **Last Modified:** `2026-08-29T22:34:30-04:00`
-- **SHA-256:** `83c5cea37970dfaa4c14f77548f408d30622f66c70fac397e102078389cebaf3`
+Moved to:
 
-## Source Citations
-- Source: `core/categories.json`
-- Repository: `kb-sync`
+- [[core/categories.json|kb-sync--core-categories.json--639163bf]]

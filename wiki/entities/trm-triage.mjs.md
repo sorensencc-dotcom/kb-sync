@@ -1,23 +1,19 @@
 ---
 title: trm-triage.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/trm-triage.mjs
-sha256: d01f4e201455c375e07c77e409bb9bb0a67222ca222af0913069bfa46335f066
-lastCommit: 2026-08-26T17:38:38-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-triage.mjs; redirects to 1 entity page.
 ---
 
-# trm-triage.mjs
+# trm-triage.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/trm-triage.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/trm-triage.mjs`
-- **Lines of Code:** 62
-- **Last Modified:** `2026-08-26T17:38:38-04:00`
-- **SHA-256:** `d01f4e201455c375e07c77e409bb9bb0a67222ca222af0913069bfa46335f066`
+Moved to:
 
-## Source Citations
-- Source: `scripts/trm-triage.mjs`
-- Repository: `kb-sync`
+- [[scripts/trm-triage.mjs|kb-sync--scripts-trm-triage.mjs--b359105a]]

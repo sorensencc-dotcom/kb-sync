@@ -1,23 +1,19 @@
 ---
 title: schema.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/schema.md
-sha256: ece82b98105be73d5c0387d39e692f3f764e5f5a661acca4b48c2bb00292b072
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for schema.md; redirects to 1 entity page.
 ---
 
-# schema.md
+# schema.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/schema.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/schema.md`
-- **Lines of Code:** 225
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `ece82b98105be73d5c0387d39e692f3f764e5f5a661acca4b48c2bb00292b072`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/schema.md`
-- Repository: `kb-sync`
+- [[modules/wiki/schema.md|kb-sync--modules-wiki-schema.md--dde78ba7]]

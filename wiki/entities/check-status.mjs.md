@@ -1,23 +1,19 @@
 ---
 title: check-status.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/check-status.mjs
-sha256: 82d452938049ac85829754da07df4ea5194f666cafc30e457a7512c4a2c539c9
-lastCommit: 2026-08-03T16:54:16-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for check-status.mjs; redirects to 1 entity page.
 ---
 
-# check-status.mjs
+# check-status.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/check-status.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/check-status.mjs`
-- **Lines of Code:** 133
-- **Last Modified:** `2026-08-03T16:54:16-04:00`
-- **SHA-256:** `82d452938049ac85829754da07df4ea5194f666cafc30e457a7512c4a2c539c9`
+Moved to:
 
-## Source Citations
-- Source: `scripts/check-status.mjs`
-- Repository: `kb-sync`
+- [[scripts/check-status.mjs|kb-sync--scripts-check-status.mjs--77152e14]]

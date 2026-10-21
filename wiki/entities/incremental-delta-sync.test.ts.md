@@ -1,23 +1,19 @@
 ---
 title: incremental-delta-sync.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/incremental-delta-sync.test.ts
-sha256: 63aeaaeb816f77ad05e2350a27c80185bc55ee25f6789219b7ba141fe8acbdd7
-lastCommit: 2026-08-06T23:37:12-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for incremental-delta-sync.test.ts; redirects to 1 entity page.
 ---
 
-# incremental-delta-sync.test.ts
+# incremental-delta-sync.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/incremental-delta-sync.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/incremental-delta-sync.test.ts`
-- **Lines of Code:** 231
-- **Last Modified:** `2026-08-06T23:37:12-04:00`
-- **SHA-256:** `63aeaaeb816f77ad05e2350a27c80185bc55ee25f6789219b7ba141fe8acbdd7`
+Moved to:
 
-## Source Citations
-- Source: `tests/incremental-delta-sync.test.ts`
-- Repository: `kb-sync`
+- [[tests/incremental-delta-sync.test.ts|kb-sync--tests-incremental-delta-sync.test.ts--d7f41d79]]

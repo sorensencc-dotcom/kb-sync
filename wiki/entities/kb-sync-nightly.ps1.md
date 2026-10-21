@@ -1,23 +1,19 @@
 ---
 title: kb-sync-nightly.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/notebooklm/kb-sync-nightly.ps1
-sha256: 97175b1b9f8dc9e4e2dd228a5897ee1ed867fd2bcd03cfe3a4f743b2a62c29b3
-lastCommit: 2026-08-23T23:28:36-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for kb-sync-nightly.ps1; redirects to 1 entity page.
 ---
 
-# kb-sync-nightly.ps1
+# kb-sync-nightly.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/notebooklm/kb-sync-nightly.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/notebooklm/kb-sync-nightly.ps1`
-- **Lines of Code:** 199
-- **Last Modified:** `2026-08-23T23:28:36-04:00`
-- **SHA-256:** `97175b1b9f8dc9e4e2dd228a5897ee1ed867fd2bcd03cfe3a4f743b2a62c29b3`
+Moved to:
 
-## Source Citations
-- Source: `scripts/notebooklm/kb-sync-nightly.ps1`
-- Repository: `kb-sync`
+- [[scripts/notebooklm/kb-sync-nightly.ps1|kb-sync--scripts-notebooklm-kb-sync-nightly.ps1--f2b2a9bc]]

@@ -1,23 +1,19 @@
 ---
 title: watch-competitors.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/watch-competitors.test.ts
-sha256: f639e103420847008d519409723dd901b368cacdab888c141d470beee5eea10e
-lastCommit: 2026-08-23T16:10:42-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for watch-competitors.test.ts; redirects to 1 entity page.
 ---
 
-# watch-competitors.test.ts
+# watch-competitors.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/watch-competitors.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/watch-competitors.test.ts`
-- **Lines of Code:** 545
-- **Last Modified:** `2026-08-23T16:10:42-04:00`
-- **SHA-256:** `f639e103420847008d519409723dd901b368cacdab888c141d470beee5eea10e`
+Moved to:
 
-## Source Citations
-- Source: `tests/watch-competitors.test.ts`
-- Repository: `kb-sync`
+- [[tests/watch-competitors.test.ts|kb-sync--tests-watch-competitors.test.ts--76360e06]]

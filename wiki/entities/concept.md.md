@@ -1,23 +1,19 @@
 ---
 title: concept.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/templates/concept.md
-sha256: 675bfadfc200b1a074b78b12c711f894826018cd298578cabee28962cade7ef5
-lastCommit: 2026-07-11T07:40:52-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for concept.md; redirects to 1 entity page.
 ---
 
-# concept.md
+# concept.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/templates/concept.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/templates/concept.md`
-- **Lines of Code:** 141
-- **Last Modified:** `2026-07-11T07:40:52-04:00`
-- **SHA-256:** `675bfadfc200b1a074b78b12c711f894826018cd298578cabee28962cade7ef5`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/templates/concept.md`
-- Repository: `kb-sync`
+- [[modules/wiki/templates/concept.md|kb-sync--modules-wiki-templates-concept.md--aeef3547]]

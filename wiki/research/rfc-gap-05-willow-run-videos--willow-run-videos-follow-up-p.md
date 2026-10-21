@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-05--willow-run-videos - **Willow Run Videos (follow-up - Primary Objective
-category: research
-topic: rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-p
-gap_id: GAP-05--willow-run-videos
-status: draft
-created_at: 2026-09-21T12:41:26.148Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-05--willow-run-videos - **Willow Run Videos (follow-up - Permanent Steel Jigs for Center-Wing Alignment)**"
+category: "research"
+topic: "rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-p"
+gap_id: "GAP-05--willow-run-videos"
+status: "draft"
+created_at: "2026-10-21T12:16:51.215Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-25-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-10-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-adjacent-to.md","wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c.md","wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w.md"]
 ---
 
-# RFC: GAP-05--willow-run-videos - **Willow Run Videos (follow-up - Primary Objective
+# RFC: GAP-05--willow-run-videos - **Willow Run Videos (follow-up - Permanent Steel Jigs for Center-Wing Alignment)**
 
 ## 1. Problem Statement & Context
-)**: **Primary Objective:** Review **1942 monthly progress reports of the USAAF Materiel Command** alongside Charles E. Sorensen's personal daily pocket journals [2, 10-12].
+**Permanent Steel Jigs for Center-Wing Alignment**: To eliminate thermal distortion and manual hand-fitting, Ford discarded temporary outdoor/wooden jigs and engineered two-story,
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
-  >
-- **rfc-gap-25-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-25-willow-run-videos--willow-run-videos-follow-up-o.md`) [hybrid]:
-  >
-- **rfc-gap-10-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-10-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  >
+- **rfc-gap-08-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
+  > 
+- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c.md`) [hybrid]:
+  > 
+- **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-10--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
-category: research
-topic: rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc
-gap_id: GAP-10--the-sorensen-photographic-archive
-status: draft
-created_at: 2026-09-25T10:33:36.694Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-10--the-sorensen-photographic-archive - **The Sorensen Photographic Archive"
+category: "research"
+topic: "rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
+gap_id: "GAP-10--the-sorensen-photographic-archive"
+status: "draft"
+created_at: "2026-10-21T12:30:46.340Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-30-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-34-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
 ---
 
 # RFC: GAP-10--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions - Competing Cost Figures)**: **Competing Cost Figures**: Internal records reveal a **\$50,000 (25%) price discrepancy** between OPM head William S. Knudsen’s initial B-24 airframe estimate of **\$200,000** (Fo
+Industrial Giants at Willow Run (under-sourced - Stamping Tooling and Aluminum Forming:)**: **Stamping Tooling and Aluminum Forming:** Rather than using the soft Kirksite dies typical of the contemporary aircraft industry, Ford introduced hard steel dies mounted in heavy
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-30-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-30-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  >
-- **rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  >
-- **rfc-gap-34-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-34-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  >
+- **rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  > 
+- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
+  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+- **rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

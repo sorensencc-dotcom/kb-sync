@@ -1,23 +1,19 @@
 ---
 title: notebooklm-ps1-verification.test.ps1
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/notebooklm-ps1-verification.test.ps1
-sha256: 52d6876eb3fe42e83781ff1a0c461788cebf7d13b8c3035747eba973e8377be5
-lastCommit: 2026-08-05T19:46:38-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for notebooklm-ps1-verification.test.ps1; redirects to 1 entity page.
 ---
 
-# notebooklm-ps1-verification.test.ps1
+# notebooklm-ps1-verification.test.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `tests/notebooklm-ps1-verification.test.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/notebooklm-ps1-verification.test.ps1`
-- **Lines of Code:** 56
-- **Last Modified:** `2026-08-05T19:46:38-04:00`
-- **SHA-256:** `52d6876eb3fe42e83781ff1a0c461788cebf7d13b8c3035747eba973e8377be5`
+Moved to:
 
-## Source Citations
-- Source: `tests/notebooklm-ps1-verification.test.ps1`
-- Repository: `kb-sync`
+- [[tests/notebooklm-ps1-verification.test.ps1|kb-sync--tests-notebooklm-ps1-verification.test.ps1--547026dc]]

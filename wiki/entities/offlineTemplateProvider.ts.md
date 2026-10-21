@@ -1,26 +1,19 @@
 ---
 title: offlineTemplateProvider.ts
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/obsidian/providers/offlineTemplateProvider.ts
-sha256: ae8e692f2a8be7e8124ebfef400cd6d12bfeffc2bcf5c0be932968be22fff2d9
-lastCommit: 2026-08-09T16:56:43-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for offlineTemplateProvider.ts; redirects to 1 entity page.
 ---
 
-# offlineTemplateProvider.ts
+# offlineTemplateProvider.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/obsidian/providers/offlineTemplateProvider.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/obsidian/providers/offlineTemplateProvider.ts`
-- **Lines of Code:** 95
-- **Last Modified:** `2026-08-09T16:56:43-04:00`
-- **SHA-256:** `ae8e692f2a8be7e8124ebfef400cd6d12bfeffc2bcf5c0be932968be22fff2d9`
+Moved to:
 
-## Exported Symbols & API
-- `OfflineTemplateProvider`
-
-## Source Citations
-- Source: `modules/obsidian/providers/offlineTemplateProvider.ts`
-- Repository: `kb-sync`
+- [[modules/obsidian/providers/offlineTemplateProvider.ts|kb-sync--modules-obsidian-providers-offlineTemplateProvider.ts--39c465cb]]

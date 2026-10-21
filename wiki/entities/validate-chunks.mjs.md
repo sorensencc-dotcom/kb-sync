@@ -1,29 +1,19 @@
 ---
 title: validate-chunks.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/validate-chunks.mjs
-sha256: c602fbfff4544b53dcb1ba53cd62345d7971f46759410af930cd992409ae128c
-lastCommit: 2026-08-22T22:27:29-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for validate-chunks.mjs; redirects to 1 entity page.
 ---
 
-# validate-chunks.mjs
+# validate-chunks.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/validate-chunks.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/validate-chunks.mjs`
-- **Lines of Code:** 143
-- **Last Modified:** `2026-08-22T22:27:29-04:00`
-- **SHA-256:** `c602fbfff4544b53dcb1ba53cd62345d7971f46759410af930cd992409ae128c`
+Moved to:
 
-## Exported Symbols & API
-- `REQUIRED_PROVENANCE_FIELDS`
-- `extractFrontmatter`
-- `validateFileProvenance`
-- `validateResearchDirectories`
-
-## Source Citations
-- Source: `scripts/validate-chunks.mjs`
-- Repository: `kb-sync`
+- [[scripts/validate-chunks.mjs|kb-sync--scripts-validate-chunks.mjs--0cc731ff]]

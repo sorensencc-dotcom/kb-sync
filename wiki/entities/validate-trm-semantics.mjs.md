@@ -1,28 +1,19 @@
 ---
 title: validate-trm-semantics.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/validate-trm-semantics.mjs
-sha256: 6543a65c0f34d294b8a6c1053f6fdd2082c6003960bc6e1329137ac5962b7fbb
-lastCommit: 2026-08-15T13:42:49-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for validate-trm-semantics.mjs; redirects to 1 entity page.
 ---
 
-# validate-trm-semantics.mjs
+# validate-trm-semantics.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/validate-trm-semantics.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/validate-trm-semantics.mjs`
-- **Lines of Code:** 206
-- **Last Modified:** `2026-08-15T13:42:49-04:00`
-- **SHA-256:** `6543a65c0f34d294b8a6c1053f6fdd2082c6003960bc6e1329137ac5962b7fbb`
+Moved to:
 
-## Exported Symbols & API
-- `normalizePath`
-- `computeStreamHash`
-- `validateTrmPayloadSemantics`
-
-## Source Citations
-- Source: `modules/wiki/validate-trm-semantics.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/validate-trm-semantics.mjs|kb-sync--modules-wiki-validate-trm-semantics.mjs--c1922eae]]

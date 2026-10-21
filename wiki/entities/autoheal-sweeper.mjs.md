@@ -1,31 +1,19 @@
 ---
 title: autoheal-sweeper.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/autoheal-sweeper.mjs
-sha256: 60c5373d450d3e160e54f257697d5c943652213138efe4e20ac3eb7ad49e6e7c
-lastCommit: 2026-09-05T03:15:27Z
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for autoheal-sweeper.mjs; redirects to 1 entity page.
 ---
 
-# autoheal-sweeper.mjs
+# autoheal-sweeper.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/autoheal-sweeper.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/autoheal-sweeper.mjs`
-- **Lines of Code:** 397
-- **Last Modified:** `2026-09-05T03:15:27Z`
-- **SHA-256:** `60c5373d450d3e160e54f257697d5c943652213138efe4e20ac3eb7ad49e6e7c`
+Moved to:
 
-## Exported Symbols & API
-- `DETERMINISTIC_RULES`
-- `SEMANTIC_RULES`
-- `validateTimestamp`
-- `checkWorktreeCleanliness`
-- `autohealMetadata`
-- `sweepStagingVault`
-
-## Source Citations
-- Source: `modules/wiki/autoheal-sweeper.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/autoheal-sweeper.mjs|kb-sync--modules-wiki-autoheal-sweeper.mjs--ea5d43e5]]

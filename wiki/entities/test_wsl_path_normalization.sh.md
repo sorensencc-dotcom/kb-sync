@@ -1,23 +1,19 @@
 ---
 title: test_wsl_path_normalization.sh
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/test_wsl_path_normalization.sh
-sha256: 046362ca03ba494cdd2726d7a528497e057b26b4435ae0ada2e7d302c62f7168
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for test_wsl_path_normalization.sh; redirects to 1 entity page.
 ---
 
-# test_wsl_path_normalization.sh
+# test_wsl_path_normalization.sh (moved)
 
-## Overview
-Synthesized entity documentation for `tests/test_wsl_path_normalization.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/test_wsl_path_normalization.sh`
-- **Lines of Code:** 136
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `046362ca03ba494cdd2726d7a528497e057b26b4435ae0ada2e7d302c62f7168`
+Moved to:
 
-## Source Citations
-- Source: `tests/test_wsl_path_normalization.sh`
-- Repository: `kb-sync`
+- [[tests/test_wsl_path_normalization.sh|kb-sync--tests-test_wsl_path_normalization.sh--d936f4e7]]

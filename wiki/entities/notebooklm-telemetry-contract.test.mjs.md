@@ -1,23 +1,19 @@
 ---
 title: notebooklm-telemetry-contract.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/notebooklm-telemetry-contract.test.mjs
-sha256: 46f98766e58d5e6bb9534aec33df4de5685bb79c801fd14aa57b0a37a53c09d8
-lastCommit: 2026-08-26T08:56:58-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for notebooklm-telemetry-contract.test.mjs; redirects to 1 entity page.
 ---
 
-# notebooklm-telemetry-contract.test.mjs
+# notebooklm-telemetry-contract.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/notebooklm-telemetry-contract.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/notebooklm-telemetry-contract.test.mjs`
-- **Lines of Code:** 23
-- **Last Modified:** `2026-08-26T08:56:58-04:00`
-- **SHA-256:** `46f98766e58d5e6bb9534aec33df4de5685bb79c801fd14aa57b0a37a53c09d8`
+Moved to:
 
-## Source Citations
-- Source: `tests/notebooklm-telemetry-contract.test.mjs`
-- Repository: `kb-sync`
+- [[tests/notebooklm-telemetry-contract.test.mjs|kb-sync--tests-notebooklm-telemetry-contract.test.mjs--f4bf4dfa]]

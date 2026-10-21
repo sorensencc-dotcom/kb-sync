@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-06--willow-run-videos - **Willow Run Videos (follow-up - Why It Strengthens Findings
-category: research
-topic: rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w
-gap_id: GAP-06--willow-run-videos
-status: draft
-created_at: 2026-09-21T12:41:27.869Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-06--willow-run-videos - **Willow Run Videos (follow-up - Wright Field & USAAF Inspection Oversight)**"
+category: "research"
+topic: "rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-w"
+gap_id: "GAP-06--willow-run-videos"
+status: "draft"
+created_at: "2026-10-21T12:16:54.014Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-i.md","wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-follow-up-i.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-w.md","wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md","wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to.md"]
 ---
 
-# RFC: GAP-06--willow-run-videos - **Willow Run Videos (follow-up - Why It Strengthens Findings
+# RFC: GAP-06--willow-run-videos - **Willow Run Videos (follow-up - Wright Field & USAAF Inspection Oversight)**
 
 ## 1. Problem Statement & Context
-)**: **Why It Strengthens Findings:** Transcripts conflict regarding whether the May 17, 1942 educational mockup rollout was flatly rejected with **1,847 separate defects** [2, 13, 14],
+**Wright Field & USAAF Inspection Oversight**: The sources detail interactions with Army Air Forces inspectors and Wright Field officials regarding engineering change orders, early
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-i.md`) [lexical_only]:
-  >
-- **rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w.md`) [vector_only]:
-  > --- title: RFC: GAP-14--willow-run-videos - **Willow Run Videos follow-up - Why It Strengthens Findings category: research topic: rfc-gap-14-willow-run-videos--willow-run-videos-follow-up-w gap_id: GAP-14--willow-run-videos status: draft created_at:
-- **rfc-gap-26-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-26-willow-run-videos--willow-run-videos-follow-up-i.md`) [lexical_only]:
-  >
+- **rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
+  > 
+- **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
+  > 
+- **rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
+  > --- title: RFC: GAP-34--willow-run-videos - **Willow Run Videos adjacent-topics - The Train Wreck Hoaxes category: research topic: rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to gap_id: GAP-34--willow-run-videos status: draft created_at:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

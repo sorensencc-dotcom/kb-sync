@@ -1,23 +1,19 @@
 ---
 title: setup-master-schedule.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/setup-master-schedule.ps1
-sha256: 23cb180f06974d7d6f9fa5e50076e0044ec380f91e07d65a164d123b38ce5cca
-lastCommit: 2026-08-23T23:28:36-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for setup-master-schedule.ps1; redirects to 1 entity page.
 ---
 
-# setup-master-schedule.ps1
+# setup-master-schedule.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/setup-master-schedule.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/setup-master-schedule.ps1`
-- **Lines of Code:** 104
-- **Last Modified:** `2026-08-23T23:28:36-04:00`
-- **SHA-256:** `23cb180f06974d7d6f9fa5e50076e0044ec380f91e07d65a164d123b38ce5cca`
+Moved to:
 
-## Source Citations
-- Source: `scripts/setup-master-schedule.ps1`
-- Repository: `kb-sync`
+- [[scripts/setup-master-schedule.ps1|kb-sync--scripts-setup-master-schedule.ps1--b0307ded]]

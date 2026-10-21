@@ -1,0 +1,22 @@
+---
+title: "RfcGap14CicPostWarCicPostWarFollowUpTarget"
+category: "wiki"
+status: "active"
+draft: true
+created: "2026-10-05T18:20:46.991Z"
+---
+
+# RfcGap14CicPostWarCicPostWarFollowUpTarget
+
+## Summary
+Offline draft template for RfcGap14CicPostWarCicPostWarFollowUpTarget staged from wiki/research/rfc-gap-14-cic-post-war--cic-post-war-follow-up-target.md.
+
+## Purpose & Scope
+Draft specification for RfcGap14CicPostWarCicPostWarFollowUpTarget. Synthesized via OfflineTemplateProvider.
+
+## Operations & Details
+- Source: `wiki/research/rfc-gap-14-cic-post-war--cic-post-war-follow-up-target.md`
+- Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20261005-141950`
+
+## Related Pages
+- [[kb-sync/wiki/Index]]

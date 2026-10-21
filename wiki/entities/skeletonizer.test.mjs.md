@@ -1,26 +1,19 @@
 ---
 title: skeletonizer.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/skeletonizer.test.mjs
-sha256: 4e8ee179a22a78c1faef0e6c8994625fcd74bb172c06955468a077070f1e4f57
-lastCommit: 2026-08-11T18:34:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for skeletonizer.test.mjs; redirects to 1 entity page.
 ---
 
-# skeletonizer.test.mjs
+# skeletonizer.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/skeletonizer.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/skeletonizer.test.mjs`
-- **Lines of Code:** 70
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `4e8ee179a22a78c1faef0e6c8994625fcd74bb172c06955468a077070f1e4f57`
+Moved to:
 
-## Exported Symbols & API
-- `add`
-
-## Source Citations
-- Source: `tests/skeletonizer.test.mjs`
-- Repository: `kb-sync`
+- [[tests/skeletonizer.test.mjs|kb-sync--tests-skeletonizer.test.mjs--906bdc7c]]

@@ -1,23 +1,19 @@
 ---
 title: watch-competitors-v2.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/watch-competitors-v2.test.mjs
-sha256: 00a9919b30f580b6a2f2e1e097eb73f628767b757e765161b7b7ebb68491b1aa
-lastCommit: 2026-08-23T15:30:57-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for watch-competitors-v2.test.mjs; redirects to 1 entity page.
 ---
 
-# watch-competitors-v2.test.mjs
+# watch-competitors-v2.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/watch-competitors-v2.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/watch-competitors-v2.test.mjs`
-- **Lines of Code:** 87
-- **Last Modified:** `2026-08-23T15:30:57-04:00`
-- **SHA-256:** `00a9919b30f580b6a2f2e1e097eb73f628767b757e765161b7b7ebb68491b1aa`
+Moved to:
 
-## Source Citations
-- Source: `tests/watch-competitors-v2.test.mjs`
-- Repository: `kb-sync`
+- [[tests/watch-competitors-v2.test.mjs|kb-sync--tests-watch-competitors-v2.test.mjs--001b6f6d]]

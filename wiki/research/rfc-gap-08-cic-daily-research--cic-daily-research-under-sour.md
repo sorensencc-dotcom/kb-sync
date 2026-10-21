@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-08--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
-category: research
-topic: rfc-gap-08-cic-daily-research--cic-daily-research-under-sour
-gap_id: GAP-08--cic-daily-research
-status: draft
-created_at: 2026-09-24T11:49:29.106Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-08--cic-daily-research - **CIC - Daily Research (under-sourced - July 1908 Piquette Avenue Moving Assembly Line Trial)**"
+category: "research"
+topic: "rfc-gap-08-cic-daily-research--cic-daily-research-under-sour"
+gap_id: "GAP-08--cic-daily-research"
+status: "draft"
+created_at: "2026-10-21T12:09:50.484Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-55-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-under-sour.md","wiki/research/rfc-gap-33-cic-daily-research--cic-daily-research-under-sour.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-08.md","wiki/research/rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo.md","wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md"]
 ---
 
-# RFC: GAP-08--cic-daily-research - **CIC - Daily Research (under-sourced - The Refutation
+# RFC: GAP-08--cic-daily-research - **CIC - Daily Research (under-sourced - July 1908 Piquette Avenue Moving Assembly Line Trial)**
 
 ## 1. Problem Statement & Context
-)**: **The Refutation:** Sorensen's unedited Accession 65 dictations refute this as a legal fiction [cite: 62, 83, 362]. Sorensen documents that Ferguson was **"not a graduate engineer,
+**July 1908 Piquette Avenue Moving Assembly Line Trial**: Sorensen’s claim that he and foreman Charlie Lewis built the first moving assembly line by towing a Model T chassis with a
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-55-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-55-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  >
-- **rfc-gap-08-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  >
-- **rfc-gap-33-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-33-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
-  >
+- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [lexical_only]:
+  > 
+- **rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo** (`wiki/research/rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo.md`) [vector_only]:
+  > --- title: RFC: GAP-63--cic-kb - **CIC-KB open-contradictions - Moving Assembly Line Multi-Vocal Attribution GAP-17** category: research topic: rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo gap_id: GAP-63--cic-kb status: draft created_at: 2026-09-
+- **rfc-gap-76-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

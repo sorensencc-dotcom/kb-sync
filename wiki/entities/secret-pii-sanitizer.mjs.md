@@ -1,27 +1,19 @@
 ---
 title: secret-pii-sanitizer.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/secret-pii-sanitizer.mjs
-sha256: d2249c52e51b78486bc5f4fba84ec834f77ab6574e5d31f70aaed6c7b9df0b31
-lastCommit: 2026-08-12T22:28:55-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for secret-pii-sanitizer.mjs; redirects to 1 entity page.
 ---
 
-# secret-pii-sanitizer.mjs
+# secret-pii-sanitizer.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/secret-pii-sanitizer.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/secret-pii-sanitizer.mjs`
-- **Lines of Code:** 79
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `d2249c52e51b78486bc5f4fba84ec834f77ab6574e5d31f70aaed6c7b9df0b31`
+Moved to:
 
-## Exported Symbols & API
-- `scanAndSanitizeText`
-- `sanitizeFile`
-
-## Source Citations
-- Source: `modules/compactor/secret-pii-sanitizer.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/secret-pii-sanitizer.mjs|kb-sync--modules-compactor-secret-pii-sanitizer.mjs--0a4dae31]]

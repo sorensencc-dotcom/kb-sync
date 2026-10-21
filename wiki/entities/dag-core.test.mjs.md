@@ -1,23 +1,19 @@
 ---
 title: dag-core.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/dag-core.test.mjs
-sha256: e8e10ed6119c821035999e80c6c5ea845d0016b5bed595e02db7bddca9c9d50a
-lastCommit: 2026-08-08T14:22:31-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for dag-core.test.mjs; redirects to 1 entity page.
 ---
 
-# dag-core.test.mjs
+# dag-core.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/dag-core.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/dag-core.test.mjs`
-- **Lines of Code:** 194
-- **Last Modified:** `2026-08-08T14:22:31-04:00`
-- **SHA-256:** `e8e10ed6119c821035999e80c6c5ea845d0016b5bed595e02db7bddca9c9d50a`
+Moved to:
 
-## Source Citations
-- Source: `tests/dag-core.test.mjs`
-- Repository: `kb-sync`
+- [[tests/dag-core.test.mjs|kb-sync--tests-dag-core.test.mjs--182752a6]]

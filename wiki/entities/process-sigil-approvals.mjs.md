@@ -1,27 +1,19 @@
 ---
 title: process-sigil-approvals.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/process-sigil-approvals.mjs
-sha256: 1a8d361a14eedcffd2c1ea645ad923733ecca13ffd0357da82dbcf31e32aa7bf
-lastCommit: 2026-08-23T14:51:25-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for process-sigil-approvals.mjs; redirects to 1 entity page.
 ---
 
-# process-sigil-approvals.mjs
+# process-sigil-approvals.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/process-sigil-approvals.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/process-sigil-approvals.mjs`
-- **Lines of Code:** 118
-- **Last Modified:** `2026-08-23T14:51:25-04:00`
-- **SHA-256:** `1a8d361a14eedcffd2c1ea645ad923733ecca13ffd0357da82dbcf31e32aa7bf`
+Moved to:
 
-## Exported Symbols & API
-- `loadPendingEnvelopes`
-- `processApprovals`
-
-## Source Citations
-- Source: `scripts/process-sigil-approvals.mjs`
-- Repository: `kb-sync`
+- [[scripts/process-sigil-approvals.mjs|kb-sync--scripts-process-sigil-approvals.mjs--4b1a8799]]

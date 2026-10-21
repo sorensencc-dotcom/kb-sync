@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
 gap_id: "GAP-02--the-sorensen-photographic-archive"
 status: "draft"
-created_at: "2026-09-27T11:56:25.605Z"
+created_at: "2026-10-21T12:30:14.272Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-30-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-non-obviou.md","wiki/research/rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-02-cic-reddit--cic-reddit-non-obvious-connec.md"]
 ---
 
 # RFC: GAP-02--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (open-contradictions - Competing Cost Estimates)**: **Competing Cost Estimates**: Internal records reveal a **\$50,000 (25%) price discrepancy** between OPM head William S. Knudsen’s initial B-24 airframe estimate of **\$200,000** (
+Industrial Giants at Willow Run (non-obvious-connections - 2.)**: 2. Eliminating Fixture Adjustment through Dimensional Uniformity The concept of using part uniformity to simplify assembly fixtures originated early in Ford’s automotive history. W
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-02-cic-daily-research--cic-daily-research-non-obviou** (`wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-non-obviou.md`) [lexical_only]:
   > 
-- **rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-21-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  > 
-- **rfc-gap-30-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-30-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
+- **rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
+  > --- title: RFC: GAP-04--the-sorensen-photographic-archive - **The Sorensen Photographic Archive category: research topic: rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc gap_id: GAP-04--the-sorensen-photographic-archive st
+- **rfc-gap-02-cic-reddit--cic-reddit-non-obvious-connec** (`wiki/research/rfc-gap-02-cic-reddit--cic-reddit-non-obvious-connec.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

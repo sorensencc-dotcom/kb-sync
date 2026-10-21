@@ -1,23 +1,19 @@
 ---
 title: harvest_registry.json
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/harvest_registry.json
-sha256: 4745edf09bd72df6a658644836adbb8e321f98b2418e5500e0d48c27cbc6f175
-lastCommit: 2026-09-05T03:15:27Z
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for harvest_registry.json; redirects to 1 entity page.
 ---
 
-# harvest_registry.json
+# harvest_registry.json (moved)
 
-## Overview
-Synthesized entity documentation for `core/harvest_registry.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/harvest_registry.json`
-- **Lines of Code:** 60
-- **Last Modified:** `2026-09-05T03:15:27Z`
-- **SHA-256:** `4745edf09bd72df6a658644836adbb8e321f98b2418e5500e0d48c27cbc6f175`
+Moved to:
 
-## Source Citations
-- Source: `core/harvest_registry.json`
-- Repository: `kb-sync`
+- [[core/harvest_registry.json|kb-sync--core-harvest_registry.json--7351b681]]

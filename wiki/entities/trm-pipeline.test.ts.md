@@ -1,23 +1,19 @@
 ---
 title: trm-pipeline.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/trm-pipeline.test.ts
-sha256: 3f8cedefeda9e5f17d977d06bb71c5c89e934eac5fffae34008fc47d22e128ca
-lastCommit: 2026-08-21T19:58:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-pipeline.test.ts; redirects to 1 entity page.
 ---
 
-# trm-pipeline.test.ts
+# trm-pipeline.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/trm-pipeline.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/trm-pipeline.test.ts`
-- **Lines of Code:** 362
-- **Last Modified:** `2026-08-21T19:58:22-04:00`
-- **SHA-256:** `3f8cedefeda9e5f17d977d06bb71c5c89e934eac5fffae34008fc47d22e128ca`
+Moved to:
 
-## Source Citations
-- Source: `tests/trm-pipeline.test.ts`
-- Repository: `kb-sync`
+- [[tests/trm-pipeline.test.ts|kb-sync--tests-trm-pipeline.test.ts--162fcb2f]]

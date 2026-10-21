@@ -1,28 +1,19 @@
 ---
 title: run-closed-loop-research.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/run-closed-loop-research.mjs
-sha256: 04af0272b456f011858849116fd5652f5e50cb56597b5e380effb7c2427cb710
-lastCommit: 2026-08-22T22:27:29-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for run-closed-loop-research.mjs; redirects to 1 entity page.
 ---
 
-# run-closed-loop-research.mjs
+# run-closed-loop-research.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/run-closed-loop-research.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/run-closed-loop-research.mjs`
-- **Lines of Code:** 236
-- **Last Modified:** `2026-08-22T22:27:29-04:00`
-- **SHA-256:** `04af0272b456f011858849116fd5652f5e50cb56597b5e380effb7c2427cb710`
+Moved to:
 
-## Exported Symbols & API
-- `NOTEBOOK_TARGETS`
-- `resolveNotebookId`
-- `extractFrontmatterCategory`
-
-## Source Citations
-- Source: `scripts/run-closed-loop-research.mjs`
-- Repository: `kb-sync`
+- [[scripts/run-closed-loop-research.mjs|kb-sync--scripts-run-closed-loop-research.mjs--fe2330ec]]

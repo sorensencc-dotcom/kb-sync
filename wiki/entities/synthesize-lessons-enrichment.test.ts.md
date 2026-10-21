@@ -1,23 +1,19 @@
 ---
 title: synthesize-lessons-enrichment.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/synthesize-lessons-enrichment.test.ts
-sha256: c579f688e281e35642226385b668eca1df050f6df4fc98a1ed48f94c2e7e72db
-lastCommit: 2026-08-11T12:14:17-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for synthesize-lessons-enrichment.test.ts; redirects to 1 entity page.
 ---
 
-# synthesize-lessons-enrichment.test.ts
+# synthesize-lessons-enrichment.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/synthesize-lessons-enrichment.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/synthesize-lessons-enrichment.test.ts`
-- **Lines of Code:** 221
-- **Last Modified:** `2026-08-11T12:14:17-04:00`
-- **SHA-256:** `c579f688e281e35642226385b668eca1df050f6df4fc98a1ed48f94c2e7e72db`
+Moved to:
 
-## Source Citations
-- Source: `tests/synthesize-lessons-enrichment.test.ts`
-- Repository: `kb-sync`
+- [[tests/synthesize-lessons-enrichment.test.ts|kb-sync--tests-synthesize-lessons-enrichment.test.ts--21b650ee]]

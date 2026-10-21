@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-05--cic-daily-research - **CIC - Daily Research (follow-up - The Target
-category: research
-topic: rfc-gap-05-cic-daily-research--cic-daily-research-follow-up
-gap_id: GAP-05--cic-daily-research
-status: draft
-created_at: 2026-09-21T12:36:56.802Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-05--cic-daily-research - **CIC - Daily Research (follow-up - Primary Documents & Audits Needed"
+category: "research"
+topic: "rfc-gap-05-cic-daily-research--cic-daily-research-follow-up"
+gap_id: "GAP-05--cic-daily-research"
+status: "draft"
+created_at: "2026-10-21T12:09:42.276Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-cic-daily-research--cic-daily-research-follow-up.md","wiki/research/rfc-gap-61-cic-daily-research--cic-daily-research-open-contr.md","wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md"]
-sourceRepository: kb-sync
+citations: ["wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.md","product:trm/Architecture-&-Data-Model.md","wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-1.md"]
 ---
 
-# RFC: GAP-05--cic-daily-research - **CIC - Daily Research (follow-up - The Target
+# RFC: GAP-05--cic-daily-research - **CIC - Daily Research (follow-up - Primary Documents & Audits Needed
 
 ## 1. Problem Statement & Context
-)**: **The Target:** Transmit a formal FOIA appeal under 45 C.F.R. § 503 to the **Foreign Claims Settlement Commission** (ZIP 20579) [cite: 89, 260].
+)**: **Primary Documents & Audits Needed:**
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-05-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  >
-- **rfc-gap-61-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-61-cic-daily-research--cic-daily-research-open-contr.md`) [lexical_only]:
-  >
-- **rfc-gap-17-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
-  > --- title: RFC: GAP-17--cic-daily-research - **CIC - Daily Research follow-up - The Target category: research topic: rfc-gap-17-cic-daily-research--cic-daily-research-follow-up gap_id: GAP-17--cic-daily-research status: draft created_at: 2026-09-19T2
+- **rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.md`) [hybrid]:
+  > 
+- **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [lexical_only]:
+  > 
+- **rfc-gap-03-cic-kb--cic-kb-follow-up-1** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-1.md`) [vector_only]:
+  > --- title: "RFC: GAP-03--cic-kb - **CIC-KB follow-up - 1.**" category: "research" topic: "rfc-gap-03-cic-kb--cic-kb-follow-up-1" gap_id: "GAP-03--cic-kb" status: "draft" created_at: "2026-10-20T10:06:41.792Z" expansion_method: "heuristic" retrieval_m
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

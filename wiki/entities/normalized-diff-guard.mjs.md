@@ -1,29 +1,19 @@
 ---
 title: normalized-diff-guard.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/normalized-diff-guard.mjs
-sha256: 20b66a07c9bd7f7a46f4ccccc4e70efeb8551657a182246075a5eb5c17efb04c
-lastCommit: 2026-08-11T00:43:58-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for normalized-diff-guard.mjs; redirects to 1 entity page.
 ---
 
-# normalized-diff-guard.mjs
+# normalized-diff-guard.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/normalized-diff-guard.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/normalized-diff-guard.mjs`
-- **Lines of Code:** 155
-- **Last Modified:** `2026-08-11T00:43:58-04:00`
-- **SHA-256:** `20b66a07c9bd7f7a46f4ccccc4e70efeb8551657a182246075a5eb5c17efb04c`
+Moved to:
 
-## Exported Symbols & API
-- `ALLOWED_CATEGORIES`
-- `ALLOWED_STATUSES`
-- `parseDocument`
-- `validateAllowedDiff`
-
-## Source Citations
-- Source: `modules/wiki/normalized-diff-guard.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/normalized-diff-guard.mjs|kb-sync--modules-wiki-normalized-diff-guard.mjs--6372c63b]]

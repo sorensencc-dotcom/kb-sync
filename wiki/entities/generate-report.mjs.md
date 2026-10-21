@@ -1,23 +1,19 @@
 ---
 title: generate-report.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/artifact-generator/generate-report.mjs
-sha256: f957580d332e67c29219a60d583125f6a7302daca43056a09e125a127714fbe3
-lastCommit: 2026-07-21T15:52:50-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for generate-report.mjs; redirects to 1 entity page.
 ---
 
-# generate-report.mjs
+# generate-report.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/artifact-generator/generate-report.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/artifact-generator/generate-report.mjs`
-- **Lines of Code:** 437
-- **Last Modified:** `2026-07-21T15:52:50-04:00`
-- **SHA-256:** `f957580d332e67c29219a60d583125f6a7302daca43056a09e125a127714fbe3`
+Moved to:
 
-## Source Citations
-- Source: `modules/artifact-generator/generate-report.mjs`
-- Repository: `kb-sync`
+- [[modules/artifact-generator/generate-report.mjs|kb-sync--modules-artifact-generator-generate-report.mjs--8372bde5]]

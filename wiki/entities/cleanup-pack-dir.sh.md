@@ -1,23 +1,19 @@
 ---
 title: cleanup-pack-dir.sh
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/notebooklm/cleanup-pack-dir.sh
-sha256: 8530adafd6bd7d5ab360d68e343822df8a3200cb4ce6627cc587b123f6a3cccb
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cleanup-pack-dir.sh; redirects to 1 entity page.
 ---
 
-# cleanup-pack-dir.sh
+# cleanup-pack-dir.sh (moved)
 
-## Overview
-Synthesized entity documentation for `modules/notebooklm/cleanup-pack-dir.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/notebooklm/cleanup-pack-dir.sh`
-- **Lines of Code:** 26
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `8530adafd6bd7d5ab360d68e343822df8a3200cb4ce6627cc587b123f6a3cccb`
+Moved to:
 
-## Source Citations
-- Source: `modules/notebooklm/cleanup-pack-dir.sh`
-- Repository: `kb-sync`
+- [[modules/notebooklm/cleanup-pack-dir.sh|kb-sync--modules-notebooklm-cleanup-pack-dir.sh--77554626]]

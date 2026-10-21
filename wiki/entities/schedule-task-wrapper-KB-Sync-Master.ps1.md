@@ -1,23 +1,19 @@
 ---
 title: schedule-task-wrapper-KB-Sync-Master.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/schedule-task-wrapper-KB-Sync-Master.ps1
-sha256: fe10151b13dc4c00f79445afb8b3552442061fe7f1db2fafe20cdb8553769335
-lastCommit: 2026-09-05T03:18:14Z
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for schedule-task-wrapper-KB-Sync-Master.ps1; redirects to 1 entity page.
 ---
 
-# schedule-task-wrapper-KB-Sync-Master.ps1
+# schedule-task-wrapper-KB-Sync-Master.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/schedule-task-wrapper-KB-Sync-Master.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/schedule-task-wrapper-KB-Sync-Master.ps1`
-- **Lines of Code:** 166
-- **Last Modified:** `2026-09-05T03:18:14Z`
-- **SHA-256:** `fe10151b13dc4c00f79445afb8b3552442061fe7f1db2fafe20cdb8553769335`
+Moved to:
 
-## Source Citations
-- Source: `scripts/schedule-task-wrapper-KB-Sync-Master.ps1`
-- Repository: `kb-sync`
+- [[scripts/schedule-task-wrapper-KB-Sync-Master.ps1|kb-sync--scripts-schedule-task-wrapper-KB-Sync-Master.ps1--f63f9dde]]

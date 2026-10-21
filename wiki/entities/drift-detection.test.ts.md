@@ -1,23 +1,19 @@
 ---
 title: drift-detection.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/drift-detection.test.ts
-sha256: 04fcfa30686c7572d4b87e846647b20b2e575fc9364b9841b5c26896a5024bdd
-lastCommit: 2026-08-29T22:42:31-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for drift-detection.test.ts; redirects to 1 entity page.
 ---
 
-# drift-detection.test.ts
+# drift-detection.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/drift-detection.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/drift-detection.test.ts`
-- **Lines of Code:** 40
-- **Last Modified:** `2026-08-29T22:42:31-04:00`
-- **SHA-256:** `04fcfa30686c7572d4b87e846647b20b2e575fc9364b9841b5c26896a5024bdd`
+Moved to:
 
-## Source Citations
-- Source: `tests/drift-detection.test.ts`
-- Repository: `kb-sync`
+- [[tests/drift-detection.test.ts|kb-sync--tests-drift-detection.test.ts--07b9d42c]]

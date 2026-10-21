@@ -1,23 +1,19 @@
 ---
 title: ingest-obsidian.sh
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/obsidian/ingest-obsidian.sh
-sha256: 0bff5183b183abff49e1db2453993665cdbf202b06962faa35bcf1edfbb4061b
-lastCommit: 2026-08-24T14:51:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for ingest-obsidian.sh; redirects to 1 entity page.
 ---
 
-# ingest-obsidian.sh
+# ingest-obsidian.sh (moved)
 
-## Overview
-Synthesized entity documentation for `modules/obsidian/ingest-obsidian.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/obsidian/ingest-obsidian.sh`
-- **Lines of Code:** 340
-- **Last Modified:** `2026-08-24T14:51:22-04:00`
-- **SHA-256:** `0bff5183b183abff49e1db2453993665cdbf202b06962faa35bcf1edfbb4061b`
+Moved to:
 
-## Source Citations
-- Source: `modules/obsidian/ingest-obsidian.sh`
-- Repository: `kb-sync`
+- [[modules/obsidian/ingest-obsidian.sh|kb-sync--modules-obsidian-ingest-obsidian.sh--07e021cf]]

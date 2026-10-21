@@ -1,23 +1,19 @@
 ---
 title: generate.sh
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/artifact-generator/generate.sh
-sha256: f382060155394ca8071fee8b131068c6ffd26860aee8c44eea0df9e5485902a4
-lastCommit: 2026-08-06T09:29:21-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for generate.sh; redirects to 1 entity page.
 ---
 
-# generate.sh
+# generate.sh (moved)
 
-## Overview
-Synthesized entity documentation for `modules/artifact-generator/generate.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/artifact-generator/generate.sh`
-- **Lines of Code:** 104
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `f382060155394ca8071fee8b131068c6ffd26860aee8c44eea0df9e5485902a4`
+Moved to:
 
-## Source Citations
-- Source: `modules/artifact-generator/generate.sh`
-- Repository: `kb-sync`
+- [[modules/artifact-generator/generate.sh|kb-sync--modules-artifact-generator-generate.sh--8d6826db]]

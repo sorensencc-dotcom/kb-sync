@@ -1,23 +1,19 @@
 ---
 title: extract-ai-telemetry.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/review-capacity/scripts/extract-ai-telemetry.ps1
-sha256: f59aa05e9d86fc501b56df33744f1446108ec82f167c7159b259c1bb3b9b1af4
-lastCommit: 2026-08-22T09:18:56-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for extract-ai-telemetry.ps1; redirects to 1 entity page.
 ---
 
-# extract-ai-telemetry.ps1
+# extract-ai-telemetry.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `modules/review-capacity/scripts/extract-ai-telemetry.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/review-capacity/scripts/extract-ai-telemetry.ps1`
-- **Lines of Code:** 508
-- **Last Modified:** `2026-08-22T09:18:56-04:00`
-- **SHA-256:** `f59aa05e9d86fc501b56df33744f1446108ec82f167c7159b259c1bb3b9b1af4`
+Moved to:
 
-## Source Citations
-- Source: `modules/review-capacity/scripts/extract-ai-telemetry.ps1`
-- Repository: `kb-sync`
+- [[modules/review-capacity/scripts/extract-ai-telemetry.ps1|kb-sync--modules-review-capacity-scripts-extract-ai-telemetry.ps1--fdf2f780]]

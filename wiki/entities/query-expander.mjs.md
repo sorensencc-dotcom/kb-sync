@@ -1,29 +1,19 @@
 ---
 title: query-expander.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/trm/query-expander.mjs
-sha256: 78d8827881ede63face9d5ef982b487e02cea7d571d004b4dd99286e895d9340
-lastCommit: 2026-08-26T17:38:38-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for query-expander.mjs; redirects to 1 entity page.
 ---
 
-# query-expander.mjs
+# query-expander.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/trm/query-expander.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/trm/query-expander.mjs`
-- **Lines of Code:** 376
-- **Last Modified:** `2026-08-26T17:38:38-04:00`
-- **SHA-256:** `78d8827881ede63face9d5ef982b487e02cea7d571d004b4dd99286e895d9340`
+Moved to:
 
-## Exported Symbols & API
-- `createCircuitBreaker`
-- `validateFts5Query`
-- `heuristicFallbackExpand`
-- `expandSearchQuery`
-
-## Source Citations
-- Source: `modules/trm/query-expander.mjs`
-- Repository: `kb-sync`
+- [[modules/trm/query-expander.mjs|kb-sync--modules-trm-query-expander.mjs--3a6cbced]]

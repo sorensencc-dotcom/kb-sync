@@ -1,23 +1,19 @@
 ---
 title: error_taxonomy.json
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/error_taxonomy.json
-sha256: cb8fff979f642660a1f3e16c352a0555cd1cdeb21ebffd388d1b98390ea2e23a
-lastCommit: 2026-08-29T22:27:32-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for error_taxonomy.json; redirects to 1 entity page.
 ---
 
-# error_taxonomy.json
+# error_taxonomy.json (moved)
 
-## Overview
-Synthesized entity documentation for `core/error_taxonomy.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/error_taxonomy.json`
-- **Lines of Code:** 46
-- **Last Modified:** `2026-08-29T22:27:32-04:00`
-- **SHA-256:** `cb8fff979f642660a1f3e16c352a0555cd1cdeb21ebffd388d1b98390ea2e23a`
+Moved to:
 
-## Source Citations
-- Source: `core/error_taxonomy.json`
-- Repository: `kb-sync`
+- [[core/error_taxonomy.json|kb-sync--core-error_taxonomy.json--e642e3ca]]
