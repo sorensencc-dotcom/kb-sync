@@ -1,4 +1,4 @@
-import { toPosixPath, toWindowsPath, toWslPath } from '../core/path-normalizer.mjs';
+import { toPosixPath, toWindowsPath, toWslPath, normalizeNativePath } from '../core/path-normalizer.mjs';
 
 console.log('================================================================================');
 console.log('Path Normalizer Verification Tests');
@@ -30,6 +30,30 @@ if (wslResult !== '/mnt/c/dev/kb-sync/configs/global.yaml') {
   process.exit(1);
 }
 console.log('  ✓ toWslPath passed');
+
+// Test 4: normalizeNativePath with win32
+const originalPlatform = process.platform;
+Object.defineProperty(process, 'platform', { value: 'win32' });
+const nativeWinResult = normalizeNativePath('/mnt/c/dev/kb-sync/repo_knowledge_pack.txt');
+console.log(`[TEST 4] normalizeNativePath (win32): ${nativeWinResult}`);
+if (nativeWinResult !== 'c:\\dev\\kb-sync\\repo_knowledge_pack.txt') {
+  console.error('FAIL: normalizeNativePath (win32) failed');
+  process.exit(1);
+}
+console.log('  ✓ normalizeNativePath (win32) passed');
+
+// Test 5: normalizeNativePath with linux
+Object.defineProperty(process, 'platform', { value: 'linux' });
+const nativeLinuxResult = normalizeNativePath('C:\\dev\\kb-sync\\modules\\notebooklm');
+console.log(`[TEST 5] normalizeNativePath (linux): ${nativeLinuxResult}`);
+if (nativeLinuxResult !== 'C:/dev/kb-sync/modules/notebooklm') {
+  console.error('FAIL: normalizeNativePath (linux) failed');
+  process.exit(1);
+}
+console.log('  ✓ normalizeNativePath (linux) passed');
+
+// Restore original platform
+Object.defineProperty(process, 'platform', { value: originalPlatform });
 
 console.log('================================================================================');
 console.log('SUCCESS: All path normalizer tests passed!');
