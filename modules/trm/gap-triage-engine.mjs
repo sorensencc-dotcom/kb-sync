@@ -449,13 +449,13 @@ export async function executeGapTriage(options = {}) {
  *
  * @param {string} gapsFilePath
  * @param {Object} [options]
- * @returns {{ resolvedCount: number, resolvedGaps: string[] }}
+ * @returns {Promise<{ resolvedCount: number, resolvedGaps: string[] }>}
  */
-export function reconcileResolvedGaps(gapsFilePath, options = {}) {
+export async function reconcileResolvedGaps(gapsFilePath, options = {}) {
   const gapsPath = path.resolve(gapsFilePath);
   if (!fs.existsSync(gapsPath)) return { resolvedCount: 0, resolvedGaps: [] };
 
-  const rawContent = fs.readFileSync(gapsPath, 'utf8');
+  const rawContent = await fs.promises.readFile(gapsPath, 'utf8');
   const parsedGaps = parseGapItems(rawContent);
   const inProgressGaps = parsedGaps.filter((g) => g.status === 'in-progress');
 
@@ -471,19 +471,43 @@ export function reconcileResolvedGaps(gapsFilePath, options = {}) {
   const factTexts = [];
   if (fs.existsSync(topicsDir)) {
     try {
-      const topics = fs.readdirSync(topicsDir);
-      for (const topic of topics) {
-        const factsPath = path.join(topicsDir, topic, 'extracted-facts.json');
-        if (fs.existsSync(factsPath)) {
-          const parsed = JSON.parse(fs.readFileSync(factsPath, 'utf8'));
-          const facts = Array.isArray(parsed) ? parsed : (parsed.facts || []);
-          for (const f of facts) {
-            if (f.text) factTexts.push(String(f.text).toLowerCase());
-            if (f.claim) factTexts.push(String(f.claim).toLowerCase());
+      const topics = await fs.promises.readdir(topicsDir);
+
+      // Node.js fs.promises are sometimes slower than fs.readFileSync for tens of thousands of tiny files
+      // due to Promise allocation overhead. However, the original code called `fs.existsSync` on EVERY directory
+      // AND every file, which requires a separate blocking syscall.
+      // We can batch the checking and read concurrently.
+
+      const BATCH_SIZE = 1000;
+      for (let i = 0; i < topics.length; i += BATCH_SIZE) {
+        const chunk = topics.slice(i, i + BATCH_SIZE);
+
+        // Only attempt to read files that exist to avoid throw/catch overhead for 10000 missing files
+        // (Assuming facts are only in some topics, or even if in all, checking existance first or directly reading).
+        // Since we know the path, we can directly readFile and catch the error.
+
+        const chunkPromises = chunk.map(async (topic) => {
+          const factsPath = path.join(topicsDir, topic, 'extracted-facts.json');
+          try {
+            const content = await fs.promises.readFile(factsPath, 'utf8');
+            return JSON.parse(content);
+          } catch {
+            return null;
+          }
+        });
+
+        const results = await Promise.all(chunkPromises);
+        for (const parsed of results) {
+          if (parsed) {
+            const facts = Array.isArray(parsed) ? parsed : (parsed.facts || []);
+            for (const f of facts) {
+              if (f.text) factTexts.push(String(f.text).toLowerCase());
+              if (f.claim) factTexts.push(String(f.claim).toLowerCase());
+            }
           }
         }
       }
-    } catch {}
+    } catch (err) {}
   }
 
   for (const gap of inProgressGaps) {
@@ -500,7 +524,7 @@ export function reconcileResolvedGaps(gapsFilePath, options = {}) {
   }
 
   if (resolvedGaps.length > 0 && !options.dryRun) {
-    fs.writeFileSync(gapsPath, updatedContent, 'utf8');
+    await fs.promises.writeFile(gapsPath, updatedContent, 'utf8');
   }
 
   return { resolvedCount: resolvedGaps.length, resolvedGaps };
