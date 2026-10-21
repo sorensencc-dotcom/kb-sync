@@ -1,23 +1,19 @@
 ---
 title: coverage-audit.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/coverage-audit.test.ts
-sha256: d849132fa7ceb426efc99d0cead85d45929524ca9c6a90b8119121466dd8f222
-lastCommit: 2026-08-01T18:10:15-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for coverage-audit.test.ts; redirects to 1 entity page.
 ---
 
-# coverage-audit.test.ts
+# coverage-audit.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/coverage-audit.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/coverage-audit.test.ts`
-- **Lines of Code:** 42
-- **Last Modified:** `2026-08-01T18:10:15-04:00`
-- **SHA-256:** `d849132fa7ceb426efc99d0cead85d45929524ca9c6a90b8119121466dd8f222`
+Moved to:
 
-## Source Citations
-- Source: `tests/coverage-audit.test.ts`
-- Repository: `kb-sync`
+- [[tests/coverage-audit.test.ts|kb-sync--tests-coverage-audit.test.ts--f8287fe9]]

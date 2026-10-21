@@ -1,36 +1,19 @@
 ---
 title: vector-store.mjs
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/cache/vector-store.mjs
-sha256: 9899addcc11d0f5c618f41e17736d97c76dfa741d6014b4c19b4940619885ccc
-lastCommit: 2026-08-27T09:20:46-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for vector-store.mjs; redirects to 1 entity page.
 ---
 
-# vector-store.mjs
+# vector-store.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/cache/vector-store.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/cache/vector-store.mjs`
-- **Lines of Code:** 376
-- **Last Modified:** `2026-08-27T09:20:46-04:00`
-- **SHA-256:** `9899addcc11d0f5c618f41e17736d97c76dfa741d6014b4c19b4940619885ccc`
+Moved to:
 
-## Exported Symbols & API
-- `DEFAULT_VECTOR_DIMENSIONS`
-- `DEFAULT_EMBEDDING_MODEL`
-- `serializeVector`
-- `deserializeVector`
-- `cosineSimilarity`
-- `deterministicHeuristicVector`
-- `resetEmbeddingCircuitBreaker`
-- `generateEmbedding`
-- `storeVector`
-- `searchDenseVectors`
-- `reciprocalRankFusion`
-
-## Source Citations
-- Source: `modules/cache/vector-store.mjs`
-- Repository: `kb-sync`
+- [[modules/cache/vector-store.mjs|kb-sync--modules-cache-vector-store.mjs--3d0a2094]]

@@ -1,23 +1,19 @@
 ---
 title: setup-auth.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/notebooklm/setup-auth.mjs
-sha256: ffb0fbfc99f931cd9908a76bfb064eacf614a1615872b7f3e843c7a5bca01fa5
-lastCommit: 2026-07-25T00:43:50-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for setup-auth.mjs; redirects to 1 entity page.
 ---
 
-# setup-auth.mjs
+# setup-auth.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/notebooklm/setup-auth.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/notebooklm/setup-auth.mjs`
-- **Lines of Code:** 97
-- **Last Modified:** `2026-07-25T00:43:50-04:00`
-- **SHA-256:** `ffb0fbfc99f931cd9908a76bfb064eacf614a1615872b7f3e843c7a5bca01fa5`
+Moved to:
 
-## Source Citations
-- Source: `scripts/notebooklm/setup-auth.mjs`
-- Repository: `kb-sync`
+- [[scripts/notebooklm/setup-auth.mjs|kb-sync--scripts-notebooklm-setup-auth.mjs--16bdcfb7]]

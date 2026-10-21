@@ -1,27 +1,19 @@
 ---
 title: path-utils.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/path-utils.mjs
-sha256: 2f53e7c9a8b103c4b69b3b27b94db61f093271325ec2bc379fef1993c893461a
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for path-utils.mjs; redirects to 1 entity page.
 ---
 
-# path-utils.mjs
+# path-utils.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/path-utils.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/path-utils.mjs`
-- **Lines of Code:** 46
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `2f53e7c9a8b103c4b69b3b27b94db61f093271325ec2bc379fef1993c893461a`
+Moved to:
 
-## Exported Symbols & API
-- `normalizeRepoPath`
-- `matchGlobPattern`
-
-## Source Citations
-- Source: `modules/compactor/path-utils.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/path-utils.mjs|kb-sync--modules-compactor-path-utils.mjs--65adfe86]]

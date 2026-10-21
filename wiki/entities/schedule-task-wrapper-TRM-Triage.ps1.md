@@ -1,23 +1,19 @@
 ---
 title: schedule-task-wrapper-TRM-Triage.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/schedule-task-wrapper-TRM-Triage.ps1
-sha256: a89364b26b6e44e0642d5a13fb6507a2f8bcc72eb1fa72de85ef1f1a9e9b71a7
-lastCommit: 2026-08-26T22:33:10-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for schedule-task-wrapper-TRM-Triage.ps1; redirects to 1 entity page.
 ---
 
-# schedule-task-wrapper-TRM-Triage.ps1
+# schedule-task-wrapper-TRM-Triage.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/schedule-task-wrapper-TRM-Triage.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/schedule-task-wrapper-TRM-Triage.ps1`
-- **Lines of Code:** 88
-- **Last Modified:** `2026-08-26T22:33:10-04:00`
-- **SHA-256:** `a89364b26b6e44e0642d5a13fb6507a2f8bcc72eb1fa72de85ef1f1a9e9b71a7`
+Moved to:
 
-## Source Citations
-- Source: `scripts/schedule-task-wrapper-TRM-Triage.ps1`
-- Repository: `kb-sync`
+- [[scripts/schedule-task-wrapper-TRM-Triage.ps1|kb-sync--scripts-schedule-task-wrapper-TRM-Triage.ps1--887d6fbc]]

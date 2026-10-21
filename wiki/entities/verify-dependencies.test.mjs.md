@@ -1,23 +1,19 @@
 ---
 title: verify-dependencies.test.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/verify-dependencies.test.mjs
-sha256: f88968253ca0ec29b5fdecfa45cfb9ea6a56468c2d1bcf7634244c0410030fac
-lastCommit: 2026-08-28T18:57:07-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for verify-dependencies.test.mjs; redirects to 1 entity page.
 ---
 
-# verify-dependencies.test.mjs
+# verify-dependencies.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/verify-dependencies.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/verify-dependencies.test.mjs`
-- **Lines of Code:** 43
-- **Last Modified:** `2026-08-28T18:57:07-04:00`
-- **SHA-256:** `f88968253ca0ec29b5fdecfa45cfb9ea6a56468c2d1bcf7634244c0410030fac`
+Moved to:
 
-## Source Citations
-- Source: `scripts/verify-dependencies.test.mjs`
-- Repository: `kb-sync`
+- [[scripts/verify-dependencies.test.mjs|kb-sync--scripts-verify-dependencies.test.mjs--83a4de3e]]

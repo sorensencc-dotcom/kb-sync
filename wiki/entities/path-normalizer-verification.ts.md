@@ -1,23 +1,19 @@
 ---
 title: path-normalizer-verification.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/path-normalizer-verification.ts
-sha256: f21b7095467470e050ec20db29fdae87e6c878e848513716a759921650c6c390
-lastCommit: 2026-07-25T20:59:40-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for path-normalizer-verification.ts; redirects to 1 entity page.
 ---
 
-# path-normalizer-verification.ts
+# path-normalizer-verification.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/path-normalizer-verification.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/path-normalizer-verification.ts`
-- **Lines of Code:** 37
-- **Last Modified:** `2026-07-25T20:59:40-04:00`
-- **SHA-256:** `f21b7095467470e050ec20db29fdae87e6c878e848513716a759921650c6c390`
+Moved to:
 
-## Source Citations
-- Source: `tests/path-normalizer-verification.ts`
-- Repository: `kb-sync`
+- [[tests/path-normalizer-verification.ts|kb-sync--tests-path-normalizer-verification.ts--4e501233]]

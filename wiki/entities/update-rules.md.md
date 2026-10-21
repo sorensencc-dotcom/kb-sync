@@ -1,23 +1,19 @@
 ---
 title: update-rules.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/update-rules.md
-sha256: 621b7435740ea95b919012af8e5fc441a3fad2475f1f2076a229b1ebfe4665ab
-lastCommit: 2026-07-11T07:40:52-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for update-rules.md; redirects to 1 entity page.
 ---
 
-# update-rules.md
+# update-rules.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/update-rules.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/update-rules.md`
-- **Lines of Code:** 227
-- **Last Modified:** `2026-07-11T07:40:52-04:00`
-- **SHA-256:** `621b7435740ea95b919012af8e5fc441a3fad2475f1f2076a229b1ebfe4665ab`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/update-rules.md`
-- Repository: `kb-sync`
+- [[modules/wiki/update-rules.md|kb-sync--modules-wiki-update-rules.md--af6df14a]]

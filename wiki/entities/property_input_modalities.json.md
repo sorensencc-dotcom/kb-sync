@@ -1,23 +1,19 @@
 ---
 title: property_input_modalities.json
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/property_input_modalities.json
-sha256: 92a23546b264ce63c45b09143f9084ac163367bf82350960519641c20e33cfb6
-lastCommit: 2026-08-29T22:27:32-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for property_input_modalities.json; redirects to 1 entity page.
 ---
 
-# property_input_modalities.json
+# property_input_modalities.json (moved)
 
-## Overview
-Synthesized entity documentation for `core/property_input_modalities.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/property_input_modalities.json`
-- **Lines of Code:** 16
-- **Last Modified:** `2026-08-29T22:27:32-04:00`
-- **SHA-256:** `92a23546b264ce63c45b09143f9084ac163367bf82350960519641c20e33cfb6`
+Moved to:
 
-## Source Citations
-- Source: `core/property_input_modalities.json`
-- Repository: `kb-sync`
+- [[core/property_input_modalities.json|kb-sync--core-property_input_modalities.json--68e07af6]]

@@ -1,23 +1,19 @@
 ---
 title: git-inspector.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/git-inspector.test.mjs
-sha256: f81231111c949fe504d0dab07d5c640ca43ad51e349d662f273a2e740bd8314e
-lastCommit: 2026-08-11T18:34:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for git-inspector.test.mjs; redirects to 1 entity page.
 ---
 
-# git-inspector.test.mjs
+# git-inspector.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/git-inspector.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/git-inspector.test.mjs`
-- **Lines of Code:** 46
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `f81231111c949fe504d0dab07d5c640ca43ad51e349d662f273a2e740bd8314e`
+Moved to:
 
-## Source Citations
-- Source: `tests/git-inspector.test.mjs`
-- Repository: `kb-sync`
+- [[tests/git-inspector.test.mjs|kb-sync--tests-git-inspector.test.mjs--d5950a07]]

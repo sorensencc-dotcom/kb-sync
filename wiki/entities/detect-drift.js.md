@@ -1,34 +1,19 @@
 ---
 title: detect-drift.js
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/detect-drift.js
-sha256: 86a75869bf419637b3aecb1dd6acba6823e1324d89883b081578ae83d91f5d10
-lastCommit: 2026-08-16T10:51:53-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for detect-drift.js; redirects to 1 entity page.
 ---
 
-# detect-drift.js
+# detect-drift.js (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/detect-drift.js` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/detect-drift.js`
-- **Lines of Code:** 728
-- **Last Modified:** `2026-08-16T10:51:53-04:00`
-- **SHA-256:** `86a75869bf419637b3aecb1dd6acba6823e1324d89883b081578ae83d91f5d10`
+Moved to:
 
-## Exported Symbols & API
-- `sanitizeRelativePath`
-- `resolveStagingPaths`
-- `validateSnapshot`
-- `getLatestValidStagingDir`
-- `acquireLock`
-- `releaseLock`
-- `computeIncrementalDelta`
-- `materializeIncrementalStaging`
-- `runDriftDetection`
-
-## Source Citations
-- Source: `modules/wiki/detect-drift.js`
-- Repository: `kb-sync`
+- [[modules/wiki/detect-drift.js|kb-sync--modules-wiki-detect-drift.js--ff10e9c4]]

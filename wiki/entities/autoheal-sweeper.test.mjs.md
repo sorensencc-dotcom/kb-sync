@@ -1,23 +1,19 @@
 ---
 title: autoheal-sweeper.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/modules/wiki/autoheal-sweeper.test.mjs
-sha256: c7ae118de9d96c0f424995df86ed7556db911572fee4dbaac86dbc7b959da3b7
-lastCommit: 2026-08-29T22:42:31-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for autoheal-sweeper.test.mjs; redirects to 1 entity page.
 ---
 
-# autoheal-sweeper.test.mjs
+# autoheal-sweeper.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/modules/wiki/autoheal-sweeper.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/modules/wiki/autoheal-sweeper.test.mjs`
-- **Lines of Code:** 203
-- **Last Modified:** `2026-08-29T22:42:31-04:00`
-- **SHA-256:** `c7ae118de9d96c0f424995df86ed7556db911572fee4dbaac86dbc7b959da3b7`
+Moved to:
 
-## Source Citations
-- Source: `tests/modules/wiki/autoheal-sweeper.test.mjs`
-- Repository: `kb-sync`
+- [[tests/modules/wiki/autoheal-sweeper.test.mjs|kb-sync--tests-modules-wiki-autoheal-sweeper.test.mjs--46036eeb]]

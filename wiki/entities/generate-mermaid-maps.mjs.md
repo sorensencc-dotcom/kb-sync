@@ -1,23 +1,19 @@
 ---
 title: generate-mermaid-maps.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/generate-mermaid-maps.mjs
-sha256: 363c771a5eb08e181bb4b965bf451f955f154c2d3693de152f027aa4762fbd2f
-lastCommit: 2026-08-15T13:57:40-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for generate-mermaid-maps.mjs; redirects to 1 entity page.
 ---
 
-# generate-mermaid-maps.mjs
+# generate-mermaid-maps.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/generate-mermaid-maps.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/generate-mermaid-maps.mjs`
-- **Lines of Code:** 281
-- **Last Modified:** `2026-08-15T13:57:40-04:00`
-- **SHA-256:** `363c771a5eb08e181bb4b965bf451f955f154c2d3693de152f027aa4762fbd2f`
+Moved to:
 
-## Source Citations
-- Source: `scripts/generate-mermaid-maps.mjs`
-- Repository: `kb-sync`
+- [[scripts/generate-mermaid-maps.mjs|kb-sync--scripts-generate-mermaid-maps.mjs--51841dd4]]

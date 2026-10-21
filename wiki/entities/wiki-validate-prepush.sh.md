@@ -1,23 +1,19 @@
 ---
 title: wiki-validate-prepush.sh
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/wiki-validate-prepush.sh
-sha256: d2b66c0b26bd42f954e2aa15b997ecfe32bc846a2c09572718c07f006b85257a
-lastCommit: 2026-08-23T15:46:25-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for wiki-validate-prepush.sh; redirects to 1 entity page.
 ---
 
-# wiki-validate-prepush.sh
+# wiki-validate-prepush.sh (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/wiki-validate-prepush.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/wiki-validate-prepush.sh`
-- **Lines of Code:** 30
-- **Last Modified:** `2026-08-23T15:46:25-04:00`
-- **SHA-256:** `d2b66c0b26bd42f954e2aa15b997ecfe32bc846a2c09572718c07f006b85257a`
+Moved to:
 
-## Source Citations
-- Source: `scripts/wiki-validate-prepush.sh`
-- Repository: `kb-sync`
+- [[scripts/wiki-validate-prepush.sh|kb-sync--scripts-wiki-validate-prepush.sh--5029b38e]]

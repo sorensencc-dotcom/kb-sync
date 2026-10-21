@@ -1,23 +1,19 @@
 ---
 title: context-cache.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/context-cache.test.ts
-sha256: 39ac62e3bc0e9758311ebf22329ae13d4aa99a313e6e65d2ea40906e66883cff
-lastCommit: 2026-08-21T19:58:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for context-cache.test.ts; redirects to 1 entity page.
 ---
 
-# context-cache.test.ts
+# context-cache.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/context-cache.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/context-cache.test.ts`
-- **Lines of Code:** 316
-- **Last Modified:** `2026-08-21T19:58:22-04:00`
-- **SHA-256:** `39ac62e3bc0e9758311ebf22329ae13d4aa99a313e6e65d2ea40906e66883cff`
+Moved to:
 
-## Source Citations
-- Source: `tests/context-cache.test.ts`
-- Repository: `kb-sync`
+- [[tests/context-cache.test.ts|kb-sync--tests-context-cache.test.ts--fe4ab315]]

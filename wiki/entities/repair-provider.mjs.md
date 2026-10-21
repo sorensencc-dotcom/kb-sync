@@ -1,29 +1,19 @@
 ---
 title: repair-provider.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/repair-provider.mjs
-sha256: 96032294b4b7b61bbec89850b04078e0fc8ae3420ec6c713c516dd1a86c3105e
-lastCommit: 2026-08-08T21:37:35-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for repair-provider.mjs; redirects to 1 entity page.
 ---
 
-# repair-provider.mjs
+# repair-provider.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/repair-provider.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/repair-provider.mjs`
-- **Lines of Code:** 133
-- **Last Modified:** `2026-08-08T21:37:35-04:00`
-- **SHA-256:** `96032294b4b7b61bbec89850b04078e0fc8ae3420ec6c713c516dd1a86c3105e`
+Moved to:
 
-## Exported Symbols & API
-- `RepairProvider`
-- `OllamaRepairProvider`
-- `applyFrontmatterPatch`
-- `OfflineDeterministicRepairProvider`
-
-## Source Citations
-- Source: `modules/wiki/repair-provider.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/repair-provider.mjs|kb-sync--modules-wiki-repair-provider.mjs--2950c184]]

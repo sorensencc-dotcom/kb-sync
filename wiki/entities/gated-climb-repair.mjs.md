@@ -1,29 +1,19 @@
 ---
 title: gated-climb-repair.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/gated-climb-repair.mjs
-sha256: 5759b16a963dba694ad0b022c9be01502c32e85e6aacb6938f7132c465d18b77
-lastCommit: 2026-08-29T09:41:26-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for gated-climb-repair.mjs; redirects to 1 entity page.
 ---
 
-# gated-climb-repair.mjs
+# gated-climb-repair.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/gated-climb-repair.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/gated-climb-repair.mjs`
-- **Lines of Code:** 621
-- **Last Modified:** `2026-08-29T09:41:26-04:00`
-- **SHA-256:** `5759b16a963dba694ad0b022c9be01502c32e85e6aacb6938f7132c465d18b77`
+Moved to:
 
-## Exported Symbols & API
-- `acquireLock`
-- `verifyPathContainment`
-- `runGatedClimbRepair`
-- `generateLessonFromFailure`
-
-## Source Citations
-- Source: `modules/wiki/gated-climb-repair.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/gated-climb-repair.mjs|kb-sync--modules-wiki-gated-climb-repair.mjs--366e9d5f]]

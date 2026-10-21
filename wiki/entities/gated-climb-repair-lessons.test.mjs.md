@@ -1,23 +1,19 @@
 ---
 title: gated-climb-repair-lessons.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/gated-climb-repair-lessons.test.mjs
-sha256: 5008acbee02ab6deaba6a49b130aa7b66d091be9df574fab3082498ba709e551
-lastCommit: 2026-08-11T00:51:33-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for gated-climb-repair-lessons.test.mjs; redirects to 1 entity page.
 ---
 
-# gated-climb-repair-lessons.test.mjs
+# gated-climb-repair-lessons.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/gated-climb-repair-lessons.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/gated-climb-repair-lessons.test.mjs`
-- **Lines of Code:** 68
-- **Last Modified:** `2026-08-11T00:51:33-04:00`
-- **SHA-256:** `5008acbee02ab6deaba6a49b130aa7b66d091be9df574fab3082498ba709e551`
+Moved to:
 
-## Source Citations
-- Source: `tests/gated-climb-repair-lessons.test.mjs`
-- Repository: `kb-sync`
+- [[tests/gated-climb-repair-lessons.test.mjs|kb-sync--tests-gated-climb-repair-lessons.test.mjs--35f07a14]]

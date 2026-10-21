@@ -1,23 +1,19 @@
 ---
 title: ast-grounding.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/ast-grounding.test.mjs
-sha256: feee02d6dec43cd7da5113a8dc735c50fb27ed5c0aacd86abebbdb81bd9e2e0c
-lastCommit: 2026-08-27T08:24:23-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for ast-grounding.test.mjs; redirects to 1 entity page.
 ---
 
-# ast-grounding.test.mjs
+# ast-grounding.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/ast-grounding.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/ast-grounding.test.mjs`
-- **Lines of Code:** 108
-- **Last Modified:** `2026-08-27T08:24:23-04:00`
-- **SHA-256:** `feee02d6dec43cd7da5113a8dc735c50fb27ed5c0aacd86abebbdb81bd9e2e0c`
+Moved to:
 
-## Source Citations
-- Source: `tests/ast-grounding.test.mjs`
-- Repository: `kb-sync`
+- [[tests/ast-grounding.test.mjs|kb-sync--tests-ast-grounding.test.mjs--6ccbda36]]

@@ -1,33 +1,19 @@
 ---
 title: sibling-checker.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/sibling-checker.mjs
-sha256: 4c248540b63765082756877c122ef80cd92c8f5d012d34567284a78c3d8312a7
-lastCommit: 2026-08-24T14:51:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for sibling-checker.mjs; redirects to 1 entity page.
 ---
 
-# sibling-checker.mjs
+# sibling-checker.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/sibling-checker.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/sibling-checker.mjs`
-- **Lines of Code:** 429
-- **Last Modified:** `2026-08-24T14:51:22-04:00`
-- **SHA-256:** `4c248540b63765082756877c122ef80cd92c8f5d012d34567284a78c3d8312a7`
+Moved to:
 
-## Exported Symbols & API
-- `loadObsidianConfig`
-- `mapSourceToWikiSibling`
-- `extractExportedSymbolsFromDiff`
-- `queryGraftCallers`
-- `isStructuralSignatureChange`
-- `groupTodoLines`
-- `appendDriftTodo`
-- `checkSiblingPatterns`
-
-## Source Citations
-- Source: `modules/wiki/sibling-checker.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/sibling-checker.mjs|kb-sync--modules-wiki-sibling-checker.mjs--8038bab6]]

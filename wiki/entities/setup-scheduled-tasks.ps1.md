@@ -1,23 +1,19 @@
 ---
 title: setup-scheduled-tasks.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/setup-scheduled-tasks.ps1
-sha256: a2ff9ac75b9e373f671b2552d2e310b90d246aa5d8ed64dbac20b1465828db9b
-lastCommit: 2026-07-21T15:52:50-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for setup-scheduled-tasks.ps1; redirects to 1 entity page.
 ---
 
-# setup-scheduled-tasks.ps1
+# setup-scheduled-tasks.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/setup-scheduled-tasks.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/setup-scheduled-tasks.ps1`
-- **Lines of Code:** 230
-- **Last Modified:** `2026-07-21T15:52:50-04:00`
-- **SHA-256:** `a2ff9ac75b9e373f671b2552d2e310b90d246aa5d8ed64dbac20b1465828db9b`
+Moved to:
 
-## Source Citations
-- Source: `scripts/setup-scheduled-tasks.ps1`
-- Repository: `kb-sync`
+- [[scripts/setup-scheduled-tasks.ps1|kb-sync--scripts-setup-scheduled-tasks.ps1--7af351cd]]

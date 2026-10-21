@@ -1,23 +1,19 @@
 ---
 title: profile-gate-baselines.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/profile-gate-baselines.ps1
-sha256: 80822baa3902f1b40823b3be576debe4d7dce64add3d1c7f345ebf908b25f33b
-lastCommit: 2026-08-17T14:15:17-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for profile-gate-baselines.ps1; redirects to 1 entity page.
 ---
 
-# profile-gate-baselines.ps1
+# profile-gate-baselines.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/profile-gate-baselines.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/profile-gate-baselines.ps1`
-- **Lines of Code:** 69
-- **Last Modified:** `2026-08-17T14:15:17-04:00`
-- **SHA-256:** `80822baa3902f1b40823b3be576debe4d7dce64add3d1c7f345ebf908b25f33b`
+Moved to:
 
-## Source Citations
-- Source: `scripts/profile-gate-baselines.ps1`
-- Repository: `kb-sync`
+- [[scripts/profile-gate-baselines.ps1|kb-sync--scripts-profile-gate-baselines.ps1--a2ab1db8]]

@@ -1,23 +1,19 @@
 ---
 title: chunk.sh
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/chunk.sh
-sha256: 455d77f40be3cf790384afc256c63edfe6e4d2156c049e9ad8ffbe14f8c70bb8
-lastCommit: 2026-08-12T22:28:55-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for chunk.sh; redirects to 1 entity page.
 ---
 
-# chunk.sh
+# chunk.sh (moved)
 
-## Overview
-Synthesized entity documentation for `core/chunk.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/chunk.sh`
-- **Lines of Code:** 126
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `455d77f40be3cf790384afc256c63edfe6e4d2156c049e9ad8ffbe14f8c70bb8`
+Moved to:
 
-## Source Citations
-- Source: `core/chunk.sh`
-- Repository: `kb-sync`
+- [[core/chunk.sh|kb-sync--core-chunk.sh--9bed1c1f]]

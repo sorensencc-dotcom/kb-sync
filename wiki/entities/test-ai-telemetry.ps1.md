@@ -1,23 +1,19 @@
 ---
 title: test-ai-telemetry.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/review-capacity/tests/test-ai-telemetry.ps1
-sha256: 21bb10842b462f7021b2b6c8ee3d7e2939b0e7bb7bb588f29ae332fad66353f2
-lastCommit: 2026-08-09T03:53:33-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for test-ai-telemetry.ps1; redirects to 1 entity page.
 ---
 
-# test-ai-telemetry.ps1
+# test-ai-telemetry.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `modules/review-capacity/tests/test-ai-telemetry.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/review-capacity/tests/test-ai-telemetry.ps1`
-- **Lines of Code:** 648
-- **Last Modified:** `2026-08-09T03:53:33-04:00`
-- **SHA-256:** `21bb10842b462f7021b2b6c8ee3d7e2939b0e7bb7bb588f29ae332fad66353f2`
+Moved to:
 
-## Source Citations
-- Source: `modules/review-capacity/tests/test-ai-telemetry.ps1`
-- Repository: `kb-sync`
+- [[modules/review-capacity/tests/test-ai-telemetry.ps1|kb-sync--modules-review-capacity-tests-test-ai-telemetry.ps1--daa7ca8a]]

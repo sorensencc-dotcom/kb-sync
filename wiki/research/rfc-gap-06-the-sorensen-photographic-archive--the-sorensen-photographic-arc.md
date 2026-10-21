@@ -1,31 +1,30 @@
 ---
-title: RFC: GAP-06--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
-category: research
-topic: rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc
-gap_id: GAP-06--the-sorensen-photographic-archive
-status: draft
-created_at: 2026-09-25T10:33:30.485Z
-expansion_method: heuristic
-retrieval_mode: hybrid-rrf
+title: "RFC: GAP-06--the-sorensen-photographic-archive - **The Sorensen Photographic Archive"
+category: "research"
+topic: "rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
+gap_id: "GAP-06--the-sorensen-photographic-archive"
+status: "draft"
+created_at: "2026-10-21T12:30:32.775Z"
+expansion_method: "heuristic"
+retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","trm-research-gaps.md","docs/kb/notebooklm-sync/operator-rules.md"]
-sourceRepository: kb-sync
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01.md","wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md"]
 ---
 
 # RFC: GAP-06--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (adjacent-topics - Inter-Firm Executive Cooperation & Post-War Plant Conversion)**: **Inter-Firm Executive Cooperation & Post-War Plant Conversion**: The sources document working committees among Ford, Consolidated, Douglas, and the Army Air Corps [15]. Following
+Industrial Giants at Willow Run (follow-up - The Fitment Problem:)**: **The Fitment Problem:** When Charles Sorensen visited San Diego in January 1941, he realized that standardized, precision-machined center-wing sections produced by Ford in Michiga
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  >
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
+  > 
+- **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [vector_only]:
+  > --- title: rfc-gap-01 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-01  ## Candidate Evidence: Remote Agent Finding 2026-09-22T19:00:11.404Z <!-- finding_id: 45df4587190c857a4e344d58521ceef32ab233445b593d0316bf8c6e94510aa9
+- **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

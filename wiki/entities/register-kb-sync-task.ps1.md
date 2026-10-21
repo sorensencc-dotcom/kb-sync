@@ -1,23 +1,19 @@
 ---
 title: register-kb-sync-task.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/register-kb-sync-task.ps1
-sha256: 5ec97b4193221641a4439180142afaea07d240d0d282487760c73254fa36ba05
-lastCommit: 2026-07-25T20:45:55-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for register-kb-sync-task.ps1; redirects to 1 entity page.
 ---
 
-# register-kb-sync-task.ps1
+# register-kb-sync-task.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/register-kb-sync-task.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/register-kb-sync-task.ps1`
-- **Lines of Code:** 64
-- **Last Modified:** `2026-07-25T20:45:55-04:00`
-- **SHA-256:** `5ec97b4193221641a4439180142afaea07d240d0d282487760c73254fa36ba05`
+Moved to:
 
-## Source Citations
-- Source: `scripts/register-kb-sync-task.ps1`
-- Repository: `kb-sync`
+- [[scripts/register-kb-sync-task.ps1|kb-sync--scripts-register-kb-sync-task.ps1--4a878ca1]]

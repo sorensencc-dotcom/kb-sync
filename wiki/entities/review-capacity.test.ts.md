@@ -1,23 +1,19 @@
 ---
 title: review-capacity.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/review-capacity.test.ts
-sha256: 2b127ed0d055c446f39845e20bf8979cf5a0a58fb0c3eb1a44b47c733dec02b0
-lastCommit: 2026-08-01T21:10:19-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for review-capacity.test.ts; redirects to 1 entity page.
 ---
 
-# review-capacity.test.ts
+# review-capacity.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/review-capacity.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/review-capacity.test.ts`
-- **Lines of Code:** 50
-- **Last Modified:** `2026-08-01T21:10:19-04:00`
-- **SHA-256:** `2b127ed0d055c446f39845e20bf8979cf5a0a58fb0c3eb1a44b47c733dec02b0`
+Moved to:
 
-## Source Citations
-- Source: `tests/review-capacity.test.ts`
-- Repository: `kb-sync`
+- [[tests/review-capacity.test.ts|kb-sync--tests-review-capacity.test.ts--209d3776]]

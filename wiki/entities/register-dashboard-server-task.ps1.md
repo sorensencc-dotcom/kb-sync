@@ -1,23 +1,19 @@
 ---
 title: register-dashboard-server-task.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/register-dashboard-server-task.ps1
-sha256: 425af31a7afbf5a30811f2243cf5506f8c61b5e263a44f1b967d206a45580deb
-lastCommit: 2026-08-29T09:51:52-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for register-dashboard-server-task.ps1; redirects to 1 entity page.
 ---
 
-# register-dashboard-server-task.ps1
+# register-dashboard-server-task.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/register-dashboard-server-task.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/register-dashboard-server-task.ps1`
-- **Lines of Code:** 53
-- **Last Modified:** `2026-08-29T09:51:52-04:00`
-- **SHA-256:** `425af31a7afbf5a30811f2243cf5506f8c61b5e263a44f1b967d206a45580deb`
+Moved to:
 
-## Source Citations
-- Source: `scripts/register-dashboard-server-task.ps1`
-- Repository: `kb-sync`
+- [[scripts/register-dashboard-server-task.ps1|kb-sync--scripts-register-dashboard-server-task.ps1--c178cbb0]]

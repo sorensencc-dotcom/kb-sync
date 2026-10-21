@@ -1,23 +1,19 @@
 ---
 title: dag-builder.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/dag-builder.test.mjs
-sha256: d43173de2b56d1f6ecbdea70f5a49ac8df89a2bcb50d848bc330c4b0750146e6
-lastCommit: 2026-08-08T17:13:03-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for dag-builder.test.mjs; redirects to 1 entity page.
 ---
 
-# dag-builder.test.mjs
+# dag-builder.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/dag-builder.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/dag-builder.test.mjs`
-- **Lines of Code:** 556
-- **Last Modified:** `2026-08-08T17:13:03-04:00`
-- **SHA-256:** `d43173de2b56d1f6ecbdea70f5a49ac8df89a2bcb50d848bc330c4b0750146e6`
+Moved to:
 
-## Source Citations
-- Source: `tests/dag-builder.test.mjs`
-- Repository: `kb-sync`
+- [[tests/dag-builder.test.mjs|kb-sync--tests-dag-builder.test.mjs--ffba9598]]

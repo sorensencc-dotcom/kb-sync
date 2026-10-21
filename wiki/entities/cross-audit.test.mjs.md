@@ -1,23 +1,19 @@
 ---
 title: cross-audit.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/cross-audit.test.mjs
-sha256: 1cf0c7f073971ecb6f973a6bc16f664ec984e5f6155386e1e87572a9faa54f44
-lastCommit: 2026-08-28T13:54:06-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cross-audit.test.mjs; redirects to 1 entity page.
 ---
 
-# cross-audit.test.mjs
+# cross-audit.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/cross-audit.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/cross-audit.test.mjs`
-- **Lines of Code:** 28
-- **Last Modified:** `2026-08-28T13:54:06-04:00`
-- **SHA-256:** `1cf0c7f073971ecb6f973a6bc16f664ec984e5f6155386e1e87572a9faa54f44`
+Moved to:
 
-## Source Citations
-- Source: `tests/cross-audit.test.mjs`
-- Repository: `kb-sync`
+- [[tests/cross-audit.test.mjs|kb-sync--tests-cross-audit.test.mjs--e068cecc]]

@@ -1,30 +1,19 @@
 ---
 title: fleet-wiki-reconciler.ts
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/fleet-wiki-reconciler.ts
-sha256: 45a99b3b46ecef8f2ce7a864caf444e3f69ec132ac3a6ec1298ddd4071535121
-lastCommit: 2026-08-29T23:18:55-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for fleet-wiki-reconciler.ts; redirects to 1 entity page.
 ---
 
-# fleet-wiki-reconciler.ts
+# fleet-wiki-reconciler.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/fleet-wiki-reconciler.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/fleet-wiki-reconciler.ts`
-- **Lines of Code:** 316
-- **Last Modified:** `2026-08-29T23:18:55-04:00`
-- **SHA-256:** `45a99b3b46ecef8f2ce7a864caf444e3f69ec132ac3a6ec1298ddd4071535121`
+Moved to:
 
-## Exported Symbols & API
-- `FleetRepoSyncResult`
-- `FleetReconcileReport`
-- `deriveRepoWikiUrl`
-- `syncRepositoryWiki`
-- `reconcileFleetWikis`
-
-## Source Citations
-- Source: `modules/wiki/fleet-wiki-reconciler.ts`
-- Repository: `kb-sync`
+- [[modules/wiki/fleet-wiki-reconciler.ts|kb-sync--modules-wiki-fleet-wiki-reconciler.ts--128dc843]]

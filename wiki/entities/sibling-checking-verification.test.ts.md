@@ -1,31 +1,19 @@
 ---
 title: sibling-checking-verification.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/sibling-checking-verification.test.ts
-sha256: 5d0c9a69fc0b8bbf9a329b788309d570b14473e1f01a5b291113c9c429d70025
-lastCommit: 2026-08-14T15:49:29-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for sibling-checking-verification.test.ts; redirects to 1 entity page.
 ---
 
-# sibling-checking-verification.test.ts
+# sibling-checking-verification.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/sibling-checking-verification.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/sibling-checking-verification.test.ts`
-- **Lines of Code:** 136
-- **Last Modified:** `2026-08-14T15:49:29-04:00`
-- **SHA-256:** `5d0c9a69fc0b8bbf9a329b788309d570b14473e1f01a5b291113c9c429d70025`
+Moved to:
 
-## Exported Symbols & API
-- `toPosixPath`
-- `toWindowsPath`
-- `PathNormalizer`
-- `MappingRule`
-- `loadConfig`
-- `oldFunction`
-
-## Source Citations
-- Source: `tests/sibling-checking-verification.test.ts`
-- Repository: `kb-sync`
+- [[tests/sibling-checking-verification.test.ts|kb-sync--tests-sibling-checking-verification.test.ts--7a1e244f]]

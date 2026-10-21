@@ -1,23 +1,19 @@
 ---
 title: wiki-validate-precommit.sh
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/wiki-validate-precommit.sh
-sha256: f596acab6f08155f8294934762d3385270f78ad97b4aa15766205207e40a9c84
-lastCommit: 2026-08-29T21:54:50-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for wiki-validate-precommit.sh; redirects to 1 entity page.
 ---
 
-# wiki-validate-precommit.sh
+# wiki-validate-precommit.sh (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/wiki-validate-precommit.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/wiki-validate-precommit.sh`
-- **Lines of Code:** 88
-- **Last Modified:** `2026-08-29T21:54:50-04:00`
-- **SHA-256:** `f596acab6f08155f8294934762d3385270f78ad97b4aa15766205207e40a9c84`
+Moved to:
 
-## Source Citations
-- Source: `scripts/wiki-validate-precommit.sh`
-- Repository: `kb-sync`
+- [[scripts/wiki-validate-precommit.sh|kb-sync--scripts-wiki-validate-precommit.sh--231a7bd8]]

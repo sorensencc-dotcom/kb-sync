@@ -1,27 +1,19 @@
 ---
 title: cross-audit.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/cross-audit.mjs
-sha256: f27b3a0ca8558ca88757ee1c450615af6f8d634c4af61dd7e998ad00b8af1e5d
-lastCommit: 2026-08-28T13:54:06-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cross-audit.mjs; redirects to 1 entity page.
 ---
 
-# cross-audit.mjs
+# cross-audit.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/cross-audit.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/cross-audit.mjs`
-- **Lines of Code:** 45
-- **Last Modified:** `2026-08-28T13:54:06-04:00`
-- **SHA-256:** `f27b3a0ca8558ca88757ee1c450615af6f8d634c4af61dd7e998ad00b8af1e5d`
+Moved to:
 
-## Exported Symbols & API
-- `validatePacket`
-- `runCrossAudit`
-
-## Source Citations
-- Source: `scripts/cross-audit.mjs`
-- Repository: `kb-sync`
+- [[scripts/cross-audit.mjs|kb-sync--scripts-cross-audit.mjs--8ed640dc]]

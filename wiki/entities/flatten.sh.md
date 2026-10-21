@@ -1,23 +1,19 @@
 ---
 title: flatten.sh
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/flatten.sh
-sha256: d7776a0e56266581b87c816a6ba4ea52678205ad82889d7852718f64bdc145d8
-lastCommit: 2026-09-05T03:15:27Z
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for flatten.sh; redirects to 1 entity page.
 ---
 
-# flatten.sh
+# flatten.sh (moved)
 
-## Overview
-Synthesized entity documentation for `core/flatten.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/flatten.sh`
-- **Lines of Code:** 261
-- **Last Modified:** `2026-09-05T03:15:27Z`
-- **SHA-256:** `d7776a0e56266581b87c816a6ba4ea52678205ad82889d7852718f64bdc145d8`
+Moved to:
 
-## Source Citations
-- Source: `core/flatten.sh`
-- Repository: `kb-sync`
+- [[core/flatten.sh|kb-sync--core-flatten.sh--da0a054b]]

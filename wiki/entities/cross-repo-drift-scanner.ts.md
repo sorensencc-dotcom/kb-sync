@@ -1,37 +1,19 @@
 ---
 title: cross-repo-drift-scanner.ts
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/cross-repo-drift-scanner.ts
-sha256: 5c5b431244bb707934ebafa7315a2062ef7b43c96f9435bf49f6b8abb2840c5e
-lastCommit: 2026-08-29T23:24:06-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cross-repo-drift-scanner.ts; redirects to 1 entity page.
 ---
 
-# cross-repo-drift-scanner.ts
+# cross-repo-drift-scanner.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/cross-repo-drift-scanner.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/cross-repo-drift-scanner.ts`
-- **Lines of Code:** 400
-- **Last Modified:** `2026-08-29T23:24:06-04:00`
-- **SHA-256:** `5c5b431244bb707934ebafa7315a2062ef7b43c96f9435bf49f6b8abb2840c5e`
+Moved to:
 
-## Exported Symbols & API
-- `CanonicalRepoEntry`
-- `CANONICAL_REPOSITORIES`
-- `DISALLOWED_DIR_PATTERNS`
-- `isDisallowedPath`
-- `WikiSyncReceipt`
-- `RepoScanResult`
-- `CrossRepoDriftReport`
-- `ScannerOptions`
-- `validateIsoUtcTimestamp`
-- `resolveRepoPath`
-- `scanRepository`
-- `scanCrossRepoDrift`
-
-## Source Citations
-- Source: `modules/wiki/cross-repo-drift-scanner.ts`
-- Repository: `kb-sync`
+- [[modules/wiki/cross-repo-drift-scanner.ts|kb-sync--modules-wiki-cross-repo-drift-scanner.ts--70aa4aad]]

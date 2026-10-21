@@ -1,26 +1,19 @@
 ---
 title: telemetry.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/telemetry.mjs
-sha256: 607f27beb10835ff84a273fa42cfff2b099bdb8930ba253a89639c193afdda40
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for telemetry.mjs; redirects to 1 entity page.
 ---
 
-# telemetry.mjs
+# telemetry.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/telemetry.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/telemetry.mjs`
-- **Lines of Code:** 26
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `607f27beb10835ff84a273fa42cfff2b099bdb8930ba253a89639c193afdda40`
+Moved to:
 
-## Exported Symbols & API
-- `countTokens`
-
-## Source Citations
-- Source: `modules/compactor/telemetry.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/telemetry.mjs|kb-sync--modules-compactor-telemetry.mjs--466ee4ee]]

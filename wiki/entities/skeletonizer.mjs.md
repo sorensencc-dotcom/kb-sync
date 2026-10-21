@@ -1,26 +1,19 @@
 ---
 title: skeletonizer.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/skeletonizer.mjs
-sha256: 00d8409ee8a5166cb09106441a38ef794bc77e5da1079821d08c95826cf91979
-lastCommit: 2026-08-30T17:18:46-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for skeletonizer.mjs; redirects to 1 entity page.
 ---
 
-# skeletonizer.mjs
+# skeletonizer.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/skeletonizer.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/skeletonizer.mjs`
-- **Lines of Code:** 155
-- **Last Modified:** `2026-08-30T17:18:46-04:00`
-- **SHA-256:** `00d8409ee8a5166cb09106441a38ef794bc77e5da1079821d08c95826cf91979`
+Moved to:
 
-## Exported Symbols & API
-- `skeletonizeFile`
-
-## Source Citations
-- Source: `modules/compactor/skeletonizer.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/skeletonizer.mjs|kb-sync--modules-compactor-skeletonizer.mjs--f99e6e6d]]

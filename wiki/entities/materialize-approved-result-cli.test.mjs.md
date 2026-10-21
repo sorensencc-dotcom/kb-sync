@@ -1,23 +1,19 @@
 ---
 title: materialize-approved-result-cli.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/materialize-approved-result-cli.test.mjs
-sha256: c8145df158360cdb93c3aabb8cbbe6466252e06e48332c5f360deab18f7124b6
-lastCommit: 2026-08-23T00:44:03-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for materialize-approved-result-cli.test.mjs; redirects to 1 entity page.
 ---
 
-# materialize-approved-result-cli.test.mjs
+# materialize-approved-result-cli.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/materialize-approved-result-cli.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/materialize-approved-result-cli.test.mjs`
-- **Lines of Code:** 366
-- **Last Modified:** `2026-08-23T00:44:03-04:00`
-- **SHA-256:** `c8145df158360cdb93c3aabb8cbbe6466252e06e48332c5f360deab18f7124b6`
+Moved to:
 
-## Source Citations
-- Source: `tests/materialize-approved-result-cli.test.mjs`
-- Repository: `kb-sync`
+- [[tests/materialize-approved-result-cli.test.mjs|kb-sync--tests-materialize-approved-result-cli.test.mjs--7acab434]]

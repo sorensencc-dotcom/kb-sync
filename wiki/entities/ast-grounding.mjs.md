@@ -1,29 +1,19 @@
 ---
 title: ast-grounding.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/trm/ast-grounding.mjs
-sha256: 11320cabf59a1697a3deb1a3128df9f84841db750d9e0d86074b0235b7db2f78
-lastCommit: 2026-08-27T09:20:46-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for ast-grounding.mjs; redirects to 1 entity page.
 ---
 
-# ast-grounding.mjs
+# ast-grounding.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/trm/ast-grounding.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/trm/ast-grounding.mjs`
-- **Lines of Code:** 195
-- **Last Modified:** `2026-08-27T09:20:46-04:00`
-- **SHA-256:** `11320cabf59a1697a3deb1a3128df9f84841db750d9e0d86074b0235b7db2f78`
+Moved to:
 
-## Exported Symbols & API
-- `extractCodeSymbols`
-- `fetchSymbolAstGraph`
-- `fetchAstBlastRadius`
-- `formatAstGroundingSection`
-
-## Source Citations
-- Source: `modules/trm/ast-grounding.mjs`
-- Repository: `kb-sync`
+- [[modules/trm/ast-grounding.mjs|kb-sync--modules-trm-ast-grounding.mjs--f23d898e]]

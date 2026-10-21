@@ -1,23 +1,19 @@
 ---
 title: run-all.sh
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/run-all.sh
-sha256: 248b5bbc198659ddb53a43018715eaf760d125b06075b55b43302071ab845da2
-lastCommit: 2026-08-16T10:51:53-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for run-all.sh; redirects to 1 entity page.
 ---
 
-# run-all.sh
+# run-all.sh (moved)
 
-## Overview
-Synthesized entity documentation for `core/run-all.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/run-all.sh`
-- **Lines of Code:** 264
-- **Last Modified:** `2026-08-16T10:51:53-04:00`
-- **SHA-256:** `248b5bbc198659ddb53a43018715eaf760d125b06075b55b43302071ab845da2`
+Moved to:
 
-## Source Citations
-- Source: `core/run-all.sh`
-- Repository: `kb-sync`
+- [[core/run-all.sh|kb-sync--core-run-all.sh--f58b1910]]

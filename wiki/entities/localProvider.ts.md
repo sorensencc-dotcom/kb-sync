@@ -1,26 +1,19 @@
 ---
 title: localProvider.ts
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/obsidian/providers/localProvider.ts
-sha256: c62f78c0fa5c5723350109cdb0f42ea63377379862d8b829a15f0b1205da84e7
-lastCommit: 2026-08-11T08:05:07-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for localProvider.ts; redirects to 1 entity page.
 ---
 
-# localProvider.ts
+# localProvider.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/obsidian/providers/localProvider.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/obsidian/providers/localProvider.ts`
-- **Lines of Code:** 344
-- **Last Modified:** `2026-08-11T08:05:07-04:00`
-- **SHA-256:** `c62f78c0fa5c5723350109cdb0f42ea63377379862d8b829a15f0b1205da84e7`
+Moved to:
 
-## Exported Symbols & API
-- `LocalProvider`
-
-## Source Citations
-- Source: `modules/obsidian/providers/localProvider.ts`
-- Repository: `kb-sync`
+- [[modules/obsidian/providers/localProvider.ts|kb-sync--modules-obsidian-providers-localProvider.ts--0442308d]]

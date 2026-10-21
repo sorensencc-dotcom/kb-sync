@@ -1,28 +1,19 @@
 ---
 title: core-scripts-verification.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/core-scripts-verification.ts
-sha256: 372d05b72e644814d6d572889af521733874bedd4b77db3ab931eaaf92ed5454
-lastCommit: 2026-08-06T23:46:00-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for core-scripts-verification.ts; redirects to 1 entity page.
 ---
 
-# core-scripts-verification.ts
+# core-scripts-verification.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/core-scripts-verification.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/core-scripts-verification.ts`
-- **Lines of Code:** 529
-- **Last Modified:** `2026-08-06T23:46:00-04:00`
-- **SHA-256:** `372d05b72e644814d6d572889af521733874bedd4b77db3ab931eaaf92ed5454`
+Moved to:
 
-## Exported Symbols & API
-- `isBashAvailable`
-- `HAS_BASH`
-- `runTest`
-
-## Source Citations
-- Source: `tests/core-scripts-verification.ts`
-- Repository: `kb-sync`
+- [[tests/core-scripts-verification.ts|kb-sync--tests-core-scripts-verification.ts--95f858eb]]

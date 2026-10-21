@@ -1,23 +1,19 @@
 ---
 title: performance-benchmark-harness.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/performance-benchmark-harness.mjs
-sha256: 7b1790be83ecf04135d0ce017dde65ae78c20a0c1a1e004830edba3664abf469
-lastCommit: 2026-08-12T22:28:55-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for performance-benchmark-harness.mjs; redirects to 1 entity page.
 ---
 
-# performance-benchmark-harness.mjs
+# performance-benchmark-harness.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/performance-benchmark-harness.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/performance-benchmark-harness.mjs`
-- **Lines of Code:** 94
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `7b1790be83ecf04135d0ce017dde65ae78c20a0c1a1e004830edba3664abf469`
+Moved to:
 
-## Source Citations
-- Source: `tests/performance-benchmark-harness.mjs`
-- Repository: `kb-sync`
+- [[tests/performance-benchmark-harness.mjs|kb-sync--tests-performance-benchmark-harness.mjs--3748e3b1]]

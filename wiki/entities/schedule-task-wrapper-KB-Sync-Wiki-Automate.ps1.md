@@ -1,23 +1,19 @@
 ---
 title: schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
-sha256: 02322dac3e6437a3558cb4ed678fdbea17b3f8d49ec1091aaceee0fa8e10cfb0
-lastCommit: 2026-07-25T20:51:28-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1; redirects to 1 entity page.
 ---
 
-# schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1
+# schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1`
-- **Lines of Code:** 46
-- **Last Modified:** `2026-07-25T20:51:28-04:00`
-- **SHA-256:** `02322dac3e6437a3558cb4ed678fdbea17b3f8d49ec1091aaceee0fa8e10cfb0`
+Moved to:
 
-## Source Citations
-- Source: `scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1`
-- Repository: `kb-sync`
+- [[scripts/schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1|kb-sync--scripts-schedule-task-wrapper-KB-Sync-Wiki-Automate.ps1--3e9c82e3]]

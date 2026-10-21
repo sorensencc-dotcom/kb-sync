@@ -1,23 +1,19 @@
 ---
 title: validate-contract-json.test.js
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/validate-contract-json.test.js
-sha256: d49505caf7e7ea640542776d1f53cee058f58b8b3fca2e0d6380d6371a224802
-lastCommit: 2026-08-08T21:28:09-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for validate-contract-json.test.js; redirects to 1 entity page.
 ---
 
-# validate-contract-json.test.js
+# validate-contract-json.test.js (moved)
 
-## Overview
-Synthesized entity documentation for `tests/validate-contract-json.test.js` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/validate-contract-json.test.js`
-- **Lines of Code:** 106
-- **Last Modified:** `2026-08-08T21:28:09-04:00`
-- **SHA-256:** `d49505caf7e7ea640542776d1f53cee058f58b8b3fca2e0d6380d6371a224802`
+Moved to:
 
-## Source Citations
-- Source: `tests/validate-contract-json.test.js`
-- Repository: `kb-sync`
+- [[tests/validate-contract-json.test.js|kb-sync--tests-validate-contract-json.test.js--6a3d4e43]]

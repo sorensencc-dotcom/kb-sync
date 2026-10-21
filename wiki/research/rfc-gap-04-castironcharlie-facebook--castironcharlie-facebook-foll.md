@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-04--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories"
+title: "RFC: GAP-04--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 1.)**"
 category: "research"
 topic: "rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll"
 gap_id: "GAP-04--castironcharlie-facebook"
 status: "draft"
-created_at: "2026-09-27T12:03:49.118Z"
+created_at: "2026-10-21T12:37:04.299Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md"]
+citations: ["wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-open.md","wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md","trm-research-gaps.md"]
 ---
 
-# RFC: GAP-04--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Target Repositories
+# RFC: GAP-04--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - 1.)**
 
 ## 1. Problem Statement & Context
-)**: **Target Repositories:** **Hagley Museum and Library** (*Sperry Gyroscope Company Records*) and **NARA Record Group 74 / RG 227** (*OSRD Division 7*) [3, 4].
+1. Executive Clashes & Rejection of Assemblies (Edsel Ford vs. Charles Sorensen)
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+- **rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
   > 
-- **rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
-  > 
-- **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [lexical_only]:
+- **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [vector_only]:
+  > --- title: "CIC - Ford Executive Dynamics & Politics: Under-Sourced Assertions" category: research topic: cic-ford-executive-dynamics-undersourced-assertions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Acces
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

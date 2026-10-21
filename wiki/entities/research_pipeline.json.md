@@ -1,23 +1,19 @@
 ---
 title: research_pipeline.json
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/research_pipeline.json
-sha256: be2fdb5abc37d6338d8e354c1e2a6fdc058d2db2ae30eaf45db7000c34250a8e
-lastCommit: 2026-08-29T22:42:46-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for research_pipeline.json; redirects to 1 entity page.
 ---
 
-# research_pipeline.json
+# research_pipeline.json (moved)
 
-## Overview
-Synthesized entity documentation for `core/research_pipeline.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/research_pipeline.json`
-- **Lines of Code:** 55
-- **Last Modified:** `2026-08-29T22:42:46-04:00`
-- **SHA-256:** `be2fdb5abc37d6338d8e354c1e2a6fdc058d2db2ae30eaf45db7000c34250a8e`
+Moved to:
 
-## Source Citations
-- Source: `core/research_pipeline.json`
-- Repository: `kb-sync`
+- [[core/research_pipeline.json|kb-sync--core-research_pipeline.json--b4873759]]

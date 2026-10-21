@@ -1,23 +1,19 @@
 ---
 title: wiki-drift-hook-autoheal.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/wiki-drift-hook-autoheal.test.mjs
-sha256: 55a12336c072e1c44d6de42f2a7c3dd6a126745ecfcf0a0cb14c136c7a9b67f9
-lastCommit: 2026-08-26T10:05:48-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for wiki-drift-hook-autoheal.test.mjs; redirects to 1 entity page.
 ---
 
-# wiki-drift-hook-autoheal.test.mjs
+# wiki-drift-hook-autoheal.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/wiki-drift-hook-autoheal.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/wiki-drift-hook-autoheal.test.mjs`
-- **Lines of Code:** 36
-- **Last Modified:** `2026-08-26T10:05:48-04:00`
-- **SHA-256:** `55a12336c072e1c44d6de42f2a7c3dd6a126745ecfcf0a0cb14c136c7a9b67f9`
+Moved to:
 
-## Source Citations
-- Source: `tests/wiki-drift-hook-autoheal.test.mjs`
-- Repository: `kb-sync`
+- [[tests/wiki-drift-hook-autoheal.test.mjs|kb-sync--tests-wiki-drift-hook-autoheal.test.mjs--b7e369ae]]

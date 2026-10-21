@@ -1,23 +1,19 @@
 ---
 title: install-git-hooks.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/install-git-hooks.mjs
-sha256: 7ab3dc5f680bfc965b6e380b45031f83318f2796b8954ad202a0663c8c3fa973
-lastCommit: 2026-08-30T09:56:08-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for install-git-hooks.mjs; redirects to 1 entity page.
 ---
 
-# install-git-hooks.mjs
+# install-git-hooks.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/install-git-hooks.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/install-git-hooks.mjs`
-- **Lines of Code:** 114
-- **Last Modified:** `2026-08-30T09:56:08-04:00`
-- **SHA-256:** `7ab3dc5f680bfc965b6e380b45031f83318f2796b8954ad202a0663c8c3fa973`
+Moved to:
 
-## Source Citations
-- Source: `scripts/install-git-hooks.mjs`
-- Repository: `kb-sync`
+- [[scripts/install-git-hooks.mjs|kb-sync--scripts-install-git-hooks.mjs--ec0784c8]]
