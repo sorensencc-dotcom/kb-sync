@@ -8,6 +8,7 @@ import {
   runCheck,
   classifyNotebook,
   loadNotebooks,
+  normalizePackFamilyKey,
   main,
 } from '../scripts/nlm-pack-count-check.mjs';
 
@@ -514,4 +515,128 @@ test('modules and personal-os live H1 pack titles classify correctly as pack sou
   assert.equal(posRes.counts.families, 1);
   assert.equal(posRes.findings.length, 0);
 });
+
+test('pack_daily_part1..pack_daily_part21 for pack_daily notebook: one family, status GREEN, no MULTI_FAMILY', async () => {
+  const dailyManifest = {
+    clusters: {
+      cluster_b_historical_archival_media: {
+        notebooks: [
+          {
+            key: 'daily',
+            uuid: '1b4861a3-931f-4632-8fc1-343a8dd37df8',
+            has_pack: true,
+            pack_family: 'pack_daily',
+          },
+        ],
+      },
+    },
+  };
+
+  const sources = Array.from({ length: 21 }, (_, i) => ({
+    id: `d${i + 1}`,
+    title: `pack_daily_part${i + 1}`,
+    status: 2,
+  }));
+
+  const [dailyNb] = loadNotebooks(dailyManifest);
+  const classified = classifyNotebook(dailyNb, sources);
+  assert.equal(classified.counts.families, 1);
+  assert.equal(classified.counts.pack_sources, 21);
+  assert.equal(classified.counts.parts, 21);
+  assert.equal(classified.findings.some((f) => f.code === 'MULTI_FAMILY'), false);
+  assert.equal(classified.findings.length, 0);
+
+  const report = await runCheck({
+    manifest: dailyManifest,
+    runner: async () => ({ ok: true, sources }),
+    now: FIXED_NOW,
+  });
+  assert.equal(report.overall, 'GREEN');
+  assert.equal(report.findings.some((f) => f.code === 'MULTI_FAMILY'), false);
+  assert.equal(report.findings.length, 0);
+});
+
+test('repo_knowledge_pack_part_aa..aq and master-kb part1..23 still normalize to one family each', () => {
+  const agentHarnessNb = {
+    id: '359b346c-6af7-4ba3-baef-b985c9e6e1af',
+    alias: 'agent-harness',
+    has_pack: true,
+    pack_family: 'pack_agent_harness',
+    multipart: true,
+  };
+  const alphaLabels = Array.from({ length: 17 }, (_, i) =>
+    `a${String.fromCharCode(97 + i)}`
+  ); // aa..aq
+  const agentSources = alphaLabels.map((lbl, i) => ({
+    id: `ah${i + 1}`,
+    title: `repo_knowledge_pack_part_${lbl}.txt`,
+    status: 2,
+  }));
+  const agentRes = classifyNotebook(agentHarnessNb, agentSources);
+  assert.equal(agentRes.counts.families, 1);
+  assert.equal(agentRes.counts.pack_sources, 17);
+  assert.equal(agentRes.counts.parts, 17);
+  assert.equal(agentRes.findings.length, 0);
+
+  const masterKbNb = {
+    id: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    alias: 'master-kb',
+    has_pack: true,
+    pack_family: 'pack_master_kb',
+    multipart: true,
+  };
+  const masterSources = Array.from({ length: 23 }, (_, i) => ({
+    id: `mk${i + 1}`,
+    title: `pack_master_kb_part${i + 1}.txt`,
+    status: 2,
+  }));
+  const masterRes = classifyNotebook(masterKbNb, masterSources);
+  assert.equal(masterRes.counts.families, 1);
+  assert.equal(masterRes.counts.pack_sources, 23);
+  assert.equal(masterRes.counts.parts, 23);
+  assert.equal(masterRes.findings.length, 0);
+});
+
+test('two genuinely different families (pack_daily_part1 + pack_miami_estate) still produce MULTI_FAMILY', () => {
+  const dailyNb = {
+    id: '1b4861a3-931f-4632-8fc1-343a8dd37df8',
+    alias: 'daily',
+    has_pack: true,
+    pack_family: 'pack_daily',
+  };
+
+  const res = classifyNotebook(dailyNb, [
+    { id: '1', title: 'pack_daily_part1', status: 2 },
+    { id: '2', title: 'pack_miami_estate', status: 2 },
+  ]);
+  assert.equal(res.counts.families, 2);
+  assert.equal(res.findings.some((f) => f.code === 'MULTI_FAMILY' && f.severity === 'red'), true);
+});
+
+test('titles containing "partner" are not normalized as a part or merged with another family', () => {
+  const xPartner = normalizePackFamilyKey('x_partner');
+  assert.equal(xPartner.isPart, false);
+  assert.equal(xPartner.partLabel, null);
+  assert.equal(xPartner.familyKey, 'x_partner');
+
+  const partnerBrief = normalizePackFamilyKey('pack_partner_brief');
+  assert.equal(partnerBrief.isPart, false);
+  assert.equal(partnerBrief.partLabel, null);
+  assert.equal(partnerBrief.familyKey, 'pack_partner_brief');
+
+  const nb = {
+    id: '1b4861a3-931f-4632-8fc1-343a8dd37df8',
+    alias: 'daily',
+    has_pack: true,
+    pack_family: 'pack_daily',
+  };
+  const classified = classifyNotebook(nb, [
+    { id: '1', title: 'pack_partner_brief', status: 2 },
+    { id: '2', title: 'pack_daily_part1', status: 2 },
+  ]);
+  assert.equal(classified.counts.families, 2);
+  assert.equal(classified.counts.parts, 1);
+  assert.equal(classified.findings.some((f) => f.code === 'MULTI_FAMILY' && f.severity === 'red'), true);
+});
+
 
