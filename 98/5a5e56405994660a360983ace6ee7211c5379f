@@ -1,0 +1,387 @@
+obsidian/vault/wiki/Index.md
+  s_5a30c3006c59f9::t_07534ecb2d62e3 17,22-24,46-63
+obsidian/vault/wiki/Log.md
+  s_5a30c3006c59f9::t_bd417a178adfe5 4848-5027
+obsidian/vault/wiki/concepts/trm-mobile-inbox-triage-pipeline.md
+  s_b4d4b303f7948a::t_cb98bc7d0bdc69 1-72
+obsidian/vault/wiki/kb-sync/wiki/.Catalog.md
+  s_5a30c3006c59f9::t_e2d7cc659d06dc 6,19
+obsidian/vault/wiki/kb-sync/wiki/.CoverageReport.md
+  s_5a30c3006c59f9::t_e736565c6c4b1b 6,19
+obsidian/vault/wiki/kb-sync/wiki/.CrossRepoDriftReport.md
+  s_5a30c3006c59f9::t_4340006c89b151 6,19
+obsidian/vault/wiki/kb-sync/wiki/.DreamState.Json.md
+  s_5a30c3006c59f9::t_ef77e2681bca03 6,19
+obsidian/vault/wiki/kb-sync/wiki/.DreamState.md
+  s_5a30c3006c59f9::t_04c6ccda89458d 6,19
+obsidian/vault/wiki/kb-sync/wiki/.DreamStateV2.Json.md
+  s_5a30c3006c59f9::t_d54156023ac40a 6,19
+obsidian/vault/wiki/kb-sync/wiki/.DreamStateV2.md
+  s_5a30c3006c59f9::t_e33235967e96a0 6,19
+obsidian/vault/wiki/kb-sync/wiki/.DriftReport.md
+  s_5a30c3006c59f9::t_dfda38570d5188 6,19
+obsidian/vault/wiki/kb-sync/wiki/.FleetWikiSyncReport.md
+  s_5a30c3006c59f9::t_d20ef13264b2eb 6,19
+obsidian/vault/wiki/kb-sync/wiki/.GeneratedManifest.md
+  s_5a30c3006c59f9::t_637638125d5589 1-22
+obsidian/vault/wiki/kb-sync/wiki/.Gitattributes.md
+  s_5a30c3006c59f9::t_5f623b9c7bd9e2 6,19
+obsidian/vault/wiki/kb-sync/wiki/.Gitignore.md
+  s_5a30c3006c59f9::t_3dba6bbd3034fb 6,19
+obsidian/vault/wiki/kb-sync/wiki/.Ignore.md
+  s_5a30c3006c59f9::t_be418b17503bb7 1-22
+obsidian/vault/wiki/kb-sync/wiki/.InjectNoticed.md
+  s_5a30c3006c59f9::t_8606e248a807a1 6,19
+obsidian/vault/wiki/kb-sync/wiki/.LastBuild.md
+  s_5a30c3006c59f9::t_4fb88cf7839c04 6,19
+obsidian/vault/wiki/kb-sync/wiki/.LayoutVersion.md
+  s_5a30c3006c59f9::t_9edc8ea6379cd5 6,19
+obsidian/vault/wiki/kb-sync/wiki/.Mcp.md
+  s_5a30c3006c59f9::t_5f1e714391ba82 1-22
+obsidian/vault/wiki/kb-sync/wiki/.Migrated.md
+  s_5a30c3006c59f9::t_874f837f7b1e1e 6,19
+obsidian/vault/wiki/kb-sync/wiki/.MigrationMsgs.md
+  s_5a30c3006c59f9::t_085c1dd8747a6e 6,19
+obsidian/vault/wiki/kb-sync/wiki/.NlmQuarantine.md
+  s_5a30c3006c59f9::t_e8a571a96d3172 1-22
+obsidian/vault/wiki/kb-sync/wiki/.NlmSyncReceipt.md
+  s_5a30c3006c59f9::t_61fbf06589e7a3 1-22
+obsidian/vault/wiki/kb-sync/wiki/.PerformanceBaselines.md
+  s_5a30c3006c59f9::t_63b12b590a1213 6,19
+obsidian/vault/wiki/kb-sync/wiki/.PipelineState.md
+  s_5a30c3006c59f9::t_f503dc1cd795c4 1-22
+obsidian/vault/wiki/kb-sync/wiki/.ProfileDeriveCursor.md
+  s_5a30c3006c59f9::t_4fcb8b7c7cf009 6,19
+obsidian/vault/wiki/kb-sync/wiki/.RepairManifest.md
+  s_5a30c3006c59f9::t_250a0c51473367 6,19
+obsidian/vault/wiki/kb-sync/wiki/.SessionCounter.md
+  s_5a30c3006c59f9::t_037b91de71738f 6,19
+obsidian/vault/wiki/kb-sync/wiki/.SessionCounterId.md
+  s_5a30c3006c59f9::t_3513ff1a7a343e 6,19
+obsidian/vault/wiki/kb-sync/wiki/.SessionMarkerTs.md
+  s_5a30c3006c59f9::t_6c116bb79e53ce 6,19
+obsidian/vault/wiki/kb-sync/wiki/.SessionStyleAcc.md
+  s_5a30c3006c59f9::t_d2f0b99762cfea 6,19
+obsidian/vault/wiki/kb-sync/wiki/.StartupFlags.md
+  s_5a30c3006c59f9::t_eb7616ab0b1f5b 6,19
+obsidian/vault/wiki/kb-sync/wiki/.SyncStatus.md
+  s_5a30c3006c59f9::t_12ad4f47628d3d 6,19
+obsidian/vault/wiki/kb-sync/wiki/.TranscriptCursor.Json.md
+  s_5a30c3006c59f9::t_2da661c9236b82 6,19
+obsidian/vault/wiki/kb-sync/wiki/.TranscriptCursor.md
+  s_5a30c3006c59f9::t_88e5903fe925c2 6,19
+obsidian/vault/wiki/kb-sync/wiki/.WikiSyncReceipt.md
+  s_5a30c3006c59f9::t_20034be5466767 6,12,18-19
+obsidian/vault/wiki/kb-sync/wiki/20261016120007.md
+  s_fa11606c187761::t_bfdfa804d881a2 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261019120010.md
+  s_c74226617cd7b9::t_f753d93206abe9 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261019160006.md
+  s_c74226617cd7b9::t_e8e8e4efc58408 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261019200008.md
+  s_c74226617cd7b9::t_517ad51fdc8b17 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261020000008.md
+  s_b4d4b303f7948a::t_2749a5a3ce1eb2 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261020040007.md
+  s_b4d4b303f7948a::t_217e8265c5ec93 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261020080007.md
+  s_b4d4b303f7948a::t_a5c9067cc53cf0 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261020120013.md
+  s_b4d4b303f7948a::t_5ac4f5b7755f10 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261020160007.md
+  s_b4d4b303f7948a::t_7aa5f1543685c6 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261020200011.md
+  s_b4d4b303f7948a::t_a625c8d2a6249e 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261021000015.md
+  s_5a30c3006c59f9::t_c060a54d42898d 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261021074810.md
+  s_5a30c3006c59f9::t_abcce1ba3c9d30 1-22
+obsidian/vault/wiki/kb-sync/wiki/20261021080007.md
+  s_5a30c3006c59f9::t_d98fa755ee926f 1-22
+obsidian/vault/wiki/kb-sync/wiki/BashResolver.Test.Mjs.md
+  s_b4d4b303f7948a::t_657ab2ff928624 1-22
+obsidian/vault/wiki/kb-sync/wiki/BashResolver.Test.md
+  s_b4d4b303f7948a::t_8768dafe86a1e1 1-22
+obsidian/vault/wiki/kb-sync/wiki/ChatInjection.md
+  s_e636ac0c41889c::t_a763a87edddfdf 1-22
+obsidian/vault/wiki/kb-sync/wiki/CleanupSourceList.md
+  s_e636ac0c41889c::t_5a4ae97dc857e1 1-22
+obsidian/vault/wiki/kb-sync/wiki/ClusterSyncQuarantineAudit.Test.Mjs.md
+  s_b4d4b303f7948a::t_6336ea1443d6f4 1-22
+obsidian/vault/wiki/kb-sync/wiki/ClusterSyncStaging.Test.Mjs.md
+  s_b4d4b303f7948a::t_5557e0fa58a0af 1-22
+obsidian/vault/wiki/kb-sync/wiki/Config.Test.Mjs.md
+  s_b4d4b303f7948a::t_0fc76f7be4e395 1-22
+obsidian/vault/wiki/kb-sync/wiki/Config.Test.md
+  s_b4d4b303f7948a::t_6a694bb15cd08e 1-22
+obsidian/vault/wiki/kb-sync/wiki/CredentialRedaction.Mjs.md
+  s_b4d4b303f7948a::t_4c18c385a4479c 1-22
+obsidian/vault/wiki/kb-sync/wiki/IcfActIcfFixBacklogTargetRoutingMap.md
+  s_c74226617cd7b9::t_7810cbaf308ac6 1-22
+obsidian/vault/wiki/kb-sync/wiki/Index.md
+  s_5a30c3006c59f9::t_80b0c7f5eca8cd 17,22-24,46-63
+obsidian/vault/wiki/kb-sync/wiki/IngestionCommandResult.md
+  s_e636ac0c41889c::t_c5b70bd173255b 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionDeletedSourceRecovery.md
+  s_e636ac0c41889c::t_ceb94b7c113089 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionFirst.md
+  s_e636ac0c41889c::t_5f9236ad90937a 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionLastReport.md
+  s_e636ac0c41889c::t_bc354e31ab98bd 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionReadback.md
+  s_e636ac0c41889c::t_02dcf268271360 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionRecoveredIdempotency.md
+  s_e636ac0c41889c::t_3af00827574475 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionRecoveredReadback.md
+  s_e636ac0c41889c::t_953255b3abaee0 1-22
+obsidian/vault/wiki/kb-sync/wiki/IngestionSecond.md
+  s_e636ac0c41889c::t_e47600bb18176f 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncModulesWikiCredentialRedaction.Mjs69e834e6.md
+  s_b4d4b303f7948a::t_c6164dd97c62ff 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncScriptsNlmPackCountCheck.Mjs5932fba4.md
+  s_b4d4b303f7948a::t_1537b439e7d746 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncScriptsRegisterNlmPackCountTask.Ps152f202df.md
+  s_b4d4b303f7948a::t_04b9be0a1cbaf8 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncScriptsScheduleTaskWrapperKBSyncNLMPackCount.Ps12b3caaaf.md
+  s_b4d4b303f7948a::t_55c6aa46b767ff 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsClusterSyncQuarantineAudit.Test.MjsD34d38a7.md
+  s_b4d4b303f7948a::t_2cf9b0e796b31d 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsClusterSyncStaging.Test.Mjs03f3614a.md
+  s_b4d4b303f7948a::t_33c40f55d06f75 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsCoreConfig.Test.Mjs95fe7cf1.md
+  s_b4d4b303f7948a::t_75da1e04e0e075 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsModulesNotebooklmLibBashResolver.Test.MjsE3658739.md
+  s_b4d4b303f7948a::t_372062d333cf15 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsNlmPackCountCheck.Test.MjsFd9cdb00.md
+  s_b4d4b303f7948a::t_c1ab2f939dda65 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsNotebooklmSessionHealthCheck.Test.MjsC03f5515.md
+  s_b4d4b303f7948a::t_b0a2c8aca1fcea 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsScheduledTaskWrappers.Test.Mjs6f30b633.md
+  s_b4d4b303f7948a::t_bf41a387e8c79f 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsTargets.Test.Mjs1d15c3cf.md
+  s_b4d4b303f7948a::t_4ea532ff30be02 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsTrmActKbsyncMcpGatewayLoopbackWatchdog.Test.Mjs4d22c029.md
+  s_b4d4b303f7948a::t_aebb6dc07d39ba 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsTrmActKbsyncSpurContentTelemetryAttribution.Test.MjsDe5a7887.md
+  s_b4d4b303f7948a::t_804fa8f5e0bd17 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsTrmActKbsyncTrmDynamicQuestionBatteryGenerator.Test.MjsC99b8e5d.md
+  s_b4d4b303f7948a::t_e80065d25c4044 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbSyncTestsValidateProposalSchema.Test.Ts4671adbd.md
+  s_b4d4b303f7948a::t_cba7d14c60de86 1-22
+obsidian/vault/wiki/kb-sync/wiki/KbTesting.md
+  s_e636ac0c41889c::t_b96c4f59f8dd22 1-22
+obsidian/vault/wiki/kb-sync/wiki/NlmPackCountCheck.Mjs.md
+  s_b4d4b303f7948a::t_f8ac5f3c90ec08 1-22
+obsidian/vault/wiki/kb-sync/wiki/NlmPackCountCheck.Test.Mjs.md
+  s_b4d4b303f7948a::t_32e3aaf6c135b2 1-22
+obsidian/vault/wiki/kb-sync/wiki/NotebooklmSessionHealthCheck.Test.Mjs.md
+  s_b4d4b303f7948a::t_6cccfd822ffb3c 1-22
+obsidian/vault/wiki/kb-sync/wiki/NotebooklmSessionHealthCheck.Test.md
+  s_b4d4b303f7948a::t_4d9549a9125425 1-22
+obsidian/vault/wiki/kb-sync/wiki/RegisterNlmPackCountTask.Ps1.md
+  s_b4d4b303f7948a::t_5ec289da8ebc10 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcActToolforgeDecoupledPostPromoteEnricherAndSpikeRunner.md
+  s_c74226617cd7b9::t_25909741a61c11 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap03CastironcharlieFacebookCastironcharlieFacebookAdja.md
+  s_b4d4b303f7948a::t_38f73cf3e83bcc 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap03CicKbCicKbFollowUp1.md
+  s_b4d4b303f7948a::t_0bc4bd1f38fbea 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap03CicRedditCicRedditFollowUpCountyT.md
+  s_b4d4b303f7948a::t_d3aa85eb500a73 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap03WillowRunVideosWillowRunVideosUnderSourc.md
+  s_b4d4b303f7948a::t_3ee60fce9fc9e7 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap04CastironcharlieFacebookCastironcharlieFacebookAdja.md
+  s_b4d4b303f7948a::t_fca33b7279fa5c 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap04CicKbCicKbFollowUp1WillysOve.md
+  s_5a30c3006c59f9::t_68367cb8f154f1 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap04CicKbCicKbFollowUpFcscClaims.md
+  s_b4d4b303f7948a::t_755245ef6f4843 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap04CicRedditCicRedditFollowUpArchitec.md
+  s_b4d4b303f7948a::t_bc5e467257cae5 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap04WillowRunVideosWillowRunVideosFollowUpH.md
+  s_5a30c3006c59f9::t_970b8ab239821a 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap05CastironcharlieFacebookCastironcharlieFacebookUnde.md
+  s_b4d4b303f7948a::t_94a597f6885075 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap05CicKbCicKbFollowUp2.md
+  s_b4d4b303f7948a::t_0893f995c8ad57 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap05CicKbCicKbFollowUpTheUnverifi.md
+  s_5a30c3006c59f9::t_94e6fc140698eb 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap05CicRedditCicRedditAdjacentTopics1.md
+  s_b4d4b303f7948a::t_65802e9b9b1ad6 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap05CicRedditCicRedditFollowUpTheClai.md
+  s_5a30c3006c59f9::t_16c26bcab92491 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap06CastironcharlieFacebookCastironcharlieFacebookUnde.md
+  s_b4d4b303f7948a::t_5fbc4fa3855e6d 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap06CicKbCicKbAdjacentTopicsGovern.md
+  s_b4d4b303f7948a::t_39362891806c6c 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap06CicKbCicKbFollowUpResolvingPr.md
+  s_5a30c3006c59f9::t_0d315c681e6ca3 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap06CicRedditCicRedditAdjacentTopicsNa.md
+  s_b4d4b303f7948a::t_8929553baf8601 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap06CicRedditCicRedditFollowUpRequired.md
+  s_5a30c3006c59f9::t_5348ace26e2411 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap07CastironcharlieFacebookCastironcharlieFacebookOpen.md
+  s_b4d4b303f7948a::t_03147b9b6f9cc9 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap07CicKbCicKbAdjacentTopicsForeig.md
+  s_5a30c3006c59f9::t_fa85b3d1ae491a 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap07CicKbCicKbAdjacentTopicsGeneal.md
+  s_b4d4b303f7948a::t_413bd0eb17ba63 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap07CicRedditCicRedditAdjacentTopicsNa.md
+  s_b4d4b303f7948a::t_bb868fd2f6e08d 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap08CastironcharlieFacebookCastironcharlieFacebookOpen.md
+  s_b4d4b303f7948a::t_9748b0b97c4c52 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap08CicKbCicKbAdjacentTopicsGeneal.md
+  s_5a30c3006c59f9::t_45a82be325e30a 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap08CicKbCicKbAdjacentTopicsPatent.md
+  s_b4d4b303f7948a::t_9c085f884091bb 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap08CicRedditCicRedditUnderSourcedWayn.md
+  s_b4d4b303f7948a::t_3564fb539fc619 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap09CicKbCicKbAdjacentTopicsPatent.md
+  s_5a30c3006c59f9::t_56d98359aa6e15 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap09CicKbCicKbUnderSourcedWhatThe.md
+  s_b4d4b303f7948a::t_b09a0cb3209aef 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap09CicRedditCicRedditAdjacentTopicsNa.md
+  s_5a30c3006c59f9::t_9a9e51c216ef6a 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap09CicRedditCicRedditUnderSourcedFram.md
+  s_b4d4b303f7948a::t_e20f5f779be292 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap10CicKbCicKbUnderSourcedProtocol.md
+  s_b4d4b303f7948a::t_d35cdba2b0ad23 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap10CicKbCicKbUnderSourcedReposito.md
+  s_5a30c3006c59f9::t_3c85181d10415a 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap10CicRedditCicRedditOpenContradiction.md
+  s_b4d4b303f7948a::t_1f7e992490f4d0 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap10CicRedditCicRedditUnderSourced1Te.md
+  s_5a30c3006c59f9::t_110e7084230b18 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap11CicKbCicKbUnderSourcedSystemB.md
+  s_5a30c3006c59f9::t_a0a97ccbc693df 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap11CicKbCicKbUnderSourcedTemporal.md
+  s_b4d4b303f7948a::t_de34d2911e6662 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap11CicRedditCicRedditOpenContradiction.md
+  s_b4d4b303f7948a::t_189f4fb96fbe13 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap11CicRedditCicRedditUnderSourcedQual.md
+  s_5a30c3006c59f9::t_ca89049cf2efd5 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap12CicKbCicKbOpenContradictionsEv.md
+  s_5a30c3006c59f9::t_6fcfbab1c8b7a2 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap12CicKbCicKbOpenContradictionsRe.md
+  s_b4d4b303f7948a::t_312910e77cd4d4 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap12CicRedditCicRedditUnderSourcedFram.md
+  s_5a30c3006c59f9::t_14cab26d7655da 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap13CicKbCicKbOpenContradictionsAu.md
+  s_b4d4b303f7948a::t_645a289f73f2b6 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap14CicKbCicKbOpenContradictionsId.md
+  s_5a30c3006c59f9::t_44c8cd310f4800 1-22
+obsidian/vault/wiki/kb-sync/wiki/RfcGap28.md
+  s_b4d4b303f7948a::t_af006df73d6c61 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxAlpha101Query.md
+  s_e636ac0c41889c::t_775a65b062e7c5 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxAlpha101Transcript.md
+  s_e636ac0c41889c::t_2bbce1ae538a25 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxBravo202Query.md
+  s_e636ac0c41889c::t_1215cf54bb643c 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxBravo202Transcript.md
+  s_e636ac0c41889c::t_cca4fbb5533ac1 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxCharlie303Query.md
+  s_e636ac0c41889c::t_98a4b089424672 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxCharlie303Transcript.md
+  s_e636ac0c41889c::t_8587b97f41f8b1 1-22
+obsidian/vault/wiki/kb-sync/wiki/SandboxIngestBcdfe78cDfe04ec5B633F4307a3043e2.md
+  s_e636ac0c41889c::t_d636c120b8e943 1-22
+obsidian/vault/wiki/kb-sync/wiki/ScheduleTaskWrapperKBSyncNLMPackCount.Ps1.md
+  s_b4d4b303f7948a::t_5240065660e54e 1-22
+obsidian/vault/wiki/kb-sync/wiki/ScheduledTaskWrappers.Test.Mjs.md
+  s_b4d4b303f7948a::t_28be34f49d80d8 1-22
+obsidian/vault/wiki/kb-sync/wiki/Stage1.5.md
+  s_e636ac0c41889c::t_c46faf4275dc27 1-22
+obsidian/vault/wiki/kb-sync/wiki/Targets.Test.Mjs.md
+  s_b4d4b303f7948a::t_ce0bd90d90d5bc 1-22
+obsidian/vault/wiki/kb-sync/wiki/Targets.Test.md
+  s_b4d4b303f7948a::t_180a6e096945e1 1-22
+obsidian/vault/wiki/kb-sync/wiki/ToolforgeActToolforgeDecoupledPostPromoteEnricherAndSpikeRunner.md
+  s_c74226617cd7b9::t_144439c32547dc 1-22
+obsidian/vault/wiki/kb-sync/wiki/TrmActKbsyncMcpGatewayLoopbackWatchdog.Test.Mjs.md
+  s_b4d4b303f7948a::t_633b5eb22eb44f 1-22
+obsidian/vault/wiki/kb-sync/wiki/TrmActKbsyncMcpGatewayLoopbackWatchdog.Test.md
+  s_b4d4b303f7948a::t_2cbfa477f05617 1-22
+obsidian/vault/wiki/kb-sync/wiki/TrmActKbsyncSpurContentTelemetryAttribution.Test.Mjs.md
+  s_b4d4b303f7948a::t_9d75c592fa3e43 1-22
+obsidian/vault/wiki/kb-sync/wiki/TrmActKbsyncSpurContentTelemetryAttribution.Test.md
+  s_b4d4b303f7948a::t_ee3caf38e7131f 1-22
+obsidian/vault/wiki/kb-sync/wiki/TrmActKbsyncTrmDynamicQuestionBatteryGenerator.Test.Mjs.md
+  s_b4d4b303f7948a::t_f859f0aa232243 1-22
+obsidian/vault/wiki/kb-sync/wiki/TrmActKbsyncTrmDynamicQuestionBatteryGenerator.Test.md
+  s_b4d4b303f7948a::t_47402e422a6659 1-22
+obsidian/vault/wiki/kb-sync/wiki/ValidateProposalSchema.Test.Ts.md
+  s_b4d4b303f7948a::t_ea2dc245adec27 1-22
+obsidian/vault/wiki/kb-sync/wiki/ValidateProposalSchema.Test.md
+  s_b4d4b303f7948a::t_1675c98ebacdb7 1-22
+wiki/research/rfc-act-03-evaluate-muse-wonder-active-focus.md
+  s_c74226617cd7b9::t_5ac511d2f9fb4b 1-33
+wiki/research/rfc-gap-28.md
+  s_c74226617cd7b9::t_4f85c6deb961b7 1-34
+obsidian/vault/wiki/kb-sync/wiki/ClusterSyncStaging.Test.md
+  s_07f4a2660cd3c8::t_e2583a60b35124 1-22
+obsidian/vault/wiki/kb-sync/wiki/GeneratedOwnership.md
+  s_07f4a2660cd3c8::t_39391b6360f2a5 1-22
+obsidian/vault/wiki/kb-sync/wiki/PIPELINEFRESHNESS.md
+  s_07f4a2660cd3c8::t_cfd8d7be0e9d20 1-22
+obsidian/vault/wiki/kb-sync/wiki/PipelineFreshness.Test.md
+  s_07f4a2660cd3c8::t_b0013adf84c7f3 1-22
+obsidian/vault/wiki/kb-sync/wiki/PipelineRunner.md
+  s_07f4a2660cd3c8::t_5991faa931136d 1-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "985a5e56405994660a360983ace6ee7211c5379f",
+  "prompts": {},
+  "sessions": {
+    "s_07f4a2660cd3c8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c1906f8e-dd36-497c-acb7-aaf0a2a7eddd",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_5a30c3006c59f9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "461d35cf-3ce3-48e7-918c-c7e7aab01be5",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_b4d4b303f7948a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5dac1001-dc6d-497c-bb01-a38128f66f45",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_c74226617cd7b9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a15648-52f1-74e1-9328-bfd34e28d815",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_e636ac0c41889c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1efb2915-6195-49cd-aaa5-ea6648e9e650",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_fa11606c187761": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14674-d160-7dd2-98f1-0646f6f76765",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
