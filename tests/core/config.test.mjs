@@ -1,6 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData } from '../../core/config.mjs';
+import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
   test('returns true for a valid category data object', () => {
@@ -173,5 +174,90 @@ describe('validateCategoriesData', () => {
       () => validateCategoriesData(data),
       /CATEGORY_INVARIANT_VIOLATION: Placeholder 'placeholder::test' invalid status 'invalid-status'/
     );
+  });
+});
+
+describe('saveCategoriesData', () => {
+  const validData = {
+    categories: {
+      'test-category': {
+        target: 'uuid-1234',
+        title: 'Test Category',
+        status: 'canonical'
+      }
+    }
+  };
+
+  test('successfully writes to tmp and renames', (t) => {
+    t.mock.method(fs, 'writeFileSync', () => {});
+    t.mock.method(fs, 'renameSync', () => {});
+
+    saveCategoriesData(validData);
+
+    assert.equal(fs.writeFileSync.mock.calls.length, 1);
+    assert.equal(fs.renameSync.mock.calls.length, 1);
+
+    const writeArgs = fs.writeFileSync.mock.calls[0].arguments;
+    assert.ok(writeArgs[0].endsWith('categories.json.tmp'));
+    assert.equal(writeArgs[1], JSON.stringify(validData, null, 2));
+    assert.equal(writeArgs[2], 'utf8');
+
+    const renameArgs = fs.renameSync.mock.calls[0].arguments;
+    assert.ok(renameArgs[0].endsWith('categories.json.tmp'));
+    assert.ok(renameArgs[1].endsWith('categories.json'));
+  });
+
+  test('throws early if data is invalid without writing', (t) => {
+    t.mock.method(fs, 'writeFileSync', () => {});
+
+    assert.throws(
+      () => saveCategoriesData(null),
+      /CATEGORY_INVARIANT_VIOLATION/
+    );
+    assert.equal(fs.writeFileSync.mock.calls.length, 0);
+  });
+
+  test('cleans up tmp file and throws if rename fails', (t) => {
+    t.mock.method(fs, 'writeFileSync', () => {});
+    t.mock.method(fs, 'renameSync', () => { throw new Error('Rename failed'); });
+    t.mock.method(fs, 'existsSync', () => true);
+    t.mock.method(fs, 'unlinkSync', () => {});
+
+    assert.throws(
+      () => saveCategoriesData(validData),
+      /Failed to atomically save categories.json: Rename failed/
+    );
+
+    assert.equal(fs.existsSync.mock.calls.length, 1);
+    assert.equal(fs.unlinkSync.mock.calls.length, 1);
+    assert.ok(fs.unlinkSync.mock.calls[0].arguments[0].endsWith('categories.json.tmp'));
+  });
+
+  test('cleans up tmp file and throws if write fails', (t) => {
+    t.mock.method(fs, 'writeFileSync', () => { throw new Error('Write failed'); });
+    t.mock.method(fs, 'existsSync', () => true);
+    t.mock.method(fs, 'unlinkSync', () => {});
+
+    assert.throws(
+      () => saveCategoriesData(validData),
+      /Failed to atomically save categories.json: Write failed/
+    );
+
+    assert.equal(fs.existsSync.mock.calls.length, 1);
+    assert.equal(fs.unlinkSync.mock.calls.length, 1);
+  });
+
+  test('preserves original error if unlinkSync also throws', (t) => {
+    t.mock.method(fs, 'writeFileSync', () => {});
+    t.mock.method(fs, 'renameSync', () => { throw new Error('Rename failed'); });
+    t.mock.method(fs, 'existsSync', () => true);
+    t.mock.method(fs, 'unlinkSync', () => { throw new Error('Unlink failed'); });
+
+    assert.throws(
+      () => saveCategoriesData(validData),
+      /Failed to atomically save categories.json: Rename failed/
+    );
+
+    assert.equal(fs.unlinkSync.mock.calls.length, 1);
   });
 });
