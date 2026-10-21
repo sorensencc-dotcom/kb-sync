@@ -645,12 +645,19 @@ function parseWikiLogTimestamp(): string | null {
   return null;
 }
 
+let cachedWikiSyncTimestamp: string | null = null;
+
 function getWikiSyncTimestamp(): string {
+  if (cachedWikiSyncTimestamp !== null) return cachedWikiSyncTimestamp;
+
   const receiptPath = path.join(REPO_ROOT, ".wiki-sync-receipt.json");
   if (fs.existsSync(receiptPath)) {
     try {
       const data = JSON.parse(fs.readFileSync(receiptPath, "utf8"));
-      if (data.verified_at) return data.verified_at;
+      if (data.verified_at) {
+        cachedWikiSyncTimestamp = data.verified_at;
+        return cachedWikiSyncTimestamp;
+      }
     } catch {}
   }
 
@@ -658,14 +665,21 @@ function getWikiSyncTimestamp(): string {
   if (fs.existsSync(syncStatusPath)) {
     try {
       const data = JSON.parse(fs.readFileSync(syncStatusPath, "utf8"));
-      if (data.last_sync_timestamp) return data.last_sync_timestamp;
+      if (data.last_sync_timestamp) {
+        cachedWikiSyncTimestamp = data.last_sync_timestamp;
+        return cachedWikiSyncTimestamp;
+      }
     } catch {}
   }
 
   const logTimestamp = parseWikiLogTimestamp();
-  if (logTimestamp) return logTimestamp;
+  if (logTimestamp) {
+    cachedWikiSyncTimestamp = logTimestamp;
+    return cachedWikiSyncTimestamp;
+  }
 
-  return new Date(0).toISOString();
+  cachedWikiSyncTimestamp = new Date(0).toISOString();
+  return cachedWikiSyncTimestamp;
 }
 
 function buildGitCommitMap(): Map<string, string> {
