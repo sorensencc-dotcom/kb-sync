@@ -31,6 +31,7 @@
           "uuid": "1b4861a3-931f-4632-8fc1-343a8dd37df8", 
           "has_pack": true, 
           "pack_family": "pack_daily",
+          "multipart": true,
           "legacy_title_alias": "CIC - Daily Research (Buffer/Intake) Pack"
         },
         { "key": "miami-estate", "uuid": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c", "has_pack": true, "pack_family": "pack_miami_estate" },

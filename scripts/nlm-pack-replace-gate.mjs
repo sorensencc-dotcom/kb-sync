@@ -11,7 +11,9 @@
  */
 
 import { execSync, spawnSync } from 'node:child_process';
+import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { isProtectedSandboxFixture, assertLiveSandbox, KB_TESTING_FIXTURE_SOURCE_ID } from './notebooklm/sandbox-contract.mjs';
 export { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID, KB_TESTING_FIXTURE_TITLE, isProtectedSandboxFixture } from './notebooklm/sandbox-contract.mjs';
 
@@ -732,5 +734,45 @@ export async function replacePackFamilyAtomic({
     }
     throw err;
   }
+}
+
+const REGISTRY_PATH = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'state', 'knowledge-plane-notebooks.json');
+const PART_TITLE_RE = /[_-]part[_-]?[a-z0-9]+/i;
+
+/** Registry entry for a notebook, or null when unregistered. Throws if the registry is unreadable. */
+export function findRegistryNotebook(notebookId, registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'))) {
+  const id = String(notebookId || '').toLowerCase();
+  for (const cluster of Object.values(registry?.clusters || {})) {
+    const nb = (cluster?.notebooks || []).find(n => String(n?.uuid || '').toLowerCase() === id);
+    if (nb) return nb;
+  }
+  return null;
+}
+
+/**
+ * Single-file pack replace for writers outside the cluster sweep (e.g. toolforge daily mining).
+ * Skips without uploading or deleting when the registry marks the notebook multipart or has_pack:false,
+ * or when any live pack-family source carries a _partN suffix. Otherwise delegates to
+ * replacePackFamilyAtomic, which deletes old sources only after the new one is ACTIVE and removes
+ * its own upload on failure, so callers must not retry.
+ */
+export async function replaceSinglePack({ notebookId, packFile, registry, cli = 'nlm', runList = null, ...rest }) {
+  const nb = findRegistryNotebook(notebookId, registry);
+  if (nb?.multipart === true || Number(nb?.expected_parts) > 1) {
+    return { skipped: true, reason: 'MULTIPART_REGISTRY', notebookId };
+  }
+  if (nb && nb.has_pack === false) {
+    return { skipped: true, reason: 'HAS_PACK_FALSE', notebookId };
+  }
+  const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
+  const live = await listFn(notebookId);
+  const hasLiveParts = (live || []).some(s => {
+    const t = s?.title || s?.name || s?.displayName || '';
+    return PART_TITLE_RE.test(t) && isPackFamilyTitle(t);
+  });
+  if (hasLiveParts) {
+    return { skipped: true, reason: 'MULTIPART_LIVE', notebookId };
+  }
+  return replacePackFamilyAtomic({ ...rest, cli, notebookId, packFiles: [packFile], expectedPartCount: 1, runList: listFn });
 }
 
