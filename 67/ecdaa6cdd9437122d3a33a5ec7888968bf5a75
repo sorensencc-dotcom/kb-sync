@@ -1,0 +1,19 @@
+modules/trm/gap-triage-engine.mjs
+  s_b4d4b303f7948a::t_2277c4d6fad216 4-6,186,188-198,206-214,217-227,541-671
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "67ecdaa6cdd9437122d3a33a5ec7888968bf5a75",
+  "prompts": {},
+  "sessions": {
+    "s_b4d4b303f7948a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5dac1001-dc6d-497c-bb01-a38128f66f45",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
