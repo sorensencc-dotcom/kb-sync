@@ -3,6 +3,7 @@ import yaml from 'js-yaml';
 
 export const GAP_ID_REGEX = /^GAP-[0-9]{2,3}(-[A-Z0-9]+)?$/;
 export const EMPTY_SHA256 = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+export const LINK_SCRUBBER_REGEX = /(?:\[|%5B)suspicious link removed(?:\]|%5D)/i;
 
 export function computeFindingId(gapId, canonicalPayloadSha256) {
   return crypto.createHash('sha256')
@@ -28,6 +29,14 @@ export function unwrapCodeFences(raw) {
 }
 
 export function validateFinding(rawContent) {
+  if (typeof rawContent === 'string' && LINK_SCRUBBER_REGEX.test(rawContent)) {
+    return {
+      valid: false,
+      errors: ['Link scrubber corruption detected in finding payload'],
+      quarantine_reason: 'link_scrubber_corruption'
+    };
+  }
+
   const errors = [];
   const unwrapped = unwrapCodeFences(rawContent);
 
@@ -90,6 +99,14 @@ export function sanitizeSlug(input) {
 }
 
 export function validateMobileInboxDrop(rawContent, filename = '') {
+  if (typeof rawContent === 'string' && LINK_SCRUBBER_REGEX.test(rawContent)) {
+    return {
+      valid: false,
+      errors: ['Link scrubber corruption detected in mobile inbox drop'],
+      quarantine_reason: 'link_scrubber_corruption'
+    };
+  }
+
   const errors = [];
   const unwrapped = unwrapCodeFences(rawContent);
 
