@@ -1,0 +1,19 @@
+tests/validate-drive-findings.test.mjs
+  s_4eadce32fe980a::t_c25bcbe21f2bff 3,42-90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f1590a186e278486785b1370ef3dbac2e7a47d0e",
+  "prompts": {},
+  "sessions": {
+    "s_4eadce32fe980a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "72dbb1de-84f8-49c1-8f27-08958b4e18c7",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
