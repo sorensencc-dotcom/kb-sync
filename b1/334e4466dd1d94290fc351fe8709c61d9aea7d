@@ -1,0 +1,16 @@
+scripts/trm-export-gaps.mjs
+  h_5c172e9b435f5a 15-76,152-194,198-199,215,237-245,247-253
+tests/trm-drive-export.test.mjs
+  h_5c172e9b435f5a 6-12,23,25-29,31-34,50-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b1334e4466dd1d94290fc351fe8709c61d9aea7d",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
