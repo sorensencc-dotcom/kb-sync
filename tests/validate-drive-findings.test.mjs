@@ -44,20 +44,33 @@ test('validateFinding quarantines documents corrupted by Google Drive link scrub
   const bracketScrubbed = `---
 gap_id: "GAP-00-FIXTURE"
 verdict: "CONFIRMED"
+ready: true
 ---
 Link replaced by provider: [Suspicious link removed] in findings report.`;
   const res1 = validateFinding(bracketScrubbed);
   assert.equal(res1.valid, false);
   assert.equal(res1.quarantine_reason, 'link_scrubber_corruption');
+  assert.equal(res1.frontmatter.gap_id, 'GAP-00-FIXTURE');
+  assert.equal(res1.frontmatter.ready, true);
 
   const encodedScrubbed = `---
 gap_id: "GAP-00-FIXTURE"
 verdict: "CONFIRMED"
 ---
-Link replaced by provider: %5Bsuspicious link removed%5D in findings report.`;
+Link replaced by provider: %5Bsuspicious%20link%20removed%5D in findings report.`;
   const res2 = validateFinding(encodedScrubbed);
   assert.equal(res2.valid, false);
   assert.equal(res2.quarantine_reason, 'link_scrubber_corruption');
+
+  const plusScrubbed = Buffer.from(`---
+gap_id: "GAP-00-FIXTURE"
+verdict: "CONFIRMED"
+---
+Link replaced by provider: [suspicious+link+removed] in findings report.`);
+  const res3 = validateFinding(plusScrubbed);
+  assert.equal(res3.valid, false);
+  assert.equal(res3.quarantine_reason, 'link_scrubber_corruption');
+  assert.equal(res3.frontmatter.gap_id, 'GAP-00-FIXTURE');
 });
 
 test('validateMobileInboxDrop quarantines mobile drops corrupted by link scrubber', () => {
@@ -73,6 +86,7 @@ See reference: [Suspicious link removed]
   const res = validateMobileInboxDrop(scrubbedDrop, '2026-10-23T000000Z__cic__corrupted.md');
   assert.equal(res.valid, false);
   assert.equal(res.quarantine_reason, 'link_scrubber_corruption');
+  assert.equal(res.frontmatter.topic, 'cic');
 
   const encodedDrop = `---
 source: grok
@@ -81,10 +95,11 @@ topic: cic
 status: drop
 ---
 # Corrupted Drop
-See reference: %5Bsuspicious link removed%5D
+See reference: %5Bsuspicious%20link%20removed%5D
 `;
   const resEncoded = validateMobileInboxDrop(encodedDrop, '2026-10-23T000000Z__cic__corrupted.md');
   assert.equal(resEncoded.valid, false);
   assert.equal(resEncoded.quarantine_reason, 'link_scrubber_corruption');
+  assert.equal(resEncoded.frontmatter.topic, 'cic');
 });
 
