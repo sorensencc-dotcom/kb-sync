@@ -1,0 +1,19 @@
+scripts/mcp-memory-server.mjs
+  s_eb62a187f56d6f::t_7c6bbb9dbe7db5 5-6,9-12,134,306-316
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4f38bbe3e99a5b5bce9a5181ced465c3feff70ea",
+  "prompts": {},
+  "sessions": {
+    "s_eb62a187f56d6f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f61ea1c8-9f32-4a92-8e15-d9f05484228d",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
