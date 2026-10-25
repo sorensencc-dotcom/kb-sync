@@ -1,0 +1,19 @@
+scripts/notebooklm/replace-pack-family-cli.mjs
+  s_aece4c54405b82::t_a083e06457d399 71-91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2949515891b6c8ec9a6caebc3a10a4f0728aa263",
+  "prompts": {},
+  "sessions": {
+    "s_aece4c54405b82": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17441-cb35-7980-a06b-b821ca8c1efb",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
