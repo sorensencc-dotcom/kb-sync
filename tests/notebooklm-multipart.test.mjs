@@ -23,6 +23,11 @@ function run(t, options = {}) {
     fs.copyFileSync(path.join(repo, 'core', file), path.join(dir, 'core', file));
   }
   fs.cpSync(path.join(repo, 'modules', 'notebooklm'), path.join(dir, 'modules', 'notebooklm'), { recursive: true });
+  fs.mkdirSync(path.join(dir, 'scripts', 'notebooklm'), { recursive: true });
+  for (const file of ['replace-pack-family-cli.mjs']) {
+    fs.copyFileSync(path.join(repo, 'scripts', 'notebooklm', file), path.join(dir, 'scripts', 'notebooklm', file));
+  }
+  fs.copyFileSync(path.join(repo, 'scripts', 'nlm-pack-replace-gate.mjs'), path.join(dir, 'scripts', 'nlm-pack-replace-gate.mjs'));
   fs.mkdirSync(path.join(dir, 'configs'));
   fs.writeFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'output_dir: "./.nlm_pack"\npack_filename: "repo_knowledge_pack"\ntimeout_ms: 10000\nretry_attempts: 1\nbackoff_ms: 100\n');
   fs.appendFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'default_notebook: "fixture-only"\n');
