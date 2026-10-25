@@ -794,7 +794,7 @@ export async function replacePackFamilyAtomic({
     }
     err.purgedSourceIds = [
       ...(Array.isArray(err.deletedSourceIds) ? err.deletedSourceIds : []),
-      ...purgedOrphanIds,
+      ...(!/^Source .* entered invalid\/error status:/.test(err.message) ? purgedOrphanIds : []),
     ];
     if (quarantineHandler) {
       quarantineHandler(notebookId, err.message);
