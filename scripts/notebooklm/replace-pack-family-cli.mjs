@@ -63,9 +63,10 @@ try {
         : ['source', 'add', '--notebook', id, path.resolve(file), '--json']);
       return JSON.parse(output);
     },
-    runDelete: (id, lease, nbId) => {
-      const sourceId = lease?.sourceIds?.[0];
-      if (!sourceId) throw new Error('NotebookLM source deletion lease did not contain a source ID.');
+    runDelete: (sourceId, lease, nbId) => {
+      if (!sourceId || !lease?.sourceIds?.includes(sourceId)) {
+        throw new Error('NotebookLM source deletion lease did not authorize the requested source ID.');
+      }
       const isNlmCli = /\bnlm(\.exe)?$/i.test(cli.trim());
       runCli(isNlmCli
         ? ['source', 'delete', sourceId, '-y']
