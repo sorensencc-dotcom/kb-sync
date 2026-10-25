@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { spawn } from 'node:child_process';
 import { runCli } from '../modules/graph-sync/cli.mjs';
 import { createGraphSnapshot, createMemoryPersistence } from '../modules/graph-sync/queue.mjs';
 
@@ -61,5 +62,22 @@ test('CLI requires explicit apply before merge and reports token mismatch as blo
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
+});
+test('serial merge queue entrypoint delegates to the JSON CLI contract', async () => {
+  const entrypoint = path.resolve('scripts/serial-merge-queue.mjs');
+  const result = await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [entrypoint, 'status', '--state', path.join(os.tmpdir(), `graph-sync-status-${Date.now()}.json`)], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => resolve({ code, stdout, stderr }));
+  });
+  assert.equal(result.code, 0);
+  assert.deepEqual(JSON.parse(result.stdout), { ok: true, command: 'status', items: [] });
+  assert.equal(result.stderr, '');
 });
 
