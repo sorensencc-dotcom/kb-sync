@@ -1,0 +1,36 @@
+docs/superpowers/specs/2026-09-24-ironbot-task-monitor-design.md
+  s_8f2fd150701ef7::t_42dabc4e040b1a 1-5
+docs/superpowers/plans/2026-09-24-ironbot-task-monitor.md
+  s_8f2fd150701ef7::t_42dabc4e040b1a 1-5
+  s_8f2fd150701ef7::t_f785eb8f875589 480-484
+modules/wiki/validate-contract.mjs
+  s_8f2fd150701ef7::t_5e0248f23ef3c4 122-124,181-183,186
+modules/wiki/validate-staging-docs.mjs
+  s_8f2fd150701ef7::t_5e0248f23ef3c4 532-534
+docs/superpowers/specs/2026-09-22-jev-rag-chunk-filter-design.md
+  s_8f2fd150701ef7::t_f785eb8f875589 1-5
+docs/operations/nlm-pack-count-check.md
+  s_8f2fd150701ef7::t_f785eb8f875589 1-5
+docs/PIPELINE-FRESHNESS.md
+  s_8f2fd150701ef7::t_f785eb8f875589 1-5
+docs/superpowers/plans/2026-09-22-jev-rag-chunk-filter.md
+  s_8f2fd150701ef7::t_f785eb8f875589 1-5
+docs/superpowers/plans/2026-09-29-trm-diff-only-ingestion.md
+  s_8f2fd150701ef7::t_42dabc4e040b1a 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6aa14a20687d04126adf586474d7b4722a25cda7",
+  "prompts": {},
+  "sessions": {
+    "s_8f2fd150701ef7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a173da-4af4-7c71-8cc6-7c9091e9595d",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
