@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData, saveCategoriesData } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions } from '../../core/config.mjs';
 import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
@@ -259,5 +259,49 @@ describe('saveCategoriesData', () => {
     );
 
     assert.equal(fs.unlinkSync.mock.calls.length, 1);
+  });
+});
+
+describe('getMasterKbExclusions', () => {
+  test('returns set of keys with exclude_from_master_kb flag', () => {
+    const data = {
+      categories: {
+        'cat-1': { exclude_from_master_kb: true },
+        'cat-2': { exclude_from_master_kb: false },
+        'cat-3': { }, // flag not present
+        'cat-4': { exclude_from_master_kb: true }
+      }
+    };
+    const exclusions = getMasterKbExclusions(data);
+    assert.ok(exclusions instanceof Set);
+    assert.equal(exclusions.size, 2);
+    assert.ok(exclusions.has('cat-1'));
+    assert.ok(exclusions.has('cat-4'));
+    assert.ok(!exclusions.has('cat-2'));
+    assert.ok(!exclusions.has('cat-3'));
+  });
+
+  test('returns empty set if no categories are excluded', () => {
+    const data = {
+      categories: {
+        'cat-1': { exclude_from_master_kb: false },
+        'cat-2': { }
+      }
+    };
+    const exclusions = getMasterKbExclusions(data);
+    assert.ok(exclusions instanceof Set);
+    assert.equal(exclusions.size, 0);
+  });
+
+  test('handles empty or missing categories object safely', () => {
+    const dataMissing = {};
+    const exclusionsMissing = getMasterKbExclusions(dataMissing);
+    assert.ok(exclusionsMissing instanceof Set);
+    assert.equal(exclusionsMissing.size, 0);
+
+    const dataEmpty = { categories: {} };
+    const exclusionsEmpty = getMasterKbExclusions(dataEmpty);
+    assert.ok(exclusionsEmpty instanceof Set);
+    assert.equal(exclusionsEmpty.size, 0);
   });
 });
