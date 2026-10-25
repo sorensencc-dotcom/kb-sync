@@ -10,7 +10,7 @@
  *   3) caller uploads the fresh pack
  */
 
-import { execSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -146,14 +146,25 @@ export function filterPackFamilySources(sources, incomingPackBaseName) {
   );
 }
 
-function runCapture(cmd) {
-  return execSync(cmd, {
+function runCliCapture(cli, args) {
+  const invocation = resolveCliInvocation(cli, args);
+  const result = spawnSync(invocation.cmd, invocation.args, {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
     windowsHide: true,
-    shell: true,
+    shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
     timeout: 120000,
   });
+  if (result.status !== 0) {
+    throw new Error(result.stderr || result.stdout || result.error?.message || 'NotebookLM CLI failed');
+  }
+  return result.stdout;
+}
+
+export function resolveCliInvocation(cli, args = []) {
+  const nodeMatch = String(cli).trim().match(/^(?:node|nodejs)\s+(["']?)(.+)\1$/i);
+  if (nodeMatch) return { cmd: process.execPath, args: [nodeMatch[2], ...args] };
+  return { cmd: cli, args };
 }
 
 function assertSafeCliValue(value, label) {
@@ -183,15 +194,15 @@ export function listNotebookSources(cli, notebookId) {
   assertSafeCliValue(notebookId, 'notebook id');
   const isNlm = /\bnlm(\.exe)?$/i.test(cli.trim());
   const attempts = [
-    ...(isNlm ? [`${cli} source list "${notebookId}" --json`] : []),
-    `${cli} source list --notebook "${notebookId}" --json`,
-    `${cli} source list --notebook-id="${notebookId}" --json`,
-    `${cli} source list "${notebookId}" --json`,
+    ...(isNlm ? [['source', 'list', notebookId, '--json']] : []),
+    ['source', 'list', '--notebook', notebookId, '--json'],
+    ['source', 'list', `--notebook-id=${notebookId}`, '--json'],
+    ['source', 'list', notebookId, '--json'],
   ];
   let lastErr;
-  for (const cmd of attempts) {
+  for (const command of attempts) {
     try {
-      const stdout = runCapture(cmd);
+      const stdout = runCliCapture(cli, command);
       const parsed = JSON.parse(stdout);
       if (Array.isArray(parsed)) return parsed;
       if (Array.isArray(parsed?.sources)) return parsed.sources;
@@ -216,19 +227,19 @@ export function deleteNotebookSource(cli, notebookId, sourceId, lease, { protect
   const isNlm = /\bnlm(\.exe)?$/i.test(cli.trim());
   const attempts = isNlm
     ? [
-      `${cli} source delete ${sourceId} -y`,
-      `${cli} source delete --id="${sourceId}" -y`,
-      `${cli} source remove ${sourceId} -y`,
+      ['source', 'delete', sourceId, '-y'],
+      ['source', 'delete', `--id=${sourceId}`, '-y'],
+      ['source', 'remove', sourceId, '-y'],
     ]
     : [
-      `${cli} source delete --notebook "${notebookId}" "${sourceId}" -y`,
-      `${cli} source delete --notebook-id="${notebookId}" --id="${sourceId}" -y`,
-      `${cli} source remove --notebook "${notebookId}" "${sourceId}" -y`,
+      ['source', 'delete', '--notebook', notebookId, sourceId, '-y'],
+      ['source', 'delete', `--notebook-id=${notebookId}`, `--id=${sourceId}`, '-y'],
+      ['source', 'remove', '--notebook', notebookId, sourceId, '-y'],
     ];
   let lastErr;
-  for (const cmd of attempts) {
+  for (const command of attempts) {
     try {
-      runCapture(cmd);
+      runCliCapture(cli, command);
       return true;
     } catch (err) {
       lastErr = err;
@@ -332,8 +343,11 @@ export async function uploadAndReplacePack({
     const command = isNlm
       ? ['source', 'add', notebookId, '--file', packFile, '--json']
       : ['source', 'upload', '--notebook', notebookId, '--file', packFile, '--json'];
-    const result = spawnSync(cli, command, {
-      encoding: 'utf8', timeout: 120000, shell: true,
+    const invocation = resolveCliInvocation(cli, command);
+    const result = spawnSync(invocation.cmd, invocation.args, {
+      encoding: 'utf8',
+      timeout: 120000,
+      shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
     });
     if (result.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${result.stderr || result.stdout || result.error?.message}`);
     return result.stdout;
@@ -613,8 +627,11 @@ export async function replacePackFamilyAtomic({
     ? runDelete(srcId, lease, nbId)
     : deleteNotebookSource(cli, nbId, srcId, lease);
   const uploadFn = runUpload || ((nbId, file) => {
-    const res = spawnFn(cli, ['source', 'add', nbId, '--file', file, '--json'], {
-      encoding: 'utf8', timeout: 120000, shell: true
+    const invocation = resolveCliInvocation(cli, ['source', 'add', nbId, '--file', file, '--json']);
+    const res = spawnFn(invocation.cmd, invocation.args, {
+      encoding: 'utf8',
+      timeout: 120000,
+      shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd)
     });
     if (res.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${res.stderr || res.stdout || res.error?.message}`);
     const out = res.stdout;

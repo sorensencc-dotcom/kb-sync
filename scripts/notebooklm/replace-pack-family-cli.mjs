@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { replacePackFamilyAtomic } from '../nlm-pack-replace-gate.mjs';
+import { replacePackFamilyAtomic, resolveCliInvocation } from '../nlm-pack-replace-gate.mjs';
 
 const args = process.argv.slice(2);
 const value = flag => {
@@ -25,9 +25,10 @@ if (!notebookId || files.some(file => typeof file !== 'string' || !file)) {
 }
 
 const runCli = commandArgs => {
-  const result = spawnSync(cli, commandArgs, {
+  const invocation = resolveCliInvocation(cli, commandArgs);
+  const result = spawnSync(invocation.cmd, invocation.args, {
     encoding: 'utf8',
-    shell: true,
+    shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
     timeout: 120000,
   });
   if (result.status !== 0) {

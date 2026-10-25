@@ -15,6 +15,7 @@ import {
   pollFamilyUntilActive,
   probeExistingPackSource,
   replacePackFamilyAtomic,
+  resolveCliInvocation,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -188,6 +189,18 @@ test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () 
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm; rm -rf /', notebookId: 'nb-1', file: 'pack.txt' }), /Unsafe NotebookLM CLI/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1 & dir', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack.txt | calc' }), /Unsafe NotebookLM file path/);
+});
+
+test('resolveCliInvocation preserves spaced executable paths and parses node script commands', () => {
+  const spacedPath = path.join(REPO_ROOT, 'mock cli bin', 'mock nlm');
+  assert.deepEqual(resolveCliInvocation(spacedPath, ['source', 'list']), {
+    cmd: spacedPath,
+    args: ['source', 'list'],
+  });
+  const nodeCommand = resolveCliInvocation(`node "${path.join(__dirname, 'mock-nlm-cli.mjs')}"`, ['--version']);
+  assert.equal(nodeCommand.cmd, process.execPath);
+  assert.equal(nodeCommand.args[0], path.join(__dirname, 'mock-nlm-cli.mjs'));
+  assert.deepEqual(nodeCommand.args.slice(1), ['--version']);
 });
 
 test('isSoftwarePack identifies repo packs and software categories', () => {
