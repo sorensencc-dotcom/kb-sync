@@ -144,7 +144,7 @@ for (const status of ['ERROR', 'missing', 'READY']) test(`unverified ${status} r
   const { result, state, telemetry, initial } = run(t, { env: { NEW_STATUS: status } });
   assert.equal(result.status, 1);
   assert.deepEqual(state.sources, initial);
-  assert.equal(telemetry.purged_sources, 3);
+  assert.equal(telemetry.purged_sources, 0);
 });
 
 test('ACTIVE numeric status 2 verifies exact returned IDs', { timeout: 60000 }, t => {
@@ -163,7 +163,7 @@ test('upload returning old ID cannot authorize deleting old sources', { timeout:
 test('old-source delete failure reports actual successful deletes', { timeout: 60000 }, t => {
   const { result, state, telemetry } = run(t, { env: { FAIL_DELETE: 'old-ah' } });
   assert.equal(result.status, 1);
-  assert.equal(telemetry.status, 'PARTIAL_SUCCESS');
+  assert.equal(telemetry.status, 'FAILED');
   assert.equal(telemetry.purged_sources, 7);
   assert.ok(state.sources.some(source => source.id === 'old-ah'));
   assert.equal(state.sources.filter(source => source.id.startsWith('new-')).length, 3);
