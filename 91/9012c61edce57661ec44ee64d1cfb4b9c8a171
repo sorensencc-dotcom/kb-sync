@@ -1,0 +1,96 @@
+scripts/run-closed-loop-research.mjs
+  s_06a5365466e1f8::t_926ddb673c64cf 4,220,235
+tests/nlm-pack-replace-cutover-failure.test.mjs
+  s_06a5365466e1f8::t_e63ee358802f5b 1-33,35-51
+  s_06a5365466e1f8::t_d5a28a9c7d6810 34
+tests/kb-testing-sandbox.test.mjs
+  s_06a5365466e1f8::t_00e748670424e6 17,60,64
+  s_06a5365466e1f8::t_7913215c3fdf9e 18-19
+scripts/wiki-validate-precommit.sh
+  s_06a5365466e1f8::t_4f2d41e694fea7 29-30
+  s_06a5365466e1f8::t_a701b931e24d0f 27-28
+modules/notebooklm/ingest-notebooklm.sh
+  s_06a5365466e1f8::t_21954f2e8736fa 230
+  s_06a5365466e1f8::t_9a7a2357a87380 434-440,443-444
+scripts/notebooklm/replace-pack-family-cli.mjs
+  s_06a5365466e1f8::t_74a978551be53a 1-67
+tests/nlm-pack-family-contract.test.mjs
+  s_06a5365466e1f8::t_92210617bd5be4 1-80
+tests/notebooklm-deletion-policy.test.mjs
+  s_06a5365466e1f8::t_22e8934c96c5ea 19
+  s_06a5365466e1f8::t_261c5cbd6c463f 17
+  s_06a5365466e1f8::t_052ba7cc33ce76 1-16,18,20-21
+scripts/nlm-pack-replace-gate.mjs
+  s_06a5365466e1f8::t_65813d6770c24d 764
+  s_06a5365466e1f8::t_9870a854f91483 610-612
+  s_06a5365466e1f8::t_4fdf74e448d4b3 271-272
+  s_06a5365466e1f8::t_015116d8456032 329-333,339-344,346-347,349-350
+  s_06a5365466e1f8::t_489acbea16a873 164-174,208-210,212,295,731,735,768-769
+  s_06a5365466e1f8::t_d9b5ced731617d 214-225,732,739-740,744-753,763,765-766
+  s_06a5365466e1f8::t_926ddb673c64cf 322,348
+  s_06a5365466e1f8::t_d7034a9bdf07f5 324,345
+  s_06a5365466e1f8::t_8bdad0a37e428b 206-207
+tests/nlm-pack-replace-gate.test.mjs
+  s_06a5365466e1f8::t_48af4fbe1a6da7 125,134,141
+  s_06a5365466e1f8::t_7913215c3fdf9e 169,176-181
+  s_06a5365466e1f8::t_2e2f54d719f132 890,892-893
+package.json
+  s_06a5365466e1f8::t_3660de192cb14d 8
+  s_06a5365466e1f8::t_ec6f3c7caaf8f4 31
+  s_06a5365466e1f8::t_dcfa18e3f66b2f 10
+  s_06a5365466e1f8::t_8b7c83179c9921 11,86
+.github/workflows/test-suite.yml
+  s_06a5365466e1f8::t_ee98d51e89883c 44-46
+STATUS.md
+  s_06a5365466e1f8::t_f0c4b16b907b3b 18-22,24-25
+  s_06a5365466e1f8::t_81dbf0a3c39b7e 30
+  s_06a5365466e1f8::t_b815d4963763f4 3-10,34
+  s_06a5365466e1f8::t_8b7c83179c9921 11-17
+  s_06a5365466e1f8::t_bd65569c5fbbd6 23
+  s_06a5365466e1f8::t_1ed1aed6e7495c 26-29,31-33,35-36
+tests/integration/nlm-live.test.mjs
+  s_06a5365466e1f8::t_493cea73fb6a17 13,18-19,182-188,191-202,204,207-209,211,214-215,218-224,231-234,236-239,241-246,248,250
+  s_06a5365466e1f8::t_c401772443467a 225,227-230
+  s_06a5365466e1f8::t_48af4fbe1a6da7 301
+  s_06a5365466e1f8::t_b2e85b5019ac6e 189-190
+  s_06a5365466e1f8::t_bb97009c2cce59 235,240,247,249
+  s_06a5365466e1f8::t_f19a59e7c0755d 181
+  s_06a5365466e1f8::t_4934d8a41a6560 203,205-206,210,212-213,216-217
+  s_06a5365466e1f8::t_fdf51f4cb7b842 226
+  s_e636ac0c41889c::t_bffb1ea098fdd6 251
+tests/notebooklm-multipart.test.mjs
+  s_06a5365466e1f8::t_3ff9b468f88a88 66,113-114
+tests/notebooklm-polling.test.sh
+  s_06a5365466e1f8::t_87c1b69f8a4167 4-5
+tests/trm-act-kbsync-atomic-pack-replacement-guardrail.test.mjs
+  s_06a5365466e1f8::t_c7307e309c7e97 1-65
+scripts/notebooklm/scan-nlm-deletion-policy.mjs
+  s_06a5365466e1f8::t_d180ff3da5946b 10
+  s_06a5365466e1f8::t_052ba7cc33ce76 21-28,30-34
+  s_06a5365466e1f8::t_4f2d41e694fea7 1-6,8-9,11-20,29,35-41
+  s_06a5365466e1f8::t_1aa5125ab8afa9 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "919012c61edce57661ec44ee64d1cfb4b9c8a171",
+  "prompts": {},
+  "sessions": {
+    "s_06a5365466e1f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17092-4c32-7220-add5-4b80f5e3174d",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_e636ac0c41889c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1efb2915-6195-49cd-aaa5-ea6648e9e650",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
