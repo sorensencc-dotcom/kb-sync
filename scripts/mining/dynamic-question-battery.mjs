@@ -2,11 +2,11 @@
 /**
  * scripts/mining/dynamic-question-battery.mjs
  *
- * Dynamic Question Battery Generator with Fallback Auto-Heal (PR #140 / ACT-20261015).
+ * Dynamic Question Battery Generator with deterministic fallback behavior.
  *
  * Requirements:
- * 1. Query knowledge.db for the top 3 recently modified AST entities and open gaps for the target notebook.
- * 2. Fallback Rule: If fewer than 2 active AST entities exist, fall back to a deterministic,
+ * 1. Query knowledge.db for the top 3 recently modified active entity pages and open gaps for the target notebook.
+ * 2. Fallback rule: If fewer than 2 active entity pages exist, fall back to a deterministic,
  *    high-entropy domain battery built from core/categories.json rather than returning an empty array
  *    or tripping the low-token-density circuit breaker.
  */
@@ -129,18 +129,24 @@ export function resolveNotebookMetadata(target, categoriesPath = DEFAULT_CATEGOR
 /**
  * Loads open research gaps for a target notebook from trm-research-gaps.md.
  */
-export function loadOpenGapsForNotebook(notebookTitle, gapsPath = DEFAULT_GAPS_PATH, limit = 3) {
+export function loadOpenGapsForNotebook(notebook, gapsPath = DEFAULT_GAPS_PATH, limit = 3) {
   if (!fs.existsSync(gapsPath)) return [];
   try {
     const content = fs.readFileSync(gapsPath, 'utf8');
     const lines = content.split(/\r?\n/);
-    const cleanTitle = notebookTitle.toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+    const notebookMeta = typeof notebook === 'string'
+      ? { title: notebook, key: notebook, aliases: [] }
+      : notebook;
+    const terms = [notebookMeta.key, notebookMeta.title, ...(notebookMeta.aliases || [])]
+      .filter(Boolean)
+      .map((term) => term.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim())
+      .filter(Boolean);
     const matched = [];
 
     for (const line of lines) {
-      if (!line.startsWith('- [ ]')) continue;
+      if (!/^- \[( |\/)\]/.test(line)) continue;
       const lower = line.toLowerCase();
-      if (lower.includes(cleanTitle) || lower.includes(notebookTitle.toLowerCase())) {
+      if (terms.some((term) => lower.replace(/[^a-z0-9]+/g, ' ').includes(term))) {
         const match = line.match(/\*\*([^*]+)\*\*:\s*(.*)$/);
         if (match) {
           matched.push({
@@ -158,7 +164,7 @@ export function loadOpenGapsForNotebook(notebookTitle, gapsPath = DEFAULT_GAPS_P
 }
 
 /**
- * Queries knowledge.db for the top 3 recently modified AST entities matching the notebook.
+ * Queries knowledge.db for the top recently modified active entity pages matching the notebook.
  */
 export function queryRecentlyModifiedEntities(notebookMeta, dbPath = DEFAULT_DB_PATH, limit = 3) {
   if (!fs.existsSync(dbPath)) return [];
@@ -177,22 +183,38 @@ export function queryRecentlyModifiedEntities(notebookMeta, dbPath = DEFAULT_DB_
       notebookMeta.key,
       notebookMeta.title,
       ...(notebookMeta.aliases || []),
-    ].map((s) => `%${s.toLowerCase()}%`);
+    ]
+      .filter(Boolean)
+      .map((s) => `%${s.toLowerCase()}%`);
+
+    if (searchPatterns.length === 0) {
+      db.close();
+      return [];
+    }
+
+    const matchClauses = searchPatterns
+      .flatMap(() => [
+        'LOWER(topic) LIKE ?',
+        'LOWER(file_path) LIKE ?',
+        'LOWER(content) LIKE ?',
+      ])
+      .join(' OR ');
+    const matchParams = searchPatterns.flatMap((pattern) => [pattern, pattern, pattern]);
 
     const query = `
       SELECT id, topic, file_path, abstract, substr(content, 1, 300) AS excerpt, last_updated
       FROM kb_documents
       WHERE (
-        LOWER(topic) LIKE ?
-        OR LOWER(category) LIKE ?
-        OR LOWER(file_path) LIKE ?
+        file_path LIKE 'wiki/entities/%'
+        AND LOWER(content) LIKE '%status: active%'
+        AND (${matchClauses})
       )
       ORDER BY last_updated DESC
       LIMIT ?
     `;
 
     const stmt = db.prepare(query);
-    const results = stmt.all(searchPatterns[0], searchPatterns[0], searchPatterns[0], limit);
+    const results = stmt.all(...matchParams, limit);
     db.close();
     return results || [];
   } catch (err) {
@@ -234,7 +256,7 @@ export function generateDomainFallbackBattery(notebookMeta) {
 
 /**
  * Main Dynamic Question Battery Generator.
- * Enforces AST entity grounding with high-entropy fallback auto-heal.
+ * Uses active entity pages when available and a deterministic fallback otherwise.
  */
 export function generateDynamicQuestionBattery(target, options = {}) {
   const dbPath = options.dbPath || DEFAULT_DB_PATH;
@@ -243,7 +265,7 @@ export function generateDynamicQuestionBattery(target, options = {}) {
 
   const notebookMeta = resolveNotebookMetadata(target, categoriesPath);
   const entities = queryRecentlyModifiedEntities(notebookMeta, dbPath, 3);
-  const openGaps = loadOpenGapsForNotebook(notebookMeta.title, gapsPath, 3);
+  const openGaps = loadOpenGapsForNotebook(notebookMeta, gapsPath, 3);
 
   let questions = [];
   let source = 'ast_entities';
