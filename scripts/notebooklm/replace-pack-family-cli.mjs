@@ -68,10 +68,27 @@ try {
         throw new Error('NotebookLM source deletion lease did not authorize the requested source ID.');
       }
       const isNlmCli = /\bnlm(\.exe)?$/i.test(cli.trim());
-      runCli(isNlmCli
-        ? ['source', 'delete', sourceId, '-y']
-        : ['source', 'delete', '--notebook', nbId, sourceId, '-y']);
-      return true;
+      const commands = isNlmCli
+        ? [
+          ['source', 'delete', sourceId, '-y'],
+          ['source', 'delete', `--id=${sourceId}`, '-y'],
+          ['source', 'remove', sourceId, '-y'],
+        ]
+        : [
+          ['source', 'delete', '--notebook', nbId, sourceId, '-y'],
+          ['source', 'delete', `--notebook-id=${nbId}`, `--id=${sourceId}`, '-y'],
+          ['source', 'remove', '--notebook', nbId, sourceId, '-y'],
+        ];
+      let lastError;
+      for (const command of commands) {
+        try {
+          runCli(command);
+          return true;
+        } catch (error) {
+          lastError = error;
+        }
+      }
+      throw new Error(`Failed to delete NotebookLM source ${sourceId}: ${lastError?.message || lastError}`);
     },
     logInfo: message => console.error(message),
     logWarn: message => console.error(message),
