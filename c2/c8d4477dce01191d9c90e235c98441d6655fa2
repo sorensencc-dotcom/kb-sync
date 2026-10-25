@@ -1,0 +1,19 @@
+scripts/nlm-pack-replace-gate.mjs
+  s_aece4c54405b82::t_9beadae39c6e4b 797
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c2c8d4477dce01191d9c90e235c98441d6655fa2",
+  "prompts": {},
+  "sessions": {
+    "s_aece4c54405b82": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17441-cb35-7980-a06b-b821ca8c1efb",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
