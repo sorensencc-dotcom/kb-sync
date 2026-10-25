@@ -983,4 +983,78 @@ test('replacePackFamilyAtomic does not reuse pre-existing ACTIVE source by defau
   assert.deepEqual(resReuse.newSourceIds, ['stale-active-1']);
 });
 
+test('replaceSinglePack skips multipart registry notebook without upload or delete', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  let uploaded = false;
+  let deleted = false;
+  const res = await replaceSinglePack({
+    notebookId: '1b4861a3-931f-4632-8fc1-343a8dd37df8', // daily
+    packFile: 'pack_daily.txt',
+    runList: async () => [],
+    runUpload: async () => { uploaded = true; return {}; },
+    runDelete: async () => { deleted = true; return true; },
+  });
+  assert.equal(res.skipped, true);
+  assert.equal(res.reason, 'MULTIPART_REGISTRY');
+  assert.equal(uploaded, false);
+  assert.equal(deleted, false);
+});
+
+test('replaceSinglePack skips has_pack: false notebook without upload or delete', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  let uploaded = false;
+  let deleted = false;
+  const res = await replaceSinglePack({
+    notebookId: '140119ae-3496-45c9-bf0c-71c955136afc', // rewrite-labs
+    packFile: 'pack_rewrite_labs.txt',
+    runList: async () => [],
+    runUpload: async () => { uploaded = true; return {}; },
+    runDelete: async () => { deleted = true; return true; },
+  });
+  assert.equal(res.skipped, true);
+  assert.equal(res.reason, 'HAS_PACK_FALSE');
+  assert.equal(uploaded, false);
+  assert.equal(deleted, false);
+});
+
+test('replaceSinglePack skips when live sources contain _partN without upload or delete', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  let uploaded = false;
+  let deleted = false;
+  const res = await replaceSinglePack({
+    notebookId: '99999999-9999-9999-9999-999999999999',
+    packFile: 'pack_daily.txt',
+    runList: async () => [
+      { id: 'p1', title: 'pack_daily_part1.txt', status: 2 },
+    ],
+    runUpload: async () => { uploaded = true; return {}; },
+    runDelete: async () => { deleted = true; return true; },
+  });
+  assert.equal(res.skipped, true);
+  assert.equal(res.reason, 'MULTIPART_LIVE');
+  assert.equal(uploaded, false);
+  assert.equal(deleted, false);
+});
+
+test('replaceSinglePack executes atomic replace for valid single-pack notebook', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  const deleted = [];
+  const live = [{ id: 'old-1', title: 'pack_ford_politics.txt', status: 2 }];
+  const res = await replaceSinglePack({
+    notebookId: '0caf6707-f8f2-4d2a-acd2-020acead55ba', // ford-politics (has_pack: true, multipart: false)
+    packFile: 'pack_ford_politics.txt',
+    runList: async () => live,
+    runUpload: async (nbId, file) => {
+      const src = { id: 'new-1', title: 'pack_ford_politics.txt', status: 2 };
+      live.push(src);
+      return { source_id: 'new-1' };
+    },
+    runDelete: async (id) => { deleted.push(id); return true; },
+    waitMs: 0,
+  });
+  assert.equal(res.success, true);
+  assert.deepEqual(deleted, ['old-1']);
+});
+
+
 
