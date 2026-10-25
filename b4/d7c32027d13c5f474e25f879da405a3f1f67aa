@@ -1,0 +1,23 @@
+modules/notebooklm/ingest-notebooklm.sh
+  s_aece4c54405b82::t_6ec19dd03cf9db 440-446
+scripts/notebooklm/replace-pack-family-cli.mjs
+  s_aece4c54405b82::t_6ec19dd03cf9db 98-101
+scripts/nlm-pack-replace-gate.mjs
+  s_aece4c54405b82::t_6ec19dd03cf9db 784,789,795-798
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b4d7c32027d13c5f474e25f879da405a3f1f67aa",
+  "prompts": {},
+  "sessions": {
+    "s_aece4c54405b82": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17441-cb35-7980-a06b-b821ca8c1efb",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
