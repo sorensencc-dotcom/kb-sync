@@ -1,0 +1,43 @@
+package.json
+  s_aece4c54405b82::t_ea07358e3de98c 24,32,88
+docs/issue-94-graph-drift-gate-design.md
+  s_aece4c54405b82::t_d5b28108d7411a 1-29
+modules/graph-sync/cli.mjs
+  s_aece4c54405b82::t_6249badf25a3fa 1-102
+modules/graph-sync/queue.mjs
+  s_aece4c54405b82::t_c565061811801b 1-479
+modules/review-capacity/review-capacity-baseline.csv
+  s_aece4c54405b82::t_4c0fe3bf1442d6 28-37,39-45,47,49-58,60-67,69-76,78-80
+scripts/mining/dynamic-question-battery.mjs
+  s_aece4c54405b82::t_b160d0683b787a 5,8-9,132,137-143,147,149,167,186-202,208-210,217,259,268
+scripts/nlm-pack-replace-gate.mjs
+  s_aece4c54405b82::t_678aac472c89bf 14,16,784-823
+scripts/serial-merge-queue.mjs
+  s_aece4c54405b82::t_942c6b402197ad 1-7
+state/knowledge-plane-notebooks.json
+  s_aece4c54405b82::t_e1ad1f052fdd42 34
+tests/dynamic-question-battery.test.mjs
+  s_aece4c54405b82::t_a55e8a6da8ab23 3-6,13-14,53-101
+tests/graph-sync-cli.test.mjs
+  s_aece4c54405b82::t_d94d784df82f84 1-83
+tests/graph-sync-queue.test.mjs
+  s_aece4c54405b82::t_74f53f249dfb73 1-131
+tests/nlm-pack-replace-gate.test.mjs
+  s_aece4c54405b82::t_32b6f0968b49bc 986-1059
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "adbdffea3c4d33a588a2462baf078eb9cfbcf4e3",
+  "prompts": {},
+  "sessions": {
+    "s_aece4c54405b82": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17441-cb35-7980-a06b-b821ca8c1efb",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
