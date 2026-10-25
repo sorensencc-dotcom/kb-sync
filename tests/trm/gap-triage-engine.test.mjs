@@ -25,3 +25,79 @@ test('evaluateClaim flags contradiction when claim falls outside settled toleran
   assert.equal(res.action, 'CONTRADICTION_DETECTED');
   assert.ok(res.conflictDraftFilename.length <= 64);
 });
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { reconcileResolvedGaps } from '../../modules/trm/gap-triage-engine.mjs';
+
+test('reconcileResolvedGaps returns empty if gaps file is missing', async (t) => {
+  t.mock.method(fs, 'existsSync', (p) => false);
+  const result = await reconcileResolvedGaps('missing.md');
+  assert.deepEqual(result, { resolvedCount: 0, resolvedGaps: [] });
+});
+
+test('reconcileResolvedGaps returns empty if no in-progress gaps exist', async (t) => {
+  t.mock.method(fs, 'existsSync', (p) => true);
+  t.mock.method(fs.promises, 'readFile', async (p) => '- [ ] [GAP-01] Pending gap\n- [x] [GAP-02] Resolved gap\n');
+  const result = await reconcileResolvedGaps('gaps.md');
+  assert.deepEqual(result, { resolvedCount: 0, resolvedGaps: [] });
+});
+
+test('reconcileResolvedGaps returns empty if facts do not match keywords', async (t) => {
+  t.mock.method(fs, 'existsSync', (p) => true);
+  t.mock.method(fs.promises, 'readFile', async (p) => {
+    if (p.endsWith('gaps.md')) {
+      return '- [/] [GAP-01] Alpha Beta Gamma\n';
+    }
+    if (p.endsWith('extracted-facts.json')) {
+      return JSON.stringify([{ text: 'Delta Epsilon' }]);
+    }
+    return '';
+  });
+  t.mock.method(fs.promises, 'readdir', async (p) => ['topic1']);
+  const writeSpy = t.mock.method(fs.promises, 'writeFile', async () => {});
+
+  const result = await reconcileResolvedGaps('gaps.md', { vaultRoot: 'vault' });
+  assert.deepEqual(result, { resolvedCount: 0, resolvedGaps: [] });
+  assert.equal(writeSpy.mock.callCount(), 0);
+});
+
+test('reconcileResolvedGaps updates file if facts match keywords', async (t) => {
+  t.mock.method(fs, 'existsSync', (p) => true);
+  t.mock.method(fs.promises, 'readFile', async (p) => {
+    if (p.endsWith('gaps.md')) {
+      return '- [/] [GAP-01] Elephant Giraffe Zebra\n';
+    }
+    if (p.endsWith('extracted-facts.json')) {
+      return JSON.stringify([{ text: 'An elephant and a giraffe and a zebra walked into a bar.' }]);
+    }
+    return '';
+  });
+  t.mock.method(fs.promises, 'readdir', async (p) => ['topic1']);
+  const writeSpy = t.mock.method(fs.promises, 'writeFile', async () => {});
+
+  const result = await reconcileResolvedGaps('gaps.md', { vaultRoot: 'vault' });
+  assert.deepEqual(result, { resolvedCount: 1, resolvedGaps: ['GAP-01--elephant-giraffe-zebra'] });
+  assert.equal(writeSpy.mock.callCount(), 1);
+  const updatedContent = writeSpy.mock.calls[0].arguments[1];
+  assert.ok(updatedContent.includes('- [x] [GAP-01] Elephant Giraffe Zebra'));
+});
+
+test('reconcileResolvedGaps matches but skips writing if dryRun is true', async (t) => {
+  t.mock.method(fs, 'existsSync', (p) => true);
+  t.mock.method(fs.promises, 'readFile', async (p) => {
+    if (p.endsWith('gaps.md')) {
+      return '- [/] [GAP-01] Elephant Giraffe Zebra\n';
+    }
+    if (p.endsWith('extracted-facts.json')) {
+      return JSON.stringify([{ text: 'An elephant and a giraffe and a zebra walked into a bar.' }]);
+    }
+    return '';
+  });
+  t.mock.method(fs.promises, 'readdir', async (p) => ['topic1']);
+  const writeSpy = t.mock.method(fs.promises, 'writeFile', async () => {});
+
+  const result = await reconcileResolvedGaps('gaps.md', { vaultRoot: 'vault', dryRun: true });
+  assert.deepEqual(result, { resolvedCount: 1, resolvedGaps: ['GAP-01--elephant-giraffe-zebra'] });
+  assert.equal(writeSpy.mock.callCount(), 0);
+});
