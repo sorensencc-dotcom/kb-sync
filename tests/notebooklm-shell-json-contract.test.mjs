@@ -24,12 +24,12 @@ test('rollback keeps adapter diagnostics separate from its JSON receipt', () => 
   writeFileSync(cliPath, `#!/usr/bin/env bash
 set -euo pipefail
 printf '[SHELL-CONTRACT-CLI] Invoked with arguments: %s\\n' "$*" >&2
-case "$1 $2 $3" in
+case "$1 $2" in
   "source list --notebook") printf '[ ]\\n' ;;
   "source add --help") printf '%s\\n' '--json' ;;
   "source add --notebook") printf '%s\\n' '{"source_id":"shell-contract-source"}' ;;
   "source delete --notebook") exit 0 ;;
-  "auth check "|"auth refresh ") exit 0 ;;
+  "auth check"|"auth refresh") exit 0 ;;
   *) exit 64 ;;
 esac
 `, { mode: 0o755 });

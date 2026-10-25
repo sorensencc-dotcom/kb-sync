@@ -27,6 +27,7 @@ function run(t, options = {}) {
   for (const file of ['replace-pack-family-cli.mjs']) {
     fs.copyFileSync(path.join(repo, 'scripts', 'notebooklm', file), path.join(dir, 'scripts', 'notebooklm', file));
   }
+  fs.copyFileSync(path.join(repo, 'scripts', 'notebooklm', 'sandbox-contract.mjs'), path.join(dir, 'scripts', 'notebooklm', 'sandbox-contract.mjs'));
   fs.copyFileSync(path.join(repo, 'scripts', 'nlm-pack-replace-gate.mjs'), path.join(dir, 'scripts', 'nlm-pack-replace-gate.mjs'));
   fs.mkdirSync(path.join(dir, 'configs'));
   fs.writeFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'output_dir: "./.nlm_pack"\npack_filename: "repo_knowledge_pack"\ntimeout_ms: 10000\nretry_attempts: 1\nbackoff_ms: 100\n');
