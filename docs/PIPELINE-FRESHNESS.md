@@ -1,3 +1,8 @@
+---
+category: "operations"
+tags: ["pipeline", "freshness"]
+---
+
 # Documentation pipeline: freshness, identity and honest status
 
 This describes the **existing** pipeline (source → entity synthesis → wiki contract validation → GitHub-wiki publish
