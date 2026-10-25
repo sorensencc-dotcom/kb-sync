@@ -95,6 +95,10 @@ try {
   });
   console.log(JSON.stringify(result));
 } catch (error) {
+  console.log(JSON.stringify({
+    error: error?.message || String(error),
+    purgedSourceIds: Array.isArray(error?.purgedSourceIds) ? error.purgedSourceIds : [],
+  }));
   console.error(error?.stack || error);
   process.exitCode = 1;
 }

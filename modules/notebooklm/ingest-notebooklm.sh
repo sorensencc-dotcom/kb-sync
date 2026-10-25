@@ -437,7 +437,13 @@ replace_pack_sources() {
   for file in "${UPLOAD_FILES[@]}"; do command+=(--pack-file "$file"); done
   if ! result="$(node "${command[@]}")"; then
     log_error "Atomic pack replacement failed: $result"
-    write_sync_telemetry "FAILED" 0 0 "$result"
+    local purged=0
+    if purged="$(printf '%s' "$result" | node -e 'try { const r=JSON.parse(require("fs").readFileSync(0,"utf8")); console.log(Array.isArray(r.purgedSourceIds) ? r.purgedSourceIds.length : 0); } catch (_) { console.log(0); }')"; then
+      :
+    else
+      purged=0
+    fi
+    write_sync_telemetry "FAILED" "$purged" 0 "$result"
     return 1
   fi
   UPLOADED_COUNT=$(printf '%s' "$result" | node -e 'const r=JSON.parse(require("fs").readFileSync(0,"utf8")); console.log(r.newSourceIds.length)')

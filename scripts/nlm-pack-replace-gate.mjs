@@ -781,15 +781,21 @@ export async function replacePackFamilyAtomic({
     // Keep an ACTIVE replacement available after an irreversible partial cutover.
     logWarn(`[QUARANTINE] Notebook ${notebookId} failed replace-gate: ${err.message}. Active replacement retained for reconciliation.`);
     const shouldCleanUpOrphans = !err.message.startsWith('PARTIAL_CUTOVER:');
+    const purgedOrphanIds = [];
     for (const orphanId of shouldCleanUpOrphans ? newlyUploadedSourceIds : []) {
       try {
         const orphanLease = createSourceDeletionLease({ notebookId, sourceIds: [orphanId], reason: 'rollback' });
         await deleteFn(notebookId, orphanId, orphanLease);
+        purgedOrphanIds.push(orphanId);
         logInfo(`[CLEANUP] Purged orphaned partial upload ${orphanId}`);
       } catch (cleanErr) {
         logWarn(`[WARN] Failed to purge orphaned upload ${orphanId}: ${cleanErr.message}`);
       }
     }
+    err.purgedSourceIds = [
+      ...(Array.isArray(err.deletedSourceIds) ? err.deletedSourceIds : []),
+      ...purgedOrphanIds,
+    ];
     if (quarantineHandler) {
       quarantineHandler(notebookId, err.message);
     }
