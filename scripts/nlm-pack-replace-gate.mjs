@@ -706,7 +706,7 @@ export async function replacePackFamilyAtomic({
         staleSourceIds.push(probe.sourceId);
       }
 
-      logInfo(`[UPLOAD] Uploading ${fileName} to ${notebookId}...`);
+      logInfo(`[UPLOAD] Uploading: ${fileName} to ${notebookId}...`);
       const uploadOut = await uploadFn(notebookId, file);
       let parsed = null;
       if (typeof uploadOut === 'string') {
