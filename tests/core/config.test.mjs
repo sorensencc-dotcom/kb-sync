@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData, saveCategoriesData } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData, resolveCategoryKey } from '../../core/config.mjs';
 import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
@@ -259,5 +259,57 @@ describe('saveCategoriesData', () => {
     );
 
     assert.equal(fs.unlinkSync.mock.calls.length, 1);
+  });
+});
+
+describe('resolveCategoryKey', () => {
+  const mockCategoriesData = {
+    categories: {
+      'test-canonical': {
+        aliases: ['alias1', 'ALIAS2', '  alias3  ']
+      },
+      'another-canonical': {
+        aliases: []
+      },
+      'no-aliases-canonical': {}
+    }
+  };
+
+  test('returns "daily" if category is falsy', () => {
+    assert.equal(resolveCategoryKey(null, mockCategoriesData), 'daily');
+    assert.equal(resolveCategoryKey(undefined, mockCategoriesData), 'daily');
+    assert.equal(resolveCategoryKey('', mockCategoriesData), 'daily');
+  });
+
+  test('returns normalized input if it matches a canonical key exactly', () => {
+    assert.equal(resolveCategoryKey('test-canonical', mockCategoriesData), 'test-canonical');
+  });
+
+  test('returns normalized input if it matches a canonical key with different casing/whitespace', () => {
+    assert.equal(resolveCategoryKey('  TEST-CANONICAL  ', mockCategoriesData), 'test-canonical');
+  });
+
+  test('returns canonical key if it matches an alias exactly', () => {
+    assert.equal(resolveCategoryKey('alias1', mockCategoriesData), 'test-canonical');
+  });
+
+  test('returns canonical key if it matches an alias with different casing/whitespace', () => {
+    assert.equal(resolveCategoryKey('  AlIaS2  ', mockCategoriesData), 'test-canonical');
+    assert.equal(resolveCategoryKey('alias3', mockCategoriesData), 'test-canonical'); // alias3 in data has spaces
+  });
+
+  test('returns normalized input if category is unknown', () => {
+    assert.equal(resolveCategoryKey('unknown-category', mockCategoriesData), 'unknown-category');
+    assert.equal(resolveCategoryKey('  UNKNOWN-Category  ', mockCategoriesData), 'unknown-category');
+  });
+
+  test('handles missing categories object gracefully', () => {
+    assert.equal(resolveCategoryKey('test-canonical', {}), 'test-canonical');
+    assert.equal(resolveCategoryKey('unknown', {}), 'unknown');
+  });
+
+  test('handles missing aliases array gracefully', () => {
+    assert.equal(resolveCategoryKey('no-aliases-canonical', mockCategoriesData), 'no-aliases-canonical');
+    assert.equal(resolveCategoryKey('unknown', mockCategoriesData), 'unknown');
   });
 });
