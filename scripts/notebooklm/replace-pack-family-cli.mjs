@@ -31,6 +31,7 @@ const runCli = commandArgs => {
     shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
     timeout: 120000,
   });
+  if (result.stderr) process.stderr.write(result.stderr);
   if (result.status !== 0) {
     throw new Error(result.stderr || result.stdout || result.error?.message || 'NotebookLM CLI failed');
   }
