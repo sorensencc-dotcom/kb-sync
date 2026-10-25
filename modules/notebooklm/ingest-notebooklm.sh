@@ -432,7 +432,7 @@ run_preflight_drift_audit() {
 
 replace_pack_sources() {
   local cli="${EXPLICIT_NLM_CLI:-${GLOBAL_NLM_EXEC:-nlm}}" result
-  local -a command=("$REPO_ROOT/scripts/notebooklm/replace-pack-family-cli.mjs" --cli "$cli" --dialect "$NLM_DIALECT" --notebook-id "$NOTEBOOK_ID" --expected-part-count "${#UPLOAD_FILES[@]}" --timeout-ms "$TIMEOUT_MS" --wait-ms 3500)
+  local -a command=("$SCRIPT_DIR/../../scripts/notebooklm/replace-pack-family-cli.mjs" --cli "$cli" --dialect "$NLM_DIALECT" --notebook-id "$NOTEBOOK_ID" --expected-part-count "${#UPLOAD_FILES[@]}" --timeout-ms "$TIMEOUT_MS" --wait-ms 3500)
   local file
   for file in "${UPLOAD_FILES[@]}"; do command+=(--pack-file "$file"); done
   if ! result="$(node "${command[@]}")"; then
