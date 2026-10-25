@@ -161,6 +161,17 @@ function assertSafeCliValue(value, label) {
   return value;
 }
 
+const SOURCE_DELETE_LEASE = Symbol('source-delete-lease');
+
+export function createSourceDeletionLease({ notebookId, sourceIds, reason }) {
+  const ids = Array.isArray(sourceIds) ? [...new Set(sourceIds)] : [];
+  if (!notebookId || !ids.length || ids.some(id => typeof id !== 'string' || !/^[A-Za-z0-9_-]+$/.test(id))) {
+    throw new Error('INVALID_SOURCE_DELETE_LEASE');
+  }
+  if (!['replacement', 'rollback'].includes(reason)) throw new Error('INVALID_SOURCE_DELETE_REASON');
+  return Object.freeze({ [SOURCE_DELETE_LEASE]: true, notebookId, sourceIds: Object.freeze(ids), reason });
+}
+
 /**
  * List notebook sources via notebooklm/nlm CLI.
  * Tries several known shapes used across CIC scripts.
@@ -192,15 +203,26 @@ export function listNotebookSources(cli, notebookId) {
   );
 }
 
-export function deleteNotebookSource(cli, sourceId) {
-  if (isProtectedSandboxFixture({ id: sourceId })) throw new Error('PROTECTED_SANDBOX_FIXTURE: deletion forbidden');
+export function deleteNotebookSource(cli, notebookId, sourceId, lease, { protectedSourceIds = [] } = {}) {
+  if (protectedSourceIds.includes(sourceId)) throw new Error('PROTECTED_SOURCE_DELETE: source is protected by caller policy');
+  if (!lease || lease[SOURCE_DELETE_LEASE] !== true || lease.notebookId !== notebookId || !lease.sourceIds.includes(sourceId)) {
+    throw new Error('UNLEASED_SOURCE_DELETE: replacement or rollback lease required');
+  }
   assertSafeCliValue(cli, 'CLI');
+  assertSafeCliValue(notebookId, 'notebook id');
   assertSafeCliValue(sourceId, 'source id');
-  const attempts = [
-    `${cli} source delete ${sourceId} -y`,
-    `${cli} source delete --id="${sourceId}" -y`,
-    `${cli} source remove ${sourceId} -y`,
-  ];
+  const isNlm = /\bnlm(\.exe)?$/i.test(cli.trim());
+  const attempts = isNlm
+    ? [
+      `${cli} source delete ${sourceId} -y`,
+      `${cli} source delete --id="${sourceId}" -y`,
+      `${cli} source remove ${sourceId} -y`,
+    ]
+    : [
+      `${cli} source delete --notebook "${notebookId}" "${sourceId}" -y`,
+      `${cli} source delete --notebook-id="${notebookId}" --id="${sourceId}" -y`,
+      `${cli} source remove --notebook "${notebookId}" "${sourceId}" -y`,
+    ];
   let lastErr;
   for (const cmd of attempts) {
     try {
@@ -246,6 +268,8 @@ export function purgePackFamilyBeforeUpload({
     `Replace-gate: ${sources.length} source(s) live; ${matched.length} pack-family match(es) to purge.`,
   );
 
+  if (!dryRun) throw new Error('ATOMIC_REPLACEMENT_REQUIRED: use replacePackFamilyAtomic');
+
   if (matched.length === 0) {
     return { listed: sources.length, purged: 0, matched, safeToUpload: true };
   }
@@ -268,7 +292,7 @@ export function purgePackFamilyBeforeUpload({
     }
     logInfo(`Replace-gate: purging ${id} ("${s.title || s.name}")...`);
     try {
-      deleteNotebookSource(cli, id);
+      deleteNotebookSource(cli, notebookId, id, createSourceDeletionLease({ notebookId, sourceIds: [id], reason: 'replacement' }));
       purged += 1;
       logInfo(`Replace-gate: purged ${id}`);
     } catch (err) {
@@ -294,32 +318,36 @@ export async function uploadAndReplacePack({
   cli,
   notebookId,
   packFile,
-  oldSources = [],
   logInfo = console.log,
+  logWarn = console.warn,
   runUpload = null,
+  runList = null,
   waitMs = 3500,
 }) {
   assertAllowedPackNotebook(notebookId, packFile);
   const invoke = runUpload || (() => {
-    const result = spawnSync(cli, ['source', 'upload', '--notebook', notebookId, '--file', packFile, '--json'], {
+    const isNlm = /\bnlm(\.exe)?$/i.test(cli.trim());
+    const command = isNlm
+      ? ['source', 'add', notebookId, '--file', packFile, '--json']
+      : ['source', 'upload', '--notebook', notebookId, '--file', packFile, '--json'];
+    const result = spawnSync(cli, command, {
       encoding: 'utf8', timeout: 120000, shell: true,
     });
     if (result.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${result.stderr || result.stdout || result.error?.message}`);
     return result.stdout;
   });
-  const added = typeof invoke === 'function' ? invoke() : null;
-  let parsed;
-  try { parsed = typeof added === 'string' ? JSON.parse(added) : added; } catch { throw new Error('UPLOAD_SOURCE_ID_UNVERIFIABLE'); }
-  const uploadedId = parsed?.source_id || parsed?.id || parsed?.source?.id;
-  if (typeof uploadedId !== 'string' || !uploadedId) throw new Error('UPLOAD_SOURCE_ID_UNVERIFIABLE');
-  const sources = listNotebookSources(cli, notebookId);
-  const matches = sources.filter(source => (source.id || source.sourceId || source.source_id) === uploadedId);
-  if (matches.length !== 1) throw new Error('UPLOAD_SOURCE_ID_NOT_UNIQUE');
-  if (![2, '2', 'ACTIVE', 'active'].includes(matches[0].status)) throw new Error('UPLOAD_SOURCE_NOT_ACTIVE');
-  await new Promise(resolve => setTimeout(resolve, waitMs));
-  for (const source of oldSources) deleteNotebookSource(cli, source.id || source.sourceId || source.source_id);
-  logInfo(`Uploaded ${path.basename(packFile)} as ${uploadedId}; deleted ${oldSources.length} old source(s).`);
-  return { uploadedId, oldSourceIds: oldSources.map(source => source.id || source.sourceId || source.source_id) };
+  const result = await replacePackFamilyAtomic({
+    cli,
+    notebookId,
+    packFiles: [packFile],
+    expectedPartCount: 1,
+    runUpload: () => invoke(),
+    runList,
+    waitMs,
+    logInfo,
+    logWarn,
+  });
+  return { uploadedId: result.newSourceIds[0], oldSourceIds: result.purgedOldSourceIds };
 }
 
 // Sandbox verification replaces only sources explicitly owned by this run.
@@ -579,7 +607,9 @@ export async function replacePackFamilyAtomic({
   }
 
   const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
-  const deleteFn = runDelete || ((srcId) => deleteNotebookSource(cli, srcId));
+  const deleteFn = (nbId, srcId, lease) => runDelete
+    ? runDelete(srcId, lease, nbId)
+    : deleteNotebookSource(cli, nbId, srcId, lease);
   const uploadFn = runUpload || ((nbId, file) => {
     const res = spawnFn(cli, ['source', 'add', nbId, '--file', file, '--json'], {
       encoding: 'utf8', timeout: 120000, shell: true
@@ -698,13 +728,27 @@ export async function replacePackFamilyAtomic({
     const newGenSet = new Set(newGenerationSourceIds);
     const toDelete = oldSourceIds.filter(id => !newGenSet.has(id));
     const purgedIds = [];
+    const oldLease = oldSourceIds.length ? createSourceDeletionLease({ notebookId, sourceIds: oldSourceIds, reason: 'replacement' }) : null;
+    let cutoverError = null;
     for (const id of toDelete) {
       try {
-        await deleteFn(id);
+        await deleteFn(notebookId, id, oldLease);
         purgedIds.push(id);
       } catch (delErr) {
         logWarn(`[WARN] Failed to delete old source ${id}: ${delErr.message}`);
+        cutoverError = delErr;
+        break;
       }
+    }
+
+    if (cutoverError) {
+      const remainingIds = toDelete.filter(id => !purgedIds.includes(id));
+      const partialError = new Error(
+        `PARTIAL_CUTOVER: deleted ${purgedIds.length}/${toDelete.length} old source(s); ${cutoverError.message}`,
+      );
+      partialError.deletedSourceIds = purgedIds;
+      partialError.remainingSourceIds = remainingIds;
+      throw partialError;
     }
 
     logInfo(`[CUTOVER_COMPLETE] Notebook ${notebookId}: promoted ${newGenerationSourceIds.length} source(s), purged ${purgedIds.length} old source(s).`);
@@ -716,12 +760,13 @@ export async function replacePackFamilyAtomic({
       staleSourceIds,
     };
   } catch (err) {
-    // Quarantine Without Deletion: leave previous working generation 100% intact!
-    // Purge only orphaned partial uploads from failed staging generation
-    logWarn(`[QUARANTINE] Notebook ${notebookId} failed replace-gate: ${err.message}. Preserving old sources.`);
-    for (const orphanId of newlyUploadedSourceIds) {
+    // Keep an ACTIVE replacement available after an irreversible partial cutover.
+    logWarn(`[QUARANTINE] Notebook ${notebookId} failed replace-gate: ${err.message}. Active replacement retained for reconciliation.`);
+    const shouldCleanUpOrphans = !err.message.startsWith('PARTIAL_CUTOVER:');
+    for (const orphanId of shouldCleanUpOrphans ? newlyUploadedSourceIds : []) {
       try {
-        await deleteFn(orphanId);
+        const orphanLease = createSourceDeletionLease({ notebookId, sourceIds: [orphanId], reason: 'rollback' });
+        await deleteFn(notebookId, orphanId, orphanLease);
         logInfo(`[CLEANUP] Purged orphaned partial upload ${orphanId}`);
       } catch (cleanErr) {
         logWarn(`[WARN] Failed to purge orphaned upload ${orphanId}: ${cleanErr.message}`);

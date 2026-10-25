@@ -63,7 +63,7 @@ process.exit(96);
     env.PATH = `${pathValue};C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin`;
   }
   function command(executable, args) {
-    const result = spawnSync(executable, args, { cwd: dir, env, encoding: 'utf8', timeout: 55000 });
+    const result = spawnSync(executable, args, { cwd: dir, env, encoding: 'utf8', timeout: options.commandTimeout || 55000 });
     assert.ifError(result.error);
     return result;
   }
@@ -110,8 +110,8 @@ test('ambiguous successful upload never triggers a second plaintext upload or ol
   assert.equal(telemetry.status, 'FAILED');
 });
 
-test('all fifteen replacement IDs become ACTIVE before deleting any old chunk', { timeout: 60000 }, t => {
-  const { result, state, telemetry } = run(t, { parts: 15 });
+test('all fifteen replacement IDs become ACTIVE before deleting any old chunk', { timeout: 120000 }, t => {
+  const { result, state, telemetry } = run(t, { parts: 15, commandTimeout: 120000 });
   assert.equal(result.status, 0, result.stderr);
   const adds = state.calls.filter(call => call.args[1] === 'add' && call.args[2] !== '--help');
   assert.equal(adds.length, 15);

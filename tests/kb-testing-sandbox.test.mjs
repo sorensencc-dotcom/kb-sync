@@ -1,9 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
-import { resolveBashExecutable } from '../modules/notebooklm/lib/bash-resolver.mjs';
 import { hasPackGrounding } from '../modules/notebooklm/lib/grounding-citations.mjs';
 import { KB_TESTING_SANDBOX_UUID as notebookId, KB_TESTING_FIXTURE_SOURCE_ID as fixtureId, KB_TESTING_FIXTURE_TITLE, assertLiveSandbox, findActiveUploadedSource } from '../scripts/notebooklm/sandbox-contract.mjs';
 import { filterPackFamilySources, deleteNotebookSource, replaceSandboxPack } from '../scripts/nlm-pack-replace-gate.mjs';
@@ -17,12 +14,9 @@ test('production synthesis format excludes raw query metadata; sandbox retains e
   assert.ok(sandbox.includes('recorded-session'));
 });
 
-test('shared shell deletion wrapper rejects pinned fixture before invoking CLI', () => {
-  const lib = fileURLToPath(new URL('../modules/notebooklm/lib/nlm-cli.sh', import.meta.url));
-  const result = spawnSync(resolveBashExecutable(), ['-c', 'source "$1"; run_nlm_cli() { echo UNEXPECTED_RPC; }; nlm_source_delete "$2" "$3"', 'fixture-check', lib, notebookId, fixtureId], { encoding: 'utf8', timeout: 5000 });
-  assert.equal(result.status, 1, result.stderr);
-  assert.match(result.stderr, /PROTECTED_SANDBOX_FIXTURE/);
-  assert.equal(result.stdout.includes('UNEXPECTED_RPC'), false);
+test('shared shell library exposes no raw deletion primitive', () => {
+  const lib = fs.readFileSync(new URL('../modules/notebooklm/lib/nlm-cli.sh', import.meta.url), 'utf8');
+  assert.doesNotMatch(lib, /nlm_source_delete|nlm_sources_delete_atomic/);
 });
 
 test('sandbox registry is explicit-only and master-excluded; all three text questions preserve entropy contract', () => {
@@ -63,11 +57,11 @@ test('live guard rejects non-sandbox IDs and inherited mock CLI environments', (
   assert.doesNotThrow(() => assertLiveSandbox(notebookId, {}));
 });
 
-test('fixture protection covers every ID/title alias even with pack-like title, preserving ordinary aliases', () => {
+test('fixture filtering covers every ID/title alias even with pack-like title, preserving ordinary aliases', () => {
   for (const alias of ['id', 'sourceId', 'source_id']) assert.deepEqual(filterPackFamilySources([{ [alias]: fixtureId, title: 'pack_agent_harness.txt' }]), []);
   for (const alias of ['title', 'name', 'displayName']) assert.deepEqual(filterPackFamilySources([{ id: 'other', title: 'pack_agent_harness.txt', [alias]: KB_TESTING_FIXTURE_TITLE }]), []);
   for (const alias of ['title', 'name', 'displayName']) assert.equal(filterPackFamilySources([{ id: 'ordinary', [alias]: 'pack_agent_harness.txt' }]).length, 1);
-  assert.throws(() => deleteNotebookSource('nlm', fixtureId), /PROTECTED_SANDBOX_FIXTURE/);
+assert.throws(() => deleteNotebookSource('nlm', 'sandbox-notebook', fixtureId, undefined, { protectedSourceIds: [fixtureId] }), /PROTECTED_SOURCE_DELETE/);
 });
 
 const runId = '11111111-1111-1111-1111-111111111111';
