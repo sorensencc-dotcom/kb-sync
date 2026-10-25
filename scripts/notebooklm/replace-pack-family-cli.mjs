@@ -39,6 +39,10 @@ const runCli = commandArgs => {
 };
 
 try {
+  const uploadHelp = runCli(['source', 'add', '--help']);
+  if (!uploadHelp.includes('--json')) {
+    throw new Error('NotebookLM CLI lacks verified --json support for source uploads.');
+  }
   const result = await replacePackFamilyAtomic({
     cli,
     notebookId,
