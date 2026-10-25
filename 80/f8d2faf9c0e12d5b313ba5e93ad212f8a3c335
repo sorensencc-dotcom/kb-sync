@@ -1,0 +1,19 @@
+tests/notebooklm-shell-json-contract.test.mjs
+  s_aece4c54405b82::t_7992be2a78c567 27,32-34,36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "80f8d2faf9c0e12d5b313ba5e93ad212f8a3c335",
+  "prompts": {},
+  "sessions": {
+    "s_aece4c54405b82": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17441-cb35-7980-a06b-b821ca8c1efb",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
