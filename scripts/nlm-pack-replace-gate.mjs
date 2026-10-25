@@ -756,7 +756,6 @@ export async function replacePackFamilyAtomic({
       } catch (delErr) {
         logWarn(`[WARN] Failed to delete old source ${id}: ${delErr.message}`);
         cutoverError = delErr;
-        break;
       }
     }
 
