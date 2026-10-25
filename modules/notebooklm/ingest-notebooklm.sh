@@ -435,7 +435,7 @@ replace_pack_sources() {
   local -a command=("$REPO_ROOT/scripts/notebooklm/replace-pack-family-cli.mjs" --cli "$cli" --dialect "$NLM_DIALECT" --notebook-id "$NOTEBOOK_ID" --expected-part-count "${#UPLOAD_FILES[@]}" --timeout-ms "$TIMEOUT_MS" --wait-ms 3500)
   local file
   for file in "${UPLOAD_FILES[@]}"; do command+=(--pack-file "$file"); done
-  if ! result="$(node "${command[@]}" 2>&1)"; then
+  if ! result="$(node "${command[@]}")"; then
     log_error "Atomic pack replacement failed: $result"
     write_sync_telemetry "FAILED" 0 0 "$result"
     return 1
