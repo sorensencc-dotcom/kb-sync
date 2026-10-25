@@ -1,0 +1,22 @@
+scripts/serial-merge-queue.mjs
+  s_243aac071d447e::t_9276ba1f8915b3 1-7
+tests/graph-sync-cli.test.mjs
+  s_243aac071d447e::t_c6aa22269cd6cd 6,70
+  s_243aac071d447e::t_9276ba1f8915b3 67-69,71-84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3aff4f1c0cc533a6e7098817581b0125fd0b9c5e",
+  "prompts": {},
+  "sessions": {
+    "s_243aac071d447e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a170c5-ad4d-7dc2-b469-a497ce187c82",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}

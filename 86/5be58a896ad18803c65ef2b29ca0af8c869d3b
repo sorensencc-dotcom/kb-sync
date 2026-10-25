@@ -1,0 +1,26 @@
+package.json
+  s_6855f0d0a26af3::t_0cca2d7f23dde0 21,30,85
+tests/dynamic-question-battery.test.mjs
+  s_6855f0d0a26af3::t_c3fef7a924b3ec 13-14,89
+  s_6855f0d0a26af3::t_0cca2d7f23dde0 3-6,53-88,90-100
+  s_6855f0d0a26af3::t_fe218f57a82676 101
+scripts/mining/dynamic-question-battery.mjs
+  s_6855f0d0a26af3::t_0cca2d7f23dde0 5,8-9,132,137-143,147,149,167,186-189,194-202,208-210,217,259,268
+  s_6855f0d0a26af3::t_26dbbc3f260019 190-193
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "865be58a896ad18803c65ef2b29ca0af8c869d3b",
+  "prompts": {},
+  "sessions": {
+    "s_6855f0d0a26af3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17368-d1b4-70d2-90cc-f09481c22c66",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}

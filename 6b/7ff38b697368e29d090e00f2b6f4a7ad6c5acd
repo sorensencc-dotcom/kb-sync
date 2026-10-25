@@ -1,0 +1,28 @@
+docs/issue-94-graph-drift-gate-design.md
+  s_243aac071d447e::t_004da47999d969 1-30
+tests/graph-sync-queue.test.mjs
+  s_243aac071d447e::t_004da47999d969 1-132
+tests/graph-sync-cli.test.mjs
+  s_243aac071d447e::t_004da47999d969 1-8,10-14,16-66
+  s_243aac071d447e::t_3d397411e798fe 9,15
+modules/graph-sync/cli.mjs
+  s_243aac071d447e::t_004da47999d969 1-103
+modules/graph-sync/queue.mjs
+  s_243aac071d447e::t_004da47999d969 1-480
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6b7ff38b697368e29d090e00f2b6f4a7ad6c5acd",
+  "prompts": {},
+  "sessions": {
+    "s_243aac071d447e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a170c5-ad4d-7dc2-b469-a497ce187c82",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
