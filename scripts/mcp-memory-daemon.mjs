@@ -1,6 +1,7 @@
 import { createMcpHandler, localhostAllowedOrigins, McpServer, originValidationResponse } from "@modelcontextprotocol/server";
 import { toNodeHandler } from "@modelcontextprotocol/node";
 import http from "node:http";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
@@ -16,6 +17,61 @@ const zodEntry = require.resolve("zod", {
 const { z } = await import(pathToFileURL(zodEntry).href);
 
 export const CALLER_SUBJECT = "local:kb-sync";
+
+/**
+ * Require Authorization: Bearer <KB_CACHE_DAEMON_TOKEN> for HTTP daemon access.
+ * When the env token is unset/empty, reject with 401 (HTTP mode must be configured).
+ * Uses timing-safe compare when lengths match.
+ *
+ * @param {Request} request
+ * @returns {Response|null} 401 Response when unauthorized, else null
+ */
+export function assertDaemonAuth(request) {
+  const expected = process.env.KB_CACHE_DAEMON_TOKEN;
+  if (expected == null || String(expected).length === 0) {
+    return new Response(
+      JSON.stringify({
+        error: "unauthorized",
+        message: "KB_CACHE_DAEMON_TOKEN must be set for HTTP daemon access",
+      }),
+      {
+        status: 401,
+        headers: { "content-type": "application/json", "www-authenticate": "Bearer" },
+      },
+    );
+  }
+
+  const header = request.headers.get("authorization") || request.headers.get("Authorization") || "";
+  const match = /^Bearer\s+(.+)$/i.exec(header.trim());
+  if (!match) {
+    return new Response(
+      JSON.stringify({ error: "unauthorized", message: "Missing or invalid Authorization Bearer token" }),
+      {
+        status: 401,
+        headers: { "content-type": "application/json", "www-authenticate": "Bearer" },
+      },
+    );
+  }
+
+  const provided = match[1];
+  const expectedBuf = Buffer.from(String(expected), "utf8");
+  const providedBuf = Buffer.from(provided, "utf8");
+  if (
+    expectedBuf.length !== providedBuf.length ||
+    !crypto.timingSafeEqual(expectedBuf, providedBuf)
+  ) {
+    return new Response(
+      JSON.stringify({ error: "unauthorized", message: "Invalid daemon token" }),
+      {
+        status: 401,
+        headers: { "content-type": "application/json", "www-authenticate": "Bearer" },
+      },
+    );
+  }
+
+  return null;
+}
+
 
 function sqlString(filePath) {
   return path.resolve(filePath).replaceAll("'", "''");
@@ -135,6 +191,8 @@ export async function mountedFetch(request) {
   const started = await loadDaemon();
   const rejected = originValidationResponse(request, localhostAllowedOrigins());
   if (rejected) return rejected;
+  const unauthorized = assertDaemonAuth(request);
+  if (unauthorized) return unauthorized;
   return applyIdempotency(request, {
     mutations: started.mutations,
     ledger: started.ledger,
@@ -185,6 +243,12 @@ if (entryUrl === import.meta.url) {
   if (process.env.KB_CACHE_DAEMON_STOP_ON_STDIN === "1") {
     process.stdin.on("end", shutdown);
     process.stdin.resume();
+  }
+
+  if (!process.env.KB_CACHE_DAEMON_TOKEN) {
+    process.stderr.write(
+      "[mcp-memory-daemon] WARNING: KB_CACHE_DAEMON_TOKEN is unset; all HTTP requests will return 401 Unauthorized.\n",
+    );
   }
 
   server.listen(port, "127.0.0.1", () => {
