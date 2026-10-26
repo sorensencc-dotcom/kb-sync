@@ -157,7 +157,9 @@ function runCapture(cmd) {
 }
 
 function assertSafeCliValue(value, label) {
-  if (typeof value !== 'string' || !value || /[;&|<>`$()\r\n]/.test(value)) {
+  // Reject shell metacharacters, double quotes, and whitespace: values are
+  // interpolated into double-quoted shell strings under shell:true.
+  if (typeof value !== 'string' || !value || /[;&|<>`$()\r\n"\s]/.test(value)) {
     throw new Error(`Unsafe NotebookLM ${label}`);
   }
   return value;
