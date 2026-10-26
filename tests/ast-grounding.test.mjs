@@ -64,8 +64,10 @@ handleQueryContextCache (covers: modules/cache/context-cache.mjs:45-80)
     });
 
     test('fetches blast radius across multiple candidate symbols', () => {
-      const mockExec = (cmd) => {
-        if (cmd.includes('handleQueryContextCache')) {
+      const mockExec = (file, args) => {
+        assert.equal(file, 'graft');
+        assert.equal(args[0], 'callers');
+        if (args[1] === 'handleQueryContextCache') {
           return 'handleQueryContextCache (modules/cache/context-cache.mjs:45)\n  <- main';
         }
         return '';
@@ -77,6 +79,36 @@ handleQueryContextCache (covers: modules/cache/context-cache.mjs:45-80)
 
       assert.equal(results.length, 1);
       assert.equal(results[0].symbol, 'handleQueryContextCache');
+    });
+
+    test('rejects unsafe symbols that would break shell quoting (fail-soft null)', () => {
+      let called = false;
+      const mockExec = () => {
+        called = true;
+        return 'should-not-run';
+      };
+
+      const res = fetchSymbolAstGraph('foo"|id|"bar', { execFn: mockExec });
+      assert.equal(res, null);
+      assert.equal(called, false);
+
+      assert.equal(fetchSymbolAstGraph('db-schema.mjs', {
+        execFn: () => 'db-schema.mjs (modules/cache/db-schema.mjs:1)\n  <- main',
+      })?.symbol, 'db-schema.mjs');
+    });
+
+    test('passes graft argv (file, args) to execFn matching execFileSync', () => {
+      let seen = null;
+      const mockExec = (file, args, opts) => {
+        seen = { file, args, opts };
+        return 'sym (a.mjs:1)\n  <- caller';
+      };
+      const res = fetchSymbolAstGraph('handleQueryContextCache', { execFn: mockExec, depth: 3 });
+      assert.ok(res);
+      assert.equal(seen.file, 'graft');
+      assert.deepEqual(seen.args, ['callers', 'handleQueryContextCache', '--depth', '3']);
+      assert.equal(seen.opts.encoding, 'utf8');
+      assert.equal(seen.opts.windowsHide, true);
     });
   });
 

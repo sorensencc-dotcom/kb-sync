@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
+import { execSync, execFileSync } from 'node:child_process';
 import yaml from 'js-yaml';
 
 /**
@@ -138,16 +138,19 @@ export function extractExportedSymbolsFromDiff(diff) {
  * @param {string} repoRoot - Absolute repository root
  * @returns {Array<string>} - Calling relative file paths
  */
+const SAFE_GRAFT_SYMBOL_RE = /^[A-Za-z_][A-Za-z0-9_.-]{0,127}$/;
+
 export function queryGraftCallers(symbol, repoRoot) {
-  if (!symbol) return [];
+  if (!symbol || typeof symbol !== 'string' || !SAFE_GRAFT_SYMBOL_RE.test(symbol)) return [];
   try {
     let output = '';
+    const execOpts = { cwd: repoRoot, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'], windowsHide: true };
     try {
-      // Attempt using global graft command first
-      output = execSync(`graft callers "${symbol}"`, { cwd: repoRoot, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+      // Attempt using global graft command first (argv, no shell)
+      output = execFileSync('graft', ['callers', symbol], execOpts);
     } catch (_) {
-      // Fallback: Attempt running via npx
-      output = execSync(`npx @nanonets/graft callers "${symbol}"`, { cwd: repoRoot, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+      // Fallback: Attempt running via npx (still argv, no shell)
+      output = execFileSync('npx', ['@nanonets/graft', 'callers', symbol], execOpts);
     }
     
     const files = [];
