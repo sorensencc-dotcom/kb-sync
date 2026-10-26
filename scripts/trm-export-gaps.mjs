@@ -12,6 +12,68 @@ const DENY_PATTERNS = [
   /kroll[^\s\n]*/gi // kroll private logs
 ];
 
+export const BANNED_MODERN_TERMS = /\b(sigil|ed25519|cryptographic|keypair|websocket|heartbeat|notebook instances?|ingestion gaps?|document silos?|relay|mcp server|agent framework)\b/i;
+
+export function validateGapCardForExport(gap) {
+  if (!gap || !gap.topic) {
+    return { valid: false, reason: 'missing_topic' };
+  }
+
+  // 1. Topic and description must not contain modern non-historical contamination
+  if (BANNED_MODERN_TERMS.test(gap.topic) || (gap.description && BANNED_MODERN_TERMS.test(gap.description))) {
+    return { valid: false, reason: 'topic_contamination' };
+  }
+
+  // 2. Body length and sentence completeness checks
+  if (gap.description) {
+    const desc = gap.description.trim();
+    if (desc.length < 25) {
+      return { valid: false, reason: 'body_too_short' };
+    }
+    // Must end with terminal punctuation (. ! ?)
+    if (!/[.!?]["']?$/.test(desc)) {
+      return { valid: false, reason: 'incomplete_sentence_truncation' };
+    }
+    // Check for obvious mid-sentence cut-off words
+    if (/\b(and|or|the|a|an|with|by|at|in|to|for|of|trav)\s*$/i.test(desc)) {
+      return { valid: false, reason: 'trailing_conjunction_or_preposition' };
+    }
+  }
+
+  return { valid: true };
+}
+
+export function evaluateCardIntegrity(cardContent) {
+  if (!cardContent || typeof cardContent !== 'string') {
+    return { valid: false, verdict: 'GARBAGE_GAP', reason: 'empty_or_unreadable' };
+  }
+
+  // Check topic contamination
+  if (BANNED_MODERN_TERMS.test(cardContent)) {
+    return { valid: false, verdict: 'INVALID_CARD', reason: 'modern_non_historical_contamination' };
+  }
+
+  // Check frontmatter
+  const fmMatch = cardContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  const body = fmMatch ? fmMatch[2].trim() : cardContent.trim();
+
+  // Check truncation indicators in Specific Research Targets or body
+  const targetMatch = body.match(/## Specific Research Targets\s*\n([\s\S]*?)(?:\n##|$)/);
+  const targetText = targetMatch ? targetMatch[1].trim() : '';
+
+  if (targetText) {
+    if (!/[.!?]["']?$/.test(targetText) || /\b(and|or|the|a|an|with|by|at|in|to|for|of|trav)\s*$/i.test(targetText)) {
+      return { valid: false, verdict: 'GARBAGE_GAP', reason: 'truncated_research_target' };
+    }
+  }
+
+  if (body.length < 50) {
+    return { valid: false, verdict: 'GARBAGE_GAP', reason: 'body_too_short' };
+  }
+
+  return { valid: true, verdict: 'VALID' };
+}
+
 export function redactContext(raw) {
   if (!raw) return '';
   let cleaned = raw;
@@ -87,10 +149,54 @@ export async function exportGapsToDrive(options = {}) {
   fs.mkdirSync(completedDir, { recursive: true });
   fs.mkdirSync(locksDir, { recursive: true });
 
+  // Pre-research gate: sweep existing cards in 01_actionable_gaps to quarantine corrupted/contaminated inputs
+  if (fs.existsSync(gapsDir)) {
+    const existingCards = fs.readdirSync(gapsDir).filter(f => f.endsWith('.md'));
+    for (const cardFile of existingCards) {
+      const cardPath = path.join(gapsDir, cardFile);
+      try {
+        const content = fs.readFileSync(cardPath, 'utf8');
+        const integrity = evaluateCardIntegrity(content);
+        if (!integrity.valid) {
+          const gapIdMatch = cardFile.match(/^(GAP-[0-9]{2,3}(?:-[A-Z0-9]+)?)/i);
+          const gapId = gapIdMatch ? gapIdMatch[1] : path.basename(cardFile, '.md');
+          const findingsPath = path.join(completedDir, `${gapId}-findings.md`);
+          const findingsContent = [
+            '---',
+            `gap_id: ${gapId}`,
+            'agent_origin: grok',
+            'agent_version: pre-research-gate',
+            'source_type: validation',
+            `verdict: ${integrity.verdict}`,
+            'verification_status: inferred',
+            'provenance_type: remote_agent_finding',
+            'not_primary_evidence: true',
+            'ready: true',
+            `rejection_reason: "${integrity.reason}"`,
+            '---',
+            '',
+            `# RESEARCH TERMINATED: ${integrity.verdict}`,
+            '',
+            `Card ${gapId} was rejected by the pre-research gate: ${integrity.reason}.`,
+            'Deep research skipped to prevent burning compute on corrupted or non-historical input.',
+            ''
+          ].join('\n');
+
+          fs.writeFileSync(findingsPath, findingsContent, 'utf8');
+          fs.unlinkSync(cardPath);
+          console.warn(`[pre-research-gate] Quarantined ${cardFile} (${integrity.reason}) -> Emitted ${integrity.verdict} findings.`);
+        }
+      } catch (err) {
+        console.error(`[pre-research-gate] Error evaluating card ${cardFile}:`, err);
+      }
+    }
+  }
+
   const allGaps = parseGapsRegistry(registryPath);
   const activeGaps = allGaps.filter(g => 
     (g.status === 'active' || g.status === 'reopened') &&
-    (!targetPriority || g.priority.toUpperCase() === targetPriority.toUpperCase())
+    (!targetPriority || g.priority.toUpperCase() === targetPriority.toUpperCase()) &&
+    validateGapCardForExport(g).valid
   );
 
   const exported = [];
@@ -106,7 +212,7 @@ export async function exportGapsToDrive(options = {}) {
     if (lockFiles.length > 0) continue;
 
     const description = gap.description ? `\n\n## Specific Research Targets\n${gap.description}` : '';
-    const bodyText = `# RESEARCH TASK: Corroborate ${gap.gap_id}\n\n## Topic\n${gap.topic}${description}\n\n## Open Questions & Targets\n- What primary accession filings, corporate archives, or court dockets corroborate these facts?\n- What specific contradictions exist between primary witness accounts and secondary publications?`;
+    const bodyText = `# RESEARCH TASK: Corroborate ${gap.gap_id}\n\n## Topic\n${gap.topic}${description}\n\n## Open Questions & Targets\n- What primary accession filings, corporate archives, or court dockets corroborate ${gap.gap_id}?\n- What specific contradictions exist between primary witness accounts and secondary publications regarding this record?`;
     const body_sha256 = crypto.createHash('sha256').update(bodyText, 'utf8').digest('hex');
 
     const frontmatter = {
@@ -128,12 +234,24 @@ export async function exportGapsToDrive(options = {}) {
         rawContext = fs.readFileSync(resolvedRfc, 'utf8');
       }
     }
-    if (!rawContext) {
-      rawContext = `# Context: ${gap.gap_id}\n\n**Topic:** ${gap.topic}\n\n**Details:** ${gap.description || 'No additional context provided.'}`;
-    }
 
-    const contextContent = `# Reference Context: ${gap.gap_id}\n\n${redactContext(rawContext)}`;
-    fs.writeFileSync(path.join(contextDir, `${gap.gap_id}-context-pack.md`), contextContent, 'utf8');
+    const contextFilePath = path.join(contextDir, `${gap.gap_id}-context-pack.md`);
+    if (rawContext && rawContext.trim().length >= 80) {
+      const contextContent = `# Reference Context: ${gap.gap_id}\n\n${redactContext(rawContext)}`;
+      fs.writeFileSync(contextFilePath, contextContent, 'utf8');
+    } else if (gap.source_pointers) {
+      const contextContent = `# Reference Context: ${gap.gap_id}\n\n## Source Pointers\n${gap.source_pointers}`;
+      fs.writeFileSync(contextFilePath, contextContent, 'utf8');
+    } else if (options.allowFallbackContext) {
+      rawContext = `# Context: ${gap.gap_id}\n\n**Topic:** ${gap.topic}\n\n**Details:** ${gap.description || 'No additional context provided.'}`;
+      const contextContent = `# Reference Context: ${gap.gap_id}\n\n${redactContext(rawContext)}`;
+      fs.writeFileSync(contextFilePath, contextContent, 'utf8');
+    } else {
+      // Stop auto-generating packs that merely restate a truncated card
+      if (fs.existsSync(contextFilePath)) {
+        fs.unlinkSync(contextFilePath);
+      }
+    }
 
     exported.push(gap);
   }

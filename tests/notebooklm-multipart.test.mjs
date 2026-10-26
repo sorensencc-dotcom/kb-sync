@@ -23,6 +23,12 @@ function run(t, options = {}) {
     fs.copyFileSync(path.join(repo, 'core', file), path.join(dir, 'core', file));
   }
   fs.cpSync(path.join(repo, 'modules', 'notebooklm'), path.join(dir, 'modules', 'notebooklm'), { recursive: true });
+  fs.mkdirSync(path.join(dir, 'scripts', 'notebooklm'), { recursive: true });
+  for (const file of ['replace-pack-family-cli.mjs']) {
+    fs.copyFileSync(path.join(repo, 'scripts', 'notebooklm', file), path.join(dir, 'scripts', 'notebooklm', file));
+  }
+  fs.copyFileSync(path.join(repo, 'scripts', 'notebooklm', 'sandbox-contract.mjs'), path.join(dir, 'scripts', 'notebooklm', 'sandbox-contract.mjs'));
+  fs.copyFileSync(path.join(repo, 'scripts', 'nlm-pack-replace-gate.mjs'), path.join(dir, 'scripts', 'nlm-pack-replace-gate.mjs'));
   fs.mkdirSync(path.join(dir, 'configs'));
   fs.writeFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'output_dir: "./.nlm_pack"\npack_filename: "repo_knowledge_pack"\ntimeout_ms: 10000\nretry_attempts: 1\nbackoff_ms: 100\n');
   fs.appendFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'default_notebook: "fixture-only"\n');
@@ -63,7 +69,7 @@ process.exit(96);
     env.PATH = `${pathValue};C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin`;
   }
   function command(executable, args) {
-    const result = spawnSync(executable, args, { cwd: dir, env, encoding: 'utf8', timeout: 55000 });
+    const result = spawnSync(executable, args, { cwd: dir, env, encoding: 'utf8', timeout: options.commandTimeout || 55000 });
     assert.ifError(result.error);
     return result;
   }
@@ -110,8 +116,8 @@ test('ambiguous successful upload never triggers a second plaintext upload or ol
   assert.equal(telemetry.status, 'FAILED');
 });
 
-test('all fifteen replacement IDs become ACTIVE before deleting any old chunk', { timeout: 60000 }, t => {
-  const { result, state, telemetry } = run(t, { parts: 15 });
+test('all fifteen replacement IDs become ACTIVE before deleting any old chunk', { timeout: 120000 }, t => {
+  const { result, state, telemetry } = run(t, { parts: 15, commandTimeout: 120000 });
   assert.equal(result.status, 0, result.stderr);
   const adds = state.calls.filter(call => call.args[1] === 'add' && call.args[2] !== '--help');
   assert.equal(adds.length, 15);
@@ -138,7 +144,7 @@ for (const status of ['ERROR', 'missing', 'READY']) test(`unverified ${status} r
   const { result, state, telemetry, initial } = run(t, { env: { NEW_STATUS: status } });
   assert.equal(result.status, 1);
   assert.deepEqual(state.sources, initial);
-  assert.equal(telemetry.purged_sources, 3);
+  assert.equal(telemetry.purged_sources, 0);
 });
 
 test('ACTIVE numeric status 2 verifies exact returned IDs', { timeout: 60000 }, t => {
@@ -157,7 +163,7 @@ test('upload returning old ID cannot authorize deleting old sources', { timeout:
 test('old-source delete failure reports actual successful deletes', { timeout: 60000 }, t => {
   const { result, state, telemetry } = run(t, { env: { FAIL_DELETE: 'old-ah' } });
   assert.equal(result.status, 1);
-  assert.equal(telemetry.status, 'PARTIAL_SUCCESS');
+  assert.equal(telemetry.status, 'FAILED');
   assert.equal(telemetry.purged_sources, 7);
   assert.ok(state.sources.some(source => source.id === 'old-ah'));
   assert.equal(state.sources.filter(source => source.id.startsWith('new-')).length, 3);

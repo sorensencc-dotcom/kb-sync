@@ -529,7 +529,9 @@ function validateFile(file, registry, repoRootPath, targetDir = null) {
 
   // Illustrative [[Links]] and (paths) inside fenced code examples or inline code spans
   // (common in templates/lint-rules docs) aren't real references — don't scan them.
-  const scanContent = content.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, '');
+  const scanContent = content.includes('`')
+    ? content.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, '')
+    : content;
 
   const frontmatter = parseFrontmatter(content);
   const fmErrors = validateFrontmatter(frontmatter, FRONTMATTER_SCHEMA);

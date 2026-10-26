@@ -227,7 +227,7 @@ log_info "Pack filename: $PACK_FILE"
 
 # Load .env (hardened parser)
 # CLI resolution + dialect-safe wrappers (run_nlm_cli, nlm_source_list_json,
-# nlm_source_add, nlm_source_delete, nlm_auth_check, nlm_chat_json) live in
+# nlm_source_add, nlm_auth_check, nlm_chat_json) live in
 # the shared lib so scripts/notebooklm/push-source.sh and
 # scripts/notebooklm/run-nlm-chat.sh can reuse them without duplicating the
 # dialect logic. TIMEOUT_MS is already set above; log_info/log_warn/log_error
@@ -430,121 +430,24 @@ run_preflight_drift_audit() {
   log_info "[AUDIT] Found ${#PRE_EXISTING_SOURCES[@]} pack source(s); preserving all until verified replacement."
 }
 
-UPLOADED_SOURCE_IDS=()
-CLEANED_COUNT=0
-CLEANUP_FAILED_COUNT=0
-cleanup_uploaded_sources() {
-  local id
-  for id in "${UPLOADED_SOURCE_IDS[@]}"; do
-    if nlm_source_delete "$NOTEBOOK_ID" "$id" >/dev/null 2>&1; then
-      CLEANED_COUNT=$((CLEANED_COUNT + 1))
-    else
-      CLEANUP_FAILED_COUNT=$((CLEANUP_FAILED_COUNT + 1))
-      log_error "Failed to remove this run's uploaded source: $id"
-    fi
-  done
-}
-
-upload_pack_file() {
-  local file="$1" output source_id retry_count=0 target_upload_path="$1"
-  log_info "Uploading: $(basename "$file")"
-  if [[ "${EXPLICIT_NLM_CLI:-}" == *.exe || "${GLOBAL_NLM_EXEC:-}" == *.exe || "$NLM_MODE" == "uv-project" ]]; then
-    local abs_file
-    abs_file="$(readlink -f "$file" 2>/dev/null || echo "$file")"
-    if command -v wslpath >/dev/null 2>&1; then
-      target_upload_path="$(wslpath -w "$abs_file")"
-    elif command -v cygpath >/dev/null 2>&1; then
-      target_upload_path="$(cygpath -w "$abs_file")"
-    fi
-  fi
-  until output="$(nlm_source_add "$NOTEBOOK_ID" "$target_upload_path" --json)"; do
-    retry_count=$((retry_count + 1))
-    [ "$retry_count" -ge "$RETRY_ATTEMPTS" ] && return 1
-    sleep_backoff "$BACKOFF_MS"
-  done
-  source_id=$(printf '%s' "$PRE_EXISTING_SOURCE_JSON" | node -e '
-    try {
-      const added = JSON.parse(process.argv[1]);
-      const id = added.source_id || added.id || added.source?.id;
-      if (typeof id !== "string" || !/^[a-zA-Z0-9_-]+$/.test(id)) process.exit(1);
-      const raw = JSON.parse(require("fs").readFileSync(0, "utf8"));
-      const list = Array.isArray(raw) ? raw : raw.sources;
-      if (!Array.isArray(list) || list.some(s => (s.id || s.sourceId || s.source_id) === id)) process.exit(1);
-      console.log(id);
-    } catch { process.exit(1); }
-  ' "$output") || { log_error "Upload returned no verifiable source ID; preserving old sources."; return 1; }
-  local id
-  for id in "${PRE_EXISTING_SOURCES[@]}" "${UPLOADED_SOURCE_IDS[@]}" cc06bd53-1793-4ea0-b723-6f77eb1dd490; do
-    [ "$id" = "$source_id" ] && { log_error "Upload returned an existing source ID; preserving old sources."; return 1; }
-  done
-  UPLOADED_SOURCE_IDS+=("$source_id")
-}
-
-poll_new_sources_active() {
-  local deadline=$(( $(date +%s) + (TIMEOUT_MS + 999) / 1000 )) sources_json state
-  while true; do
-    sources_json="$(nlm_source_list_json "$NOTEBOOK_ID")" || return 1
-    state=$(printf '%s' "$sources_json" | node -e '
-      try {
-        const raw = JSON.parse(require("fs").readFileSync(0, "utf8"));
-        const list = Array.isArray(raw) ? raw : raw.sources;
-        if (!Array.isArray(list)) process.exit(1);
-        const ids = process.argv.slice(1);
-        if (ids.some(id => list.filter(s => (s.id || s.sourceId || s.source_id) === id).length > 1)) process.exit(1);
-        const sources = ids.map(id => list.find(s => (s.id || s.sourceId || s.source_id) === id));
-        if (sources.some(s => /^(3|ERROR|FAILED|STATUS_ERROR|STATUS_FAILED)$/i.test(String(s?.status)))) console.log("ERROR");
-        else if (sources.some(s => s && !/^(1|2|5|ACTIVE|STATUS_ACTIVE|PROCESSING|UPLOADING|PENDING|PREPARING)$/i.test(String(s.status)))) console.log("ERROR");
-        else if (sources.every(s => s && /^(2|ACTIVE|STATUS_ACTIVE)$/i.test(String(s.status)))) console.log("ACTIVE");
-        else console.log("PROCESSING");
-      } catch { process.exit(1); }
-    ' "${UPLOADED_SOURCE_IDS[@]}") || return 1
-    [ "$state" = "ACTIVE" ] && return 0
-    [ "$state" = "ERROR" ] && return 1
-    [ "$(date +%s)" -ge "$deadline" ] && return 1
-    sleep_backoff 1000
-  done
-}
-
 replace_pack_sources() {
-  UPLOADED_COUNT=0
-  PURGED_COUNT=0
-  local file src_id help
-  if [ "$NLM_DIALECT" != "nlm" ]; then
-    help="$(run_nlm_cli source add --help)" || return 1
-    if [[ "$help" != *--json* ]]; then
-      log_error "CLI source add lacks verified --json support; install nlm or a structured-output CLI before retrying. No upload attempted."
-      write_sync_telemetry "FAILED" 0 0 "CLI source add requires --json support; no upload attempted"
-      return 1
-    fi
-  fi
-  for file in "${UPLOAD_FILES[@]}"; do
-    if ! upload_pack_file "$file"; then
-      cleanup_uploaded_sources
-      write_sync_telemetry "FAILED" "$CLEANED_COUNT" "$UPLOADED_COUNT" "Upload failed; old pack sources preserved; cleanup failures: $CLEANUP_FAILED_COUNT"
-      return 1
-    fi
-    UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
-  done
-  if ! poll_new_sources_active; then
-    cleanup_uploaded_sources
-    write_sync_telemetry "FAILED" "$CLEANED_COUNT" "$UPLOADED_COUNT" "Uploaded sources failed ACTIVE verification; old pack sources preserved; cleanup failures: $CLEANUP_FAILED_COUNT"
-    return 1
-  fi
-  # Preserve calibrated indexing propagation delay after terminal ACTIVE proof.
-  if [ "${#PRE_EXISTING_SOURCES[@]}" -gt 0 ]; then sleep_backoff 3500; fi
-  local purge_failed=false
-  for src_id in "${PRE_EXISTING_SOURCES[@]}"; do
-    if nlm_source_delete "$NOTEBOOK_ID" "$src_id" >/dev/null 2>&1; then
-      PURGED_COUNT=$((PURGED_COUNT + 1))
+  local cli="${EXPLICIT_NLM_CLI:-${GLOBAL_NLM_EXEC:-nlm}}" result
+  local -a command=("$SCRIPT_DIR/../../scripts/notebooklm/replace-pack-family-cli.mjs" --cli "$cli" --dialect "$NLM_DIALECT" --notebook-id "$NOTEBOOK_ID" --expected-part-count "${#UPLOAD_FILES[@]}" --timeout-ms "$TIMEOUT_MS" --wait-ms 3500)
+  local file
+  for file in "${UPLOAD_FILES[@]}"; do command+=(--pack-file "$file"); done
+  if ! result="$(node "${command[@]}")"; then
+    log_error "Atomic pack replacement failed: $result"
+    local purged=0
+    if purged="$(printf '%s' "$result" | node -e 'try { const r=JSON.parse(require("fs").readFileSync(0,"utf8")); console.log(Array.isArray(r.purgedSourceIds) ? r.purgedSourceIds.length : 0); } catch (_) { console.log(0); }')"; then
+      :
     else
-      log_error "Failed to purge old source ID: $src_id"
-      purge_failed=true
+      purged=0
     fi
-  done
-  if [ "$purge_failed" = true ]; then
-    write_sync_telemetry "PARTIAL_SUCCESS" "$PURGED_COUNT" "$UPLOADED_COUNT"
+    write_sync_telemetry "FAILED" "$purged" 0 "$result"
     return 1
   fi
+  UPLOADED_COUNT=$(printf '%s' "$result" | node -e 'const r=JSON.parse(require("fs").readFileSync(0,"utf8")); console.log(r.newSourceIds.length)')
+  PURGED_COUNT=$(printf '%s' "$result" | node -e 'const r=JSON.parse(require("fs").readFileSync(0,"utf8")); console.log(r.purgedOldSourceIds.length)')
 }
 
 # --- ARGUMENT PARSING --------------------------------------------------------

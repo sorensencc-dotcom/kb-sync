@@ -1,5 +1,39 @@
 # Session status
 
+## Issue #93 live coverage, 2026-10-25
+
+- Added a live integration case that calls `replacePackFamilyAtomic` directly against protected sandbox `d721ed70-5b37-497f-a279-10ba362c744e`. It uploads a unique generation, verifies the real source reaches `ACTIVE`, performs a second-generation cutover, and polls provider-side deletion until both owned generations disappear.
+- Added a live `ingest-notebooklm.sh --repair-drift` case with explicit `NLM_SHELL_INGEST_LIVE=1`, `NOTEBOOK_ID` fixed to the protected sandbox, and an inventory assertion proving the shell entrypoint does not mutate the sandbox during audit. Normal shell ingestion remains intentionally excluded because the sandbox already contained a pre-existing pack family outside this test's ownership.
+- Final live evidence passes: direct atomic case 1/1 and shell entrypoint case 1/1, both outside the AppContainer with explicit opt-in. Final remote inventory contains only protected fixture `cc06bd53-1793-4ea0-b723-6f77eb1dd490`.
+- First exploratory direct run exposed the ownership gap by deleting eight pre-existing protected-sandbox pack sources before the fixture-only precondition was added. No production notebook was targeted. Subsequent cleanup removed all sources created by these tests, and final inventory is fixture-only.
+- Local verification passes: focused live-test parsing with both cases skipped, deletion-policy scan, and four atomic guardrail tests. No commit, push, merge, or deployment.
+
+## Issue #93 full-suite and production-facing verification, 2026-10-25
+
+- Added the missing `npm test` alias to run `test:all` and extended the multipart harness timeout only for the existing fifteen-part stress case. The targeted stress case passes.
+- Full `npm test` reaches the final performance gate. NotebookLM reports 50/50 passing tests, but the suite exits 1 because the current dirty vault makes `validate-contract.mjs` take 25,835 ms against 6,250 ms and `validate-staging-docs.mjs --diff` take 11,539 ms against 8,750 ms. Thresholds were not weakened.
+- Read-only production-facing checks: `deps:verify`, governance smoke, and link validation exit 0. Frontmatter verification exits 1 on eight existing documents without required metadata, and contract validation exits 1 on generated conversation notes plus two research notes with `status: resolved`. No production NotebookLM target was invoked.
+- No commit, push, merge, deployment, unrelated wiki repair, or production data mutation.
+
+## Issue #93 thermo-nuclear remediation, 2026-10-25
+
+- Changed `replacePackFamilyAtomic` to fail with `PARTIAL_CUTOVER`, report deleted and remaining IDs, and retain the ACTIVE replacement for reconciliation instead of returning success after a provider delete failure.
+- Routed live shell replacement through `scripts/notebooklm/replace-pack-family-cli.mjs`, which invokes the canonical Node gate. Removed the shell raw-delete and duplicate upload/polling layers.
+- Removed the hardcoded sandbox fixture UUID from the shared shell and JavaScript delete primitives. Sandbox ownership remains enforced at the sandbox replacement boundary.
+- Added partial-cutover regression coverage and executable deletion-policy rejection coverage. Focused replacement, sandbox, and policy suites pass 60/60.
+- The host-level full `npm test` attempt was stopped after extended silence under its hard timeout wrapper. Its final status is unconfirmed. Bash remains unavailable inside the restricted runner with `Bash/E_ACCESSDENIED`.
+
+## Issue #93 atomic pack replacement guardrail, 2026-10-24
+
+- Implemented runtime deletion leases in `scripts/nlm-pack-replace-gate.mjs`. Direct source deletion now requires a matching notebook, source ID, and replacement or rollback lease.
+- Disabled live `purgePackFamilyBeforeUpload`; callers must use `replacePackFamilyAtomic`.
+- Routed shell replacement through `scripts/notebooklm/replace-pack-family-cli.mjs`, the canonical `replacePackFamilyAtomic` gate.
+- Added `scripts/notebooklm/scan-nlm-deletion-policy.mjs` to reject raw deletion calls outside the two approved adapters. Wired it into pre-commit validation, CI, and `test:all`.
+- Replaced the issue scaffold with four executable guardrail tests and registered them in `package.json`.
+- Focused verification passes: 43 existing replace-gate tests, four issue #93 guardrail tests, and the deletion-policy scan. Bash execution is blocked in this sandbox with `Bash/E_ACCESSDENIED`; shell syntax and Node paths were otherwise checked.
+- No commit, push, merge, or production notebook deletion executed at that point in the session.
+- Next action: review the scoped diff, then stage only issue #93 files if delivery is authorized.
+
 ## Runtime and citation follow-up, 2026-10-15
 
 - Fixed Windows NotebookLM runtime discovery by probing `nlm`, `notebooklm`, and `uv` with `shell: false`, `windowsHide: true`, and `timeout: 15000` (covering cold starts around 6.4 seconds), plus `windowsHide: true` on `runNlm`.

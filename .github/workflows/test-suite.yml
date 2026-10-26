@@ -41,3 +41,6 @@ jobs:
 
       - name: Run wiki contract validation
         run: npm run wiki:validate-contract
+
+      - name: Enforce NotebookLM deletion policy
+        run: npm run test:nlm-deletion-policy

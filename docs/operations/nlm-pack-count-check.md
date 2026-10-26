@@ -1,3 +1,8 @@
+---
+category: "operations"
+tags: ["notebooklm", "validation"]
+---
+
 # NotebookLM Pack-Count Check (`nlm-pack-count-check.mjs`)
 
 ## Purpose
