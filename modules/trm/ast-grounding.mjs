@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
 /**
@@ -69,22 +69,32 @@ export function extractCodeSymbols(text) {
  * @param {string} [options.cwd] - Execution working directory
  * @param {number} [options.depth=2] - Traversal depth
  * @param {number} [options.timeoutMs=4000] - Process timeout
- * @param {Function} [options.execFn] - Custom execSync for testing
+ * @param {Function} [options.execFn] - Custom execFileSync for testing: (file, args, options) => string
  * @returns {{ symbol: string, callers: string[], callees: string[], spans: string[], rawOutput: string } | null}
  */
+const SAFE_GRAFT_SYMBOL_RE = /^[A-Za-z_][A-Za-z0-9_.-]{0,127}$/;
+
+export function isSafeGraftSymbol(symbol) {
+  return typeof symbol === 'string' && SAFE_GRAFT_SYMBOL_RE.test(symbol);
+}
+
 export function fetchSymbolAstGraph(symbol, options = {}) {
   const cwd = options.cwd || process.cwd();
   const depth = options.depth || 2;
   const timeout = options.timeoutMs || 4000;
-  const exec = options.execFn || execSync;
+  const exec = options.execFn || execFileSync;
 
   if (!symbol || typeof symbol !== 'string') {
     return null;
   }
 
+  // Reject shell metacharacters / quote breakouts before argv construction.
+  if (!isSafeGraftSymbol(symbol)) {
+    return null;
+  }
+
   try {
-    const cmd = `graft callers "${symbol}" --depth ${depth}`;
-    const rawOutput = exec(cmd, {
+    const rawOutput = exec('graft', ['callers', symbol, '--depth', String(depth)], {
       cwd,
       timeout: Math.min(timeout, 1500),
       encoding: 'utf8',
