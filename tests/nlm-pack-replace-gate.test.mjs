@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import os from 'node:os';
 import {
   isPackFamilyTitle,
   filterPackFamilySources,
@@ -19,7 +20,14 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
-const mockCli = `node "${path.join(__dirname, 'mock-nlm-cli.mjs')}"`;
+// assertSafeCliValue rejects whitespace/quotes, so mock CLI must be a single argv token.
+const mockCli = path.join(os.tmpdir(), `kb-sync-mock-nlm-cli-${process.pid}`);
+fs.writeFileSync(
+  mockCli,
+  `#!/usr/bin/env node\n${fs.readFileSync(path.join(__dirname, 'mock-nlm-cli.mjs'), 'utf8')}`,
+  'utf8',
+);
+fs.chmodSync(mockCli, 0o755);
 
 test('isPackFamilyTitle matches pack family titles', () => {
   assert.equal(isPackFamilyTitle('pack_willow_run.txt'), true);
@@ -191,6 +199,9 @@ test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () 
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm; rm -rf /', notebookId: 'nb-1', file: 'pack.txt' }), /Unsafe NotebookLM CLI/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1 & dir', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack.txt | calc' }), /Unsafe NotebookLM file path/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-"breakout', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack".txt' }), /Unsafe NotebookLM file path/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb with space', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
 });
 
 test('isSoftwarePack identifies repo packs and software categories', () => {
