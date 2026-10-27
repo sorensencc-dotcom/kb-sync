@@ -108,16 +108,44 @@ function findLatestStaging(vaultRoot, stagingDir) {
 }
 
 // Load patterns from .cicignore and .gitignore, returning regex objects
-function loadIgnorePatterns(dir) {
+async function loadIgnorePatterns(dir) {
   const patterns = [];
   for (const ignoreFile of IGNORE_FILES) {
     const filePath = path.join(dir, ignoreFile);
-    if (fs.existsSync(filePath)) {
-      const lines = fs.readFileSync(filePath, 'utf8').split('\n');
-      for (const line of lines) {
-        const trimmed = line.replace(/#.*$/, '').trim();
-        if (!trimmed) continue;
-        patterns.push(globToRegex(trimmed));
+    let content;
+    try {
+      content = await fs.promises.readFile(filePath, 'utf8');
+    } catch (e) {
+      if (e.code === 'ENOENT') continue;
+      throw e;
+    }
+
+    let lineStart = 0;
+    for (let i = 0; i <= content.length; i++) {
+      if (i === content.length || content[i] === '\n') {
+        if (i > lineStart) {
+          let end = i;
+          let j = lineStart;
+          while (j < i) {
+            if (content[j] === '#') {
+              end = j;
+              break;
+            }
+            j++;
+          }
+          let startTrim = lineStart;
+          while (startTrim < end && (content[startTrim] === ' ' || content[startTrim] === '\r' || content[startTrim] === '\t')) {
+            startTrim++;
+          }
+          let endTrim = end - 1;
+          while (endTrim >= startTrim && (content[endTrim] === ' ' || content[endTrim] === '\r' || content[endTrim] === '\t')) {
+            endTrim--;
+          }
+          if (endTrim >= startTrim) {
+             patterns.push(globToRegex(content.substring(startTrim, endTrim + 1)));
+          }
+        }
+        lineStart = i + 1;
       }
     }
   }
@@ -757,7 +785,7 @@ async function main() {
       }
       files = [target];
     } else {
-      const ignorePatterns = loadIgnorePatterns(targetDir);
+      const ignorePatterns = await loadIgnorePatterns(targetDir);
       if (ignorePatterns.length > 0) {
         logInfo(`Loaded ${ignorePatterns.length} ignore pattern(s) from .cicignore/.gitignore`);
       }
