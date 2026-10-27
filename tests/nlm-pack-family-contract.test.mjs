@@ -11,7 +11,16 @@ import {
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const mockCli = `node "${path.join(__dirname, 'mock-nlm-cli.mjs')}"`;
+import fs from 'node:fs';
+import os from 'node:os';
+
+const mockCli = path.join(os.tmpdir(), `kb-sync-mock-nlm-cli-${process.pid}`);
+fs.writeFileSync(
+  mockCli,
+  `#!/usr/bin/env node\n${fs.readFileSync(path.join(__dirname, 'mock-nlm-cli.mjs'), 'utf8')}`,
+  'utf8',
+);
+fs.chmodSync(mockCli, 0o755);
 
 test('Agent Harness: purgePackFamilyBeforeUpload purges both pack_agent_harness and repo_knowledge_pack', () => {
   const mockSources = [
