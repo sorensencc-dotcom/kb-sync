@@ -918,9 +918,9 @@ export async function processUnenrichedLessons(
   const files = fs.readdirSync(lessonsDir).filter((f) => f.endsWith(".md"));
   const enrichedFiles: string[] = [];
 
-  await Promise.all(files.map(async (file) => {
+  for (const file of files) {
     const filePath = path.join(lessonsDir, file);
-    const content = await fs.promises.readFile(filePath, "utf-8");
+    const content = fs.readFileSync(filePath, "utf-8");
 
     // Strict frontmatter tag check
     let hasTag = false;
@@ -948,7 +948,7 @@ export async function processUnenrichedLessons(
       // FAIL-SOFT: If provider fails, returns null, or lacks required fields, DO NOT fabricate fallback text!
       if (!analysis || typeof analysis.rootCause !== "string" || typeof analysis.prevention !== "string" || !analysis.rootCause.trim() || !analysis.prevention.trim()) {
         logWarn(`Skipping enrichment for '${file}': provider '${provider.name}' returned invalid/null analysis payload. Retaining original file and 'needs-enrichment' tag.`);
-        return;
+        continue;
       }
 
       try {
@@ -957,7 +957,7 @@ export async function processUnenrichedLessons(
 
         // Ensure schema passes, content actually changed, and tag was removed
         if (schemaErrors.length === 0 && updatedContent !== content && !updatedContent.includes("needs-enrichment")) {
-          await fs.promises.writeFile(filePath, updatedContent, "utf-8");
+          fs.writeFileSync(filePath, updatedContent, "utf-8");
           enrichedFiles.push(path.join(lessonsDirName, file).replace(/\\/g, "/"));
         } else if (schemaErrors.length > 0) {
           logWarn(`Enriched content for '${file}' failed schema validation: ${schemaErrors.join("; ")}. Preserving original file.`);
@@ -966,7 +966,7 @@ export async function processUnenrichedLessons(
         logWarn(`Failed to apply enrichment to '${file}': ${err instanceof Error ? err.message : String(err)}. Preserving original file.`);
       }
     }
-  }));
+  }
 
   return enrichedFiles;
 }
@@ -977,12 +977,12 @@ export async function enrichPendingLessons(vaultRoot: string, frontierProvider: 
 
   const lessonFiles = fs.readdirSync(lessonsDir).filter((f) => f.endsWith('.md'));
 
-  await Promise.all(lessonFiles.map(async (file) => {
+  for (const file of lessonFiles) {
     const filePath = path.join(lessonsDir, file);
-    const content = await fs.promises.readFile(filePath, 'utf8');
+    const content = fs.readFileSync(filePath, 'utf8');
 
     // Only process notes tagged with needs-enrichment
-    if (!content.includes('needs-enrichment')) return;
+    if (!content.includes('needs-enrichment')) continue;
 
     logInfo(`[Frontier Rescue] Enriching quarantined lesson: ${file}`);
 
@@ -1007,7 +1007,7 @@ ${content}
       // Validate schema contract before atomic promotion
       const errors = validateLessonSchema(enrichedContent, filePath);
       if (errors.length === 0) {
-        await fs.promises.writeFile(filePath, enrichedContent, 'utf8');
+        fs.writeFileSync(filePath, enrichedContent, 'utf8');
         logInfo(`[Frontier Rescue] Successfully resolved and enriched ${file}`);
       } else {
         logError(`[Frontier Rescue] Schema validation failed for ${file}: ${errors.join('; ')}`);
@@ -1015,7 +1015,7 @@ ${content}
     } catch (err: any) {
       logWarn(`[Frontier Rescue] Failed to generate enrichment for ${file}: ${err?.message || String(err)}`);
     }
-  }));
+  }
 }
 
 const isMainModule = process.argv[1] && (
