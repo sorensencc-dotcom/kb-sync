@@ -50,3 +50,4 @@ notebooklm-mcp-cli/
 # Written by kb:pipeline:e2e (run state + lock); local runtime state, not source
 .pipeline-state.json
 .pipeline.lock
+test-vault-perf/
