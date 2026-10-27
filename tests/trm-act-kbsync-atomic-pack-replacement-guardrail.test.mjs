@@ -22,7 +22,15 @@ import {
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const mockCli = `node "${path.join(repoRoot, 'tests', 'mock-nlm-cli.mjs')}"`;
+import os from 'node:os';
+
+const mockCli = path.join(os.tmpdir(), `kb-sync-mock-nlm-cli-${process.pid}`);
+fs.writeFileSync(
+  mockCli,
+  `#!/usr/bin/env node\n${fs.readFileSync(path.join(repoRoot, 'tests', 'mock-nlm-cli.mjs'), 'utf8')}`,
+  'utf8',
+);
+fs.chmodSync(mockCli, 0o755);
 
 test('runtime deletion rejects unleased source IDs', () => {
   process.env.MOCK_NLM_MODE = 'empty';
