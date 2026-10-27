@@ -438,16 +438,24 @@ async function main() {
   }
 
   // 6. Read Staged Files & Existing Wiki Pages
-  const stagedFiles: Array<{ relativePath: string; content: string }> = [];
-  for (const relFile of manifestLines) {
-    const fullPath = path.join(stagingPath, relFile);
-    if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
-      stagedFiles.push({
-        relativePath: relFile,
-        content: fs.readFileSync(fullPath, "utf-8"),
-      });
-    }
-  }
+  const stagedFilesResult = await Promise.all(
+    manifestLines.map(async (relFile) => {
+      const fullPath = path.join(stagingPath, relFile);
+      try {
+        const stat = await fs.promises.stat(fullPath);
+        if (stat.isFile()) {
+          const content = await fs.promises.readFile(fullPath, "utf-8");
+          return { relativePath: relFile, content };
+        }
+      } catch (err) {
+        // file does not exist or cannot be read, ignore
+      }
+      return null;
+    })
+  );
+  const stagedFiles: Array<{ relativePath: string; content: string }> = stagedFilesResult.filter(
+    (file): file is { relativePath: string; content: string } => file !== null
+  );
 
   const existingWikiFiles: Array<{ relativePath: string; content: string }> = [];
   if (fs.existsSync(wikiDir)) {
