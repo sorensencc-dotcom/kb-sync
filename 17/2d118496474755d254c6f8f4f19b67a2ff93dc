@@ -1,0 +1,18 @@
+scripts/trm-audio-drop.mjs
+  h_5c172e9b435f5a 1-116
+scripts/trm-ingest-drive.mjs
+  h_5c172e9b435f5a 8,41-45,319-341
+tests/trm-ingest-audio.test.mjs
+  h_5c172e9b435f5a 1-92
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "172d118496474755d254c6f8f4f19b67a2ff93dc",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
