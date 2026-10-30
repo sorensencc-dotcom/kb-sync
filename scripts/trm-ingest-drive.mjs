@@ -5,6 +5,7 @@ import { execSync } from 'node:child_process';
 import { loadDriveConfig, KB_SYNC_ROOT } from './trm-drive-common.mjs';
 import { validateFinding, validateMobileInboxDrop } from './validate-drive-findings.mjs';
 import { sweepStaleLocks } from './reconciler/stale-lock-sweeper.mjs';
+import { isAudioFile, ingestAudioDrop } from './trm-audio-drop.mjs';
 
 export function detectReadySignal(entry) {
   if (entry.hasSidecar) return 'sidecar';
@@ -37,6 +38,11 @@ export function resolveTopicTargetDir({ topic, date, KB_SYNC_ROOT, conversations
 
 export function hashFile(filePath) {
   try {
+    const stat = fs.statSync(filePath);
+    // If file is large (> 10MB), use fast mtime+size fingerprint to avoid blocking heap/IO in debounce
+    if (stat.size > 10 * 1024 * 1024) {
+      return `stat-${stat.mtimeMs}-${stat.size}`;
+    }
     return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
   } catch {
     // For virtual cloud files or unreadable stubs, return mtime string as stable surrogate
@@ -310,6 +316,29 @@ export async function ingestDriveFindings(options = {}) {
     for (const filePath of stableMobileFiles) {
       if (!fs.existsSync(filePath)) continue;
       const filename = path.basename(filePath);
+
+      if (isAudioFile(filePath)) {
+        try {
+          const res = await ingestAudioDrop({
+            filePath,
+            archiveDir: source.archiveDir,
+            conversationsDir,
+            logPath,
+            transcribe: options.transcribe,
+            sourceName: source.name
+          });
+          if (res.status === 'failed') {
+            console.warn(`[WARN] Audio drop ${filename} left in inbox for retry: ${res.error}`);
+          } else {
+            if (res.status === 'ingested') touchedFiles.push(res.notePath);
+            mobileIngestedCount++;
+          }
+        } catch (audioErr) {
+          console.warn(`[WARN] Audio drop ${filename} failed, left in inbox: ${audioErr.message}`);
+        }
+        continue;
+      }
+
       let rawContent = '';
       const isGDoc = filePath.endsWith('.gdoc');
 
