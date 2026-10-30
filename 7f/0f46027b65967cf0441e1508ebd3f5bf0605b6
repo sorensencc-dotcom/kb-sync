@@ -1,0 +1,24 @@
+specs/trm-ingest-drive/README.md
+  h_5c172e9b435f5a 1-2
+specs/trm-ingest-drive/TrmIngestDrive.cfg
+  h_5c172e9b435f5a 1-5
+specs/trm-ingest-drive/TrmIngestDrive.tla
+  h_5c172e9b435f5a 1-110
+specs/trm-ingest-drive/TrmIngestDriveView.mjs
+  h_5c172e9b435f5a 1-38
+specs/trm-ingest-drive/chart.mmd
+  h_5c172e9b435f5a 1-41
+specs/trm-ingest-drive/report.md
+  h_5c172e9b435f5a 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7f0f46027b65967cf0441e1508ebd3f5bf0605b6",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
