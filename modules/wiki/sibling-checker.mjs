@@ -208,26 +208,33 @@ export function groupTodoLines(content, { groupMarker, line, legacy }) {
 }
 
 /**
- * Appends a documentation drift warning to TODOS.md, enforcing strict deduplication and grouping.
+ * Resolves the path to TODOS.md by checking multiple candidate locations.
  * @param {string} repoRoot 
- * @param {string} taskLine 
- * @param {string} signatureKey 
+ * @returns {string | null}
  */
-export function appendDriftTodo(repoRoot, taskLine, signatureKey) {
+export function getTodosPath(repoRoot) {
   const possiblePaths = [
     path.join(repoRoot, 'TODOS.md'),
     path.resolve(repoRoot, '../TODOS.md'),
     'C:/dev/TODOS.md',
     'c:/dev/TODOS.md',
   ];
-  
-  let targetPath = null;
   for (const p of possiblePaths) {
     if (fs.existsSync(p)) {
-      targetPath = p;
-      break;
+      return p;
     }
   }
+  return null;
+}
+
+/**
+ * Appends a documentation drift warning to TODOS.md, enforcing strict deduplication and grouping.
+ * @param {string} repoRoot
+ * @param {string} taskLine
+ * @param {string} signatureKey
+ */
+export function appendDriftTodo(repoRoot, taskLine, signatureKey) {
+  let targetPath = getTodosPath(repoRoot);
   
   // If TODOS.md does not exist anywhere, auto-create a baseline one in repo root
   if (!targetPath) {
