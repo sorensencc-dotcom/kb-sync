@@ -1,0 +1,20 @@
+tests/nlm-pack-family-contract.test.mjs
+  s_0170cc50006c33::t_5c9951f005e086 22-24
+  s_0170cc50006c33::t_adbc9571e9c237 18,21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "95096e1186938900028dd5607221f05c1361e898",
+  "prompts": {},
+  "sessions": {
+    "s_0170cc50006c33": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18fb8-d7d5-7721-b09f-708007ba1794",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
