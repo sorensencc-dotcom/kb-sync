@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions, buildNotebookTargetMap } from '../../core/config.mjs';
 import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
@@ -303,5 +303,83 @@ describe('getMasterKbExclusions', () => {
     const exclusionsEmpty = getMasterKbExclusions(dataEmpty);
     assert.ok(exclusionsEmpty instanceof Set);
     assert.equal(exclusionsEmpty.size, 0);
+  });
+});
+
+describe('buildNotebookTargetMap', () => {
+  test('builds a map mapping canonical keys to targets', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
+  });
+
+  test('includes aliases mapping to the same targets', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['alias1', 'alias2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
+  });
+
+  test('normalizes keys and aliases (lowercases and trims)', () => {
+    const data = {
+      categories: {
+        '  TEST-CATEGORY  ': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['  ALIAS1  ', 'aLiAs2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
+  });
+
+  test('safely handles an empty or missing categories object in categoriesData', () => {
+    assert.deepEqual(buildNotebookTargetMap({}), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: {} }), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: null }), {});
+  });
+
+  test('safely handles category definitions that do not have an aliases array', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
   });
 });
