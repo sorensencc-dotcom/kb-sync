@@ -1,6 +1,6 @@
 import { test, describe, mock, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions, loadCategoriesData, resolveCategoryKey } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions, loadCategoriesData, buildNotebookTargetMap } from '../../core/config.mjs';
 import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
@@ -350,54 +350,80 @@ describe('loadCategoriesData', () => {
   });
 });
 
-describe('resolveCategoryKey', () => {
-  const mockCategoriesData = {
-    categories: {
-      'test-canonical': {
-        aliases: ['alias1', 'ALIAS2', '  alias3  ']
-      },
-      'another-canonical': {
-        aliases: []
-      },
-      'no-aliases-canonical': {}
-    }
-  };
-
-  test('returns "daily" if category is falsy', () => {
-    assert.equal(resolveCategoryKey(null, mockCategoriesData), 'daily');
-    assert.equal(resolveCategoryKey(undefined, mockCategoriesData), 'daily');
-    assert.equal(resolveCategoryKey('', mockCategoriesData), 'daily');
+describe('buildNotebookTargetMap', () => {
+  test('builds a map mapping canonical keys to targets', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
   });
 
-  test('returns normalized input if it matches a canonical key exactly', () => {
-    assert.equal(resolveCategoryKey('test-canonical', mockCategoriesData), 'test-canonical');
+  test('includes aliases mapping to the same targets', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['alias1', 'alias2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
   });
 
-  test('returns normalized input if it matches a canonical key with different casing/whitespace', () => {
-    assert.equal(resolveCategoryKey('  TEST-CANONICAL  ', mockCategoriesData), 'test-canonical');
+  test('normalizes keys and aliases (lowercases and trims)', () => {
+    const data = {
+      categories: {
+        '  TEST-CATEGORY  ': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['  ALIAS1  ', 'aLiAs2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
   });
 
-  test('returns canonical key if it matches an alias exactly', () => {
-    assert.equal(resolveCategoryKey('alias1', mockCategoriesData), 'test-canonical');
+  test('safely handles an empty or missing categories object in categoriesData', () => {
+    assert.deepEqual(buildNotebookTargetMap({}), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: {} }), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: null }), {});
   });
 
-  test('returns canonical key if it matches an alias with different casing/whitespace', () => {
-    assert.equal(resolveCategoryKey('  AlIaS2  ', mockCategoriesData), 'test-canonical');
-    assert.equal(resolveCategoryKey('alias3', mockCategoriesData), 'test-canonical'); // alias3 in data has spaces
-  });
-
-  test('returns normalized input if category is unknown', () => {
-    assert.equal(resolveCategoryKey('unknown-category', mockCategoriesData), 'unknown-category');
-    assert.equal(resolveCategoryKey('  UNKNOWN-Category  ', mockCategoriesData), 'unknown-category');
-  });
-
-  test('handles missing categories object gracefully', () => {
-    assert.equal(resolveCategoryKey('test-canonical', {}), 'test-canonical');
-    assert.equal(resolveCategoryKey('unknown', {}), 'unknown');
-  });
-
-  test('handles missing aliases array gracefully', () => {
-    assert.equal(resolveCategoryKey('no-aliases-canonical', mockCategoriesData), 'no-aliases-canonical');
-    assert.equal(resolveCategoryKey('unknown', mockCategoriesData), 'unknown');
+  test('safely handles category definitions that do not have an aliases array', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
   });
 });
