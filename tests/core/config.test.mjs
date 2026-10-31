@@ -1,6 +1,6 @@
 import { test, describe, mock, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions, loadCategoriesData, resolveNotebookId } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions, loadCategoriesData, buildNotebookTargetMap } from '../../core/config.mjs';
 import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
@@ -350,101 +350,80 @@ describe('loadCategoriesData', () => {
   });
 });
 
-describe('resolveNotebookId', () => {
-  test('returns daily fallback target for empty or null category', (t) => {
-    // Note: since this test runs against actual categories.json unless mocked,
-    // we mock it so we know exactly what daily evaluates to.
-    const mockData = {
+describe('buildNotebookTargetMap', () => {
+  test('builds a map mapping canonical keys to targets', () => {
+    const data = {
       categories: {
-        'daily': { target: 'daily-target-uuid', title: 'Daily', status: 'canonical' }
-      }
-    };
-    t.mock.method(fs, 'existsSync', () => true);
-    t.mock.method(fs, 'readFileSync', () => JSON.stringify(mockData));
-
-    assert.equal(resolveNotebookId(null), '1b4861a3-931f-4632-8fc1-343a8dd37df8');
-    assert.equal(resolveNotebookId(''), '1b4861a3-931f-4632-8fc1-343a8dd37df8');
-  });
-
-  test('resolves known category correctly with normalization', (t) => {
-    const mockData = {
-      categories: {
-        'daily': { target: 'daily-target-uuid', title: 'Daily', status: 'canonical' },
-        'known-cat': { target: 'known-target-uuid', title: 'Known', status: 'canonical', aliases: ['kc'] }
-      }
-    };
-    t.mock.method(fs, 'existsSync', () => true);
-    t.mock.method(fs, 'readFileSync', () => JSON.stringify(mockData));
-
-    assert.equal(resolveNotebookId('KNOWN-cat '), 'known-target-uuid');
-    assert.equal(resolveNotebookId('  kc'), 'known-target-uuid');
-  });
-
-  test('generates a placeholder and saves data for unknown category', (t) => {
-    const mockData = {
-      categories: {
-        'daily': { target: 'daily-target-uuid', title: 'Daily', status: 'canonical' }
-      },
-      placeholders: {}
-    };
-    t.mock.method(fs, 'existsSync', () => true);
-    t.mock.method(fs, 'readFileSync', () => JSON.stringify(mockData));
-
-    let savedData = null;
-    t.mock.method(fs, 'writeFileSync', (path, data) => {
-      savedData = JSON.parse(data);
-    });
-    t.mock.method(fs, 'renameSync', () => {});
-    t.mock.method(console, 'warn', () => {}); // suppress warning in test output
-
-    const result = resolveNotebookId('New Topic');
-
-    assert.equal(result, 'daily-target-uuid'); // Falls back to daily
-    assert.equal(fs.writeFileSync.mock.calls.length, 1);
-    assert.ok(savedData.placeholders['placeholder::new topic']);
-    assert.equal(savedData.placeholders['placeholder::new topic'].status, 'unmapped');
-    assert.equal(savedData.placeholders['placeholder::new topic'].slug, 'new topic');
-    assert.equal(savedData.placeholders['placeholder::new topic'].fallback_notebook_id, 'daily-target-uuid');
-    assert.equal(console.warn.mock.calls.length, 1); // warned by default
-  });
-
-  test('does not overwrite existing placeholder', (t) => {
-    const mockData = {
-      categories: {
-        'daily': { target: 'daily-target-uuid', title: 'Daily', status: 'canonical' }
-      },
-      placeholders: {
-        'placeholder::existing topic': {
-          category: 'placeholder::existing topic',
-          slug: 'existing topic',
-          status: 'mapped'
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
         }
       }
     };
-    t.mock.method(fs, 'existsSync', () => true);
-    t.mock.method(fs, 'readFileSync', () => JSON.stringify(mockData));
-    t.mock.method(fs, 'writeFileSync', () => {});
-
-    const result = resolveNotebookId('Existing Topic');
-
-    assert.equal(result, 'daily-target-uuid'); // returns daily target, but doesn't write
-    assert.equal(fs.writeFileSync.mock.calls.length, 0); // No save operation
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
   });
 
-  test('respects options.warnOnPlaceholder to suppress warning', (t) => {
-    const mockData = {
+  test('includes aliases mapping to the same targets', () => {
+    const data = {
       categories: {
-        'daily': { target: 'daily-target-uuid', title: 'Daily', status: 'canonical' }
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['alias1', 'alias2']
+        }
       }
     };
-    t.mock.method(fs, 'existsSync', () => true);
-    t.mock.method(fs, 'readFileSync', () => JSON.stringify(mockData));
-    t.mock.method(fs, 'writeFileSync', () => {});
-    t.mock.method(fs, 'renameSync', () => {});
-    t.mock.method(console, 'warn', () => {});
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
+  });
 
-    resolveNotebookId('Silent Topic', { warnOnPlaceholder: false });
+  test('normalizes keys and aliases (lowercases and trims)', () => {
+    const data = {
+      categories: {
+        '  TEST-CATEGORY  ': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['  ALIAS1  ', 'aLiAs2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
+  });
 
-    assert.equal(console.warn.mock.calls.length, 0);
+  test('safely handles an empty or missing categories object in categoriesData', () => {
+    assert.deepEqual(buildNotebookTargetMap({}), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: {} }), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: null }), {});
+  });
+
+  test('safely handles category definitions that do not have an aliases array', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
   });
 });
