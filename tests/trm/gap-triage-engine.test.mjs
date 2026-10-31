@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluateClaim, parseNumericRange } from '../../modules/trm/gap-triage-engine.mjs';
+import { evaluateClaim, parseNumericRange, slugifyTopicKey } from '../../modules/trm/gap-triage-engine.mjs';
 
 test('parseNumericRange handles single values, ranges, and approximations', () => {
   assert.deepEqual(parseNumericRange('6,792 aircraft'), { min: 6792, max: 6792, unit: 'aircraft' });
@@ -100,4 +100,36 @@ test('reconcileResolvedGaps matches but skips writing if dryRun is true', async 
   const result = await reconcileResolvedGaps('gaps.md', { vaultRoot: 'vault', dryRun: true });
   assert.deepEqual(result, { resolvedCount: 1, resolvedGaps: ['GAP-01--elephant-giraffe-zebra'] });
   assert.equal(writeSpy.mock.callCount(), 0);
+});
+
+test('slugifyTopicKey creates stable slug fragments from titles', () => {
+  // Basic cases
+  assert.equal(slugifyTopicKey('Hello World'), 'hello-world');
+  assert.equal(slugifyTopicKey('SIMPLE'), 'simple');
+
+  // Strip ** markers
+  assert.equal(slugifyTopicKey('**Bold Title**'), 'bold-title');
+  assert.equal(slugifyTopicKey('** Leading and Trailing **'), 'leading-and-trailing');
+  assert.equal(slugifyTopicKey('**Partial** Bold'), 'partial-bold');
+
+  // Stop at ` (`
+  assert.equal(slugifyTopicKey('Main Topic (Extra context)'), 'main-topic');
+  assert.equal(slugifyTopicKey('**Main Topic** (Extra context)'), 'main-topic');
+
+  // Hyphen trimming and non-alphanumeric replacement
+  assert.equal(slugifyTopicKey('---Hello---World---'), 'hello-world');
+  assert.equal(slugifyTopicKey('Hello!@#$%^World'), 'hello-world');
+
+  // Truncation at 48 chars
+  const longTitle = 'a'.repeat(60);
+  assert.equal(slugifyTopicKey(longTitle), 'a'.repeat(48));
+
+  // Truncation respects hyphen trimming at the end
+  const titleWithHyphenAtCut = 'a'.repeat(47) + '-b';
+  assert.equal(slugifyTopicKey(titleWithHyphenAtCut), 'a'.repeat(47));
+
+  // Falsy/empty
+  assert.equal(slugifyTopicKey(''), '');
+  assert.equal(slugifyTopicKey(null), '');
+  assert.equal(slugifyTopicKey(undefined), '');
 });
