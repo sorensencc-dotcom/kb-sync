@@ -1,0 +1,16 @@
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 25-40
+tests/trm-act-kbsync-atomic-pack-replacement-guardrail.test.mjs
+  h_5c172e9b435f5a 28-30,32-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "243853a3bffd505bb2317a970022cc2f5dae4cf3",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
