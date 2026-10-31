@@ -22,13 +22,22 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
 // assertSafeCliValue rejects whitespace/quotes, so mock CLI must be a single argv token.
-const mockCli = path.join(os.tmpdir(), `kb-sync-mock-nlm-cli-${process.pid}`);
-fs.writeFileSync(
-  mockCli,
-  `#!/usr/bin/env node\n${fs.readFileSync(path.join(__dirname, 'mock-nlm-cli.mjs'), 'utf8')}`,
-  'utf8',
-);
-fs.chmodSync(mockCli, 0o755);
+const isWin = process.platform === 'win32';
+const mockCli = path.join(os.tmpdir(), `kb-sync-mock-nlm-cli-${process.pid}${isWin ? '.cmd' : ''}`);
+if (isWin) {
+  fs.writeFileSync(
+    mockCli,
+    `@node "${path.join(__dirname, 'mock-nlm-cli.mjs')}" %*\n`,
+    'utf8',
+  );
+} else {
+  fs.writeFileSync(
+    mockCli,
+    `#!/usr/bin/env node\n${fs.readFileSync(path.join(__dirname, 'mock-nlm-cli.mjs'), 'utf8')}`,
+    'utf8',
+  );
+  fs.chmodSync(mockCli, 0o755);
+}
 
 test('isPackFamilyTitle matches pack family titles', () => {
   assert.equal(isPackFamilyTitle('pack_willow_run.txt'), true);
