@@ -12,14 +12,16 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-import { execSync } from 'child_process';
 import os from 'os';
 const rawMockCliPath = path.join(__dirname, 'mock-nlm-cli.mjs');
 // Create a wrapper script in temp directory that avoids spaces
-const tmpWrapper = path.join(os.tmpdir(), 'mock-cli-wrapper.sh');
+const tmpWrapper = path.join(os.tmpdir(), process.platform === 'win32' ? 'mock-cli-wrapper.cmd' : 'mock-cli-wrapper.sh');
 import * as _fs from 'fs';
 _fs.writeFileSync(tmpWrapper, `#!/bin/bash\nnode "${rawMockCliPath}" "$@"`);
-execSync(`chmod +x "${tmpWrapper}"`);
+if (process.platform !== 'win32') _fs.chmodSync(tmpWrapper, 0o755);
+if (process.platform === 'win32') {
+  _fs.writeFileSync(tmpWrapper, `@echo off\r\nnode "${rawMockCliPath}" %*\r\n`);
+}
 const mockCli = tmpWrapper;
 
 
