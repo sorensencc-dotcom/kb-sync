@@ -1,23 +1,19 @@
 ---
 title: cleanup-logs-and-backups.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/cleanup-logs-and-backups.mjs
-sha256: 6a7ca846ac6337447fef111d866c4a1f95149771257c5f449611c677911b525c
-lastCommit: 2026-08-15T14:08:57-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cleanup-logs-and-backups.mjs; redirects to 1 entity page.
 ---
 
-# cleanup-logs-and-backups.mjs
+# cleanup-logs-and-backups.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/cleanup-logs-and-backups.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/cleanup-logs-and-backups.mjs`
-- **Lines of Code:** 138
-- **Last Modified:** `2026-08-15T14:08:57-04:00`
-- **SHA-256:** `6a7ca846ac6337447fef111d866c4a1f95149771257c5f449611c677911b525c`
+Moved to:
 
-## Source Citations
-- Source: `scripts/cleanup-logs-and-backups.mjs`
-- Repository: `kb-sync`
+- [[scripts/cleanup-logs-and-backups.mjs|kb-sync--scripts-cleanup-logs-and-backups.mjs--dbed1d5e]]

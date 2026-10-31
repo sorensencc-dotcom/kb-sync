@@ -1,23 +1,19 @@
 ---
 title: ensure-dashboard-server.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/ensure-dashboard-server.ps1
-sha256: 7ff72c094930d5cbcfb6147b1be9271fdf833bc9b34cba701b19425227f7dbf5
-lastCommit: 2026-08-29T09:51:52-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for ensure-dashboard-server.ps1; redirects to 1 entity page.
 ---
 
-# ensure-dashboard-server.ps1
+# ensure-dashboard-server.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/ensure-dashboard-server.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/ensure-dashboard-server.ps1`
-- **Lines of Code:** 49
-- **Last Modified:** `2026-08-29T09:51:52-04:00`
-- **SHA-256:** `7ff72c094930d5cbcfb6147b1be9271fdf833bc9b34cba701b19425227f7dbf5`
+Moved to:
 
-## Source Citations
-- Source: `scripts/ensure-dashboard-server.ps1`
-- Repository: `kb-sync`
+- [[scripts/ensure-dashboard-server.ps1|kb-sync--scripts-ensure-dashboard-server.ps1--b7df880b]]

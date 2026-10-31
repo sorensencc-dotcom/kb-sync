@@ -1,3 +1,8 @@
+---
+category: "superpowers"
+tags: ["spec"]
+---
+
 # Design: jev RAG chunk filter for gap-triage retrieval
 
 **Date:** 2026-09-22

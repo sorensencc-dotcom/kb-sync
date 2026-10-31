@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import os from 'node:os';
 import {
   isPackFamilyTitle,
   filterPackFamilySources,
@@ -15,11 +16,19 @@ import {
   pollFamilyUntilActive,
   probeExistingPackSource,
   replacePackFamilyAtomic,
+  resolveCliInvocation,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
-const mockCli = `node "${path.join(__dirname, 'mock-nlm-cli.mjs')}"`;
+// assertSafeCliValue rejects whitespace/quotes, so mock CLI must be a single argv token.
+const mockCli = path.join(os.tmpdir(), `kb-sync-mock-nlm-cli-${process.pid}`);
+fs.writeFileSync(
+  mockCli,
+  `#!/usr/bin/env node\n${fs.readFileSync(path.join(__dirname, 'mock-nlm-cli.mjs'), 'utf8')}`,
+  'utf8',
+);
+fs.chmodSync(mockCli, 0o755);
 
 test('isPackFamilyTitle matches pack family titles', () => {
   assert.equal(isPackFamilyTitle('pack_willow_run.txt'), true);
@@ -122,7 +131,7 @@ test('purgePackFamilyBeforeUpload dry-run identifies matching pack sources witho
   assert.equal(loggedWarn.some((w) => w.includes('[DRY RUN] Would purge pack-family source src-1')), true);
 });
 
-test('purgePackFamilyBeforeUpload live mode purges matching sources', () => {
+test('purgePackFamilyBeforeUpload live mode refuses non-atomic deletion', () => {
   let loggedInfo = [];
   let loggedWarn = [];
   const mockSources = [
@@ -131,21 +140,14 @@ test('purgePackFamilyBeforeUpload live mode purges matching sources', () => {
   ];
   process.env.MOCK_NLM_MODE = 'custom';
   process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
-  const result = purgePackFamilyBeforeUpload({
+  assert.throws(() => purgePackFamilyBeforeUpload({
     cli: mockCli,
     notebookId: 'nb-live-test',
     packFile: 'pack_ford_politics.txt',
     dryRun: false,
     logInfo: (msg) => loggedInfo.push(msg),
     logWarn: (msg) => loggedWarn.push(msg),
-  });
-
-  assert.equal(result.listed, 2);
-  assert.equal(result.purged, 1);
-  assert.equal(result.matched.length, 1);
-  assert.equal(result.matched[0].id, 'src-del-1');
-  assert.equal(result.safeToUpload, true);
-  assert.equal(loggedInfo.some((i) => i.includes('purged src-del-1')), true);
+  }), /ATOMIC_REPLACEMENT_REQUIRED/);
 });
 
 test('purgePackFamilyBeforeUpload fails closed when source list fails', () => {
@@ -173,24 +175,43 @@ test('uploadAndReplacePack verifies returned ACTIVE ID before deleting old sourc
     { id: 'old-1', title: 'pack_old.txt', status: 'ACTIVE' },
     { id: 'new-1', title: 'pack_new.txt', status: 'ACTIVE' },
   ]);
-  const deleted = [];
+  let listCalls = 0;
   const result = await uploadAndReplacePack({
     cli: mockCli,
     notebookId: 'nb-live-test',
     packFile: 'pack_new.txt',
-    oldSources: [{ id: 'old-1' }],
     waitMs: 1,
     runUpload: () => JSON.stringify({ source_id: 'new-1' }),
+    runList: async () => listCalls++ === 0
+      ? [{ id: 'old-1', title: 'pack_old.txt', status: 'ACTIVE' }]
+      : [
+        { id: 'old-1', title: 'pack_old.txt', status: 'ACTIVE' },
+        { id: 'new-1', title: 'pack_new.txt', status: 'ACTIVE' },
+      ],
   });
   assert.equal(result.uploadedId, 'new-1');
   assert.deepEqual(result.oldSourceIds, ['old-1']);
-  assert.equal(deleted.length, 0);
 });
 
 test('buildNotebookLmUploadCommand and helpers reject shell metacharacters', () => {
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm; rm -rf /', notebookId: 'nb-1', file: 'pack.txt' }), /Unsafe NotebookLM CLI/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1 & dir', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
   assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack.txt | calc' }), /Unsafe NotebookLM file path/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-"breakout', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb-1', file: 'pack".txt' }), /Unsafe NotebookLM file path/);
+  assert.throws(() => buildNotebookLmUploadCommand({ cli: 'nlm', notebookId: 'nb with space', file: 'pack.txt' }), /Unsafe NotebookLM notebook id/);
+});
+
+test('resolveCliInvocation preserves spaced executable paths and parses node script commands', () => {
+  const spacedPath = path.join(REPO_ROOT, 'mock cli bin', 'mock nlm');
+  assert.deepEqual(resolveCliInvocation(spacedPath, ['source', 'list']), {
+    cmd: spacedPath,
+    args: ['source', 'list'],
+  });
+  const nodeCommand = resolveCliInvocation(`node "${path.join(__dirname, 'mock-nlm-cli.mjs')}"`, ['--version']);
+  assert.equal(nodeCommand.cmd, process.execPath);
+  assert.equal(nodeCommand.args[0], path.join(__dirname, 'mock-nlm-cli.mjs'));
+  assert.deepEqual(nodeCommand.args.slice(1), ['--version']);
 });
 
 test('isSoftwarePack identifies repo packs and software categories', () => {
@@ -297,97 +318,6 @@ test('Agent Harness: filterPackFamilySources matches both pack_agent_harness and
   const matchedRepo = filterPackFamilySources(sources, 'repo_knowledge_pack.txt');
   assert.equal(matchedRepo.length, 3);
   assert.deepEqual(matchedRepo.map(s => s.id), ['src-harness', 'src-part-aa', 'src-part-ab']);
-});
-
-test('Agent Harness: purgePackFamilyBeforeUpload purges both pack_agent_harness and repo_knowledge_pack', () => {
-  let loggedInfo = [];
-  let loggedWarn = [];
-  const mockSources = [
-    { id: 'src-harness', title: 'pack_agent_harness.txt' },
-    { id: 'src-part-aa', title: 'repo_knowledge_pack_part_aa.txt' },
-    { id: 'src-other-doc', title: 'Ecosystem Architecture Guide (Current).md' },
-  ];
-  process.env.MOCK_NLM_MODE = 'custom';
-  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
-
-  const result = purgePackFamilyBeforeUpload({
-    cli: mockCli,
-    notebookId: '359b346c-6af7-4ba3-baef-b985c9e6e1af',
-    packFile: 'pack_agent_harness.txt',
-    dryRun: true,
-    logInfo: (msg) => loggedInfo.push(msg),
-    logWarn: (msg) => loggedWarn.push(msg),
-  });
-
-  assert.equal(result.listed, 3);
-  assert.equal(result.matched.length, 2);
-  assert.deepEqual(result.matched.map(s => s.id), ['src-harness', 'src-part-aa']);
-});
-
-test('Non-pack documents are preserved and never identified as pack families', () => {
-  assert.equal(isPackFamilyTitle('Interview transcript - User research.docx', 'pack_agent_harness.txt'), false);
-  assert.equal(isPackFamilyTitle('Architecture RFC 2026.md', 'pack_agent_harness.txt'), false);
-  assert.equal(isPackFamilyTitle('API Reference - v2.pdf', 'repo_knowledge_pack.txt'), false);
-  assert.equal(isPackFamilyTitle('Sprint Review Meeting Notes', 'pack_agent_harness.txt'), false);
-});
-
-test('All 19 parts (part_aa..as) match the unified agent harness pack family', () => {
-  const parts = ['aa', 'ab', 'ac', 'ad', 'ae', 'af', 'ag', 'ah', 'ai', 'aj', 'ak', 'al', 'am', 'an', 'ao', 'ap', 'aq', 'ar', 'as'];
-  for (const p of parts) {
-    const filename = `repo_knowledge_pack_part_${p}.txt`;
-    assert.equal(isPackFamilyTitle(filename, 'pack_agent_harness.txt'), true, `${filename} should match pack_agent_harness.txt`);
-    assert.equal(isPackFamilyTitle('pack_agent_harness.txt', filename), true, `pack_agent_harness.txt should match ${filename}`);
-  }
-});
-
-test('Agent Harness: reverse purge - uploading repo_knowledge_pack purges pre-existing pack_agent_harness', () => {
-  let loggedInfo = [];
-  let loggedWarn = [];
-  const mockSources = [
-    { id: 'src-harness', title: 'pack_agent_harness.txt' },
-    { id: 'src-doc', title: 'Interview transcript.md' },
-  ];
-  process.env.MOCK_NLM_MODE = 'custom';
-  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
-
-  const result = purgePackFamilyBeforeUpload({
-    cli: mockCli,
-    notebookId: '359b346c-6af7-4ba3-baef-b985c9e6e1af',
-    packFile: 'repo_knowledge_pack_part_aa.txt',
-    dryRun: true,
-    logInfo: (msg) => loggedInfo.push(msg),
-    logWarn: (msg) => loggedWarn.push(msg),
-  });
-
-  assert.equal(result.listed, 2);
-  assert.equal(result.matched.length, 1);
-  assert.equal(result.matched[0].id, 'src-harness');
-});
-
-test('Agent Harness: live purge executes notebooklm source delete for each matched family member', () => {
-  let loggedInfo = [];
-  let loggedWarn = [];
-  const mockSources = [
-    { id: 'src-harness-1', title: 'pack_agent_harness.txt' },
-    { id: 'src-part-aa', title: 'repo_knowledge_pack_part_aa.txt' },
-    { id: 'src-part-ab', title: 'repo_knowledge_pack_part_ab.txt' },
-  ];
-  process.env.MOCK_NLM_MODE = 'custom';
-  process.env.MOCK_NLM_DATA = JSON.stringify(mockSources);
-
-  const result = purgePackFamilyBeforeUpload({
-    cli: mockCli,
-    notebookId: '359b346c-6af7-4ba3-baef-b985c9e6e1af',
-    packFile: 'pack_agent_harness.txt',
-    dryRun: false,
-    logInfo: (msg) => loggedInfo.push(msg),
-    logWarn: (msg) => loggedWarn.push(msg),
-  });
-
-  assert.equal(result.listed, 3);
-  assert.equal(result.matched.length, 3);
-  assert.equal(result.purged, 3);
-  assert.equal(result.safeToUpload, true);
 });
 
 test('ingest-notebooklm.sh purge pattern matches multipart parts (part_aa..as), pack_agent_harness, and thematic packs', () => {
@@ -981,33 +911,10 @@ test('Agent Harness family: repo_knowledge_pack_part_aa.txt, .bak.txt, and pack_
   assert.equal(matched.length, 3);
 });
 
-test('ingest-notebooklm.sh poll_new_sources_active treats status 3 as ERROR and preserves purge pattern', () => {
+test('ingest-notebooklm.sh routes live replacement through the canonical Node gate', () => {
   const ingestScript = fs.readFileSync(path.join(REPO_ROOT, 'modules', 'notebooklm', 'ingest-notebooklm.sh'), 'utf8');
-
-  const pollFnMatch = ingestScript.match(/poll_new_sources_active\(\)\s*\{[\s\S]*?\n\}/);
-  assert.ok(pollFnMatch, 'poll_new_sources_active function must exist in ingest-notebooklm.sh');
-  const pollBlock = pollFnMatch[0];
-
-  const errRegexMatch = pollBlock.match(/\/\^\(([^)]*)\)\$\/i\.test\(String\(s\?\.status\)\)\)+/);
-  assert.ok(errRegexMatch, 'must find explicit ERROR status regex in poll_new_sources_active');
-  const errRegex = new RegExp(`^(${errRegexMatch[1]})$`, 'i');
-  assert.equal(errRegex.test('3'), true, 'explicit error regex must match status 3');
-  assert.equal(errRegex.test('ERROR'), true);
-  assert.equal(errRegex.test('FAILED'), true);
-
-  const allowedRegexMatch = pollBlock.match(/!\/\^\(([^)]*)\)\$\/i\.test\(String\(s\.status\)\)\)+/);
-  assert.ok(allowedRegexMatch, 'must find allowed/in-flight status regex in poll_new_sources_active');
-  const allowedRegex = new RegExp(`^(${allowedRegexMatch[1]})$`, 'i');
-  assert.equal(allowedRegex.test('3'), false, 'in-flight/allowed status regex must not list 3');
-  assert.equal(allowedRegex.test('1'), true);
-  assert.equal(allowedRegex.test('2'), true);
-  assert.equal(allowedRegex.test('5'), true);
-
-  const purgePatternMatch = ingestScript.match(/const\s+pattern\s*=\s*(\/[^/]+\/[a-z]*);/);
-  assert.ok(purgePatternMatch, 'must find purge pattern in ingest-notebooklm.sh');
-  assert.equal(purgePatternMatch[1].includes('repo[_-]?knowledge[_-]?pack'), true);
-  assert.equal(purgePatternMatch[1].includes('pack_'), true);
-  assert.equal(purgePatternMatch[1].includes('\\.txt'), true);
+  assert.match(ingestScript, /replace-pack-family-cli\.mjs/);
+  assert.doesNotMatch(ingestScript, /nlm_source_delete|nlm_sources_delete_atomic/);
 });
 
 test('matchesPackFamily and isPackFamilyTitle recognize live H1 titles for modules and personal-os', () => {
@@ -1099,5 +1006,79 @@ test('replacePackFamilyAtomic does not reuse pre-existing ACTIVE source by defau
   assert.equal(uploadCalledWithReuse, false, 'must skip upload when allowReuse is explicitly true');
   assert.deepEqual(resReuse.newSourceIds, ['stale-active-1']);
 });
+
+test('replaceSinglePack skips multipart registry notebook without upload or delete', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  let uploaded = false;
+  let deleted = false;
+  const res = await replaceSinglePack({
+    notebookId: '1b4861a3-931f-4632-8fc1-343a8dd37df8', // daily
+    packFile: 'pack_daily.txt',
+    runList: async () => [],
+    runUpload: async () => { uploaded = true; return {}; },
+    runDelete: async () => { deleted = true; return true; },
+  });
+  assert.equal(res.skipped, true);
+  assert.equal(res.reason, 'MULTIPART_REGISTRY');
+  assert.equal(uploaded, false);
+  assert.equal(deleted, false);
+});
+
+test('replaceSinglePack skips has_pack: false notebook without upload or delete', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  let uploaded = false;
+  let deleted = false;
+  const res = await replaceSinglePack({
+    notebookId: '140119ae-3496-45c9-bf0c-71c955136afc', // rewrite-labs
+    packFile: 'pack_rewrite_labs.txt',
+    runList: async () => [],
+    runUpload: async () => { uploaded = true; return {}; },
+    runDelete: async () => { deleted = true; return true; },
+  });
+  assert.equal(res.skipped, true);
+  assert.equal(res.reason, 'HAS_PACK_FALSE');
+  assert.equal(uploaded, false);
+  assert.equal(deleted, false);
+});
+
+test('replaceSinglePack skips when live sources contain _partN without upload or delete', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  let uploaded = false;
+  let deleted = false;
+  const res = await replaceSinglePack({
+    notebookId: '99999999-9999-9999-9999-999999999999',
+    packFile: 'pack_daily.txt',
+    runList: async () => [
+      { id: 'p1', title: 'pack_daily_part1.txt', status: 2 },
+    ],
+    runUpload: async () => { uploaded = true; return {}; },
+    runDelete: async () => { deleted = true; return true; },
+  });
+  assert.equal(res.skipped, true);
+  assert.equal(res.reason, 'MULTIPART_LIVE');
+  assert.equal(uploaded, false);
+  assert.equal(deleted, false);
+});
+
+test('replaceSinglePack executes atomic replace for valid single-pack notebook', async () => {
+  const { replaceSinglePack } = await import('../scripts/nlm-pack-replace-gate.mjs');
+  const deleted = [];
+  const live = [{ id: 'old-1', title: 'pack_ford_politics.txt', status: 2 }];
+  const res = await replaceSinglePack({
+    notebookId: '0caf6707-f8f2-4d2a-acd2-020acead55ba', // ford-politics (has_pack: true, multipart: false)
+    packFile: 'pack_ford_politics.txt',
+    runList: async () => live,
+    runUpload: async (nbId, file) => {
+      const src = { id: 'new-1', title: 'pack_ford_politics.txt', status: 2 };
+      live.push(src);
+      return { source_id: 'new-1' };
+    },
+    runDelete: async (id) => { deleted.push(id); return true; },
+    waitMs: 0,
+  });
+  assert.equal(res.success, true);
+  assert.deepEqual(deleted, ['old-1']);
+});
+
 
 

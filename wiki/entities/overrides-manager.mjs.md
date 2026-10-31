@@ -1,27 +1,19 @@
 ---
 title: overrides-manager.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/overrides-manager.mjs
-sha256: 61116a0b92d228ca3f64510d4a3820ce72a9f2b891e4ca71b167fb24c9316773
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for overrides-manager.mjs; redirects to 1 entity page.
 ---
 
-# overrides-manager.mjs
+# overrides-manager.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/overrides-manager.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/overrides-manager.mjs`
-- **Lines of Code:** 75
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `61116a0b92d228ca3f64510d4a3820ce72a9f2b891e4ca71b167fb24c9316773`
+Moved to:
 
-## Exported Symbols & API
-- `loadActiveOverrides`
-- `saveOverrides`
-
-## Source Citations
-- Source: `modules/compactor/overrides-manager.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/overrides-manager.mjs|kb-sync--modules-compactor-overrides-manager.mjs--4e95e146]]

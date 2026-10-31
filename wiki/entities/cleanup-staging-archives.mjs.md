@@ -1,23 +1,19 @@
 ---
 title: cleanup-staging-archives.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/cleanup-staging-archives.mjs
-sha256: 5f44fc96068fde3054b1b3ddd12efcb3784899141b4baa837fd5f63161671b97
-lastCommit: 2026-07-21T15:52:50-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cleanup-staging-archives.mjs; redirects to 1 entity page.
 ---
 
-# cleanup-staging-archives.mjs
+# cleanup-staging-archives.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/cleanup-staging-archives.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/cleanup-staging-archives.mjs`
-- **Lines of Code:** 174
-- **Last Modified:** `2026-07-21T15:52:50-04:00`
-- **SHA-256:** `5f44fc96068fde3054b1b3ddd12efcb3784899141b4baa837fd5f63161671b97`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/cleanup-staging-archives.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/cleanup-staging-archives.mjs|kb-sync--modules-wiki-cleanup-staging-archives.mjs--a975b4ea]]

@@ -1,0 +1,21 @@
+# GitGuardian configuration (ggshield)
+# Documentation: https://docs.gitguardian.com/ggshield-docs/configuration/overview
+version: 2
+secret:
+  ignored_paths:
+    - "tests/**"
+    - "**/tests/**"
+    - "**/*.test.ts"
+    - "**/*.test.mjs"
+    - "**/*.test.js"
+    - "state/**"
+    - ".ijfw/**"
+  ignored_matches:
+    - name: "Synthetic test entropy token ZXQRPLM9 (vfs-write-through.test.ts)"
+      match: "ZXQRPLM9"
+    - name: "Synthetic test entropy token FTSUNIQTOKEN42B7 (vfs-write-through.test.ts)"
+      match: "FTSUNIQTOKEN42B7"
+    - name: "Synthetic test entropy token UPDATETOKENAAA111 (vfs-write-through.test.ts)"
+      match: "UPDATETOKENAAA111"
+    - name: "Synthetic test entropy token UPDATETOKENBBB222 (vfs-write-through.test.ts)"
+      match: "UPDATETOKENBBB222"

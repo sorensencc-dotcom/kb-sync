@@ -218,4 +218,63 @@ This paragraph mentions ZXQRPLM9 for discoverability.
     const tools = listed?.result?.tools || [];
     assert.ok(tools.some((t: any) => t.name === 'vfs_upsert_document'));
   });
+
+  test('TEST-06: non-wiki in-repo paths like package.json are rejected; DB unchanged', () => {
+    const beforeCount: any = db.prepare('SELECT COUNT(*) AS c FROM kb_documents').get();
+
+    assert.throws(
+      () =>
+        upsertDocumentToDiskAndCache(db, {
+          topic: 'evil-root',
+          category: 'research',
+          content: 'should not write package.json',
+          file_path: 'package.json',
+          repoRoot: sandboxRoot
+        }),
+      /wiki\//i
+    );
+
+    assert.throws(
+      () =>
+        upsertDocumentToDiskAndCache(db, {
+          topic: 'evil-workflows',
+          category: 'research',
+          content: 'should not write workflows',
+          file_path: '.github/workflows/ci.yml',
+          repoRoot: sandboxRoot
+        }),
+      /wiki\//i
+    );
+
+    assert.equal(fs.existsSync(path.join(sandboxRoot, 'package.json')), false);
+    assert.equal(fs.existsSync(path.join(sandboxRoot, '.github', 'workflows', 'ci.yml')), false);
+
+    const afterCount: any = db.prepare('SELECT COUNT(*) AS c FROM kb_documents').get();
+    assert.equal(afterCount.c, beforeCount.c);
+
+    const mcp = handleVfsUpsertDocument(
+      db,
+      {
+        topic: 'evil-root',
+        category: 'research',
+        content: 'nope',
+        file_path: 'package.json'
+      },
+      { repoRoot: sandboxRoot }
+    );
+    assert.equal(mcp.isError, true);
+
+    // Explicit wiki path still works
+    const ok = upsertDocumentToDiskAndCache(db, {
+      topic: 'wiki-ok',
+      category: 'research',
+      content: '# Wiki OK\n',
+      file_path: 'wiki/research/wiki-ok.md',
+      repoRoot: sandboxRoot
+    });
+    assert.equal(ok.ok, true);
+    assert.equal(ok.file_path, 'wiki/research/wiki-ok.md');
+    assert.ok(fs.existsSync(path.join(sandboxRoot, 'wiki', 'research', 'wiki-ok.md')));
+  });
+
 });

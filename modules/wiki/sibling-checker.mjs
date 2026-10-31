@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
+import { execSync, execFileSync } from 'node:child_process';
 import yaml from 'js-yaml';
 
 /**
@@ -138,16 +138,19 @@ export function extractExportedSymbolsFromDiff(diff) {
  * @param {string} repoRoot - Absolute repository root
  * @returns {Array<string>} - Calling relative file paths
  */
+const SAFE_GRAFT_SYMBOL_RE = /^[A-Za-z_][A-Za-z0-9_.-]{0,127}$/;
+
 export function queryGraftCallers(symbol, repoRoot) {
-  if (!symbol) return [];
+  if (!symbol || typeof symbol !== 'string' || !SAFE_GRAFT_SYMBOL_RE.test(symbol)) return [];
   try {
     let output = '';
+    const execOpts = { cwd: repoRoot, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'], windowsHide: true };
     try {
-      // Attempt using global graft command first
-      output = execSync(`graft callers "${symbol}"`, { cwd: repoRoot, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+      // Attempt using global graft command first (argv, no shell)
+      output = execFileSync('graft', ['callers', symbol], execOpts);
     } catch (_) {
-      // Fallback: Attempt running via npx
-      output = execSync(`npx @nanonets/graft callers "${symbol}"`, { cwd: repoRoot, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+      // Fallback: Attempt running via npx (still argv, no shell)
+      output = execFileSync('npx', ['@nanonets/graft', 'callers', symbol], execOpts);
     }
     
     const files = [];
@@ -205,26 +208,33 @@ export function groupTodoLines(content, { groupMarker, line, legacy }) {
 }
 
 /**
- * Appends a documentation drift warning to TODOS.md, enforcing strict deduplication and grouping.
+ * Resolves the path to TODOS.md by checking multiple candidate locations.
  * @param {string} repoRoot 
- * @param {string} taskLine 
- * @param {string} signatureKey 
+ * @returns {string | null}
  */
-export function appendDriftTodo(repoRoot, taskLine, signatureKey) {
+export function getTodosPath(repoRoot) {
   const possiblePaths = [
     path.join(repoRoot, 'TODOS.md'),
     path.resolve(repoRoot, '../TODOS.md'),
     'C:/dev/TODOS.md',
     'c:/dev/TODOS.md',
   ];
-  
-  let targetPath = null;
   for (const p of possiblePaths) {
     if (fs.existsSync(p)) {
-      targetPath = p;
-      break;
+      return p;
     }
   }
+  return null;
+}
+
+/**
+ * Appends a documentation drift warning to TODOS.md, enforcing strict deduplication and grouping.
+ * @param {string} repoRoot
+ * @param {string} taskLine
+ * @param {string} signatureKey
+ */
+export function appendDriftTodo(repoRoot, taskLine, signatureKey) {
+  let targetPath = getTodosPath(repoRoot);
   
   // If TODOS.md does not exist anywhere, auto-create a baseline one in repo root
   if (!targetPath) {

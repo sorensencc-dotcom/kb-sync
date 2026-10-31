@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
-import { checkSiblingPatterns, appendDriftTodo } from './sibling-checker.mjs';
+import { checkSiblingPatterns, appendDriftTodo, getTodosPath } from './sibling-checker.mjs';
 
 const COLOR = {
   red: '\x1b[31m',
@@ -73,49 +73,41 @@ async function main() {
         // If the open item already covers these exact files (or a superset), skip writing — it's the same
         // recurring drift, not a new event.
         const isRecurringDrift = (() => {
-          const possiblePaths = [
-            path.join(repoRoot, 'TODOS.md'),
-            path.resolve(repoRoot, '../TODOS.md'),
-            'C:/dev/TODOS.md',
-            'c:/dev/TODOS.md',
-          ];
-          for (const p of possiblePaths) {
-            if (!fs.existsSync(p)) continue;
-            const content = fs.readFileSync(p, 'utf8');
-            if (!content.includes(signatureKey)) break; // No open item yet; not recurring
+          const p = getTodosPath(repoRoot);
+          if (!p) return false;
+          const content = fs.readFileSync(p, 'utf8');
+          if (!content.includes(signatureKey)) return false; // No open item yet; not recurring
 
-            // Extract the files mentioned in the existing open TODO item by matching
-            // the wiki sibling names (e.g. `watch-competitors-v2.mjs.md`)
-            const taskLineMatch = content.match(/- \[ \] \*\*\[P2\] kb-sync documentation drift remediation \(batch\)\*\*.*?(?:\r?\n|$)/);
+          // Extract the files mentioned in the existing open TODO item by matching
+          // the wiki sibling names (e.g. `watch-competitors-v2.mjs.md`)
+          const taskLineMatch = content.match(/- \[ \] \*\*\[P2\] kb-sync documentation drift remediation \(batch\)\*\*.*?(?:\r?\n|$)/);
 
-            const existingFiles = new Set();
-            if (taskLineMatch) {
-              const matches = [...taskLineMatch[0].matchAll(/(?:wiki\/[^\s,]+?\/)?([\w.\-]+\.md)/g)];
-              for (const m of matches) {
-                existingFiles.add(m[1].replace(/\.md$/, ''));
-              }
-
-              const affectedMatch = taskLineMatch[0].match(/Affected:\s+(.+)$/);
-              if (affectedMatch) {
-                const oldFiles = affectedMatch[1].split(',').map(s => s.trim());
-                for (const f of oldFiles) {
-                  if (f) allWikiSiblings.add(f);
-                }
-              } else {
-                for (const match of taskLineMatch[0].matchAll(/(wiki\/[^\s,]+?\.md)/g)) {
-                  allWikiSiblings.add(match[1]);
-                }
-              }
+          const existingFiles = new Set();
+          if (taskLineMatch) {
+            const matches = [...taskLineMatch[0].matchAll(/(?:wiki\/[^\s,]+?\/)?([\w.\-]+\.md)/g)];
+            for (const m of matches) {
+              existingFiles.add(m[1].replace(/\.md$/, ''));
             }
 
-            // Check if every currently-drifted file is already captured in the open item
-            const allCovered = [...driftedFiles].every(f => {
-              const base = path.basename(f);
-              return existingFiles.has(base) || content.includes(base);
-            });
-            return allCovered;
+            const affectedMatch = taskLineMatch[0].match(/Affected:\s+(.+)$/);
+            if (affectedMatch) {
+              const oldFiles = affectedMatch[1].split(',').map(s => s.trim());
+              for (const f of oldFiles) {
+                if (f) allWikiSiblings.add(f);
+              }
+            } else {
+              for (const match of taskLineMatch[0].matchAll(/(wiki\/[^\s,]+?\.md)/g)) {
+                allWikiSiblings.add(match[1]);
+              }
+            }
           }
-          return false;
+
+          // Check if every currently-drifted file is already captured in the open item
+          const allCovered = [...driftedFiles].every(f => {
+            const base = path.basename(f);
+            return existingFiles.has(base) || content.includes(base);
+          });
+          return allCovered;
         })();
 
         // Generate consolidated TODO item rather than flooding TODOS.md with per-file items

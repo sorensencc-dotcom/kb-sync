@@ -1,28 +1,19 @@
 ---
 title: sync-cache.mjs
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/cache/sync-cache.mjs
-sha256: 0405ed7bb2c3c1154d15f1b7275e425e364beb36bb5851396b6c71740c14d9ac
-lastCommit: 2026-08-27T08:24:23-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for sync-cache.mjs; redirects to 1 entity page.
 ---
 
-# sync-cache.mjs
+# sync-cache.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/cache/sync-cache.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/cache/sync-cache.mjs`
-- **Lines of Code:** 178
-- **Last Modified:** `2026-08-27T08:24:23-04:00`
-- **SHA-256:** `0405ed7bb2c3c1154d15f1b7275e425e364beb36bb5851396b6c71740c14d9ac`
+Moved to:
 
-## Exported Symbols & API
-- `computeSha256`
-- `inferDocumentMetadata`
-- `syncKnowledgeCache`
-
-## Source Citations
-- Source: `modules/cache/sync-cache.mjs`
-- Repository: `kb-sync`
+- [[modules/cache/sync-cache.mjs|kb-sync--modules-cache-sync-cache.mjs--292b1907]]

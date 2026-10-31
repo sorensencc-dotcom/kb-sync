@@ -1,23 +1,19 @@
 ---
 title: project-journal.md
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/.ijfw/memory/project-journal.md
-sha256: e53ef4301474146a93d14a469ec9da1561494da38e6f09e16c28ab9c460d613b
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for project-journal.md; redirects to 1 entity page.
 ---
 
-# project-journal.md
+# project-journal.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/.ijfw/memory/project-journal.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/.ijfw/memory/project-journal.md`
-- **Lines of Code:** 4
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `e53ef4301474146a93d14a469ec9da1561494da38e6f09e16c28ab9c460d613b`
+Moved to:
 
-## Source Citations
-- Source: `modules/compactor/.ijfw/memory/project-journal.md`
-- Repository: `kb-sync`
+- [[modules/compactor/.ijfw/memory/project-journal.md|kb-sync--modules-compactor-.ijfw-memory-project-journal.md--fb1570a2]]

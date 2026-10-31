@@ -1,23 +1,19 @@
 ---
 title: build-dag-cli.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/build-dag-cli.test.mjs
-sha256: e47d570d28b978ea5c207d77987a2e0e00b78aea68a319a249428eee2e00e84b
-lastCommit: 2026-08-08T14:22:31-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for build-dag-cli.test.mjs; redirects to 1 entity page.
 ---
 
-# build-dag-cli.test.mjs
+# build-dag-cli.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/build-dag-cli.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/build-dag-cli.test.mjs`
-- **Lines of Code:** 73
-- **Last Modified:** `2026-08-08T14:22:31-04:00`
-- **SHA-256:** `e47d570d28b978ea5c207d77987a2e0e00b78aea68a319a249428eee2e00e84b`
+Moved to:
 
-## Source Citations
-- Source: `tests/build-dag-cli.test.mjs`
-- Repository: `kb-sync`
+- [[tests/build-dag-cli.test.mjs|kb-sync--tests-build-dag-cli.test.mjs--e3c11691]]

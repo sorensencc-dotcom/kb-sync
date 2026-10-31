@@ -1,23 +1,19 @@
 ---
 title: trm-cache-e2e-pipeline.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/trm-cache-e2e-pipeline.test.ts
-sha256: 6620a71e99a8a1dee2e43ef80365a9278087496821c82ff86e0cb36556742455
-lastCommit: 2026-08-21T19:58:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-cache-e2e-pipeline.test.ts; redirects to 1 entity page.
 ---
 
-# trm-cache-e2e-pipeline.test.ts
+# trm-cache-e2e-pipeline.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/trm-cache-e2e-pipeline.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/trm-cache-e2e-pipeline.test.ts`
-- **Lines of Code:** 113
-- **Last Modified:** `2026-08-21T19:58:22-04:00`
-- **SHA-256:** `6620a71e99a8a1dee2e43ef80365a9278087496821c82ff86e0cb36556742455`
+Moved to:
 
-## Source Citations
-- Source: `tests/trm-cache-e2e-pipeline.test.ts`
-- Repository: `kb-sync`
+- [[tests/trm-cache-e2e-pipeline.test.ts|kb-sync--tests-trm-cache-e2e-pipeline.test.ts--7f72e70d]]

@@ -1,23 +1,19 @@
 ---
 title: weekly-metrics.md
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/review-capacity/weekly-metrics.md
-sha256: 2a6a11ae2c3bd00fe2bf13a4dde2fc67c42d6673ef6d4a0940d675b20c6ae506
-lastCommit: 2026-08-08T23:55:00-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for weekly-metrics.md; redirects to 1 entity page.
 ---
 
-# weekly-metrics.md
+# weekly-metrics.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/review-capacity/weekly-metrics.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/review-capacity/weekly-metrics.md`
-- **Lines of Code:** 116
-- **Last Modified:** `2026-08-08T23:55:00-04:00`
-- **SHA-256:** `2a6a11ae2c3bd00fe2bf13a4dde2fc67c42d6673ef6d4a0940d675b20c6ae506`
+Moved to:
 
-## Source Citations
-- Source: `modules/review-capacity/weekly-metrics.md`
-- Repository: `kb-sync`
+- [[modules/review-capacity/weekly-metrics.md|kb-sync--modules-review-capacity-weekly-metrics.md--7105422b]]

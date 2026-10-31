@@ -1,23 +1,19 @@
 ---
 title: wiki-contract-backfill.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/wiki-contract-backfill.mjs
-sha256: ffdf4c65e0cee2ad3e71caae78c1091828c732c656375fd9d71ef4ab124dd4c1
-lastCommit: 2026-07-21T19:34:38-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for wiki-contract-backfill.mjs; redirects to 1 entity page.
 ---
 
-# wiki-contract-backfill.mjs
+# wiki-contract-backfill.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/wiki-contract-backfill.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/wiki-contract-backfill.mjs`
-- **Lines of Code:** 195
-- **Last Modified:** `2026-07-21T19:34:38-04:00`
-- **SHA-256:** `ffdf4c65e0cee2ad3e71caae78c1091828c732c656375fd9d71ef4ab124dd4c1`
+Moved to:
 
-## Source Citations
-- Source: `scripts/wiki-contract-backfill.mjs`
-- Repository: `kb-sync`
+- [[scripts/wiki-contract-backfill.mjs|kb-sync--scripts-wiki-contract-backfill.mjs--312b2bf4]]

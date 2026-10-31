@@ -1,23 +1,19 @@
 ---
 title: validate-staging-docs.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/validate-staging-docs.mjs
-sha256: 8facf06790aaa6c7c90e3ab5e5c399fb5bffecbfe1c808192538102da07ef480
-lastCommit: 2026-09-05T03:15:27Z
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for validate-staging-docs.mjs; redirects to 1 entity page.
 ---
 
-# validate-staging-docs.mjs
+# validate-staging-docs.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/validate-staging-docs.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/validate-staging-docs.mjs`
-- **Lines of Code:** 908
-- **Last Modified:** `2026-09-05T03:15:27Z`
-- **SHA-256:** `8facf06790aaa6c7c90e3ab5e5c399fb5bffecbfe1c808192538102da07ef480`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/validate-staging-docs.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/validate-staging-docs.mjs|kb-sync--modules-wiki-validate-staging-docs.mjs--fa12e839]]

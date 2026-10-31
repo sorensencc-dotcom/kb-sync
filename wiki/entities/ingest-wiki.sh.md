@@ -1,23 +1,20 @@
 ---
 title: ingest-wiki.sh
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/ingest-wiki.sh
-sha256: 268bb06ee3e7b0a8f3a270f6b7ef9dc5631eae5eec17c5eb57b806e067f1aeea
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for ingest-wiki.sh; redirects to 2 entity pages.
 ---
 
-# ingest-wiki.sh
+# ingest-wiki.sh (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/ingest-wiki.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/ingest-wiki.sh`
-- **Lines of Code:** 115
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `268bb06ee3e7b0a8f3a270f6b7ef9dc5631eae5eec17c5eb57b806e067f1aeea`
+Several source files share this name (2). Pick the one you mean:
 
-## Source Citations
-- Source: `modules/wiki/ingest-wiki.sh`
-- Repository: `kb-sync`
+- [[modules/obsidian/ingest-wiki.sh|kb-sync--modules-obsidian-ingest-wiki.sh--f9ccb6f0]]
+- [[modules/wiki/ingest-wiki.sh|kb-sync--modules-wiki-ingest-wiki.sh--41eee419]]

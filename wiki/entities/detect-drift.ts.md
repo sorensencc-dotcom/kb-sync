@@ -1,38 +1,19 @@
 ---
 title: detect-drift.ts
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/detect-drift.ts
-sha256: 592dc2b1d203e4b09924bf94b2207f383b733a1e18aa03a198da1b446607cb26
-lastCommit: 2026-08-29T23:01:31-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for detect-drift.ts; redirects to 1 entity page.
 ---
 
-# detect-drift.ts
+# detect-drift.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/detect-drift.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/detect-drift.ts`
-- **Lines of Code:** 849
-- **Last Modified:** `2026-08-29T23:01:31-04:00`
-- **SHA-256:** `592dc2b1d203e4b09924bf94b2207f383b733a1e18aa03a198da1b446607cb26`
+Moved to:
 
-## Exported Symbols & API
-- `validateIsoUtcTimestamp`
-- `DriftReport`
-- `StagingPathOptions`
-- `SyncMeta`
-- `sanitizeRelativePath`
-- `resolveStagingPaths`
-- `validateSnapshot`
-- `getLatestValidStagingDir`
-- `acquireLock`
-- `releaseLock`
-- `computeIncrementalDelta`
-- `materializeIncrementalStaging`
-- `runDriftDetection`
-
-## Source Citations
-- Source: `modules/wiki/detect-drift.ts`
-- Repository: `kb-sync`
+- [[modules/wiki/detect-drift.ts|kb-sync--modules-wiki-detect-drift.ts--5238c655]]

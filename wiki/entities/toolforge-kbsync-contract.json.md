@@ -1,23 +1,19 @@
 ---
 title: toolforge-kbsync-contract.json
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/toolforge-kbsync-contract.json
-sha256: 764523eb61424ff92aa8075c38ae6c650030aa2774190d25c1fefa77a2e25cd8
-lastCommit: 2026-08-29T09:34:28-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for toolforge-kbsync-contract.json; redirects to 1 entity page.
 ---
 
-# toolforge-kbsync-contract.json
+# toolforge-kbsync-contract.json (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/toolforge-kbsync-contract.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/toolforge-kbsync-contract.json`
-- **Lines of Code:** 124
-- **Last Modified:** `2026-08-29T09:34:28-04:00`
-- **SHA-256:** `764523eb61424ff92aa8075c38ae6c650030aa2774190d25c1fefa77a2e25cd8`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/toolforge-kbsync-contract.json`
-- Repository: `kb-sync`
+- [[modules/wiki/toolforge-kbsync-contract.json|kb-sync--modules-wiki-toolforge-kbsync-contract.json--d674c42b]]

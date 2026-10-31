@@ -1,26 +1,19 @@
 ---
 title: atomic-file.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/atomic-file.mjs
-sha256: 7da7317989171fa971e4f4747259b5967ab129ee27ef21b2f093040c7d703712
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for atomic-file.mjs; redirects to 1 entity page.
 ---
 
-# atomic-file.mjs
+# atomic-file.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/atomic-file.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/atomic-file.mjs`
-- **Lines of Code:** 42
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `7da7317989171fa971e4f4747259b5967ab129ee27ef21b2f093040c7d703712`
+Moved to:
 
-## Exported Symbols & API
-- `replaceFileAtomically`
-
-## Source Citations
-- Source: `modules/compactor/atomic-file.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/atomic-file.mjs|kb-sync--modules-compactor-atomic-file.mjs--10a1b6f7]]

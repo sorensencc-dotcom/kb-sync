@@ -1,23 +1,19 @@
 ---
 title: operator-workflow.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/operator-workflow.md
-sha256: 651ef0e42a612303446c9f2dbceb1f76f4846421fc8ae51b38dfcd362f82d5e7
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for operator-workflow.md; redirects to 1 entity page.
 ---
 
-# operator-workflow.md
+# operator-workflow.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/operator-workflow.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/operator-workflow.md`
-- **Lines of Code:** 701
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `651ef0e42a612303446c9f2dbceb1f76f4846421fc8ae51b38dfcd362f82d5e7`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/operator-workflow.md`
-- Repository: `kb-sync`
+- [[modules/wiki/operator-workflow.md|kb-sync--modules-wiki-operator-workflow.md--9b2e9bb5]]

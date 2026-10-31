@@ -1,23 +1,19 @@
 ---
 title: trm-gap-triage.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/trm-gap-triage.test.ts
-sha256: a728f1b60bd4ffe82bac9ef2f9e499428a137297fe2c89dc24cbad1d278c724f
-lastCommit: 2026-08-29T18:24:04-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-gap-triage.test.ts; redirects to 1 entity page.
 ---
 
-# trm-gap-triage.test.ts
+# trm-gap-triage.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/trm-gap-triage.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/trm-gap-triage.test.ts`
-- **Lines of Code:** 179
-- **Last Modified:** `2026-08-29T18:24:04-04:00`
-- **SHA-256:** `a728f1b60bd4ffe82bac9ef2f9e499428a137297fe2c89dc24cbad1d278c724f`
+Moved to:
 
-## Source Citations
-- Source: `tests/trm-gap-triage.test.ts`
-- Repository: `kb-sync`
+- [[tests/trm-gap-triage.test.ts|kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72]]

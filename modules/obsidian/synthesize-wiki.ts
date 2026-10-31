@@ -438,16 +438,27 @@ async function main() {
   }
 
   // 6. Read Staged Files & Existing Wiki Pages
-  const stagedFiles: Array<{ relativePath: string; content: string }> = [];
-  for (const relFile of manifestLines) {
+  const stagedFilePromises = manifestLines.map(async (relFile) => {
     const fullPath = path.join(stagingPath, relFile);
-    if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
-      stagedFiles.push({
-        relativePath: relFile,
-        content: fs.readFileSync(fullPath, "utf-8"),
-      });
+    try {
+      const stats = await fs.promises.stat(fullPath);
+      if (stats.isFile()) {
+        const content = await fs.promises.readFile(fullPath, "utf-8");
+        return {
+          relativePath: relFile,
+          content,
+        };
+      }
+    } catch (err) {
+      // Ignore if file doesn't exist
     }
-  }
+    return null;
+  });
+
+  const stagedFilesResults = await Promise.all(stagedFilePromises);
+  const stagedFiles = stagedFilesResults.filter(
+    (file): file is { relativePath: string; content: string } => file !== null
+  );
 
   const existingWikiFiles: Array<{ relativePath: string; content: string }> = [];
   if (fs.existsSync(wikiDir)) {
@@ -975,14 +986,14 @@ export async function enrichPendingLessons(vaultRoot: string, frontierProvider: 
   const lessonsDir = path.join(vaultRoot, 'wiki', 'lessons');
   if (!fs.existsSync(lessonsDir)) return;
 
-  const lessonFiles = fs.readdirSync(lessonsDir).filter((f) => f.endsWith('.md'));
+  const lessonFiles = (await fs.promises.readdir(lessonsDir)).filter((f) => f.endsWith('.md'));
 
-  for (const file of lessonFiles) {
+  await Promise.all(lessonFiles.map(async (file) => {
     const filePath = path.join(lessonsDir, file);
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = await fs.promises.readFile(filePath, 'utf8');
 
     // Only process notes tagged with needs-enrichment
-    if (!content.includes('needs-enrichment')) continue;
+    if (!content.includes('needs-enrichment')) return;
 
     logInfo(`[Frontier Rescue] Enriching quarantined lesson: ${file}`);
 
@@ -1007,7 +1018,7 @@ ${content}
       // Validate schema contract before atomic promotion
       const errors = validateLessonSchema(enrichedContent, filePath);
       if (errors.length === 0) {
-        fs.writeFileSync(filePath, enrichedContent, 'utf8');
+        await fs.promises.writeFile(filePath, enrichedContent, 'utf8');
         logInfo(`[Frontier Rescue] Successfully resolved and enriched ${file}`);
       } else {
         logError(`[Frontier Rescue] Schema validation failed for ${file}: ${errors.join('; ')}`);
@@ -1015,7 +1026,7 @@ ${content}
     } catch (err: any) {
       logWarn(`[Frontier Rescue] Failed to generate enrichment for ${file}: ${err?.message || String(err)}`);
     }
-  }
+  }));
 }
 
 const isMainModule = process.argv[1] && (

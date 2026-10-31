@@ -1,28 +1,19 @@
 ---
 title: consolidate-pack.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/consolidate-pack.mjs
-sha256: a19763070c4e797e8d84845a7a899b6de15c7d194e0388708df2c0cd24d1ede2
-lastCommit: 2026-08-22T22:27:29-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for consolidate-pack.mjs; redirects to 1 entity page.
 ---
 
-# consolidate-pack.mjs
+# consolidate-pack.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/consolidate-pack.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/consolidate-pack.mjs`
-- **Lines of Code:** 201
-- **Last Modified:** `2026-08-22T22:27:29-04:00`
-- **SHA-256:** `a19763070c4e797e8d84845a7a899b6de15c7d194e0388708df2c0cd24d1ede2`
+Moved to:
 
-## Exported Symbols & API
-- `THEMATIC_PACK_MAP`
-- `extractFrontmatter`
-- `consolidatePacks`
-
-## Source Citations
-- Source: `scripts/consolidate-pack.mjs`
-- Repository: `kb-sync`
+- [[scripts/consolidate-pack.mjs|kb-sync--scripts-consolidate-pack.mjs--2d0ade00]]

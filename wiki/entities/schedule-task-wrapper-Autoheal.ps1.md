@@ -1,23 +1,19 @@
 ---
 title: schedule-task-wrapper-Autoheal.ps1
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/schedule-task-wrapper-Autoheal.ps1
-sha256: edd5501efb6bd5cfec8a32518085bfb03775cd48ca3aee8d029844cb4ec86704
-lastCommit: 2026-08-29T21:02:25-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for schedule-task-wrapper-Autoheal.ps1; redirects to 1 entity page.
 ---
 
-# schedule-task-wrapper-Autoheal.ps1
+# schedule-task-wrapper-Autoheal.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/schedule-task-wrapper-Autoheal.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/schedule-task-wrapper-Autoheal.ps1`
-- **Lines of Code:** 161
-- **Last Modified:** `2026-08-29T21:02:25-04:00`
-- **SHA-256:** `edd5501efb6bd5cfec8a32518085bfb03775cd48ca3aee8d029844cb4ec86704`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/schedule-task-wrapper-Autoheal.ps1`
-- Repository: `kb-sync`
+- [[modules/wiki/schedule-task-wrapper-Autoheal.ps1|kb-sync--modules-wiki-schedule-task-wrapper-Autoheal.ps1--01dcf9dd]]

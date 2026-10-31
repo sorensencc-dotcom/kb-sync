@@ -1,23 +1,20 @@
 ---
 title: materialize-approved-result.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/materialize-approved-result.mjs
-sha256: 8ca90929052767e6a99563cfafa734573c8f2428c5b317217eddd19ee9bc7cd3
-lastCommit: 2026-08-23T00:44:03-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for materialize-approved-result.mjs; redirects to 2 entity pages.
 ---
 
-# materialize-approved-result.mjs
+# materialize-approved-result.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/materialize-approved-result.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/materialize-approved-result.mjs`
-- **Lines of Code:** 53
-- **Last Modified:** `2026-08-23T00:44:03-04:00`
-- **SHA-256:** `8ca90929052767e6a99563cfafa734573c8f2428c5b317217eddd19ee9bc7cd3`
+Several source files share this name (2). Pick the one you mean:
 
-## Source Citations
-- Source: `scripts/materialize-approved-result.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/materialize-approved-result.mjs|kb-sync--modules-wiki-materialize-approved-result.mjs--ca70ac23]]
+- [[scripts/materialize-approved-result.mjs|kb-sync--scripts-materialize-approved-result.mjs--63ae60c9]]

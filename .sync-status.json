@@ -10,8 +10,8 @@
   "stage1_success": false,
   "stage2_success": false,
   "target": "notebooklm",
-  "timestamp": "2026-10-20T11:46:31Z",
-  "duration_ms": 193,
+  "timestamp": "2026-10-30T13:03:04Z",
+  "duration_ms": 180,
   "purged_sources": 0,
   "uploaded_chunks": 0
 }

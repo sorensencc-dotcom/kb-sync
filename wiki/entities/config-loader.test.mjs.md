@@ -1,23 +1,19 @@
 ---
 title: config-loader.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/modules/wiki/config-loader.test.mjs
-sha256: 1810038f240f306b9b801a83305d80dbae671023ecd2f7814672acf404b2b305
-lastCommit: 2026-08-29T09:50:43-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for config-loader.test.mjs; redirects to 1 entity page.
 ---
 
-# config-loader.test.mjs
+# config-loader.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/modules/wiki/config-loader.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/modules/wiki/config-loader.test.mjs`
-- **Lines of Code:** 71
-- **Last Modified:** `2026-08-29T09:50:43-04:00`
-- **SHA-256:** `1810038f240f306b9b801a83305d80dbae671023ecd2f7814672acf404b2b305`
+Moved to:
 
-## Source Citations
-- Source: `tests/modules/wiki/config-loader.test.mjs`
-- Repository: `kb-sync`
+- [[tests/modules/wiki/config-loader.test.mjs|kb-sync--tests-modules-wiki-config-loader.test.mjs--5a12e94a]]

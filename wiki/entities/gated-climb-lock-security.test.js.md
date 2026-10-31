@@ -1,23 +1,19 @@
 ---
 title: gated-climb-lock-security.test.js
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/gated-climb-lock-security.test.js
-sha256: 8d8125f23da76ae034a92dc8f7853bced5da76e03dea8866cd66c4dd46f1872c
-lastCommit: 2026-08-08T21:35:33-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for gated-climb-lock-security.test.js; redirects to 1 entity page.
 ---
 
-# gated-climb-lock-security.test.js
+# gated-climb-lock-security.test.js (moved)
 
-## Overview
-Synthesized entity documentation for `tests/gated-climb-lock-security.test.js` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/gated-climb-lock-security.test.js`
-- **Lines of Code:** 137
-- **Last Modified:** `2026-08-08T21:35:33-04:00`
-- **SHA-256:** `8d8125f23da76ae034a92dc8f7853bced5da76e03dea8866cd66c4dd46f1872c`
+Moved to:
 
-## Source Citations
-- Source: `tests/gated-climb-lock-security.test.js`
-- Repository: `kb-sync`
+- [[tests/gated-climb-lock-security.test.js|kb-sync--tests-gated-climb-lock-security.test.js--d7bc42fb]]

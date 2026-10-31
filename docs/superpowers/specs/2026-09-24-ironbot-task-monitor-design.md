@@ -1,3 +1,8 @@
+---
+category: "superpowers"
+tags: ["spec"]
+---
+
 # IronBot task monitor & pipeline self-healing architecture spec
 
 ## 1. Overview

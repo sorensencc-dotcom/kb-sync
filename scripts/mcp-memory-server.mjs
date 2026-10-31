@@ -2,11 +2,14 @@
 import readline from 'node:readline';
 import path from 'node:path';
 import fs from 'node:fs';
-import { getDatabase, DEFAULT_DB_PATH } from '../modules/cache/db-schema.mjs';
+import { fileURLToPath } from 'node:url';
+import { getDatabase } from '../modules/cache/db-schema.mjs';
 import { upsertDocumentToDiskAndCache } from '../modules/cache/vfs-upsert.mjs';
 
-const DB_PATH = process.env.KB_CACHE_DB || DEFAULT_DB_PATH;
-const SYNC_STATUS_PATH = path.resolve(process.cwd(), '.sync-status.json');
+// MCP hosts spawn this with an arbitrary cwd (e.g. C:Windowssystem32), so anchor to the repo.
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const DB_PATH = process.env.KB_CACHE_DB || path.join(REPO_ROOT, '.kb_cache', 'knowledge.db');
+const SYNC_STATUS_PATH = path.join(REPO_ROOT, '.sync-status.json');
 
 // Ensure database and schema exist
 let db;
@@ -128,7 +131,7 @@ const TOOL_DEFINITIONS = [
 ];
 
 export function handleVfsUpsertDocument(dbInstance, args = {}, options = {}) {
-  const repoRoot = options.repoRoot || process.env.KB_REPO_ROOT || process.cwd();
+  const repoRoot = options.repoRoot || process.env.KB_REPO_ROOT || REPO_ROOT;
   try {
     const result = upsertDocumentToDiskAndCache(dbInstance, {
       topic: args.topic,
@@ -300,6 +303,17 @@ export function processRpcMessage(dbInstance, message) {
   }
 
   switch (method) {
+    case 'initialize':
+      return {
+        jsonrpc: '2.0',
+        id,
+        result: {
+          protocolVersion: params?.protocolVersion || '2024-11-05',
+          capabilities: { tools: {} },
+          serverInfo: { name: 'kb-context-cache', version: '1.0.0' }
+        }
+      };
+
     case 'ping':
       return {
         jsonrpc: '2.0',

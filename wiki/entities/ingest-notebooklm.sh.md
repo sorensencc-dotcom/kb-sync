@@ -1,23 +1,19 @@
 ---
 title: ingest-notebooklm.sh
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/notebooklm/ingest-notebooklm.sh
-sha256: 3cb55ff7e1d56e8aba87b2e0a557cb40e879cb60bdd572b140fac78cae02d576
-lastCommit: 2026-09-05T03:15:27Z
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for ingest-notebooklm.sh; redirects to 1 entity page.
 ---
 
-# ingest-notebooklm.sh
+# ingest-notebooklm.sh (moved)
 
-## Overview
-Synthesized entity documentation for `modules/notebooklm/ingest-notebooklm.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/notebooklm/ingest-notebooklm.sh`
-- **Lines of Code:** 792
-- **Last Modified:** `2026-09-05T03:15:27Z`
-- **SHA-256:** `3cb55ff7e1d56e8aba87b2e0a557cb40e879cb60bdd572b140fac78cae02d576`
+Moved to:
 
-## Source Citations
-- Source: `modules/notebooklm/ingest-notebooklm.sh`
-- Repository: `kb-sync`
+- [[modules/notebooklm/ingest-notebooklm.sh|kb-sync--modules-notebooklm-ingest-notebooklm.sh--da452df9]]

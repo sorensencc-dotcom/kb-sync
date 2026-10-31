@@ -1,30 +1,19 @@
 ---
 title: synthesize-wiki.ts
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/obsidian/synthesize-wiki.ts
-sha256: 0de2593a8ad7d907598cb083064689147df4cc5d920dba150e506dc5f7bdaa46
-lastCommit: 2026-08-24T22:53:35-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for synthesize-wiki.ts; redirects to 1 entity page.
 ---
 
-# synthesize-wiki.ts
+# synthesize-wiki.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/obsidian/synthesize-wiki.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/obsidian/synthesize-wiki.ts`
-- **Lines of Code:** 986
-- **Last Modified:** `2026-08-24T22:53:35-04:00`
-- **SHA-256:** `0de2593a8ad7d907598cb083064689147df4cc5d920dba150e506dc5f7bdaa46`
+Moved to:
 
-## Exported Symbols & API
-- `RecoveryManifest`
-- `LessonAnalysisPayload`
-- `enrichLessonNode`
-- `processUnenrichedLessons`
-- `enrichPendingLessons`
-
-## Source Citations
-- Source: `modules/obsidian/synthesize-wiki.ts`
-- Repository: `kb-sync`
+- [[modules/obsidian/synthesize-wiki.ts|kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332]]

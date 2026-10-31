@@ -1,23 +1,19 @@
 ---
 title: register-trm-triage-task.ps1
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/register-trm-triage-task.ps1
-sha256: 2da65bcef3347f0906d5c5311e6d9a8e58faf14b984a0c2bb50350cc94ab557b
-lastCommit: 2026-08-26T22:33:10-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for register-trm-triage-task.ps1; redirects to 1 entity page.
 ---
 
-# register-trm-triage-task.ps1
+# register-trm-triage-task.ps1 (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/register-trm-triage-task.ps1` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/register-trm-triage-task.ps1`
-- **Lines of Code:** 98
-- **Last Modified:** `2026-08-26T22:33:10-04:00`
-- **SHA-256:** `2da65bcef3347f0906d5c5311e6d9a8e58faf14b984a0c2bb50350cc94ab557b`
+Moved to:
 
-## Source Citations
-- Source: `scripts/register-trm-triage-task.ps1`
-- Repository: `kb-sync`
+- [[scripts/register-trm-triage-task.ps1|kb-sync--scripts-register-trm-triage-task.ps1--6121e55f]]

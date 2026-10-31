@@ -1,23 +1,19 @@
 ---
 title: rollback.sh
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/rollback.sh
-sha256: b385026861db1d8092d9fba17e4c740474d683b32b9bde2e09c5bf4b72f2b957
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for rollback.sh; redirects to 1 entity page.
 ---
 
-# rollback.sh
+# rollback.sh (moved)
 
-## Overview
-Synthesized entity documentation for `core/rollback.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/rollback.sh`
-- **Lines of Code:** 163
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `b385026861db1d8092d9fba17e4c740474d683b32b9bde2e09c5bf4b72f2b957`
+Moved to:
 
-## Source Citations
-- Source: `core/rollback.sh`
-- Repository: `kb-sync`
+- [[core/rollback.sh|kb-sync--core-rollback.sh--0627f594]]

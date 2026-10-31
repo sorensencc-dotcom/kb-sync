@@ -1,26 +1,19 @@
 ---
 title: session-health-check.mjs
-category: adapters
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/notebooklm/session-health-check.mjs
-sha256: 33416ee8cd81e9de2f5abccb7f6164ac4f694bb316070f39e5e5061a612e2c74
-lastCommit: 2026-08-12T22:28:55-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for session-health-check.mjs; redirects to 1 entity page.
 ---
 
-# session-health-check.mjs
+# session-health-check.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/notebooklm/session-health-check.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/notebooklm/session-health-check.mjs`
-- **Lines of Code:** 52
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `33416ee8cd81e9de2f5abccb7f6164ac4f694bb316070f39e5e5061a612e2c74`
+Moved to:
 
-## Exported Symbols & API
-- `checkSessionHealth`
-
-## Source Citations
-- Source: `modules/notebooklm/session-health-check.mjs`
-- Repository: `kb-sync`
+- [[modules/notebooklm/session-health-check.mjs|kb-sync--modules-notebooklm-session-health-check.mjs--9a3aafb9]]

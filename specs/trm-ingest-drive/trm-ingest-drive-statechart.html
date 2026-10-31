@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRM Ingest Drive Formal State Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Geist+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: #f2ece2;
+    color: #2c2420;
+    font-family: 'Barlow Condensed', sans-serif;
+    padding: 36px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .diagram-frame {
+    background-color: #f2ece2;
+    border: 2px solid #5c5349;
+    padding: 36px;
+    width: 1080px;
+    box-shadow: 6px 6px 0px #5c5349;
+    position: relative;
+  }
+  .header {
+    border-bottom: 2px solid #c4501a;
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .title-group h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c2420;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .title-group p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5c5349;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 6px;
+  }
+  .badge-group {
+    display: flex;
+    gap: 8px;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .badge {
+    background-color: #2c2420;
+    color: #f2ece2;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .badge:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+  .badge-accent {
+    background-color: #c4501a;
+    color: #fffdfa;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  
+  /* Interactive SVG Links */
+  svg a {
+    cursor: pointer;
+  }
+  svg a:hover rect {
+    filter: drop-shadow(0 3px 6px rgba(44, 36, 32, 0.2));
+  }
+  svg a:hover text.node-label {
+    text-decoration: underline;
+  }
+  svg a:hover .edge-pill-bg {
+    stroke: #c4501a;
+    stroke-width: 1.5;
+  }
+
+  /* Node Styling */
+  .node-bg-default  { fill: #fcfaf6; stroke: #5c5349; stroke-width: 2; transition: all 0.2s ease; }
+  .node-bg-active   { fill: #f8f3ec; stroke: #2c2420; stroke-width: 2.2; transition: all 0.2s ease; }
+  .node-bg-critical { fill: #fdf5f0; stroke: #c4501a; stroke-width: 2.2; transition: all 0.2s ease; }
+  .node-bg-success  { fill: #f0f6f0; stroke: #3b6946; stroke-width: 2.2; transition: all 0.2s ease; }
+  .node-bg-muted    { fill: #ede8e1; stroke: #8c7b70; stroke-width: 1.8; stroke-dasharray: 4, 3; transition: all 0.2s ease; }
+
+  /* Typography inside SVG */
+  .node-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .node-desc {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 400;
+    font-size: 11.5px;
+  }
+  .label-dark     { fill: #2c2420; }
+  .label-critical { fill: #c4501a; }
+  .label-success  { fill: #2c5338; }
+  .label-muted    { fill: #5c5349; }
+
+  /* Connector & Transition Styling */
+  .edge-line        { stroke: #2c2420; stroke-width: 2; fill: none; }
+  .edge-line-accent { stroke: #c4501a; stroke-width: 2.2; fill: none; }
+  .edge-line-muted  { stroke: #8c7b70; stroke-width: 1.8; stroke-dasharray: 4, 3; fill: none; }
+  .edge-line-return { stroke: #5c5349; stroke-width: 1.8; stroke-dasharray: 5, 4; fill: none; }
+  
+  .edge-pill-bg {
+    fill: #f2ece2;
+    stroke: #ded6c8;
+    stroke-width: 1;
+    transition: all 0.15s ease;
+  }
+  .edge-pill-text {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    fill: #2c2420;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+  .edge-pill-accent {
+    fill: #fbeee6;
+    stroke: #c4501a;
+  }
+  .edge-pill-accent-text {
+    fill: #c4501a;
+    font-weight: 600;
+  }
+
+  /* Legend Container */
+  .legend-bar {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #ded6c8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: #5c5349;
+  }
+  .legend-items {
+    display: flex;
+    gap: 20px;
+  }
+  .legend-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+  }
+  .swatch-active   { background: #f8f3ec; border: 2px solid #2c2420; }
+  .swatch-critical { background: #fdf5f0; border: 2px solid #c4501a; }
+  .swatch-success  { background: #f0f6f0; border: 2px solid #3b6946; }
+  .swatch-muted    { background: #ede8e1; border: 1.8px dashed #8c7b70; }
+  
+  .invariant-links a {
+    color: #c4501a;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  .invariant-links a:hover {
+    color: #8c2e06;
+  }
+
+  details {
+    margin-top: 20px;
+    border-top: 1px dashed #ded6c8;
+    padding-top: 12px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: #5c5349;
+  }
+  summary {
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+    color: #2c2420;
+    outline: none;
+  }
+  pre {
+    margin-top: 10px;
+    background: #ebe4d8;
+    padding: 14px;
+    border-radius: 2px;
+    overflow-x: auto;
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: #2c2420;
+  }
+</style>
+</head>
+<body>
+
+<div class="diagram-frame">
+  <div class="header">
+    <div class="title-group">
+      <h1>TRM Ingest Drive State Machine</h1>
+      <p>Formal Lifecycle Protocol · TLA+ Verified · 8 System States</p>
+    </div>
+    <div class="badge-group">
+      <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDrive.tla" title="Open TLA+ Specification">
+        <div class="badge">SPEC: TRM-INGEST-V1 ↗</div>
+      </a>
+      <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/report.md" title="View TLC Model Checker Verification Report">
+        <div class="badge badge-accent">TLC PROVEN 0 VIOLATIONS ↗</div>
+      </a>
+    </div>
+  </div>
+
+  <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Arrowheads -->
+      <marker id="arrow-dark" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#2c2420" />
+      </marker>
+      <marker id="arrow-accent" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#c4501a" />
+      </marker>
+      <marker id="arrow-muted" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#8c7b70" />
+      </marker>
+      <marker id="arrow-success" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b6946" />
+      </marker>
+    </defs>
+
+    <!-- Initial pseudostate -->
+    <circle cx="40" cy="85" r="7" fill="#2c2420" />
+    <path d="M 47 85 L 76 85" class="edge-line" marker-end="url(#arrow-dark)" />
+
+    <!-- ROW 1: INGRESS & VALIDATION -->
+    <!-- Node s0: BUFFERED -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L191" target="_blank" title="Inspect BUFFERED state: watcher scan in trm-ingest-drive.mjs">
+      <g transform="translate(80, 50)">
+        <rect width="180" height="70" rx="3" class="node-bg-active" />
+        <text x="18" y="32" class="node-label label-dark">BUFFERED ↗</text>
+        <text x="18" y="52" class="node-desc label-muted">Watcher inbox pool</text>
+      </g>
+    </a>
+
+    <!-- Node s1: DEBOUNCING -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L196" target="_blank" title="Inspect DEBOUNCING state: write settle timer in trm-ingest-drive.mjs">
+      <g transform="translate(370, 50)">
+        <rect width="180" height="70" rx="3" class="node-bg-active" />
+        <text x="18" y="32" class="node-label label-dark">DEBOUNCING ↗</text>
+        <text x="18" y="52" class="node-desc label-muted">Awaiting write settle</text>
+      </g>
+    </a>
+
+    <!-- Node s2: VALIDATING -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L216" target="_blank" title="Inspect VALIDATING state: schema & duplicate check in trm-ingest-drive.mjs">
+      <g transform="translate(660, 50)">
+        <rect width="180" height="70" rx="3" class="node-bg-active" />
+        <text x="18" y="32" class="node-label label-dark">VALIDATING ↗</text>
+        <text x="18" y="52" class="node-desc label-muted">Schema & duplicate check</text>
+      </g>
+    </a>
+
+    <!-- FILTERED SATELLITE NODES -->
+    <!-- Node s4: REJECTED -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L230" target="_blank" title="Inspect REJECTED state: validation failure handling">
+      <g transform="translate(860, 160)">
+        <rect width="130" height="52" rx="3" class="node-bg-muted" />
+        <text x="14" y="24" class="node-label label-muted" font-size="14">REJECTED ↗</text>
+        <text x="14" y="40" class="node-desc label-muted" font-size="10">Schema error</text>
+      </g>
+    </a>
+
+    <!-- Node s5: SKIPPED_DUPLICATE -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L244" target="_blank" title="Inspect SKIPPED state: duplicate ID pruning">
+      <g transform="translate(860, 230)">
+        <rect width="130" height="52" rx="3" class="node-bg-muted" />
+        <text x="14" y="24" class="node-label label-muted" font-size="14">SKIPPED ↗</text>
+        <text x="14" y="40" class="node-desc label-muted" font-size="10">Known finding ID</text>
+      </g>
+    </a>
+
+    <!-- ROW 2: WRITE-CRITICAL SECTION -->
+    <!-- Node s3: INGESTING (Lock Acquired) -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L251" target="_blank" title="Inspect INGESTING state: exclusive file lock acquired in trm-ingest-drive.mjs">
+      <g transform="translate(660, 195)">
+        <rect width="180" height="72" rx="3" class="node-bg-critical" />
+        <text x="18" y="32" class="node-label label-critical">INGESTING ↗</text>
+        <text x="18" y="52" class="node-desc label-critical">● Lock held · Mutating RFC</text>
+      </g>
+    </a>
+
+    <!-- Node s6: ARCHIVING -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L262" target="_blank" title="Inspect ARCHIVING state: move to completed archive in trm-ingest-drive.mjs">
+      <g transform="translate(660, 340)">
+        <rect width="180" height="70" rx="3" class="node-bg-critical" />
+        <text x="18" y="32" class="node-label label-critical">ARCHIVING ↗</text>
+        <text x="18" y="52" class="node-desc label-critical">Moving source file</text>
+      </g>
+    </a>
+
+    <!-- Node s7: COMPLETED (Lock Released) -->
+    <a href="file:///C:/dev/kb-sync/scripts/trm-ingest-drive.mjs#L275" target="_blank" title="Inspect COMPLETED state: release lock and cycle complete">
+      <g transform="translate(370, 340)">
+        <rect width="180" height="70" rx="3" class="node-bg-success" />
+        <text x="18" y="32" class="node-label label-success">COMPLETED ↗</text>
+        <text x="18" y="52" class="node-desc label-success">✓ Lease freed · Cycle done</text>
+      </g>
+    </a>
+
+    <!-- CONNECTORS & EDGES WITH JUMP-LINKS -->
+
+    <!-- s0 -> s1 -->
+    <path d="M 260 85 L 366 85" class="edge-line" marker-end="url(#arrow-dark)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L12" title="Inspect action FileArrives">
+      <g transform="translate(315, 85)">
+        <rect x="-48" y="-10" width="96" height="20" rx="10" class="edge-pill-bg" />
+        <text class="edge-pill-text">1. File arrives ↗</text>
+      </g>
+    </a>
+
+    <!-- s1 -> s2 -->
+    <path d="M 550 85 L 656 85" class="edge-line" marker-end="url(#arrow-dark)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L13" title="Inspect action DebounceSettles">
+      <g transform="translate(605, 85)">
+        <rect x="-50" y="-10" width="100" height="20" rx="10" class="edge-pill-bg" />
+        <text class="edge-pill-text">2. Settle timer ↗</text>
+      </g>
+    </a>
+
+    <!-- s2 -> s3 (Critical Ingress) -->
+    <path d="M 750 120 L 750 191" class="edge-line-accent" marker-end="url(#arrow-accent)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L16" title="Inspect action ValidNewFinding">
+      <g transform="translate(750, 155)">
+        <rect x="-78" y="-11" width="156" height="22" rx="11" class="edge-pill-bg edge-pill-accent" />
+        <text class="edge-pill-text edge-pill-accent-text">3c. Valid -> Lock Acquired ↗</text>
+      </g>
+    </a>
+
+    <!-- s2 -> s4 (Reject branch) -->
+    <path d="M 840 85 L 925 85 L 925 156" class="edge-line-muted" marker-end="url(#arrow-muted)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L14" title="Inspect action ValidationFails">
+      <g transform="translate(900, 85)">
+        <rect x="-38" y="-9" width="76" height="18" rx="9" class="edge-pill-bg" />
+        <text class="edge-pill-text" font-size="10">3a. Invalid ↗</text>
+      </g>
+    </a>
+
+    <!-- s2 -> s5 (Duplicate branch) -->
+    <path d="M 800 120 L 800 256 L 856 256" class="edge-line-muted" marker-end="url(#arrow-muted)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L15" title="Inspect action DuplicateDetected">
+      <g transform="translate(820, 240)">
+        <rect x="-40" y="-9" width="80" height="18" rx="9" class="edge-pill-bg" />
+        <text class="edge-pill-text" font-size="10">3b. Duplicate ↗</text>
+      </g>
+    </a>
+
+    <!-- s3 -> s6 (Archive step) -->
+    <path d="M 750 267 L 750 336" class="edge-line-accent" marker-end="url(#arrow-accent)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L17" title="Inspect action AppendEvidenceAndArchive">
+      <g transform="translate(750, 303)">
+        <rect x="-65" y="-10" width="130" height="20" rx="10" class="edge-pill-bg edge-pill-accent" />
+        <text class="edge-pill-text edge-pill-accent-text">4. Append & Stage ↗</text>
+      </g>
+    </a>
+
+    <!-- s6 -> s7 (Release lease) -->
+    <path d="M 660 375 L 554 375" class="edge-line" marker-end="url(#arrow-success)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L18" title="Inspect action ReleaseLockAndComplete">
+      <g transform="translate(605, 375)">
+        <rect x="-74" y="-11" width="148" height="22" rx="11" class="edge-pill-bg" />
+        <text class="edge-pill-text">5. Release Lock Lease ↗</text>
+      </g>
+    </a>
+
+    <!-- s7 -> s0 (Completed return cycle) -->
+    <path d="M 370 375 L 170 375 L 170 124" class="edge-line-return" marker-end="url(#arrow-dark)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L21" title="Inspect action ResetToBuffer">
+      <g transform="translate(260, 375)">
+        <rect x="-60" y="-10" width="120" height="20" rx="10" class="edge-pill-bg" />
+        <text class="edge-pill-text">Cycle Complete ↗</text>
+      </g>
+    </a>
+
+    <!-- s4/s5 return loop to buffer -->
+    <path d="M 990 186 L 1005 186 L 1005 440 L 140 440 L 140 124" class="edge-line-muted" marker-end="url(#arrow-muted)" />
+    <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDriveView.mjs#L19" title="Inspect actions HandleRejected and HandleSkippedDuplicate">
+      <g transform="translate(560, 440)">
+        <rect x="-70" y="-9" width="140" height="18" rx="9" class="edge-pill-bg" />
+        <text class="edge-pill-text" font-size="10">Purge & Return to Pool ↗</text>
+      </g>
+    </a>
+  </svg>
+
+  <div class="legend-bar">
+    <div class="legend-items">
+      <div class="legend-chip"><div class="swatch swatch-active"></div><span>Ingress & Validation</span></div>
+      <div class="legend-chip"><div class="swatch swatch-critical"></div><span>Write-Critical Lock Lease</span></div>
+      <div class="legend-chip"><div class="swatch swatch-success"></div><span>Verified Success</span></div>
+      <div class="legend-chip"><div class="swatch swatch-muted"></div><span>Filtered / Pruned</span></div>
+    </div>
+    <div class="invariant-links">
+      Invariants:
+      <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDrive.tla#L65" title="Inspect TLA+ definition of LockOnlyHeldDuringWrite">LockOnlyHeldDuringWrite</a> ·
+      <a href="file:///C:/dev/kb-sync/specs/trm-ingest-drive/TrmIngestDrive.tla#L72" title="Inspect TLA+ definition of NoCorruptIngest">NoCorruptIngest</a>
+    </div>
+  </div>
+
+  <details>
+    <summary>Mermaid source specification</summary>
+    <pre><code>stateDiagram-v2
+  s0: BUFFERED
+  s1: DEBOUNCING
+  s2: VALIDATING
+  s3: INGESTING
+  s4: REJECTED
+  s5: SKIPPED_DUPLICATE
+  s6: ARCHIVING
+  s7: COMPLETED
+  [*] --> s0
+  s0 --> s1: 1. File arrives in buffer
+  s1 --> s2: 2. Debounce window expires
+  s2 --> s3: 3c. Valid new finding -> Acquire lock
+  s2 --> s4: 3a. Validation error -> Reject
+  s2 --> s5: 3b. Finding ID exists -> Skip
+  s3 --> s6: 4. Append to RFC -> Archive
+  s4 --> s0: Archive rejected -> Reset
+  s5 --> s0: Archive duplicate -> Reset
+  s6 --> s7: 5. Release lease -> Completed
+  s7 --> s0: Cycle complete -> Wait for next</code></pre>
+  </details>
+</div>
+
+</body>
+</html>

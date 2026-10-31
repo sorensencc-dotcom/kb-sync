@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Maryland State Archives Death Certificate"
+title: "RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (non-obvious-connections - 1.)**"
 category: "research"
 topic: "rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
 gap_id: "GAP-01--cast-iron-charlie-research-logs"
 status: "draft"
-created_at: "2026-09-27T11:49:08.868Z"
+created_at: "2026-10-21T12:23:47.479Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non.md","wiki/research/rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non.md"]
 ---
 
-# RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Maryland State Archives Death Certificate
+# RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (non-obvious-connections - 1.)**
 
 ## 1. Problem Statement & Context
-)**: **Maryland State Archives Death Certificate:** Submit a certified copy request to the **Maryland State Archives** in Annapolis for Charles Emil Sorensen (Montgomery County, August
+1. The Operational Disassembly Inversion vs. Shop-Floor Experimentation
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non.md`) [lexical_only]:
   > 
-- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
+  > --- title: RFC: GAP-64--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs under-sourced - Single Trade Citation category: research topic: rfc-gap-64-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo gap_id: GAP-64--ca
+- **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non.md`) [lexical_only]:
   > 
-- **rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: RFC: GAP-106--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - FOIA Denials vs. Seizure Narrative category: research topic: rfc-gap-106-cast-iron-charlie-research-logs--cast-iron-charlie-research-
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -1,26 +1,19 @@
 ---
 title: cli.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/cli.mjs
-sha256: b937c236e84823aee5c631dc427a975a49702b6b8c02d9f087bee1aebd9b6a79
-lastCommit: 2026-08-11T18:34:22-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for cli.mjs; redirects to 1 entity page.
 ---
 
-# cli.mjs
+# cli.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/cli.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/cli.mjs`
-- **Lines of Code:** 83
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `b937c236e84823aee5c631dc427a975a49702b6b8c02d9f087bee1aebd9b6a79`
+Moved to:
 
-## Exported Symbols & API
-- `runCompactCli`
-
-## Source Citations
-- Source: `modules/compactor/cli.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/cli.mjs|kb-sync--modules-compactor-cli.mjs--57e713da]]

@@ -1,3 +1,8 @@
+---
+category: "superpowers"
+tags: ["plan"]
+---
+
 # IronBot Task Monitor Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
@@ -471,4 +476,9 @@ git add scripts/ironbot/ tests/ironbot-task-monitor.test.mjs package.json docs/s
 git commit -m "feat(ironbot): implement unattended task monitor, self-healing playbooks, and DAG replay"
 git push origin main
 ```
+
+---
+category: "superpowers"
+tags: ["plan"]
+---
 

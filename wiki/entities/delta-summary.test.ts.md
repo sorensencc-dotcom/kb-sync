@@ -1,23 +1,19 @@
 ---
 title: delta-summary.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/delta-summary.test.ts
-sha256: 557726a095b17105099de6116025822c066e996f166bdf369b4032d351771bf3
-lastCommit: 2026-08-01T18:05:29-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for delta-summary.test.ts; redirects to 1 entity page.
 ---
 
-# delta-summary.test.ts
+# delta-summary.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/delta-summary.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/delta-summary.test.ts`
-- **Lines of Code:** 73
-- **Last Modified:** `2026-08-01T18:05:29-04:00`
-- **SHA-256:** `557726a095b17105099de6116025822c066e996f166bdf369b4032d351771bf3`
+Moved to:
 
-## Source Citations
-- Source: `tests/delta-summary.test.ts`
-- Repository: `kb-sync`
+- [[tests/delta-summary.test.ts|kb-sync--tests-delta-summary.test.ts--307e8ec1]]

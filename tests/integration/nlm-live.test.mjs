@@ -10,11 +10,13 @@ import { KB_TESTING_SANDBOX_UUID as notebookId, KB_TESTING_FIXTURE_SOURCE_ID as 
 import { resolveCitations, hasPackGrounding } from '../../modules/notebooklm/lib/grounding-citations.mjs';
 import { resolveBashExecutable } from '../../modules/notebooklm/lib/bash-resolver.mjs';
 import { generateLessonFromFailure } from '../../modules/wiki/gated-climb-repair.mjs';
-import { buildNotebookLmUploadCommand, listNotebookSources, deleteNotebookSource } from '../../scripts/nlm-pack-replace-gate.mjs';
+import { buildNotebookLmUploadCommand, listNotebookSources, deleteNotebookSource, createSourceDeletionLease, replacePackFamilyAtomic } from '../../scripts/nlm-pack-replace-gate.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const enabled = process.env.NLM_LIVE_SANDBOX === '1' || process.env.NLM_LIVE_TEST === '1';
 const replacementEnabled = process.env.NLM_REPLACE_GATE_LIVE === '1';
+const atomicGateEnabled = process.env.NLM_ATOMIC_GATE_LIVE === '1';
+const shellIngestEnabled = process.env.NLM_SHELL_INGEST_LIVE === '1';
 const evidenceDir = path.resolve(process.env.NLM_LIVE_EVIDENCE_DIR || path.join(root, '.tmp_test_staging', `live-${randomUUID()}`));
 function cli(args, json = true) {
   assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
@@ -176,6 +178,77 @@ test('LIVE sandbox: replacement retains old through upload failure and ACTIVE pl
   }
 });
 
+test('LIVE sandbox: replacePackFamilyAtomic uploads and cuts over its owned family', { skip: !atomicGateEnabled, timeout: 600000 }, async () => {
+  assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
+  const runId = randomUUID();
+  const file = path.join(evidenceDir, `atomic-pack-${runId}.txt`);
+  fs.mkdirSync(evidenceDir, { recursive: true });
+  fs.writeFileSync(file, `Direct atomic gate proof ${runId}\n`);
+  const before = listed(cli(['source', 'list', notebookId, '--json']));
+  const beforeIds = new Set(before.map(source => source.id));
+  assert.ok(before.some(source => source.id === fixtureId), 'Pinned fixture must exist before direct atomic replacement');
+  assert.equal(before.filter(source => /^(repo[_-]?knowledge[_-]?pack.*|pack_.*)\.txt$/i.test(source.title || source.name || '')).length, 0, 'Protected sandbox must not contain pre-existing pack sources for owned cutover');
+  const createdIds = [];
+  const run = packFile => replacePackFamilyAtomic({
+    cli: 'nlm',
+    notebookId,
+    packFiles: [packFile],
+    expectedPartCount: 1,
+    timeoutMs: 300000,
+    waitMs: 3500,
+  });
+
+  try {
+    const first = await run(file);
+    createdIds.push(...first.newSourceIds);
+    save('atomic-gate-first.json', first);
+    assert.ok(first.newSourceIds.length === 1);
+    assert.ok(first.newSourceIds.every(id => !beforeIds.has(id)));
+
+    fs.writeFileSync(file, `Updated direct atomic gate proof ${runId}\n`);
+    const second = await run(file);
+    createdIds.push(...second.newSourceIds);
+    save('atomic-gate-cutover.json', { first, second });
+    assert.ok(second.newSourceIds.length === 1);
+    assert.notEqual(second.newSourceIds[0], first.newSourceIds[0]);
+    const after = listed(cli(['source', 'list', notebookId, '--json']));
+    assert.ok(after.some(source => source.id === fixtureId));
+    assert.ok(after.some(source => source.id === second.newSourceIds[0]));
+    assert.ok(!after.some(source => source.id === first.newSourceIds[0]));
+  } finally {
+    const current = listed(cli(['source', 'list', notebookId, '--json']));
+    for (const id of new Set(createdIds)) {
+      if (current.some(source => source.id === id)) {
+        deleteNotebookSource('nlm', notebookId, id, createSourceDeletionLease({ notebookId, sourceIds: [id], reason: 'rollback' }));
+      }
+    }
+    let afterCleanup = [];
+    for (let attempt = 0; attempt < 12; attempt += 1) {
+      afterCleanup = listed(cli(['source', 'list', notebookId, '--json']));
+      if (!afterCleanup.some(source => createdIds.includes(source.id))) break;
+      await new Promise(resolve => setTimeout(resolve, 5000));
+    }
+    assert.deepEqual(afterCleanup.map(source => source.id).sort(), before.map(source => source.id).sort());
+  }
+});
+
+test('LIVE sandbox: ingest-notebooklm.sh audits the protected sandbox without mutation', { skip: !shellIngestEnabled, timeout: 240000 }, () => {
+  assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
+  const before = listed(cli(['source', 'list', notebookId, '--json']));
+  assert.ok(before.some(source => source.id === fixtureId), 'Pinned fixture must exist before shell ingestion');
+  const bashExe = resolveBashExecutable();
+  const result = spawnSync(bashExe, [path.join(root, 'modules/notebooklm/ingest-notebooklm.sh'), '--repair-drift'], {
+    encoding: 'utf8',
+    timeout: 840000,
+    env: { ...process.env, NOTEBOOK_ID: notebookId },
+  });
+  save('shell-ingest-command-result.json', { status: result.status, stdout: result.stdout, stderr: result.stderr, error: result.error?.message });
+  assert.equal(result.status, 0, `ingest-notebooklm.sh failed: ${result.stderr || result.error?.message}`);
+  assert.match(result.stderr, /STANDALONE REPAIR DRIFT|Found .* pack source/i);
+  const after = listed(cli(['source', 'list', notebookId, '--json']));
+  assert.deepEqual(after.map(source => source.id).sort(), before.map(source => source.id).sort(), 'Shell audit must not mutate protected sandbox');
+});
+
 test('LIVE sandbox: actual Stage 1.5 verifies pinned fixture without changing production pack attribution', { skip: !enabled, timeout: 240000 }, () => {
   assertLiveSandbox(process.env.TEST_NOTEBOOK_ID || notebookId);
   console.log('[LIVE] Executing Stage 1.5 grounding gate');
@@ -225,7 +298,7 @@ test('LIVE sandbox: single-source incident push via push-source.sh and source cl
     assert.ok(uploaded, 'Incident source must be pushed to sandbox notebook');
     assert.ok(uploaded.id !== fixtureId, 'Must not delete pinned fixture');
 
-    deleteNotebookSource('nlm', uploaded.id);
+deleteNotebookSource('nlm', notebookId, uploaded.id, createSourceDeletionLease({ notebookId, sourceIds: [uploaded.id], reason: 'rollback' }));
     const cleaned = listed(cli(['source', 'list', notebookId, '--json']));
     assert.ok(!cleaned.some(s => s.id === uploaded.id), 'Incident source must be deleted from sandbox');
   } finally {

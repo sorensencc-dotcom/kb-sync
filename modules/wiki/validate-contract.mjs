@@ -119,7 +119,9 @@ if (isMainScript) {
     const content = fs.readFileSync(filePath, 'utf8');
     
     // 1. Dynamic Exclusion: Strip code blocks so we avoid false positives in links/lints inside code
-    const strippedContent = content.replace(/```[\s\S]*?```/g, '');
+    const strippedContent = content.includes('```')
+      ? content.replace(/```[\s\S]*?```/g, '')
+      : content;
 
     // 2. Parse Frontmatter
     let frontmatter = {};
@@ -176,12 +178,12 @@ if (isMainScript) {
     if (!fs.existsSync(dir)) {
       return;
     }
-    const files = fs.readdirSync(dir);
-    for (const file of files) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const file = entry.name;
       const fullPath = path.join(dir, file);
       const relPath = relativeRoot ? path.join(relativeRoot, file) : file;
-      const stat = fs.statSync(fullPath);
-      if (stat.isDirectory()) {
+      if (entry.isDirectory()) {
         // Ignore git and node modules
         if (file !== '.git' && file !== 'node_modules') {
           scanDirectory(fullPath, relPath);

@@ -1,23 +1,19 @@
 ---
 title: entities_cuban_seizures.json
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/entities_cuban_seizures.json
-sha256: ceae569f5f38f35268d026fd4d235fb297e3f4a63b4f5889c1e0597edbb3612a
-lastCommit: 2026-08-29T22:17:29-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for entities_cuban_seizures.json; redirects to 1 entity page.
 ---
 
-# entities_cuban_seizures.json
+# entities_cuban_seizures.json (moved)
 
-## Overview
-Synthesized entity documentation for `core/entities_cuban_seizures.json` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/entities_cuban_seizures.json`
-- **Lines of Code:** 69
-- **Last Modified:** `2026-08-29T22:17:29-04:00`
-- **SHA-256:** `ceae569f5f38f35268d026fd4d235fb297e3f4a63b4f5889c1e0597edbb3612a`
+Moved to:
 
-## Source Citations
-- Source: `core/entities_cuban_seizures.json`
-- Repository: `kb-sync`
+- [[core/entities_cuban_seizures.json|kb-sync--core-entities_cuban_seizures.json--27a12c74]]

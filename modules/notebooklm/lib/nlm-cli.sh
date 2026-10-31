@@ -177,19 +177,6 @@ nlm_source_add() {
   fi
 }
 
-nlm_source_delete() {
-  local notebook_id="$1" source_id="$2"
-  if [ "$source_id" = "cc06bd53-1793-4ea0-b723-6f77eb1dd490" ]; then
-    echo "PROTECTED_SANDBOX_FIXTURE: deletion forbidden" >&2
-    return 1
-  fi
-  if [ "$NLM_DIALECT" = "nlm" ]; then
-    run_nlm_cli source delete "$source_id" -y
-  else
-    run_nlm_cli source delete --notebook "$notebook_id" "$source_id" -y
-  fi
-}
-
 # uv-project's `nlm` has no `auth` command group at all (confirmed live:
 # "No such command 'auth'. Did you mean 'batch'?") -- its equivalent is
 # `login --check`. This previously made verify_auth_or_die always think

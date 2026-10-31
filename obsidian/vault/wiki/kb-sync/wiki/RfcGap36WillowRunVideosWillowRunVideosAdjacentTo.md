@@ -1,0 +1,22 @@
+---
+title: "RfcGap36WillowRunVideosWillowRunVideosAdjacentTo"
+category: "wiki"
+status: "active"
+draft: true
+created: "2026-10-01T00:09:52.292Z"
+---
+
+# RfcGap36WillowRunVideosWillowRunVideosAdjacentTo
+
+## Summary
+Offline draft template for RfcGap36WillowRunVideosWillowRunVideosAdjacentTo staged from wiki/research/rfc-gap-36-willow-run-videos--willow-run-videos-adjacent-to.md.
+
+## Purpose & Scope
+Draft specification for RfcGap36WillowRunVideosWillowRunVideosAdjacentTo. Synthesized via OfflineTemplateProvider.
+
+## Operations & Details
+- Source: `wiki/research/rfc-gap-36-willow-run-videos--willow-run-videos-adjacent-to.md`
+- Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20260930-200421`
+
+## Related Pages
+- [[kb-sync/wiki/Index]]

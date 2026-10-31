@@ -1,28 +1,19 @@
 ---
 title: mcp-memory-server.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/mcp-memory-server.mjs
-sha256: 9211fbdc52f22b7cf812c2a235cfce1e66566391c948fee20816e5c6864d6758
-lastCommit: 2026-08-21T17:46:25-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for mcp-memory-server.mjs; redirects to 1 entity page.
 ---
 
-# mcp-memory-server.mjs
+# mcp-memory-server.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/mcp-memory-server.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/mcp-memory-server.mjs`
-- **Lines of Code:** 312
-- **Last Modified:** `2026-08-21T17:46:25-04:00`
-- **SHA-256:** `9211fbdc52f22b7cf812c2a235cfce1e66566391c948fee20816e5c6864d6758`
+Moved to:
 
-## Exported Symbols & API
-- `handleQueryContextCache`
-- `handleFetchTopicNote`
-- `processRpcMessage`
-
-## Source Citations
-- Source: `scripts/mcp-memory-server.mjs`
-- Repository: `kb-sync`
+- [[scripts/mcp-memory-server.mjs|kb-sync--scripts-mcp-memory-server.mjs--37108451]]

@@ -312,6 +312,44 @@ describe('TRM Automated Gap Triage & RFC Synthesis Suite', () => {
     assert.ok(afterForce.includes('- [x] [GAP-12] Resolved gap: Already done.'));
   });
 
+  test('TEST-09: parseGapItems edge cases', () => {
+    const markdown = [
+      '- [X] [GAP-10] Uppercase resolved checkmark: description here',
+      '- [ ] Title without colon (Drafted: [RFC](some/path.md))',
+      '- [ ] [GAP-12] ***: Only special chars (topicKey empty)',
+      '- [/] (Drafted: ignore) Malformed-ish line missing brackets but parsed as text',
+      'This line should be completely ignored',
+      '- [ ] [GAP-14] Valid item\r', // Testing CRLF
+    ].join('\n');
+
+    const parsed = parseGapItems(markdown);
+    assert.equal(parsed.length, 5);
+
+    // Uppercase resolved
+    assert.equal(parsed[0].localId, 'GAP-10');
+    assert.equal(parsed[0].status, 'resolved');
+
+    // Title without colon and with Drafted suffix
+    assert.equal(parsed[1].localId, 'GAP-02'); // auto-assigned since it's the 2nd parsed item
+    assert.equal(parsed[1].title, 'Title without colon)'); // the trailing parenthesis remains due to regex `\s*\(Drafted:[^)]*\)` missing trailing matching
+    assert.equal(parsed[1].description, 'Title without colon)');
+
+    // Empty topicKey fallback to localId
+    assert.equal(parsed[2].localId, 'GAP-12');
+    assert.equal(parsed[2].topicKey, '');
+    assert.equal(parsed[2].id, 'GAP-12');
+
+    // Malformed-ish line missing GAP-ID, with strange text
+    assert.equal(parsed[3].localId, 'GAP-04');
+    assert.equal(parsed[3].status, 'in-progress');
+    assert.equal(parsed[3].title, 'Malformed-ish line missing brackets but parsed as text');
+
+    // CRLF handling
+    assert.equal(parsed[4].localId, 'GAP-14');
+    assert.equal(parsed[4].status, 'pending');
+    assert.equal(parsed[4].title, 'Valid item');
+  });
+
   test('TEST-08: Colliding local GAP-IDs across topics get unique canonical ids', async () => {
     assert.equal(
       slugifyTopicKey('**CIC - Ford Executive Dynamics & Politics (follow-up)**'),

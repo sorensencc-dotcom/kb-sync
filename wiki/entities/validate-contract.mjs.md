@@ -1,29 +1,19 @@
 ---
 title: validate-contract.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/validate-contract.mjs
-sha256: 041268bc7ea2e8589f0c63984f6ff5d988c7090e0199bbd1755f10ce1c87cc1f
-lastCommit: 2026-08-29T09:50:43-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for validate-contract.mjs; redirects to 1 entity page.
 ---
 
-# validate-contract.mjs
+# validate-contract.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/validate-contract.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/validate-contract.mjs`
-- **Lines of Code:** 472
-- **Last Modified:** `2026-08-29T09:50:43-04:00`
-- **SHA-256:** `041268bc7ea2e8589f0c63984f6ff5d988c7090e0199bbd1755f10ce1c87cc1f`
+Moved to:
 
-## Exported Symbols & API
-- `ALLOWED_CATEGORIES`
-- `ALLOWED_STATUSES`
-- `resolveCanonicalVaultPath`
-- `validateLessonSchema`
-
-## Source Citations
-- Source: `modules/wiki/validate-contract.mjs`
-- Repository: `kb-sync`
+- [[modules/wiki/validate-contract.mjs|kb-sync--modules-wiki-validate-contract.mjs--17323309]]

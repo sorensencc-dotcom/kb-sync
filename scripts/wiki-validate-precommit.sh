@@ -26,6 +26,10 @@ if ! bash "$REPO_ROOT/scripts/secret-scan-hook.sh"; then
   exit 1
 fi
 
+if ! node "$REPO_ROOT/scripts/notebooklm/scan-nlm-deletion-policy.mjs" --staged; then
+  exit 1
+fi
+
 ### Staged markdown files (added/copied/modified). Exclude vault staging tree
 ### and human wiki (obsidian/vault), which have a separate lifecycle.
 CHANGED_MD=$(

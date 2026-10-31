@@ -1,23 +1,19 @@
 ---
 title: gated-climb-pipeline.test.js
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/gated-climb-pipeline.test.js
-sha256: 8858b62ea0b93d807a5265cb42129f11b8faf00781a627fde9fe3f7f0fd208f0
-lastCommit: 2026-08-08T21:42:08-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for gated-climb-pipeline.test.js; redirects to 1 entity page.
 ---
 
-# gated-climb-pipeline.test.js
+# gated-climb-pipeline.test.js (moved)
 
-## Overview
-Synthesized entity documentation for `tests/gated-climb-pipeline.test.js` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/gated-climb-pipeline.test.js`
-- **Lines of Code:** 239
-- **Last Modified:** `2026-08-08T21:42:08-04:00`
-- **SHA-256:** `8858b62ea0b93d807a5265cb42129f11b8faf00781a627fde9fe3f7f0fd208f0`
+Moved to:
 
-## Source Citations
-- Source: `tests/gated-climb-pipeline.test.js`
-- Repository: `kb-sync`
+- [[tests/gated-climb-pipeline.test.js|kb-sync--tests-gated-climb-pipeline.test.js--f5412016]]

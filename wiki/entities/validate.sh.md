@@ -1,23 +1,19 @@
 ---
 title: validate.sh
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/validate.sh
-sha256: 73879f1d47810b7bc7133f45446363ef840502dfebc4606ca8b1c826c98f3b9b
-lastCommit: 2026-08-16T10:51:53-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for validate.sh; redirects to 1 entity page.
 ---
 
-# validate.sh
+# validate.sh (moved)
 
-## Overview
-Synthesized entity documentation for `core/validate.sh` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/validate.sh`
-- **Lines of Code:** 105
-- **Last Modified:** `2026-08-16T10:51:53-04:00`
-- **SHA-256:** `73879f1d47810b7bc7133f45446363ef840502dfebc4606ca8b1c826c98f3b9b`
+Moved to:
 
-## Source Citations
-- Source: `core/validate.sh`
-- Repository: `kb-sync`
+- [[core/validate.sh|kb-sync--core-validate.sh--d7d4fabd]]

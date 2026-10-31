@@ -3,6 +3,7 @@ import yaml from 'js-yaml';
 
 export const GAP_ID_REGEX = /^GAP-[0-9]{2,3}(-[A-Z0-9]+)?$/;
 export const EMPTY_SHA256 = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+export const LINK_SCRUBBER_REGEX = /(?:\[|%5B|&#91;|&lbrack;)\s*suspicious(?:\s+|%20|\+)+link(?:\s+|%20|\+)+removed\s*(?:\]|%5D|&#93;|&rbrack;)/i;
 
 export function computeFindingId(gapId, canonicalPayloadSha256) {
   return crypto.createHash('sha256')
@@ -28,8 +29,12 @@ export function unwrapCodeFences(raw) {
 }
 
 export function validateFinding(rawContent) {
+  const contentStr = typeof rawContent === 'string'
+    ? rawContent
+    : (Buffer.isBuffer(rawContent) ? rawContent.toString('utf8') : '');
+
   const errors = [];
-  const unwrapped = unwrapCodeFences(rawContent);
+  const unwrapped = unwrapCodeFences(contentStr);
 
   const fmMatch = unwrapped.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!fmMatch) {
@@ -41,6 +46,15 @@ export function validateFinding(rawContent) {
     fm = yaml.load(fmMatch[1]) || {};
   } catch (err) {
     return { valid: false, errors: [`YAML parse error: ${err.message}`], quarantine_reason: 'yaml_syntax_error' };
+  }
+
+  if (LINK_SCRUBBER_REGEX.test(contentStr)) {
+    return {
+      valid: false,
+      errors: ['Link scrubber corruption detected in finding payload'],
+      quarantine_reason: 'link_scrubber_corruption',
+      frontmatter: fm
+    };
   }
 
   const body = normalizePayloadBody(fmMatch[2]);
@@ -90,8 +104,12 @@ export function sanitizeSlug(input) {
 }
 
 export function validateMobileInboxDrop(rawContent, filename = '') {
+  const contentStr = typeof rawContent === 'string'
+    ? rawContent
+    : (Buffer.isBuffer(rawContent) ? rawContent.toString('utf8') : '');
+
   const errors = [];
-  const unwrapped = unwrapCodeFences(rawContent);
+  const unwrapped = unwrapCodeFences(contentStr);
 
   const fmMatch = unwrapped.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!fmMatch) {
@@ -103,6 +121,15 @@ export function validateMobileInboxDrop(rawContent, filename = '') {
     fm = yaml.load(fmMatch[1]) || {};
   } catch (err) {
     return { valid: false, errors: [`YAML parse error: ${err.message}`], quarantine_reason: 'yaml_syntax_error' };
+  }
+
+  if (LINK_SCRUBBER_REGEX.test(contentStr)) {
+    return {
+      valid: false,
+      errors: ['Link scrubber corruption detected in mobile inbox drop'],
+      quarantine_reason: 'link_scrubber_corruption',
+      frontmatter: fm
+    };
   }
 
   const body = normalizePayloadBody(fmMatch[2]);

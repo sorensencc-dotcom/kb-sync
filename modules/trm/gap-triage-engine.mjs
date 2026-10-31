@@ -1,6 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { getDatabase, DEFAULT_DB_PATH } from '../cache/db-schema.mjs';
 import { handleQueryContextCache, handleFetchTopicNote } from '../../scripts/mcp-memory-server.mjs';
 import {
@@ -179,16 +182,20 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
   }
 
   // 1. Lexical search via SQLite FTS5
-  const searchRes = handleQueryContextCache(dbInstance, {
-    query,
-    category: 'all',
-    limit: options.limit || 5
-  });
-
   let lexicalHits = [];
-  if (!searchRes.isError && searchRes.content?.[0]?.text) {
+  if (dbInstance) {
     try {
-      lexicalHits = JSON.parse(searchRes.content[0].text);
+      const searchRes = handleQueryContextCache(dbInstance, {
+        query,
+        category: 'all',
+        limit: options.limit || 5
+      });
+
+      if (!searchRes.isError && searchRes.content?.[0]?.text) {
+        try {
+          lexicalHits = JSON.parse(searchRes.content[0].text);
+        } catch {}
+      }
     } catch {}
   }
 
@@ -196,27 +203,29 @@ export async function triageGapAgainstCache(dbInstance, gap, options = {}) {
   let matchedDocuments = lexicalHits;
   let retrievalMode = 'lexical';
 
-  try {
-    const rawGapText = `${gap.title} ${gap.description}`;
-    const embeddingRes = await generateEmbedding(rawGapText, {
-      provider: expandOptions.provider === 'offline' ? 'offline' : 'auto',
-      timeoutMs: 3000,
-    });
+  if (dbInstance) {
+    try {
+      const rawGapText = `${gap.title} ${gap.description}`;
+      const embeddingRes = await generateEmbedding(rawGapText, {
+        provider: expandOptions.provider === 'offline' ? 'offline' : 'auto',
+        timeoutMs: 3000,
+      });
 
-    const vectorHits = searchDenseVectors(dbInstance, embeddingRes.vector, {
-      limit: options.limit || 5,
-    });
-
-    if (vectorHits.length > 0) {
-      matchedDocuments = reciprocalRankFusion(lexicalHits, vectorHits, {
-        k: 60,
+      const vectorHits = searchDenseVectors(dbInstance, embeddingRes.vector, {
         limit: options.limit || 5,
       });
-      retrievalMode = 'hybrid-rrf';
+
+      if (vectorHits.length > 0) {
+        matchedDocuments = reciprocalRankFusion(lexicalHits, vectorHits, {
+          k: 60,
+          limit: options.limit || 5,
+        });
+        retrievalMode = 'hybrid-rrf';
+      }
+    } catch {
+      // Fail-soft: continue with lexical hits if vector search fails
+      matchedDocuments = lexicalHits;
     }
-  } catch {
-    // Fail-soft: continue with lexical hits if vector search fails
-    matchedDocuments = lexicalHits;
   }
 
   if (retrievalMode === 'hybrid-rrf') {
@@ -449,13 +458,13 @@ export async function executeGapTriage(options = {}) {
  *
  * @param {string} gapsFilePath
  * @param {Object} [options]
- * @returns {{ resolvedCount: number, resolvedGaps: string[] }}
+ * @returns {Promise<{ resolvedCount: number, resolvedGaps: string[] }>}
  */
-export function reconcileResolvedGaps(gapsFilePath, options = {}) {
+export async function reconcileResolvedGaps(gapsFilePath, options = {}) {
   const gapsPath = path.resolve(gapsFilePath);
   if (!fs.existsSync(gapsPath)) return { resolvedCount: 0, resolvedGaps: [] };
 
-  const rawContent = fs.readFileSync(gapsPath, 'utf8');
+  const rawContent = await fs.promises.readFile(gapsPath, 'utf8');
   const parsedGaps = parseGapItems(rawContent);
   const inProgressGaps = parsedGaps.filter((g) => g.status === 'in-progress');
 
@@ -471,19 +480,43 @@ export function reconcileResolvedGaps(gapsFilePath, options = {}) {
   const factTexts = [];
   if (fs.existsSync(topicsDir)) {
     try {
-      const topics = fs.readdirSync(topicsDir);
-      for (const topic of topics) {
-        const factsPath = path.join(topicsDir, topic, 'extracted-facts.json');
-        if (fs.existsSync(factsPath)) {
-          const parsed = JSON.parse(fs.readFileSync(factsPath, 'utf8'));
-          const facts = Array.isArray(parsed) ? parsed : (parsed.facts || []);
-          for (const f of facts) {
-            if (f.text) factTexts.push(String(f.text).toLowerCase());
-            if (f.claim) factTexts.push(String(f.claim).toLowerCase());
+      const topics = await fs.promises.readdir(topicsDir);
+
+      // Node.js fs.promises are sometimes slower than fs.readFileSync for tens of thousands of tiny files
+      // due to Promise allocation overhead. However, the original code called `fs.existsSync` on EVERY directory
+      // AND every file, which requires a separate blocking syscall.
+      // We can batch the checking and read concurrently.
+
+      const BATCH_SIZE = 1000;
+      for (let i = 0; i < topics.length; i += BATCH_SIZE) {
+        const chunk = topics.slice(i, i + BATCH_SIZE);
+
+        // Only attempt to read files that exist to avoid throw/catch overhead for 10000 missing files
+        // (Assuming facts are only in some topics, or even if in all, checking existance first or directly reading).
+        // Since we know the path, we can directly readFile and catch the error.
+
+        const chunkPromises = chunk.map(async (topic) => {
+          const factsPath = path.join(topicsDir, topic, 'extracted-facts.json');
+          try {
+            const content = await fs.promises.readFile(factsPath, 'utf8');
+            return JSON.parse(content);
+          } catch {
+            return null;
+          }
+        });
+
+        const results = await Promise.all(chunkPromises);
+        for (const parsed of results) {
+          if (parsed) {
+            const facts = Array.isArray(parsed) ? parsed : (parsed.facts || []);
+            for (const f of facts) {
+              if (f.text) factTexts.push(String(f.text).toLowerCase());
+              if (f.claim) factTexts.push(String(f.claim).toLowerCase());
+            }
           }
         }
       }
-    } catch {}
+    } catch (err) {}
   }
 
   for (const gap of inProgressGaps) {
@@ -500,8 +533,139 @@ export function reconcileResolvedGaps(gapsFilePath, options = {}) {
   }
 
   if (resolvedGaps.length > 0 && !options.dryRun) {
-    fs.writeFileSync(gapsPath, updatedContent, 'utf8');
+    await fs.promises.writeFile(gapsPath, updatedContent, 'utf8');
   }
 
   return { resolvedCount: resolvedGaps.length, resolvedGaps };
+}
+
+/**
+ * Evaluates an action card as an autonomous research spike.
+ * Grounds findings against local knowledge base (.kb_cache/knowledge.db) and AST call-graphs,
+ * synthesizes an RFC document in outputDir, writes an outbox completion receipt to outboxDir,
+ * and optionally comments on the card's GitHub issue.
+ *
+ * @param {Object} card - Action card data object
+ * @param {Object} [options]
+ * @param {string} [options.outputDir] - Target directory for RFC markdown (e.g. wiki/research)
+ * @param {string} [options.outboxDir] - Target directory for completion receipts (e.g. trm-drive/inbox/outbox)
+ * @param {boolean} [options.writeReceipt=false] - Whether to write completion receipt
+ * @param {boolean} [options.commentOnIssue=false] - Whether to post RFC to GitHub issue
+ * @param {boolean} [options.dryRun=false] - If true, avoids disk mutations and GitHub API calls
+ * @param {string} [options.dbPath] - Optional custom path to SQLite database
+ * @returns {Promise<{ status: string, cardId: string, rfcFilename: string, rfcPath: string, absoluteRfcPath: string, rfcContent: string, citations: string[], matchedDocuments: Array, receiptPath: string|null, dryRun: boolean }>}
+ */
+export async function evaluateActionCard(card, options = {}) {
+  const cardId = card.action_id || card.id;
+  if (!cardId) {
+    throw new Error('evaluateActionCard: Card must have an id or action_id');
+  }
+
+  const rawTitle = card.title || (card.intent ? card.intent.replace(/_/g, ' ') : cardId);
+  const title = String(rawTitle).trim();
+  const description = (card.context && typeof card.context === 'object' && card.context.body)
+    || card.summary
+    || (card.context && typeof card.context === 'object' && card.context.raw_input)
+    || (card.intent ? card.intent.replace(/_/g, ' ') : title);
+
+  const gap = {
+    id: cardId,
+    localId: cardId,
+    topicKey: slugifyTopicKey(title),
+    title,
+    description: String(description).trim(),
+    status: 'in-progress'
+  };
+
+  const defaultOutputDir = path.resolve('C:/dev/kb-sync/wiki/research');
+  const outputDir = options.outputDir ? path.resolve(options.outputDir) : defaultOutputDir;
+  const defaultOutboxDir = path.resolve('C:/dev/trm-drive/inbox/outbox');
+  const outboxDir = options.outboxDir ? path.resolve(options.outboxDir) : defaultOutboxDir;
+
+  const candidateDbPaths = [
+    options.dbPath,
+    DEFAULT_DB_PATH,
+    path.resolve('C:/dev/.kb_cache/knowledge.db'),
+    path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../.kb_cache/knowledge.db')
+  ].filter(Boolean);
+
+  let db = null;
+  for (const p of candidateDbPaths) {
+    if (fs.existsSync(p)) {
+      try {
+        db = getDatabase(p, { readonly: true });
+        break;
+      } catch {}
+    }
+  }
+
+  let triageResult;
+  try {
+    triageResult = await triageGapAgainstCache(db, gap, options);
+  } finally {
+    if (db && typeof db.close === 'function') {
+      try { db.close(); } catch {}
+    }
+  }
+
+  const cleanId = String(cardId).toLowerCase().replace(/[^a-z0-9-_]/g, '-');
+  const rfcFilename = cleanId.startsWith('rfc-') ? `${cleanId}.md` : `rfc-${cleanId}.md`;
+  const rfcDiskPath = path.join(outputDir, rfcFilename);
+  const rfcRefPath = `wiki/research/${rfcFilename}`;
+
+  if (!options.dryRun) {
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    fs.writeFileSync(rfcDiskPath, triageResult.rfcContent, 'utf8');
+  }
+
+  let receiptDiskPath = null;
+  if (!options.dryRun && (options.writeReceipt || options.outboxDir)) {
+    if (!fs.existsSync(outboxDir)) {
+      fs.mkdirSync(outboxDir, { recursive: true });
+    }
+    const receiptFilename = `receipt-${cardId}-completed.json`;
+    receiptDiskPath = path.join(outboxDir, receiptFilename);
+    const receiptPayload = {
+      action_id: card.action_id || card.id,
+      id: card.id || card.action_id,
+      status: 'COMPLETED',
+      completed_at: new Date().toISOString(),
+      research_ref: rfcRefPath,
+      issue_url: card.issue_url || null,
+      summary: `Autonomous research spike completed. Synthesized ${rfcFilename} with ${triageResult.citations.length} citations.`
+    };
+    fs.writeFileSync(receiptDiskPath, JSON.stringify(receiptPayload, null, 2) + '\n', 'utf8');
+  }
+
+  if (!options.dryRun && options.commentOnIssue && card.issue_url) {
+    try {
+      const tmpFile = path.join(os.tmpdir(), `spike-rfc-${Date.now()}.md`);
+      fs.writeFileSync(tmpFile, triageResult.rfcContent, 'utf8');
+      try {
+        execFileSync('gh', ['issue', 'comment', card.issue_url, '--body-file', tmpFile], {
+          encoding: 'utf8',
+          timeout: 20000
+        });
+      } finally {
+        try { fs.unlinkSync(tmpFile); } catch {}
+      }
+    } catch (err) {
+      console.warn(`[gap-triage-engine] Failed to post comment on issue ${card.issue_url}:`, err.message);
+    }
+  }
+
+  return {
+    status: 'COMPLETED',
+    cardId,
+    rfcFilename,
+    rfcPath: rfcRefPath,
+    absoluteRfcPath: rfcDiskPath,
+    rfcContent: triageResult.rfcContent,
+    citations: triageResult.citations,
+    matchedDocuments: triageResult.matchedDocuments,
+    receiptPath: receiptDiskPath || (outboxDir ? path.join(outboxDir, `receipt-${cardId}-completed.json`) : null),
+    dryRun: Boolean(options.dryRun)
+  };
 }

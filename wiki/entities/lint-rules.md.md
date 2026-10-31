@@ -1,23 +1,19 @@
 ---
 title: lint-rules.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/lint-rules.md
-sha256: 4691ee0b8cf891e03d1e0f952469c48fb52324d519c7de7fd8fdda40d7f359cf
-lastCommit: 2026-07-11T07:40:52-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for lint-rules.md; redirects to 1 entity page.
 ---
 
-# lint-rules.md
+# lint-rules.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/lint-rules.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/lint-rules.md`
-- **Lines of Code:** 141
-- **Last Modified:** `2026-07-11T07:40:52-04:00`
-- **SHA-256:** `4691ee0b8cf891e03d1e0f952469c48fb52324d519c7de7fd8fdda40d7f359cf`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/lint-rules.md`
-- Repository: `kb-sync`
+- [[modules/wiki/lint-rules.md|kb-sync--modules-wiki-lint-rules.md--b803f889]]

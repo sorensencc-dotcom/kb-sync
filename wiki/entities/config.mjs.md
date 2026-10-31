@@ -1,31 +1,19 @@
 ---
 title: config.mjs
-category: sync-tools
-status: active
-sourceRepository: kb-sync
-sourceFile: core/config.mjs
-sha256: 7ff76245e84f6cbccdf7b441f8703189f9030b1072acbf4138ad62f0b8078f3d
-lastCommit: 2026-08-29T22:27:32-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for config.mjs; redirects to 1 entity page.
 ---
 
-# config.mjs
+# config.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `core/config.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `core/config.mjs`
-- **Lines of Code:** 140
-- **Last Modified:** `2026-08-29T22:27:32-04:00`
-- **SHA-256:** `7ff76245e84f6cbccdf7b441f8703189f9030b1072acbf4138ad62f0b8078f3d`
+Moved to:
 
-## Exported Symbols & API
-- `loadCategoriesData`
-- `validateCategoriesData`
-- `saveCategoriesData`
-- `buildNotebookTargetMap`
-- `NOTEBOOK_TARGETS`
-- `resolveNotebookId`
-
-## Source Citations
-- Source: `core/config.mjs`
-- Repository: `kb-sync`
+- [[core/config.mjs|kb-sync--core-config.mjs--cc763f02]]

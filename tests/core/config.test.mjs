@@ -1,6 +1,6 @@
-import { test, describe } from 'node:test';
+import { test, describe, mock, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateCategoriesData, saveCategoriesData } from '../../core/config.mjs';
+import { validateCategoriesData, saveCategoriesData, getMasterKbExclusions, loadCategoriesData, buildNotebookTargetMap } from '../../core/config.mjs';
 import fs from 'node:fs';
 
 describe('validateCategoriesData', () => {
@@ -259,5 +259,171 @@ describe('saveCategoriesData', () => {
     );
 
     assert.equal(fs.unlinkSync.mock.calls.length, 1);
+  });
+});
+
+describe('getMasterKbExclusions', () => {
+  test('returns set of keys with exclude_from_master_kb flag', () => {
+    const data = {
+      categories: {
+        'cat-1': { exclude_from_master_kb: true },
+        'cat-2': { exclude_from_master_kb: false },
+        'cat-3': { }, // flag not present
+        'cat-4': { exclude_from_master_kb: true }
+      }
+    };
+    const exclusions = getMasterKbExclusions(data);
+    assert.ok(exclusions instanceof Set);
+    assert.equal(exclusions.size, 2);
+    assert.ok(exclusions.has('cat-1'));
+    assert.ok(exclusions.has('cat-4'));
+    assert.ok(!exclusions.has('cat-2'));
+    assert.ok(!exclusions.has('cat-3'));
+  });
+
+  test('returns empty set if no categories are excluded', () => {
+    const data = {
+      categories: {
+        'cat-1': { exclude_from_master_kb: false },
+        'cat-2': { }
+      }
+    };
+    const exclusions = getMasterKbExclusions(data);
+    assert.ok(exclusions instanceof Set);
+    assert.equal(exclusions.size, 0);
+  });
+
+  test('handles empty or missing categories object safely', () => {
+    const dataMissing = {};
+    const exclusionsMissing = getMasterKbExclusions(dataMissing);
+    assert.ok(exclusionsMissing instanceof Set);
+    assert.equal(exclusionsMissing.size, 0);
+
+    const dataEmpty = { categories: {} };
+    const exclusionsEmpty = getMasterKbExclusions(dataEmpty);
+    assert.ok(exclusionsEmpty instanceof Set);
+    assert.equal(exclusionsEmpty.size, 0);
+  });
+});
+
+describe('loadCategoriesData', () => {
+  afterEach(() => {
+    mock.restoreAll();
+  });
+
+  test('returns parsed JSON when file exists and is valid', () => {
+    const fakeData = { categories: { 'test': { target: 'uuid', title: 'Test', status: 'canonical' } } };
+    mock.method(fs, 'existsSync', () => true);
+    mock.method(fs, 'readFileSync', () => JSON.stringify(fakeData));
+
+    const result = loadCategoriesData();
+    assert.deepEqual(result, fakeData);
+  });
+
+  test('throws if categories.json does not exist', () => {
+    mock.method(fs, 'existsSync', () => false);
+
+    assert.throws(
+      () => loadCategoriesData(),
+      /CATEGORY_REGISTRY_UNAVAILABLE: categories.json not found at/
+    );
+  });
+
+  test('throws if categories.json fails to read', () => {
+    mock.method(fs, 'existsSync', () => true);
+    mock.method(fs, 'readFileSync', () => { throw new Error('EACCES: permission denied'); });
+
+    assert.throws(
+      () => loadCategoriesData(),
+      /CATEGORY_REGISTRY_UNAVAILABLE: Failed to read categories.json: EACCES: permission denied/
+    );
+  });
+
+  test('throws if categories.json contains invalid JSON', () => {
+    mock.method(fs, 'existsSync', () => true);
+    mock.method(fs, 'readFileSync', () => 'invalid-json');
+
+    assert.throws(
+      () => loadCategoriesData(),
+      /CATEGORY_REGISTRY_UNAVAILABLE: Failed to parse categories.json:/
+    );
+  });
+});
+
+describe('buildNotebookTargetMap', () => {
+  test('builds a map mapping canonical keys to targets', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
+  });
+
+  test('includes aliases mapping to the same targets', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['alias1', 'alias2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
+  });
+
+  test('normalizes keys and aliases (lowercases and trims)', () => {
+    const data = {
+      categories: {
+        '  TEST-CATEGORY  ': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical',
+          aliases: ['  ALIAS1  ', 'aLiAs2']
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234',
+      'alias1': 'uuid-1234',
+      'alias2': 'uuid-1234'
+    });
+  });
+
+  test('safely handles an empty or missing categories object in categoriesData', () => {
+    assert.deepEqual(buildNotebookTargetMap({}), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: {} }), {});
+    assert.deepEqual(buildNotebookTargetMap({ categories: null }), {});
+  });
+
+  test('safely handles category definitions that do not have an aliases array', () => {
+    const data = {
+      categories: {
+        'test-category': {
+          target: 'uuid-1234',
+          title: 'Test Category',
+          status: 'canonical'
+        }
+      }
+    };
+    const result = buildNotebookTargetMap(data);
+    assert.deepEqual(result, {
+      'test-category': 'uuid-1234'
+    });
   });
 });

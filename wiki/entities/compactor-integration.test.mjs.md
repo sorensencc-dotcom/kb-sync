@@ -1,23 +1,19 @@
 ---
 title: compactor-integration.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/compactor-integration.test.mjs
-sha256: af8fb72cd0a6c3bdf460c1396c45743195b5467e603fe2f4adc94109378f5559
-lastCommit: 2026-08-11T18:34:22-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for compactor-integration.test.mjs; redirects to 1 entity page.
 ---
 
-# compactor-integration.test.mjs
+# compactor-integration.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/compactor-integration.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/compactor-integration.test.mjs`
-- **Lines of Code:** 59
-- **Last Modified:** `2026-08-11T18:34:22-04:00`
-- **SHA-256:** `af8fb72cd0a6c3bdf460c1396c45743195b5467e603fe2f4adc94109378f5559`
+Moved to:
 
-## Source Citations
-- Source: `tests/compactor-integration.test.mjs`
-- Repository: `kb-sync`
+- [[tests/compactor-integration.test.mjs|kb-sync--tests-compactor-integration.test.mjs--be18bee6]]

@@ -1,27 +1,19 @@
 ---
 title: viking-bridge.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/viking-bridge.test.ts
-sha256: f54d7cc84bbc87e0f659e3d7209654f728b0faf31cf600d031b4872800fde662
-lastCommit: 2026-08-30T17:18:46-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for viking-bridge.test.ts; redirects to 1 entity page.
 ---
 
-# viking-bridge.test.ts
+# viking-bridge.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/viking-bridge.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/viking-bridge.test.ts`
-- **Lines of Code:** 84
-- **Last Modified:** `2026-08-30T17:18:46-04:00`
-- **SHA-256:** `f54d7cc84bbc87e0f659e3d7209654f728b0faf31cf600d031b4872800fde662`
+Moved to:
 
-## Exported Symbols & API
-- `target`
-- `Core`
-
-## Source Citations
-- Source: `tests/viking-bridge.test.ts`
-- Repository: `kb-sync`
+- [[tests/viking-bridge.test.ts|kb-sync--tests-viking-bridge.test.ts--6eef1641]]

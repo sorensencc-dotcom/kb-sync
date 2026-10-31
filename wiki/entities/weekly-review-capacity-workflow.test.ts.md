@@ -1,23 +1,19 @@
 ---
 title: weekly-review-capacity-workflow.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/weekly-review-capacity-workflow.test.ts
-sha256: d0ba852fdb10cd792a0d99dbdd9db688d4e74a3319fb320ceeb8bb188370952a
-lastCommit: 2026-08-08T09:03:23-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for weekly-review-capacity-workflow.test.ts; redirects to 1 entity page.
 ---
 
-# weekly-review-capacity-workflow.test.ts
+# weekly-review-capacity-workflow.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/weekly-review-capacity-workflow.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/weekly-review-capacity-workflow.test.ts`
-- **Lines of Code:** 83
-- **Last Modified:** `2026-08-08T09:03:23-04:00`
-- **SHA-256:** `d0ba852fdb10cd792a0d99dbdd9db688d4e74a3319fb320ceeb8bb188370952a`
+Moved to:
 
-## Source Citations
-- Source: `tests/weekly-review-capacity-workflow.test.ts`
-- Repository: `kb-sync`
+- [[tests/weekly-review-capacity-workflow.test.ts|kb-sync--tests-weekly-review-capacity-workflow.test.ts--71e5d4c9]]

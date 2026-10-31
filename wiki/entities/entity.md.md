@@ -1,23 +1,19 @@
 ---
 title: entity.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/templates/entity.md
-sha256: 9a7cd50e045fc482097814c5176105ce27383024c6edfb0d73a96ff26ca1d6a3
-lastCommit: 2026-07-11T07:40:52-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for entity.md; redirects to 1 entity page.
 ---
 
-# entity.md
+# entity.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/templates/entity.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/templates/entity.md`
-- **Lines of Code:** 92
-- **Last Modified:** `2026-07-11T07:40:52-04:00`
-- **SHA-256:** `9a7cd50e045fc482097814c5176105ce27383024c6edfb0d73a96ff26ca1d6a3`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/templates/entity.md`
-- Repository: `kb-sync`
+- [[modules/wiki/templates/entity.md|kb-sync--modules-wiki-templates-entity.md--7715d695]]

@@ -1,23 +1,19 @@
 ---
 title: fleet-wiki-reconciler.test.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/fleet-wiki-reconciler.test.ts
-sha256: 38f54138270c51e4831f453865e788cda73f2a285121b2205ed3f335e8d1ff40
-lastCommit: 2026-08-29T22:56:45-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for fleet-wiki-reconciler.test.ts; redirects to 1 entity page.
 ---
 
-# fleet-wiki-reconciler.test.ts
+# fleet-wiki-reconciler.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/fleet-wiki-reconciler.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/fleet-wiki-reconciler.test.ts`
-- **Lines of Code:** 43
-- **Last Modified:** `2026-08-29T22:56:45-04:00`
-- **SHA-256:** `38f54138270c51e4831f453865e788cda73f2a285121b2205ed3f335e8d1ff40`
+Moved to:
 
-## Source Citations
-- Source: `tests/fleet-wiki-reconciler.test.ts`
-- Repository: `kb-sync`
+- [[tests/fleet-wiki-reconciler.test.ts|kb-sync--tests-fleet-wiki-reconciler.test.ts--0dc1dc5c]]

@@ -157,7 +157,7 @@ export function defaultRunner(notebookId) {
   });
 }
 
-function normalizePackFamilyKey(rawTitle, notebook) {
+export function normalizePackFamilyKey(rawTitle, notebook) {
   const packFamily = notebook?.pack_family;
   const legacyAlias = notebook?.legacy_title_alias;
 
@@ -166,12 +166,12 @@ function normalizePackFamilyKey(rawTitle, notebook) {
   base = base.replace(/\.bak\.txt$/i, '');
   base = base.replace(/\.(txt|md|pdf|json|yaml|yml|docx|doc|html|csv)$/i, '');
 
-  const partMatch = base.match(/^(.*?)[_-]part[_-]([a-z0-9]+)$/i);
+  const partMatch = base.match(/^(.*?)[_-]part(?:[_-]([a-z0-9]+)|(\d+))$/i);
   let partLabel = null;
   let coreName = base;
   if (partMatch) {
     coreName = partMatch[1];
-    partLabel = partMatch[2].toLowerCase();
+    partLabel = (partMatch[2] || partMatch[3]).toLowerCase();
   }
 
   const lowerCore = coreName.toLowerCase().trim();
@@ -322,6 +322,25 @@ export function classifyNotebook(notebook, rawSources = []) {
   }
 
   for (const [fam, labels] of partsByFamily.entries()) {
+    if (labels.length > 0 && labels.every((l) => /^[1-9]\d*$/.test(l))) {
+      const nums = labels.map((l) => Number(l));
+      const maxNum = Math.max(...nums);
+      const presentSet = new Set(nums);
+      const missingLabels = [];
+      for (let i = 1; i <= maxNum; i++) {
+        if (!presentSet.has(i)) {
+          missingLabels.push(String(i));
+        }
+      }
+      if (missingLabels.length > 0) {
+        addFinding(
+          'MULTIPART_GAP',
+          `Family "${fam}" is missing multipart label(s): ${missingLabels.join(', ')}`,
+          'red'
+        );
+      }
+      continue;
+    }
     const indices = labels.map(twoLetterLabelToIndex);
     const invalidLabels = labels.filter((_, i) => indices[i] < 0);
     const validIndices = indices.filter((idx) => idx >= 0);

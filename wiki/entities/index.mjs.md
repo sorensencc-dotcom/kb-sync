@@ -1,27 +1,20 @@
 ---
 title: index.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/compactor/index.mjs
-sha256: 2c740705a455d3a809971d5163587f797fd194f32ce34aeb5d100a8a033419f4
-lastCommit: 2026-08-12T22:28:55-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for index.mjs; redirects to 2 entity pages.
 ---
 
-# index.mjs
+# index.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/compactor/index.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/compactor/index.mjs`
-- **Lines of Code:** 229
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `2c740705a455d3a809971d5163587f797fd194f32ce34aeb5d100a8a033419f4`
+Several source files share this name (2). Pick the one you mean:
 
-## Exported Symbols & API
-- `loadGlobalSkipPatterns`
-- `buildCompactedPack`
-
-## Source Citations
-- Source: `modules/compactor/index.mjs`
-- Repository: `kb-sync`
+- [[modules/compactor/index.mjs|kb-sync--modules-compactor-index.mjs--b84db04f]]
+- [[modules/trm/evaluators/index.mjs|kb-sync--modules-trm-evaluators-index.mjs--59776e31]]

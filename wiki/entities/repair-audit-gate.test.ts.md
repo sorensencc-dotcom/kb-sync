@@ -1,23 +1,19 @@
 ---
 title: repair-audit-gate.test.ts
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/healing/repair-audit-gate.test.ts
-sha256: 655988f26f380c911ba7ebbc7d808e541640a76a27da149ec97e0715d517c313
-lastCommit: 2026-08-28T19:13:29-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for repair-audit-gate.test.ts; redirects to 1 entity page.
 ---
 
-# repair-audit-gate.test.ts
+# repair-audit-gate.test.ts (moved)
 
-## Overview
-Synthesized entity documentation for `modules/healing/repair-audit-gate.test.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/healing/repair-audit-gate.test.ts`
-- **Lines of Code:** 30
-- **Last Modified:** `2026-08-28T19:13:29-04:00`
-- **SHA-256:** `655988f26f380c911ba7ebbc7d808e541640a76a27da149ec97e0715d517c313`
+Moved to:
 
-## Source Citations
-- Source: `modules/healing/repair-audit-gate.test.ts`
-- Repository: `kb-sync`
+- [[modules/healing/repair-audit-gate.test.ts|kb-sync--modules-healing-repair-audit-gate.test.ts--3018754c]]

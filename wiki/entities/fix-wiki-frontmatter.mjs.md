@@ -1,23 +1,19 @@
 ---
 title: fix-wiki-frontmatter.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/fix-wiki-frontmatter.mjs
-sha256: 564b136c546c6230d5278a7a2fc6f46aefd078dbe2a1ff4370570e73c2dc8a51
-lastCommit: 2026-08-29T09:41:26-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for fix-wiki-frontmatter.mjs; redirects to 1 entity page.
 ---
 
-# fix-wiki-frontmatter.mjs
+# fix-wiki-frontmatter.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/fix-wiki-frontmatter.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/fix-wiki-frontmatter.mjs`
-- **Lines of Code:** 16
-- **Last Modified:** `2026-08-29T09:41:26-04:00`
-- **SHA-256:** `564b136c546c6230d5278a7a2fc6f46aefd078dbe2a1ff4370570e73c2dc8a51`
+Moved to:
 
-## Source Citations
-- Source: `scripts/fix-wiki-frontmatter.mjs`
-- Repository: `kb-sync`
+- [[scripts/fix-wiki-frontmatter.mjs|kb-sync--scripts-fix-wiki-frontmatter.mjs--56c14522]]

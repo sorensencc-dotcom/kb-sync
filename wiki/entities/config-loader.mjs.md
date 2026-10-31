@@ -1,26 +1,21 @@
 ---
 title: config-loader.mjs
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/config-loader.mjs
-sha256: 953edbb3b14d7a65c12ea3e24987ed95d478f3c93d078aaa23613d0f6974df14
-lastCommit: 2026-08-29T09:35:53-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for config-loader.mjs; redirects to 3 entity pages.
 ---
 
-# config-loader.mjs
+# config-loader.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/config-loader.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/config-loader.mjs`
-- **Lines of Code:** 28
-- **Last Modified:** `2026-08-29T09:35:53-04:00`
-- **SHA-256:** `953edbb3b14d7a65c12ea3e24987ed95d478f3c93d078aaa23613d0f6974df14`
+Several source files share this name (3). Pick the one you mean:
 
-## Exported Symbols & API
-- `resolveVaultPaths`
-
-## Source Citations
-- Source: `modules/wiki/config-loader.mjs`
-- Repository: `kb-sync`
+- [[core/config-loader.mjs|kb-sync--core-config-loader.mjs--c76876d2]]
+- [[modules/compactor/config-loader.mjs|kb-sync--modules-compactor-config-loader.mjs--b135a2b5]]
+- [[modules/wiki/config-loader.mjs|kb-sync--modules-wiki-config-loader.mjs--8cbbaaa8]]

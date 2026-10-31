@@ -1,4 +1,4 @@
-import { resolveCitations } from "../modules/notebooklm/lib/grounding-citations.mjs";
+import { resolveCitations, hasPackGrounding } from "../modules/notebooklm/lib/grounding-citations.mjs";
 
 console.log("[TEST] Running: grounding citation resolution...");
 
@@ -33,3 +33,48 @@ expect("no citations", resolveCitations({ citations: {} }, sources), []);
 expect("missing citations", resolveCitations({}, sources), []);
 
 console.log("[PASS] ✓ Grounding citations resolve source IDs to titles");
+
+// hasPackGrounding tests
+expect(
+  "hasPackGrounding: matches prefix",
+  hasPackGrounding({ citations: { 1: "s1" } }, sources, ["repo_"]),
+  true
+);
+
+expect(
+  "hasPackGrounding: does not match prefix",
+  hasPackGrounding({ citations: { 1: "s2" } }, sources, ["repo_"]),
+  false
+);
+
+expect(
+  "hasPackGrounding: multiple citations, at least one matches",
+  hasPackGrounding({ citations: { 1: "s1", 2: "s2" } }, sources, ["repo_"]),
+  true
+);
+
+expect(
+  "hasPackGrounding: multiple prefixes, citation matches one",
+  hasPackGrounding({ citations: { 1: "s2" } }, sources, ["repo_", "2026-"]),
+  true
+);
+
+expect(
+  "hasPackGrounding: citation does not resolve (unknown source)",
+  hasPackGrounding({ citations: { 1: "gone" } }, sources, ["repo_"]),
+  false
+);
+
+expect(
+  "hasPackGrounding: no citations",
+  hasPackGrounding({ citations: {} }, sources, ["repo_"]),
+  false
+);
+
+expect(
+  "hasPackGrounding: missing citations",
+  hasPackGrounding({}, sources, ["repo_"]),
+  false
+);
+
+console.log("[PASS] ✓ Grounding citations correctly identifies pack grounding");

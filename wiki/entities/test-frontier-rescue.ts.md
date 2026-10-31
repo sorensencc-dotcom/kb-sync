@@ -1,23 +1,19 @@
 ---
 title: test-frontier-rescue.ts
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/test-frontier-rescue.ts
-sha256: dc5866b5760f1c1f226a4aaa088bfef9d2e1021bab246207171b101ed0eaf41f
-lastCommit: 2026-08-15T13:26:14-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for test-frontier-rescue.ts; redirects to 1 entity page.
 ---
 
-# test-frontier-rescue.ts
+# test-frontier-rescue.ts (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/test-frontier-rescue.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/test-frontier-rescue.ts`
-- **Lines of Code:** 63
-- **Last Modified:** `2026-08-15T13:26:14-04:00`
-- **SHA-256:** `dc5866b5760f1c1f226a4aaa088bfef9d2e1021bab246207171b101ed0eaf41f`
+Moved to:
 
-## Source Citations
-- Source: `scripts/test-frontier-rescue.ts`
-- Repository: `kb-sync`
+- [[scripts/test-frontier-rescue.ts|kb-sync--scripts-test-frontier-rescue.ts--990f4abd]]

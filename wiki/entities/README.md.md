@@ -1,23 +1,20 @@
 ---
 title: README.md
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/artifact-generator/README.md
-sha256: dc71a8a9713c1c30270da4283cb74392613bba2339c57924be9238545c524fcc
-lastCommit: 2026-07-14T19:53:18-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for README.md; redirects to 2 entity pages.
 ---
 
-# README.md
+# README.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/artifact-generator/README.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/artifact-generator/README.md`
-- **Lines of Code:** 38
-- **Last Modified:** `2026-07-14T19:53:18-04:00`
-- **SHA-256:** `dc71a8a9713c1c30270da4283cb74392613bba2339c57924be9238545c524fcc`
+Several source files share this name (2). Pick the one you mean:
 
-## Source Citations
-- Source: `modules/artifact-generator/README.md`
-- Repository: `kb-sync`
+- [[modules/artifact-generator/README.md|kb-sync--modules-artifact-generator-README.md--29de2d79]]
+- [[modules/wiki/_ds/cast-iron-charlie-design-system-019de132-e506-71df-a7ae-fb03115c075e/README.md|kb-sync--modules-wiki-_ds-cast-iron-charlie-design-system-019de132-e506-71df-a7ae-fb03115c075e-README.md--70f2247e]]

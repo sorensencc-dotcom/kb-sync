@@ -107,6 +107,13 @@ export function upsertDocumentToDiskAndCache(db, params = {}) {
 
   const { relPath, absPath } = resolveSafeWorkspacePath(repoRoot, requestedPath);
 
+  // Mutations are wiki-only: never allow writing package.json, workflows, etc.
+  if (!(relPath === 'wiki' || relPath.startsWith('wiki/'))) {
+    throw new Error(
+      `vfs_upsert_document may only write under wiki/: refused '${relPath}'`,
+    );
+  }
+
   // Disk-as-truth: write first. On failure, do not touch SQLite.
   fs.mkdirSync(path.dirname(absPath), { recursive: true });
   fs.writeFileSync(absPath, content, 'utf8');

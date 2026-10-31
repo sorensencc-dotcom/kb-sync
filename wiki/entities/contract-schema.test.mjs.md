@@ -1,23 +1,19 @@
 ---
 title: contract-schema.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/modules/wiki/contract-schema.test.mjs
-sha256: 067be17a5812d553d9412bbd12161ec3412f86299807ed43c18377476fb8a261
-lastCommit: 2026-08-29T09:50:43-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for contract-schema.test.mjs; redirects to 1 entity page.
 ---
 
-# contract-schema.test.mjs
+# contract-schema.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/modules/wiki/contract-schema.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/modules/wiki/contract-schema.test.mjs`
-- **Lines of Code:** 49
-- **Last Modified:** `2026-08-29T09:50:43-04:00`
-- **SHA-256:** `067be17a5812d553d9412bbd12161ec3412f86299807ed43c18377476fb8a261`
+Moved to:
 
-## Source Citations
-- Source: `tests/modules/wiki/contract-schema.test.mjs`
-- Repository: `kb-sync`
+- [[tests/modules/wiki/contract-schema.test.mjs|kb-sync--tests-modules-wiki-contract-schema.test.mjs--864e8c12]]

@@ -1,0 +1,41 @@
+---
+title: "TRM Ingest Drive State Machine"
+---
+stateDiagram-v2
+  state "Legend" as legend {
+    lg0: active
+    lg1: write_critical
+    lg2: success
+    lg3: filtered
+  }
+  class lg0 blue
+  class lg1 orange
+  class lg2 teal
+  class lg3 purple
+  s0: BUFFERED
+  s1: DEBOUNCING
+  s2: VALIDATING
+  s3: INGESTING
+  s4: REJECTED
+  s5: SKIPPED_DUPLICATE
+  s6: ARCHIVING
+  s7: COMPLETED
+  [*] --> s0
+  s0 --> s1: 1. File arrives in buffer
+  s1 --> s2: 2. Debounce window expires
+  s2 --> s3: 3c. Valid new finding -> Acquire lock
+  s2 --> s4: 3a. Validation error -> Reject
+  s2 --> s5: 3b. Finding ID exists -> Skip
+  s3 --> s6: 4. Append to RFC -> Archive
+  s4 --> s0: Archive rejected -> Reset
+  s5 --> s0: Archive duplicate -> Reset
+  s6 --> s7: 5. Release lease -> Completed
+  s7 --> s0: Cycle complete -> Wait for next
+  class s0 blue
+  class s1 blue
+  class s2 blue
+  class s3 orange
+  class s4 purple
+  class s5 purple
+  class s6 orange
+  class s7 teal

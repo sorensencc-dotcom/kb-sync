@@ -1,23 +1,19 @@
 ---
 title: lesson.md
-category: wiki
-status: active
-sourceRepository: kb-sync
-sourceFile: modules/wiki/templates/lesson.md
-sha256: 0d7c772aba37089fa8afd4cc064c5fdac19c76ea599c94289a4464dd907ffa6c
-lastCommit: 2026-08-11T00:43:58-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for lesson.md; redirects to 1 entity page.
 ---
 
-# lesson.md
+# lesson.md (moved)
 
-## Overview
-Synthesized entity documentation for `modules/wiki/templates/lesson.md` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `modules/wiki/templates/lesson.md`
-- **Lines of Code:** 24
-- **Last Modified:** `2026-08-11T00:43:58-04:00`
-- **SHA-256:** `0d7c772aba37089fa8afd4cc064c5fdac19c76ea599c94289a4464dd907ffa6c`
+Moved to:
 
-## Source Citations
-- Source: `modules/wiki/templates/lesson.md`
-- Repository: `kb-sync`
+- [[modules/wiki/templates/lesson.md|kb-sync--modules-wiki-templates-lesson.md--4f382a84]]

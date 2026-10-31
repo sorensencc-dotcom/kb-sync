@@ -1,29 +1,19 @@
 ---
 title: performance-benchmark.ts
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/performance-benchmark.ts
-sha256: 6655104843e57e178ff499a63b1efada0c0c0a3a96c665cddeb78182dee7ef83
-lastCommit: 2026-08-06T09:29:21-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for performance-benchmark.ts; redirects to 1 entity page.
 ---
 
-# performance-benchmark.ts
+# performance-benchmark.ts (moved)
 
-## Overview
-Synthesized entity documentation for `tests/performance-benchmark.ts` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/performance-benchmark.ts`
-- **Lines of Code:** 113
-- **Last Modified:** `2026-08-06T09:29:21-04:00`
-- **SHA-256:** `6655104843e57e178ff499a63b1efada0c0c0a3a96c665cddeb78182dee7ef83`
+Moved to:
 
-## Exported Symbols & API
-- `PlatformThresholds`
-- `BenchmarkTarget`
-- `TARGET_DEFINITIONS`
-- `resolveTargetMaxAllowedMs`
-
-## Source Citations
-- Source: `tests/performance-benchmark.ts`
-- Repository: `kb-sync`
+- [[tests/performance-benchmark.ts|kb-sync--tests-performance-benchmark.ts--4ecb3bf6]]

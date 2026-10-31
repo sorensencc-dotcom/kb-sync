@@ -1,23 +1,19 @@
 ---
 title: trm-cache-boundary.test.mjs
-category: scaffolds
-status: active
-sourceRepository: kb-sync
-sourceFile: tests/trm-cache-boundary.test.mjs
-sha256: 56e6310001c1fde54255f38f2d22e9f19cc64e60e531e69d6a7d7fd92a9b589c
-lastCommit: 2026-08-27T08:24:23-04:00
+category: utilities
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for trm-cache-boundary.test.mjs; redirects to 1 entity page.
 ---
 
-# trm-cache-boundary.test.mjs
+# trm-cache-boundary.test.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `tests/trm-cache-boundary.test.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `tests/trm-cache-boundary.test.mjs`
-- **Lines of Code:** 109
-- **Last Modified:** `2026-08-27T08:24:23-04:00`
-- **SHA-256:** `56e6310001c1fde54255f38f2d22e9f19cc64e60e531e69d6a7d7fd92a9b589c`
+Moved to:
 
-## Source Citations
-- Source: `tests/trm-cache-boundary.test.mjs`
-- Repository: `kb-sync`
+- [[tests/trm-cache-boundary.test.mjs|kb-sync--tests-trm-cache-boundary.test.mjs--0fb9ff61]]

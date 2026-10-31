@@ -1,27 +1,19 @@
 ---
 title: sync-github-wiki.mjs
 category: utilities
-status: active
-sourceRepository: kb-sync
-sourceFile: scripts/sync-github-wiki.mjs
-sha256: 6e7b07890e408be4e42ef163bd6036bf9be5c4dae8444332f2afbe48674c4719
-lastCommit: 2026-08-30T18:14:33-04:00
+status: redirect
+generator: entity-synthesizer@2
+generationKind: legacy-alias
+semanticContent: false
+summary: Legacy page name for sync-github-wiki.mjs; redirects to 1 entity page.
 ---
 
-# sync-github-wiki.mjs
+# sync-github-wiki.mjs (moved)
 
-## Overview
-Synthesized entity documentation for `scripts/sync-github-wiki.mjs` in **kb-sync**.
+Entity pages are now named by repository and full source path, because a source
+basename is not unique. This legacy page name is kept so existing links keep
+resolving.
 
-- **File Path:** `scripts/sync-github-wiki.mjs`
-- **Lines of Code:** 240
-- **Last Modified:** `2026-08-30T18:14:33-04:00`
-- **SHA-256:** `6e7b07890e408be4e42ef163bd6036bf9be5c4dae8444332f2afbe48674c4719`
+Moved to:
 
-## Exported Symbols & API
-- `deriveWikiSshUrl`
-- `publishWiki`
-
-## Source Citations
-- Source: `scripts/sync-github-wiki.mjs`
-- Repository: `kb-sync`
+- [[scripts/sync-github-wiki.mjs|kb-sync--scripts-sync-github-wiki.mjs--dfcb36ad]]

@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective"
+title: "RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Unverified / Single-Sourced Claim"
 category: "research"
 topic: "rfc-gap-05-castironcharlie-facebook--castironcharlie-facebook-foll"
 gap_id: "GAP-05--castironcharlie-facebook"
 status: "draft"
-created_at: "2026-09-27T12:03:52.434Z"
+created_at: "2026-10-21T12:37:06.742Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md","wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-unde.md","wiki/research/rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-open.md"]
 ---
 
-# RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Research Objective
+# RFC: GAP-05--castironcharlie-facebook - **CastIronCharlie-Facebook (follow-up - Unverified / Single-Sourced Claim
 
 ## 1. Problem Statement & Context
-)**: **Research Objective:** Audit master cam profiler engineering blueprints, optics line inspection sheets, and calibration logs [5]. Technical records from Sperry and NDRC Division 7
+)**: **Unverified / Single-Sourced Claim:** During an October 26, 1942 meeting at Willow Run, Edsel Ford directly confronted Charles Sorensen over unrealistic production promises and la
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-31-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
+- **rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [vector_only]:
+  > --- title: "RFC: GAP-06--castironcharlie-facebook - **CastIronCharlie-Facebook under-sourced - Claim**" category: "research" topic: "rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-unde" gap_id: "GAP-06--castironcharlie-facebook" status
+- **rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
   > 
-- **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [vector_only]:
-  > --- title: RFC: GAP-02--castironcharlie-facebook - **CastIronCharlie-Facebook follow-up - Research Objective category: research topic: rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-foll gap_id: GAP-02--castironcharlie-facebook status:
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
