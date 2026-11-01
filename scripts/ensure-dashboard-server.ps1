@@ -9,40 +9,72 @@ $ErrorActionPreference = 'Stop'
 $DashboardUrl = "http://127.0.0.1:$Port/modules/wiki/dashboard.html"
 $ApiUrl = "http://127.0.0.1:$Port/api/reporting/weekly-retro"
 $MeridianUrl = "http://127.0.0.1:$Port/api/reporting/meridian"
-$Node = (Get-Command node.exe -ErrorAction Stop).Source
+$Node = if (Get-Command node.exe -ErrorAction SilentlyContinue) {
+    (Get-Command node.exe).Source
+} elseif (Test-Path 'C:\Program Files\nodejs\node.exe') {
+    'C:\Program Files\nodejs\node.exe'
+} else {
+    'node'
+}
 $ServerScript = Join-Path $RepoRoot 'server.mjs'
 
 function Test-Dashboard {
     try {
-        $response = Invoke-WebRequest -Uri $DashboardUrl -UseBasicParsing -TimeoutSec 3
-        $api = Invoke-WebRequest -Uri $ApiUrl -UseBasicParsing -TimeoutSec 3
-        $meridian = Invoke-WebRequest -Uri $MeridianUrl -UseBasicParsing -TimeoutSec 3
-        return $response.StatusCode -eq 200 -and $api.StatusCode -eq 200 -and $meridian.StatusCode -eq 200
+        $c1 = & curl.exe -s -o NUL -w "%{http_code}" -m 3 $DashboardUrl
+        if ($c1 -ne '200') { return $false }
+        $c2 = & curl.exe -s -o NUL -w "%{http_code}" -m 3 $ApiUrl
+        if ($c2 -ne '200') { return $false }
+        $c3 = & curl.exe -s -o NUL -w "%{http_code}" -m 3 $MeridianUrl
+        return ($c3 -eq '200')
     } catch {
         return $false
     }
 }
 
-if (Test-Dashboard) {
+$RestartFlag = 'C:\dev\.restart-dashboard'
+if (Test-Path $RestartFlag) {
+    Remove-Item -Path $RestartFlag -Force -ErrorAction SilentlyContinue
+    Write-Output "Forcing restart due to $RestartFlag"
+} elseif (Test-Dashboard) {
     Write-Output "Dashboard already healthy: $DashboardUrl"
     exit 0
 }
 
+& netstat.exe -ano | ForEach-Object {
+    if ($_ -match "TCP\s+\S+:$Port\s+\S+\s+LISTENING\s+(\d+)") {
+        $procId = $matches[1]
+        try {
+            $prevEap = $ErrorActionPreference
+            $ErrorActionPreference = 'SilentlyContinue'
+            & taskkill.exe /f /pid $procId 2>&1 | Out-Null
+            $ErrorActionPreference = $prevEap
+        } catch {}
+    }
+}
+
 Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue |
     ForEach-Object {
-        $process = Get-CimInstance Win32_Process -Filter "ProcessId=$($_.OwningProcess)"
-        if ($process.CommandLine -like '*http-server*' -or $process.CommandLine -like '*dashboard-server.py*' -or $process.CommandLine -like '*server.mjs*') {
+        try {
+            $prevEap = $ErrorActionPreference
+            $ErrorActionPreference = 'SilentlyContinue'
+            & taskkill.exe /f /pid $_.OwningProcess 2>&1 | Out-Null
             Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue
-        }
+            $ErrorActionPreference = $prevEap
+        } catch {}
     }
 
 if (-not (Test-Path -LiteralPath $ServerScript -PathType Leaf)) {
     throw "Dashboard server script not found: $ServerScript"
 }
 
+$StdOutLog = 'C:\dev\.dashboard-server.log'
+$StdErrLog = 'C:\dev\.dashboard-server-err.log'
+
 Start-Process -FilePath $Node `
     -ArgumentList @($ServerScript) `
     -WorkingDirectory $RepoRoot `
+    -RedirectStandardOutput $StdOutLog `
+    -RedirectStandardError $StdErrLog `
     -WindowStyle Hidden
 
 $deadline = (Get-Date).AddSeconds($WaitSeconds)
