@@ -25,10 +25,16 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 import { execSync } from 'child_process';
 import os from 'os';
 const rawMockCliPath = path.join(repoRoot, 'tests', 'mock-nlm-cli.mjs');
-const tmpWrapper = path.join(os.tmpdir(), 'mock-cli-wrapper3.sh');
+const tmpWrapper = process.platform === 'win32'
+  ? path.join(os.tmpdir(), 'mock-cli-wrapper3.cmd')
+  : path.join(os.tmpdir(), 'mock-cli-wrapper3.sh');
 import * as _fs from 'fs';
-_fs.writeFileSync(tmpWrapper, `#!/bin/bash\nnode "${rawMockCliPath}" "$@"`);
-execSync(`chmod +x "${tmpWrapper}"`);
+if (process.platform === 'win32') {
+  _fs.writeFileSync(tmpWrapper, `@node "${rawMockCliPath}" %*\n`);
+} else {
+  _fs.writeFileSync(tmpWrapper, `#!/bin/bash\nnode "${rawMockCliPath}" "$@"`);
+  execSync(`chmod +x "${tmpWrapper}"`);
+}
 const mockCli = tmpWrapper;
 
 test('runtime deletion rejects unleased source IDs', () => {
