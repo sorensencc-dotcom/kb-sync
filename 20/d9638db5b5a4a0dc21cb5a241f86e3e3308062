@@ -1,0 +1,14 @@
+scripts/ensure-dashboard-server.ps1
+  h_5c172e9b435f5a 12-18,23-28,34-38,43-54,57-60,62-63,70-72,76-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "20d9638db5b5a4a0dc21cb5a241f86e3e3308062",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
