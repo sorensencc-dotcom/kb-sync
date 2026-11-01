@@ -1,0 +1,31 @@
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 25-40
+tests/trm-act-kbsync-atomic-pack-replacement-guardrail.test.mjs
+  h_5c172e9b435f5a 28-30,32-37
+tests/nlm-pack-family-contract.test.mjs
+  s_0170cc50006c33::t_5c9951f005e086 22-24
+  s_0170cc50006c33::t_adbc9571e9c237 18,21
+scripts/ensure-dashboard-server.ps1
+  h_5c172e9b435f5a 12-18,23-28,34-38,43-54,57-60,62-63,70-72,76-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fbea9bfe09b77a3226ef5773339efac3612e25aa",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_0170cc50006c33": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18fb8-d7d5-7721-b09f-708007ba1794",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
