@@ -1,0 +1,18 @@
+STATUS.md
+  h_5c172e9b435f5a 8-9
+wiki/research/bombard-williamson-redaction-index.md
+  h_5c172e9b435f5a 17-19
+wiki/research/rfc-gap-65-cic-kb--cic-kb-open-contradictions-so.md
+  h_5c172e9b435f5a 34-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e45e1f69260008b2f77ec2fa4b9f576067d9fa09",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
