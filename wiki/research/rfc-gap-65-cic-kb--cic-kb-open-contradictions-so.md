@@ -31,6 +31,8 @@ The following related context nodes were retrieved from the local knowledge base
 *No static call-graph symbols detected in target codebase for this item.*
 
 ## 4. Proposed Resolution & Protocol Decision
+- Canonical research table staged in `trm-vault`: `topics/charlie/bombard-memoir-delta/extracts/bombard-williamson-redaction-index.md`.
+- Cross-repository index maintained in `kb-sync`: `wiki/research/bombard-williamson-redaction-index.md`.
 - Specify clear interface contracts and execution requirements addressing this gap.
 - Maintain deterministic state across pipeline boundaries and fail-soft fallbacks.
 
