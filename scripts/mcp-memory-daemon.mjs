@@ -72,6 +72,31 @@ export function assertDaemonAuth(request) {
   return null;
 }
 
+function jsonResponse(body, status = 200, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "content-type": "application/json", ...extraHeaders },
+  });
+}
+
+function readJournalMode(database) {
+  const row = database?.prepare("PRAGMA journal_mode").get();
+  return String(row?.journal_mode || row?.journalMode || "").toLowerCase();
+}
+
+export function createHealthResponse(started, port) {
+  if (!started?.memory?.daemonDatabase) {
+    return jsonResponse({ status: "starting" }, 503);
+  }
+
+  const dbMode = readJournalMode(started.memory.daemonDatabase());
+  if (dbMode !== "wal") {
+    return jsonResponse({ status: "degraded", port, db_mode: dbMode || "unknown" }, 503);
+  }
+
+  return jsonResponse({ status: "ok", port, db_mode: dbMode });
+}
+
 
 function sqlString(filePath) {
   return path.resolve(filePath).replaceAll("'", "''");
@@ -193,6 +218,11 @@ export async function mountedFetch(request) {
   if (rejected) return rejected;
   const unauthorized = assertDaemonAuth(request);
   if (unauthorized) return unauthorized;
+  const url = new URL(request.url);
+  const port = Number(process.env.KB_CACHE_DAEMON_PORT || 8765);
+  if (request.method === "GET" && url.pathname === "/health") {
+    return createHealthResponse(started, port);
+  }
   return applyIdempotency(request, {
     mutations: started.mutations,
     ledger: started.ledger,
