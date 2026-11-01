@@ -14,6 +14,9 @@ created: "2026-10-31"
 # Bombard-Williamson Redaction Index
 ## GAP-20: Redactions Introduced into Owen Bombard Oral Histories
 
+> [!NOTE]
+> **Canonical Research Vault Location:** The primary archival extraction dossier is located in `trm-vault` at `topics/charlie/bombard-memoir-delta/extracts/bombard-williamson-redaction-index.md` (and mirrored in `topics/charlie/extracts/`). This note in `kb-sync` serves as the wiki registration stub and cross-repository index for GAP-20.
+
 **Scope:** Side-by-side comparison of raw BFRC Accession 65 transcripts (Charles E. Sorensen dictations, 1952-1954) against the 1956 published memoir *My Forty Years with Ford* (ed. Samuel T. Williamson, W.W. Norton).  
 **Focus themes:** (1) Henry Ford's cognitive decline, (2) Harry Bennett's underworld ties and physical confrontations, (3) Executive compensation, (4) Assembly-line attribution.  
 **Confidence tags:** VERIFIED = direct quote from extracted source text. INFERRED = from existing thematic audits. UNKNOWN = span not yet matched or full raw text unavailable for that point.  
