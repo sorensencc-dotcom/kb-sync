@@ -1,0 +1,18 @@
+STATUS.md
+  h_5c172e9b435f5a 3-35,271-277
+trm-research-gaps.md
+  h_5c172e9b435f5a 3080
+wiki/research/bombard-williamson-redaction-index.md
+  h_5c172e9b435f5a 1-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "94adc41524c4aae280443c4952fd8313e5b55039",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
