@@ -1,4 +1,4 @@
-import test from 'node:test';
+import { test, describe, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   toPosixPath,
@@ -7,55 +7,106 @@ import {
   normalizeNativePath
 } from '../../core/path-normalizer.mjs';
 
-test('toPosixPath', (t) => {
-  assert.equal(toPosixPath(''), '');
-  assert.equal(toPosixPath(undefined), '');
-  assert.equal(toPosixPath(null), '');
-  assert.equal(toPosixPath('C:\\dev\\kb-sync\\modules\\notebooklm'), 'C:/dev/kb-sync/modules/notebooklm');
-  assert.equal(toPosixPath('C:/already/posix/path'), 'C:/already/posix/path');
-  assert.equal(toPosixPath('/unix/style/path'), '/unix/style/path');
+describe('toPosixPath', () => {
+  test('returns empty string for falsy values', () => {
+    assert.equal(toPosixPath(undefined), '');
+    assert.equal(toPosixPath(null), '');
+    assert.equal(toPosixPath(''), '');
+  });
+
+  test('converts backslashes to forward slashes', () => {
+    assert.equal(toPosixPath('C:\\dev\\kb-sync'), 'C:/dev/kb-sync');
+    assert.equal(toPosixPath('path\\to\\file.txt'), 'path/to/file.txt');
+  });
+
+  test('leaves forward slashes intact', () => {
+    assert.equal(toPosixPath('C:/dev/kb-sync'), 'C:/dev/kb-sync');
+    assert.equal(toPosixPath('path/to/file.txt'), 'path/to/file.txt');
+  });
+
+  test('handles mixed slashes', () => {
+    assert.equal(toPosixPath('C:\\dev/kb-sync\\test'), 'C:/dev/kb-sync/test');
+  });
+
+  test('converts non-string inputs to string', () => {
+    assert.equal(toPosixPath(123), '123');
+  });
 });
 
-test('toWindowsPath', (t) => {
-  assert.equal(toWindowsPath(''), '');
-  assert.equal(toWindowsPath(undefined), '');
-  assert.equal(toWindowsPath(null), '');
-  assert.equal(toWindowsPath('/mnt/c/dev/kb-sync/repo_knowledge_pack.txt'), 'c:\\dev\\kb-sync\\repo_knowledge_pack.txt');
-  assert.equal(toWindowsPath('/mnt/D/dev/kb-sync'), 'D:\\dev\\kb-sync');
-  assert.equal(toWindowsPath('/c/dev/kb-sync'), 'c:\\dev\\kb-sync');
-  assert.equal(toWindowsPath('/E/dev/kb-sync'), 'E:\\dev\\kb-sync');
-  assert.equal(toWindowsPath('C:/already/windows/path'), 'C:\\already\\windows\\path');
+describe('toWindowsPath', () => {
+  test('returns empty string for falsy values', () => {
+    assert.equal(toWindowsPath(undefined), '');
+    assert.equal(toWindowsPath(null), '');
+    assert.equal(toWindowsPath(''), '');
+  });
+
+  test('converts /mnt/c/ paths to C:\\', () => {
+    assert.equal(toWindowsPath('/mnt/c/dev/kb-sync'), 'c:\\dev\\kb-sync');
+    assert.equal(toWindowsPath('/mnt/D/path/to/file'), 'D:\\path\\to\\file');
+  });
+
+  test('converts /c/ paths to C:\\', () => {
+    assert.equal(toWindowsPath('/c/dev/kb-sync'), 'c:\\dev\\kb-sync');
+    assert.equal(toWindowsPath('/D/path/to/file'), 'D:\\path\\to\\file');
+  });
+
+  test('converts forward slashes to backslashes', () => {
+    assert.equal(toWindowsPath('C:/dev/kb-sync'), 'C:\\dev\\kb-sync');
+    assert.equal(toWindowsPath('path/to/file'), 'path\\to\\file');
+  });
+
+  test('leaves backslashes intact', () => {
+    assert.equal(toWindowsPath('C:\\dev\\kb-sync'), 'C:\\dev\\kb-sync');
+  });
+
+  test('converts non-string inputs to string', () => {
+    assert.equal(toWindowsPath(123), '123');
+  });
 });
 
-test('toWslPath', (t) => {
-  assert.equal(toWslPath(''), '');
-  assert.equal(toWslPath(undefined), '');
-  assert.equal(toWslPath(null), '');
-  assert.equal(toWslPath('C:\\dev\\kb-sync\\configs\\global.yaml'), '/mnt/c/dev/kb-sync/configs/global.yaml');
-  assert.equal(toWslPath('D:\\dev\\kb-sync'), '/mnt/d/dev/kb-sync');
-  assert.equal(toWslPath('E:/dev/kb-sync'), '/mnt/e/dev/kb-sync');
-  assert.equal(toWslPath('/mnt/c/already/wsl'), '/mnt/c/already/wsl');
-  assert.equal(toWslPath('/home/user/path'), '/home/user/path');
+describe('toWslPath', () => {
+  test('returns empty string for falsy values', () => {
+    assert.equal(toWslPath(undefined), '');
+    assert.equal(toWslPath(null), '');
+    assert.equal(toWslPath(''), '');
+  });
+
+  test('converts C:\\ paths to /mnt/c/', () => {
+    assert.equal(toWslPath('C:\\dev\\kb-sync'), '/mnt/c/dev/kb-sync');
+    assert.equal(toWslPath('d:\\path\\to\\file'), '/mnt/d/path/to/file');
+  });
+
+  test('converts C:/ paths to /mnt/c/', () => {
+    assert.equal(toWslPath('C:/dev/kb-sync'), '/mnt/c/dev/kb-sync');
+    assert.equal(toWslPath('d:/path/to/file'), '/mnt/d/path/to/file');
+  });
+
+  test('leaves already wsl paths intact', () => {
+    assert.equal(toWslPath('/mnt/c/dev/kb-sync'), '/mnt/c/dev/kb-sync');
+  });
 });
 
-test('normalizeNativePath', (t) => {
+describe('normalizeNativePath', () => {
   const originalPlatform = process.platform;
 
-  // Test win32
-  Object.defineProperty(process, 'platform', { value: 'win32' });
-  assert.equal(normalizeNativePath('/mnt/c/dev/kb-sync/repo_knowledge_pack.txt'), 'c:\\dev\\kb-sync\\repo_knowledge_pack.txt');
-  assert.equal(normalizeNativePath('C:\\dev\\kb-sync'), 'C:\\dev\\kb-sync');
-  assert.equal(normalizeNativePath('C:/dev/kb-sync'), 'C:\\dev\\kb-sync');
+  afterEach(() => {
+    Object.defineProperty(process, 'platform', { value: originalPlatform });
+  });
 
-  // Test linux
-  Object.defineProperty(process, 'platform', { value: 'linux' });
-  assert.equal(normalizeNativePath('C:\\dev\\kb-sync\\modules\\notebooklm'), 'C:/dev/kb-sync/modules/notebooklm');
-  assert.equal(normalizeNativePath('/mnt/c/dev/kb-sync/repo_knowledge_pack.txt'), '/mnt/c/dev/kb-sync/repo_knowledge_pack.txt');
-  assert.equal(normalizeNativePath('C:/dev/kb-sync'), 'C:/dev/kb-sync');
+  test('uses toWindowsPath when platform is win32', () => {
+    Object.defineProperty(process, 'platform', { value: 'win32' });
+    assert.equal(normalizeNativePath('/mnt/c/dev/kb-sync'), 'c:\\dev\\kb-sync');
+    assert.equal(normalizeNativePath('C:/dev/kb-sync'), 'C:\\dev\\kb-sync');
+  });
 
-  // Test darwin (should act like posix)
-  Object.defineProperty(process, 'platform', { value: 'darwin' });
-  assert.equal(normalizeNativePath('C:\\dev\\kb-sync\\modules\\notebooklm'), 'C:/dev/kb-sync/modules/notebooklm');
+  test('uses toPosixPath when platform is not win32', () => {
+    Object.defineProperty(process, 'platform', { value: 'linux' });
+    assert.equal(normalizeNativePath('C:\\dev\\kb-sync'), 'C:/dev/kb-sync');
+    assert.equal(normalizeNativePath('path\\to\\file'), 'path/to/file');
+  });
 
-  Object.defineProperty(process, 'platform', { value: originalPlatform });
+  test('uses toPosixPath when platform is darwin', () => {
+    Object.defineProperty(process, 'platform', { value: 'darwin' });
+    assert.equal(normalizeNativePath('C:\\dev\\kb-sync'), 'C:/dev/kb-sync');
+  });
 });
