@@ -159,7 +159,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/node": "2.1.1",
-    "@modelcontextprotocol/server": "2.3.1"
+    "@modelcontextprotocol/server": "^2.3.1"
   },
   "optionalDependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
