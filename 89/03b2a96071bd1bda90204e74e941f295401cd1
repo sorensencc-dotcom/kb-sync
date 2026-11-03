@@ -1,0 +1,38 @@
+.sync-status.json
+  h_5c172e9b435f5a 2,4-7,11-12
+fix-sync.js
+  h_5c172e9b435f5a 1-5
+package-lock.json
+  h_5c172e9b435f5a 12,22-24,528-555,649-938,946-970,992-1029,1063-1072,1115-1124,1158-1167,1216-1222,1325-1334,1345-1354,1375-1392,1624-1884,1886-1890,1893-1899,1901-1914,1917-1923,1925-1928,1930-1931,1933-1935,1938-1944,1946-1950,1952-1956,1959-1962,1965-1966,2009-2027,2092-2105,2137-2156,2214-2276,2291-2300,2319-2325,2336-2372,2557-2717,2799-2811
+package.json
+  h_5c172e9b435f5a 79,162,176-178
+tests/core/path-normalizer.test.mjs
+  h_5c172e9b435f5a 1-112
+tests/enrich-pending-lessons.test.mjs
+  h_5c172e9b435f5a 1-128
+tests/local-file-adapter-transport.test.mjs
+  h_5c172e9b435f5a 1-50
+tests/modules/obsidian/providers/anthropicProvider.test.ts
+  h_5c172e9b435f5a 1-60
+tests/modules/obsidian/providers/index.test.ts
+  h_5c172e9b435f5a 1-53
+tests/modules/obsidian/synthesize-wiki.test.ts
+  h_5c172e9b435f5a 1-104
+tests/obsidian/providers/localProvider.test.ts
+  h_5c172e9b435f5a 1-57
+tests/offline-template-provider.test.ts
+  h_5c172e9b435f5a 1-124
+tests/process-unenriched-lessons.test.ts
+  h_5c172e9b435f5a 1-183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8903b2a96071bd1bda90204e74e941f295401cd1",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
