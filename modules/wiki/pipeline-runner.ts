@@ -32,6 +32,7 @@ import { publishWiki, deriveWikiSshUrl } from '../../scripts/sync-github-wiki.mj
 import { redactCredentialsInText } from './credential-redaction.mjs';
 import { syncKnowledgeCache } from '../cache/sync-cache.mjs';
 import { getDatabase } from '../cache/db-schema.mjs';
+import { generateWikiIndex } from '../../scripts/generate-wiki-index.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const KB_SYNC_ROOT = path.resolve(path.dirname(__filename), '../..');
@@ -360,7 +361,8 @@ export async function runPipeline(options: PipelineOptions = {}): Promise<Pipeli
         if (missing.length || stale.length || indexedExtras.length) {
           throw new Error(`index not current: missing=${missing.length} stale=${stale.length} obsolete_indexed=${indexedExtras.length}${missing[0] ? ` (e.g. ${missing[0]})` : ''}`);
         }
-        return `indexed ${pages.length} generated pages (inserted=${stats.inserted} updated=${stats.updated} deleted=${stats.deleted})`;
+        const index = generateWikiIndex({ dbPath: o.dbPath, wikiDir: o.wikiDir });
+        return `indexed ${pages.length} generated pages (inserted=${stats.inserted} updated=${stats.updated} deleted=${stats.deleted}); Index.md lists ${index.pages} pages in ${index.files.length} file(s)`;
       } finally {
         db.close();
       }
