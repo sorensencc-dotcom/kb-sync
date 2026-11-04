@@ -38,3 +38,13 @@ test('content lint finds orphans, dead wikilinks and stale pages', () => {
   assert.equal(r.stale_pages[0].page, 'concepts/b.md');
   assert.equal(r.top_offenders.dead_links_by_page.length, 2);
 });
+
+test('content lint counts dot-named pages and resolves full-suffix links to them', () => {
+  const w = tmp('lint-dot-');
+  fs.mkdirSync(path.join(w, 'entities'));
+  fs.writeFileSync(path.join(w, 'Index.md'), '[[entities/.state.json.md]] [[entities/lesson.md.md]]');
+  fs.writeFileSync(path.join(w, 'entities', '.state.json.md'), 'x');
+  fs.writeFileSync(path.join(w, 'entities', 'lesson.md.md'), 'x');
+  const r = lintContent({ wikiDir: w, now: Date.parse('2026-11-03'), gitTimes: new Map() });
+  assert.deepEqual(r.counts, { pages: 3, orphans: 0, dead_links: 0, stale: 0 });
+});

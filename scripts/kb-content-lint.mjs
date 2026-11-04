@@ -21,9 +21,9 @@ function walk(dir, base = dir, out = []) {
   let entries;
   try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
   for (const e of entries) {
-    if (e.name.startsWith('.')) continue;
     const full = path.join(dir, e.name);
-    if (e.isDirectory()) walk(full, base, out);
+    // Skip dot-directories (.git, .obsidian) but not dot-named pages such as .dream-state.json.md.
+    if (e.isDirectory()) { if (!e.name.startsWith('.')) walk(full, base, out); }
     else if (e.name.endsWith('.md')) out.push(path.relative(base, full).split(path.sep).join('/'));
   }
   return out;

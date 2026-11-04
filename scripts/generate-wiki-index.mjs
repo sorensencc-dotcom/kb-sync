@@ -42,7 +42,9 @@ export function generateWikiIndex({ dbPath = DEFAULT_DB_PATH, wikiDir = path.res
     const category = row.category || 'uncategorized';
     if (!groups.has(category)) groups.set(category, []);
     const summary = summarize(row.abstract, row.content);
-    groups.get(category).push(`- [[${rel.slice(0, -3)}]]${summary ? ` — ${summary}` : ''}`);
+    // Keep the .md suffix when the stem already has an extension (e.g. lesson.md.md, .dream-state.json.md), or the link resolves to a different page.
+    const target = /\.[^/]+$/.test(rel.slice(0, -3)) ? rel : rel.slice(0, -3);
+    groups.get(category).push(`- [[${target}]]${summary ? ` — ${summary}` : ''}`);
   }
   const categories = [...groups.keys()].sort();
   const pages = categories.reduce((n, c) => n + groups.get(c).length, 0);
