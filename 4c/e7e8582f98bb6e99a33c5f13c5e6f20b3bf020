@@ -1,0 +1,14 @@
+scripts/heal-frontmatter.mjs
+  h_5c172e9b435f5a 3,5-6,20-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4ce7e8582f98bb6e99a33c5f13c5e6f20b3bf020",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
