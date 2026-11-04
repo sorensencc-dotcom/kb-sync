@@ -32,6 +32,7 @@
     "sync:research": "node scripts/pipeline/cluster-sync-runner.mjs --mode=research",
     "sync:catchup": "node scripts/pipeline/cluster-sync-runner.mjs --mode=catchup",
     "test:dynamic-battery": "node --test tests/dynamic-question-battery.test.mjs",
+    "test:grounding-gate": "node --test tests/verify-grounding-gate.test.mjs",
     "test:replace-gate": "node --test tests/nlm-pack-replace-gate.test.mjs tests/nlm-pack-family-contract.test.mjs tests/nlm-pack-replace-cutover-failure.test.mjs",
     "test:pack-count": "node --test tests/nlm-pack-count-check.test.mjs",
     "nlm:pack-count": "node scripts/nlm-pack-count-check.mjs",
