@@ -32,6 +32,8 @@ import { publishWiki, deriveWikiSshUrl } from '../../scripts/sync-github-wiki.mj
 import { redactCredentialsInText } from './credential-redaction.mjs';
 import { syncKnowledgeCache } from '../cache/sync-cache.mjs';
 import { getDatabase } from '../cache/db-schema.mjs';
+import { generateWikiIndex } from '../../scripts/generate-wiki-index.mjs';
+import { runContentLint } from '../../scripts/kb-content-lint.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const KB_SYNC_ROOT = path.resolve(path.dirname(__filename), '../..');
@@ -79,6 +81,9 @@ export interface PipelineOptions {
   repoRoot?: string;
   repoName?: string;
   wikiDir?: string;
+  /** Run content lint during --status (CLI default on; library default off). */
+  contentLint?: boolean;
+  lintMaxAgeDays?: number;
   dbPath?: string;
   statePath?: string;
   publish?: boolean;
@@ -360,7 +365,8 @@ export async function runPipeline(options: PipelineOptions = {}): Promise<Pipeli
         if (missing.length || stale.length || indexedExtras.length) {
           throw new Error(`index not current: missing=${missing.length} stale=${stale.length} obsolete_indexed=${indexedExtras.length}${missing[0] ? ` (e.g. ${missing[0]})` : ''}`);
         }
-        return `indexed ${pages.length} generated pages (inserted=${stats.inserted} updated=${stats.updated} deleted=${stats.deleted})`;
+        const index = generateWikiIndex({ dbPath: o.dbPath, wikiDir: o.wikiDir });
+        return `indexed ${pages.length} generated pages (inserted=${stats.inserted} updated=${stats.updated} deleted=${stats.deleted}); Index.md lists ${index.pages} pages in ${index.files.length} file(s)`;
       } finally {
         db.close();
       }
@@ -401,6 +407,8 @@ export interface PipelineStatus {
   overall: PipelineOverall;
   reasons: string[];
   state: PipelineState | null;
+  /** Informational content lint (orphans, dead wikilinks, stale pages); does not change `overall`. */
+  lint?: { pages: number; orphans: number; dead_links: number; stale: number; max_age_days: number; report: string } | { error: string };
 }
 
 /**
@@ -409,6 +417,17 @@ export interface PipelineStatus {
  * (for publish runs) the sync receipt are all still current.
  */
 export function evaluatePipelineStatus(options: PipelineOptions = {}): PipelineStatus {
+  const base = evaluateRunStatus(options);
+  if (!options.contentLint) return base;
+  const o = resolveOptions(options);
+  try {
+    return { ...base, lint: runContentLint({ repoRoot: o.repoRoot, wikiDir: o.wikiDir, maxAgeDays: options.lintMaxAgeDays }) };
+  } catch (e) {
+    return { ...base, lint: { error: e instanceof Error ? e.message : String(e) } };
+  }
+}
+
+function evaluateRunStatus(options: PipelineOptions): PipelineStatus {
   const o = resolveOptions(options);
   const state = readJson<PipelineState>(o.statePath);
   const reasons: string[] = [];
@@ -455,6 +474,8 @@ function parseCli(argv: string[]) {
       publish: argv.includes('--publish'),
       force: argv.includes('--force'),
       receiptMaxAgeMs: hours ? Number(hours) * 3600 * 1000 : undefined,
+      contentLint: !argv.includes('--no-lint'),
+      lintMaxAgeDays: val('--lint-max-age-days') ? Number(val('--lint-max-age-days')) : undefined,
     } as PipelineOptions,
   };
 }
@@ -469,6 +490,7 @@ if (process.argv[1] && process.argv[1].endsWith('pipeline-runner.ts')) {
   if (cli.status) {
     const s = evaluatePipelineStatus(cli.options);
     console.log(`[PIPELINE] status=${s.overall}${s.reasons.length ? `\n  - ${s.reasons.join('\n  - ')}` : ''}`);
+    if (s.lint) console.log('error' in s.lint ? `[PIPELINE] lint error: ${s.lint.error}` : `[PIPELINE] lint pages=${s.lint.pages} orphans=${s.lint.orphans} dead_links=${s.lint.dead_links} stale(>${s.lint.max_age_days}d)=${s.lint.stale} report=${s.lint.report}`);
     done(s.overall, s);
   } else {
     runPipeline(cli.options)

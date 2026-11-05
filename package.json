@@ -32,6 +32,7 @@
     "sync:research": "node scripts/pipeline/cluster-sync-runner.mjs --mode=research",
     "sync:catchup": "node scripts/pipeline/cluster-sync-runner.mjs --mode=catchup",
     "test:dynamic-battery": "node --test tests/dynamic-question-battery.test.mjs",
+    "test:grounding-gate": "node --test tests/verify-grounding-gate.test.mjs",
     "test:replace-gate": "node --test tests/nlm-pack-replace-gate.test.mjs tests/nlm-pack-family-contract.test.mjs tests/nlm-pack-replace-cutover-failure.test.mjs",
     "test:pack-count": "node --test tests/nlm-pack-count-check.test.mjs",
     "nlm:pack-count": "node scripts/nlm-pack-count-check.mjs",
@@ -76,7 +77,7 @@
     "artifact:generate:all": "bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml notebooklm && bash modules/artifact-generator/generate.sh configs/artifact-generator.yaml obsidian",
     "test:notebooklm": "npx tsx tests/notebooklm-sync-verification.ts && bash tests/notebooklm-submodule-guard.test.sh && bash tests/notebooklm-polling.test.sh && node --test --test-timeout=55000 tests/notebooklm-multipart.test.mjs tests/notebooklm-telemetry-contract.test.mjs tests/ingest-nlm-reconciliation.test.mjs tests/notebooklm-shell-json-contract.test.mjs",
     "test:core": "npx tsx tests/core-scripts-verification.ts",
-    "test:obsidian": "node --test --test-timeout=15000 tests/obsidian-coverage-policy.test.mjs && npx tsx tests/obsidian-sync-verification.ts",
+    "test:obsidian": "node --test --test-timeout=15000 tests/obsidian-coverage-policy.test.mjs && npx tsx tests/obsidian-sync-verification.ts && npx tsx --test tests/modules/obsidian/synthesize-wiki.test.ts",
     "test:worker": "npx tsx tests/synthesize-worker-verification.ts",
     "test:v12-features": "npx tsx tests/validate-staging-v12-features.ts",
     "test:contract-cleanup": "npx tsx tests/wiki-contract-cleanup-verification.ts",
@@ -87,7 +88,7 @@
     "test:native:path": "node --test --experimental-strip-types tests/path-normalizer-verification.ts",
     "test:viking": "node --test --experimental-strip-types tests/viking-bridge.test.ts",
     "test:incremental": "npx tsx tests/incremental-delta-sync.test.ts",
-    "test:all": "npm run test:deps-sync && npm run test:replace-gate && npm run test:atomic-pack-guardrail && npm run test:mcp-health && npm run test:mcp-watchdog && npm run test:nlm-deletion-policy && npm run test:dynamic-battery && npm run test:manifest && npm run test:core && npm run test:obsidian && npm run test:incremental && npm run test:worker && npm run test:harness && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:path && npm run test:perf && npm run test:pipeline-freshness",
+    "test:all": "npm run test:deps-sync && npm run test:replace-gate && npm run test:atomic-pack-guardrail && npm run test:mcp-health && npm run test:mcp-watchdog && npm run test:nlm-deletion-policy && npm run test:dynamic-battery && npm run test:manifest && npm run test:core && npm run test:obsidian && npm run test:incremental && npm run test:worker && npm run test:harness && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:path && npm run test:perf && npm run test:pipeline-freshness && npm run test:wiki-index && npm run test:kb-file-back-lint",
     "kb:compact": "node modules/compactor/cli.mjs",
     "deps:verify": "node scripts/verify-dependencies.mjs",
     "cross-audit": "node scripts/cross-audit.mjs",
@@ -115,6 +116,8 @@
     "test:targets": "node --test tests/targets.test.mjs",
     "test:trm": "node --test --experimental-strip-types tests/trm-pipeline.test.ts",
     "kb:cache:sync": "node scripts/sync-kb-cache.mjs",
+    "wiki:index": "node scripts/generate-wiki-index.mjs",
+    "test:wiki-index": "node --test tests/generate-wiki-index.test.mjs",
     "kb:cache:server": "node scripts/mcp-memory-server.mjs",
     "kb:cache:daemon": "node scripts/mcp-memory-daemon.mjs",
     "trm:triage": "node scripts/trm-triage.mjs",
@@ -155,7 +158,10 @@
     "bot:report": "node ../scripts/ironbots-daily-reporter.mjs",
     "bot:reporter": "node ../scripts/ironbots-daily-reporter.mjs",
     "bot:all": "npm run bot:notebook:ingest && npm run bot:kb:sentinel && npm run bot:trm:triage && npm run bot:watchlist:mine && npm run bot:daemon:heal && npm run bot:ironledger:sentinel && npm run bot:ci:watchdog && npm run bot:trm:ingress && npm run bot:storage:pruner && npm run bot:report",
-    "test:ironbots": "node --test ../tests/ironbots.test.mjs"
+    "test:ironbots": "node --test ../tests/ironbots.test.mjs",
+    "test:kb-file-back-lint": "node --test tests/kb-file-back-and-lint.test.mjs",
+    "kb:file-answer": "node scripts/kb-file-answer.mjs",
+    "kb:lint": "node scripts/kb-content-lint.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/node": "2.1.1",
@@ -173,6 +179,8 @@
     "playwright": "^1.62.1",
     "pngjs": "^7.0.0",
     "tsx": "^4.0.0",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
   }
 }
