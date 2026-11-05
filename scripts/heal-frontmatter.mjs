@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const wikiDir = path.resolve('obsidian/vault/wiki');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const wikiDir = path.resolve(__dirname, '../obsidian/vault/wiki');
 
 function scan(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -15,7 +17,8 @@ function scan(dir) {
       const rel = path.relative(wikiDir, full).replace(/\\/g, '/');
       const base = path.basename(full, '.md');
       const title = base.replace(/[-_]+/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      const now = new Date().toISOString().slice(0, 10);
+      const dateMatch = rel.match(/conversations\/(\d{4}-\d{2}-\d{2})\//);
+      const now = dateMatch ? dateMatch[1] : new Date().toISOString().slice(0, 10);
       const isResearch = rel.includes('research/');
       const defaultCategory = isResearch ? 'research' : 'wiki';
 
