@@ -6,6 +6,8 @@
   "scripts": {
     "prepare": "node scripts/install-git-hooks.mjs",
     "test": "npm run test:all",
+    "test:telemetry": "node --test modules/telemetry/spur-content-telemetry.test.mjs tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs",
+    "audit:spur": "node scripts/audit-spur.mjs",
     "secret-scan": "node scripts/secret-scan.mjs",
     "test:nlm-deletion-policy": "node scripts/notebooklm/scan-nlm-deletion-policy.mjs && node --test tests/notebooklm-deletion-policy.test.mjs",
     "test:atomic-pack-guardrail": "node --test --test-timeout=10000 tests/trm-act-kbsync-atomic-pack-replacement-guardrail.test.mjs",
