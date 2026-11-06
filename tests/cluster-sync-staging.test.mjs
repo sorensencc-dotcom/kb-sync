@@ -329,4 +329,41 @@ test('runNotebookSweep bypasses pack upload when pack_writer is master', async (
   assert.equal(Boolean(loadQuarantine().quarantined[testId]), false, 'Quarantine must be cleared on successful bypass');
 });
 
+test('runNotebookSweep injects dynamic question battery via queryNotebookFn during live sweep', async () => {
+  const injectedCalls = [];
+  const summary = await runNotebookSweep(
+    {
+      key: 'dev_triage',
+      uuid: 'cb0498ce-1ea5-4668-9f65-ac368753404e',
+      pack_family: 'pack_dev_triage',
+      has_pack: false,
+    },
+    {
+      isDryRun: false,
+      maxQuestionsToInject: 2,
+      generateQuestionBattery: () => ({
+        entropy: 4.312,
+        source: 'ast_entities',
+        questions: [
+          { id: 'q1', text: 'Investigate recent CI triage failure in Open Dev Issues.' },
+          { id: 'q2', text: 'Cross-reference quarantine healing with outbox receipt sync.' },
+          { id: 'q3', text: 'Third question beyond maxQuestionsToInject.' },
+        ],
+      }),
+      queryNotebookFn: async (notebookId, qText) => {
+        injectedCalls.push({ notebookId, qText });
+        return { ok: true, status: 0, stdout: '{}', stderr: '' };
+      },
+    }
+  );
+
+  assert.equal(summary.status, 'SUCCESS');
+  assert.equal(summary.questionsMined, 3);
+  assert.equal(summary.questionsInjected, 2);
+  assert.equal(injectedCalls.length, 2);
+  assert.equal(injectedCalls[0].notebookId, 'cb0498ce-1ea5-4668-9f65-ac368753404e');
+  assert.equal(injectedCalls[0].qText, 'Investigate recent CI triage failure in Open Dev Issues.');
+});
+
+
 
