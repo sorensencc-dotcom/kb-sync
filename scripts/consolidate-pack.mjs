@@ -16,6 +16,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { NOTEBOOK_TARGETS, resolveNotebookId, resolveCategoryKey, getMasterKbExclusions } from '../core/config.mjs';
+import { partitionPackIntoChunks } from '../core/nlm-chunker.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -259,6 +260,15 @@ export function extractFrontmatter(content) {
   return data;
 }
 
+export function findPackFamilyFiles(outDir, filename) {
+  const base = filename.replace(/\.txt$/i, '').toLowerCase();
+  const partRe = new RegExp(`^${base}_part\\d+\\.txt$`);
+  return fs.readdirSync(outDir).filter((f) => {
+    const lower = f.toLowerCase();
+    return lower === `${base}.txt` || partRe.test(lower);
+  });
+}
+
 export function consolidatePacks(options = {}) {
   const rootDir = options.rootDir || path.resolve(__dirname, '../..');
   const outDir = options.outDir || path.join(rootDir, '.nlm_pack');
@@ -351,52 +361,46 @@ export function consolidatePacks(options = {}) {
   const generatedPacks = [];
 
   for (const packDef of THEMATIC_PACK_MAP) {
-    const packFile = path.join(outDir, packDef.filename);
     const items = categorized[packDef.category] || [];
     const facts = loadScopedFacts(rootDir, packDef.category, items, NON_HISTORICAL_CATEGORIES);
 
-    let payload = `================================================================================\n`;
-    payload += `THEMATIC KNOWLEDGE PACK: ${packDef.title}\n`;
-    payload += `CATEGORY: ${packDef.category}\n`;
-    payload += `TARGET NOTEBOOK: ${packDef.notebookId}\n`;
-    payload += `COMPILED AT: ${new Date().toISOString()}\n`;
-    payload += `FACT_REGISTRY_COUNT: ${facts.length}\n`;
-    payload += `FILE COUNT: ${items.length}\n`;
-    payload += `================================================================================\n\n`;
-
-    if (facts.length > 0) {
-      payload += formatFactRegistrySection(facts, MAX_FACT_REGISTRY_BYTES);
-    }
-
-    for (const item of items) {
-      payload += `--- START FILE: ${item.relPath} ---\n`;
-      if (item.frontmatter.source_title) {
-        payload += `PROVENANCE SOURCE: ${item.frontmatter.source_title}\n`;
-        payload += `REPOSITORY: ${item.frontmatter.repository || 'N/A'}\n`;
-        payload += `DOCUMENT DATE: ${item.frontmatter.document_date || 'N/A'}\n`;
-        payload += `VERIFICATION STATUS: ${item.frontmatter.verification_status || 'N/A'}\n`;
-      }
-      payload += `\n${item.content}\n`;
-      payload += `--- END FILE: ${item.relPath} ---\n\n`;
-    }
-
-    fs.writeFileSync(packFile, payload, 'utf8');
-    const bytes = fs.statSync(packFile).size;
-    const mb = bytes / (1024 * 1024);
-
-    if (bytes > MAX_PACK_BYTES) {
-      logWarn(`Pack ${packDef.filename} (${(bytes / 1024).toFixed(2)} KB) exceeds ${MAX_PACK_BYTES / 1024} KiB chunk boundary!`);
-    } else {
-      logInfo(`✓ Emitted ${packDef.filename} (${(bytes / 1024).toFixed(2)} KB, ${items.length} files, ${facts.length} facts) -> Target: ${packDef.notebookId}`);
-    }
-
-    generatedPacks.push({
-      packDef,
-      packFile,
-      bytes,
-      fileCount: items.length,
-      factCount: facts.length
+    const shards = partitionPackIntoChunks(packDef, items, facts, {
+      maxPackBytes: MAX_PACK_BYTES,
+      maxFactBytes: MAX_FACT_REGISTRY_BYTES
     });
+
+    const written = new Set();
+    for (const shard of shards) {
+      const packFile = path.join(outDir, shard.filename);
+      fs.writeFileSync(packFile, shard.payload, 'utf8');
+      written.add(shard.filename);
+      const bytes = fs.statSync(packFile).size;
+
+      if (bytes > MAX_PACK_BYTES) {
+        logWarn(`Pack ${shard.filename} (${(bytes / 1024).toFixed(2)} KB) exceeds ${MAX_PACK_BYTES / 1024} KiB chunk boundary!`);
+      } else {
+        logInfo(`✓ Emitted ${shard.filename} (${(bytes / 1024).toFixed(2)} KB, ${shard.itemCount} files, ${shard.factCount} facts) -> Target: ${packDef.notebookId}`);
+      }
+
+      generatedPacks.push({
+        packDef,
+        packFile,
+        bytes,
+        fileCount: shard.itemCount,
+        factCount: shard.factCount,
+        shardIndex: shard.shardIndex || 1,
+        totalShards: shard.totalShards || 1
+      });
+    }
+
+    // The sync runner prefers _partN files over the single pack, so any family
+    // file this build did not write would be uploaded as stale content.
+    for (const stale of findPackFamilyFiles(outDir, packDef.filename)) {
+      if (!written.has(stale)) {
+        fs.unlinkSync(path.join(outDir, stale));
+        logInfo(`Removed stale pack file ${stale}`);
+      }
+    }
   }
 
   return generatedPacks;
