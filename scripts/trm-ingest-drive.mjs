@@ -404,7 +404,7 @@ export async function ingestDriveFindings(options = {}) {
         targetFile = path.join(targetDir, `${slug}.${timeSuffix}.md`);
       }
 
-      const docContent = `---\nsource: ${frontmatter.source || 'grok'}\nskill: ${frontmatter.skill || 'drive-it'}\ntopic: ${frontmatter.topic || 'general'}\ntitle: "${(frontmatter.title || slug).replace(/"/g, '\\"')}"\ncreated: ${frontmatter.created || new Date().toISOString()}\nfolder_id: ${frontmatter.folder_id || ''}\nstatus: drop\nprovenance_type: mobile_inbox_drop\ncontent_sha256: ${content_sha256}\n---\n\n${body}\n`;
+      const docContent = `---\nsource: ${frontmatter.source || 'grok'}\nskill: ${frontmatter.skill || 'drive-it'}\ntopic: ${frontmatter.topic || 'general'}\naction_type: ${frontmatter.action_type || 'antigravity_triage'}\ntitle: "${(frontmatter.title || slug).replace(/"/g, '\\"')}"\ncreated: ${frontmatter.created || new Date().toISOString()}\nfolder_id: ${frontmatter.folder_id || ''}\nstatus: drop\nprovenance_type: mobile_inbox_drop\ncontent_sha256: ${content_sha256}\n---\n\n${body}\n`;
 
       fs.writeFileSync(targetFile, docContent, 'utf8');
       touchedFiles.push(targetFile);

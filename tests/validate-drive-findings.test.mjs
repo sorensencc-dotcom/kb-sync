@@ -1,6 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateFinding, validateMobileInboxDrop, computeFindingId, LINK_SCRUBBER_REGEX } from '../scripts/validate-drive-findings.mjs';
+import {
+  validateFinding,
+  validateMobileInboxDrop,
+  computeFindingId,
+  LINK_SCRUBBER_REGEX,
+  inferActionType,
+  validatePayload
+} from '../scripts/validate-drive-findings.mjs';
 
 test('validateFinding accepts valid findings and computes 0x1f finding_id', () => {
   const raw = `---
@@ -101,5 +108,85 @@ See reference: %5Bsuspicious%20link%20removed%5D
   assert.equal(resEncoded.valid, false);
   assert.equal(resEncoded.quarantine_reason, 'link_scrubber_corruption');
   assert.equal(resEncoded.frontmatter.topic, 'cic');
+});
+
+test('inferActionType preserves explicit action types and falls back accurately', () => {
+  assert.equal(inferActionType({ action_type: 'deterministic_fix' }), 'deterministic_fix');
+  assert.equal(inferActionType({ action_type: 'antigravity_triage' }), 'antigravity_triage');
+
+  // Direction heuristic
+  assert.equal(inferActionType({ direction: 'REFACTOR_OPTIMIZATION' }), 'antigravity_triage');
+  assert.equal(inferActionType({ direction: 'NEW_FEATURE_SPIKE' }), 'antigravity_triage');
+
+  // Prefix heuristic
+  assert.equal(inferActionType({ intent: 'fix_broken_parser' }), 'deterministic_fix');
+  assert.equal(inferActionType({ summary: 'remediate stale lock' }), 'deterministic_fix');
+  assert.equal(inferActionType({ category: 'prune_dangling_worktrees' }), 'deterministic_fix');
+  assert.equal(inferActionType({ intent: 'quarantine_corrupted_drops' }), 'deterministic_fix');
+  assert.equal(inferActionType({ intent: 'clean_orphaned_sessions' }), 'deterministic_fix');
+
+  // Unmapped and missing fallback to antigravity_triage
+  assert.equal(inferActionType({ action_type: 'custom_unknown' }), 'antigravity_triage');
+  assert.equal(inferActionType({}), 'antigravity_triage');
+  assert.equal(inferActionType(null), 'antigravity_triage');
+});
+
+test('validatePayload enforces source and intent while normalizing missing action_type', () => {
+  assert.throws(() => validatePayload(null), /Payload must be an object/);
+  assert.throws(() => validatePayload({ intent: 'test_intent' }), /Missing source/);
+  assert.throws(() => validatePayload({ source: 'mobile-gemini' }), /Missing intent/);
+
+  const pendingGap = { type: 'pending-gap', gap_id: 'GAP-01' };
+  assert.equal(validatePayload(pendingGap), true);
+
+  const missingType = {
+    source: 'mobile-gemini-gdoc',
+    intent: 'act_trm_ingest_action_type_fallback'
+  };
+  assert.equal(validatePayload(missingType), true);
+  assert.equal(missingType.action_type, 'antigravity_triage');
+
+  const deterministicPayload = {
+    source: 'mobile-gemini-gdoc',
+    intent: 'fix_trm_outbox_leak'
+  };
+  assert.equal(validatePayload(deterministicPayload), true);
+  assert.equal(deterministicPayload.action_type, 'deterministic_fix');
+
+  const intentInferredFromTitle = {
+    source: 'mobile-grok',
+    title: 'Sanitize Ingress Payloads'
+  };
+  assert.equal(validatePayload(intentInferredFromTitle), true);
+  assert.equal(intentInferredFromTitle.intent, 'sanitize_ingress_payloads');
+  assert.equal(intentInferredFromTitle.action_type, 'antigravity_triage');
+});
+
+test('validateMobileInboxDrop infers action_type into frontmatter', () => {
+  const dropWithFix = `---
+source: grok
+skill: drive-it
+topic: cic
+status: drop
+title: "Fix Stale Lock Ingestion"
+---
+# Fix Body
+`;
+  const resFix = validateMobileInboxDrop(dropWithFix, '2026-10-23T000000Z__cic__fix.md');
+  assert.equal(resFix.valid, true);
+  assert.equal(resFix.frontmatter.action_type, 'deterministic_fix');
+
+  const dropWithDefault = `---
+source: grok
+skill: drive-it
+topic: cic
+status: drop
+title: "Research Willow Run Wing Spars"
+---
+# Research Body
+`;
+  const resDefault = validateMobileInboxDrop(dropWithDefault, '2026-10-23T000000Z__cic__research.md');
+  assert.equal(resDefault.valid, true);
+  assert.equal(resDefault.frontmatter.action_type, 'antigravity_triage');
 });
 

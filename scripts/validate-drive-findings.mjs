@@ -48,6 +48,8 @@ export function validateFinding(rawContent) {
     return { valid: false, errors: [`YAML parse error: ${err.message}`], quarantine_reason: 'yaml_syntax_error' };
   }
 
+  fm.action_type = inferActionType(fm);
+
   if (LINK_SCRUBBER_REGEX.test(contentStr)) {
     return {
       valid: false,
@@ -91,6 +93,63 @@ export function validateFinding(rawContent) {
 
 const WINDOWS_RESERVED_NAMES = /^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i;
 
+export function inferActionType(item = {}) {
+  if (item && item.action_type && ['deterministic_fix', 'antigravity_triage'].includes(item.action_type)) {
+    return item.action_type;
+  }
+  const direction = String(item?.direction || '').toUpperCase();
+  if (direction.includes('REFACTOR') || direction.includes('FEATURE') || direction.includes('SPIKE') || direction.includes('NEW_IMPLEMENTATION')) {
+    return 'antigravity_triage';
+  }
+  const tokens = [
+    item?.intent,
+    item?.title,
+    item?.summary,
+    item?.category,
+    item?.topic,
+    item?.action_type
+  ].filter(Boolean).map(s => String(s).toLowerCase()).join(' ');
+
+  if (!tokens) return 'antigravity_triage';
+
+  const words = tokens.split(/[^a-z0-9_]+/);
+  const fixPrefixes = ['fix', 'remediate', 'prune', 'quarantine', 'clean'];
+  const hasFixPrefix = words.some(w => fixPrefixes.some(p => w === p || w.startsWith(`${p}_`)));
+
+  if (hasFixPrefix) {
+    return 'deterministic_fix';
+  }
+  return 'antigravity_triage';
+}
+
+export function validatePayload(item) {
+  if (!item || typeof item !== 'object') {
+    throw new Error('Payload must be an object');
+  }
+  if (item.type === 'pending-gap') {
+    return true;
+  }
+
+  if (!item.intent) {
+    if (item.title) {
+      item.intent = item.title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    } else if (item.topic) {
+      item.intent = item.topic.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    } else if (item.summary) {
+      item.intent = item.summary.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    } else if (item.id || item.action_id) {
+      item.intent = String(item.id || item.action_id).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    }
+  }
+
+  if (!item.source) throw new Error('Missing source');
+  if (!item.action_type || !['deterministic_fix', 'antigravity_triage'].includes(item.action_type)) {
+    item.action_type = inferActionType(item);
+  }
+  if (!item.intent) throw new Error('Missing intent');
+  return true;
+}
+
 export function sanitizeSlug(input) {
   if (!input || typeof input !== 'string') return 'untitled-drop';
   let slug = input.toLowerCase()
@@ -122,6 +181,8 @@ export function validateMobileInboxDrop(rawContent, filename = '') {
   } catch (err) {
     return { valid: false, errors: [`YAML parse error: ${err.message}`], quarantine_reason: 'yaml_syntax_error' };
   }
+
+  fm.action_type = inferActionType(fm);
 
   if (LINK_SCRUBBER_REGEX.test(contentStr)) {
     return {
