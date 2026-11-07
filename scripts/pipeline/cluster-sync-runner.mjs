@@ -362,9 +362,11 @@ export async function runNotebookSweep(notebook, options = {}) {
     if (shouldInjectLive && questionsList.length > 0) {
       const activeQueryFn = queryNotebookFn || defaultQueryNotebook;
       const toInject = questionsList.slice(0, Math.max(1, maxQuestionsToInject));
+      let attempted = 0;
       for (const qItem of toInject) {
         const qText = typeof qItem === 'string' ? qItem : qItem.text;
         if (!qText) continue;
+        attempted++;
         const qRes = await activeQueryFn(notebook.uuid, qText);
         if (qRes && qRes.ok) {
           summary.questionsInjected++;
@@ -372,6 +374,11 @@ export async function runNotebookSweep(notebook, options = {}) {
         } else {
           logWarn(`  ⚠ Failed to inject question into ${notebook.key}: ${qRes?.stderr || 'non-zero exit'}`);
         }
+      }
+      // Every attempted injection failed: do not report this notebook as a clean success.
+      if (attempted > 0 && summary.questionsInjected === 0) {
+        summary.status = 'INJECTION_FAILED';
+        summary.error = `All ${attempted} question injection(s) failed`;
       }
     }
 
@@ -470,6 +477,11 @@ export async function executeClusterSync(options = {}) {
   return { mode, targetCount: notebooks.length, succeeded, failed, results };
 }
 
+/** Exit 1 when any notebook failed. Every notebook still runs first (fail-soft sweep). */
+export function clusterSyncExitCode(out) {
+  return out && out.failed > 0 ? 1 : 0;
+}
+
 // CLI invocation
 const mainFile = process.argv[1] ? fs.realpathSync(process.argv[1]) : '';
 const thisFile = fs.realpathSync(__filename);
@@ -497,8 +509,7 @@ if (mainFile === thisFile) {
 
   executeClusterSync({ mode, dryRun, notebook, skipConsolidate })
     .then((out) => {
-      if (out.failed > 0 && out.succeeded === 0) process.exit(1);
-      process.exit(0);
+      process.exit(clusterSyncExitCode(out));
     })
     .catch((err) => {
       logError(`FATAL: ${err.message}`);

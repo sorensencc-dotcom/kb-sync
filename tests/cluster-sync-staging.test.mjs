@@ -8,6 +8,7 @@ import {
   PACK_FAMILY_ALIASES,
   findStagedPackFiles,
   runNotebookSweep,
+  clusterSyncExitCode,
 } from '../scripts/pipeline/cluster-sync-runner.mjs';
 
 test('replacePackFamilyAtomic default upload uses source add not source upload via spawn spy', async () => {
@@ -363,6 +364,38 @@ test('runNotebookSweep injects dynamic question battery via queryNotebookFn duri
   assert.equal(injectedCalls.length, 2);
   assert.equal(injectedCalls[0].notebookId, 'cb0498ce-1ea5-4668-9f65-ac368753404e');
   assert.equal(injectedCalls[0].qText, 'Investigate recent CI triage failure in Open Dev Issues.');
+});
+
+test('runNotebookSweep reports INJECTION_FAILED when every question injection fails', async () => {
+  const summary = await runNotebookSweep(
+    {
+      key: 'dev_triage',
+      uuid: 'cb0498ce-1ea5-4668-9f65-ac368753404e',
+      pack_family: 'pack_dev_triage',
+      has_pack: false,
+    },
+    {
+      isDryRun: false,
+      maxQuestionsToInject: 2,
+      generateQuestionBattery: () => ({
+        entropy: 1,
+        source: 'ast_entities',
+        questions: [{ id: 'q1', text: 'First question.' }, { id: 'q2', text: 'Second question.' }],
+      }),
+      queryNotebookFn: async () => ({ ok: false, status: 1, stdout: '', stderr: 'non-zero exit' }),
+    }
+  );
+
+  assert.equal(summary.status, 'INJECTION_FAILED');
+  assert.equal(summary.questionsInjected, 0);
+  assert.match(summary.error, /All 2 question injection/);
+});
+
+test('clusterSyncExitCode is non-zero when any notebook failed, zero otherwise', () => {
+  assert.equal(clusterSyncExitCode({ succeeded: 11, failed: 4 }), 1);
+  assert.equal(clusterSyncExitCode({ succeeded: 0, failed: 1 }), 1);
+  assert.equal(clusterSyncExitCode({ succeeded: 15, failed: 0 }), 0);
+  assert.equal(clusterSyncExitCode({ succeeded: 0, failed: 0 }), 0);
 });
 
 
