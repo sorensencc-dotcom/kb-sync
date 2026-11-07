@@ -354,6 +354,19 @@ export async function runNotebookSweep(notebook, options = {}) {
   }
 }
 
+// Rebuild .nlm_pack before uploading. Without this step the sweep uploads
+// whatever part files an earlier manual build left on disk.
+export function prepareStagedPacks({ isDryRun = false, skipConsolidate = false, consolidateFn = consolidatePacks } = {}) {
+  if (isDryRun) return { consolidated: false, reason: 'dry-run' };
+  if (skipConsolidate) return { consolidated: false, reason: 'skipped' };
+  try {
+    const packs = consolidateFn();
+    return { consolidated: true, packCount: Array.isArray(packs) ? packs.length : 0 };
+  } catch (err) {
+    throw new Error(`PACK_CONSOLIDATION_FAILED: ${err.message}`);
+  }
+}
+
 export async function executeClusterSync(options = {}) {
   const mode = options.mode || 'ops';
   const isDryRun = Boolean(options.dryRun);
@@ -379,6 +392,11 @@ export async function executeClusterSync(options = {}) {
     logInfo(`[CATCHUP-NOMINAL] 0 quarantined or dropped notebooks found. Clean state verified.`);
     return { mode, targetCount: 0, succeeded: 0, failed: 0, results: [] };
   }
+
+  const prep = prepareStagedPacks({ isDryRun, skipConsolidate: Boolean(options.skipConsolidate) });
+  logInfo(prep.consolidated
+    ? `[CONSOLIDATE] Rebuilt ${prep.packCount} staged pack file(s) before sweep.`
+    : `[CONSOLIDATE] Pack rebuild not run (${prep.reason}); using staged files as-is.`);
 
   const results = [];
   let succeeded = 0;
@@ -422,9 +440,11 @@ if (mainFile === thisFile) {
   let dryRun = false;
   let notebook = null;
   let checkQuarantine = false;
+  let skipConsolidate = false;
 
   for (const a of args) {
     if (a === '--check-quarantine') checkQuarantine = true;
+    else if (a === '--skip-consolidate') skipConsolidate = true;
     else if (a.startsWith('--mode=')) mode = a.split('=')[1];
     else if (a === '--dry-run') dryRun = true;
     else if (a.startsWith('--notebook=')) notebook = a.split('=')[1];
@@ -436,7 +456,7 @@ if (mainFile === thisFile) {
     process.exit(checkResult.ok ? 0 : 1);
   }
 
-  executeClusterSync({ mode, dryRun, notebook })
+  executeClusterSync({ mode, dryRun, notebook, skipConsolidate })
     .then((out) => {
       if (out.failed > 0 && out.succeeded === 0) process.exit(1);
       process.exit(0);
