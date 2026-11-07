@@ -156,7 +156,7 @@ export function handleVfsUpsertDocument(dbInstance, args = {}, options = {}) {
   }
 }
 
-export function handleQueryContextCache(dbInstance, { query, category = 'all', limit = 5 }) {
+export function handleQueryContextCache(dbInstance, { query, category = 'all', limit = 5 }, options = {}) {
   if (!query || typeof query !== 'string' || !query.trim()) {
     return {
       isError: true,
@@ -199,6 +199,24 @@ export function handleQueryContextCache(dbInstance, { query, category = 'all', l
     const stmt = dbInstance.prepare(sql);
     const results = stmt.all(...params);
 
+    if (options.spurSession && Array.isArray(results) && results.length > 0) {
+      for (const row of results) {
+        const contentId = row.file_path || String(row.id);
+        if (contentId) {
+          options.spurSession.recordRetrieved({
+            contentId,
+            sourceRole: 'cache',
+            mediaType: 'text/markdown'
+          });
+          options.spurSession.recordGrounded({
+            contentId,
+            scope: row.category || 'all',
+            cached: true
+          });
+        }
+      }
+    }
+
     return {
       content: [
         {
@@ -231,6 +249,24 @@ export function handleQueryContextCache(dbInstance, { query, category = 'all', l
       const stmt = dbInstance.prepare(fallbackSql);
       const results = stmt.all(...fallbackParams);
 
+      if (options.spurSession && Array.isArray(results) && results.length > 0) {
+        for (const row of results) {
+          const contentId = row.file_path || String(row.id);
+          if (contentId) {
+            options.spurSession.recordRetrieved({
+              contentId,
+              sourceRole: 'cache',
+              mediaType: 'text/markdown'
+            });
+            options.spurSession.recordGrounded({
+              contentId,
+              scope: row.category || 'all',
+              cached: true
+            });
+          }
+        }
+      }
+
       return {
         content: [
           {
@@ -248,7 +284,7 @@ export function handleQueryContextCache(dbInstance, { query, category = 'all', l
   }
 }
 
-export function handleFetchTopicNote(dbInstance, { topic }) {
+export function handleFetchTopicNote(dbInstance, { topic }, options = {}) {
   if (!topic || typeof topic !== 'string') {
     return {
       isError: true,
@@ -271,6 +307,14 @@ export function handleFetchTopicNote(dbInstance, { topic }) {
       isError: true,
       content: [{ type: 'text', text: `Topic "${topic}" not found in local cache.` }]
     };
+  }
+
+  if (options.spurSession && result) {
+    options.spurSession.recordRetrieved({
+      contentId: result.file_path || result.topic || String(result.id),
+      sourceRole: 'vault',
+      mediaType: 'text/markdown'
+    });
   }
 
   return {

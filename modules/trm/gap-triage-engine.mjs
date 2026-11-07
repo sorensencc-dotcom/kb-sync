@@ -326,6 +326,38 @@ ${astSection}
 - [ ] Does this resolution introduce cross-platform drift across runtime targets?
 `;
 
+  if (options.spurSession && Array.isArray(matchedDocuments) && matchedDocuments.length > 0) {
+    for (const doc of matchedDocuments) {
+      const contentId = doc.file_path || doc.id || doc.topic;
+      if (contentId) {
+        options.spurSession.recordRetrieved({
+          contentId,
+          contentUrl: doc.url,
+          sourceRole: doc.retrieval_mode === 'web-fallback' ? 'web' : 'cache',
+          mediaType: 'text/markdown',
+          licenseRef: doc.license_ref,
+          termsRef: doc.terms_ref
+        });
+        options.spurSession.recordGrounded({
+          contentId,
+          contentUrl: doc.url,
+          scope: gap.topicKey || 'trm',
+          cached: doc.retrieval_mode !== 'web-fallback',
+          licenseRef: doc.license_ref,
+          termsRef: doc.terms_ref
+        });
+        options.spurSession.recordCited({
+          id: `cite-${topicSlug}-${contentId}`,
+          outputId: topicSlug,
+          contentId,
+          contentUrl: doc.url,
+          licenseRef: doc.license_ref,
+          termsRef: doc.terms_ref
+        });
+      }
+    }
+  }
+
   return {
     gap,
     topicSlug,
