@@ -218,7 +218,7 @@ export function listNotebookSources(cli, notebookId) {
   );
 }
 
-export function deleteNotebookSource(cli, notebookId, sourceId, lease, { protectedSourceIds = [] } = {}) {
+export function deleteNotebookSource(cli, notebookId, sourceId, lease, { protectedSourceIds = [], retryOptions } = {}) {
   if (protectedSourceIds.includes(sourceId)) throw new Error('PROTECTED_SOURCE_DELETE: source is protected by caller policy');
   if (!lease || lease[SOURCE_DELETE_LEASE] !== true || lease.notebookId !== notebookId || !lease.sourceIds.includes(sourceId)) {
     throw new Error('UNLEASED_SOURCE_DELETE: replacement or rollback lease required');
@@ -227,28 +227,55 @@ export function deleteNotebookSource(cli, notebookId, sourceId, lease, { protect
   assertSafeCliValue(notebookId, 'notebook id');
   assertSafeCliValue(sourceId, 'source id');
   const isNlm = /\bnlm(\.exe)?$/i.test(cli.trim());
-  const attempts = isNlm
-    ? [
-      ['source', 'delete', sourceId, '-y'],
-      ['source', 'delete', `--id=${sourceId}`, '-y'],
-      ['source', 'remove', sourceId, '-y'],
-    ]
+  return deleteSourceWithRetry(
+    command => runCliCapture(cli, command),
+    sourceDeleteCommands(isNlm, notebookId, sourceId),
+    sourceId,
+    retryOptions,
+  );
+}
+
+// nlm 0.15.x accepts only `source delete <id>... -y`; `--id=` and `remove` do not exist there,
+// so trying them only replaced the real error with a usage message.
+export function sourceDeleteCommands(isNlm, notebookId, sourceId) {
+  return isNlm
+    ? [['source', 'delete', sourceId, '-y']]
     : [
       ['source', 'delete', '--notebook', notebookId, sourceId, '-y'],
       ['source', 'delete', `--notebook-id=${notebookId}`, `--id=${sourceId}`, '-y'],
       ['source', 'remove', '--notebook', notebookId, sourceId, '-y'],
     ];
-  let lastErr;
-  for (const command of attempts) {
-    try {
-      runCliCapture(cli, command);
-      return true;
-    } catch (err) {
-      lastErr = err;
+}
+
+function summarizeCliError(err) {
+  const text = String(err?.message || err)
+    .replace(/[─-╿]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return text.length > 300 ? `${text.slice(0, 300)}...` : text;
+}
+
+function sleepSync(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+// Deletes fail transiently (a 2026-11-06 failure succeeded on a manual rerun), so retry
+// the round and report every attempt's error, not just the last one.
+export function deleteSourceWithRetry(run, commands, sourceId, { rounds = 3, delayMs = 2000 } = {}) {
+  const failures = [];
+  for (let round = 1; round <= rounds; round += 1) {
+    for (const command of commands) {
+      try {
+        run(command);
+        return true;
+      } catch (err) {
+        failures.push(`[${command.join(' ')}] ${summarizeCliError(err)}`);
+      }
     }
+    if (round < rounds && delayMs > 0) sleepSync(delayMs);
   }
   throw new Error(
-    `Failed to delete NotebookLM source ${sourceId}: ${lastErr?.message || lastErr}`,
+    `Failed to delete NotebookLM source ${sourceId} after ${failures.length} attempt(s): ${failures.join(' | ')}`,
   );
 }
 

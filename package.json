@@ -6,6 +6,8 @@
   "scripts": {
     "prepare": "node scripts/install-git-hooks.mjs",
     "test": "npm run test:all",
+    "test:telemetry": "node --test modules/telemetry/spur-content-telemetry.test.mjs tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs",
+    "audit:spur": "node scripts/audit-spur.mjs",
     "secret-scan": "node scripts/secret-scan.mjs",
     "test:nlm-deletion-policy": "node scripts/notebooklm/scan-nlm-deletion-policy.mjs && node --test tests/notebooklm-deletion-policy.test.mjs",
     "test:atomic-pack-guardrail": "node --test --test-timeout=10000 tests/trm-act-kbsync-atomic-pack-replacement-guardrail.test.mjs",
@@ -33,7 +35,7 @@
     "sync:catchup": "node scripts/pipeline/cluster-sync-runner.mjs --mode=catchup",
     "test:dynamic-battery": "node --test tests/dynamic-question-battery.test.mjs",
     "test:grounding-gate": "node --test tests/verify-grounding-gate.test.mjs",
-    "test:replace-gate": "node --test tests/nlm-pack-replace-gate.test.mjs tests/nlm-pack-family-contract.test.mjs tests/nlm-pack-replace-cutover-failure.test.mjs",
+    "test:replace-gate": "node --test tests/nlm-pack-replace-gate.test.mjs tests/nlm-pack-family-contract.test.mjs tests/nlm-pack-replace-cutover-failure.test.mjs tests/nlm-source-delete-retry.test.mjs",
     "test:pack-count": "node --test tests/nlm-pack-count-check.test.mjs",
     "nlm:pack-count": "node scripts/nlm-pack-count-check.mjs",
     "kb:sync:rollback": "bash modules/notebooklm/ingest-notebooklm.sh --rollback",
@@ -88,7 +90,7 @@
     "test:native:path": "node --test --experimental-strip-types tests/path-normalizer-verification.ts",
     "test:viking": "node --test --experimental-strip-types tests/viking-bridge.test.ts",
     "test:incremental": "npx tsx tests/incremental-delta-sync.test.ts",
-    "test:all": "npm run test:deps-sync && npm run test:replace-gate && npm run test:atomic-pack-guardrail && npm run test:mcp-health && npm run test:mcp-watchdog && npm run test:nlm-deletion-policy && npm run test:dynamic-battery && npm run test:manifest && npm run test:core && npm run test:obsidian && npm run test:incremental && npm run test:worker && npm run test:harness && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:path && npm run test:perf && npm run test:pipeline-freshness && npm run test:wiki-index",
+    "test:all": "npm run test:deps-sync && npm run test:replace-gate && npm run test:pack-chunking && npm run test:atomic-pack-guardrail && npm run test:mcp-health && npm run test:mcp-watchdog && npm run test:nlm-deletion-policy && npm run test:dynamic-battery && npm run test:manifest && npm run test:core && npm run test:obsidian && npm run test:incremental && npm run test:worker && npm run test:harness && npm run test:notebooklm && npm run test:v12-features && npm run test:contract-cleanup && npm run test:path && npm run test:perf && npm run test:pipeline-freshness && npm run test:wiki-index && npm run test:kb-file-back-lint",
     "kb:compact": "node modules/compactor/cli.mjs",
     "deps:verify": "node scripts/verify-dependencies.mjs",
     "cross-audit": "node scripts/cross-audit.mjs",
@@ -97,6 +99,7 @@
     "test:manifest": "node --test tests/flatten-manifest.test.mjs",
     "test:deps-sync": "node --test tests/dependency-sync.test.mjs",
     "test:facts": "node --test tests/fact-extraction-pack.test.mjs",
+    "test:pack-chunking": "node --test --test-timeout=10000 tests/nlm-enobufs-chunking.test.mjs tests/consolidate-pack-sharding.test.mjs tests/pack-registry-coverage.test.mjs tests/cluster-sync-consolidate-step.test.mjs",
     "test:chat-injection": "node --test tests/chat-injection-runner.test.mjs",
     "test:lint-questions": "node --test tests/lint-question-configs.test.mjs",
     "test:nlm-live": "node --test tests/integration/nlm-live.test.mjs",
@@ -158,7 +161,10 @@
     "bot:report": "node ../scripts/ironbots-daily-reporter.mjs",
     "bot:reporter": "node ../scripts/ironbots-daily-reporter.mjs",
     "bot:all": "npm run bot:notebook:ingest && npm run bot:kb:sentinel && npm run bot:trm:triage && npm run bot:watchlist:mine && npm run bot:daemon:heal && npm run bot:ironledger:sentinel && npm run bot:ci:watchdog && npm run bot:trm:ingress && npm run bot:storage:pruner && npm run bot:report",
-    "test:ironbots": "node --test ../tests/ironbots.test.mjs"
+    "test:ironbots": "node --test ../tests/ironbots.test.mjs",
+    "test:kb-file-back-lint": "node --test tests/kb-file-back-and-lint.test.mjs",
+    "kb:file-answer": "node scripts/kb-file-answer.mjs",
+    "kb:lint": "node scripts/kb-content-lint.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/node": "2.1.1",

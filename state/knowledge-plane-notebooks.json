@@ -18,7 +18,7 @@
         },
         { "key": "post-war", "uuid": "9c469910-a900-43a4-877c-a43c9f545b5f", "has_pack": true, "pack_family": "pack_post_war" },
         { "key": "willys-overland", "uuid": "fd4ebe29-9440-4f4b-97cf-0184ffbe29a0", "has_pack": true, "pack_family": "pack_willys_overland" },
-        { "key": "cuba-claims", "uuid": "c8360946-dbee-4a2c-b622-7f89b05695b0", "has_pack": true, "pack_family": "pack_cuba_claims" }
+        { "key": "cuba-claims", "uuid": "c8360946-dbee-4a2c-b622-7f89b05695b0", "has_pack": false, "reason": "No wiki notes carry this category, so consolidate-pack.mjs builds no pack for it" }
       ]
     },
     "cluster_b_historical_archival_media": {
@@ -34,8 +34,8 @@
           "multipart": true,
           "legacy_title_alias": "CIC - Daily Research (Buffer/Intake) Pack"
         },
-        { "key": "miami-estate", "uuid": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c", "has_pack": true, "pack_family": "pack_miami_estate" },
-        { "key": "assembly-line", "uuid": "70be0df3-c58a-4711-b4d3-1e4b8726faf7", "has_pack": true, "pack_family": "pack_assembly_line" },
+        { "key": "miami-estate", "uuid": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c", "has_pack": false, "reason": "No wiki notes carry this category, so consolidate-pack.mjs builds no pack for it" },
+        { "key": "assembly-line", "uuid": "70be0df3-c58a-4711-b4d3-1e4b8726faf7", "has_pack": false, "reason": "No wiki notes carry this category, so consolidate-pack.mjs builds no pack for it" },
         { "key": "research-deltas-matrix", "uuid": "48322e1d-d601-4f65-89e0-76282343680d", "has_pack": false, "display_name": "CIC - Research Deltas & Living Matrix" },
         { "key": "willow-run-videos", "uuid": "ef78168d-b7b9-4952-8e0f-fcb353a21181", "has_pack": false },
         { "key": "research-logs", "uuid": "b8bc161d-495f-42f9-a7d1-ed8692141f6b", "has_pack": false },
