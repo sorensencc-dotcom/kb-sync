@@ -269,8 +269,13 @@ export function findPackFamilyFiles(outDir, filename) {
   });
 }
 
+// The kb-sync repo root. This file lives in scripts/, one level below it. The
+// research corpus is <root>/wiki and the sync runner reads <root>/.nlm_pack first.
+export const DEFAULT_ROOT_DIR = path.resolve(__dirname, '..');
+export const DEFAULT_OUT_DIR = path.join(DEFAULT_ROOT_DIR, '.nlm_pack');
+
 export function consolidatePacks(options = {}) {
-  const rootDir = options.rootDir || path.resolve(__dirname, '../..');
+  const rootDir = options.rootDir || DEFAULT_ROOT_DIR;
   const outDir = options.outDir || path.join(rootDir, '.nlm_pack');
 
   if (!fs.existsSync(outDir)) {

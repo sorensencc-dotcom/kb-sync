@@ -23,3 +23,14 @@ test('prepareStagedPacks fails the run when consolidation throws', () => {
     /PACK_CONSOLIDATION_FAILED: disk full/
   );
 });
+
+test('consolidatePacks defaults to the kb-sync root, and the runner reads its output dir first', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const { DEFAULT_ROOT_DIR, DEFAULT_OUT_DIR } = await import('../scripts/consolidate-pack.mjs');
+  const { DEFAULT_PACK_CANDIDATE_DIRS } = await import('../scripts/pipeline/cluster-sync-runner.mjs');
+  const pkg = JSON.parse(fs.readFileSync(path.join(DEFAULT_ROOT_DIR, 'package.json'), 'utf8'));
+  assert.equal(pkg.name, 'kb-sync');
+  assert.ok(fs.existsSync(path.join(DEFAULT_ROOT_DIR, 'scripts', 'consolidate-pack.mjs')));
+  assert.equal(DEFAULT_OUT_DIR, DEFAULT_PACK_CANDIDATE_DIRS[0]);
+});

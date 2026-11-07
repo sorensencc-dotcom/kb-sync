@@ -17,6 +17,7 @@ import {
   probeExistingPackSource,
   replacePackFamilyAtomic,
   resolveCliInvocation,
+  readPackFileCount,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -1091,3 +1092,47 @@ test('replaceSinglePack executes atomic replace for valid single-pack notebook',
 
 
 
+
+test('replacePackFamilyAtomic skips replace when every staged pack has FILE COUNT: 0', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-empty-pack-'));
+  const packFile = path.join(dir, 'pack_willow_run.txt');
+  fs.writeFileSync(packFile, [
+    '='.repeat(80),
+    'THEMATIC KNOWLEDGE PACK: CIC - Willow Run & Aviation Engineering',
+    'CATEGORY: willow-run',
+    'FACT_REGISTRY_COUNT: 0',
+    'FILE COUNT: 0',
+    '='.repeat(80),
+    '',
+  ].join('\n'));
+  const calls = [];
+  try {
+    const res = await replacePackFamilyAtomic({
+      notebookId: '6fd7c40b-df90-444b-9c7a-a64682925856', // willow-run
+      packFiles: [packFile],
+      logWarn: () => {},
+      runList: async () => { calls.push('list'); return []; },
+      runUpload: async () => { calls.push('upload'); return 'x'; },
+      runDelete: async () => { calls.push('delete'); return true; },
+    });
+    assert.deepEqual(res, { skipped: true, reason: 'EMPTY_PACK_CONTENT', notebookId: '6fd7c40b-df90-444b-9c7a-a64682925856' });
+    assert.deepEqual(calls, []);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('readPackFileCount reads the header count and ignores packs without one', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-pack-count-'));
+  try {
+    const counted = path.join(dir, 'a.txt');
+    fs.writeFileSync(counted, 'CATEGORY: daily\nFILE COUNT: 21\n');
+    const legacy = path.join(dir, 'b.txt');
+    fs.writeFileSync(legacy, '# FILE_COUNT: 2693\nbody\n');
+    assert.equal(readPackFileCount(counted), 21);
+    assert.equal(readPackFileCount(legacy), null);
+    assert.equal(readPackFileCount(path.join(dir, 'missing.txt')), null);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});

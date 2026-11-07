@@ -607,6 +607,26 @@ export function probeExistingPackSource(liveSources, filename, contentHash = nul
  * Per-notebook atomic replace gate enforcing multipart atomicity,
  * stage-all-before-drop-any, quarantine without deletion, and has_pack bypass.
  */
+// Reads the "FILE COUNT: N" line from a pack header. Returns null when the file
+// is unreadable or has no such line, so legacy packs are never treated as empty.
+export function readPackFileCount(packFile) {
+  let head;
+  try {
+    const fd = fs.openSync(packFile, 'r');
+    try {
+      const buf = Buffer.alloc(4096);
+      const n = fs.readSync(fd, buf, 0, buf.length, 0);
+      head = buf.subarray(0, n).toString('utf8');
+    } finally {
+      fs.closeSync(fd);
+    }
+  } catch {
+    return null;
+  }
+  const m = head.match(/^FILE[ _]COUNT:\s*(\d+)\s*$/m);
+  return m ? Number(m[1]) : null;
+}
+
 export async function replacePackFamilyAtomic({
   cli = 'nlm',
   notebookId,
@@ -649,6 +669,13 @@ export async function replacePackFamilyAtomic({
 
   for (const f of packFiles) {
     assertAllowedPackNotebook(notebookId, f);
+  }
+
+  // A pack built from zero source files carries only a header. Replacing with it
+  // would delete the notebook's real sources, so leave the notebook untouched.
+  if (packFiles.every((f) => readPackFileCount(f) === 0)) {
+    logWarn(`[REPLACE-GATE] Notebook ${notebookId}: every staged pack reports FILE COUNT: 0; skipping replace to keep existing sources.`);
+    return { skipped: true, reason: 'EMPTY_PACK_CONTENT', notebookId };
   }
 
   const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
