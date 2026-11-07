@@ -275,6 +275,23 @@ export function resolveExpectedPartCount(notebook = {}, packFiles = []) {
   return 1;
 }
 
+export const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export function defaultQueryNotebook(notebookId, questionText, timeoutMs = 90000) {
+  const res = spawnSync('nlm', ['notebook', 'query', notebookId, questionText, '--json'], {
+    encoding: 'utf8',
+    timeout: timeoutMs,
+    maxBuffer: 10 * 1024 * 1024,
+    windowsHide: true,
+  });
+  return {
+    ok: res.status === 0 && !res.error,
+    status: res.status,
+    stdout: res.stdout || '',
+    stderr: res.stderr || (res.error ? res.error.message : ''),
+  };
+}
+
 export async function runNotebookSweep(notebook, options = {}) {
   const {
     isDryRun = false,
@@ -283,6 +300,8 @@ export async function runNotebookSweep(notebook, options = {}) {
     candidateDirs = DEFAULT_PACK_CANDIDATE_DIRS,
     replacePackFn = replacePackFamilyAtomic,
     generateQuestionBattery = null,
+    queryNotebookFn = null,
+    maxQuestionsToInject = 2,
   } = options;
   logStep(`=== Running sync for [${notebook.key}] (${notebook.uuid}) ===`);
 
@@ -291,6 +310,7 @@ export async function runNotebookSweep(notebook, options = {}) {
     uuid: notebook.uuid,
     packDispatched: false,
     questionsMined: 0,
+    questionsInjected: 0,
     status: 'SUCCESS',
     error: null,
   };
@@ -332,9 +352,28 @@ export async function runNotebookSweep(notebook, options = {}) {
       }
     }
     const battery = batteryFn(notebook.key);
-    summary.questionsMined = battery.questions ? battery.questions.length : 0;
+    const questionsList = Array.isArray(battery.questions) ? battery.questions : [];
+    summary.questionsMined = questionsList.length;
     summary.batteryEntropy = battery.entropy;
     logInfo(`Mined ${summary.questionsMined} question(s) with entropy ${battery.entropy} (source: ${battery.source})`);
+
+    const isMockedUnitRun = replacePackFn !== replacePackFamilyAtomic && typeof queryNotebookFn !== 'function';
+    const shouldInjectLive = !isDryRun && !isMockedUnitRun && (typeof queryNotebookFn === 'function' || UUID_RE.test(String(notebook.uuid || '')));
+    if (shouldInjectLive && questionsList.length > 0) {
+      const activeQueryFn = queryNotebookFn || defaultQueryNotebook;
+      const toInject = questionsList.slice(0, Math.max(1, maxQuestionsToInject));
+      for (const qItem of toInject) {
+        const qText = typeof qItem === 'string' ? qItem : qItem.text;
+        if (!qText) continue;
+        const qRes = await activeQueryFn(notebook.uuid, qText);
+        if (qRes && qRes.ok) {
+          summary.questionsInjected++;
+          logInfo(`  ✓ Injected dynamic question into ${notebook.key}: "${qText.slice(0, 80)}..."`);
+        } else {
+          logWarn(`  ⚠ Failed to inject question into ${notebook.key}: ${qRes?.stderr || 'non-zero exit'}`);
+        }
+      }
+    }
 
     // Clear quarantine if previous run had quarantined this notebook,
     // but only on live runs where pack replacement completed or was intentionally bypassed.
