@@ -1,0 +1,19 @@
+package.json
+  s_3987bbf18dbce9::t_a01afbdea89dc8 102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ba87608305c5b9243611b6fa89cabcccd4b68109",
+  "prompts": {},
+  "sessions": {
+    "s_3987bbf18dbce9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76ef1ee0-e34d-4300-9be5-c8cba47c5dee",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
