@@ -1,0 +1,30 @@
+package.json
+  s_a8d606dec708c8::t_53ac77a1e1c84a 102
+tests/consolidate-pack-filename-buckets.test.mjs
+  s_a8d606dec708c8::t_afbff11030ee0d 46-48
+  s_a8d606dec708c8::t_d7290bbbbac339 1-45
+  s_a8d606dec708c8::t_1e3859f6a3b514 49
+scripts/consolidate-pack.mjs
+  s_a8d606dec708c8::t_9d35a222a607a9 71-94
+  s_a8d606dec708c8::t_e431c34e591a5f 382
+  s_a8d606dec708c8::t_07e8b5ae6602dc 380-381,384-385
+  s_a8d606dec708c8::t_fc4f889eab9095 383
+.trail/learnings/2026-11-07-post-war-and-willys-overland-notebooks-chris.md
+  s_a8d606dec708c8::t_117e2800ce2a08 1-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "645715d6852aeb9f0d08470a60c65a4f7f03e91d",
+  "prompts": {},
+  "sessions": {
+    "s_a8d606dec708c8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2a8f5f3d-a6f1-45cc-9be7-5d9e0d5cba77",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
