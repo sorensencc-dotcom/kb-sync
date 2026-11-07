@@ -1,0 +1,26 @@
+scripts/consolidate-pack.mjs
+  s_51119be474a262::t_a053f16fa00e74 272-276,278
+scripts/nlm-pack-replace-gate.mjs
+  s_51119be474a262::t_19dc5fe462b013 610-629
+  s_51119be474a262::t_b87c5bd8ee659b 674-680
+tests/cluster-sync-consolidate-step.test.mjs
+  s_51119be474a262::t_f787dd5ec7691a 26-36
+tests/nlm-pack-replace-gate.test.mjs
+  s_51119be474a262::t_39598793e1ee61 20,1095-1138
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a7191fe4dcce5e17f60b4ab90b96601ae1a9885f",
+  "prompts": {},
+  "sessions": {
+    "s_51119be474a262": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b1c8ea54-0993-4320-9207-9275ee87375d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
