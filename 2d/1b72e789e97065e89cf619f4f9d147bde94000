@@ -1,0 +1,25 @@
+scripts/pipeline/cluster-sync-runner.mjs
+  s_5979629bcd9533::t_2670eaa3e4a93e 512
+  s_5979629bcd9533::t_49e20de6598094 365,369,378-381
+  s_5979629bcd9533::t_7e120bfa8ed1b9 480-484
+  s_5979629bcd9533::t_1083d9b59443e5 382
+tests/cluster-sync-staging.test.mjs
+  s_5979629bcd9533::t_51ea6a56c02901 369-400
+  s_5979629bcd9533::t_2afceba76685a7 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2d1b72e789e97065e89cf619f4f9d147bde94000",
+  "prompts": {},
+  "sessions": {
+    "s_5979629bcd9533": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0bd5f0ee-cf5f-459a-86ab-6cd48bd0b6f2",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
