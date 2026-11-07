@@ -1,0 +1,19 @@
+.trail/learnings/2026-11-07-pack-rebuilds-were-writing-one-level-chris.md
+  s_d93c282df8c1f2::t_65b619bdcf88d7 1-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cfcc1ca108b24e3930c24e5ae53d6de4e07b3b2e",
+  "prompts": {},
+  "sessions": {
+    "s_d93c282df8c1f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d93c282df8c1f2",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
