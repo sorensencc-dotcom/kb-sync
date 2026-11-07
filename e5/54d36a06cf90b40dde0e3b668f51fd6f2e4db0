@@ -1,0 +1,29 @@
+state/knowledge-plane-notebooks.json
+  s_3987bbf18dbce9::t_27711253d524ce 21
+  s_3987bbf18dbce9::t_9b328ba3236bc7 37-38
+tests/cluster-sync-consolidate-step.test.mjs
+  s_3987bbf18dbce9::t_65e015c349b0f1 1-25
+tests/pack-registry-coverage.test.mjs
+  s_3987bbf18dbce9::t_9058fb947990ef 1-26
+scripts/pipeline/cluster-sync-runner.mjs
+  s_3987bbf18dbce9::t_9fbf209a276959 357-369
+  s_3987bbf18dbce9::t_d188c872e29774 396-400
+  s_3987bbf18dbce9::t_c4baba9c46015c 443,447
+  s_3987bbf18dbce9::t_ed48358df8e02e 459
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e554d36a06cf90b40dde0e3b668f51fd6f2e4db0",
+  "prompts": {},
+  "sessions": {
+    "s_3987bbf18dbce9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76ef1ee0-e34d-4300-9be5-c8cba47c5dee",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
