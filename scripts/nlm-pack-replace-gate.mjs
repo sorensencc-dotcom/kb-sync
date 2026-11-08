@@ -731,8 +731,8 @@ export async function replacePackFamilyAtomic({
       }
 
       if (probe.exists && probe.status === 'EXISTS_ACTIVE') {
-        logWarn(
-          `[WARN] [EXISTS_ACTIVE] Pre-existing active source collision for ${fileName} (${probe.sourceId}); not reusing without generation verification, marking stale for replacement after new generation reaches ACTIVE.`
+        logInfo(
+          `[REPLACE] [EXISTS_ACTIVE] ${fileName} is already ACTIVE (${probe.sourceId}) from a prior run. Expected: upload a new copy, then delete that id after the new copy is ACTIVE.`
         );
         if (probe.sourceId) {
           oldSourceIdSet.add(probe.sourceId);
@@ -740,7 +740,7 @@ export async function replacePackFamilyAtomic({
         }
       } else if (probe.exists && probe.status === 'EXISTS_ERROR') {
         logWarn(
-          `[WARN] [EXISTS_ERROR] Stale error source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
+          `[REPLACE] [EXISTS_ERROR] ${fileName} is an error source (${probe.sourceId}, status=${probe.source?.status}). Uploading a replacement, then deleting that id after the new copy is ACTIVE.`
         );
         if (probe.sourceId) {
           oldSourceIdSet.add(probe.sourceId);
@@ -748,7 +748,7 @@ export async function replacePackFamilyAtomic({
         }
       } else if (probe.exists && probe.status === 'EXISTS_IN_FLIGHT') {
         logWarn(
-          `[WARN] [EXISTS_IN_FLIGHT] In-flight source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
+          `[REPLACE] [EXISTS_IN_FLIGHT] ${fileName} is still processing (${probe.sourceId}, status=${probe.source?.status}). Uploading a replacement, then deleting that id after the new copy is ACTIVE.`
         );
         if (probe.sourceId) {
           oldSourceIdSet.add(probe.sourceId);
@@ -756,7 +756,7 @@ export async function replacePackFamilyAtomic({
         }
       } else if (probe.exists && probe.sourceId) {
         logWarn(
-          `[WARN] Stale non-active source collision for ${fileName} (${probe.sourceId}, status=${probe.source?.status}); not reusing, marking stale for replacement after new generation reaches ACTIVE.`
+          `[REPLACE] ${fileName} already exists (${probe.sourceId}, status=${probe.source?.status}). Uploading a replacement, then deleting that id after the new copy is ACTIVE.`
         );
         oldSourceIdSet.add(probe.sourceId);
         staleSourceIds.push(probe.sourceId);

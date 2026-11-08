@@ -1,5 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { validateProposalSchema } from '../../../modules/obsidian/synthesize-wiki.js';
 import { SynthesisProposal } from '../../../modules/obsidian/providers/index.js';
 
@@ -103,4 +106,11 @@ test('validateProposalSchema', async (t) => {
     assert.equal(errors.length, 1);
     assert.match(errors[0], /Unmanifested citation 'docs\/unknown.md'/);
   });
+});
+
+test('synthesize-wiki.ts keeps both Log.md guards', () => {
+  const srcPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../../modules/obsidian/synthesize-wiki.ts');
+  const src = fs.readFileSync(srcPath, 'utf8');
+  assert.match(src, /proposal\.vaultPath === ["']Log\.md["']/);
+  assert.match(src, /item === ["']Log\.md["'] && fs\.existsSync/);
 });

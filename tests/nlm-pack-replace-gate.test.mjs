@@ -949,6 +949,7 @@ test('replacePackFamilyAtomic does not reuse pre-existing ACTIVE source by defau
   const deleted = [];
   const uploaded = [];
   const warnings = [];
+  const infos = [];
   let listCall = 0;
 
   const runList = async () => {
@@ -984,7 +985,7 @@ test('replacePackFamilyAtomic does not reuse pre-existing ACTIVE source by defau
     runList,
     runUpload,
     runDelete,
-    logInfo: () => {},
+    logInfo: (msg) => infos.push(msg),
     logWarn: (msg) => warnings.push(msg),
     waitMs: 1,
   });
@@ -995,7 +996,8 @@ test('replacePackFamilyAtomic does not reuse pre-existing ACTIVE source by defau
   assert.deepEqual(res.staleSourceIds, ['stale-active-1']);
   assert.deepEqual(res.purgedOldSourceIds, ['stale-active-1']);
   assert.deepEqual(events, ['uploaded', 'polled-active', 'deleted:stale-active-1']);
-  assert.equal(warnings.some((w) => w.includes('EXISTS_ACTIVE')), true);
+  assert.equal(infos.some((m) => m.includes('EXISTS_ACTIVE') && m.includes('Expected: upload a new copy')), true);
+  assert.equal(warnings.some((w) => w.includes('EXISTS_ACTIVE')), false, 'prior ACTIVE copy is expected, not a warning');
 
   // When allowReuse: true is explicitly provided, existing active source is reused
   let uploadCalledWithReuse = false;
