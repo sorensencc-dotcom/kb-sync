@@ -68,6 +68,30 @@ export const THEMATIC_PACK_MAP = [
   }
 ];
 
+// Filename patterns for packs whose notes are rarely tagged with their own
+// frontmatter category (post-war and Willys-Overland notes ship as `research`).
+const FILENAME_BUCKET_PATTERNS = [
+  { bucket: 'post-war', pattern: /post[-_ ]?war/i },
+  { bucket: 'willys-overland', pattern: /willys/i }
+];
+
+// `daily` is the catch-all category (`research` resolves to it), so it does not block filename matching.
+const EXPLICIT_BUCKETS = new Set(['willow-run', 'ford-politics', 'post-war', 'willys-overland']);
+
+/**
+ * Returns the filename-matched buckets for a note that has no explicit
+ * thematic frontmatter category. A note matching several patterns lands in each.
+ * @param {string} resolvedCategory category after resolveCategoryKey
+ * @param {string} relPath repo-relative note path
+ * @param {Set<string>} nonHistoricalCategories categories barred from historical packs
+ * @returns {string[]}
+ */
+export function resolveFilenameBuckets(resolvedCategory, relPath, nonHistoricalCategories = new Set()) {
+  if (EXPLICIT_BUCKETS.has(resolvedCategory) || nonHistoricalCategories.has(resolvedCategory)) return [];
+  const base = path.posix.basename(String(relPath).replace(/\\/g, '/'));
+  return FILENAME_BUCKET_PATTERNS.filter(({ pattern }) => pattern.test(base)).map(({ bucket }) => bucket);
+}
+
 /**
  * Computes SHA-256 hash of a string.
  * @param {string} content
@@ -351,6 +375,12 @@ export function consolidatePacks(options = {}) {
         categorized['willys-overland'].push(item);
       } else if (cat === 'daily') {
         categorized['daily'].push(item);
+      }
+
+      // Additive: notes tagged with a catch-all category still reach the
+      // post-war and Willys-Overland packs when their filename names the topic.
+      for (const bucket of resolveFilenameBuckets(cat, relPath, NON_HISTORICAL_CATEGORIES)) {
+        categorized[bucket].push(item);
       }
 
       // Master KB includes all historical notes, excluding software and
