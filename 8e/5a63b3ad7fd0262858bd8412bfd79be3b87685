@@ -1,0 +1,40 @@
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 734-735,743,751,759
+skills/verify-pack-replace-gate/SKILL.md
+  h_5c172e9b435f5a 1-54
+skills/verify-wiki-log/SKILL.md
+  h_5c172e9b435f5a 1-50
+specs/pack-replace-gate/PackReplaceGate.cfg
+  h_5c172e9b435f5a 1-11
+specs/pack-replace-gate/PackReplaceGate.tla
+  h_5c172e9b435f5a 1-174
+specs/pack-replace-gate/PackReplaceGateBug.cfg
+  h_5c172e9b435f5a 1-9
+specs/pack-replace-gate/PackReplaceGateSettled.cfg
+  h_5c172e9b435f5a 1-8
+specs/pack-replace-gate/run-tlc.mjs
+  h_5c172e9b435f5a 1-89
+specs/wiki-log/WikiLog.cfg
+  h_5c172e9b435f5a 1-7
+specs/wiki-log/WikiLog.tla
+  h_5c172e9b435f5a 1-72
+specs/wiki-log/WikiLogBug.cfg
+  h_5c172e9b435f5a 1-6
+specs/wiki-log/run-tlc.mjs
+  h_5c172e9b435f5a 1-80
+tests/modules/obsidian/synthesize-wiki.test.ts
+  h_5c172e9b435f5a 3-5,110-116
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 952,988,999-1000
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8e5a63b3ad7fd0262858bd8412bfd79be3b87685",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
