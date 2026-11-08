@@ -1,0 +1,16 @@
+modules/wiki/entity-synthesizer.ts
+  h_5c172e9b435f5a 4,92-97
+tests/pipeline-freshness.test.ts
+  h_5c172e9b435f5a 176-187
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "292936db5bc91bee1e3215ff76fdd9b9a26c4e63",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
