@@ -57,9 +57,9 @@ describe("validateProposalSchema", () => {
         assert.ok(errors.some(e => e.includes("Must start with a canonical vault directory boundary")));
     });
 
-    it("should accept valid special vaultPath Log.md", () => {
+    it("should reject vaultPath Log.md because the live log is append-only", () => {
         const errors = validateProposalSchema({ title: "Log", category: "wiki", status: "active", vaultPath: "Log.md", citations: [] } as any, new Set());
-        assert.deepEqual(errors, []);
+        assert.ok(errors.some(e => e.includes("Log.md is append-only")));
     });
 
     it("should accept valid special vaultPath Index.md", () => {

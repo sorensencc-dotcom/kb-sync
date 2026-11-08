@@ -216,9 +216,14 @@ export function validateProposalSchema(proposal: SynthesisProposal, stagedManife
   }
 
   const ALLOWED_BOUNDARIES = ["kb-sync/", "entities/", "concepts/", "utilities/", "daemons/", "scripts/", "tests/", "lessons/", "kb-sync/lessons/", "research/", "wiki/research/", "wiki/concepts/"];
-  const isRootSpecial = proposal.vaultPath === "Log.md" || proposal.vaultPath === "Index.md";
+  // Log.md is append-only; a proposal replace would wipe live history on promote.
+  const isAppendOnlyLog = proposal.vaultPath === "Log.md";
+  if (isAppendOnlyLog) {
+    errors.push(`Invalid vaultPath 'Log.md'. Log.md is append-only and cannot be a proposal target.`);
+  }
+  const isRootSpecial = proposal.vaultPath === "Index.md";
   const isValidBoundary = ALLOWED_BOUNDARIES.some((b) => proposal.vaultPath?.startsWith(b)) || isRootSpecial;
-  if (!isValidBoundary) {
+  if (!isValidBoundary && !isAppendOnlyLog) {
     errors.push(`Invalid vaultPath '${proposal.vaultPath}'. Must start with a canonical vault directory boundary.`);
   }
 
@@ -760,6 +765,8 @@ status: "active"
     const copyTransactToWiki = (src: string, dest: string) => {
       const items = fs.readdirSync(src);
       for (const item of items) {
+        // Never replace an existing live Log.md; session stanza is appendFileSync below.
+        if (dest === wikiDir && item === "Log.md" && fs.existsSync(path.join(dest, item))) continue;
         const sPath = path.join(src, item);
         const dPath = path.join(dest, item);
         if (fs.statSync(sPath).isDirectory()) {

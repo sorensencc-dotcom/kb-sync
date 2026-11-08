@@ -76,10 +76,12 @@ test('validateProposalSchema', async (t) => {
     assert.match(errors[0], /Invalid vaultPath '.*'. Must start with a canonical vault directory boundary/);
   });
 
-  await t.test('accepts Log.md and Index.md root specials', () => {
+  await t.test('rejects Log.md; accepts Index.md root special', () => {
     const proposal1 = createBaseProposal();
     proposal1.vaultPath = 'Log.md';
-    assert.deepEqual(validateProposalSchema(proposal1, stagedManifestSet), []);
+    const logErrors = validateProposalSchema(proposal1, stagedManifestSet);
+    assert.equal(logErrors.length, 1);
+    assert.match(logErrors[0], /Log\.md is append-only/);
 
     const proposal2 = createBaseProposal();
     proposal2.vaultPath = 'Index.md';
