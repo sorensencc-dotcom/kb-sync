@@ -1,0 +1,18 @@
+modules/obsidian/synthesize-wiki.ts
+  h_5c172e9b435f5a 219-226,768-769
+tests/modules/obsidian/synthesize-wiki.test.ts
+  h_5c172e9b435f5a 79,82-84
+tests/validate-proposal-schema.test.ts
+  h_5c172e9b435f5a 60,62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "05e70916d483ce75e2ce0eaa07b6621203c16f0e",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
