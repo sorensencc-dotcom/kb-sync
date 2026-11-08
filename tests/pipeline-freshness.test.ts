@@ -173,6 +173,18 @@ test('1b. flat basename copies are only published when unambiguous', () => {
   assert.equal(collisions.length, 2);
 });
 
+test('1c. git log does not expand a $(...) source filename', () => {
+  const payloadRel = 'tests/x$(touch INJECTED).ts';
+  const repo = mkRepo({ [payloadRel]: 'export const x = 1;\n' });
+  const injected = path.join(repo, 'INJECTED');
+  assert.equal(fs.existsSync(injected), false);
+  const res = synthesizeAllEntities({ repoName: 'demo', repoRoot: repo });
+  assert.equal(res.status, 'OK');
+  assert.equal(fs.existsSync(injected), false, 'POSIX sh must not run the filename as a command');
+  const page = read(path.join(repo, 'wiki'), entityPageRelPath('demo', payloadRel));
+  assert.match(page, /sourceFile: tests\/x\$\(touch INJECTED\)\.ts/);
+});
+
 // ---------------------------------------------------------------------------
 // 2. A relevant source change invalidates dependent content
 // ---------------------------------------------------------------------------

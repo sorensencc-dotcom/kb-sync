@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import {
   GENERATED_MANIFEST_NAME,
@@ -89,7 +89,12 @@ function getFileSha256(filePath: string): string {
 
 function getGitCommitDate(filePath: string, cwd: string): string {
   try {
-    const dateStr = execSync(`git log -1 --format=%cI -- "${filePath}"`, { cwd, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+    const gitBin = process.platform === 'win32' ? 'git.exe' : 'git';
+    const dateStr = execFileSync(gitBin, ['log', '-1', '--format=%cI', '--', filePath], {
+      cwd,
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'ignore'],
+    }).trim();
     if (dateStr) return dateStr;
   } catch {}
   try {
