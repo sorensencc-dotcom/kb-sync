@@ -1,0 +1,14 @@
+TODOS.md
+  h_5c172e9b435f5a 11-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5b950e0f5fce59395f009df4ad1fa5ee50b1e987",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
