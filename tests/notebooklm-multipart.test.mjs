@@ -29,6 +29,8 @@ function run(t, options = {}) {
   }
   fs.copyFileSync(path.join(repo, 'scripts', 'notebooklm', 'sandbox-contract.mjs'), path.join(dir, 'scripts', 'notebooklm', 'sandbox-contract.mjs'));
   fs.copyFileSync(path.join(repo, 'scripts', 'nlm-pack-replace-gate.mjs'), path.join(dir, 'scripts', 'nlm-pack-replace-gate.mjs'));
+  fs.mkdirSync(path.join(dir, 'modules', 'trm', 'storage'), { recursive: true });
+  fs.copyFileSync(path.join(repo, 'modules', 'trm', 'storage', 'transaction-manager.mjs'), path.join(dir, 'modules', 'trm', 'storage', 'transaction-manager.mjs'));
   fs.mkdirSync(path.join(dir, 'configs'));
   fs.writeFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'output_dir: "./.nlm_pack"\npack_filename: "repo_knowledge_pack"\ntimeout_ms: 10000\nretry_attempts: 1\nbackoff_ms: 100\n');
   fs.appendFileSync(path.join(dir, 'configs', 'notebooklm.yaml'), 'default_notebook: "fixture-only"\n');
