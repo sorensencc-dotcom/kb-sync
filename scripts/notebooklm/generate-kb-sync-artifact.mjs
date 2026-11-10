@@ -129,6 +129,7 @@ async function main() {
     }
   }
 
+  const failed = existingStatus.status === "FAILED" || (typeof existingStatus.failed === "number" && existingStatus.failed > 0);
   const statusData = {
     // Preserve whatever Stage 1 (ingest-notebooklm.sh) already wrote --
     // e.g. last_sync_pack_sha, purged_sources, uploaded_chunks -- rather
@@ -136,7 +137,7 @@ async function main() {
     // cache's pack-generation invalidation key on every successful run.
     ...existingStatus,
     last_sync_timestamp: new Date().toISOString(),
-    status: "SUCCESS",
+    status: failed ? "FAILED" : "SUCCESS",
     file_count: totalFiles,
     pack_files_count: packFiles.length,
     pack_size_bytes: packSizeBytes,
@@ -147,8 +148,8 @@ async function main() {
     // pipeline produced .nlm_pack, so a successful run proves both stages.
     // Previously these were literal `true`s that persisted through the bash
     // telemetry merge and masked later FAILED runs.
-    stage1_success: true,
-    stage2_success: true
+    stage1_success: failed ? existingStatus.stage1_success : true,
+    stage2_success: failed ? existingStatus.stage2_success : true
   };
 
   fs.writeFileSync(STATUS_PATH, JSON.stringify(statusData, null, 2), "utf8");

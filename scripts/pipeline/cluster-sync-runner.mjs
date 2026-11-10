@@ -23,6 +23,7 @@ import {
   listNotebookSources
 } from '../nlm-pack-replace-gate.mjs';
 import { consolidatePacks } from '../consolidate-pack.mjs';
+import { updateJsonLocked } from '../../modules/trm/storage/transaction-manager.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -139,24 +140,47 @@ export function runQuarantineCheck(quarantineFile = resolveQuarantineFile()) {
   return result;
 }
 
+function ensureQuarantineMap(data) {
+  if (!data.quarantined || typeof data.quarantined !== 'object' || Array.isArray(data.quarantined)) {
+    data.quarantined = {};
+  }
+  return data;
+}
+
 export function recordQuarantine(notebookId, key, error, quarantineFile = resolveQuarantineFile()) {
-  const data = loadQuarantine(quarantineFile);
-  data.quarantined[notebookId] = {
-    key,
-    error,
-    quarantinedAt: new Date().toISOString()
-  };
-  fs.writeFileSync(quarantineFile, JSON.stringify(data, null, 2), 'utf8');
+  updateJsonLocked(quarantineFile, (data) => {
+    ensureQuarantineMap(data);
+    data.quarantined[notebookId] = {
+      key,
+      error,
+      quarantinedAt: new Date().toISOString()
+    };
+    return data;
+  });
   logWarn(`[QUARANTINE-LOGGED] Notebook ${notebookId} (${key}) quarantined: ${error}`);
 }
 
 export function clearQuarantine(notebookId, quarantineFile = resolveQuarantineFile()) {
-  const data = loadQuarantine(quarantineFile);
-  if (data.quarantined[notebookId]) {
-    delete data.quarantined[notebookId];
-    fs.writeFileSync(quarantineFile, JSON.stringify(data, null, 2), 'utf8');
+  let cleared = false;
+  updateJsonLocked(quarantineFile, (data) => {
+    ensureQuarantineMap(data);
+    if (data.quarantined[notebookId]) {
+      delete data.quarantined[notebookId];
+      cleared = true;
+    }
+    return data;
+  });
+  if (cleared) {
     logInfo(`[QUARANTINE-CLEARED] Notebook ${notebookId} cleared from quarantine.`);
   }
+}
+
+export function persistClusterTelemetry(payload, statusFile = SYNC_STATUS_FILE) {
+  updateJsonLocked(statusFile, (status) => {
+    Object.assign(status, payload);
+    if ((payload.failed || 0) > 0) status.status = 'FAILED';
+    return status;
+  });
 }
 
 export function getClusterNotebooks(manifest, mode) {
@@ -486,7 +510,7 @@ export async function executeClusterSync(options = {}) {
   };
 
   try {
-    fs.writeFileSync(SYNC_STATUS_FILE, JSON.stringify(statusPayload, null, 2), 'utf8');
+    persistClusterTelemetry(statusPayload);
   } catch (_) {}
 
   return { mode, targetCount: notebooks.length, succeeded, failed, results };

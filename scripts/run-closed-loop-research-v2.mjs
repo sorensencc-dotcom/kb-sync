@@ -2,7 +2,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { atomicWriteJson, createTransaction } from '../modules/trm/storage/transaction-manager.mjs';
+import { createTransaction, updateJsonLocked } from '../modules/trm/storage/transaction-manager.mjs';
 import { dispatchEvaluator } from '../modules/trm/evaluators/index.mjs';
 import { canonicalizeSpanText, computeSpanHash, normalizeGapText, formatLineageHeader } from '../modules/trm/gap-normalizer.mjs';
 import { evaluateClaim } from '../modules/trm/gap-triage-engine.mjs';
@@ -38,23 +38,23 @@ export function evaluateSourceDelta(cachedManifest = {}, currentSources = []) {
 }
 
 export function cascadeSourceDeletion(removedSourceIds, settledFactsPath, options = {}) {
-  if (!fs.existsSync(settledFactsPath)) return;
+  if (!fs.existsSync(settledFactsPath) || options.dryRun) return;
   const removed = new Set(removedSourceIds);
-  let facts;
-  try {
-    facts = JSON.parse(fs.readFileSync(settledFactsPath, 'utf8'));
-  } catch {
-    return;
-  }
-
-  let changed = false;
-  for (const fact of Object.values(facts)) {
-    if (fact.source_ids?.some((sourceId) => removed.has(sourceId))) {
-      fact.status = 'EVIDENCE_REMOVED';
-      changed = true;
+  updateJsonLocked(settledFactsPath, (facts) => {
+    for (const fact of Object.values(facts)) {
+      if (fact.source_ids?.some((sourceId) => removed.has(sourceId))) {
+        fact.status = 'EVIDENCE_REMOVED';
+      }
     }
-  }
-  if (changed && !options.dryRun) atomicWriteJson(settledFactsPath, facts);
+    return facts;
+  });
+}
+
+export function writeNotebookCadence(cadencePath, notebookId, entry) {
+  updateJsonLocked(cadencePath, (current) => {
+    current[notebookId] = entry;
+    return current;
+  });
 }
 
 const DOMAIN_DISCOVERY = {
@@ -485,7 +485,7 @@ export async function runClosedLoopResearch(options = {}) {
         cadence: 'PASSIVE_WEEKLY',
         consecutive_idle_days: Math.floor(hoursIdle / 24)
       };
-      if (!dryRun) atomicWriteJson(cadencePath, cadenceState);
+      if (!dryRun) writeNotebookCadence(cadencePath, nbId, cadenceState[nbId]);
       results.push({ notebookId: nbId, status: 'DEMOTED_TO_WEEKLY', mode: 'active', hoursIdle });
       continue;
     }
@@ -516,7 +516,12 @@ export async function runClosedLoopResearch(options = {}) {
       nbFingerprint.source_ids = currentSources.map((s) => s.id);
       nbFingerprint.inventory_hash = currentHash;
       fingerprints[nbId] = nbFingerprint;
-      if (!dryRun) atomicWriteJson(fingerprintsPath, fingerprints);
+      if (!dryRun) {
+        updateJsonLocked(fingerprintsPath, (current) => {
+          current[nbId] = nbFingerprint;
+          return current;
+        });
+      }
       results.push({ notebookId: nbId, status: 'SOURCE_DELETED_CASCADED', mode });
       continue;
     }
@@ -598,8 +603,11 @@ export async function runClosedLoopResearch(options = {}) {
         consecutive_idle_days: 0
       };
 
-      atomicWriteJson(fingerprintsPath, fingerprints);
-      atomicWriteJson(cadencePath, cadenceState);
+      updateJsonLocked(fingerprintsPath, (current) => {
+        current[nbId] = nbFingerprint;
+        return current;
+      });
+      writeNotebookCadence(cadencePath, nbId, cadenceState[nbId]);
     }
 
     results.push({

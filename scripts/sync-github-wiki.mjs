@@ -15,6 +15,20 @@ import {
   toPosix,
   writeJsonAtomic,
 } from '../modules/wiki/generated-ownership.mjs';
+import { updateJsonLocked } from '../modules/trm/storage/transaction-manager.mjs';
+
+export function applyWikiSyncStatus(syncStatusPath) {
+  updateJsonLocked(syncStatusPath, (syncStatusData) => {
+    syncStatusData.last_sync_timestamp = new Date().toISOString();
+    const failed = syncStatusData.status === 'FAILED' || (typeof syncStatusData.failed === 'number' && syncStatusData.failed > 0);
+    if (!failed) {
+      syncStatusData.status = 'SUCCESS';
+      syncStatusData.stage1_success = true;
+      syncStatusData.stage2_success = true;
+    }
+    return syncStatusData;
+  });
+}
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -403,18 +417,9 @@ export async function publishWiki(customOptions = {}) {
       throw new Error(`[KB-SYNC WIKI PUBLISHER] publication not verified: local wiki head ${remoteHeadSha || '<none>'} != remote head ${remoteSeen || '<none>'}`);
     }
 
-    // Update .sync-status.json
     const syncStatusPath = path.join(currentRoot, '.sync-status.json');
     try {
-      let syncStatusData = {};
-      if (fs.existsSync(syncStatusPath)) {
-        syncStatusData = JSON.parse(fs.readFileSync(syncStatusPath, 'utf8'));
-      }
-      syncStatusData.last_sync_timestamp = new Date().toISOString();
-      syncStatusData.status = 'SUCCESS';
-      syncStatusData.stage1_success = true;
-      syncStatusData.stage2_success = true;
-      fs.writeFileSync(syncStatusPath, JSON.stringify(syncStatusData, null, 2), 'utf8');
+      applyWikiSyncStatus(syncStatusPath);
     } catch {}
   }
 

@@ -44,6 +44,58 @@ const RECEIPT_FILE_NAME = '.nlm-sync-receipt.json';
 const DEAD_LETTER_DIR_NAME = '.dead-letter';
 const LOCK_FILE_NAME = '.nlm-sync.lock';
 
+export function acquireIngestLock(lockPath, { now = Date.now, staleMs = 30 * 60 * 1000 } = {}) {
+  const payload = JSON.stringify({ pid: process.pid, createdAt: new Date(now()).toISOString() });
+  const tryWx = () => {
+    fs.writeFileSync(lockPath, payload, { flag: 'wx' });
+    return { ok: true, lockPath };
+  };
+  try {
+    return tryWx();
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err;
+    let lockData = {};
+    try {
+      lockData = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+    } catch {
+      try { fs.unlinkSync(lockPath); } catch {}
+      try {
+        return tryWx();
+      } catch (err2) {
+        if (err2.code === 'EEXIST') {
+          return { ok: false, error: 'CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID unknown' };
+        }
+        throw err2;
+      }
+    }
+    const createdAt = new Date(lockData.createdAt).getTime();
+    const ageMs = Number.isFinite(createdAt) ? now() - createdAt : staleMs + 1;
+    let pidAlive = false;
+    try {
+      if (lockData.pid) process.kill(lockData.pid, 0);
+      pidAlive = Boolean(lockData.pid);
+    } catch {
+      pidAlive = false;
+    }
+    if (!pidAlive || ageMs > staleMs) {
+      try { fs.unlinkSync(lockPath); } catch {}
+      try {
+        return tryWx();
+      } catch (err2) {
+        if (err2.code === 'EEXIST') {
+          let held = 'unknown';
+          try { held = JSON.parse(fs.readFileSync(lockPath, 'utf8')).pid; } catch {}
+          return { ok: false, error: `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${held}` };
+        }
+        throw err2;
+      }
+    }
+    return { ok: false, error: `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${lockData.pid}` };
+  }
+}
+
+const invokedDirectly = path.resolve(process.argv[1] || '') === __filename;
+
 // --- Parse Arguments ---
 const args = process.argv.slice(2);
 const flags = {};
@@ -63,8 +115,8 @@ for (let i = 0; i < args.length; i++) {
 }
 
 const notebookUuid = positional[0] || flags['notebook'] || flags['notebook-id'] || process.env.NOTEBOOK_ID;
-if (process.env.NLM_LIVE_SANDBOX === '1') assertLiveSandbox(notebookUuid);
-if (!notebookUuid) {
+if (invokedDirectly && process.env.NLM_LIVE_SANDBOX === '1') assertLiveSandbox(notebookUuid);
+if (invokedDirectly && !notebookUuid) {
   console.error(JSON.stringify({
     ok: false,
     error: 'MISSING_NOTEBOOK_UUID',
@@ -81,7 +133,7 @@ const batchSize = Math.min(Math.max(parseInt(flags['batch-size'] || '2', 10), 1)
 
 const stagingDir = flags['staging-dir']
   ? path.resolve(flags['staging-dir'])
-  : path.resolve(process.cwd(), '_kb-sync-staging', notebookUuid);
+  : path.resolve(process.cwd(), '_kb-sync-staging', notebookUuid || '_imported');
 
 const receiptPath = path.join(stagingDir, RECEIPT_FILE_NAME);
 const deadLetterDir = path.join(stagingDir, DEAD_LETTER_DIR_NAME);
@@ -251,33 +303,13 @@ function main() {
   }
 
   // 2. Concurrency Lock
-  if (fs.existsSync(lockPath)) {
-    try {
-      const lockData = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
-      const ageMs = Date.now() - new Date(lockData.createdAt).getTime();
-      let pidAlive = false;
-      try {
-        process.kill(lockData.pid, 0);
-        pidAlive = true;
-      } catch {
-        pidAlive = false;
-      }
-
-      if (!pidAlive || ageMs > 30 * 60 * 1000) {
-        console.warn(`[WARN] Removing stale lockfile from ${!pidAlive ? 'dead' : 'expired'} PID ${lockData.pid}`);
-        fs.unlinkSync(lockPath);
-      } else {
-        report.ok = false;
-        report.error = `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${lockData.pid}`;
-        console.error(JSON.stringify(report, null, 2));
-        return 3;
-      }
-    } catch {
-      fs.unlinkSync(lockPath);
-    }
+  const acquired = acquireIngestLock(lockPath);
+  if (!acquired.ok) {
+    report.ok = false;
+    report.error = acquired.error;
+    console.error(JSON.stringify(report, null, 2));
+    return 3;
   }
-
-  fs.writeFileSync(lockPath, JSON.stringify({ pid: process.pid, createdAt: new Date().toISOString() }), 'utf8');
 
   try {
     // 3. Resolve CLI Runtime
@@ -404,14 +436,16 @@ function main() {
   }
 }
 
-try {
-  process.exitCode = main();
-} catch (fatalErr) {
-  console.error(JSON.stringify({
-    ok: false,
-    error: `FATAL_UNHANDLED: ${fatalErr.message}`,
-    staged: 0,
-    failed: []
-  }, null, 2));
-  process.exit(1);
+if (invokedDirectly) {
+  try {
+    process.exitCode = main();
+  } catch (fatalErr) {
+    console.error(JSON.stringify({
+      ok: false,
+      error: `FATAL_UNHANDLED: ${fatalErr.message}`,
+      staged: 0,
+      failed: []
+    }, null, 2));
+    process.exit(1);
+  }
 }

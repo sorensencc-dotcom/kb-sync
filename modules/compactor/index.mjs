@@ -13,6 +13,7 @@ import { countTokens } from './telemetry.mjs';
 import { replaceFileAtomically } from './atomic-file.mjs';
 import { runCompactCli } from './cli.mjs';
 import { scanAndSanitizeText } from './secret-pii-sanitizer.mjs';
+import { updateJsonLocked } from '../trm/storage/transaction-manager.mjs';
 
 /**
  * Loads top-level skip_patterns from the shared global.yaml config, mirroring
@@ -180,17 +181,11 @@ export async function buildCompactedPack({ repoRoot, manifestPath, outputPath, c
 
 function updateSyncStatusAtomically(repoRoot, stats, warnings) {
   const statusFile = path.join(repoRoot, '.sync-status.json');
-  const tmpStatusFile = `${statusFile}.tmp.${Date.now()}`;
-  let status = {};
-  if (fs.existsSync(statusFile)) {
-    try { status = JSON.parse(fs.readFileSync(statusFile, 'utf8')); } catch (_) {}
-  }
-
-  status.compaction_stats = stats;
-  status.compactor_warnings = warnings;
-
-  fs.writeFileSync(tmpStatusFile, JSON.stringify(status, null, 2), 'utf8');
-  replaceFileAtomically(tmpStatusFile, statusFile);
+  updateJsonLocked(statusFile, (status) => {
+    status.compaction_stats = stats;
+    status.compactor_warnings = warnings;
+    return status;
+  });
 }
 
 // Main CLI Execution Guard

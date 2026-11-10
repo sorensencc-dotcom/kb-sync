@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isProtectedSandboxFixture, assertLiveSandbox, KB_TESTING_FIXTURE_SOURCE_ID } from './notebooklm/sandbox-contract.mjs';
+import { acquireLock } from '../modules/trm/storage/transaction-manager.mjs';
 export { KB_TESTING_SANDBOX_UUID, KB_TESTING_FIXTURE_SOURCE_ID, KB_TESTING_FIXTURE_TITLE, isProtectedSandboxFixture } from './notebooklm/sandbox-contract.mjs';
 
 export const PACK_FAMILY_TITLE_RE = [
@@ -643,6 +644,53 @@ export async function replacePackFamilyAtomic({
   spawnFn = spawnSync,
   timeoutMs = 300000,
   waitMs = 3500,
+  lockPath = null,
+  lockTimeoutMs = 2000,
+}) {
+  const resolvedLock = lockPath || path.join(process.cwd(), `.nlm-replace-${notebookId}.lock`);
+  const lock = acquireLock(resolvedLock, {
+    timeoutMs: lockTimeoutMs,
+    staleTtlMs: (timeoutMs || 300000) + 60_000,
+  });
+  try {
+    return await replacePackFamilyAtomicLocked({
+      cli,
+      notebookId,
+      packFiles,
+      expectedPartCount,
+      hasPack,
+      allowReuse,
+      quarantineHandler,
+      logInfo,
+      logWarn,
+      runUpload,
+      runList,
+      runDelete,
+      spawnFn,
+      timeoutMs,
+      waitMs,
+    });
+  } finally {
+    lock.release();
+  }
+}
+
+async function replacePackFamilyAtomicLocked({
+  cli,
+  notebookId,
+  packFiles,
+  expectedPartCount,
+  hasPack,
+  allowReuse,
+  quarantineHandler,
+  logInfo,
+  logWarn,
+  runUpload,
+  runList,
+  runDelete,
+  spawnFn,
+  timeoutMs,
+  waitMs,
 }) {
   // 1. has_pack: false: check and purge any orphan pack sources
   if (!hasPack) {

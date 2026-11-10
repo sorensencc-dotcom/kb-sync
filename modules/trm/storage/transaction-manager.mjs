@@ -38,12 +38,11 @@ export function acquireLock(lockPath, options = {}) {
   throw new Error(`Failed to acquire lock on ${lockPath} within ${timeoutMs}ms`);
 }
 
-export function atomicWriteJson(filePath, data) {
+function replaceJsonFile(filePath, data) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  const lock = acquireLock(`${filePath}.lock`);
   const tmpPath = `${filePath}.tmp.${process.pid}.${Date.now()}`;
+  fs.writeFileSync(tmpPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
   try {
-    fs.writeFileSync(tmpPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
     try {
       fs.renameSync(tmpPath, filePath);
     } catch (err) {
@@ -57,6 +56,31 @@ export function atomicWriteJson(filePath, data) {
     try {
       fs.unlinkSync(tmpPath);
     } catch {}
+  }
+}
+
+export function atomicWriteJson(filePath, data) {
+  const lock = acquireLock(`${filePath}.lock`);
+  try {
+    replaceJsonFile(filePath, data);
+  } finally {
+    lock.release();
+  }
+}
+
+export function updateJsonLocked(filePath, mutator, options = {}) {
+  const lock = acquireLock(`${filePath}.lock`, options);
+  try {
+    let data = {};
+    try {
+      const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) data = parsed;
+    } catch {}
+    const next = mutator(data);
+    const out = next === undefined ? data : next;
+    replaceJsonFile(filePath, out);
+    return out;
+  } finally {
     lock.release();
   }
 }
