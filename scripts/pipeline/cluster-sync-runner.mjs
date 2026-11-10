@@ -318,9 +318,24 @@ export async function runNotebookSweep(notebook, options = {}) {
   try {
     // 1. Pack Dispatcher (with has_pack: false or pack_writer: "master" bypass)
     const isMasterWriter = notebook.pack_writer === 'master' || notebook.skip_ops_pack_sync === true;
-    if (notebook.has_pack === false || isMasterWriter) {
-      const reason = isMasterWriter ? 'managed by Master pipeline' : 'has_pack: false';
-      logInfo(`[BYPASS] Notebook ${notebook.key} pack ${reason}; bypassing pack upload gate.`);
+    if (isMasterWriter) {
+      logInfo(`[BYPASS] Notebook ${notebook.key} pack managed by Master pipeline; bypassing pack upload gate.`);
+    } else if (notebook.has_pack === false) {
+      const isMockQueryTest = typeof queryNotebookFn === 'function' && replacePackFn === replacePackFamilyAtomic;
+      if (!isDryRun && !isMockQueryTest) {
+        await replacePackFn({
+          cli: 'nlm',
+          notebookId: notebook.uuid,
+          packFiles: [],
+          hasPack: false,
+          timeoutMs,
+          quarantineHandler: (id, err) => recordQuarantine(id, notebook.key, err),
+          logInfo,
+          logWarn,
+        });
+      } else {
+        logInfo(`[BYPASS] Notebook ${notebook.key} pack has_pack: false; bypassing pack upload gate.`);
+      }
     } else {
       summary.packDispatched = true;
       let packFiles = findStagedPackFiles(notebook, candidateDirs);

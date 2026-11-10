@@ -500,6 +500,7 @@ test('replacePackFamilyAtomic handles hasPack false bypass immediately', async (
   const res = await replacePackFamilyAtomic({
     notebookId: '140119ae-3496-45c9-bf0c-71c955136afc', // rewrite-labs
     hasPack: false,
+    runList: async () => [],
   });
   assert.equal(res.bypassed, true);
   assert.equal(res.reason, 'HAS_PACK_FALSE');
@@ -1137,4 +1138,25 @@ test('readPackFileCount reads the header count and ignores packs without one', (
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test('replacePackFamilyAtomic with hasPack false purges orphan pack sources while preserving non-pack sources', async () => {
+  const deleted = [];
+  const res = await replacePackFamilyAtomic({
+    notebookId: 'c8360946-dbee-4a2c-b622-7f89b05695b0', // cuba-claims
+    hasPack: false,
+    runList: async () => [
+      { id: 'src-pack', title: 'pack_cuba_claims.txt', status: 2 },
+      { id: 'src-doc', title: 'Cuba Historical Document.pdf', status: 2 },
+    ],
+    runDelete: async (id) => {
+      deleted.push(id);
+      return true;
+    },
+  });
+
+  assert.equal(res.bypassed, true);
+  assert.equal(res.reason, 'HAS_PACK_FALSE_PURGED');
+  assert.deepEqual(res.purgedOldSourceIds, ['src-pack']);
+  assert.deepEqual(deleted, ['src-pack']);
 });

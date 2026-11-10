@@ -398,5 +398,28 @@ test('clusterSyncExitCode is non-zero when any notebook failed, zero otherwise',
   assert.equal(clusterSyncExitCode({ succeeded: 0, failed: 0 }), 0);
 });
 
+test('runNotebookSweep invokes replacePackFn with hasPack: false to purge orphan packs on live sweep', async () => {
+  const replaceCalls = [];
+  const summary = await runNotebookSweep(
+    {
+      key: 'cuba-claims',
+      uuid: 'c8360946-dbee-4a2c-b622-7f89b05695b0',
+      has_pack: false,
+    },
+    {
+      isDryRun: false,
+      replacePackFn: async (params) => {
+        replaceCalls.push(params);
+        return { bypassed: true, reason: 'HAS_PACK_FALSE_PURGED', purgedOldSourceIds: ['src-pack'] };
+      },
+    }
+  );
+  assert.equal(summary.status, 'SUCCESS');
+  assert.equal(replaceCalls.length, 1);
+  assert.equal(replaceCalls[0].hasPack, false);
+  assert.equal(replaceCalls[0].notebookId, 'c8360946-dbee-4a2c-b622-7f89b05695b0');
+});
+
+
 
 

@@ -644,10 +644,40 @@ export async function replacePackFamilyAtomic({
   timeoutMs = 300000,
   waitMs = 3500,
 }) {
-  // 1. has_pack: false Bypass: skip pack dispatcher entirely
+  // 1. has_pack: false: check and purge any orphan pack sources
   if (!hasPack) {
-    logInfo(`[REPLACE-GATE] Notebook ${notebookId} has_pack: false; bypassing pack dispatcher.`);
-    return { bypassed: true, reason: 'HAS_PACK_FALSE', notebookId };
+    const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
+    let liveSources = [];
+    try {
+      liveSources = await listFn(notebookId);
+    } catch (err) {
+      logWarn(`[REPLACE-GATE] Notebook ${notebookId} has_pack: false; source list failed (${err.message}); bypassing pack dispatcher.`);
+      return { bypassed: true, reason: 'HAS_PACK_FALSE', notebookId, purgedOldSourceIds: [] };
+    }
+    const orphanPackSources = filterPackFamilySources(liveSources);
+    if (orphanPackSources.length === 0) {
+      logInfo(`[REPLACE-GATE] Notebook ${notebookId} has_pack: false; bypassing pack dispatcher.`);
+      return { bypassed: true, reason: 'HAS_PACK_FALSE', notebookId, purgedOldSourceIds: [] };
+    }
+    logWarn(`[REPLACE-GATE] Notebook ${notebookId} has_pack: false but contains ${orphanPackSources.length} orphan pack source(s); purging...`);
+    const deleteFn = (nbId, srcId, lease) => runDelete
+      ? runDelete(srcId, lease, nbId)
+      : deleteNotebookSource(cli, nbId, srcId, lease);
+    const toDelete = orphanPackSources.map((s) => s.id || s.sourceId || s.source_id).filter(Boolean);
+    const lease = toDelete.length
+      ? createSourceDeletionLease({ notebookId, sourceIds: toDelete, reason: 'replacement' })
+      : null;
+    const purgedIds = [];
+    for (const id of toDelete) {
+      try {
+        await deleteFn(notebookId, id, lease);
+        purgedIds.push(id);
+      } catch (delErr) {
+        logWarn(`[WARN] Failed to delete orphan pack source ${id}: ${delErr.message}`);
+      }
+    }
+    logInfo(`[REPLACE-GATE] Notebook ${notebookId}: purged ${purgedIds.length} orphan pack source(s).`);
+    return { bypassed: true, reason: 'HAS_PACK_FALSE_PURGED', notebookId, purgedOldSourceIds: purgedIds };
   }
 
   // 2. Multipart Pack Family Atomicity: Expected part count N must match staged part count N
