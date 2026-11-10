@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
 import { verifySigilEnvelope, canonicalizeJson } from '../watch-competitors-v2.mjs';
+import { updateJsonLocked } from '../modules/trm/storage/transaction-manager.mjs';
 
 const COLOR_GREEN = '\x1b[32m';
 const COLOR_YELLOW = '\x1b[33m';
@@ -74,14 +75,16 @@ export async function processApprovals(options = {}) {
       if (watchlistId && fs.existsSync(watchlistsDir)) {
         const watchlistFile = path.join(watchlistsDir, `${watchlistId}.json`);
         if (fs.existsSync(watchlistFile)) {
-          const config = JSON.parse(fs.readFileSync(watchlistFile, 'utf8'));
-          const target = config.targets?.find(t => t.target_id === env.body.target_id);
-          if (target) {
+          const updated = updateJsonLocked(watchlistFile, (config) => {
+            const target = config.targets?.find(t => t.target_id === env.body.target_id);
+            if (!target) return config;
             target.hash_baseline = env.body.observed_hash;
-            config.memory_alignment.status = 'stable';
+            if (config.memory_alignment) config.memory_alignment.status = 'stable';
             config.last_monitored_at = new Date().toISOString();
-            fs.writeFileSync(watchlistFile, JSON.stringify(config, null, 2), 'utf8');
-            console.log(`  -> Updated baseline for target '${target.target_id}' in ${watchlistFile}`);
+            return config;
+          });
+          if (updated.targets?.some(t => t.target_id === env.body.target_id && t.hash_baseline === env.body.observed_hash)) {
+            console.log(`  -> Updated baseline for target '${env.body.target_id}' in ${watchlistFile}`);
           }
         }
       }

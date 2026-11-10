@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { promisify } from 'node:util';
+import { updateJsonLocked } from '../trm/storage/transaction-manager.mjs';
 
 const execFileAsync = promisify(execFile);
 export const GRAPH_FORMAT = 'kb-sync-graph/v1';
@@ -220,8 +221,16 @@ export function createMemoryPersistence(initial = { version: 1, items: [] }) {
   return {
     load() { return clone(state); },
     save(next) { state = clone(next); },
+    update(mutator) {
+      state = clone(mutator(clone(state)));
+      return clone(state);
+    },
     snapshot() { return clone(state); },
   };
+}
+
+function seedQueueState(data) {
+  return data && data.version === 1 && Array.isArray(data.items) ? data : { version: 1, items: [] };
 }
 
 export function createJsonFilePersistence(filePath) {
@@ -235,10 +244,10 @@ export function createJsonFilePersistence(filePath) {
       }
     },
     save(state) {
-      fs.mkdirSync(path.dirname(filePath), { recursive: true });
-      const tempPath = `${filePath}.${process.pid}.tmp`;
-      fs.writeFileSync(tempPath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
-      fs.renameSync(tempPath, filePath);
+      updateJsonLocked(filePath, () => state);
+    },
+    update(mutator) {
+      return updateJsonLocked(filePath, (data) => mutator(seedQueueState(data)));
     },
   };
 }
@@ -335,6 +344,13 @@ export class GraphSyncQueue {
 
   _save(items) { this.persistence.save({ version: 1, items }); }
 
+  _update(mutator) {
+    if (typeof this.persistence.update === 'function') return this.persistence.update(mutator);
+    const next = mutator(clone(this._state()));
+    this.persistence.save(next);
+    return next;
+  }
+
   get(id) {
     const item = stateItems(this._state()).find((candidate) => candidate.id === id);
     return item ? clone(item) : null;
@@ -347,59 +363,90 @@ export class GraphSyncQueue {
     if (canonical.sourceVersion !== sourceVersion || canonical.targetVersion !== targetVersion) {
       throw new GraphSyncError('VERSION_MISMATCH', 'Queue versions must match snapshot versions');
     }
-    const items = stateItems(this._state());
-    const existing = items.find((item) => item.sourceVersion === sourceVersion && item.targetVersion === targetVersion && item.snapshotHash === canonical.snapshotHash);
-    if (existing) return clone(existing);
-    const now = currentTime(this.clock);
-    const item = {
-      id: nextId(this.idGenerator),
-      sourceVersion,
-      targetVersion,
-      snapshotHash: canonical.snapshotHash,
-      snapshot: canonical,
-      status: 'queued',
-      attempts: 0,
-      createdAt: now,
-      updatedAt: now,
-      preflightToken: null,
-      quarantine: null,
-      lastError: null,
-      mergeResult: null,
-    };
-    this._save([...items, item]);
-    return clone(item);
+    let result;
+    this._update((state) => {
+      const items = stateItems(state);
+      const existing = items.find((item) => item.sourceVersion === sourceVersion && item.targetVersion === targetVersion && item.snapshotHash === canonical.snapshotHash);
+      if (existing) {
+        result = clone(existing);
+        return state;
+      }
+      const now = currentTime(this.clock);
+      const item = {
+        id: nextId(this.idGenerator),
+        sourceVersion,
+        targetVersion,
+        snapshotHash: canonical.snapshotHash,
+        snapshot: canonical,
+        status: 'queued',
+        attempts: 0,
+        createdAt: now,
+        updatedAt: now,
+        preflightToken: null,
+        quarantine: null,
+        lastError: null,
+        mergeResult: null,
+      };
+      result = clone(item);
+      return { version: 1, items: [...items, item] };
+    });
+    return result;
   }
 
   retry(id) {
-    const items = stateItems(this._state());
-    const index = items.findIndex((item) => item.id === id);
-    if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
-    const item = items[index];
-    if (item.status === 'queued' || item.status === 'preflighting') return clone(item);
-    if (item.status === 'merged') return clone(item);
-    const next = { ...item, status: 'queued', preflightToken: null, lastError: null, updatedAt: currentTime(this.clock) };
-    items[index] = next;
-    this._save(items);
-    return clone(next);
+    let result;
+    this._update((state) => {
+      const items = stateItems(state);
+      const index = items.findIndex((item) => item.id === id);
+      if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
+      const item = items[index];
+      if (item.status === 'queued' || item.status === 'preflighting' || item.status === 'merged') {
+        result = clone(item);
+        return state;
+      }
+      const next = { ...item, status: 'queued', preflightToken: null, lastError: null, updatedAt: currentTime(this.clock) };
+      items[index] = next;
+      result = clone(next);
+      return { version: 1, items };
+    });
+    return result;
   }
 
   async preflight(id) {
-    const items = stateItems(this._state());
-    const index = items.findIndex((item) => item.id === id);
-    if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
-    const item = items[index];
-    if (item.status === 'merged') return clone(item);
-    if (item.status === 'ready' && item.preflightToken) return clone(item);
-    if (!this.preflightAdapter?.inspect) throw new GraphSyncError('PREFLIGHT_ADAPTER_MISSING', 'Preflight adapter is required');
-    const pending = { ...item, status: 'preflighting', attempts: item.attempts + 1, updatedAt: currentTime(this.clock) };
-    items[index] = pending;
-    this._save(items);
+    let pending;
+    this._update((state) => {
+      const items = stateItems(state);
+      const index = items.findIndex((item) => item.id === id);
+      if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
+      const item = items[index];
+      if (item.status === 'merged' || (item.status === 'ready' && item.preflightToken)) {
+        pending = clone(item);
+        return state;
+      }
+      if (!this.preflightAdapter?.inspect) throw new GraphSyncError('PREFLIGHT_ADAPTER_MISSING', 'Preflight adapter is required');
+      pending = { ...item, status: 'preflighting', attempts: item.attempts + 1, updatedAt: currentTime(this.clock) };
+      items[index] = pending;
+      return { version: 1, items };
+    });
+    if (pending.status !== 'preflighting') return pending;
+    const finish = (next) => {
+      let result;
+      this._update((state) => {
+        const items = stateItems(state);
+        const index = items.findIndex((item) => item.id === id);
+        if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
+        items[index] = next;
+        result = clone(next);
+        return { version: 1, items };
+      });
+      return result;
+    };
     try {
       const inspection = await this.preflightAdapter.inspect(clone(pending));
       const observedSnapshot = inspection?.observedSnapshot ?? inspection?.snapshot;
       const report = compareSnapshots(pending.snapshot, observedSnapshot);
       if (report.hasDrift) {
-        const quarantined = {
+        return finish({
           ...pending,
           status: 'quarantined',
           updatedAt: currentTime(this.clock),
@@ -411,23 +458,17 @@ export class GraphSyncQueue {
             reason: report.unknown.length ? 'unknown-drift' : 'graph-drift',
             report,
           },
-        };
-        items[index] = quarantined;
-        this._save(items);
-        return clone(quarantined);
+        });
       }
-      const ready = {
+      return finish({
         ...pending,
         status: 'ready',
         updatedAt: currentTime(this.clock),
         preflightToken: createPreflightToken({ queueId: pending.id, sourceVersion: pending.sourceVersion, targetVersion: pending.targetVersion, snapshotHash: pending.snapshotHash }),
         quarantine: null,
-      };
-      items[index] = ready;
-      this._save(items);
-      return clone(ready);
+      });
     } catch (error) {
-      const quarantined = {
+      return finish({
         ...pending,
         status: 'quarantined',
         updatedAt: currentTime(this.clock),
@@ -439,36 +480,47 @@ export class GraphSyncQueue {
           reason: error.code ?? 'preflight-error',
           report: [{ message: error.message }],
         },
-      };
-      items[index] = quarantined;
-      this._save(items);
-      return clone(quarantined);
+      });
     }
   }
 
   async merge(id, token) {
-    const items = stateItems(this._state());
-    const index = items.findIndex((item) => item.id === id);
-    if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
-    const item = items[index];
-    if (item.status === 'merged') return clone(item);
-    if (item.status !== 'ready' || !verifyPreflightToken(token, { queueId: item.id, sourceVersion: item.sourceVersion, targetVersion: item.targetVersion, snapshotHash: item.snapshotHash }) || token !== item.preflightToken) {
-      throw new GraphSyncError('TOKEN_MISMATCH', 'Preflight token does not bind to queue item');
-    }
-    if (!this.mergeAdapter?.apply) throw new GraphSyncError('MERGE_ADAPTER_MISSING', 'Merge adapter is required');
-    const merging = { ...item, status: 'merging', updatedAt: currentTime(this.clock) };
-    items[index] = merging;
-    this._save(items);
+    let merging;
+    this._update((state) => {
+      const items = stateItems(state);
+      const index = items.findIndex((item) => item.id === id);
+      if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
+      const item = items[index];
+      if (item.status === 'merged') {
+        merging = clone(item);
+        return state;
+      }
+      if (item.status !== 'ready' || !verifyPreflightToken(token, { queueId: item.id, sourceVersion: item.sourceVersion, targetVersion: item.targetVersion, snapshotHash: item.snapshotHash }) || token !== item.preflightToken) {
+        throw new GraphSyncError('TOKEN_MISMATCH', 'Preflight token does not bind to queue item');
+      }
+      if (!this.mergeAdapter?.apply) throw new GraphSyncError('MERGE_ADAPTER_MISSING', 'Merge adapter is required');
+      merging = { ...item, status: 'merging', updatedAt: currentTime(this.clock) };
+      items[index] = merging;
+      return { version: 1, items };
+    });
+    if (merging.status === 'merged') return merging;
+    const finish = (next) => {
+      let result;
+      this._update((state) => {
+        const items = stateItems(state);
+        const index = items.findIndex((item) => item.id === id);
+        if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
+        items[index] = next;
+        result = clone(next);
+        return { version: 1, items };
+      });
+      return result;
+    };
     try {
       const mergeResult = await this.mergeAdapter.apply(clone(merging));
-      const merged = { ...merging, status: 'merged', updatedAt: currentTime(this.clock), mergeResult: clone(mergeResult) };
-      items[index] = merged;
-      this._save(items);
-      return clone(merged);
+      return finish({ ...merging, status: 'merged', updatedAt: currentTime(this.clock), mergeResult: clone(mergeResult) });
     } catch (error) {
-      const failed = { ...merging, status: 'failed', updatedAt: currentTime(this.clock), lastError: { code: error.code ?? 'MERGE_FAILED', message: error.message } };
-      items[index] = failed;
-      this._save(items);
+      finish({ ...merging, status: 'failed', updatedAt: currentTime(this.clock), lastError: { code: error.code ?? 'MERGE_FAILED', message: error.message } });
       throw error;
     }
   }

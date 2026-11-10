@@ -6,9 +6,12 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { updateJsonLocked } from "../../modules/trm/storage/transaction-manager.mjs";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "../../");
+const invokedDirectly = path.resolve(process.argv[1] || "") === __filename;
 const PACK_DIR = path.join(REPO_ROOT, ".nlm_pack");
 const OUTPUT_DIR = path.join(REPO_ROOT, "_integration");
 const ARTIFACT_PATH = path.join(OUTPUT_DIR, "kb-sync-interactive-report.html");
@@ -117,43 +120,33 @@ async function main() {
     `Top reference: ${sortedLinks[0]?.url} (${sortedLinks[0]?.reference_count} refs)`
   );
 
-  // Write lightweight .sync-status.json telemetry endpoint file
   const STATUS_PATH = path.join(REPO_ROOT, ".sync-status.json");
   const packSizeBytes = packFiles.reduce((acc, f) => acc + fs.statSync(path.join(PACK_DIR, f)).size, 0);
-  let existingStatus = {};
-  if (fs.existsSync(STATUS_PATH)) {
-    try {
-      existingStatus = JSON.parse(fs.readFileSync(STATUS_PATH, "utf8"));
-    } catch (_) {
-      existingStatus = {};
-    }
-  }
-
-  const failed = existingStatus.status === "FAILED" || (typeof existingStatus.failed === "number" && existingStatus.failed > 0);
-  const statusData = {
-    // Preserve whatever Stage 1 (ingest-notebooklm.sh) already wrote --
-    // e.g. last_sync_pack_sha, purged_sources, uploaded_chunks -- rather
-    // than discarding it. A bare overwrite here silently broke the hybrid
-    // cache's pack-generation invalidation key on every successful run.
-    ...existingStatus,
-    last_sync_timestamp: new Date().toISOString(),
-    status: failed ? "FAILED" : "SUCCESS",
+  applyArtifactSyncStatus(STATUS_PATH, {
     file_count: totalFiles,
     pack_files_count: packFiles.length,
     pack_size_bytes: packSizeBytes,
     unique_urls_tracked: brokenLinks.length,
     total_url_references: totalReferences,
-    notebook_id: process.env.NOTEBOOK_ID || existingStatus.notebook_id || "unknown",
-    // Derived, not hardcoded: this script runs as stage 2 after the bash
-    // pipeline produced .nlm_pack, so a successful run proves both stages.
-    // Previously these were literal `true`s that persisted through the bash
-    // telemetry merge and masked later FAILED runs.
-    stage1_success: failed ? existingStatus.stage1_success : true,
-    stage2_success: failed ? existingStatus.stage2_success : true
-  };
-
-  fs.writeFileSync(STATUS_PATH, JSON.stringify(statusData, null, 2), "utf8");
+    notebook_id: process.env.NOTEBOOK_ID || undefined,
+  });
   log_info(`Telemetry status written: ${STATUS_PATH}`);
+}
+
+export function applyArtifactSyncStatus(statusPath, patch = {}) {
+  return updateJsonLocked(statusPath, (existingStatus) => {
+    const failed = existingStatus.status === "FAILED" || (typeof existingStatus.failed === "number" && existingStatus.failed > 0);
+    const notebookId = patch.notebook_id || existingStatus.notebook_id || "unknown";
+    return {
+      ...existingStatus,
+      ...patch,
+      last_sync_timestamp: new Date().toISOString(),
+      status: failed ? "FAILED" : "SUCCESS",
+      notebook_id: notebookId,
+      stage1_success: failed ? existingStatus.stage1_success : true,
+      stage2_success: failed ? existingStatus.stage2_success : true,
+    };
+  });
 }
 
 function generateInteractiveArtifact(brokenLinks, metadata) {
@@ -433,7 +426,9 @@ function generateInteractiveArtifact(brokenLinks, metadata) {
 </html>`;
 }
 
-main().catch((err) => {
-  log_error(`Artifact generation failed: ${err.message}`);
-  process.exit(1);
-});
+if (invokedDirectly) {
+  main().catch((err) => {
+    log_error(`Artifact generation failed: ${err.message}`);
+    process.exit(1);
+  });
+}

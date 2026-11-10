@@ -15,7 +15,7 @@ import {
   toPosix,
   writeJsonAtomic,
 } from '../modules/wiki/generated-ownership.mjs';
-import { updateJsonLocked } from '../modules/trm/storage/transaction-manager.mjs';
+import { atomicWriteJson, updateJsonLocked } from '../modules/trm/storage/transaction-manager.mjs';
 
 export function applyWikiSyncStatus(syncStatusPath) {
   updateJsonLocked(syncStatusPath, (syncStatusData) => {
@@ -444,7 +444,7 @@ export async function publishWiki(customOptions = {}) {
     // Only a verified publication replaces the receipt; a prepare-only run must not overwrite the
     // evidence of the last real publication (its staleness is judged by age + revision instead).
     const receiptPath = path.join(currentRoot, '.wiki-sync-receipt.json');
-    fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2), 'utf8');
+    atomicWriteJson(receiptPath, receipt);
     console.log(`✓ Sync receipt (verified remote head ${remoteHeadSha}) written to ${receiptPath}`);
   } else {
     console.log(`Publish tree prepared only (push not enabled): status=PREPARED_NOT_PUSHED; no receipt written. Pass --push (or AUTO_PUSH=true) to publish.`);

@@ -5,6 +5,7 @@ import * as https from 'node:https';
 import * as http from 'node:http';
 import * as dns from 'node:dns/promises';
 import { isIP } from 'node:net';
+import { updateJsonLocked } from './modules/trm/storage/transaction-manager.mjs';
 
 // Optional SQLite driver loading
 let Database = null;
@@ -1126,7 +1127,13 @@ export async function monitorCompetitorWatchlist(watchlistPath, optionsOrDbPath 
     watchlist.last_monitored_at = new Date().toISOString();
 
     if (!isDryRun && driftsDetected > 0) {
-      fs.writeFileSync(watchlistPath, JSON.stringify(watchlist, null, 2), 'utf8');
+      updateJsonLocked(watchlistPath, (current) => {
+        current.last_monitored_at = watchlist.last_monitored_at;
+        if (watchlist.memory_alignment) {
+          current.memory_alignment = { ...current.memory_alignment, ...watchlist.memory_alignment };
+        }
+        return current;
+      });
     }
 
     return {

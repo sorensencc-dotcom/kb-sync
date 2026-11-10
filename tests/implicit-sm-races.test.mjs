@@ -13,6 +13,8 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 const CLUSTER = pathToFileURL(path.join(REPO_ROOT, 'scripts/pipeline/cluster-sync-runner.mjs')).href;
 const TX = pathToFileURL(path.join(REPO_ROOT, 'modules/trm/storage/transaction-manager.mjs')).href;
 const INGEST = pathToFileURL(path.join(REPO_ROOT, 'scripts/notebooklm/ingest-nlm-runner.mjs')).href;
+const ARTIFACT = pathToFileURL(path.join(REPO_ROOT, 'scripts/notebooklm/generate-kb-sync-artifact.mjs')).href;
+const QUEUE = pathToFileURL(path.join(REPO_ROOT, 'modules/graph-sync/queue.mjs')).href;
 
 function spawnNode(scriptPath, env) {
   return new Promise((resolve, reject) => {
@@ -216,5 +218,122 @@ test('updateJsonLocked concurrent key writes keep both keys', async () => {
   const data = JSON.parse(fs.readFileSync(file, 'utf8'));
   assert.equal(data.daily, 30);
   assert.equal(data.ops, 30);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('artifact telemetry merge keeps pack SHA and refuses SUCCESS over FAILED', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-artifact-status-'));
+  const statusFile = path.join(tmp, '.sync-status.json');
+  fs.writeFileSync(statusFile, JSON.stringify({ last_sync_pack_sha: 'abc123', status: 'SUCCESS' }));
+  const cluster = writeWorker(tmp, 'cluster.mjs', `
+    import { persistClusterTelemetry } from ${JSON.stringify(CLUSTER)};
+    persistClusterTelemetry({ last_sync_pack_sha: 'abc123', failed: 2, status: 'FAILED' }, process.env.FILE);
+  `);
+  const artifact = writeWorker(tmp, 'artifact.mjs', `
+    import { applyArtifactSyncStatus } from ${JSON.stringify(ARTIFACT)};
+    applyArtifactSyncStatus(process.env.FILE, { file_count: 9 });
+  `);
+  const [a, b] = await Promise.all([
+    spawnNode(cluster, { FILE: statusFile }),
+    spawnNode(artifact, { FILE: statusFile }),
+  ]);
+  assert.equal(a.code, 0, a.stderr);
+  assert.equal(b.code, 0, b.stderr);
+  const data = JSON.parse(fs.readFileSync(statusFile, 'utf8'));
+  assert.equal(data.last_sync_pack_sha, 'abc123');
+  assert.equal(data.status, 'FAILED');
+  assert.equal(data.file_count, 9);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('two processes enqueueing graph-sync items keep every item', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-graph-queue-'));
+  const stateFile = path.join(tmp, 'state.json');
+  const worker = writeWorker(tmp, 'queue-worker.mjs', `
+    import { GraphSyncQueue, createJsonFilePersistence, createGraphSnapshot } from ${JSON.stringify(QUEUE)};
+    const q = new GraphSyncQueue({ persistence: createJsonFilePersistence(process.env.FILE) });
+    const prefix = process.env.PREFIX;
+    for (let i = 0; i < 20; i++) {
+      const sourceVersion = prefix + '-' + i;
+      q.enqueue({
+        sourceVersion,
+        targetVersion: 'target',
+        snapshot: createGraphSnapshot({
+          sourceVersion,
+          targetVersion: 'target',
+          nodes: [{ id: prefix + i, kind: 'doc', path: prefix + '-' + i + '.md', hash: 'h' + i }],
+          edges: [],
+        }),
+      });
+    }
+  `);
+  const [a, b] = await Promise.all([
+    spawnNode(worker, { FILE: stateFile, PREFIX: 'daily' }),
+    spawnNode(worker, { FILE: stateFile, PREFIX: 'ops' }),
+  ]);
+  assert.equal(a.code, 0, a.stderr);
+  assert.equal(b.code, 0, b.stderr);
+  const data = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+  assert.equal(data.items.length, 40, `lost update dropped ${40 - data.items.length} queue items`);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('two processes updating different watchlist targets keep both baselines', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-watchlist-'));
+  const file = path.join(tmp, 'watchlist.json');
+  fs.writeFileSync(file, JSON.stringify({
+    targets: [
+      { target_id: 'daily', hash_baseline: 'old' },
+      { target_id: 'ops', hash_baseline: 'old' },
+    ],
+    memory_alignment: { status: 'stale' },
+  }));
+  const worker = writeWorker(tmp, 'watch-worker.mjs', `
+    import { updateJsonLocked } from ${JSON.stringify(TX)};
+    updateJsonLocked(process.env.FILE, (config) => {
+      const target = config.targets.find((t) => t.target_id === process.env.ID);
+      target.hash_baseline = process.env.HASH;
+      if (config.memory_alignment) config.memory_alignment.status = 'stable';
+      config.last_monitored_at = process.env.ID;
+      return config;
+    });
+  `);
+  const [a, b] = await Promise.all([
+    spawnNode(worker, { FILE: file, ID: 'daily', HASH: 'daily-hash' }),
+    spawnNode(worker, { FILE: file, ID: 'ops', HASH: 'ops-hash' }),
+  ]);
+  assert.equal(a.code, 0, a.stderr);
+  assert.equal(b.code, 0, b.stderr);
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.equal(data.targets.find((t) => t.target_id === 'daily').hash_baseline, 'daily-hash');
+  assert.equal(data.targets.find((t) => t.target_id === 'ops').hash_baseline, 'ops-hash');
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('concurrent wiki receipt writes stay valid JSON', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-wiki-receipt-'));
+  const file = path.join(tmp, '.wiki-sync-receipt.json');
+  const worker = writeWorker(tmp, 'receipt-worker.mjs', `
+    import { atomicWriteJson } from ${JSON.stringify(TX)};
+    for (let i = 0; i < 20; i++) {
+      atomicWriteJson(process.env.FILE, {
+        repository: 'demo',
+        remote_wiki_url: 'git@example.com:demo.wiki.git',
+        remote_wiki_head: process.env.HEAD + '-' + i,
+        verified_at: new Date().toISOString(),
+        total_pages_published: 1,
+        sync_status: 'SYNCHRONIZED',
+      });
+    }
+  `);
+  const [a, b] = await Promise.all([
+    spawnNode(worker, { FILE: file, HEAD: 'aaa' }),
+    spawnNode(worker, { FILE: file, HEAD: 'bbb' }),
+  ]);
+  assert.equal(a.code, 0, a.stderr);
+  assert.equal(b.code, 0, b.stderr);
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.equal(data.sync_status, 'SYNCHRONIZED');
+  assert.match(data.remote_wiki_head, /^(aaa|bbb)-\d+$/);
   fs.rmSync(tmp, { recursive: true, force: true });
 });

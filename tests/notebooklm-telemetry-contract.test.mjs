@@ -14,8 +14,10 @@ for (const notebookId of [undefined, 'current-notebook']) test(`Stage 2 uses ${n
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'notebooklm-telemetry-'));
   context.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   fs.mkdirSync(path.join(directory, 'scripts/notebooklm'), { recursive: true });
+  fs.mkdirSync(path.join(directory, 'modules/trm/storage'), { recursive: true });
   fs.mkdirSync(path.join(directory, '.nlm_pack'));
   fs.copyFileSync(path.join(repoRoot, 'scripts/notebooklm/generate-kb-sync-artifact.mjs'), path.join(directory, 'scripts/notebooklm/generate-kb-sync-artifact.mjs'));
+  fs.copyFileSync(path.join(repoRoot, 'modules/trm/storage/transaction-manager.mjs'), path.join(directory, 'modules/trm/storage/transaction-manager.mjs'));
   fs.writeFileSync(path.join(directory, '.nlm_pack/pack.txt'), 'Fixture knowledge pack');
   fs.writeFileSync(path.join(directory, '.sync-status.json'), JSON.stringify({ notebook_id: 'retained-notebook' }));
   const env = { ...process.env };

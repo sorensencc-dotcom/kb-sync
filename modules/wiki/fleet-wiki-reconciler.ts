@@ -16,6 +16,7 @@ import {
   toPosix,
   writeJsonAtomic,
 } from './generated-ownership.mjs';
+import { atomicWriteJson } from '../trm/storage/transaction-manager.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -591,7 +592,7 @@ export function syncRepositoryWiki(repoName: string, repoPath: string, options: 
         flat_name_collisions: copy.flatCollisions.length,
         stale_pages_removed: removedStale
       };
-      fs.writeFileSync(path.join(repoPath, '.wiki-sync-receipt.json'), JSON.stringify(receipt, null, 2), 'utf8');
+      atomicWriteJson(path.join(repoPath, '.wiki-sync-receipt.json'), receipt);
     }
 
     cleanup();
