@@ -1,0 +1,19 @@
+tests/cluster-sync-staging.test.mjs
+  s_5979629bcd9533::t_be818ff3f6668b 401-423
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0b0340bc7d87acd9ce5b2ecf575cf26b95c0d6dd",
+  "prompts": {},
+  "sessions": {
+    "s_5979629bcd9533": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0bd5f0ee-cf5f-459a-86ab-6cd48bd0b6f2",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
