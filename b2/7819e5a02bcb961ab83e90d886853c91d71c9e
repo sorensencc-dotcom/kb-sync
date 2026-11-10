@@ -1,0 +1,32 @@
+.trail/learnings/2026-11-10-ingest-runner-cli-parse-exits-on-chris.md
+  h_5c172e9b435f5a 1-30
+modules/compactor/index.mjs
+  h_5c172e9b435f5a 16,184-188
+modules/trm/storage/transaction-manager.mjs
+  h_5c172e9b435f5a 41,44,59-83
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 18,647-693
+scripts/notebooklm/generate-kb-sync-artifact.mjs
+  h_5c172e9b435f5a 132,140,151-152
+scripts/notebooklm/ingest-nlm-runner.mjs
+  h_5c172e9b435f5a 47-98,118-119,136,306-311,439-450
+scripts/pipeline/cluster-sync-runner.mjs
+  h_5c172e9b435f5a 26,143-149,151-159,164-173,178-185,513
+scripts/run-closed-loop-research-v2.mjs
+  h_5c172e9b435f5a 5,41,43-47,49-57,488,519-524,606-610
+scripts/sync-github-wiki.mjs
+  h_5c172e9b435f5a 18-31,422
+tests/implicit-sm-races.test.mjs
+  h_5c172e9b435f5a 1-220
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b27819e5a02bcb961ab83e90d886853c91d71c9e",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
