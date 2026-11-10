@@ -1,0 +1,28 @@
+modules/graph-sync/queue.mjs
+  h_5c172e9b435f5a 6,224-227,232-235,247-250,347-353,366-393,397-412,416-443,449,461,463,469,471,483,488-518,521,523
+modules/wiki/fleet-wiki-reconciler.ts
+  h_5c172e9b435f5a 19,595
+scripts/notebooklm/generate-kb-sync-artifact.mjs
+  h_5c172e9b435f5a 9,11-12,14,125,131-132,136-151,429-434
+scripts/process-sigil-approvals.mjs
+  h_5c172e9b435f5a 5,78-80,82,84-87
+scripts/sync-github-wiki.mjs
+  h_5c172e9b435f5a 18,447
+tests/implicit-sm-races.test.mjs
+  h_5c172e9b435f5a 16-17,223-339
+tests/notebooklm-telemetry-contract.test.mjs
+  h_5c172e9b435f5a 17,20
+watch-competitors-v2.mjs
+  h_5c172e9b435f5a 8,1130-1136
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "26b233e7fe1756429cafe6bbb4ad349bec314abc",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
