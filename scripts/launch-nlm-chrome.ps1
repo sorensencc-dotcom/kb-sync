@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Launches a dedicated Google Chrome instance for interactive NotebookLM authentication/session repair.
 
@@ -27,8 +27,10 @@ param (
 $ErrorActionPreference = "Stop"
 
 Write-Host "============================================================" -ForegroundColor Cyan
-Write-Host " NotebookLM Dedicated Chrome Session Manager (Interactive Repair)" -ForegroundColor Cyan
+Write-Host " NotebookLM Dedicated Chrome Session Manager (DEPRECATED)" -ForegroundColor Yellow
 Write-Host "============================================================" -ForegroundColor Cyan
+Write-Warning "[DEPRECATED] launch-nlm-chrome.ps1 and CDP port 9222 runner are retired following PR #283 cutover."
+Write-Warning "Native Google Notebook API (batch_delete_sources / addTextSource) is now the canonical interface."
 
 # 1. Ensure Profile Directory Exists
 if (-not (Test-Path $ProfileDir)) {
