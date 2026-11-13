@@ -55,6 +55,24 @@ export const THEMATIC_PACK_MAP = [
     title: 'CIC - Willys-Overland'
   },
   {
+    category: 'cuba-claims',
+    filename: 'pack_cuba_claims.txt',
+    notebookId: NOTEBOOK_TARGETS['cuba-claims'],
+    title: 'CIC - Cuban Seizures & Retired Assets'
+  },
+  {
+    category: 'miami-estate',
+    filename: 'pack_miami_estate.txt',
+    notebookId: NOTEBOOK_TARGETS['miami-estate'],
+    title: 'CIC - Miami Estate & Florida Retirement'
+  },
+  {
+    category: 'assembly-line',
+    filename: 'pack_assembly_line.txt',
+    notebookId: NOTEBOOK_TARGETS['assembly-line'],
+    title: 'CIC - Rouge, Model T & Moving Assembly Line'
+  },
+  {
     category: 'daily',
     filename: 'pack_daily.txt',
     notebookId: NOTEBOOK_TARGETS['daily'] || '1b4861a3-931f-4632-8fc1-343a8dd37df8',
@@ -72,11 +90,22 @@ export const THEMATIC_PACK_MAP = [
 // frontmatter category (post-war and Willys-Overland notes ship as `research`).
 const FILENAME_BUCKET_PATTERNS = [
   { bucket: 'post-war', pattern: /post[-_ ]?war/i },
-  { bucket: 'willys-overland', pattern: /willys/i }
+  { bucket: 'willys-overland', pattern: /willys/i },
+  { bucket: 'cuba-claims', pattern: /cuba(?:n[-_ ]?seizures|[-_ ]?claims)?/i },
+  { bucket: 'miami-estate', pattern: /miami[-_ ]?estate/i },
+  { bucket: 'assembly-line', pattern: /(?:moving[-_ ]?)?assembly[-_ ]?line/i }
 ];
 
 // `daily` is the catch-all category (`research` resolves to it), so it does not block filename matching.
-const EXPLICIT_BUCKETS = new Set(['willow-run', 'ford-politics', 'post-war', 'willys-overland']);
+const EXPLICIT_BUCKETS = new Set([
+  'willow-run',
+  'ford-politics',
+  'post-war',
+  'willys-overland',
+  'cuba-claims',
+  'miami-estate',
+  'assembly-line'
+]);
 
 /**
  * Returns the filename-matched buckets for a note that has no explicit
@@ -351,6 +380,9 @@ export function consolidatePacks(options = {}) {
     'ford-politics': [],
     'post-war': [],
     'willys-overland': [],
+    'cuba-claims': [],
+    'miami-estate': [],
+    'assembly-line': [],
     'daily': [],
     'master-kb': []
   };
@@ -364,17 +396,8 @@ export function consolidatePacks(options = {}) {
 
       const item = { relPath, filePath, content, frontmatter: fm };
 
-      // Add to specific category bucket
-      if (cat === 'willow-run') {
-        categorized['willow-run'].push(item);
-      } else if (cat === 'ford-politics') {
-        categorized['ford-politics'].push(item);
-      } else if (cat === 'post-war') {
-        categorized['post-war'].push(item);
-      } else if (cat === 'willys-overland') {
-        categorized['willys-overland'].push(item);
-      } else if (cat === 'daily') {
-        categorized['daily'].push(item);
+      if (cat !== 'master-kb' && categorized[cat]) {
+        categorized[cat].push(item);
       }
 
       // Additive: notes tagged with a catch-all category still reach the

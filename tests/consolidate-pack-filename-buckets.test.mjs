@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { consolidatePacks, resolveFilenameBuckets } from '../scripts/consolidate-pack.mjs';
+import { buildPacks } from '../scripts/build-packs.mjs';
 
 test('resolveFilenameBuckets matches post-war and willys by basename', () => {
   assert.deepEqual(resolveFilenameBuckets('research', 'wiki/research/rfc-gap-02-cic-post-war--x.md'), ['post-war']);
@@ -11,6 +12,18 @@ test('resolveFilenameBuckets matches post-war and willys by basename', () => {
   assert.deepEqual(
     resolveFilenameBuckets('research', 'wiki/research/rfc-gap-84-cic-post-war-willys-overland.md'),
     ['post-war', 'willys-overland']
+  );
+  assert.deepEqual(
+    resolveFilenameBuckets('research', 'wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets.md'),
+    ['cuba-claims']
+  );
+  assert.deepEqual(
+    resolveFilenameBuckets('research', 'wiki/research/rfc-gap-01-cic-miami-estate-florida-retirement.md'),
+    ['miami-estate']
+  );
+  assert.deepEqual(
+    resolveFilenameBuckets('research', 'wiki/research/rfc-gap-01-cic-rouge-model-t-moving-assembly-line.md'),
+    ['assembly-line']
   );
 });
 
@@ -46,4 +59,20 @@ test('consolidatePacks fills post-war and willys-overland packs from research-ta
   assert.match(postWar, /Post-war body/);
   assert.match(willys, /FILE COUNT: 1/);
   assert.match(willys, /Willys body/);
+});
+
+test('buildPacks fills cuba-claims, miami-estate, and assembly-line packs into outDir', () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-build-packs-'));
+  const wikiDir = path.join(rootDir, 'wiki', 'research');
+  fs.mkdirSync(wikiDir, { recursive: true });
+  fs.writeFileSync(path.join(wikiDir, 'cic-cuban-seizures-gap.md'), '---\ncategory: research\n---\nCuba body.\n', 'utf8');
+  fs.writeFileSync(path.join(wikiDir, 'cic-miami-estate-gap.md'), '---\ncategory: research\n---\nMiami body.\n', 'utf8');
+  fs.writeFileSync(path.join(wikiDir, 'cic-moving-assembly-line-gap.md'), '---\ncategory: research\n---\nAssembly body.\n', 'utf8');
+  const outDir = path.join(rootDir, '.nlm_pack');
+
+  buildPacks({ rootDir, outDir });
+
+  assert.match(fs.readFileSync(path.join(outDir, 'pack_cuba_claims.txt'), 'utf8'), /Cuba body/);
+  assert.match(fs.readFileSync(path.join(outDir, 'pack_miami_estate.txt'), 'utf8'), /Miami body/);
+  assert.match(fs.readFileSync(path.join(outDir, 'pack_assembly_line.txt'), 'utf8'), /Assembly body/);
 });

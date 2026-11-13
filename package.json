@@ -24,6 +24,8 @@
     "kb:dag:recover": "node scripts/build-dag.mjs --recover",
     "kb:validate:chunks": "node scripts/validate-chunks.mjs",
     "kb:consolidate:packs": "node scripts/consolidate-pack.mjs",
+    "build:packs": "node scripts/build-packs.mjs",
+    "pack": "node scripts/build-packs.mjs",
     "trm:closed-loop": "node scripts/run-closed-loop-research.mjs",
     "trm:question-battery": "node scripts/mining/dynamic-question-battery.mjs",
     "nlm:chat:inject": "node scripts/notebooklm/chat-injection-runner.mjs",
