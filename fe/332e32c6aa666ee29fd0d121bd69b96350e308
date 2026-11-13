@@ -1,0 +1,22 @@
+package.json
+  h_5c172e9b435f5a 27-28
+scripts/build-packs.mjs
+  h_5c172e9b435f5a 1-27
+scripts/consolidate-pack.mjs
+  h_5c172e9b435f5a 57-74,93-96,100-108,383-385,399-400
+state/knowledge-plane-notebooks.json
+  h_5c172e9b435f5a 21,37-38
+tests/consolidate-pack-filename-buckets.test.mjs
+  h_5c172e9b435f5a 7,16-27,63-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fe332e32c6aa666ee29fd0d121bd69b96350e308",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
