@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (non-obvious-connections - The Popular Myth"
+title: "RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dyn-src-ea183f1a - Documentary Trail in Sorensen's Records (1920–1922)"
 category: "research"
 topic: "rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
 gap_id: "GAP-02--cast-iron-charlie-research-logs"
 status: "draft"
-created_at: "2026-10-21T12:23:42.077Z"
+created_at: "2026-11-14T15:21:02.769Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08.md","wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md","wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-09.md","wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-follow-up.md"]
 ---
 
-# RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (non-obvious-connections - The Popular Myth
+# RFC: GAP-02--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dyn-src-ea183f1a - Documentary Trail in Sorensen's Records (1920–1922)
 
 ## 1. Problem Statement & Context
-)**: **The Popular Myth:** Traditional popular histories attribute the invention of the automotive assembly line to Henry Ford observing overhead trolley "disassembly lines" in Chicago
+)**: Cullinane draws directly from the **Charles E. Sorensen Records Series** (Benson Ford Research Center, Accession 38) to document labor relations and corporate maneuvering at the Marina plant [2, 3].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
+- **rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
   > 
-- **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [lexical_only]:
+- **rfc-gap-09** (`wiki/research/rfc-gap-09.md`) [lexical_only]:
   > 
-- **rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: RFC: GAP-93--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - Unexplored Primary Archive category: research topic: rfc-gap-93-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo gap_id:
+- **rfc-gap-07-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
+  > --- title: RFC: GAP-07--cic-daily-research - **CIC - Daily Research follow-up - The Target category: research topic: rfc-gap-07-cic-daily-research--cic-daily-research-follow-up gap_id: GAP-07--cic-daily-research status: draft created_at: 2026-09-21T1
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

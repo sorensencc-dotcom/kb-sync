@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-06--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Unverified Claim)**"
+title: "RFC: GAP-06--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dynamic-gap-264c8535 - Entity / Company Name"
 category: "research"
 topic: "rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
 gap_id: "GAP-06--cast-iron-charlie-research-logs"
 status: "draft"
-created_at: "2026-10-21T12:24:01.633Z"
+created_at: "2026-11-11T12:02:10.095Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["trm-research-gaps.md","wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-27.md","wiki/research/rfc-gap-74-cic-daily-research--cic-daily-research-under-sour.md"]
 ---
 
-# RFC: GAP-06--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (follow-up - Unverified Claim)**
+# RFC: GAP-06--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dynamic-gap-264c8535 - Entity / Company Name
 
 ## 1. Problem Statement & Context
-**Unverified Claim**: Sorensen’s extensive pre-1959 Cuban property holdings and their post-revolution seizure by Castro [1, 2].
+)**: **Henry Ford and Sons Ltd** (operating technically as an independent firm, though under the direct control of the Ford Motor Company) [2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
-  > --- title: RFC: GAP-89--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs open-contradictions - FOIA Denials vs. Seizure Narrative category: research topic: rfc-gap-89-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo
-- **rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **rfc-gap-27** (`wiki/research/rfc-gap-27.md`) [lexical_only]:
   > 
+- **rfc-gap-74-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-74-cic-daily-research--cic-daily-research-under-sour.md`) [vector_only]:
+  > --- title: RFC: GAP-74--cic-daily-research - **CIC - Daily Research under-sourced - The Litigated Claim category: research topic: rfc-gap-74-cic-daily-research--cic-daily-research-under-sour gap_id: GAP-74--cic-daily-research status: draft created_at
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

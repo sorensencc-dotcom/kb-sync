@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-09--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Brooks Stevens Archive (Milwaukee Art Museum))**"
+title: "RFC: GAP-09--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dynamic-gap-3e49e64e - The Structural Logic"
 category: "research"
 topic: "rfc-gap-09-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
 gap_id: "GAP-09--cast-iron-charlie-research-logs"
 status: "draft"
-created_at: "2026-10-21T12:24:11.633Z"
+created_at: "2026-11-09T11:34:38.253Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
+citations: ["wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-18-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 ---
 
-# RFC: GAP-09--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (adjacent-topics - Brooks Stevens Archive (Milwaukee Art Museum))**
+# RFC: GAP-09--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dynamic-gap-3e49e64e - The Structural Logic
 
 ## 1. Problem Statement & Context
-**Brooks Stevens Archive (Milwaukee Art Museum)**: Cited as an unexplored primary source containing the diaries and papers of industrial designer Brooks Stevens, specifically conce
+)**: In meatpacking, overhead monorails or gravity trolleys moved an animal carcass past stationary butchers, each performing a single subtractive cut to break the carcass down [4, 6].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-05-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   > 
-- **rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-110-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
-- **rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-06-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
+- **rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
+  > --- title: RFC: GAP-81--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs under-sourced - Single Trade Citation category: research topic: rfc-gap-81-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo gap_id: GAP-81--ca
+- **rfc-gap-18-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-18-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

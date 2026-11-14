@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-validate-drive-findings.mjs--967c64d0
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 9edda4f6abc51374e54fafc340fd8dd95100dcfec722ce1db567cca319241c78
-sha256: 4a265999fafc2c3f4f11fba837b0a8ccc7be5b09da1751492eef584531718bc6
-lastCommit: 2026-09-26T18:20:02-04:00
-summary: Metadata inventory for scripts/validate-drive-findings.mjs in kb-sync (176 lines). Exports: GAP_ID_REGEX, EMPTY_SHA256, computeFindingId, normalizePayloadBody, unwrapCodeFences, validateFinding, sanitizeSlug, validateMobileInboxDrop.
+inputHash: b93f1c2d00520f65261af22684b9a8adea63444ee6ceae0284de2ca93f21bf4b
+sha256: 3de4f6d73c14fb34335851b953638ac1bb6d61ee15c571d446a7b88af430ac78
+lastCommit: 2026-11-06T23:53:26-05:00
+summary: Metadata inventory for scripts/validate-drive-findings.mjs in kb-sync (264 lines). Exports: GAP_ID_REGEX, EMPTY_SHA256, LINK_SCRUBBER_REGEX, computeFindingId, normalizePayloadBody, unwrapCodeFences, validateFinding, inferActionType, validatePayload, sanitizeSlug, validateMobileInboxDrop.
 ---
 
 # validate-drive-findings.mjs
@@ -25,17 +25,20 @@ summary: Metadata inventory for scripts/validate-drive-findings.mjs in kb-sync (
 Metadata inventory for `scripts/validate-drive-findings.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/validate-drive-findings.mjs`
-- **Lines of Code:** 176
-- **Last Modified:** `2026-09-26T18:20:02-04:00`
-- **SHA-256:** `4a265999fafc2c3f4f11fba837b0a8ccc7be5b09da1751492eef584531718bc6`
+- **Lines of Code:** 264
+- **Last Modified:** `2026-11-06T23:53:26-05:00`
+- **SHA-256:** `3de4f6d73c14fb34335851b953638ac1bb6d61ee15c571d446a7b88af430ac78`
 
 ## Exported Symbols & API
 - `GAP_ID_REGEX`
 - `EMPTY_SHA256`
+- `LINK_SCRUBBER_REGEX`
 - `computeFindingId`
 - `normalizePayloadBody`
 - `unwrapCodeFences`
 - `validateFinding`
+- `inferActionType`
+- `validatePayload`
 - `sanitizeSlug`
 - `validateMobileInboxDrop`
 

@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-03--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Henry Ford's Cognitive Decline"
+title: "RFC: GAP-03--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (dyn-src-e01f64cd - Corporate Governance & Minority Buyouts"
 category: "research"
 topic: "rfc-gap-03-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-03--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-27T12:42:35.276Z"
+created_at: "2026-11-12T11:41:40.199Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","trm-research-gaps.md","wiki/research/rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
+citations: ["wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-11.md","wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md"]
 ---
 
-# RFC: GAP-03--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Henry Ford's Cognitive Decline
+# RFC: GAP-03--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (dyn-src-e01f64cd - Corporate Governance & Minority Buyouts
 
 ## 1. Problem Statement & Context
-)**: **Henry Ford's Cognitive Decline:** Raw accounts detailing Ford's post-1938 stroke-induced memory loss, rants, and paranoia—such as abruptly demanding Sorensen *"get rid of Knudsen
+)**: Legal and historical studies of *Dodge v. * analyze Henry Ford's elimination of minority shareholders and the court-mandated special dividend [6, 7].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
+- **rfc-gap-11** (`wiki/research/rfc-gap-11.md`) [hybrid]:
   > 
-- **rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
-  > --- title: RFC: GAP-121--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics under-sourced - Sorensen's Depiction category: research topic: rfc-gap-121-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p
+- **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [vector_only]:
+  > --- title: "CIC - Ford Executive Dynamics & Politics: Unresolved Contradictions" category: research topic: cic-ford-executive-dynamics-unresolved-contradictions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Ac
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

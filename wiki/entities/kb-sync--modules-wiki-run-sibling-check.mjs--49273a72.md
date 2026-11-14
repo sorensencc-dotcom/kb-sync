@@ -8,10 +8,10 @@ entityId: kb-sync--modules-wiki-run-sibling-check.mjs--49273a72
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: ee7934b8b3fdb20b20e7134faaf54d2dcaf0b98ec1c1b27f715adbf64bf6e329
-sha256: abb1dc32863e43e2914600284768b203b7e82fd41ecd6b82ecd5e2efd8d31b18
-lastCommit: 2026-10-20T06:39:59-04:00
-summary: Metadata inventory for modules/wiki/run-sibling-check.mjs in kb-sync (185 lines).
+inputHash: c20e7d1bf3350cd14531d7b36725cd7174765f20c17ae45bce84f3f897dc5fa6
+sha256: 40da120f08304bb9bcb48ce052405a462f16fd213841bf491c3bc7f1163d3a9c
+lastCommit: 2026-10-30T09:34:00-04:00
+summary: Metadata inventory for modules/wiki/run-sibling-check.mjs in kb-sync (177 lines).
 ---
 
 # run-sibling-check.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/wiki/run-sibling-check.mjs in kb-sync (1
 Metadata inventory for `modules/wiki/run-sibling-check.mjs` in **kb-sync**.
 
 - **File Path:** `modules/wiki/run-sibling-check.mjs`
-- **Lines of Code:** 185
-- **Last Modified:** `2026-10-20T06:39:59-04:00`
-- **SHA-256:** `abb1dc32863e43e2914600284768b203b7e82fd41ecd6b82ecd5e2efd8d31b18`
+- **Lines of Code:** 177
+- **Last Modified:** `2026-10-30T09:34:00-04:00`
+- **SHA-256:** `40da120f08304bb9bcb48ce052405a462f16fd213841bf491c3bc7f1163d3a9c`
 
 ## Source Citations
 - Source: `modules/wiki/run-sibling-check.mjs`

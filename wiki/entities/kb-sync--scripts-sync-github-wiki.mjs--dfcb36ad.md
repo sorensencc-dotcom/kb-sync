@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-sync-github-wiki.mjs--dfcb36ad
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 97a843a6fa4abacfcbc139843304680b8424a5674b56253899cc7013adb1cdfe
-sha256: 5fbce6500487f3e699a0be0f68eff19cad8398f45d82586283889077d4588142
-lastCommit: 2026-10-17T12:01:42-04:00
-summary: Metadata inventory for scripts/sync-github-wiki.mjs in kb-sync (457 lines). Exports: deriveWikiSshUrl, removeDirRobust, publishWiki.
+inputHash: 360d0daa917f515b71631dbef7f1959852fa3e02eb6eee2cdac522d34f6d0eab
+sha256: 2f3b1896a75b0cc32201e453ee52f88da365b01165421869435e8c8157aa77b0
+lastCommit: 2026-11-10T00:50:27-05:00
+summary: Metadata inventory for scripts/sync-github-wiki.mjs in kb-sync (462 lines). Exports: applyWikiSyncStatus, deriveWikiSshUrl, removeDirRobust, publishWiki.
 ---
 
 # sync-github-wiki.mjs
@@ -25,11 +25,12 @@ summary: Metadata inventory for scripts/sync-github-wiki.mjs in kb-sync (457 lin
 Metadata inventory for `scripts/sync-github-wiki.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/sync-github-wiki.mjs`
-- **Lines of Code:** 457
-- **Last Modified:** `2026-10-17T12:01:42-04:00`
-- **SHA-256:** `5fbce6500487f3e699a0be0f68eff19cad8398f45d82586283889077d4588142`
+- **Lines of Code:** 462
+- **Last Modified:** `2026-11-10T00:50:27-05:00`
+- **SHA-256:** `2f3b1896a75b0cc32201e453ee52f88da365b01165421869435e8c8157aa77b0`
 
 ## Exported Symbols & API
+- `applyWikiSyncStatus`
 - `deriveWikiSshUrl`
 - `removeDirRobust`
 - `publishWiki`

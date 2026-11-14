@@ -8,10 +8,10 @@ entityId: kb-sync--tests-trm-act-kbsync-spur-content-telemetry-attribution.test.
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: cc7bed53df6df29c2d1357f89f58687f4a316e5742976b757bb3b89df3946cd8
-sha256: c6bdc76547517bad1e6e02d8c97ff1fc4bac670457d61152782534f6f253da09
-lastCommit: 2026-10-20T16:28:22.969Z
-summary: Metadata inventory for tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs in kb-sync (19 lines).
+inputHash: 853b9ec68d39cfd65e433b3e7bb7c9a93c2c6794ba4580c2291610e4e7ca2403
+sha256: 6829d76b2c4037ea3866366e9f0971542db19b24152678895b47201141f5d899
+lastCommit: 2026-11-06T23:53:45-05:00
+summary: Metadata inventory for tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs in kb-sync (57 lines).
 ---
 
 # trm-act-kbsync-spur-content-telemetry-attribution.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/trm-act-kbsync-spur-content-telemetry-attr
 Metadata inventory for `tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs`
-- **Lines of Code:** 19
-- **Last Modified:** `2026-10-20T16:28:22.969Z`
-- **SHA-256:** `c6bdc76547517bad1e6e02d8c97ff1fc4bac670457d61152782534f6f253da09`
+- **Lines of Code:** 57
+- **Last Modified:** `2026-11-06T23:53:45-05:00`
+- **SHA-256:** `6829d76b2c4037ea3866366e9f0971542db19b24152678895b47201141f5d899`
 
 ## Source Citations
 - Source: `tests/trm-act-kbsync-spur-content-telemetry-attribution.test.mjs`

@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-heal-frontmatter.mjs--09d01576
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: b401edb39f43c62bea043a1b016e6448fe0c00c6c4f6c36168f2b80d07a27fad
-sha256: 48b3892f75a846d48c00f3be0bed52f83fa33ea04b3225bc8407ac84ca9227cd
-lastCommit: 2026-09-29T21:14:24-04:00
-summary: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (57 lines).
+inputHash: eb137a7eaab13c711828df74a9d85c3941bebdfdf4ea933b648999e5b0a8b087
+sha256: d26ccd9b004ee8d46b72096739bd19c041a5d9a657859aa285afca214531353c
+lastCommit: 2026-11-04T23:17:32-05:00
+summary: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).
 ---
 
 # heal-frontmatter.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (57 line
 Metadata inventory for `scripts/heal-frontmatter.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/heal-frontmatter.mjs`
-- **Lines of Code:** 57
-- **Last Modified:** `2026-09-29T21:14:24-04:00`
-- **SHA-256:** `48b3892f75a846d48c00f3be0bed52f83fa33ea04b3225bc8407ac84ca9227cd`
+- **Lines of Code:** 60
+- **Last Modified:** `2026-11-04T23:17:32-05:00`
+- **SHA-256:** `d26ccd9b004ee8d46b72096739bd19c041a5d9a657859aa285afca214531353c`
 
 ## Source Citations
 - Source: `scripts/heal-frontmatter.mjs`

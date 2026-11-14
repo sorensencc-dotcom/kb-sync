@@ -8,10 +8,10 @@ entityId: kb-sync--tests-notebooklm-multipart.test.mjs--50358e33
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 98f34adc1688c9adf3486d052f854e0b5467d51d53d48d82b085a7aeb7386ad6
-sha256: 913df74be5e11f763f0ac18b624387121734e821c67474fa4be57c5132812b20
-lastCommit: 2026-10-15T19:23:31-04:00
-summary: Metadata inventory for tests/notebooklm-multipart.test.mjs in kb-sync (165 lines).
+inputHash: 3312bc46d84c3338ddb02581734ece11753a082b70d4de2396e76c3411b88264
+sha256: 7321e3c2d4195dbe457b5a37d0d2b53aa9767db36dc74a68e0f593d9d064e0bb
+lastCommit: 2026-11-10T11:51:06-05:00
+summary: Metadata inventory for tests/notebooklm-multipart.test.mjs in kb-sync (173 lines).
 ---
 
 # notebooklm-multipart.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/notebooklm-multipart.test.mjs in kb-sync (
 Metadata inventory for `tests/notebooklm-multipart.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/notebooklm-multipart.test.mjs`
-- **Lines of Code:** 165
-- **Last Modified:** `2026-10-15T19:23:31-04:00`
-- **SHA-256:** `913df74be5e11f763f0ac18b624387121734e821c67474fa4be57c5132812b20`
+- **Lines of Code:** 173
+- **Last Modified:** `2026-11-10T11:51:06-05:00`
+- **SHA-256:** `7321e3c2d4195dbe457b5a37d0d2b53aa9767db36dc74a68e0f593d9d064e0bb`
 
 ## Source Citations
 - Source: `tests/notebooklm-multipart.test.mjs`

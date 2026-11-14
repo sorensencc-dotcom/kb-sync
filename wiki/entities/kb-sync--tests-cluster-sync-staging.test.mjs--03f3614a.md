@@ -8,10 +8,10 @@ entityId: kb-sync--tests-cluster-sync-staging.test.mjs--03f3614a
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: f0f3cb31c08904fe7f9e07df69c85d54a5e224a10a8ba1c4d9145c125925b60a
-sha256: 45705c5c5b881e5830b2542e4c4051870fdae5150f8cc98c20c667d04fa790d3
-lastCommit: 2026-10-18T23:59:47-04:00
-summary: Metadata inventory for tests/cluster-sync-staging.test.mjs in kb-sync (333 lines).
+inputHash: ffa01342c7c8843f30406323b5cd6e05609672238e393e1e6ad83664b622b033
+sha256: 398b3ddb659f9aa233e3246ec8894a8ff3b2e21af4a042e39766412be726e494
+lastCommit: 2026-11-10T00:39:06-05:00
+summary: Metadata inventory for tests/cluster-sync-staging.test.mjs in kb-sync (426 lines).
 ---
 
 # cluster-sync-staging.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/cluster-sync-staging.test.mjs in kb-sync (
 Metadata inventory for `tests/cluster-sync-staging.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/cluster-sync-staging.test.mjs`
-- **Lines of Code:** 333
-- **Last Modified:** `2026-10-18T23:59:47-04:00`
-- **SHA-256:** `45705c5c5b881e5830b2542e4c4051870fdae5150f8cc98c20c667d04fa790d3`
+- **Lines of Code:** 426
+- **Last Modified:** `2026-11-10T00:39:06-05:00`
+- **SHA-256:** `398b3ddb659f9aa233e3246ec8894a8ff3b2e21af4a042e39766412be726e494`
 
 ## Source Citations
 - Source: `tests/cluster-sync-staging.test.mjs`

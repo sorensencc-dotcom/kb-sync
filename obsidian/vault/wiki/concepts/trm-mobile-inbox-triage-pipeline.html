@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRM mobile intake to verified PR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Geist+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; background: #f2ece2; color: #2c2420; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 28px; background: #f2ece2; font-family: "Barlow Condensed", "Arial Narrow", sans-serif; }
+    main { width: min(100%, 2040px); margin: 0 auto; }
+    svg { display: block; width: 100%; height: auto; }
+    .eyebrow, .lane-label, .step, .badge { font-family: "Geist Mono", monospace; }
+    .eyebrow { font-size: 15px; letter-spacing: 2px; fill: #c4501a; }
+    .title { font: 700 43px "Playfair Display", Georgia, serif; fill: #2c2420; }
+    .subtitle { font-size: 20px; fill: #5c5349; }
+    .lane-label { font-size: 13px; letter-spacing: 1.4px; fill: #5c5349; }
+    .step { font-size: 11px; letter-spacing: .8px; fill: #c4501a; }
+    .card { fill: #faf7f1; stroke: #c9beb0; stroke-width: 1.5; }
+    .card-accent { fill: #f7e7d9; stroke: #c4501a; stroke-width: 1.5; }
+    .card-title { font-size: 22px; font-weight: 600; fill: #2c2420; }
+    .card-copy { font-size: 16px; fill: #5c5349; }
+    .badge-box { fill: #2c2420; }
+    .badge { font-size: 11px; letter-spacing: .7px; fill: #f2ece2; }
+    .wire { fill: none; stroke: #8a7d70; stroke-width: 2; }
+    .wire-accent { fill: none; stroke: #c4501a; stroke-width: 2.5; }
+    .lane-rule { stroke: #d6cabc; stroke-width: 1; }
+    details { max-width: 1000px; margin: 24px auto 8px; color: #5c5349; }
+    summary { cursor: pointer; font-size: 16px; }
+    pre { overflow: auto; padding: 16px; background: #faf7f1; border: 1px solid #d6cabc; color: #2c2420; font: 12px/1.5 "Geist Mono", monospace; }
+    @media print { body { padding: 0; } details { display: none; } }
+  </style>
+</head>
+<body>
+<main>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2040 900" role="img" aria-labelledby="title desc">
+  <title id="title">TRM mobile intake to verified PR</title>
+  <desc id="desc">Mobile capture passes through intake and triage, then branches to research or engineering. Research emits an RFC and completion receipt; engineering creates an issue, enriches context, stages a TDD branch, and reports the PR in ICF.</desc>
+  <text class="eyebrow" x="76" y="52">TOPIC RESEARCH MINING · OPERATING FLOW</text>
+  <text class="title" x="76" y="111">From mobile capture to verified work</text>
+  <text class="subtitle" x="76" y="148">One intake path, two execution lanes, explicit completion signals.</text>
+
+  <text class="step" x="100" y="278">01 / INTAKE</text>
+  <text class="step" x="700" y="278">02 / ROUTE</text>
+  <rect class="card" x="76" y="302" width="232" height="126" rx="8"/>
+  <rect class="badge-box" x="96" y="320" width="95" height="22" rx="3"/>
+  <text class="badge" x="107" y="335">CAPTURE</text>
+  <text class="card-title" x="96" y="374">Mobile inbox</text>
+  <text class="card-copy" x="96" y="400">Drive notes and voice memos</text>
+
+  <path class="wire" d="M308 365 H365"/><path fill="#8a7d70" d="M365 359 L377 365 L365 371 Z"/>
+  <rect class="card" x="382" y="302" width="260" height="126" rx="8"/>
+  <rect class="badge-box" x="402" y="320" width="102" height="22" rx="3"/>
+  <text class="badge" x="413" y="335">UNSTRAND</text>
+  <text class="card-title" x="402" y="374">Ingress watcher</text>
+  <text class="card-copy" x="402" y="400">Extract intent and route target</text>
+
+  <path class="wire" d="M642 365 H695"/><path fill="#8a7d70" d="M695 359 L707 365 L695 371 Z"/>
+  <rect class="card-accent" x="712" y="302" width="248" height="126" rx="8"/>
+  <rect class="badge-box" x="732" y="320" width="118" height="22" rx="3"/>
+  <text class="badge" x="743" y="335">DECISION</text>
+  <text class="card-title" x="732" y="374">Batch triage</text>
+  <text class="card-copy" x="732" y="400">Select research or engineering</text>
+
+  <path class="wire-accent" d="M960 365 H1004 V254 H1042"/><path fill="#c4501a" d="M1036 248 L1048 254 L1036 260 Z"/>
+  <path class="wire-accent" d="M1004 365 V635 H1042"/><path fill="#c4501a" d="M1036 629 L1048 635 L1036 641 Z"/>
+
+  <text class="lane-label" x="1048" y="196">LANE A · RESEARCH</text>
+  <line class="lane-rule" x1="1048" y1="210" x2="1950" y2="210"/>
+  <rect class="card" x="1048" y="226" width="232" height="112" rx="8"/>
+  <text class="card-title" x="1070" y="271">Research spike</text>
+  <text class="card-copy" x="1070" y="300">Local retrieval, zero tokens</text>
+  <path class="wire" d="M1280 282 H1320"/><path fill="#8a7d70" d="M1320 276 L1332 282 L1320 288 Z"/>
+  <rect class="card" x="1338" y="226" width="232" height="112" rx="8"/>
+  <text class="card-title" x="1360" y="271">RFC + receipt</text>
+  <text class="card-copy" x="1360" y="300">Write result and sync Drive</text>
+  <path class="wire" d="M1570 282 H1610"/><path fill="#8a7d70" d="M1610 276 L1622 282 L1610 288 Z"/>
+  <rect class="card-accent" x="1628" y="226" width="232" height="112" rx="8"/>
+  <text class="card-title" x="1650" y="271">Ledger: DONE</text>
+  <text class="card-copy" x="1650" y="300">Close with a completion receipt</text>
+
+  <text class="lane-label" x="1048" y="578">LANE B · ENGINEERING</text>
+  <line class="lane-rule" x1="1048" y1="592" x2="1950" y2="592"/>
+  <rect class="card" x="1048" y="608" width="196" height="112" rx="8"/>
+  <text class="card-title" x="1068" y="653">GitHub issue</text>
+  <text class="card-copy" x="1068" y="682">Promote implementation work</text>
+  <path class="wire" d="M1244 664 H1270"/><path fill="#8a7d70" d="M1270 658 L1282 664 L1270 670 Z"/>
+  <rect class="card" x="1288" y="608" width="196" height="112" rx="8"/>
+  <text class="card-title" x="1308" y="653">Enrich context</text>
+  <text class="card-copy" x="1308" y="682">Attach AST and runtime facts</text>
+  <path class="wire" d="M1484 664 H1510"/><path fill="#8a7d70" d="M1510 658 L1522 664 L1510 670 Z"/>
+  <rect class="card" x="1528" y="608" width="196" height="112" rx="8"/>
+  <text class="card-title" x="1548" y="653">Branch + TDD</text>
+  <text class="card-copy" x="1548" y="682">Stage runnable test contract</text>
+  <path class="wire" d="M1724 664 H1750"/><path fill="#8a7d70" d="M1750 658 L1762 664 L1750 670 Z"/>
+  <rect class="card-accent" x="1768" y="608" width="196" height="112" rx="8"/>
+  <text class="card-title" x="1788" y="653">PR in ICF</text>
+  <text class="card-copy" x="1788" y="682">Surface live status</text>
+
+  <text class="subtitle" x="76" y="820">Research closes through a receipt. Engineering advances through an issue, a tested branch, and PR telemetry.</text>
+</svg>
+<details>
+  <summary>Mermaid source</summary>
+  <pre><code>flowchart TD
+    subgraph S1["1. INGESTION &amp; UNSTRANDING (trm-ingress-watcher.mjs)"]
+        MI["Mobile Inbox: Google Drive / GDoc Pointer Stubs"] --&gt; IW["Ingress Watcher &amp; Unstrander"]
+        IW --&gt;|Extracts true category, priority, direction| RC["Inspects raw_content &amp; clears false isGDocFetchFailure"]
+    end
+    RC --&gt; BT["2. DUAL-LANE BATCH TRIAGE (trm-batch-triage.mjs / ICF Gateway)"]
+    subgraph LaneA["LANE A: Autonomous Research Spikes (Zero Tokens)"]
+        BT --&gt;|category: RESEARCH / FEASIBILITY_SPIKE| SP["evaluateActionCard (Zero Tokens)"]
+        SP --&gt; DB["Synthesizes local knowledge.db (RRF k=60)"]
+        DB --&gt; RFC["Emits RFC to obsidian/vault/wiki/research/"]
+        RFC --&gt; REC["Writes outbox completion receipt &amp; Drive sync"]
+        REC --&gt; DONE["Transitions ledger status to DONE"]
+    end
+    subgraph LaneB["LANE B: Coding &amp; Implementation"]
+        BT --&gt;|category: IMPLEMENT / FIX / REFACTOR| GH["Promotes to GitHub Issue (gh issue create)"]
+        GH --&gt; ENR["Runs out-of-band context enricher"]
+        ENR --&gt; AST["Attaches Graft AST spans &amp; runtime probes"]
+        AST --&gt; INP["Transitions ledger status to IN_PROGRESS"]
+        INP --&gt; BR["Creates git branch: trm/cardId"]
+        BR --&gt; TDD["Scaffolds runnable TDD test contract in target repo"]
+        TDD --&gt; TEMPL["Injects conventional commit template &amp; PR contract"]
+        TEMPL --&gt; ICF["Surfaces live PR badge in ICF Dashboard (tab-trm)"]
+    end</code></pre>
+</details>
+</main>
+</body>
+</html>

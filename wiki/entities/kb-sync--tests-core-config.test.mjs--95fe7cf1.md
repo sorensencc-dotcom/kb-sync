@@ -8,10 +8,10 @@ entityId: kb-sync--tests-core-config.test.mjs--95fe7cf1
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: d55b5f69220ddbda65ed1765c676143325b8225867ba1883956ba4669b04d7a7
-sha256: 6e91100566c315a7275b83ae191b517f5ebacefccb7a13f312164d4cbad3bb87
-lastCommit: 2026-10-20T13:45:16.331Z
-summary: Metadata inventory for tests/core/config.test.mjs in kb-sync (178 lines).
+inputHash: a9547c3ddc660a6502b0a8f102c1498fd6f6a03c7f79d9ceb1fca415b008aea3
+sha256: 895981e00418f311543fc13cb44d8b57a771a39dc8600c4e9247402db6128ea2
+lastCommit: 2026-10-31T11:04:35-04:00
+summary: Metadata inventory for tests/core/config.test.mjs in kb-sync (430 lines).
 ---
 
 # config.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/core/config.test.mjs in kb-sync (178 lines
 Metadata inventory for `tests/core/config.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/core/config.test.mjs`
-- **Lines of Code:** 178
-- **Last Modified:** `2026-10-20T13:45:16.331Z`
-- **SHA-256:** `6e91100566c315a7275b83ae191b517f5ebacefccb7a13f312164d4cbad3bb87`
+- **Lines of Code:** 430
+- **Last Modified:** `2026-10-31T11:04:35-04:00`
+- **SHA-256:** `895981e00418f311543fc13cb44d8b57a771a39dc8600c4e9247402db6128ea2`
 
 ## Source Citations
 - Source: `tests/core/config.test.mjs`

@@ -10,7 +10,7 @@ generationKind: metadata-inventory
 semanticContent: false
 inputHash: adba4dfcae592bd6d771a8ca92b720e02bba23aac7e01140b5274bf79daa1f39
 sha256: 62bdeb39554f32e37d2649d0db24ba1aee1b66b1ff4c8bedbe229871736457aa
-lastCommit: 2026-10-20T13:45:16.333Z
+lastCommit: 2026-10-20T07:15:00-04:00
 summary: Metadata inventory for tests/modules/notebooklm/lib/bash-resolver.test.mjs in kb-sync (106 lines).
 ---
 
@@ -26,7 +26,7 @@ Metadata inventory for `tests/modules/notebooklm/lib/bash-resolver.test.mjs` in 
 
 - **File Path:** `tests/modules/notebooklm/lib/bash-resolver.test.mjs`
 - **Lines of Code:** 106
-- **Last Modified:** `2026-10-20T13:45:16.333Z`
+- **Last Modified:** `2026-10-20T07:15:00-04:00`
 - **SHA-256:** `62bdeb39554f32e37d2649d0db24ba1aee1b66b1ff4c8bedbe229871736457aa`
 
 ## Source Citations

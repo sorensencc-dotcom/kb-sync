@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-consolidate-pack.mjs--2d0ade00
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: d03bcb741813d83bd4cde850efb880f815da482a3c11917703c9afbe67059633
-sha256: 2d4a7820cc52edfe7aaece49ecd90901f609bb74e310480a93999a49ff72d47a
-lastCommit: 2026-10-16T12:27:15-04:00
-summary: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (416 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_MAP, computeSha256, formatFactEntry, formatFactRegistrySection, loadScopedFacts, extractFrontmatter, consolidatePacks.
+inputHash: 2065fcea3baf9008ff9f70bcf9bf6e2a5b007e7e8ef97ef6f6555215a13d8f46
+sha256: ac7a7398eaac2126248233c90c69ca12736aeeaa9980862a145f170234f48c05
+lastCommit: 2026-11-13T16:52:37-05:00
+summary: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (478 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_MAP, resolveFilenameBuckets, computeSha256, formatFactEntry, formatFactRegistrySection, loadScopedFacts, extractFrontmatter, findPackFamilyFiles, DEFAULT_ROOT_DIR, DEFAULT_OUT_DIR.
 ---
 
 # consolidate-pack.mjs
@@ -25,19 +25,23 @@ summary: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (416 lin
 Metadata inventory for `scripts/consolidate-pack.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/consolidate-pack.mjs`
-- **Lines of Code:** 416
-- **Last Modified:** `2026-10-16T12:27:15-04:00`
-- **SHA-256:** `2d4a7820cc52edfe7aaece49ecd90901f609bb74e310480a93999a49ff72d47a`
+- **Lines of Code:** 478
+- **Last Modified:** `2026-11-13T16:52:37-05:00`
+- **SHA-256:** `ac7a7398eaac2126248233c90c69ca12736aeeaa9980862a145f170234f48c05`
 
 ## Exported Symbols & API
 - `MAX_FACT_REGISTRY_BYTES`
 - `MAX_PACK_BYTES`
 - `THEMATIC_PACK_MAP`
+- `resolveFilenameBuckets`
 - `computeSha256`
 - `formatFactEntry`
 - `formatFactRegistrySection`
 - `loadScopedFacts`
 - `extractFrontmatter`
+- `findPackFamilyFiles`
+- `DEFAULT_ROOT_DIR`
+- `DEFAULT_OUT_DIR`
 - `consolidatePacks`
 
 ## Source Citations

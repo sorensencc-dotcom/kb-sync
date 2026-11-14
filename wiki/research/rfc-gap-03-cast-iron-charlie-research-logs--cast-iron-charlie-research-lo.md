@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-03--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (non-obvious-connections - The Evidentiary Link"
+title: "RFC: GAP-03--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dyn-src-ea183f1a - Welfare Capitalism & Representation (November 1920)"
 category: "research"
 topic: "rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo"
 gap_id: "GAP-03--cast-iron-charlie-research-logs"
 status: "draft"
-created_at: "2026-10-21T12:23:44.835Z"
+created_at: "2026-11-14T15:21:02.673Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md","wiki/research/rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the.md","wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md"]
+citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e.md","wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md"]
 ---
 
-# RFC: GAP-03--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (non-obvious-connections - The Evidentiary Link
+# RFC: GAP-03--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs (dyn-src-ea183f1a - Welfare Capitalism & Representation (November 1920)
 
 ## 1. Problem Statement & Context
-)**: **The Evidentiary Link:** Operational records and memoirs reveal that the moving line was not a sudden top-down invention by Henry Ford, but an empirical, bottom-up series of shop-
+)**: Company publications (*Fordson Worker*, Nov. 15, 1920, Box 43) reflect management's use of welfare initiatives and a Workers' Representation Council to deter trade union penetration [2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [lexical_only]:
+- **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   > 
-- **rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
-  > --- title: RFC: GAP-52--cic-reddit - **CIC-Reddit under-sourced - The Grounded Reality category: research topic: rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-52--cic-reddit status: draft created_at: 2026-09-19T21:26:27.885Z expansi
-- **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [lexical_only]:
+- **rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e** (`wiki/research/rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e.md`) [vector_only]:
+  > --- title: "RFC: GAP-10--cic-willys-overland - **CIC - Willys-Overland dyn-src-eada176a - Executive Hiring & Management Conflict**" category: "research" topic: "rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e" gap_id: "GAP-10--cic-willy
+- **rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

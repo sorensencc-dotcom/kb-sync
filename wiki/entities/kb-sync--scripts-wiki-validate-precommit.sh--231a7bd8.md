@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-wiki-validate-precommit.sh--231a7bd8
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: dbe55c225c5f1a86f69d3bf4a779dc97c5f3ac61e7086c6df14a335641673188
-sha256: f596acab6f08155f8294934762d3385270f78ad97b4aa15766205207e40a9c84
-lastCommit: 2026-08-29T21:54:50-04:00
-summary: Metadata inventory for scripts/wiki-validate-precommit.sh in kb-sync (88 lines).
+inputHash: 84c32e7db83e4a9f8d763362279d32e9e2378773fc18c81ca1702cae62b9b8e2
+sha256: b6cc3f03e7265e527dba92465f7c9361b1d1f5d9573d9033ac4f7fee53eef8ce
+lastCommit: 2026-10-25T22:20:08-04:00
+summary: Metadata inventory for scripts/wiki-validate-precommit.sh in kb-sync (92 lines).
 ---
 
 # wiki-validate-precommit.sh
@@ -25,9 +25,9 @@ summary: Metadata inventory for scripts/wiki-validate-precommit.sh in kb-sync (8
 Metadata inventory for `scripts/wiki-validate-precommit.sh` in **kb-sync**.
 
 - **File Path:** `scripts/wiki-validate-precommit.sh`
-- **Lines of Code:** 88
-- **Last Modified:** `2026-08-29T21:54:50-04:00`
-- **SHA-256:** `f596acab6f08155f8294934762d3385270f78ad97b4aa15766205207e40a9c84`
+- **Lines of Code:** 92
+- **Last Modified:** `2026-10-25T22:20:08-04:00`
+- **SHA-256:** `b6cc3f03e7265e527dba92465f7c9361b1d1f5d9573d9033ac4f7fee53eef8ce`
 
 ## Source Citations
 - Source: `scripts/wiki-validate-precommit.sh`

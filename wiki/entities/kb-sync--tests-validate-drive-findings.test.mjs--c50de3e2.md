@@ -8,10 +8,10 @@ entityId: kb-sync--tests-validate-drive-findings.test.mjs--c50de3e2
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: ba693f4cf1c948e363e862b0daf190dfb6b4c6c6a9544c818ee5d65601c2b8f7
-sha256: 57e2fdee1c04c1f1a978af875adeeb39bb96339939aa2a353d16d74dd1667826
-lastCommit: 2026-09-22T12:17:01-04:00
-summary: Metadata inventory for tests/validate-drive-findings.test.mjs in kb-sync (42 lines).
+inputHash: b8a702268fe68311273ec5cbd9b67b5d79bfd6320ec86ead6deb455e389825b3
+sha256: 285474f4be94351f29afd0a3cceed61848eb026948f2290c9d14c2d6f9a0c8ae
+lastCommit: 2026-11-06T23:53:26-05:00
+summary: Metadata inventory for tests/validate-drive-findings.test.mjs in kb-sync (193 lines).
 ---
 
 # validate-drive-findings.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/validate-drive-findings.test.mjs in kb-syn
 Metadata inventory for `tests/validate-drive-findings.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/validate-drive-findings.test.mjs`
-- **Lines of Code:** 42
-- **Last Modified:** `2026-09-22T12:17:01-04:00`
-- **SHA-256:** `57e2fdee1c04c1f1a978af875adeeb39bb96339939aa2a353d16d74dd1667826`
+- **Lines of Code:** 193
+- **Last Modified:** `2026-11-06T23:53:26-05:00`
+- **SHA-256:** `285474f4be94351f29afd0a3cceed61848eb026948f2290c9d14c2d6f9a0c8ae`
 
 ## Source Citations
 - Source: `tests/validate-drive-findings.test.mjs`

@@ -10,7 +10,7 @@ generationKind: metadata-inventory
 semanticContent: false
 inputHash: aa196c02b6ef55d0ddeadedf6bcab97871a9e2329c6a4a8b196ac612fcb3c019
 sha256: d15658ef394c001b4b744c91387c56255b09c53438ac7a1e8e4ac1866996988a
-lastCommit: 2026-10-17T09:38:09-04:00
+lastCommit: 2026-10-20T06:59:54-04:00
 summary: Metadata inventory for modules/cache/sync-cache.mjs in kb-sync (268 lines). Exports: SUPPORTS_ID_PREFIX, computeSha256, inferDocumentMetadata, extractL0Abstract, syncKnowledgeCache.
 ---
 
@@ -26,7 +26,7 @@ Metadata inventory for `modules/cache/sync-cache.mjs` in **kb-sync**.
 
 - **File Path:** `modules/cache/sync-cache.mjs`
 - **Lines of Code:** 268
-- **Last Modified:** `2026-10-17T09:38:09-04:00`
+- **Last Modified:** `2026-10-20T06:59:54-04:00`
 - **SHA-256:** `d15658ef394c001b4b744c91387c56255b09c53438ac7a1e8e4ac1866996988a`
 
 ## Exported Symbols & API

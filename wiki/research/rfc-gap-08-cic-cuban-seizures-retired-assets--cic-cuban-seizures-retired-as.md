@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-08--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Captive Finance vs. Subrogation Claims"
+title: "RFC: GAP-08--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Evidentiary Warnings)**"
 category: "research"
 topic: "rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-08--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-27T12:14:37.315Z"
+created_at: "2026-11-12T11:05:19.402Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-144-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-08--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Captive Finance vs. Subrogation Claims
+# RFC: GAP-08--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Evidentiary Warnings)**
 
 ## 1. Problem Statement & Context
-)**: **Captive Finance vs. Subrogation Claims:** Comparing **Ford Motor Co.’s Credesco** (Claim CU-3072; **\$169,046.42** adjusted net equity certified, \$1.775M bank guarantees denied)
+The audit explicitly warns against treating CU-3440 as a personal or equity claim of Charles E. Sorensen, noting that it was strictly an independent corporate precedent for stock pricing [1, 2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-08-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **rfc-gap-144-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-144-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-28-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -8,10 +8,10 @@ entityId: kb-sync--modules-trm-ast-grounding.mjs--f23d898e
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 2da7d8beb5e175a501113028a5a3d3533a7ac3485373687be7511a6520eebdbb
-sha256: 11320cabf59a1697a3deb1a3128df9f84841db750d9e0d86074b0235b7db2f78
-lastCommit: 2026-08-27T09:20:46-04:00
-summary: Metadata inventory for modules/trm/ast-grounding.mjs in kb-sync (195 lines). Exports: extractCodeSymbols, fetchSymbolAstGraph, fetchAstBlastRadius, formatAstGroundingSection.
+inputHash: 7730642ea38196865ef1e9173185ebfd71e3e126a230f490605de4c962fb85dc
+sha256: 2cd3f43d482eca9afc0cf1d27bdc3518f84f9c0d82665b5c025a0e322ecef536
+lastCommit: 2026-10-25T22:09:50-04:00
+summary: Metadata inventory for modules/trm/ast-grounding.mjs in kb-sync (205 lines). Exports: extractCodeSymbols, isSafeGraftSymbol, fetchSymbolAstGraph, fetchAstBlastRadius, formatAstGroundingSection.
 ---
 
 # ast-grounding.mjs
@@ -25,12 +25,13 @@ summary: Metadata inventory for modules/trm/ast-grounding.mjs in kb-sync (195 li
 Metadata inventory for `modules/trm/ast-grounding.mjs` in **kb-sync**.
 
 - **File Path:** `modules/trm/ast-grounding.mjs`
-- **Lines of Code:** 195
-- **Last Modified:** `2026-08-27T09:20:46-04:00`
-- **SHA-256:** `11320cabf59a1697a3deb1a3128df9f84841db750d9e0d86074b0235b7db2f78`
+- **Lines of Code:** 205
+- **Last Modified:** `2026-10-25T22:09:50-04:00`
+- **SHA-256:** `2cd3f43d482eca9afc0cf1d27bdc3518f84f9c0d82665b5c025a0e322ecef536`
 
 ## Exported Symbols & API
 - `extractCodeSymbols`
+- `isSafeGraftSymbol`
 - `fetchSymbolAstGraph`
 - `fetchAstBlastRadius`
 - `formatAstGroundingSection`

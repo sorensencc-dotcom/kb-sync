@@ -8,10 +8,10 @@ entityId: kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: b0a0c0fe36072668d76bed4e0758565851aaa209e6b450889b656ef762ae0287
-sha256: eaf1dcfd8acd97a4b7680988c6b0b70257347c6e58d8ef795de2009fe5b71e2e
-lastCommit: 2026-10-20T10:57:14Z
-summary: Metadata inventory for modules/obsidian/synthesize-wiki.ts in kb-sync (1033 lines). Exports: RecoveryManifest, validateProposalSchema, LessonAnalysisPayload, enrichLessonNode, processUnenrichedLessons, enrichPendingLessons.
+inputHash: 8202d24df32b755e2b2d25be980d2de6f9a60ebf6a129c1f061e3df441226202
+sha256: 81b795b53d60bd20a8b0835239b2a0b2b78637ff84add51a8ece6569e956c89f
+lastCommit: 2026-11-08T13:31:46-05:00
+summary: Metadata inventory for modules/obsidian/synthesize-wiki.ts in kb-sync (1051 lines). Exports: RecoveryManifest, validateProposalSchema, LessonAnalysisPayload, enrichLessonNode, processUnenrichedLessons, enrichPendingLessons.
 ---
 
 # synthesize-wiki.ts
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/obsidian/synthesize-wiki.ts in kb-sync (
 Metadata inventory for `modules/obsidian/synthesize-wiki.ts` in **kb-sync**.
 
 - **File Path:** `modules/obsidian/synthesize-wiki.ts`
-- **Lines of Code:** 1033
-- **Last Modified:** `2026-10-20T10:57:14Z`
-- **SHA-256:** `eaf1dcfd8acd97a4b7680988c6b0b70257347c6e58d8ef795de2009fe5b71e2e`
+- **Lines of Code:** 1051
+- **Last Modified:** `2026-11-08T13:31:46-05:00`
+- **SHA-256:** `81b795b53d60bd20a8b0835239b2a0b2b78637ff84add51a8ece6569e956c89f`
 
 ## Exported Symbols & API
 - `RecoveryManifest`

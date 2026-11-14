@@ -4,26 +4,26 @@ category: "research"
 topic: "rfc-gap-04-the-sorensen-photographic-archive--the-sorensen-photographic-arc"
 gap_id: "GAP-04--the-sorensen-photographic-archive"
 status: "draft"
-created_at: "2026-10-21T12:30:24.368Z"
+created_at: "2026-11-11T12:10:02.224Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w.md","docs/kb/notebooklm-sync/operator-rules.md","wiki/research/rfc-gap-34-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md"]
+citations: ["wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-h.md"]
 ---
 
 # RFC: GAP-04--the-sorensen-photographic-archive - **The Sorensen Photographic Archive
 
 ## 1. Problem Statement & Context
-Industrial Giants at Willow Run (follow-up - Thermal Distortion and the Center-Wing Discrepancy)**: Thermal Distortion and the Center-Wing Discrepancy
+Industrial Giants at Willow Run (dynamic-gap-43d576ad - Outdoor Assembly & Environmental Exposure)**: Consolidated Aircraft assembled B-24 Liberators outdoors on tidal marshlands under the direct California sun [3, 4].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w.md`) [lexical_only]:
+- **rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-01-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
   > 
-- **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
-  > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
-- **rfc-gap-34-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-34-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
+  > --- title: "RFC: GAP-02--the-sorensen-photographic-archive - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc" gap_id: "GAP-02--the-sorensen-photographic-arc
+- **rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-h** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-h.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

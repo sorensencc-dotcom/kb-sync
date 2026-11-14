@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-run-closed-loop-research.mjs--fe2330ec
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 61edcbc7a43525fe840661e161dfae051822964fce41ef4289fe0039652ef4a2
-sha256: 6a6c7481101368e8a1092342312fc3c320e8f921e15655acb3aa67da6311b896
-lastCommit: 2026-10-15T16:06:03-04:00
-summary: Metadata inventory for scripts/run-closed-loop-research.mjs in kb-sync (264 lines).
+inputHash: 2ee5ea0a146b1fe8372b644a2af42ffd44204553939749c7e8e0ce91a26ae51e
+sha256: 6275bb67983dcac36c53781b781dbe4d4707e67b328c16662f9eb00e4ab71a68
+lastCommit: 2026-10-25T22:20:08-04:00
+summary: Metadata inventory for scripts/run-closed-loop-research.mjs in kb-sync (248 lines).
 ---
 
 # run-closed-loop-research.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for scripts/run-closed-loop-research.mjs in kb-sync 
 Metadata inventory for `scripts/run-closed-loop-research.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/run-closed-loop-research.mjs`
-- **Lines of Code:** 264
-- **Last Modified:** `2026-10-15T16:06:03-04:00`
-- **SHA-256:** `6a6c7481101368e8a1092342312fc3c320e8f921e15655acb3aa67da6311b896`
+- **Lines of Code:** 248
+- **Last Modified:** `2026-10-25T22:20:08-04:00`
+- **SHA-256:** `6275bb67983dcac36c53781b781dbe4d4707e67b328c16662f9eb00e4ab71a68`
 
 ## Source Citations
 - Source: `scripts/run-closed-loop-research.mjs`

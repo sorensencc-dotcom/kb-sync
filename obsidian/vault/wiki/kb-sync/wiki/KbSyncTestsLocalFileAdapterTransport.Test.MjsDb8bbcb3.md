@@ -1,0 +1,22 @@
+---
+title: "KbSyncTestsLocalFileAdapterTransport.Test.MjsDb8bbcb3"
+category: "wiki"
+status: "active"
+draft: true
+created: "2026-11-10T01:04:17.091Z"
+---
+
+# KbSyncTestsLocalFileAdapterTransport.Test.MjsDb8bbcb3
+
+## Summary
+Offline draft template for KbSyncTestsLocalFileAdapterTransport.Test.MjsDb8bbcb3 staged from wiki/entities/kb-sync--tests-local-file-adapter-transport.test.mjs--db8bbcb3.md.
+
+## Purpose & Scope
+Draft specification for KbSyncTestsLocalFileAdapterTransport.Test.MjsDb8bbcb3. Synthesized via OfflineTemplateProvider.
+
+## Operations & Details
+- Source: `wiki/entities/kb-sync--tests-local-file-adapter-transport.test.mjs--db8bbcb3.md`
+- Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20261109-200056`
+
+## Related Pages
+- [[kb-sync/wiki/Index]]

@@ -8,10 +8,10 @@ entityId: kb-sync--modules-cache-vfs-upsert.mjs--30075143
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 24475a8f37b3dfd61523d250988c5cfb68e6fff1665f389c821a31d69b2c2385
-sha256: 6637bd726d4f33895d8fe8531b03b895b3fc1737fd70985ce502c4f249672950
-lastCommit: 2026-09-06T20:43:13-04:00
-summary: Metadata inventory for modules/cache/vfs-upsert.mjs in kb-sync (147 lines). Exports: sanitizeTopic, normalizeRelPath, resolveSafeWorkspacePath, upsertDocumentToDiskAndCache.
+inputHash: e90e7cae2b7867a00480c850e0ed0e35759ff0bfc6f26e65ecf347fb6b00f3a7
+sha256: a2325de1a06f754948067c035884e18c5207a42cd89c79b5651c51c6a46ddd82
+lastCommit: 2026-10-25T22:10:28-04:00
+summary: Metadata inventory for modules/cache/vfs-upsert.mjs in kb-sync (154 lines). Exports: sanitizeTopic, normalizeRelPath, resolveSafeWorkspacePath, upsertDocumentToDiskAndCache.
 ---
 
 # vfs-upsert.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/cache/vfs-upsert.mjs in kb-sync (147 lin
 Metadata inventory for `modules/cache/vfs-upsert.mjs` in **kb-sync**.
 
 - **File Path:** `modules/cache/vfs-upsert.mjs`
-- **Lines of Code:** 147
-- **Last Modified:** `2026-09-06T20:43:13-04:00`
-- **SHA-256:** `6637bd726d4f33895d8fe8531b03b895b3fc1737fd70985ce502c4f249672950`
+- **Lines of Code:** 154
+- **Last Modified:** `2026-10-25T22:10:28-04:00`
+- **SHA-256:** `a2325de1a06f754948067c035884e18c5207a42cd89c79b5651c51c6a46ddd82`
 
 ## Exported Symbols & API
 - `sanitizeTopic`

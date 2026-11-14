@@ -8,10 +8,10 @@ entityId: kb-sync--tests-ast-grounding.test.mjs--6ccbda36
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: c50a77a31210a50d447feb9a1701f96e43863ea1fbc8676681defb88752cf303
-sha256: feee02d6dec43cd7da5113a8dc735c50fb27ed5c0aacd86abebbdb81bd9e2e0c
-lastCommit: 2026-08-27T08:24:23-04:00
-summary: Metadata inventory for tests/ast-grounding.test.mjs in kb-sync (108 lines).
+inputHash: 63b6a48cd2c9591006891336b2c87849e89d1a678ddb9f9ff10dc83bb3508f7e
+sha256: 8c11b39ec3c29870289a3ebd2d80383603a2885b928eca60fc3a9aa69a439c73
+lastCommit: 2026-10-25T22:09:50-04:00
+summary: Metadata inventory for tests/ast-grounding.test.mjs in kb-sync (140 lines).
 ---
 
 # ast-grounding.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/ast-grounding.test.mjs in kb-sync (108 lin
 Metadata inventory for `tests/ast-grounding.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/ast-grounding.test.mjs`
-- **Lines of Code:** 108
-- **Last Modified:** `2026-08-27T08:24:23-04:00`
-- **SHA-256:** `feee02d6dec43cd7da5113a8dc735c50fb27ed5c0aacd86abebbdb81bd9e2e0c`
+- **Lines of Code:** 140
+- **Last Modified:** `2026-10-25T22:09:50-04:00`
+- **SHA-256:** `8c11b39ec3c29870289a3ebd2d80383603a2885b928eca60fc3a9aa69a439c73`
 
 ## Source Citations
 - Source: `tests/ast-grounding.test.mjs`

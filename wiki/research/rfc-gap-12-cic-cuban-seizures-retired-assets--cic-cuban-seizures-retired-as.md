@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-12--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Subassembly Outsourcing ("505 Program")"
+title: "RFC: GAP-12--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (dyn-src-3aeb4d5d - Cruising Route and Geography"
 category: "research"
 topic: "rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-12--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-27T12:14:42.505Z"
+created_at: "2026-11-12T11:05:24.781Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-36-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md","docs/kb/notebooklm-sync/error-boundaries.md"]
+citations: ["wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-12--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Subassembly Outsourcing ("505 Program")
+# RFC: GAP-12--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (dyn-src-3aeb4d5d - Cruising Route and Geography
 
 ## 1. Problem Statement & Context
-)**: **Subassembly Outsourcing ("505 Program"):** General manager Mead Bricker executed the "505 Program," outsourcing nacelles to Lincoln, tail stabilizers to the Rouge complex, and sm
+)**: Confirms the cruise operated along the **Detroit-Windsor skyline** (the Detroit River / Great Lakes maritime corridor) [2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **rfc-gap-36-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-36-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-12-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
-  > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

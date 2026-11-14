@@ -1,0 +1,22 @@
+---
+title: "KbSyncTestsMcpLoopbackWatchdog.Test.Mjs41d72733"
+category: "wiki"
+status: "active"
+draft: true
+created: "2026-11-10T01:04:17.091Z"
+---
+
+# KbSyncTestsMcpLoopbackWatchdog.Test.Mjs41d72733
+
+## Summary
+Offline draft template for KbSyncTestsMcpLoopbackWatchdog.Test.Mjs41d72733 staged from wiki/entities/kb-sync--tests-mcp-loopback-watchdog.test.mjs--41d72733.md.
+
+## Purpose & Scope
+Draft specification for KbSyncTestsMcpLoopbackWatchdog.Test.Mjs41d72733. Synthesized via OfflineTemplateProvider.
+
+## Operations & Details
+- Source: `wiki/entities/kb-sync--tests-mcp-loopback-watchdog.test.mjs--41d72733.md`
+- Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20261109-200056`
+
+## Related Pages
+- [[kb-sync/wiki/Index]]

@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-08--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target"
+title: "RFC: GAP-08--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (dynamic-gap-d377104d - Dr. George Mead)**"
 category: "research"
 topic: "rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin"
 gap_id: "GAP-08--cic-willow-run-aviation-engineering"
 status: "draft"
-created_at: "2026-09-27T12:29:12.465Z"
+created_at: "2026-11-12T11:19:07.485Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-71-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md","wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-08--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (follow-up - Archival Target
+# RFC: GAP-08--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering (dynamic-gap-d377104d - Dr. George Mead)**
 
 ## 1. Problem Statement & Context
-)**: **Archival Target:** Retrieve primary correspondence between **General Henry H. "Hap" Arnold** and **Edsel Ford** located within **USAAF Materiel Command files (NARA RG 18)** and t
+, head of the aeronautics section of the National Defense Advisory Commission (OPM) under William S. Knudsen [1, 5, 6].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-08-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
   > 
-- **rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
-- **rfc-gap-71-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-71-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
+- **rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
+  > --- title: RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - What Was the Real Nature of Henry Ford’s Treatment of Edsel?** category: research topic: rfc-gap-57-cic-willow-run-aviation-
+- **rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

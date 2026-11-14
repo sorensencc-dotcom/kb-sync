@@ -8,10 +8,10 @@ entityId: kb-sync--tests-trm-drive-export.test.mjs--21c01ac5
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 9d703a91f489a86744b940b62ab17a511754e9b76d0ddb38048fc18a9aeed22c
-sha256: 49ebe7036706b8810a0417678393c1f417d4d108702cde8446dd6b9e3e5e6b99
-lastCommit: 2026-09-22T14:21:36-04:00
-summary: Metadata inventory for tests/trm-drive-export.test.mjs in kb-sync (36 lines).
+inputHash: f1cc6de3213d65f16069b3c580e60d51eb2f64c8994f7fe00c9f78f7207088f0
+sha256: 6034fa394e466a59979d1786c9fd869f16b9e1b2e078ef59020d60d58e45f82b
+lastCommit: 2026-10-25T22:20:08-04:00
+summary: Metadata inventory for tests/trm-drive-export.test.mjs in kb-sync (122 lines).
 ---
 
 # trm-drive-export.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/trm-drive-export.test.mjs in kb-sync (36 l
 Metadata inventory for `tests/trm-drive-export.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/trm-drive-export.test.mjs`
-- **Lines of Code:** 36
-- **Last Modified:** `2026-09-22T14:21:36-04:00`
-- **SHA-256:** `49ebe7036706b8810a0417678393c1f417d4d108702cde8446dd6b9e3e5e6b99`
+- **Lines of Code:** 122
+- **Last Modified:** `2026-10-25T22:20:08-04:00`
+- **SHA-256:** `6034fa394e466a59979d1786c9fd869f16b9e1b2e078ef59020d60d58e45f82b`
 
 ## Source Citations
 - Source: `tests/trm-drive-export.test.mjs`

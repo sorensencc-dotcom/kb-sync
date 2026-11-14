@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-run-closed-loop-research-v2.mjs--97f95973
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 2b4729403d379d0cdd5834f3acd9973a8ddba32a1a64c05644c008a77ed1ef7c
-sha256: 05edfb6d608f2e27678bd357a33bbd5cb764b20320c794200a3432f4b9278685
-lastCommit: 2026-10-02T16:36:15-04:00
-summary: Metadata inventory for scripts/run-closed-loop-research-v2.mjs in kb-sync (651 lines). Exports: computeManifestHash, evaluateSourceDelta, cascadeSourceDeletion, getRealSourcesForNotebook, getRealGapForNotebook, runClosedLoopResearch.
+inputHash: bc4e0cfbe906efd61fcbf7a79f419ef1b84742575d1939d6c67b265aa39e29e7
+sha256: 3db944da8b171ee171dd029302dc6806b3b88697844d753a59008e76a81d5a0a
+lastCommit: 2026-11-10T00:39:06-05:00
+summary: Metadata inventory for scripts/run-closed-loop-research-v2.mjs in kb-sync (659 lines). Exports: computeManifestHash, evaluateSourceDelta, cascadeSourceDeletion, writeNotebookCadence, getRealSourcesForNotebook, getRealGapForNotebook, runClosedLoopResearch.
 ---
 
 # run-closed-loop-research-v2.mjs
@@ -25,14 +25,15 @@ summary: Metadata inventory for scripts/run-closed-loop-research-v2.mjs in kb-sy
 Metadata inventory for `scripts/run-closed-loop-research-v2.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/run-closed-loop-research-v2.mjs`
-- **Lines of Code:** 651
-- **Last Modified:** `2026-10-02T16:36:15-04:00`
-- **SHA-256:** `05edfb6d608f2e27678bd357a33bbd5cb764b20320c794200a3432f4b9278685`
+- **Lines of Code:** 659
+- **Last Modified:** `2026-11-10T00:39:06-05:00`
+- **SHA-256:** `3db944da8b171ee171dd029302dc6806b3b88697844d753a59008e76a81d5a0a`
 
 ## Exported Symbols & API
 - `computeManifestHash`
 - `evaluateSourceDelta`
 - `cascadeSourceDeletion`
+- `writeNotebookCadence`
 - `getRealSourcesForNotebook`
 - `getRealGapForNotebook`
 - `runClosedLoopResearch`

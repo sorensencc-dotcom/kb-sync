@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-nlm-pack-count-check.mjs--5932fba4
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: c342bfdf40ffa06b6288b06470f513bd287e283eb4e68bb24581f7ab07b23180
-sha256: ade3bf71789e993ee1b6e639a38e6e03f7a28175b4ddb6b8e8f83d2f5e4635ad
-lastCommit: 2026-10-17T16:52:30-04:00
-summary: Metadata inventory for scripts/nlm-pack-count-check.mjs in kb-sync (537 lines). Exports: loadNotebooks, defaultRunner, looksLikePackFileTitle, classifyNotebook, runCheck, main.
+inputHash: 6a8f9bf4d829ad1c74fbdc177bc7c0f81bab6399e0bbcb7432dc7892d5115552
+sha256: 2054d717e457c5264feae309ef686acc61f1ca4fddacd17a7b06a6c9d70eb10b
+lastCommit: 2026-10-20T22:40:00-04:00
+summary: Metadata inventory for scripts/nlm-pack-count-check.mjs in kb-sync (556 lines). Exports: loadNotebooks, defaultRunner, normalizePackFamilyKey, looksLikePackFileTitle, classifyNotebook, runCheck, main.
 ---
 
 # nlm-pack-count-check.mjs
@@ -25,13 +25,14 @@ summary: Metadata inventory for scripts/nlm-pack-count-check.mjs in kb-sync (537
 Metadata inventory for `scripts/nlm-pack-count-check.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/nlm-pack-count-check.mjs`
-- **Lines of Code:** 537
-- **Last Modified:** `2026-10-17T16:52:30-04:00`
-- **SHA-256:** `ade3bf71789e993ee1b6e639a38e6e03f7a28175b4ddb6b8e8f83d2f5e4635ad`
+- **Lines of Code:** 556
+- **Last Modified:** `2026-10-20T22:40:00-04:00`
+- **SHA-256:** `2054d717e457c5264feae309ef686acc61f1ca4fddacd17a7b06a6c9d70eb10b`
 
 ## Exported Symbols & API
 - `loadNotebooks`
 - `defaultRunner`
+- `normalizePackFamilyKey`
 - `looksLikePackFileTitle`
 - `classifyNotebook`
 - `runCheck`

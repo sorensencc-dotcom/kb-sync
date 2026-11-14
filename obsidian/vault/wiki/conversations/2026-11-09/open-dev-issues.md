@@ -1,0 +1,116 @@
+---
+title: "Open Dev Issues"
+category: "wiki"
+status: "active"
+created_at: "2026-11-09"
+tags:
+  - auto-healed
+  - wiki
+---
+
+# Daily Synthesis Log: Open Dev Issues — 2026-11-09
+
+| Metadata | Value |
+|---|---|
+| **Notebook** | Open Dev Issues (`cb0498ce-1ea5-4668-9f65-ac368753404e`) |
+| **Date** | 2026-11-09 |
+| **Sessions active** | 1 |
+| **Total turns** | 10 |
+| **Content SHA-256** | `de49824036679cbe...` |
+| **Status** | SYNTHESIZED |
+
+## Executive summary
+Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-09. Grounded facts, verified timeline assertions, and open inquiries were cataloged for downstream knowledge base indexing.
+
+## Key decisions & verified timeline facts
+- No explicit architectural decisions flagged in this session battery.
+
+## Technical discoveries & entity linkages
+- **Q:** What adjacent topics do these sources point to that aren't covered yet?
+  **Finding:** Based on the records in your notebook, several adjacent repositories, architectural frameworks, and security protocols are explicitly named, but lack detailed operational documentation or step-by-step implementation guides:
+
+### 1. Federated Agent Architecture & Processing Pipelines
+* **`sigil` / `s...
+- **Q:** What follow-up research would most strengthen current findings?
+  **Finding:** To strengthen the current findings and move from theoretical analysis to root-cause resolution, the following follow-up research and diagnostic steps would be most impactful:
+
+### 1. Extract Raw Runner Execution Logs & Exit Codes
+The current findings outline competing failure hypotheses—such as Conv...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).
+  **Finding:** ### Metadata & Repository Context
+
+* **Target Entity:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs`, 136 lines).
+* **System Role:** `kb-sync` serves as the **Core Sync Engine** in the software architecture topology, responsible for deterministic ...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).
+  **Finding:** ### Target Entity Metadata & System Context
+
+* **Entity:** `kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72` (`tests/trm-gap-triage.test.ts` in **`kb-sync`**, 393 lines).
+* **Repository Role:** **`kb-sync`** operates as the Core Sync Engine within the software architecture topology, running determin...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).
+  **Finding:** ### Target Entity Metadata & System Context
+
+* **Target Entity:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs` in **`kb-sync`**, 136 lines).
+* **System Architecture & Commit Topology:** **`kb-sync`** operates as the Core Sync Engine within the sof...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).
+  **Finding:** ### **Target Entity Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72` (`tests/trm-gap-triage.test.ts` in **`kb-sync`**, 393 lines).
+* **Core Sync Engine Role:** **`kb-sync`** operates as the Core Sync Engine within the software architec...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).
+  **Finding:** ### **Target Entity Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs` in **`kb-sync`**, 136 lines).
+* **Core Sync Engine Role:** **`kb-sync`** operates as the Core Sync Engine within the s...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).
+  **Finding:** ### **Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72` (`tests/trm-gap-triage.test.ts` in **`kb-sync`**, 393 lines).
+* **System Topology & Role:** **`kb-sync`** operates as the Core Sync Engine within the system architecture topology, ...
+- **Q:** Investigate recently modified entity "kb-sync--modules-trm-gap-triage-engine.mjs--be7e2de1" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/trm/gap-triage-engine.mjs in kb-sync (704 lines). Exports: parseNumericRange, evaluateClaim, slugifyTopicKey,
+  **Finding:** ### **Metadata Inventory & System Context**
+
+* **Target Entity:** `kb-sync--modules-trm-gap-triage-engine.mjs--be7e2de1` (`modules/trm/gap-triage-engine.mjs` in **`kb-sync`**, 704 lines; exporting utilities `parseNumericRange`, `evaluateClaim`, and `slugifyTopicKey`).
+* **Core Sync Engine & Topology...
+- **Q:** Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).
+  **Finding:** ### **Target Entity Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs` in **`kb-sync`**, 136 lines).
+* **System Topology & Engine Role:** **`kb-sync`** operates as the Core Sync Engine with...
+
+## Unresolved questions & open contradictions
+- What adjacent topics do these sources point to that aren't covered yet?: Based on the records in your notebook, several adjacent repositories, architectural frameworks, and security protocols are explicitly named, but lack detailed operational documentation or step-by-step...
+- What follow-up research would most strengthen current findings?: To strengthen the current findings and move from theoretical analysis to root-cause resolution, the following follow-up research and diagnostic steps would be most impactful:
+
+### 1. Extract Raw Runne...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).: ### Metadata & Repository Context
+
+* **Target Entity:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs`, 136 lines).
+* **System Role:** `kb-sync` serv...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).: ### Target Entity Metadata & System Context
+
+* **Entity:** `kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72` (`tests/trm-gap-triage.test.ts` in **`kb-sync`**, 393 lines).
+* **Repository Role:** **`kb-...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).: ### Target Entity Metadata & System Context
+
+* **Target Entity:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs` in **`kb-sync`**, 136 lines).
+* **Sy...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).: ### **Target Entity Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72` (`tests/trm-gap-triage.test.ts` in **`kb-sync`**, 393 lines).
+* **...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).: ### **Target Entity Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs` in **`kb-sync`**, ...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).: ### **Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72` (`tests/trm-gap-triage.test.ts` in **`kb-sync`**, 393 lines).
+* **System Topolog...
+- Investigate recently modified entity "kb-sync--modules-trm-gap-triage-engine.mjs--be7e2de1" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/trm/gap-triage-engine.mjs in kb-sync (704 lines). Exports: parseNumericRange, evaluateClaim, slugifyTopicKey,: ### **Metadata Inventory & System Context**
+
+* **Target Entity:** `kb-sync--modules-trm-gap-triage-engine.mjs--be7e2de1` (`modules/trm/gap-triage-engine.mjs` in **`kb-sync`**, 704 lines; exporting uti...
+- Investigate recently modified entity "kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213" in Open Dev Issues (CI/CD Triage Buffer): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for tests/trm/gap-triage-engine.test.mjs in kb-sync (136 lines).: ### **Target Entity Metadata Inventory & System Context**
+
+* **Entity Identifier:** `kb-sync--tests-trm-gap-triage-engine.test.mjs--aac28213` (`tests/trm/gap-triage-engine.test.mjs` in **`kb-sync`**, ...
+
+## Grounded citations & session metadata
+- **Session ID:** `7ceaa6ad-2d95-4cb5-a2a7-88abf70215b9` (10 turns) — preview: "Interactive battery"

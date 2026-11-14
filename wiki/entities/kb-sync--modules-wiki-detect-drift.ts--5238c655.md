@@ -8,10 +8,10 @@ entityId: kb-sync--modules-wiki-detect-drift.ts--5238c655
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 15403cec52813bcd4c957a01948b851c38a0c6d46c8f6248994b5a87cab52009
-sha256: 04febb9a32b495f55db91f5731691a8f17a5f5d7ca8428f72de65ba3b80f7d4a
-lastCommit: 2026-09-30T10:23:48-04:00
-summary: Metadata inventory for modules/wiki/detect-drift.ts in kb-sync (924 lines). Exports: validateIsoUtcTimestamp, DriftReport, StagingPathOptions, SyncMeta, sanitizeRelativePath, resolveStagingPaths, validateSnapshot, getLatestValidStagingDir, acquireLock, releaseLock, computeIncrementalDelta, materializeIncrementalStaging.
+inputHash: 9392deeb704d42501d6171421a4193fd65a472c21a15248b4621d1df15f16aa6
+sha256: 620cbd6cb28c975253fe41fc56ef6450325d26ff74611eb5f12ee2da4fc915a3
+lastCommit: 2026-10-20T23:09:47-04:00
+summary: Metadata inventory for modules/wiki/detect-drift.ts in kb-sync (938 lines). Exports: validateIsoUtcTimestamp, DriftReport, StagingPathOptions, SyncMeta, sanitizeRelativePath, resolveStagingPaths, validateSnapshot, getLatestValidStagingDir, acquireLock, releaseLock, computeIncrementalDelta, materializeIncrementalStaging.
 ---
 
 # detect-drift.ts
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/wiki/detect-drift.ts in kb-sync (924 lin
 Metadata inventory for `modules/wiki/detect-drift.ts` in **kb-sync**.
 
 - **File Path:** `modules/wiki/detect-drift.ts`
-- **Lines of Code:** 924
-- **Last Modified:** `2026-09-30T10:23:48-04:00`
-- **SHA-256:** `04febb9a32b495f55db91f5731691a8f17a5f5d7ca8428f72de65ba3b80f7d4a`
+- **Lines of Code:** 938
+- **Last Modified:** `2026-10-20T23:09:47-04:00`
+- **SHA-256:** `620cbd6cb28c975253fe41fc56ef6450325d26ff74611eb5f12ee2da4fc915a3`
 
 ## Exported Symbols & API
 - `validateIsoUtcTimestamp`

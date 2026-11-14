@@ -1,15 +1,174 @@
 {
-  "target": "notebooklm",
+  "target": "cluster_sync_research",
+  "timestamp": "2026-11-14T04:06:33.880Z",
+  "mode": "research",
+  "total": 15,
+  "succeeded": 15,
+  "failed": 0,
+  "results": [
+    {
+      "key": "willow-run",
+      "uuid": "6fd7c40b-df90-444b-9c7a-a64682925856",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.723
+    },
+    {
+      "key": "ford-politics",
+      "uuid": "0caf6707-f8f2-4d2a-acd2-020acead55ba",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.728
+    },
+    {
+      "key": "post-war",
+      "uuid": "9c469910-a900-43a4-877c-a43c9f545b5f",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.743
+    },
+    {
+      "key": "willys-overland",
+      "uuid": "fd4ebe29-9440-4f4b-97cf-0184ffbe29a0",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.695
+    },
+    {
+      "key": "cuba-claims",
+      "uuid": "c8360946-dbee-4a2c-b622-7f89b05695b0",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.691
+    },
+    {
+      "key": "master-kb",
+      "uuid": "679b8bab-2d87-42cb-a726-6dc54c83acc2",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.951
+    },
+    {
+      "key": "daily",
+      "uuid": "1b4861a3-931f-4632-8fc1-343a8dd37df8",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 5.045
+    },
+    {
+      "key": "miami-estate",
+      "uuid": "64949154-5892-4fa4-9ad0-e48b2bf5cc6c",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.647
+    },
+    {
+      "key": "assembly-line",
+      "uuid": "70be0df3-c58a-4711-b4d3-1e4b8726faf7",
+      "packDispatched": true,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.756
+    },
+    {
+      "key": "research-deltas-matrix",
+      "uuid": "48322e1d-d601-4f65-89e0-76282343680d",
+      "packDispatched": false,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.307
+    },
+    {
+      "key": "willow-run-videos",
+      "uuid": "ef78168d-b7b9-4952-8e0f-fcb353a21181",
+      "packDispatched": false,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.644
+    },
+    {
+      "key": "research-logs",
+      "uuid": "b8bc161d-495f-42f9-a7d1-ed8692141f6b",
+      "packDispatched": false,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.593
+    },
+    {
+      "key": "photo-archive",
+      "uuid": "fd0e0e4e-6890-4fb9-89bf-b9e568295e7a",
+      "packDispatched": false,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.584
+    },
+    {
+      "key": "facebook-archive",
+      "uuid": "0c8dc979-319f-4e6d-8136-22275932c236",
+      "packDispatched": false,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.337
+    },
+    {
+      "key": "reddit-archive",
+      "uuid": "039e2c13-75b3-4bf2-b58d-9bbce8f73a4d",
+      "packDispatched": false,
+      "questionsMined": 4,
+      "questionsInjected": 2,
+      "status": "SUCCESS",
+      "error": null,
+      "batteryEntropy": 4.292
+    }
+  ],
   "status": "FAILED",
-  "timestamp": "2026-11-02T17:45:13Z",
-  "duration_ms": 193,
-  "purged_sources": 0,
-  "uploaded_chunks": 0,
-  "stage1_success": false,
-  "stage2_success": false,
-  "target": "notebooklm",
-  "timestamp": "2026-11-02T17:31:10Z",
-  "duration_ms": 200,
-  "purged_sources": 0,
-  "uploaded_chunks": 0
+  "duration_ms": 115074,
+  "purged_sources": 14,
+  "uploaded_chunks": 15,
+  "last_sync_pack_sha": "73bc451d2f13c8e0a6904aeba103f877aab40df76afe98d3240639d56da8208e",
+  "file_count": 16109,
+  "pack_files_count": 70,
+  "pack_size_bytes": 45938015,
+  "unique_urls_tracked": 100,
+  "total_url_references": 770,
+  "notebook_id": "unknown",
+  "last_sync_timestamp": "2026-11-14T01:08:39.028Z",
+  "stage1_success": true,
+  "stage2_success": true
 }

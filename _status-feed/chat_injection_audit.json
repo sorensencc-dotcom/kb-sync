@@ -1,5 +1,5 @@
 {
-  "auditedAt": "2026-10-12T23:57:27.362Z",
+  "auditedAt": "2026-11-08T19:53:24.020Z",
   "preAudit": [
     {
       "slug": "willow-run",
@@ -7,17 +7,14 @@
       "title": "CIC - Willow Run & Aviation Engineering",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.283Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-willow-run-aviation-engineering.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.299Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\willow-run.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.851
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.152
     },
     {
       "slug": "ford-politics",
@@ -25,19 +22,14 @@
       "title": "CIC - Ford Executive Dynamics & Politics",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.271Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-ford-executive-dynamics-politics.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.284Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\ford-politics.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.732
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.16
     },
     {
       "slug": "post-war",
@@ -45,19 +37,14 @@
       "title": "CIC - Post-War",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.275Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-post-war.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.296Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\post-war.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.854
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.136
     },
     {
       "slug": "willys-overland",
@@ -65,16 +52,14 @@
       "title": "CIC - Willys-Overland",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.284Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-willys-overland.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.300Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\willys-overland.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.938
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.2
     },
     {
       "slug": "cuba-claims",
@@ -82,19 +67,14 @@
       "title": "CIC - Cuban Seizures & Retired Assets",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.267Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-cuban-seizures-retired-assets.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.281Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\cuba-claims.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.822
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.192
     },
     {
       "slug": "miami-estate",
@@ -102,19 +82,14 @@
       "title": "CIC - Miami Estate & Retirement",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.274Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-miami-estate-florida-retirement.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.294Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\miami-estate.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.825
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.078
     },
     {
       "slug": "assembly-line",
@@ -122,19 +97,14 @@
       "title": "CIC - Rouge & Moving Assembly Line",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.281Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-rouge-model-t-moving-assembly-line.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.281Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\assembly-line.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.771
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.19
     },
     {
       "slug": "master-kb",
@@ -142,14 +112,14 @@
       "title": "CIC-KB",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.272Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-kb.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
-      "auditStatus": "PASS",
+      "lastLogTime": "2026-10-26T15:54:15.293Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\master-kb.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
+      "auditStatus": "FAIL",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 4.883
+      "entropyScore": 5.146
     },
     {
       "slug": "daily",
@@ -157,19 +127,14 @@
       "title": "CIC - Daily Research",
       "section": "historical",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.268Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\cic-daily-research.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.282Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\daily.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.732
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.111
     },
     {
       "slug": "ironledger",
@@ -177,11 +142,11 @@
       "title": "IronLedger Architecture",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T23:48:14.115Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\ironledger.md",
-      "latencyHours": "0.2",
-      "status": "FRESH",
-      "auditStatus": "PASS",
+      "lastLogTime": "2026-10-26T15:54:15.301Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-12\\ironledger.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
+      "auditStatus": "FAIL",
       "boilerplateDetected": false,
       "bannedMatches": [],
       "entropyScore": 5.115
@@ -192,19 +157,14 @@
       "title": "Sigil Protocol",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.329Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\sigil-protocol-federation.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-10-26T15:54:15.297Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\sigil.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.733
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.159
     },
     {
       "slug": "agent-harness",
@@ -212,19 +172,14 @@
       "title": "Agent Harness Registry",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.255Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\agent-harnesses-local-execution.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
+      "lastLogTime": "2026-11-04T18:12:42.966Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\agent-harness\\Daily Synthesis Log - 2026-11-04.md",
+      "latencyHours": "97.7",
+      "status": "STALE",
       "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.726
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 4.828
     },
     {
       "slug": "rewrite-labs",
@@ -232,19 +187,14 @@
       "title": "Rewrite Labs",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.328Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\rewrite-labs.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:03:10.716Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\rewrite-labs\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.8",
       "status": "FRESH",
-      "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 4.829
+      "auditStatus": "PASS",
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 4.974
     },
     {
       "slug": "dev-triage",
@@ -252,19 +202,14 @@
       "title": "Open Dev Issues",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.320Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\open-dev-issues.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T19:43:36.098Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-11-08\\dev-triage.md",
+      "latencyHours": "0.2",
       "status": "FRESH",
-      "auditStatus": "FAIL",
-      "boilerplateDetected": true,
-      "bannedMatches": [
-        "what open questions or unresolved contradictions exist across these sources",
-        "what claims are asserted but single-sourced or under-corroborated",
-        "what adjacent topics do these sources point to that aren't covered yet",
-        "what follow-up research would most strengthen current findings"
-      ],
-      "entropyScore": 5.118
+      "auditStatus": "PASS",
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": 5.168
     },
     {
       "slug": "kb-governance",
@@ -272,14 +217,14 @@
       "title": "KB - Governance",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.299Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-governance.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:02:45.098Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-governance\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.8",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 4.977
+      "entropyScore": 4.884
     },
     {
       "slug": "kb-modules",
@@ -287,14 +232,14 @@
       "title": "KB - Modules",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.302Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-modules.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:02:36.762Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-modules\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.8",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 5.089
+      "entropyScore": 5.004
     },
     {
       "slug": "kb-skills",
@@ -302,14 +247,14 @@
       "title": "KB - Skills",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.308Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-skills.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:02:16.813Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-skills\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.9",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 4.926
+      "entropyScore": 4.966
     },
     {
       "slug": "kb-operations",
@@ -317,14 +262,14 @@
       "title": "KB - Operations",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.304Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-operations.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:01:55.618Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-operations\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.9",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 4.911
+      "entropyScore": 4.992
     },
     {
       "slug": "kb-meta",
@@ -332,14 +277,14 @@
       "title": "KB - Meta",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.300Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-meta.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:01:45.537Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-meta\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.9",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 5.024
+      "entropyScore": 4.862
     },
     {
       "slug": "kb-targets",
@@ -347,14 +292,14 @@
       "title": "KB - Targets",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.311Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-targets.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:01:25.604Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-targets\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.9",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 4.981
+      "entropyScore": 4.964
     },
     {
       "slug": "kb-superpowers",
@@ -362,14 +307,14 @@
       "title": "KB - Superpowers",
       "section": "software_dev",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T23:44:59.664Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\kb-superpowers.md",
-      "latencyHours": "0.2",
+      "lastLogTime": "2026-11-08T01:01:15.987Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\kb-superpowers\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.9",
       "status": "FRESH",
       "auditStatus": "PASS",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 5.191
+      "entropyScore": 4.95
     },
     {
       "slug": "personal-os",
@@ -377,9 +322,9 @@
       "title": "Personal OS",
       "section": "personal_os",
       "isCanonical": true,
-      "lastLogTime": "2026-10-12T02:30:02.326Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\personal-os.md",
-      "latencyHours": "21.5",
+      "lastLogTime": "2026-11-08T01:03:27.981Z",
+      "lastLogPath": "G:\\My Drive\\notebooklm\\personal-os\\Daily Synthesis Log - 2026-11-08.md",
+      "latencyHours": "18.8",
       "status": "FRESH",
       "auditStatus": "FAIL",
       "boilerplateDetected": true,
@@ -389,7 +334,7 @@
         "what adjacent topics do these sources point to that aren't covered yet",
         "what follow-up research would most strengthen current findings"
       ],
-      "entropyScore": 4.958
+      "entropyScore": 4.96
     },
     {
       "slug": "grok-bot",
@@ -397,14 +342,14 @@
       "title": "Grok Bot Automation",
       "section": "operational_buffers",
       "isCanonical": false,
-      "lastLogTime": "2026-10-12T02:30:02.295Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\grok-bot-automation.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
-      "auditStatus": "PASS",
+      "lastLogTime": "2026-10-26T15:54:15.285Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\grok-bot.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
+      "auditStatus": "FAIL",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 4.891
+      "entropyScore": 5.138
     },
     {
       "slug": "ai-news",
@@ -412,14 +357,14 @@
       "title": "AI News and Tools",
       "section": "operational_buffers",
       "isCanonical": false,
-      "lastLogTime": "2026-10-12T02:30:02.259Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\ai-news-and-tools.md",
-      "latencyHours": "21.5",
-      "status": "FRESH",
-      "auditStatus": "PASS",
+      "lastLogTime": "2026-10-26T15:54:15.280Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-10\\ai-news.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
+      "auditStatus": "FAIL",
       "boilerplateDetected": false,
       "bannedMatches": [],
-      "entropyScore": 5.022
+      "entropyScore": 5.135
     },
     {
       "slug": "toolforge-eco",
@@ -427,14 +372,29 @@
       "title": "Toolforge Ecosystem",
       "section": "operational_buffers",
       "isCanonical": false,
-      "lastLogTime": "2026-10-12T23:48:31.423Z",
-      "lastLogPath": "C:\\dev\\kb-sync\\obsidian\\vault\\wiki\\conversations\\2026-10-12\\toolforge-eco.md",
-      "latencyHours": "0.1",
-      "status": "FRESH",
-      "auditStatus": "PASS",
+      "lastLogTime": "2026-10-26T15:54:15.303Z",
+      "lastLogPath": "C:\\dev\\kb-sync\\wiki\\conversations\\2026-10-12\\toolforge-eco.md",
+      "latencyHours": "316.0",
+      "status": "STALE",
+      "auditStatus": "FAIL",
       "boilerplateDetected": false,
       "bannedMatches": [],
       "entropyScore": 5.111
+    },
+    {
+      "slug": "kb-testing",
+      "uuid": "d721ed70-5b37-497f-a279-10ba362c744e",
+      "title": "KB - Testing Sandbox (Live Verification)",
+      "section": "operational_buffers",
+      "isCanonical": false,
+      "lastLogTime": null,
+      "lastLogPath": null,
+      "latencyHours": "INF",
+      "status": "STALE",
+      "auditStatus": "FAIL",
+      "boilerplateDetected": false,
+      "bannedMatches": [],
+      "entropyScore": null
     }
   ]
 }

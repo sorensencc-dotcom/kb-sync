@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-notebooklm-ingest-nlm-runner.mjs--65cfcff8
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 8eda5f7e82bb38020848904c2bbdb87fd6a5a88a3496510a1ca84ebf02e83e2a
-sha256: e2b002199eed5b5b78d5f97c4d762fc0324717ef4774a0c46ea5c9b341c541e9
-lastCommit: 2026-10-16T00:54:56-04:00
-summary: Metadata inventory for scripts/notebooklm/ingest-nlm-runner.mjs in kb-sync (418 lines).
+inputHash: 17f92df329ad5febf923bf4027c8df706f0836f5e3a89ba2ccc0fff6f4ddfe1e
+sha256: 31f84863ee2820a3b04abbe8c77aad1f0dafe9dba98ee3e2bfb85e9faea728ad
+lastCommit: 2026-11-10T00:39:06-05:00
+summary: Metadata inventory for scripts/notebooklm/ingest-nlm-runner.mjs in kb-sync (452 lines). Exports: acquireIngestLock.
 ---
 
 # ingest-nlm-runner.mjs
@@ -25,9 +25,12 @@ summary: Metadata inventory for scripts/notebooklm/ingest-nlm-runner.mjs in kb-s
 Metadata inventory for `scripts/notebooklm/ingest-nlm-runner.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/notebooklm/ingest-nlm-runner.mjs`
-- **Lines of Code:** 418
-- **Last Modified:** `2026-10-16T00:54:56-04:00`
-- **SHA-256:** `e2b002199eed5b5b78d5f97c4d762fc0324717ef4774a0c46ea5c9b341c541e9`
+- **Lines of Code:** 452
+- **Last Modified:** `2026-11-10T00:39:06-05:00`
+- **SHA-256:** `31f84863ee2820a3b04abbe8c77aad1f0dafe9dba98ee3e2bfb85e9faea728ad`
+
+## Exported Symbols & API
+- `acquireIngestLock`
 
 ## Source Citations
 - Source: `scripts/notebooklm/ingest-nlm-runner.mjs`

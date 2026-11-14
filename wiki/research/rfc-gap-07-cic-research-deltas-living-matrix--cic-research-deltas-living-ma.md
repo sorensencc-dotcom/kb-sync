@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-07--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix (follow-up - 3.)**"
+title: "RFC: GAP-07--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix (dyn-src-25e4e977 - Frame 141 Assembly Line Turn"
 category: "research"
 topic: "rfc-gap-07-cic-research-deltas-living-matrix--cic-research-deltas-living-ma"
 gap_id: "GAP-07--cic-research-deltas-living-matrix"
 status: "draft"
-created_at: "2026-09-27T12:49:09.293Z"
+created_at: "2026-11-10T11:19:40.576Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cic-reddit--cic-reddit-follow-up-benson-f.md","wiki/research/2026-09-25/rfc-gap-01.md","trm-research-gaps.md"]
+citations: ["wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-dyn-src-1fa.md","wiki/research/rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th.md","wiki/research/rfc-gap-29-castironcharlie-facebook--castironcharlie-facebook-adja.md"]
 ---
 
-# RFC: GAP-07--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix (follow-up - 3.)**
+# RFC: GAP-07--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix (dyn-src-25e4e977 - Frame 141 Assembly Line Turn
 
 ## 1. Problem Statement & Context
-3. **Benson Ford Research Center (BFRC) Accession Audits**
+)**: 8 million-square-foot plant inside Washtenaw County to avoid Wayne County tax liabilities [1, 2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cic-reddit--cic-reddit-follow-up-benson-f** (`wiki/research/rfc-gap-02-cic-reddit--cic-reddit-follow-up-benson-f.md`) [hybrid]:
+- **rfc-gap-02-willow-run-videos--willow-run-videos-dyn-src-1fa** (`wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-dyn-src-1fa.md`) [hybrid]:
   > 
-- **trm** (`wiki/research/2026-09-25/rfc-gap-01.md`) [lexical_only]:
+- **rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th** (`wiki/research/rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th.md`) [hybrid]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-29-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-29-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -8,10 +8,10 @@ entityId: kb-sync--modules-wiki-validate-contract.mjs--17323309
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: d3f669ccd1d57a4bd3d9fcf614238eae6def174a1050045c160715f51c88cc2c
-sha256: 4e98f5482be7095d935a9690c3526c1d6e7f6d960822a736644105264d4d73a5
-lastCommit: 2026-10-15T16:06:03-04:00
-summary: Metadata inventory for modules/wiki/validate-contract.mjs in kb-sync (476 lines). Exports: ALLOWED_CATEGORIES, ALLOWED_STATUSES, resolveCanonicalVaultPath, validateLessonSchema.
+inputHash: af38efa521e7a08a038836b1443b45b6b341f621face3d4e8025bc2323956f2e
+sha256: 692e9921907c9f852c204f245538f68d958174c01bef81520d0964a5b5a5403d
+lastCommit: 2026-10-25T22:20:08-04:00
+summary: Metadata inventory for modules/wiki/validate-contract.mjs in kb-sync (478 lines). Exports: ALLOWED_CATEGORIES, ALLOWED_STATUSES, resolveCanonicalVaultPath, validateLessonSchema.
 ---
 
 # validate-contract.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/wiki/validate-contract.mjs in kb-sync (4
 Metadata inventory for `modules/wiki/validate-contract.mjs` in **kb-sync**.
 
 - **File Path:** `modules/wiki/validate-contract.mjs`
-- **Lines of Code:** 476
-- **Last Modified:** `2026-10-15T16:06:03-04:00`
-- **SHA-256:** `4e98f5482be7095d935a9690c3526c1d6e7f6d960822a736644105264d4d73a5`
+- **Lines of Code:** 478
+- **Last Modified:** `2026-10-25T22:20:08-04:00`
+- **SHA-256:** `692e9921907c9f852c204f245538f68d958174c01bef81520d0964a5b5a5403d`
 
 ## Exported Symbols & API
 - `ALLOWED_CATEGORIES`

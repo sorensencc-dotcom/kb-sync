@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Proven vs. Speculative Ore Benchmarks"
+title: "RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Identity and Precedent of CU-3440)**"
 category: "research"
 topic: "rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-07--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-27T12:14:37.315Z"
+created_at: "2026-11-12T11:05:19.402Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-47-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-131-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","trm-research-gaps.md","wiki/research/rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Proven vs. Speculative Ore Benchmarks
+# RFC: GAP-07--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (under-sourced - Identity and Precedent of CU-3440)**
 
 ## 1. Problem Statement & Context
-)**: **Proven vs. Speculative Ore Benchmarks:** Utilizing the clean comparative teaching pair of **Nicaro Nickel Company (CU-2624)** (tiered 8%/12%/15% discount schedule across proven,
+The *Track Source Audit* identifies **Claim CU-3440** as the **Claim of Central West Company** [1, 2]. 51 per share** of Havana Lithographing stock [1, 2].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-07-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **rfc-gap-47-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-47-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
+  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
+- **rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-56-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
-- **rfc-gap-131-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-131-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-131--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets open-contradictions - 2.** category: research topic: rfc-gap-131-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as gap_id: GAP-131--ci
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

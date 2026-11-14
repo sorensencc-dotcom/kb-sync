@@ -8,10 +8,10 @@ entityId: kb-sync--tests-notebooklm-telemetry-contract.test.mjs--f4bf4dfa
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: e0f956216c5960c2c6162343c765720b79f417549310c6d7f98846f47a43fa1b
-sha256: 229e2caa146f9c0fccd28f36e09ebf0e7db52a9cb7a40185e4aac7255993a97f
-lastCommit: 2026-10-15T19:23:31-04:00
-summary: Metadata inventory for tests/notebooklm-telemetry-contract.test.mjs in kb-sync (30 lines).
+inputHash: b74f42739ab1f08733b040abb428be27fec6c49f54faa6beb9481741cdcb4f2a
+sha256: 68af57eb91a2d9a12bd23809f8f9213c879ba34cd560c14a38b8b20697a03bd8
+lastCommit: 2026-11-10T00:50:27-05:00
+summary: Metadata inventory for tests/notebooklm-telemetry-contract.test.mjs in kb-sync (32 lines).
 ---
 
 # notebooklm-telemetry-contract.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/notebooklm-telemetry-contract.test.mjs in 
 Metadata inventory for `tests/notebooklm-telemetry-contract.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/notebooklm-telemetry-contract.test.mjs`
-- **Lines of Code:** 30
-- **Last Modified:** `2026-10-15T19:23:31-04:00`
-- **SHA-256:** `229e2caa146f9c0fccd28f36e09ebf0e7db52a9cb7a40185e4aac7255993a97f`
+- **Lines of Code:** 32
+- **Last Modified:** `2026-11-10T00:50:27-05:00`
+- **SHA-256:** `68af57eb91a2d9a12bd23809f8f9213c879ba34cd560c14a38b8b20697a03bd8`
 
 ## Source Citations
 - Source: `tests/notebooklm-telemetry-contract.test.mjs`

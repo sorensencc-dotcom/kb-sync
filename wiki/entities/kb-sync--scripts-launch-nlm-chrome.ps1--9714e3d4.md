@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-launch-nlm-chrome.ps1--9714e3d4
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 6adfa3517ac3077df5570649ea34aa6b6fb2423971945910df1604f1ef5b9ee7
-sha256: 0ece54aaa296f27036fb9436878e02122f2276bdfe7b6e3df994d1eb268c956e
-lastCommit: 2026-10-12T13:06:15-04:00
-summary: Metadata inventory for scripts/launch-nlm-chrome.ps1 in kb-sync (154 lines).
+inputHash: 12aed4f2742c1727c630138cfdbee27c071271a14c0c5ff07be3cf007aaaf4d3
+sha256: 93deda0d9ac81749c8c0a3e660387d2af18cf6da4c704067d3c64972c8cc36db
+lastCommit: 2026-11-12T13:18:32-05:00
+summary: Metadata inventory for scripts/launch-nlm-chrome.ps1 in kb-sync (156 lines).
 ---
 
 # launch-nlm-chrome.ps1
@@ -25,9 +25,9 @@ summary: Metadata inventory for scripts/launch-nlm-chrome.ps1 in kb-sync (154 li
 Metadata inventory for `scripts/launch-nlm-chrome.ps1` in **kb-sync**.
 
 - **File Path:** `scripts/launch-nlm-chrome.ps1`
-- **Lines of Code:** 154
-- **Last Modified:** `2026-10-12T13:06:15-04:00`
-- **SHA-256:** `0ece54aaa296f27036fb9436878e02122f2276bdfe7b6e3df994d1eb268c956e`
+- **Lines of Code:** 156
+- **Last Modified:** `2026-11-12T13:18:32-05:00`
+- **SHA-256:** `93deda0d9ac81749c8c0a3e660387d2af18cf6da4c704067d3c64972c8cc36db`
 
 ## Source Citations
 - Source: `scripts/launch-nlm-chrome.ps1`

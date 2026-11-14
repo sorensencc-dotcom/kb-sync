@@ -8,9 +8,9 @@ entityId: kb-sync--tests-validate-proposal-schema.test.ts--4671adbd
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: af893c605f87684cd2f6b235bafc53de35fb5c4d283668d0e6282de41444db38
-sha256: c442d2221c9af11ac57b86d639ef569e556f3eee73857f4cddb91fdc056c065e
-lastCommit: 2026-10-20T10:57:14Z
+inputHash: e30112dda09b0b5dc77f8b0ab13d9df10856c86e5855842fb58b4bb74d8f4967
+sha256: 8b4483e7df321817538b0419ff4a149d9e5b6bff26a506dd40c62ba18a878729
+lastCommit: 2026-11-08T13:31:46-05:00
 summary: Metadata inventory for tests/validate-proposal-schema.test.ts in kb-sync (80 lines).
 ---
 
@@ -26,8 +26,8 @@ Metadata inventory for `tests/validate-proposal-schema.test.ts` in **kb-sync**.
 
 - **File Path:** `tests/validate-proposal-schema.test.ts`
 - **Lines of Code:** 80
-- **Last Modified:** `2026-10-20T10:57:14Z`
-- **SHA-256:** `c442d2221c9af11ac57b86d639ef569e556f3eee73857f4cddb91fdc056c065e`
+- **Last Modified:** `2026-11-08T13:31:46-05:00`
+- **SHA-256:** `8b4483e7df321817538b0419ff4a149d9e5b6bff26a506dd40c62ba18a878729`
 
 ## Source Citations
 - Source: `tests/validate-proposal-schema.test.ts`

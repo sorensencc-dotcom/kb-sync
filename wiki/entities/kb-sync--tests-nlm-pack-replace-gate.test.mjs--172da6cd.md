@@ -8,10 +8,10 @@ entityId: kb-sync--tests-nlm-pack-replace-gate.test.mjs--172da6cd
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: d98a0ecba1642af770a5048fe9aeebb9a0322efd628a54560dbe2fce482ce1ab
-sha256: 32b364294111eb3e204340306d1ef896331749b806d5833c4d79a1a787160871
-lastCommit: 2026-10-19T22:54:52-04:00
-summary: Metadata inventory for tests/nlm-pack-replace-gate.test.mjs in kb-sync (1104 lines).
+inputHash: 25795455ded897d2f43ce2b9a111eb6870319659eb28a309b80dda1b8fa7669a
+sha256: 8536fca52c5ff1150963d1e6c55b44bfdb9e8f50575753091073a647376ed207
+lastCommit: 2026-11-10T00:39:06-05:00
+summary: Metadata inventory for tests/nlm-pack-replace-gate.test.mjs in kb-sync (1163 lines).
 ---
 
 # nlm-pack-replace-gate.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/nlm-pack-replace-gate.test.mjs in kb-sync 
 Metadata inventory for `tests/nlm-pack-replace-gate.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/nlm-pack-replace-gate.test.mjs`
-- **Lines of Code:** 1104
-- **Last Modified:** `2026-10-19T22:54:52-04:00`
-- **SHA-256:** `32b364294111eb3e204340306d1ef896331749b806d5833c4d79a1a787160871`
+- **Lines of Code:** 1163
+- **Last Modified:** `2026-11-10T00:39:06-05:00`
+- **SHA-256:** `8536fca52c5ff1150963d1e6c55b44bfdb9e8f50575753091073a647376ed207`
 
 ## Source Citations
 - Source: `tests/nlm-pack-replace-gate.test.mjs`

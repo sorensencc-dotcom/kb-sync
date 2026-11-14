@@ -8,10 +8,10 @@ entityId: kb-sync--modules-trm-storage-transaction-manager.mjs--6b8367ab
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 11c5e2a3c4e113763816fdb1ce542fd0f85d4ce5d8d2accd8ecfeab6a488fdef
-sha256: ec9a9e83b880f19e25409d4e9f3f28ec89135260741cbba19791e5479cae903d
-lastCommit: 2026-09-29T21:14:24-04:00
-summary: Metadata inventory for modules/trm/storage/transaction-manager.mjs in kb-sync (117 lines). Exports: acquireLock, atomicWriteJson, createTransaction.
+inputHash: d20d89539ff3bcb98a4dd6290e341d1ecd6d06934021417592a4b1601cd4fd18
+sha256: e932a023b48acbbd598f8d56989706a9110f3678b045d9967c2a511c29777f35
+lastCommit: 2026-11-10T00:39:06-05:00
+summary: Metadata inventory for modules/trm/storage/transaction-manager.mjs in kb-sync (141 lines). Exports: acquireLock, atomicWriteJson, updateJsonLocked, createTransaction.
 ---
 
 # transaction-manager.mjs
@@ -25,13 +25,14 @@ summary: Metadata inventory for modules/trm/storage/transaction-manager.mjs in k
 Metadata inventory for `modules/trm/storage/transaction-manager.mjs` in **kb-sync**.
 
 - **File Path:** `modules/trm/storage/transaction-manager.mjs`
-- **Lines of Code:** 117
-- **Last Modified:** `2026-09-29T21:14:24-04:00`
-- **SHA-256:** `ec9a9e83b880f19e25409d4e9f3f28ec89135260741cbba19791e5479cae903d`
+- **Lines of Code:** 141
+- **Last Modified:** `2026-11-10T00:39:06-05:00`
+- **SHA-256:** `e932a023b48acbbd598f8d56989706a9110f3678b045d9967c2a511c29777f35`
 
 ## Exported Symbols & API
 - `acquireLock`
 - `atomicWriteJson`
+- `updateJsonLocked`
 - `createTransaction`
 
 ## Source Citations

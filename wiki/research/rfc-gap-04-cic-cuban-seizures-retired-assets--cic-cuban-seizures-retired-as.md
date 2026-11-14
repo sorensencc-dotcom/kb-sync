@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - FCSC Full-Text Name Search"
+title: "RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Unproven Archival Claims"
 category: "research"
 topic: "rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-04--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-27T12:14:32.993Z"
+created_at: "2026-11-12T11:05:19.101Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["wiki/research/rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - FCSC Full-Text Name Search
+# RFC: GAP-04--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (adjacent-topics - Unproven Archival Claims
 
 ## 1. Problem Statement & Context
-)**: **FCSC Full-Text Name Search:** Searching full FCSC claim files and decision indexes for family nominee names (Charles E., Helen Mitchell, Clifford, or Edith Sorensen) or unlinked
+)**: S. Embassy Havana agricultural indemnity registries, and "Box 14 of the Charles E. Sorensen Papers (1904–1965) at the Bentley Historical Library" [2]. The audit confirmed that no such collection exists at the Bentley Historical Library [4, 5].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-04-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-55-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
   > 
-- **rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

@@ -8,10 +8,10 @@ entityId: kb-sync--scripts-process-sigil-approvals.mjs--4b1a8799
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 4834ee41e2219142355e5d94aec7c53f8503c0a1600433105e9cb19eb33a1b7d
-sha256: 1a8d361a14eedcffd2c1ea645ad923733ecca13ffd0357da82dbcf31e32aa7bf
-lastCommit: 2026-08-23T14:51:25-04:00
-summary: Metadata inventory for scripts/process-sigil-approvals.mjs in kb-sync (118 lines). Exports: loadPendingEnvelopes, processApprovals.
+inputHash: 6530b10835904b12b3487a1010c9f91c6a10fe99912c37f84a4fe2763a8e3fb3
+sha256: dd18a42d4d02b55f76cd0b2defb09e7948cdf656e090069b4fedf1799a10a15b
+lastCommit: 2026-11-10T00:50:27-05:00
+summary: Metadata inventory for scripts/process-sigil-approvals.mjs in kb-sync (121 lines). Exports: loadPendingEnvelopes, processApprovals.
 ---
 
 # process-sigil-approvals.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for scripts/process-sigil-approvals.mjs in kb-sync (
 Metadata inventory for `scripts/process-sigil-approvals.mjs` in **kb-sync**.
 
 - **File Path:** `scripts/process-sigil-approvals.mjs`
-- **Lines of Code:** 118
-- **Last Modified:** `2026-08-23T14:51:25-04:00`
-- **SHA-256:** `1a8d361a14eedcffd2c1ea645ad923733ecca13ffd0357da82dbcf31e32aa7bf`
+- **Lines of Code:** 121
+- **Last Modified:** `2026-11-10T00:50:27-05:00`
+- **SHA-256:** `dd18a42d4d02b55f76cd0b2defb09e7948cdf656e090069b4fedf1799a10a15b`
 
 ## Exported Symbols & API
 - `loadPendingEnvelopes`

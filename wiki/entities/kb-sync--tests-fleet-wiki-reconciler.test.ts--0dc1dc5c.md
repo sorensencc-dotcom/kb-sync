@@ -10,7 +10,7 @@ generationKind: metadata-inventory
 semanticContent: false
 inputHash: 8b888a0c71f14023650e41fc14aa56d050c5e8d9ff696ccc778288d6dade083f
 sha256: 371154e14040c2684e3f094b189431e8fbd4751e4b2682b097da8985e1d07d7e
-lastCommit: 2026-10-17T09:38:09-04:00
+lastCommit: 2026-10-20T07:13:55-04:00
 summary: Metadata inventory for tests/fleet-wiki-reconciler.test.ts in kb-sync (199 lines).
 ---
 
@@ -26,7 +26,7 @@ Metadata inventory for `tests/fleet-wiki-reconciler.test.ts` in **kb-sync**.
 
 - **File Path:** `tests/fleet-wiki-reconciler.test.ts`
 - **Lines of Code:** 199
-- **Last Modified:** `2026-10-17T09:38:09-04:00`
+- **Last Modified:** `2026-10-20T07:13:55-04:00`
 - **SHA-256:** `371154e14040c2684e3f094b189431e8fbd4751e4b2682b097da8985e1d07d7e`
 
 ## Source Citations

@@ -8,10 +8,10 @@ entityId: kb-sync--tests-integration-nlm-live.test.mjs--f5fcb6f4
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: a5e71eaad8fe4f4937e8831d8451d281d5301eb3e1d2687f3a19675c2189f8f4
-sha256: bd0d912979c0f77133b103d922937d333448eeb40fd5a76218db6b24e1fb1ffe
-lastCommit: 2026-10-16T01:29:00-04:00
-summary: Metadata inventory for tests/integration/nlm-live.test.mjs in kb-sync (264 lines).
+inputHash: 6fb7cdcfca83917917499c82e198bdb49f8ef0e7bceea31283d66e89edd06880
+sha256: 7eabb79b0db5af4fd955286b97fd390b69eea393cd5e45da73d80d99a74ff82a
+lastCommit: 2026-10-25T22:20:08-04:00
+summary: Metadata inventory for tests/integration/nlm-live.test.mjs in kb-sync (337 lines).
 ---
 
 # nlm-live.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/integration/nlm-live.test.mjs in kb-sync (
 Metadata inventory for `tests/integration/nlm-live.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/integration/nlm-live.test.mjs`
-- **Lines of Code:** 264
-- **Last Modified:** `2026-10-16T01:29:00-04:00`
-- **SHA-256:** `bd0d912979c0f77133b103d922937d333448eeb40fd5a76218db6b24e1fb1ffe`
+- **Lines of Code:** 337
+- **Last Modified:** `2026-10-25T22:20:08-04:00`
+- **SHA-256:** `7eabb79b0db5af4fd955286b97fd390b69eea393cd5e45da73d80d99a74ff82a`
 
 ## Source Citations
 - Source: `tests/integration/nlm-live.test.mjs`

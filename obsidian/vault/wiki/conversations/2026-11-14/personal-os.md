@@ -1,0 +1,97 @@
+---
+title: "Personal Os"
+category: "wiki"
+status: "active"
+created_at: "2026-11-14"
+tags:
+  - auto-healed
+  - wiki
+---
+
+# Daily Synthesis Log: Personal OS — 2026-11-14
+
+| Metadata | Value |
+|---|---|
+| **Notebook** | Personal OS (`9724e682-c5ea-4693-8e21-caf8de68611e`) |
+| **Date** | 2026-11-14 |
+| **Sessions active** | 1 |
+| **Total turns** | 10 |
+| **Content SHA-256** | `3dd999d3e5ff5c09...` |
+| **Status** | SYNTHESIZED |
+
+## Executive summary
+Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-14. Grounded facts, verified timeline assertions, and open inquiries were cataloged for downstream knowledge base indexing.
+
+## Key decisions & verified timeline facts
+- No explicit architectural decisions flagged in this session battery.
+
+## Technical discoveries & entity linkages
+- **Q:** Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_
+  **Finding:** An investigation and empirical verification of **`scripts/consolidate-pack.mjs`** against the primary records in **`pack_personal_os.txt`** reveals a significant discrepancy between the entity parameters in your query and the canonical metadata currently recorded in the repository catalog [1, 2].
+
+-...
+- **Q:** Investigate recently modified entity "kb-sync--scripts-nlm-pack-replace-gate.mjs--fda931d1" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/nlm-pack-replace-gate.mjs in kb-sync (902 lines). Exports: PACK_FAMILY_TITLE_RE, HISTORICAL_NOTEBOOK_IDS, SOF
+  **Finding:** An empirical investigation and verification of **`scripts/nlm-pack-replace-gate.mjs`** against the primary records in **`pack_personal_os.txt`** reveals that the entity and file cited in your query are **not currently indexed in the active notebook catalog** [1].
+
+---
+
+### **1. Primary Record Audit ...
+- **Q:** Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_
+  **Finding:** An empirical investigation and verification of **`scripts/consolidate-pack.mjs`** against the primary archival records in **`pack_personal_os.txt`** reveals direct discrepancies between the entity metadata in your query and the canonical records indexed in the repository catalog [1, 2].
+
+---
+
+### **...
+- **Q:** Investigate recently modified entity "kb-sync--scripts-nlm-pack-replace-gate.mjs--fda931d1" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/nlm-pack-replace-gate.mjs in kb-sync (902 lines). Exports: PACK_FAMILY_TITLE_RE, HISTORICAL_NOTEBOOK_IDS, SOF
+  **Finding:** An empirical investigation and verification of **`scripts/nlm-pack-replace-gate.mjs`** against the primary archival records in **`pack_personal_os.txt`** reveals that the entity and script cited in your query are **not currently indexed in the active notebook catalog** [1, 2].
+
+---
+
+### **1. Primary...
+- **Q:** Investigate recently modified entity "kb-sync--modules-compactor-index.mjs--b84db04f" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/compactor/index.mjs in kb-sync (224 lines). Exports: loadGlobalSkipPatterns, buildCompactedPack.
+  **Finding:** An empirical investigation and verification of **`modules/compactor/index.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms the module's presence and exported APIs, while highlighting specific discrepancies regarding line count and entity hash [1, 2].
+
+---
+
+### **1. ...
+- **Q:** Investigate recently modified entity "kb-sync--modules-trm-storage-transaction-manager.mjs--6b8367ab" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/trm/storage/transaction-manager.mjs in kb-sync (141 lines). Exports: acquireLock, atomicWriteJson, updateJson
+  **Finding:** An empirical investigation and verification of **`modules/trm/storage/transaction-manager.mjs`** against the primary archival records in **`pack_personal_os.txt`** reveals that the entity and module cited in your query are **not currently indexed in the active notebook catalog** [1].
+
+---
+
+### **1. ...
+- **Q:** Investigate recently modified entity "kb-sync--modules-compactor-index.mjs--b84db04f" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/compactor/index.mjs in kb-sync (224 lines). Exports: loadGlobalSkipPatterns, buildCompactedPack.
+  **Finding:** An empirical investigation and verification of **`modules/compactor/index.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms the module's presence and canonical exported symbols, while identifying specific empirical discrepancies in line count and entity hash [73, 74]...
+- **Q:** Investigate recently modified entity "kb-sync--modules-trm-storage-transaction-manager.mjs--6b8367ab" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/trm/storage/transaction-manager.mjs in kb-sync (141 lines). Exports: acquireLock, atomicWriteJson, updateJson
+  **Finding:** An empirical investigation of **`modules/trm/storage/transaction-manager.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms that the entity and module cited in your query are **not currently indexed in the active notebook catalog** [23].
+
+---
+
+### **1. Primary Record ...
+- **Q:** Investigate recently modified entity "kb-sync--scripts-launch-nlm-chrome.ps1--9714e3d4" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/launch-nlm-chrome.ps1 in kb-sync (156 lines).
+  **Finding:** An empirical investigation and verification of **`scripts/launch-nlm-chrome.ps1`** against the primary archival records in **`pack_personal_os.txt`** confirms that the entity and script cited in your query are **not currently indexed in the active notebook catalog**.
+
+---
+
+### **1. Primary Record Au...
+- **Q:** Investigate recently modified entity "kb-sync--scripts-build-architecture-guide.mjs--1a0ab6cc" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/build-architecture-guide.mjs in kb-sync (132 lines). Exports: buildArchitectureGuide.
+  **Finding:** An empirical investigation and verification of **`scripts/build-architecture-guide.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms that the entity and script cited in your query are **not currently indexed in the active notebook catalog** [23].
+
+---
+
+### **1. Prima...
+
+## Unresolved questions & open contradictions
+- Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_: An investigation and empirical verification of **`scripts/consolidate-pack.mjs`** against the primary records in **`pack_personal_os.txt`** reveals a significant discrepancy between the entity paramet...
+- Investigate recently modified entity "kb-sync--scripts-nlm-pack-replace-gate.mjs--fda931d1" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/nlm-pack-replace-gate.mjs in kb-sync (902 lines). Exports: PACK_FAMILY_TITLE_RE, HISTORICAL_NOTEBOOK_IDS, SOF: An empirical investigation and verification of **`scripts/nlm-pack-replace-gate.mjs`** against the primary records in **`pack_personal_os.txt`** reveals that the entity and file cited in your query ar...
+- Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_: An empirical investigation and verification of **`scripts/consolidate-pack.mjs`** against the primary archival records in **`pack_personal_os.txt`** reveals direct discrepancies between the entity met...
+- Investigate recently modified entity "kb-sync--scripts-nlm-pack-replace-gate.mjs--fda931d1" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/nlm-pack-replace-gate.mjs in kb-sync (902 lines). Exports: PACK_FAMILY_TITLE_RE, HISTORICAL_NOTEBOOK_IDS, SOF: An empirical investigation and verification of **`scripts/nlm-pack-replace-gate.mjs`** against the primary archival records in **`pack_personal_os.txt`** reveals that the entity and script cited in yo...
+- Investigate recently modified entity "kb-sync--modules-compactor-index.mjs--b84db04f" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/compactor/index.mjs in kb-sync (224 lines). Exports: loadGlobalSkipPatterns, buildCompactedPack.: An empirical investigation and verification of **`modules/compactor/index.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms the module's presence and exported APIs, wh...
+- Investigate recently modified entity "kb-sync--modules-trm-storage-transaction-manager.mjs--6b8367ab" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/trm/storage/transaction-manager.mjs in kb-sync (141 lines). Exports: acquireLock, atomicWriteJson, updateJson: An empirical investigation and verification of **`modules/trm/storage/transaction-manager.mjs`** against the primary archival records in **`pack_personal_os.txt`** reveals that the entity and module c...
+- Investigate recently modified entity "kb-sync--modules-compactor-index.mjs--b84db04f" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/compactor/index.mjs in kb-sync (224 lines). Exports: loadGlobalSkipPatterns, buildCompactedPack.: An empirical investigation and verification of **`modules/compactor/index.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms the module's presence and canonical exporte...
+- Investigate recently modified entity "kb-sync--modules-trm-storage-transaction-manager.mjs--6b8367ab" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/trm/storage/transaction-manager.mjs in kb-sync (141 lines). Exports: acquireLock, atomicWriteJson, updateJson: An empirical investigation of **`modules/trm/storage/transaction-manager.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms that the entity and module cited in your que...
+- Investigate recently modified entity "kb-sync--scripts-launch-nlm-chrome.ps1--9714e3d4" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/launch-nlm-chrome.ps1 in kb-sync (156 lines).: An empirical investigation and verification of **`scripts/launch-nlm-chrome.ps1`** against the primary archival records in **`pack_personal_os.txt`** confirms that the entity and script cited in your ...
+- Investigate recently modified entity "kb-sync--scripts-build-architecture-guide.mjs--1a0ab6cc" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/build-architecture-guide.mjs in kb-sync (132 lines). Exports: buildArchitectureGuide.: An empirical investigation and verification of **`scripts/build-architecture-guide.mjs`** against the primary archival records in **`pack_personal_os.txt`** confirms that the entity and script cited i...
+
+## Grounded citations & session metadata
+- **Session ID:** `b9996d59-424f-427c-9a66-2c9bbbb44aa4` (10 turns) — preview: "Interactive battery"

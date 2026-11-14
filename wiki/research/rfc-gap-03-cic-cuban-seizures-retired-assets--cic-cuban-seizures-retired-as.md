@@ -1,30 +1,30 @@
 ---
-title: "RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Florida Public & Tax Records"
+title: "RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Corporate Registry Searches in the Sources)**"
 category: "research"
 topic: "rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as"
 gap_id: "GAP-03--cic-cuban-seizures-retired-assets"
 status: "draft"
-created_at: "2026-09-27T12:14:21.871Z"
+created_at: "2026-11-12T11:05:18.742Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md","wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md","wiki/research/rfc-gap-128-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
+citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md","wiki/research/rfc-gap-99-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md"]
 ---
 
-# RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Florida Public & Tax Records
+# RFC: GAP-03--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets (follow-up - Corporate Registry Searches in the Sources)**
 
 ## 1. Problem Statement & Context
-)**: **Florida Public & Tax Records:** Reviewing deed grantor/grantee indexes for the 5185 N. Bay Road property in Miami Beach, historic dissolved Florida corporate filings, and federal
+The corporate registry searches included in the notebook are restricted to the **Florida Division of Corporations (Sunbiz)** database, which investigated active and dissolved Florida entities for Charles E. " [6, 7].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-03-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
+- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
   > 
-- **rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-11-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
+- **rfc-gap-03-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md`) [lexical_only]:
   > 
-- **rfc-gap-128-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-128-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
-  > --- title: RFC: GAP-128--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets open-contradictions - Banking Sector Allocation vs. Capitalization category: research topic: rfc-gap-128-cic-cuban-seizures-retired-assets--cic-cuban
+- **rfc-gap-99-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-99-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
+  > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

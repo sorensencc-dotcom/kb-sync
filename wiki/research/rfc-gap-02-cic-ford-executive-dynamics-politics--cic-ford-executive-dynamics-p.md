@@ -1,29 +1,29 @@
 ---
-title: "RFC: GAP-02--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus"
+title: "RFC: GAP-02--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (dyn-src-e01f64cd - Primary Dictations & Boardroom History"
 category: "research"
 topic: "rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 gap_id: "GAP-02--cic-ford-executive-dynamics-politics"
 status: "draft"
-created_at: "2026-09-27T12:42:30.966Z"
+created_at: "2026-11-12T11:41:40.141Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
 ast_grounded_symbols: []
-citations: ["wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-68-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md","wiki/research/rfc-gap-01.md"]
+citations: ["wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md","wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md","wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md"]
 ---
 
-# RFC: GAP-02--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (follow-up - Research Focus
+# RFC: GAP-02--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics (dyn-src-e01f64cd - Primary Dictations & Boardroom History
 
 ## 1. Problem Statement & Context
-)**: **Research Focus:** Conduct a line-by-line textual comparison between the raw, 1,000+ page oral history transcript [2, 4, 7] and the published book [2, 6] to isolate what specific
+)**: 65 record Charles Sorensen’s firsthand accounts of internal executive friction, Model T planning, and plant administration [4, 5].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [hybrid]:
   > 
-- **rfc-gap-68-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-68-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
+- **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [hybrid]:
   > 
-- **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [lexical_only]:
+- **rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-01-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis

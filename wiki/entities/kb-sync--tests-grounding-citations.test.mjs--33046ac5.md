@@ -8,10 +8,10 @@ entityId: kb-sync--tests-grounding-citations.test.mjs--33046ac5
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: dd30b379dba56ab0f48c948e813546ceaa460f49ee3778e4967d64b33cb7c4e3
-sha256: 2b444e7cb9fbecd2072dccea4646837aa280c76131e75bc862abfa5ed5db3416
-lastCommit: 2026-09-30T10:23:48-04:00
-summary: Metadata inventory for tests/grounding-citations.test.mjs in kb-sync (36 lines).
+inputHash: b35792b0d34b7779f3e32c6d7382757931f353e0ac66d03846272db206230a99
+sha256: 5b6c5bffab09b3529c7be05fd8163b28256c76786321fabd80f345999ff95853
+lastCommit: 2026-10-20T22:27:33-04:00
+summary: Metadata inventory for tests/grounding-citations.test.mjs in kb-sync (81 lines).
 ---
 
 # grounding-citations.test.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/grounding-citations.test.mjs in kb-sync (3
 Metadata inventory for `tests/grounding-citations.test.mjs` in **kb-sync**.
 
 - **File Path:** `tests/grounding-citations.test.mjs`
-- **Lines of Code:** 36
-- **Last Modified:** `2026-09-30T10:23:48-04:00`
-- **SHA-256:** `2b444e7cb9fbecd2072dccea4646837aa280c76131e75bc862abfa5ed5db3416`
+- **Lines of Code:** 81
+- **Last Modified:** `2026-10-20T22:27:33-04:00`
+- **SHA-256:** `5b6c5bffab09b3529c7be05fd8163b28256c76786321fabd80f345999ff95853`
 
 ## Source Citations
 - Source: `tests/grounding-citations.test.mjs`

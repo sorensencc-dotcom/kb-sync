@@ -8,10 +8,10 @@ entityId: kb-sync--modules-wiki-entity-synthesizer.ts--021c75ea
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 8253afe8aca3e361701ed6b40fb44b9b37382f9cbfe050066ee8de7bc0fa92fd
-sha256: 53c5c9ec9030e369ec872c03de08a3fab8a8a540371fe9d6281392c0143594d1
-lastCommit: 2026-10-17T09:38:09-04:00
-summary: Metadata inventory for modules/wiki/entity-synthesizer.ts in kb-sync (609 lines). Exports: ENTITY_GENERATOR_VERSION, ENTITY_SCAN_DIRS, ENTITY_GENERATION_KIND, EntitySynthesisFailure, EntitySynthesisResult, SynthesizeOptions, entityPageId, entityPageRelPath, legacyEntityRelPath, collectEntitySources, entityInputHash, SourceInputs.
+inputHash: 530d4f87f6941c236ca4eb81f8d36f8c3d7c9ba9e0f30fa166a5f0e48bdf8224
+sha256: bdb4d7f849788f1dcf283d3e6bd11c5dc1acafaddc85a396eeb7e56ce03ad350
+lastCommit: 2026-11-08T13:58:45-05:00
+summary: Metadata inventory for modules/wiki/entity-synthesizer.ts in kb-sync (614 lines). Exports: ENTITY_GENERATOR_VERSION, ENTITY_SCAN_DIRS, ENTITY_GENERATION_KIND, EntitySynthesisFailure, EntitySynthesisResult, SynthesizeOptions, entityPageId, entityPageRelPath, legacyEntityRelPath, collectEntitySources, entityInputHash, SourceInputs.
 ---
 
 # entity-synthesizer.ts
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/wiki/entity-synthesizer.ts in kb-sync (6
 Metadata inventory for `modules/wiki/entity-synthesizer.ts` in **kb-sync**.
 
 - **File Path:** `modules/wiki/entity-synthesizer.ts`
-- **Lines of Code:** 609
-- **Last Modified:** `2026-10-17T09:38:09-04:00`
-- **SHA-256:** `53c5c9ec9030e369ec872c03de08a3fab8a8a540371fe9d6281392c0143594d1`
+- **Lines of Code:** 614
+- **Last Modified:** `2026-11-08T13:58:45-05:00`
+- **SHA-256:** `bdb4d7f849788f1dcf283d3e6bd11c5dc1acafaddc85a396eeb7e56ce03ad350`
 
 ## Exported Symbols & API
 - `ENTITY_GENERATOR_VERSION`

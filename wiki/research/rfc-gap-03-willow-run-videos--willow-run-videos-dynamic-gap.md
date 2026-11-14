@@ -1,47 +1,33 @@
 ---
-title: "RFC: GAP-03--willow-run-videos - **Willow Run Videos (dynamic-gap-676fb314 - Answer content)**"
+title: "RFC: GAP-03--willow-run-videos - **Willow Run Videos (dynamic-gap-7687168a - The Differential Expansion Mismatch"
 category: "research"
 topic: "rfc-gap-03-willow-run-videos--willow-run-videos-dynamic-gap"
 gap_id: "GAP-03--willow-run-videos"
 status: "draft"
-created_at: "2026-10-15T01:46:14.149Z"
+created_at: "2026-11-14T14:13:14.159Z"
 expansion_method: "heuristic"
 retrieval_mode: "hybrid-rrf"
-ast_grounded_symbols: ["consolidate-pack.mjs"]
-citations: ["wiki/research/2026-09-25/rfc-gap-01.md","trm-research-gaps.md","wiki/research/rfc-gap-68-willow-run-videos--willow-run-videos-follow-up-v.md"]
+ast_grounded_symbols: []
+citations: ["wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-dynamic-gap.md","wiki/research/cast-iron-charlie-weekly-scan-2026-11-09.md","wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc.md"]
 ---
 
-# RFC: GAP-03--willow-run-videos - **Willow Run Videos (dynamic-gap-676fb314 - Answer content)**
+# RFC: GAP-03--willow-run-videos - **Willow Run Videos (dynamic-gap-7687168a - The Differential Expansion Mismatch
 
 ## 1. Problem Statement & Context
-Answer content
+)**: Simultaneously, the **structural steel fixtures and jigs expanded and contracted at different rates than the aluminum aircraft structures** resting inside them [4]. Because aluminum has a coefficient of thermal expansion nearly double that of structural steel, direct solar heating caused severe differential movement between the airframe components and the tooling holding them [2, 4].
 
 ## 2. Evidence Grounding & Cache Findings
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
-- **trm** (`wiki/research/2026-09-25/rfc-gap-01.md`) [lexical_only]:
+- **rfc-gap-03-willow-run-videos--willow-run-videos-dynamic-gap** (`wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-dynamic-gap.md`) [lexical_only]:
   > 
-- **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
-  > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
-- **rfc-gap-68-willow-run-videos--willow-run-videos-follow-up-v** (`wiki/research/rfc-gap-68-willow-run-videos--willow-run-videos-follow-up-v.md`) [lexical_only]:
+- **cast-iron-charlie-weekly-scan-2026-11-09** (`wiki/research/cast-iron-charlie-weekly-scan-2026-11-09.md`) [vector_only]:
+  > --- title: "Cast Iron Charlie weekly scan — Nov 9, 2026: five new finds" category: "biography" topic: "cast-iron-charlie-weekly-scan-2026-11-09" status: "ingested" source_action_id: "act-1794227599286" created: "2026-11-09" --- # Cast Iron Charlie we
+- **rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
   > 
 
 ### 3. AST Call-Graph & Blast Radius Analysis
-
-Static analysis computed via Graft symbol indexing:
-
-#### Symbol: `consolidate-pack.mjs`
-
-* **Callees**: `[graft] tokens saved ≈ 4,692 (99%) — this output ≈ 54 tok vs reading the 2 file(s) it covers whole ≈ 4,746 tok (estimate). At the end of your reply, tell the user the total graft tokens saved this turn — sum each such line across your graft calls — e.g. "🌱 graft saved ~N tokens this turn".`
-
-```text
-[graft] tokens saved ≈ 4,692 (99%) — this output ≈ 54 tok vs reading the 2 file(s) it covers whole ≈ 4,746 tok (estimate). At the end of your reply, tell the user the total graft tokens saved this turn — sum each such line across your graft calls — e.g. "🌱 graft saved ~N tokens this turn".
-
-consolidate-pack.mjs · file · scripts/consolidate-pack.mjs:L1-L407
-  imports ← fact-extraction-pack.test.mjs (tests/fact-extraction-pack.test.mjs:L1-L135) [depth 1]
-      11: } from '../scripts/consolidate-p
-```
-
+*No static call-graph symbols detected in target codebase for this item.*
 
 ## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.

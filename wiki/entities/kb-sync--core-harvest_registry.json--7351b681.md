@@ -8,9 +8,9 @@ entityId: kb-sync--core-harvest_registry.json--7351b681
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 5b7b97370222e9383f18499451c85391f3cfbe89b7f8f30cd7cc95fdd2716cb3
-sha256: 840da72ff4107f217aab983382fc771c3653ffb86ef41ce6f88fe320e4930eab
-lastCommit: 2026-09-20T10:02:02-04:00
+inputHash: b11ba2ef7568f5b895daa62c40827bf6b2001153992ece30caaed38bb0e74079
+sha256: 33ccc7d0f49c2a66546d5d0643ca961307e5381f70d0c6e7985795126d957b33
+lastCommit: 2026-10-21T10:40:01-04:00
 summary: Metadata inventory for core/harvest_registry.json in kb-sync (60 lines).
 ---
 
@@ -26,8 +26,8 @@ Metadata inventory for `core/harvest_registry.json` in **kb-sync**.
 
 - **File Path:** `core/harvest_registry.json`
 - **Lines of Code:** 60
-- **Last Modified:** `2026-09-20T10:02:02-04:00`
-- **SHA-256:** `840da72ff4107f217aab983382fc771c3653ffb86ef41ce6f88fe320e4930eab`
+- **Last Modified:** `2026-10-21T10:40:01-04:00`
+- **SHA-256:** `33ccc7d0f49c2a66546d5d0643ca961307e5381f70d0c6e7985795126d957b33`
 
 ## Source Citations
 - Source: `core/harvest_registry.json`

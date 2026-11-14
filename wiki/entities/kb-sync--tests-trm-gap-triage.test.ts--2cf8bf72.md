@@ -8,10 +8,10 @@ entityId: kb-sync--tests-trm-gap-triage.test.ts--2cf8bf72
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 8325f2748bef56f4d4d7eafe1e1f10a8264017f8f48b51a400a4b31b4380b580
-sha256: 55ee2fea7bf9ca079eef9a06e13355f716cee0a29fd2049f802c4af97b0836fa
-lastCommit: 2026-09-22T08:51:43-04:00
-summary: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (355 lines).
+inputHash: 0533673786e0db6ce7e1f7624819c4b351cca4518207510681b3d62072031d31
+sha256: 099a0771c9636d168d5e6e8eccab1b0589347d31cdbcb9fdc5004ba84c1faa0b
+lastCommit: 2026-10-26T23:26:22-04:00
+summary: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (393 lines).
 ---
 
 # trm-gap-triage.test.ts
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/trm-gap-triage.test.ts in kb-sync (355 lin
 Metadata inventory for `tests/trm-gap-triage.test.ts` in **kb-sync**.
 
 - **File Path:** `tests/trm-gap-triage.test.ts`
-- **Lines of Code:** 355
-- **Last Modified:** `2026-09-22T08:51:43-04:00`
-- **SHA-256:** `55ee2fea7bf9ca079eef9a06e13355f716cee0a29fd2049f802c4af97b0836fa`
+- **Lines of Code:** 393
+- **Last Modified:** `2026-10-26T23:26:22-04:00`
+- **SHA-256:** `099a0771c9636d168d5e6e8eccab1b0589347d31cdbcb9fdc5004ba84c1faa0b`
 
 ## Source Citations
 - Source: `tests/trm-gap-triage.test.ts`

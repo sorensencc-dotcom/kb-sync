@@ -8,10 +8,10 @@ entityId: kb-sync--modules-compactor-index.mjs--b84db04f
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 0e15c36c610f2ab9808ed9f30ed856a142ab40bbfe17bbd7cd11ef789a745f03
-sha256: 2c740705a455d3a809971d5163587f797fd194f32ce34aeb5d100a8a033419f4
-lastCommit: 2026-08-12T22:28:55-04:00
-summary: Metadata inventory for modules/compactor/index.mjs in kb-sync (229 lines). Exports: loadGlobalSkipPatterns, buildCompactedPack.
+inputHash: 3d3268926ca95dbffba9076c0308ffd0d0375fd8c7381218ed0cf885653d7292
+sha256: f5532b84e40dcee977c95b7a4beffa3424401785bef0b23374cbb21306a7d5c3
+lastCommit: 2026-11-10T00:39:06-05:00
+summary: Metadata inventory for modules/compactor/index.mjs in kb-sync (224 lines). Exports: loadGlobalSkipPatterns, buildCompactedPack.
 ---
 
 # index.mjs
@@ -25,9 +25,9 @@ summary: Metadata inventory for modules/compactor/index.mjs in kb-sync (229 line
 Metadata inventory for `modules/compactor/index.mjs` in **kb-sync**.
 
 - **File Path:** `modules/compactor/index.mjs`
-- **Lines of Code:** 229
-- **Last Modified:** `2026-08-12T22:28:55-04:00`
-- **SHA-256:** `2c740705a455d3a809971d5163587f797fd194f32ce34aeb5d100a8a033419f4`
+- **Lines of Code:** 224
+- **Last Modified:** `2026-11-10T00:39:06-05:00`
+- **SHA-256:** `f5532b84e40dcee977c95b7a4beffa3424401785bef0b23374cbb21306a7d5c3`
 
 ## Exported Symbols & API
 - `loadGlobalSkipPatterns`

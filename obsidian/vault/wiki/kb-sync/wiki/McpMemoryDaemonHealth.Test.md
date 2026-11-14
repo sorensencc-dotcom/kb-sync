@@ -1,0 +1,22 @@
+---
+title: "McpMemoryDaemonHealth.Test"
+category: "wiki"
+status: "active"
+draft: true
+created: "2026-11-08T16:35:20.166Z"
+---
+
+# McpMemoryDaemonHealth.Test
+
+## Summary
+Offline draft template for McpMemoryDaemonHealth.Test staged from tests/mcp-memory-daemon-health.test.mjs.
+
+## Purpose & Scope
+Draft specification for McpMemoryDaemonHealth.Test. Synthesized via OfflineTemplateProvider.
+
+## Operations & Details
+- Source: `tests/mcp-memory-daemon-health.test.mjs`
+- Staged Pack: `c:/dev/kb-sync/obsidian/vault/_kb-sync-staging/kb-sync/20261108-113408`
+
+## Related Pages
+- [[kb-sync/wiki/Index]]
