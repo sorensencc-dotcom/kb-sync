@@ -1,0 +1,24 @@
+wiki/research/cuban-seizures-and-retired-assets-overview.md
+  s_25ffacdf8dc6d8::t_e00c21d5e249bd 1-16
+obsidian/vault/wiki/concepts/trm-mobile-inbox-triage-pipeline.html
+  s_25ffacdf8dc6d8::t_1876a08729f14c 108-110,112-118,121-128
+  s_25ffacdf8dc6d8::t_e00c21d5e249bd 1-107,111,119-120,129-133
+trm-research-gaps.md
+  s_25ffacdf8dc6d8::t_293161b9243013 25-529,593-594,608,627,651,684,786,807,949-1012,1177,1190,1192,1201,1203,1218-1220,1288-1336,1347,1354-1367,1381,1407,1450,1471,1563-1644,1733-1734,1736,1755,1878,1907,1950,1971,2043-2107,2190-2191,2193,2212,2225,2309,2345,2395,2419,2492-2554,2732,2771,2773,2807,2820,2834,2843-2844,2853,2869-2871,2873,2942,2974,3001-3020,3038-3066,3093-3112,3134-3153,3250,3252,3274,3323,3333,3335,3356,3453,3509-3510,3524
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bbb1f319a196fae063bc2ed0b1f8e399cd935e88",
+  "prompts": {},
+  "sessions": {
+    "s_25ffacdf8dc6d8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1dbff-dfd0-7561-a41e-9eab0ed2b53c",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
