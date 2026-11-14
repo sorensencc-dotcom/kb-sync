@@ -1,0 +1,16 @@
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 152,169-175,382,769
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 7,1164-1182
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9d23dc40d85150ba22f7f4e6c6b810f9e9319058",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
