@@ -1,5 +1,14 @@
 # Session status
 
+## Staging validation repair, 2026-11-14
+
+- Reproduced the Nov 13 snapshot errors: 496 missing Cuban overview links and 7 links to a nonexistent Danish telemetry RFC. The registry rows concern Danish royal honors.
+- Updated only those seven links in the already-dirty `trm-research-gaps.md`, added a link-only Cuban RFC index, and restored the pipeline diagram HTML and PNG assets.
+- The patched-input staging validator scanned 3 files with 0 errors and 2 nonblocking warnings (missing title metadata and a double blank line). Contract validation passed 6,966/6,966. The diagram renders at 2040x900.
+- The historical Nov 13 contract-gate exit 1 does not reproduce. Current validation passes, but the pipeline log has no diagnostic explaining its earlier failure.
+- Logged the session finding in `.context/retros/inbox/codex/2026-11-14-kb-sync-staging-validation.json`; inbox validation passed for 7 files and 15 findings.
+- No commit, push, or fresh scheduled pipeline run. Preserve unrelated working-tree changes; the next pipeline run should confirm the generated snapshot includes these repairs.
+
 ## Issue #121 review and research asset ingest, 2026-11-01
 
 - Reviewed GitHub Issue #121 (`chore(research): bombard_williamson_redaction_index`) under Poteto Mode.

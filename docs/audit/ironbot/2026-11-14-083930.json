@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-11-14T08:39:30.7026583-05:00",
+  "dryRun": false,
+  "findings": [
+    {
+      "task": "KB-Sync-Dashboard-Server",
+      "exitCode": 1
+    },
+    {
+      "task": "KB-Sync-Master-Pipeline",
+      "exitCode": 1
+    },
+    {
+      "task": "KB-Sync-Ops",
+      "exitCode": 1
+    },
+    {
+      "task": "CIC-Daily-Status",
+      "exitCode": 267009
+    },
+    {
+      "task": "CIC-ImageBuild-Daily",
+      "exitCode": 64
+    },
+    {
+      "task": "CIC-Nightly-Notebook-Mining",
+      "exitCode": 267009
+    },
+    {
+      "task": "CIC-Vault-Sync-rl",
+      "exitCode": 4294770688
+    },
+    {
+      "task": "CIC-TRM-ClosedLoop-Nightly-Miner",
+      "exitCode": 267009
+    },
+    {
+      "task": "toolforge-trm-sync-treatment",
+      "exitCode": 267009
+    },
+    {
+      "task": "TRM-Notebooklm-Auth-Heartbeat",
+      "exitCode": 2147946720
+    },
+    {
+      "task": "TRM-Notebooklm-Mine",
+      "exitCode": 267009
+    }
+  ],
+  "replayedCount": 0,
+  "healedCount": 0
+}

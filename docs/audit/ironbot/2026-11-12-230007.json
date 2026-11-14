@@ -1,0 +1,28 @@
+{
+  "healedCount": 0,
+  "replayedCount": 0,
+  "dryRun": false,
+  "findings": [
+    {
+      "task": "KB-Sync-Master-Pipeline",
+      "exitCode": 1
+    },
+    {
+      "task": "KB-Sync-Research",
+      "exitCode": 267009
+    },
+    {
+      "task": "CIC-ImageBuild-Daily",
+      "exitCode": 64
+    },
+    {
+      "task": "CIC-Vault-Sync-rl",
+      "exitCode": 4294770688
+    },
+    {
+      "task": "TRM-Notebooklm-Mine",
+      "exitCode": 1
+    }
+  ],
+  "timestamp": "2026-11-12T23:00:07.2005415-05:00"
+}

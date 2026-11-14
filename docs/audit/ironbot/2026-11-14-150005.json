@@ -1,0 +1,20 @@
+{
+  "healedCount": 0,
+  "dryRun": false,
+  "replayedCount": 0,
+  "timestamp": "2026-11-14T15:00:05.4272688-05:00",
+  "findings": [
+    {
+      "exitCode": 1,
+      "task": "KB-Sync-Master-Pipeline"
+    },
+    {
+      "exitCode": 1,
+      "task": "KB-Sync-Ops"
+    },
+    {
+      "exitCode": 1,
+      "task": "TRM-Notebooklm-Mine"
+    }
+  ]
+}
