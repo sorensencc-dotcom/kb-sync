@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import os from 'node:os';
+import { spawnSync } from 'node:child_process';
 import {
   isPackFamilyTitle,
   filterPackFamilySources,
@@ -1159,4 +1160,23 @@ test('replacePackFamilyAtomic with hasPack false purges orphan pack sources whil
   assert.equal(res.reason, 'HAS_PACK_FALSE_PURGED');
   assert.deepEqual(res.purgedOldSourceIds, ['src-pack']);
   assert.deepEqual(deleted, ['src-pack']);
+});
+
+test('Windows .cmd CLI invocation does not emit DEP0190 deprecation warning', () => {
+  const script = `
+    import { purgePackFamilyBeforeUpload } from './scripts/nlm-pack-replace-gate.mjs';
+    purgePackFamilyBeforeUpload({
+      cli: ${JSON.stringify(mockCli)},
+      notebookId: 'nb-dep0190-test',
+      incomingPackPath: 'pack_new.txt',
+      dryRun: true,
+    });
+  `;
+  const res = spawnSync(process.execPath, ['--throw-deprecation', '--input-type=module', '-e', script], {
+    cwd: REPO_ROOT,
+    encoding: 'utf8',
+    windowsHide: true,
+  });
+  assert.equal(res.status, 0, `Expected exit 0 without DEP0190, got ${res.status}: ${res.stderr}`);
+  assert.doesNotMatch(res.stderr || '', /DEP0190/);
 });

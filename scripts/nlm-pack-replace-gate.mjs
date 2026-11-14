@@ -149,11 +149,9 @@ export function filterPackFamilySources(sources, incomingPackBaseName) {
 
 function runCliCapture(cli, args) {
   const invocation = resolveCliInvocation(cli, args);
-  const result = spawnSync(invocation.cmd, invocation.args, {
+  const result = spawnResolvedCli(spawnSync, invocation, {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
-    windowsHide: true,
-    shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
     timeout: 120000,
   });
   if (result.status !== 0) {
@@ -166,6 +164,13 @@ export function resolveCliInvocation(cli, args = []) {
   const nodeMatch = String(cli).trim().match(/^(?:node|nodejs)\s+(["']?)(.+)\1$/i);
   if (nodeMatch) return { cmd: process.execPath, args: [nodeMatch[2], ...args] };
   return { cmd: cli, args };
+}
+
+function spawnResolvedCli(spawnFn, invocation, options = {}) {
+  const isWinBatch = process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd);
+  const cmd = isWinBatch ? (process.env.ComSpec || 'cmd.exe') : invocation.cmd;
+  const args = isWinBatch ? ['/d', '/c', invocation.cmd, ...invocation.args] : invocation.args;
+  return spawnFn(cmd, args, { windowsHide: true, ...options });
 }
 
 function assertSafeCliValue(value, label) {
@@ -374,10 +379,9 @@ export async function uploadAndReplacePack({
       ? ['source', 'add', notebookId, '--file', packFile, '--json']
       : ['source', 'upload', '--notebook', notebookId, '--file', packFile, '--json'];
     const invocation = resolveCliInvocation(cli, command);
-    const result = spawnSync(invocation.cmd, invocation.args, {
+    const result = spawnResolvedCli(spawnSync, invocation, {
       encoding: 'utf8',
       timeout: 120000,
-      shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
     });
     if (result.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${result.stderr || result.stdout || result.error?.message}`);
     return result.stdout;
@@ -762,10 +766,9 @@ async function replacePackFamilyAtomicLocked({
     : deleteNotebookSource(cli, nbId, srcId, lease);
   const uploadFn = runUpload || ((nbId, file) => {
     const invocation = resolveCliInvocation(cli, ['source', 'add', nbId, '--file', file, '--json']);
-    const res = spawnFn(invocation.cmd, invocation.args, {
+    const res = spawnResolvedCli(spawnFn, invocation, {
       encoding: 'utf8',
       timeout: 120000,
-      shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd)
     });
     if (res.status !== 0) throw new Error(`NLM_UPLOAD_FAILED: ${res.stderr || res.stdout || res.error?.message}`);
     const out = res.stdout;
