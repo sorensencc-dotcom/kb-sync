@@ -1,0 +1,42 @@
+STATUS.md
+  s_25ffacdf8dc6d8::t_e7f36868d9aaab 7
+  s_25ffacdf8dc6d8::t_359d6888b62bfd 3-6,8,11
+  s_25ffacdf8dc6d8::t_eb60395a190f59 9
+  s_25ffacdf8dc6d8::t_de0bb92a42c7a3 10
+docs/audit/ironbot/2026-11-10-230048.json
+  s_aea2fe0a2bf1e0::t_662db64c01a20d 1-28
+docs/audit/ironbot/2026-11-13-230006.json
+  s_78141c3b938eae::t_73665e33e62b86 1-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "30d413c628def2b3fabc4485e9df8188277da057",
+  "prompts": {},
+  "sessions": {
+    "s_25ffacdf8dc6d8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1dbff-dfd0-7561-a41e-9eab0ed2b53c",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_78141c3b938eae": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1d81c-e22f-7e70-a731-a0502de0d514",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_aea2fe0a2bf1e0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c8bd-95c2-7122-bc7d-1bf0c8f0e67e",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
