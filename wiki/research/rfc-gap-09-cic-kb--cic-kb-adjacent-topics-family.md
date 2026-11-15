@@ -20,11 +20,11 @@ citations: ["product:helix/Home.md","wiki/research/rfc-gap-30-cic-daily-research
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **home** (`product:helix/Home.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-30-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-30-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: RFC: GAP-30--cic-daily-research - **CIC - Daily Research adjacent-topics - Airport Logistics Milestone category: research topic: rfc-gap-30-cic-daily-research--cic-daily-research-adjacent-t gap_id: GAP-30--cic-daily-research status: draft
 - **readme** (`product:helix/README.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

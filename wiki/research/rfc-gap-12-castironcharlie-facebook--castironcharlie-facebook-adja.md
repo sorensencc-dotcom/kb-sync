@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-58-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-57-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-57-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
   > --- title: RFC: GAP-57--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - 6. Flight Acceptance Testing & Defect "Squawk" Feedback Loops** category: research topic: rfc-gap-57-castironcharlie-facebook--castironcharlie-facebook-ad
 

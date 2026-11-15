@@ -20,11 +20,11 @@ The currently selected source does not contain information about **IronLedger Ar
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **bombard-williamson-redaction-index** (`wiki/research/bombard-williamson-redaction-index.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-49-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-49-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
   > --- title: RFC: GAP-49--cic-reddit - **CIC-Reddit under-sourced - The Grounded Reality category: research topic: rfc-gap-49-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-49--cic-reddit status: draft created_at: 2026-09-19T21:26:20.150Z expansi
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

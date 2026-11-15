@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-07-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [vector_only]:
   > --- title: RFC: GAP-30--castironcharlie-facebook - **CastIronCharlie-Facebook follow-up - Target Repositories category: research topic: rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-foll gap_id: GAP-30--castironcharlie-facebook status
 

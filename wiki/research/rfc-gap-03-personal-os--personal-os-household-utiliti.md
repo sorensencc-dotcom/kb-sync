@@ -20,11 +20,11 @@ md`). The only active source is the **Open Data Platform (ODP) by OpenBB**, whic
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-personal-os--personal-os-household-utiliti** (`wiki/research/rfc-gap-01-personal-os--personal-os-household-utiliti.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02-personal-os--personal-os-household-utiliti** (`wiki/research/rfc-gap-02-personal-os--personal-os-household-utiliti.md`) [vector_only]:
   > --- title: "RFC: GAP-02--personal-os - **Personal OS Household, Utilities, Florida Logistics adjacent-topics - The **Personal OS Household, Utilities, Florid...**" category: "research" topic: "rfc-gap-02-personal-os--personal-os-household-utiliti" ga
 - **rfc-gap-06-personal-os--personal-os-household-utiliti** (`wiki/research/rfc-gap-06-personal-os--personal-os-household-utiliti.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

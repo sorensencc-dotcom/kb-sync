@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-80-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-29-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-29-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-23-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-23-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
   > --- title: RFC: GAP-23--cic-reddit - **CIC-Reddit under-sourced - The Claim category: research topic: rfc-gap-23-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-23--cic-reddit status: draft created_at: 2026-09-20T11:05:48.228Z expansion_method:
 

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-cic-research-deltas-living-matrix--cic-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-02-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-32-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-32-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-21-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-21-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [vector_only]:
   > --- title: "RFC: GAP-21--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix adjacent-topics - Unexplored Facets" category: "research" topic: "rfc-gap-21-cic-research-deltas-living-matrix--cic-research-deltas-living-ma" gap_id
 

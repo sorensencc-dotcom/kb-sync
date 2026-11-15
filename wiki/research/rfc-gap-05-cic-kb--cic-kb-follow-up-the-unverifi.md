@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-39-cic-research-deltas-living-matrix--cic-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-39-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-39-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-54-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-54-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [vector_only]:
   > --- title: "RFC: GAP-54--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix open-contradictions - The Contradiction" category: "research" topic: "rfc-gap-54-cic-research-deltas-living-matrix--cic-research-deltas-living-ma" ga
 - **rfc-gap-61-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-61-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

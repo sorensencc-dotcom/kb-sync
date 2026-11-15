@@ -20,11 +20,11 @@ citations: ["wiki/research/cast-iron-charlie-weekly-scan-2026-11-09.md","wiki/re
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **cast-iron-charlie-weekly-scan-2026-11-09** (`wiki/research/cast-iron-charlie-weekly-scan-2026-11-09.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-88-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-88-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-88--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering under-sourced - The Unsigned Codicil category: research topic: rfc-gap-88-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin gap_i
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

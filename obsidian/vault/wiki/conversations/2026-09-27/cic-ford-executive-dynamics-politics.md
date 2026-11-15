@@ -27,7 +27,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 
 ## Technical discoveries & entity linkages
 - **Q:** I think you need to cross reference it with my forty years to see what parts got censored
-  **Finding:** Cross-referencing the raw 1,000+ page **Owen W. Bombard oral history transcripts** (recorded 1952–1954, BFRC Accession 65) against the 1956 published memoir (*My Forty Years with Ford*, edited by Samuel T. Williamson) reveals a substantial **archival delta** [1]. 
+  **Finding:** Cross-referencing the raw 1,000+ page **Owen W. Bombard oral history transcripts** (recorded 1952–1954, BFRC Accession 65) against the 1956 published memoir (*My Forty Years with Ford*, edited by Samuel T. Williamson) reveals a substantial **archival delta** [1].
 
 While the published memoir was sty...
 - **Q:** How did the edited version handle Harry Bennett's underworld ties?
@@ -43,7 +43,6 @@ While the published memoir was sty...
 ...
 - **Q:** What adjacent topics do these sources point to that aren't covered yet?
   **Finding:** Beyond the primary narratives of executive politics and Willow Run's wartime assembly line, your sources point directly to **six unexamined adjacent topics** spanning corporate law, labor security, international asset recovery, technical engineering, and archival verification protocols:
-
 
 category: "wiki"---
 

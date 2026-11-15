@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-26-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-26-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-28-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-28-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
   > --- title: RFC: GAP-28--cic-reddit - **CIC-Reddit under-sourced - The Claim category: research topic: rfc-gap-28-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-28--cic-reddit status: draft created_at: 2026-09-21T12:55:49.178Z expansion_method:
 

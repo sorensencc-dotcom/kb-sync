@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-cic-reddit--cic-reddit-dyn-src-30c1804e-a.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-reddit--cic-reddit-dyn-src-30c1804e-a** (`wiki/research/rfc-gap-02-cic-reddit--cic-reddit-dyn-src-30c1804e-a.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-68-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-68-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 - **readme** (`product:helix/README.md`) [vector_only]:
   > <!-- title: "Helix" status: active owner: chris last-reviewed: 2026-09-27 brand: helix -->  # Helix  Helix is a local Windows personal-assistant foundation for governed engineering work. It provides a durable local daemon, operator-facing CLI/browser
 

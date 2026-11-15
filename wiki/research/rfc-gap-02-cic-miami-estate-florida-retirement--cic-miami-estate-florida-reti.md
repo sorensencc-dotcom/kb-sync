@@ -20,9 +20,9 @@ During wartime production at Willow Run and the River Rouge, Sorensen frequently
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-09-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-02-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [hybrid]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 

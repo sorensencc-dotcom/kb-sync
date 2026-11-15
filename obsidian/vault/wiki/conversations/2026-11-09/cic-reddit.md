@@ -26,7 +26,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-09. Gro
 - **Q:** In reddit-archive, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
   **Outcome:** An audit of the primary documentary sources, technical studies, and archived discussions across the `CIC-Reddit` notebook reveals several prominent assertions, technical milestones, and architectural decisions that remain **single-sourced or under-corroborated**. To establish an authoritative histor...
 - **Q:** In reddit-archive, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
-  **Outcome:** An examination of the primary source audits, archival memoirs, trade publications, and forum archives in this notebook reveals several **critical assertions, technical milestones, and architectural decisions that remain single-sourced or under-corroborated** [1-3]. 
+  **Outcome:** An examination of the primary source audits, archival memoirs, trade publications, and forum archives in this notebook reveals several **critical assertions, technical milestones, and architectural decisions that remain single-sourced or under-corroborated** [1-3].
 
 Below is an analysis of these si...
 - **Q:** In reddit-archive, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
@@ -34,7 +34,7 @@ Below is an analysis of these si...
 - **Q:** In reddit-archive, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
   **Outcome:** An audit of the primary documentary sources, source audits, and archived discussions in the **`reddit-archive` / `CIC-Reddit`** collection isolates several critical assertions, technical milestones, and architectural decisions that remain **single-sourced, under-corroborated, or unverified urban leg...
 - **Q:** In reddit-archive, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
-  **Outcome:** An audit of the primary documentary sources, technical studies, and archived discussions across the `CIC-Reddit` collection isolates several critical assertions, technical milestones, and architectural decisions that remain **single-sourced, under-corroborated, or unverified urban legends** [1-3]. 
+  **Outcome:** An audit of the primary documentary sources, technical studies, and archived discussions across the `CIC-Reddit` collection isolates several critical assertions, technical milestones, and architectural decisions that remain **single-sourced, under-corroborated, or unverified urban legends** [1-3].
 ...
 
 ## Technical discoveries & entity linkages

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-03-cic-reddit--cic-reddit-non-obvious-connec.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-reddit--cic-reddit-non-obvious-connec** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-non-obvious-connec.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-cic-reddit--cic-reddit-non-obvious-connec** (`wiki/research/rfc-gap-02-cic-reddit--cic-reddit-non-obvious-connec.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan** (`wiki/research/rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan.md`) [vector_only]:
   > --- title: "RFC: GAP-44--cic-reddit - **CIC-Reddit under-sourced - Plant-Wide 1/1,000-Inch Precision Tolerance" category: "research" topic: "rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan" gap_id: "GAP-44--cic-reddit" status: "draft" created_at
 

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-05-cic-kb--cic-kb-adjacent-topics-a-comm.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-kb--cic-kb-adjacent-topics-a-comm** (`wiki/research/rfc-gap-05-cic-kb--cic-kb-adjacent-topics-a-comm.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08-cic-kb--cic-kb-under-sourced-rejectio** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-under-sourced-rejectio.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-26--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics adjacent-topics - The Settlement" category: "research" topic: "rfc-gap-26-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p"
 

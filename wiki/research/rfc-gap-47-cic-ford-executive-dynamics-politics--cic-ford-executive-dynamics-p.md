@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-47-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-47-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-47-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-124-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-124-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: RFC: GAP-124--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics under-sourced - Censorship of the Owen Bombard Transcripts category: research topic: rfc-gap-124-cic-ford-executive-dynamics-politics--cic-ford
 

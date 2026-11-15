@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iro
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-114-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-23-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-23-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
   > --- title: RFC: GAP-23--cic-reddit - **CIC-Reddit under-sourced - The Claim category: research topic: rfc-gap-23-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-23--cic-reddit status: draft created_at: 2026-09-20T11:05:48.228Z expansion_method:
 - **rfc-gap-97-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-97-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

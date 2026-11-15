@@ -43,7 +43,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 - **Q:** What claims are asserted but single-sourced or under-corroborated?
   **Outcome:** Across the research logs, secondary histories, and primary document analyses in your sources, several key claims are identified as **single-sourced, under-corroborated, or dependent on unverified family memory**:
 
-
 category: "wiki"---
 
 ### **1. The Cuban Agricultural Land Holdings & Castro Seizures ("CESOR")**

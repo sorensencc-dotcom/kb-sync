@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-53-cic-reddit--cic-reddit-under-sourced-4-sa.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-53-cic-reddit--cic-reddit-under-sourced-4-sa** (`wiki/research/rfc-gap-53-cic-reddit--cic-reddit-under-sourced-4-sa.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-1-2** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-1-2.md`) [vector_only]:
   > --- title: "RFC: GAP-40--cic-reddit - **CIC-Reddit under-sourced - \$1.2 Million Saved the Plant" category: "research" topic: "rfc-gap-40-cic-reddit--cic-reddit-under-sourced-1-2" gap_id: "GAP-40--cic-reddit" status: "draft" created_at: "2026-09-27T1
 - **rfc-gap-58-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-58-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

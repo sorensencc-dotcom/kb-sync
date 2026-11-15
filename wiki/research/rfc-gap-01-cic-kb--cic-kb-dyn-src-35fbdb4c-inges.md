@@ -20,11 +20,11 @@ Contribution rules, determinism constraints, and execution routing for Rewrite L
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-kb--cic-kb-dyn-src-35fbdb4c-cic-i** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-dyn-src-35fbdb4c-cic-i.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-kb--cic-kb-dyn-src-35fbdb4c-deter** (`wiki/research/rfc-gap-01-cic-kb--cic-kb-dyn-src-35fbdb4c-deter.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-07-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

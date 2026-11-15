@@ -182,9 +182,19 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
 
   // Markdown Hygiene Formatting (outside code blocks)
   const origBody = tempBody;
+  let lastHeadingLevel = null;
   const cleanedLines = tempBody.split(/\r?\n/).map(line => {
-    if (/[^\s]  $/.test(line)) return line;
-    return line.replace(/\s+$/, '');
+    let next = /[^\s]  $/.test(line) ? line : line.replace(/\s+$/, '');
+    const headingMatch = next.match(/^(#{1,6})\s+(.*)$/);
+    if (headingMatch) {
+      let level = headingMatch[1].length;
+      if (lastHeadingLevel !== null && level > lastHeadingLevel + 1) {
+        level = lastHeadingLevel + 1;
+        next = `${'#'.repeat(level)} ${headingMatch[2]}`;
+      }
+      lastHeadingLevel = level;
+    }
+    return next;
   });
   tempBody = cleanedLines.join(eol).replace(new RegExp(`(?:${eol}){3,}`, 'g'), `${eol}${eol}`);
   if (tempBody !== origBody) {
@@ -195,6 +205,16 @@ export async function autohealMetadata(filePath, fileContent, options = {}) {
   blocks.forEach((block, i) => {
     tempBody = tempBody.replace(`__CODE_BLOCK_${i}__`, block);
   });
+
+  // Ensure a top-level "# Heading" exists near the top of the body
+  const bodyFirstLines = tempBody.trimStart().split(/\r?\n/).slice(0, 10);
+  if (frontmatter.title && !bodyFirstLines.some((line) => /^#\s+\S/.test(line))) {
+    const trimmedBody = tempBody.replace(/^(\r?\n)+/, '');
+    tempBody = trimmedBody ? `# ${frontmatter.title}${eol}${eol}${trimmedBody}` : `# ${frontmatter.title}${eol}`;
+    if (match && !repairs.includes('added_missing_fields')) {
+      repairs.push('added_missing_fields');
+    }
+  }
 
   // Construct final frontmatter
   return {
@@ -297,12 +317,19 @@ export async function sweepStagingVault(options = {}) {
         const fullPath = path.join(dir, entry.name);
         const isDir = typeof entry.isDirectory === 'function' ? entry.isDirectory() : false;
         if (isDir) {
+          if (entry.name === '.git' || entry.name === 'node_modules') continue;
           await walk(fullPath);
         } else if (entry.name && entry.name.endsWith('.md')) {
           report.filesScanned++;
           const content = await fs.readFile(fullPath, 'utf-8');
           const relPath = path.relative(scanRoot, fullPath);
-          const result = await autohealMetadata(fullPath, content, { index });
+          let result;
+          try {
+            result = await autohealMetadata(fullPath, content, { index });
+          } catch (err) {
+            if (err?.code === 'WIKI_METADATA_INVALID') continue;
+            throw err;
+          }
           
           if (result.repairs.length > 0) {
             const deterministic = result.repairs.filter(r => DETERMINISTIC_RULES.has(r));

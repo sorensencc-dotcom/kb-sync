@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-49-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-49-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
   > --- title: RFC: GAP-49--cic-daily-research - **CIC - Daily Research open-contradictions - 3.** category: research topic: rfc-gap-49-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-49--cic-daily-research status: draft created_at: 2026-09
 - **rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-111-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

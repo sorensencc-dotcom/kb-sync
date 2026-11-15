@@ -20,11 +20,11 @@ The currently selected source does not contain any information about **IronLedge
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [lexical_only]:
-  > 
+  >
 - **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
   > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
 - **readme** (`product:helix/README.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

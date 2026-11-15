@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-33-willow-run-videos--willow-run-videos-adjac
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-33-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje** (`wiki/research/rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje.md`) [vector_only]:
   > --- title: RFC: GAP-07--cic-reddit - **CIC-Reddit follow-up - The Objective category: research topic: rfc-gap-07-cic-reddit--cic-reddit-follow-up-the-obje gap_id: GAP-07--cic-reddit status: draft created_at: 2026-09-19T21:24:17.497Z expansion_method:
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

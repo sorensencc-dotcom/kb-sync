@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-10-cic-kb--cic-kb-under-sourced-sigil-fe.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-cic-kb--cic-kb-under-sourced-sigil-fe** (`wiki/research/rfc-gap-10-cic-kb--cic-kb-under-sourced-sigil-fe.md`) [hybrid]:
-  > 
+  >
 - **home** (`product:helix/Home.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-47-cic-kb--cic-kb-open-contradictions-1** (`wiki/research/rfc-gap-47-cic-kb--cic-kb-open-contradictions-1.md`) [vector_only]:
   > --- title: RFC: GAP-47--cic-kb - **CIC-KB open-contradictions - 1. Sigil Federated Protocol & Routing Architecture** category: research topic: rfc-gap-47-cic-kb--cic-kb-open-contradictions-1 gap_id: GAP-47--cic-kb status: draft created_at: 2026-09-19
 

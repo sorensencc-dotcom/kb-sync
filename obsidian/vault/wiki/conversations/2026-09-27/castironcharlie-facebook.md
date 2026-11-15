@@ -32,7 +32,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 - **Q:** What claims are asserted but single-sourced or under-corroborated?
   **Outcome:** Across the historical materials in your notebook, several key assertions rely on **single-sourced personal journals, memoirs, retrospective recollections, or wartime press profiles** rather than dual-verified administrative or military logs:
 
-
 category: "wiki"---
 
 ### **1. The Spoken Dialogue of the October 26, 1942...
@@ -41,7 +40,7 @@ category: "wiki"---
 - **Q:** WHAT do the new sources answer and open questons on
   **Finding:** The recent source additions—most notably **David A. Mindell’s** MIT/IEEE studies (*Anti-Aircraft Fire Control* and *Between Human and Machine*), **Randy Hotton & Michael W.R. Davis’s** *Willow Run: Images of Aviation*, **Mike Kroll’s** *Tales from the Bomber Plant*, and updated technical research sy...
 - **Q:** How did the ballistic cam profiler help Ford engineers achieve microscopic tolerances?
-  **Finding:** The **ballistic cam profiler** was Ford’s critical tooling innovation that solved the single biggest manufacturing bottleneck in producing the **Sperry M-7 electromechanical anti-aircraft director** [1, 2]. 
+  **Finding:** The **ballistic cam profiler** was Ford’s critical tooling innovation that solved the single biggest manufacturing bottleneck in producing the **Sperry M-7 electromechanical anti-aircraft director** [1, 2].
 
 Here is how the profiler enabled Ford engineers to achieve microscopic tolerances at scale:...
 - **Q:** What open questions or unresolved contradictions exist across these sources?

@@ -20,9 +20,9 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-03-cic-post-war--cic-p
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-post-war--cic-post-war-dynamic-gap-cf35** (`wiki/research/rfc-gap-03-cic-post-war--cic-post-war-dynamic-gap-cf35.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-74--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-74--cic-post-war-willys-ov
 

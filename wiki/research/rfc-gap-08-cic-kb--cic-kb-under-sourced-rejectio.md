@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cu
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs follow-up - NARA Diplomatic & Claims Records" category: "research" topic: "rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo" gap_i
 - **rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

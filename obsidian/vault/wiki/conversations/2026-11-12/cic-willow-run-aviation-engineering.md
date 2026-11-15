@@ -26,7 +26,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-12. Gro
 - **Q:** yes
   **Outcome:** The **Truman Committee’s intervention in the stalled "Bomber City" project** was the decisive political catalyst that killed the dream of a permanent, modernist workers' metropolis and forced the federal government to pivot to **temporary, demountable war housing—culminating in Willow Village** [1-4...
 - **Q:** yes
-  **Outcome:** The empirical hydrodynamic test data from NACA Wartime Report L-648 (Memorandum Report MR No. L4K14), authored by Margaret F. Steiner at the Langley Memorial Aeronautical Laboratory on November 14, 1944, has been incorporated into the **Willow Run & B-24 Master Engineering Matrix** [1, 2]. 
+  **Outcome:** The empirical hydrodynamic test data from NACA Wartime Report L-648 (Memorandum Report MR No. L4K14), authored by Margaret F. Steiner at the Langley Memorial Aeronautical Laboratory on November 14, 1944, has been incorporated into the **Willow Run & B-24 Master Engineering Matrix** [1, 2].
 
 This fu...
 
@@ -120,7 +120,7 @@ This fu...
 * **Document Identity:** NACA Memorandum Report **MR No. L4K14** (Wartime Report L-648) [1, 2].
 * **Title:** *Accelerations and Bottom Pressures Measured on a B-24D Airplane...
 - **Q:** What happened during FDR's visit to Willow Run?
-  **Finding:** President Franklin D. Roosevelt toured the Willow Run Bomber Plant on the afternoon of **September 18, 1942**, as part of a secret, nationwide 8,750-mile inspection of defense production facilities [1-3]. 
+  **Finding:** President Franklin D. Roosevelt toured the Willow Run Bomber Plant on the afternoon of **September 18, 1942**, as part of a secret, nationwide 8,750-mile inspection of defense production facilities [1-3].
 
 Primary memoirs and contemporaneous accounts—most notably Charles Sorensen’s diary and autobi...
 - **Q:** added another pdf

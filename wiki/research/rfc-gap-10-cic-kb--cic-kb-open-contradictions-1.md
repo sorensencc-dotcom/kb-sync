@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cu
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [vector_only]:
   > --- title: rfc-gap-04 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-04  ## Candidate Evidence: Remote Agent Finding 2026-09-22T19:11:44.937Z <!-- finding_id: 309bea4286a89bdbec80baf93c51a80483ae0e2cb6e90711b202613f6804fbea
 - **rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

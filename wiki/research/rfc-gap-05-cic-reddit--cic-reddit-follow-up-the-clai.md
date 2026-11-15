@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-cic-reddit--cic-reddit-follow-up-unverifi** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-unverifi.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-31-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-31-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

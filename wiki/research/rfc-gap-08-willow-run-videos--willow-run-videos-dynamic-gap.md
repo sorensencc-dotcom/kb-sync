@@ -20,11 +20,11 @@ Assembling the B-24 Liberator’s center wing section at Consolidated Aircraft r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-09-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

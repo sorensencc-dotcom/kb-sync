@@ -20,9 +20,9 @@ The Sorensens were winter residents of Miami starting in 1929, before relocating
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-01-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-02-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-09-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-09-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [vector_only]:
   > --- title: "RFC: GAP-09--cic-miami-estate-florida-retirement - **CIC - Miami Estate & Florida Retirement dyn-src-85652703 - Remote Management via Miami**" category: "research" topic: "rfc-gap-09-cic-miami-estate-florida-retirement--cic-miami-estate-f
 

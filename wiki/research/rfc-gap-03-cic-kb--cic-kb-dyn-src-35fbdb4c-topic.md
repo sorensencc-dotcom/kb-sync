@@ -20,9 +20,9 @@ Local topic scaffolding, lineage tracking, and coverage auditing (`TRM`) [5-7].
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-kb--cic-kb-dyn-src-35fbdb4c-linea** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-dyn-src-35fbdb4c-linea.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-kb--cic-kb-dyn-src-35fbdb4c-topic** (`wiki/research/rfc-gap-01-cic-kb--cic-kb-dyn-src-35fbdb4c-topic.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-12-cic-kb--cic-kb-open-contradictions-2** (`wiki/research/rfc-gap-12-cic-kb--cic-kb-open-contradictions-2.md`) [vector_only]:
   > --- title: "RFC: GAP-12--cic-kb - **CIC-KB open-contradictions - 2.**" category: "research" topic: "rfc-gap-12-cic-kb--cic-kb-open-contradictions-2" gap_id: "GAP-12--cic-kb" status: "draft" created_at: "2026-10-15T12:46:06.536Z" expansion_method: "he
 

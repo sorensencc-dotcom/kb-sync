@@ -20,9 +20,9 @@ Industrial Giants at Willow Run (dynamic-gap-61be1748 - Outdated Patternmaking)*
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
   > --- title: RFC: GAP-19--the-sorensen-photographic-archive - **The Sorensen Photographic Archive category: research topic: rfc-gap-19-the-sorensen-photographic-archive--the-sorensen-photographic-arc gap_id: GAP-19--the-sorensen-photographic-archive st
 

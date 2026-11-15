@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm** (`wiki/research/rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-11-cic-kb--cic-kb-under-sourced-single-e** (`wiki/research/rfc-gap-11-cic-kb--cic-kb-under-sourced-single-e.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-10-cic-kb--cic-kb-under-sourced-protocol** (`wiki/research/rfc-gap-10-cic-kb--cic-kb-under-sourced-protocol.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

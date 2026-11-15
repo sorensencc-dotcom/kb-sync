@@ -112,4 +112,3 @@ Filtered line counts exclude lockfiles, distribution bundles, vendor libraries, 
 - **Extract Telemetry:** `powershell.exe -ExecutionPolicy Bypass -File modules/review-capacity/scripts/extract-github-prs.ps1 -Repo "sorensencc-dotcom/kb-sync"`
 - **Compute Weekly Metrics:** `powershell.exe -ExecutionPolicy Bypass -File modules/review-capacity/scripts/compute-weekly-metrics.ps1 -WeekStart 2026-08-03`
 - **Execute Unit Test Suite:** `powershell.exe -NoProfile -ExecutionPolicy Bypass -File modules/review-capacity/tests/test-ai-telemetry.ps1`
-

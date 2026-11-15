@@ -20,11 +20,11 @@ Claims that agents cannot call each other reflect 2025 behavior and remain unver
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **readme** (`product:helix/README.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01--cic-kb-follow-up** (`wiki/research/rfc-gap-01--cic-kb-follow-up.md`) [vector_only]:
   > --- title: RFC: GAP-01 - **CIC-KB follow-up** category: research topic: rfc-gap-01--cic-kb-follow-up gap_id: GAP-01 status: draft created_at: 2026-09-08T00:31:32.613Z expansion_method: heuristic retrieval_mode: hybrid-rrf ast_grounded_symbols: "scrip
 - **rfc-gap-19-sigil-protocol-federation--sigil-protocol-federation-unv** (`wiki/research/rfc-gap-19-sigil-protocol-federation--sigil-protocol-federation-unv.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-rewrite-labs-ssg-redesign-platform--rewrit
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-03-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [lexical_only]:
-  > 
+  >
 - **-catalog** (`wiki/research/.catalog.json`) [vector_only]:
   > {   "generated": "2026-08-22T01:52:02.931Z",   "files":      {       "file": "C:\\dev\\kb-sync\\wiki\\research\\rfc-gap-01--willow-run-videos-under-sourc.md",       "title": "RFC: GAP-01 - **Willow Run Videos under-sourced**",       "description": nu
 - **rfc-gap-09-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-09-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,9 +20,9 @@ Harry Bennett, a small, wiry ex-sailor, athlete, and skillful amateur pugilist, 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-03-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: RFC: GAP-04 - **CIC - Ford Executive Dynamics & Politics open-contradictions** category: research topic: rfc-gap-04--cic-ford-executive-dynamics-p gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:44.780Z expansion_method: heuristi
 

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-open-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-14-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-88-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-88-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: "RFC: GAP-06--willow-run-videos - **Willow Run Videos open-contradictions - The Aircraft Model Discrepancy B-24 vs. B-17" category: "research" topic: "rfc-gap-06-willow-run-videos--willow-run-videos-open-contra" gap_id: "GAP-06--willow-run
 

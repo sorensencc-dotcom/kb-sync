@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # KB Sync Master Pipeline Orchestrator
 # Runs all staging, validation, NotebookLM ingestion, drift audit, and cleanup
 # sequentially in strict dependency order at 8:00 PM daily.
@@ -114,8 +114,8 @@ try {
         $OverallStatus = 1
     }
 
-    Write-LogInfo "Validating staging documentation..."
-    & cmd /c "npm run wiki:validate-staging -- --json=./.validation-report.json" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
+    Write-LogInfo "Validating staging documentation (with autoheal)..."
+    & cmd /c "npm run wiki:validate-staging -- --autoheal --json=./.validation-report.json" 2>&1 | Tee-Object -FilePath $LogFile -Append | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-LogError "Staging validation failed with exit code $LASTEXITCODE"
         $OverallStatus = 1

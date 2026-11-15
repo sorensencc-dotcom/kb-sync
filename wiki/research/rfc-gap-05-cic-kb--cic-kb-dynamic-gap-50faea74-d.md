@@ -20,11 +20,11 @@ Technical documentation covering Phase 1, Phase 2, Sandbox‑3, and DevOps infra
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover** (`wiki/research/rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont** (`wiki/research/rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cic-willys-overland - **CIC - Willys-Overland open-contradictions - Abrupt Firing vs. Complex Resignation/Departure**" category: "research" topic: "rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont" gap_id: "GAP-0
 - **rfc-gap-27** (`wiki/research/rfc-gap-27.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

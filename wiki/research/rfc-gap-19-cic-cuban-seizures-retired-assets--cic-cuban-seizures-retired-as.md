@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-19-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-19-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-19-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-118-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-118-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-124-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
   > --- title: RFC: GAP-124--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets open-contradictions - **Ford's Cuban Subsidiary *Credesco* — Claim C...** category: research topic: rfc-gap-124-cic-cuban-seizures-retired-assets--ci
 

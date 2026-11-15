@@ -20,11 +20,11 @@ citations: ["product:trm/Deployment-&-Automation.md","wiki/research/rfc-gap-07-f
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **deployment---automation** (`product:trm/Deployment-&-Automation.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-ford-5-day-wage-increase-impac** (`wiki/research/rfc-gap-07-ford-5-day-wage-increase-impac.md`) [vector_only]:
   > --- title: "RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output" category: "research" topic: "rfc-gap-07-ford-5-day-wage-increase-impac" gap_id: "GAP-07" status: "draft" created_at: "2026-08-23T01:58:16.723Z" citations: "docs
 - **2026-08-08-video-time-range-keyword-filter-design** (`product:trm/2026-08-08-video-time-range-keyword-filter-design.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -27,7 +27,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-10. Gro
 
 ## Technical discoveries & entity linkages
 - **Q:** What recurring utility accounts, household maintenance schedules, and logistics items are tracked in this workspace?
-  **Finding:** The currently selected sources do not contain information on **recurring utility accounts**, **household maintenance schedules**, or **logistics items**. 
+  **Finding:** The currently selected sources do not contain information on **recurring utility accounts**, **household maintenance schedules**, or **logistics items**.
 
 The active sources in this query focus entirely on financial tools and architectures—specifically the **IronLedger** accounting engine, bank syn...
 - **Q:** What pending operational tasks require action or reconciliation this week?
@@ -38,7 +38,7 @@ The active sources in this query focus entirely on financial tools and architect
 ### **1. Staging Queue & Unallocated Postings Review (IronLedger Workbench)**
 * **Pending Transaction Review:** Transactions ingested from statement drops or API f...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-heal-frontmatter.mjs--09d01576" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).
-  **Finding:** The source material in **Personal OS (Household, Utilities, Florida Logistics)** does not contain records or metadata for `scripts/heal-frontmatter.mjs` or entity `kb-sync--scripts-heal-frontmatter.mjs--09d01576` [1]. 
+  **Finding:** The source material in **Personal OS (Household, Utilities, Florida Logistics)** does not contain records or metadata for `scripts/heal-frontmatter.mjs` or entity `kb-sync--scripts-heal-frontmatter.mjs--09d01576` [1].
 
 However, the sources do document several related frontmatter processing, wiki re...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-notebooklm-verify-grounding-gate.mjs--732edd1c" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/notebooklm/verify-grounding-gate.mjs in kb-sync (125 lines). Exports: GROUNDING_PROMPT, resolveGroundingPromp
@@ -50,7 +50,7 @@ However, the sources do document several related grounding modules, research gat
 
 Howeve...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-heal-frontmatter.mjs--09d01576" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).
-  **Finding:** Your active sources do not contain primary metadata, line counts, or cryptographic hashes for **`scripts/heal-frontmatter.mjs`** or entity **`kb-sync--scripts-heal-frontmatter.mjs--09d01576`**. 
+  **Finding:** Your active sources do not contain primary metadata, line counts, or cryptographic hashes for **`scripts/heal-frontmatter.mjs`** or entity **`kb-sync--scripts-heal-frontmatter.mjs--09d01576`**.
 
 While that specific 60-line script is absent, **`pack_personal_os.txt`** indexes 77 files in the **`kb-s...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_
@@ -60,7 +60,7 @@ While that specific 60-line script is absent, **`pack_personal_os.txt`** indexes
 
 ### **1. Primary Archival Metadata for `...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-heal-frontmatter.mjs--09d01576" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).
-  **Finding:** An empirical investigation of the primary records in **`pack_personal_os.txt`** reveals that **`scripts/heal-frontmatter.mjs`** (60 lines) and entity ID **`kb-sync--scripts-heal-frontmatter.mjs--09d01576`** are **not currently indexed** in the catalog [1, 2]. 
+  **Finding:** An empirical investigation of the primary records in **`pack_personal_os.txt`** reveals that **`scripts/heal-frontmatter.mjs`** (60 lines) and entity ID **`kb-sync--scripts-heal-frontmatter.mjs--09d01576`** are **not currently indexed** in the catalog [1, 2].
 
 The canonical `personal-os` pack curre...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_
@@ -75,7 +75,7 @@ The canonical `personal-os` pack curre...
 ### **1. Primary Record Audit ...
 
 ## Unresolved questions & open contradictions
-- What recurring utility accounts, household maintenance schedules, and logistics items are tracked in this workspace?: The currently selected sources do not contain information on **recurring utility accounts**, **household maintenance schedules**, or **logistics items**. 
+- What recurring utility accounts, household maintenance schedules, and logistics items are tracked in this workspace?: The currently selected sources do not contain information on **recurring utility accounts**, **household maintenance schedules**, or **logistics items**.
 
 The active sources in this query focus entir...
 - What pending operational tasks require action or reconciliation this week?: Across the active sources in your workspace, the pending operational tasks and reconciliation workflows fall into five main areas:
@@ -86,7 +86,7 @@ The active sources in this query focus entir...
 - Investigate recently modified entity "kb-sync--scripts-heal-frontmatter.mjs--09d01576" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).: The source material in **Personal OS (Household, Utilities, Florida Logistics)** does not contain records or metadata for `scripts/heal-frontmatter.mjs` or entity `kb-sync--scripts-heal-frontmatter.mj...
 - Investigate recently modified entity "kb-sync--scripts-notebooklm-verify-grounding-gate.mjs--732edd1c" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/notebooklm/verify-grounding-gate.mjs in kb-sync (125 lines). Exports: GROUNDING_PROMPT, resolveGroundingPromp: The source material in **pack_personal_os.txt** does not contain records or metadata for `scripts/notebooklm/verify-grounding-gate.mjs` or entity `kb-sync--scripts-notebooklm-verify-grounding-gate.mjs...
 - Investigate recently modified entity "kb-sync--scripts-pipeline-cluster-sync-runner.mjs--b492b5c3" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/pipeline/cluster-sync-runner.mjs in kb-sync (488 lines). Exports: MANIFEST_PATHS, QUARANTINE_FILE, SYNC_STATU: The requested entity **`kb-sync--scripts-pipeline-cluster-sync-runner.mjs--b492b5c3`** and its primary file **`scripts/pipeline/cluster-sync-runner.mjs`** (488 lines, exporting `MANIFEST_PATHS`, `QUAR...
-- Investigate recently modified entity "kb-sync--scripts-heal-frontmatter.mjs--09d01576" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).: Your active sources do not contain primary metadata, line counts, or cryptographic hashes for **`scripts/heal-frontmatter.mjs`** or entity **`kb-sync--scripts-heal-frontmatter.mjs--09d01576`**. 
+- Investigate recently modified entity "kb-sync--scripts-heal-frontmatter.mjs--09d01576" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/heal-frontmatter.mjs in kb-sync (60 lines).: Your active sources do not contain primary metadata, line counts, or cryptographic hashes for **`scripts/heal-frontmatter.mjs`** or entity **`kb-sync--scripts-heal-frontmatter.mjs--09d01576`**.
 
 Whil...
 - Investigate recently modified entity "kb-sync--scripts-consolidate-pack.mjs--2d0ade00" in Personal OS (Household, Utilities, Florida Logistics): resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/consolidate-pack.mjs in kb-sync (455 lines). Exports: MAX_FACT_REGISTRY_BYTES, MAX_PACK_BYTES, THEMATIC_PACK_: An empirical verification of **`scripts/consolidate-pack.mjs`** against the primary records in **`pack_personal_os.txt`** reveals a direct discrepancy between the entity parameters in your query and t...

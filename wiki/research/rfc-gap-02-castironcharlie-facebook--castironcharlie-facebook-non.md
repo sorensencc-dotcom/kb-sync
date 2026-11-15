@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-03-castironcharlie-facebook--castironcharlie-facebook-non.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-14-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-14-castironcharlie-facebook--castironcharlie-facebook-open.md`) [vector_only]:
   > --- title: "RFC: GAP-14--castironcharlie-facebook - **CastIronCharlie-Facebook open-contradictions - The Myth / Sorensen's Account" category: "research" topic: "rfc-gap-14-castironcharlie-facebook--castironcharlie-facebook-open" gap_id: "GAP-14--cast
 

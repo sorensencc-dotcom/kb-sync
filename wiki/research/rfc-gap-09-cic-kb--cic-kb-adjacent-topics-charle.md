@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-27-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c.md`) [vector_only]:
   > --- title: RFC: GAP-07--cic-kb - **CIC-KB follow-up - FCSC Cuban Claims & Property Title Triangulation CU-3440 / Decision CU-5843** category: research topic: rfc-gap-07-cic-kb--cic-kb-follow-up-fcsc-cuban-c gap_id: GAP-07--cic-kb status: draft create
 

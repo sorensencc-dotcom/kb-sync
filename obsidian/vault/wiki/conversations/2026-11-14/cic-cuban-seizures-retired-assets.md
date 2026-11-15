@@ -59,7 +59,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-14. Gro
 
 ### **1. Key Audit Findings & Primary Evidence**
 
-* **Complete Absence in Official Corporate Registries:** 
+* **Complete Absence in Official Corporate Registries:**
   Public registry sear...
 - **Q:** Resolve open research gap in CIC - Cuban Seizures & Retired Assets: "CIC - Post-War & Willys-Overland (follow-up - The Archival Gap: )". Ground specific inquiry: **The Archival Gap:** Sorensen owned agricultural estates in pre-revolutionary Cuba under nominee entities and a holding company named **"CESOR S.A."**, which were nationalized by
   **Outcome:** ### Resolution of Open Research Gap: "CESOR S.A." & Corporate Nominee Holdings
@@ -70,7 +70,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-14. Gro
 
 ### **1. Key Audit Findings & Primary Evidence**
 
-* **Complete Absence in Official Corporate Registries:** 
+* **Complete Absence in Official Corporate Registries:**
   Public registry sear...
 
 ## Technical discoveries & entity linkages

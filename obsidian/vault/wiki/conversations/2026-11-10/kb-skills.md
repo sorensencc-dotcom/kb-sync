@@ -27,7 +27,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-10. Gro
 
 ## Technical discoveries & entity linkages
 - **Q:** Review https://arxiv.org/pdf/2610.34938
-  **Finding:** The paper **"How Do Coding-Agent Harnesses Self-Evolve? An Empirical Study of Retrospective Adaptation"** by Christoph Treude and Sebastian Baltes examines how AI coding agents adapt their operating harnesses based on experience from previous tasks [1]. 
+  **Finding:** The paper **"How Do Coding-Agent Harnesses Self-Evolve? An Empirical Study of Retrospective Adaptation"** by Christoph Treude and Sebastian Baltes examines how AI coding agents adapt their operating harnesses based on experience from previous tasks [1].
 
 The authors conduct an empirical evaluation ...
 - **Q:** How can we prevent agents from adding unnecessary verification work on unrelated tasks?

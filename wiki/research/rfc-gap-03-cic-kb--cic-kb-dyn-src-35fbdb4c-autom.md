@@ -20,11 +20,11 @@ The `CIC-DAG` operational schedules, audit logging, and media indexing [4].
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **home** (`product:trm/Home.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-kb--cic-kb-adjacent-topics-the-cl** (`wiki/research/rfc-gap-06-cic-kb--cic-kb-adjacent-topics-the-cl.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-kb - **CIC-KB adjacent-topics - The `claude-skills` catalog references regulato...**" category: "research" topic: "rfc-gap-06-cic-kb--cic-kb-adjacent-topics-the-cl" gap_id: "GAP-06--cic-kb" status: "draft" created_at: "20
 - **architecture** (`product:icf/Architecture.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,9 +20,9 @@ docx*) exclusively as the corporate claimant in Foreign Claims Settlement Commis
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-05-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
   > --- title: "RFC: GAP-01--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Central West Company**" category: "research" topic: "rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as" gap_id:
 

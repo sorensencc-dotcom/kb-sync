@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-41-cic-reddit--cic-reddit-under-sourced-the.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-41-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-41-cic-reddit--cic-reddit-under-sourced-the.md`) [lexical_only]:
-  > 
+  >
 - **pipeline** (`docs/kb/notebooklm-sync/pipeline.md`) [vector_only]:
   > --- title: "pipeline" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Ingestion Loop  This document outlines the sequential, deterministic steps performed during the sync execution pipeline.  ## Executi
 - **rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi** (`wiki/research/rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

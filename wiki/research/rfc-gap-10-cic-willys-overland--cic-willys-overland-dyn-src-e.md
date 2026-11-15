@@ -20,11 +20,11 @@ Corroborates that Charles Sorensen ("Cast Iron Charlie") was brought in from For
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

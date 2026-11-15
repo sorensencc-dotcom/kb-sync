@@ -20,11 +20,11 @@ Housed at the **Georgetown University Library Booth Family Center for Special Co
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-80--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-80-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-80--cic-post-war-willys-ov
 - **rfc-gap-11** (`wiki/research/rfc-gap-11.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

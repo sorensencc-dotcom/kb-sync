@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-dynam
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-willow-run-videos--willow-run-videos-dynamic-gap** (`wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-dynamic-gap.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
   > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

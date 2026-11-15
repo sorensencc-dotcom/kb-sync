@@ -221,4 +221,3 @@ All entries timestamped and immutable. Append-only.
 4. **Cross-refs are verified.** Before committing, lint pass confirms all links are bidirectional and valid.
 5. **Index.md is canonical.** Only entities/concepts in Index.md are "official"; others are drafts or orphans.
 6. **No autonomous writes.** Only operator (via Claude Code) can approve and commit wiki changes; never background agents.
-

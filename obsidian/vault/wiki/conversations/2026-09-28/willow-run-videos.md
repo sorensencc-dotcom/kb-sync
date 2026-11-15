@@ -34,7 +34,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-28. Gro
 - **Q:** What adjacent topics do these sources point to that aren't covered yet?
   **Finding:** The source material points to **six compelling narrative threads** that extend beyond the core assembly line mechanics of Willow Run:
 
-
 category: "wiki"---
 
 ### **1. Clara Ford: The Silent Power Broker of Dearborn**

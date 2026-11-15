@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-ta** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-ta.md`) [vector_only]:
   > --- title: RFC: GAP-05--cic-reddit - **CIC-Reddit follow-up - Audit tax assessment logs and title corresponde...** category: research topic: rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-ta gap_id: GAP-05--cic-reddit status: draft created_at: 202
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-archival** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-archival.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

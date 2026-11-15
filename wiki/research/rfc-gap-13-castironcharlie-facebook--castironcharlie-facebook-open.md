@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-non.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-open.md`) [vector_only]:
   > --- title: "RFC: GAP-01--castironcharlie-facebook - **CastIronCharlie-Facebook open-contradictions - 1.**" category: "research" topic: "rfc-gap-01-castironcharlie-facebook--castironcharlie-facebook-open" gap_id: "GAP-01--castironcharlie-facebook" sta
 - **rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-53-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-open-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-14-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-14-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-109-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-109-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: RFC: GAP-109--willow-run-videos - **Willow Run Videos open-contradictions - The Contradiction category: research topic: rfc-gap-109-willow-run-videos--willow-run-videos-open-contra gap_id: GAP-109--willow-run-videos status: draft created_a
 - **rfc-gap-48-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-48-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

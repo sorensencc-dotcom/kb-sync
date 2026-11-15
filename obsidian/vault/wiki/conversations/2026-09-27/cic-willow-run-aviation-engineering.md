@@ -54,7 +54,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 - **Q:** What follow-up research would most strengthen current findings?
   **Finding:** To transform current findings on Willow Run into an unassailable, publication-grade historical record, primary research should target specific **archival collections, record groups, and box locations** where documentation remains unlocated or under-corroborated:
 
-
 category: "wiki"---
 
 ### **1. Quantifying Shop-Floor...

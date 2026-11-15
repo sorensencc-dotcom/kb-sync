@@ -20,11 +20,11 @@ Implementation code containing the CIC API, MAAL (Model-Agnostic Adaptation Laye
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-07-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: "RFC: GAP-07--cic-ford-executive-dynamics-politics - **CIC - Ford Executive Dynamics & Politics dynamic-gap-412d21bd - 2.**" category: "research" topic: "rfc-gap-07-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p" gap_i
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ Frameworks such as the Model Context Protocol (MCP) and Agent-to-Agent (A2A) pro
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 - **home** (`product:helix/Home.md`) [vector_only]:
   > <!-- title: "Helix" status: active owner: chris last-reviewed: 2026-09-27 brand: helix -->  # Helix  ## What Helix is  Helix is a local Windows personal-assistant foundation for governed engineering work. It combines an authenticated local daemon, du
 - **local-context-cache** (`wiki/concepts/local-context-cache.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

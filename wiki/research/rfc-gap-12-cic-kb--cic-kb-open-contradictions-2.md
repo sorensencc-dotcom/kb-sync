@@ -20,11 +20,11 @@ citations: ["product:trm/Architecture-&-Data-Model.md","product:trm/CLI-Referenc
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [hybrid]:
-  > 
+  >
 - **cli-reference---commands** (`product:trm/CLI-Reference-&-Commands.md`) [hybrid]:
-  > 
+  >
 - **home** (`product:trm/Home.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

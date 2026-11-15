@@ -44,7 +44,6 @@ Here is how the timeline and legal/financial pictu...
 - **Q:** yes
   **Finding:** ### **Biographical Timeline: Charles E. Sorensen (1881–1968)**
 
-
 category: "wiki"---
 
 ### **1. Early Life & Industrial Rise (1881–1913)**

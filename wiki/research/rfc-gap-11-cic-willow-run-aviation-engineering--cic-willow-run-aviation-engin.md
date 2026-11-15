@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-11-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-11-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-127-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-127-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-127--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - Military vs. Civilian Housing Priorities category: research topic: rfc-gap-127-cic-willow-run-aviation-engineering--cic-wil
 

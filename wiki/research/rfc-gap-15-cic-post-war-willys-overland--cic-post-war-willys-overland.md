@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-15-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-15-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

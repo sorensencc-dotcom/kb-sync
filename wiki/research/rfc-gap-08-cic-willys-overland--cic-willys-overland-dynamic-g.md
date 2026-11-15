@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-06-cic-willys-overland--cic-willys-overland-u
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-willys-overland--cic-willys-overland-under-sou** (`wiki/research/rfc-gap-06-cic-willys-overland--cic-willys-overland-under-sou.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-43-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-43-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-43--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland adjacent-topics - The agreement licensed Ford **Model A** and **M...** category: research topic: rfc-gap-43-cic-post-war-willys-overland--cic-post-war-willys-ov
 

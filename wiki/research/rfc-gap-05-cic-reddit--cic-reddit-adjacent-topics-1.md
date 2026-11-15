@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-fol
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-follow-up.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-12-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-12-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cic-kb--cic-kb-adjacent-topics-1** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-adjacent-topics-1.md`) [vector_only]:
   > --- title: "RFC: GAP-07--cic-kb - **CIC-KB adjacent-topics - 1.**" category: "research" topic: "rfc-gap-07-cic-kb--cic-kb-adjacent-topics-1" gap_id: "GAP-07--cic-kb" status: "draft" created_at: "2026-10-18T10:20:17.128Z" expansion_method: "heuristic"
 

@@ -20,9 +20,9 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-08.md","wiki/research/
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-51-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-51-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
   > --- title: RFC: GAP-51--cic-reddit - **CIC-Reddit under-sourced - The Claim category: research topic: rfc-gap-51-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-51--cic-reddit status: draft created_at: 2026-09-19T21:26:25.849Z expansion_method:
 

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-cic-kb--cic-kb-non-obvious-connection.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-kb--cic-kb-non-obvious-connection** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-non-obvious-connection.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-kb--cic-kb-open-contradictions-au** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-au.md`) [vector_only]:
   > --- title: "RFC: GAP-13--cic-kb - **CIC-KB open-contradictions - Automated Contradiction Resolution Engines**" category: "research" topic: "rfc-gap-13-cic-kb--cic-kb-open-contradictions-au" gap_id: "GAP-13--cic-kb" status: "draft" created_at: "2026-1
 - **rfc-gap-12-cic-kb--cic-kb-under-sourced-machine** (`wiki/research/rfc-gap-12-cic-kb--cic-kb-under-sourced-machine.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

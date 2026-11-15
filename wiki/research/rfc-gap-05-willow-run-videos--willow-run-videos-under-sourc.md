@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-under
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **trm** (`wiki/research/2026-09-25/closed-loop-pipeline-adversarial.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-75-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-75-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-75--willow-run-videos - **Willow Run Videos under-sourced - The Claim category: research topic: rfc-gap-75-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-75--willow-run-videos status: draft created_at: 2026-09-19T21:
 

@@ -137,4 +137,3 @@ Concept pages must have: Name, Type, Domain, Status, Definition, Why It Matters,
 - [ ] No stale status markers without log entry
 - [ ] All entity summaries match current source behavior
 - [ ] All cross-domain links are documented
-

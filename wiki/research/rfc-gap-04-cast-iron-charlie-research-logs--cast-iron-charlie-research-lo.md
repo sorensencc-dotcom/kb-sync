@@ -20,11 +20,11 @@ Archival Repository and Collection Identification The **Benson Ford Research Cen
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09** (`wiki/research/rfc-gap-09.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [vector_only]:
   > --- title: "RFC: GAP-01--cast-iron-charlie-research-logs - **Cast Iron Charlie - Research Logs dyn-src-ea183f1a - Archival Corroboration & Records Series**" category: "research" topic: "rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-re
 - **rfc-gap-07** (`wiki/research/rfc-gap-07.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

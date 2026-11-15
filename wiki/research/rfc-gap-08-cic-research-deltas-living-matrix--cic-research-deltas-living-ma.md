@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-02.md","wiki/research/rfc-gap-19-cic-reddit--
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02** (`wiki/research/rfc-gap-02.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-19-cic-reddit--cic-reddit-follow-up-search-b** (`wiki/research/rfc-gap-19-cic-reddit--cic-reddit-follow-up-search-b.md`) [vector_only]:
   > --- title: RFC: GAP-19--cic-reddit - **CIC-Reddit follow-up - Search **BFRC records outside Accession 65 Box...** category: research topic: rfc-gap-19-cic-reddit--cic-reddit-follow-up-search-b gap_id: GAP-19--cic-reddit status: draft created_at: 2026
 - **rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-06-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

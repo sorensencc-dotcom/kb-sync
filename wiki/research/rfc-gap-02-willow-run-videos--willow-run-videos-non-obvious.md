@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-non-o
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-willow-run-videos--willow-run-videos-non-obvious** (`wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-non-obvious.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [vector_only]:
   > # RFC: GAP-28   ## Candidate Evidence: Remote Agent Finding 2026-10-20T02:59:04.116Z <!-- finding_id: 60888967b49a9e979b809b44b02677130222c4f4aebe9cbe39d62351755e6f14 --> - **Agent Origin**: `grok` - **Verdict**: `PARTIAL` - **Verification Status**:
 - **rfc-gap-10-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-t** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-t.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-reddit--cic-reddit-follow-up-national** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-national.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-08-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

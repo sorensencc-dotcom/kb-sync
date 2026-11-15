@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-05-cic-kb--cic-kb-follow-up-three-tier-c** (`wiki/research/rfc-gap-05-cic-kb--cic-kb-follow-up-three-tier-c.md`) [vector_only]:
   > --- title: "RFC: GAP-05--cic-kb - **CIC-KB follow-up - Three-Tier Coverage Audit `topic_coverage_auditor.py`**" category: "research" topic: "rfc-gap-05-cic-kb--cic-kb-follow-up-three-tier-c" gap_id: "GAP-05--cic-kb" status: "draft" created_at: "2026-
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-48-cic-reddit--cic-reddit-under-sourced-4-co.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-48-cic-reddit--cic-reddit-under-sourced-4-co** (`wiki/research/rfc-gap-48-cic-reddit--cic-reddit-under-sourced-4-co.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-59-cic-reddit--cic-reddit-under-sourced-6-an** (`wiki/research/rfc-gap-59-cic-reddit--cic-reddit-under-sourced-6-an.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-37-cic-reddit--cic-reddit-under-sourced-1-mu** (`wiki/research/rfc-gap-37-cic-reddit--cic-reddit-under-sourced-1-mu.md`) [vector_only]:
   > --- title: RFC: GAP-37--cic-reddit - **CIC-Reddit under-sourced - 1. Municipal & Architectural Lore** category: research topic: rfc-gap-37-cic-reddit--cic-reddit-under-sourced-1-mu gap_id: GAP-37--cic-reddit status: draft created_at: 2026-09-26T13:36
 

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-47-willow-run-videos--willow-run-videos-under
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-47-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-47-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-66--willow-run-videos - **Willow Run Videos under-sourced - Harold Wills' Time-Clock Rejection category: research topic: rfc-gap-66-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-66--willow-run-videos status: draft c
 - **rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-43-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

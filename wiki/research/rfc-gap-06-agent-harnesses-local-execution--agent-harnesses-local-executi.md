@@ -20,11 +20,11 @@ Serves as the **terminal multiplexer / PTY management layer** for terminal-centr
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-03-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-05-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-06-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

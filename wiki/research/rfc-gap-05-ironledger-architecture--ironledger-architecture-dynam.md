@@ -20,9 +20,9 @@ A balanced, immutable double-entry journal running locally on macOS or Ubuntu wi
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-ironledger-architecture--ironledger-architecture-dyn-s** (`wiki/research/rfc-gap-05-ironledger-architecture--ironledger-architecture-dyn-s.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-ironledger-architecture--ironledger-architecture-open** (`wiki/research/rfc-gap-04-ironledger-architecture--ironledger-architecture-open.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-ironledger-architecture--ironledger-architecture-under** (`wiki/research/rfc-gap-03-ironledger-architecture--ironledger-architecture-under.md`) [vector_only]:
   > --- title: "RFC: GAP-03--ironledger-architecture - **IronLedger Architecture under-sourced - The currently selected source "GitHub - vult-a...**" category: "research" topic: "rfc-gap-03-ironledger-architecture--ironledger-architecture-under" gap_id:
 

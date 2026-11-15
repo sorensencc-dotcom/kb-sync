@@ -20,9 +20,9 @@ Industrial Giants at Willow Run (dynamic-gap-d7dbb8d7 - The Problem for Mass Pro
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-10-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-12-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 

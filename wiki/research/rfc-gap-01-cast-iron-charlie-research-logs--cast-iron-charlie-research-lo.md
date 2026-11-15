@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-07-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-07-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [hybrid]:
-  > 
+  >
 - **cic-archival-audit-cork-operations-investigation** (`wiki/research/cic-archival-audit-cork-operations-investigation.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-06-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-miami-estate-florida-retirement - **CIC - Miami Estate & Florida Retirement dynamic-gap-6ee1109b - Henry Ford II's Invitation August 18, 1952" category: "research" topic: "rfc-gap-06-cic-miami-estate-florida-retirement--c
 

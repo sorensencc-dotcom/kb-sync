@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-02-cic-rouge-model-t-moving-assembly-line--ci
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse** (`wiki/research/rfc-gap-02-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-08-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-08-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03.md","wiki/research/rfc-gap-49-cic-cuban-se
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
   > --- title: "RFC: GAP-49--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets open-contradictions - Bentley Historical Library Box 14" category: "research" topic: "rfc-gap-49-cic-cuban-seizures-retired-assets--cic-cuban-seizure
 - **rfc-gap-16-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-16-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

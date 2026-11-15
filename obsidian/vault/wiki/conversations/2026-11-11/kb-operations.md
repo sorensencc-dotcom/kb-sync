@@ -32,7 +32,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-11. Gro
 ### 1. Configure the Mobile Drop Target
 * **Target Folder Path**: `TRM-Research/mobile-inbox/` (Google Drive Folder ID: `1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g`) [1, 2...
 - **Q:** Investigate recently modified entity "kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351" in KB - Operations: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/schedule-task-wrapper-KB-Sync-Ops-Audit.ps1 in kb-sync (68 lines).
-  **Finding:** The specific entity **`kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351`** (and its 68-line metadata inventory) is **not present** in your current notebook sources. 
+  **Finding:** The specific entity **`kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351`** (and its 68-line metadata inventory) is **not present** in your current notebook sources.
 
 ### Related Task Wrappers & Audit Telemetry in Sources
 
@@ -83,7 +83,7 @@ While the specific 62-line script inventory f...
 
 ### 1. Configure the Mobile Drop Target
 * **Target Folder Path...
-- Investigate recently modified entity "kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351" in KB - Operations: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/schedule-task-wrapper-KB-Sync-Ops-Audit.ps1 in kb-sync (68 lines).: The specific entity **`kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351`** (and its 68-line metadata inventory) is **not present** in your current notebook sources. 
+- Investigate recently modified entity "kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351" in KB - Operations: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/schedule-task-wrapper-KB-Sync-Ops-Audit.ps1 in kb-sync (68 lines).: The specific entity **`kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops-Audit.ps1--f061b351`** (and its 68-line metadata inventory) is **not present** in your current notebook sources.
 
 ### Related...
 - Investigate recently modified entity "kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops.ps1--6e5e04d4" in KB - Operations: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for scripts/schedule-task-wrapper-KB-Sync-Ops.ps1 in kb-sync (62 lines).: The specific metadata inventory for **`scripts/schedule-task-wrapper-KB-Sync-Ops.ps1`** (entity `kb-sync--scripts-schedule-task-wrapper-KB-Sync-Ops.ps1--6e5e04d4`, 62 lines) is **not present** in your...

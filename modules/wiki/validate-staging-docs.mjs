@@ -534,9 +534,11 @@ function validateFile(file, registry, repoRootPath, targetDir = null) {
     : content;
 
   const frontmatter = parseFrontmatter(content);
-  const fmErrors = validateFrontmatter(frontmatter, FRONTMATTER_SCHEMA);
-  for (const err of fmErrors) {
-    warnings.push(`frontmatter: ${err}`);
+  if (!isNavOrTemplate) {
+    const fmErrors = validateFrontmatter(frontmatter, FRONTMATTER_SCHEMA);
+    for (const err of fmErrors) {
+      warnings.push(`frontmatter: ${err}`);
+    }
   }
 
   const lintIssues = lintMarkdown(content);

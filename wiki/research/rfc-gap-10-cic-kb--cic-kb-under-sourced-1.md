@@ -20,11 +20,11 @@ citations: ["wiki/entities/performance-benchmark.ts.md","wiki/research/rfc-gap-4
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **performance-benchmark-ts** (`wiki/entities/performance-benchmark.ts.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan** (`wiki/research/rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan.md`) [vector_only]:
   > --- title: "RFC: GAP-44--cic-reddit - **CIC-Reddit under-sourced - Plant-Wide 1/1,000-Inch Precision Tolerance" category: "research" topic: "rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan" gap_id: "GAP-44--cic-reddit" status: "draft" created_at
 - **performance-benchmark-harness-mjs** (`wiki/entities/performance-benchmark-harness.mjs.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

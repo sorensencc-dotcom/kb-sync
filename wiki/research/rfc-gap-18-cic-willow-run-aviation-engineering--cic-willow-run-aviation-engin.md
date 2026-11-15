@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-18-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-13--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - Automotive Reconversion category: research topic: rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin
 

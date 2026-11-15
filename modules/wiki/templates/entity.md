@@ -88,4 +88,3 @@ If no special notes, write "None."]
 - See [[Concept1]] for the design pattern this entity implements
 - See [[Entity3]] for how this entity is orchestrated
 - See [[Workflow1]] for this entity's role in the broader workflow
-

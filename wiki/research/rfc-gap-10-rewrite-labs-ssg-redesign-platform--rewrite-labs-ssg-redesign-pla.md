@@ -20,11 +20,11 @@ js/Astro) alongside Generative Engine Optimization (GEO) schema injection and AS
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 - **rfc-act-03-evaluate-muse-wonder-active-focus-evaluate-meta-muse-wonder-api** (`wiki/research/rfc-act-03-evaluate-muse-wonder-active-focus.md`) [vector_only]:
   > --- title: "RFC: act-03-evaluate-muse-wonder-active-focus - Evaluate Meta Muse Wonder API Latency and Active Focus Guardrails for Client Workflows" category: "research" topic: "rfc-act-03-evaluate-muse-wonder-active-focus-evaluate-meta-muse-wonder-ap
 - **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

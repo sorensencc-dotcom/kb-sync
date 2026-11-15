@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-dyn
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-daily-research--cic-daily-research-dyn-src-08** (`wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-dyn-src-08.md`) [hybrid]:
-  > 
+  >
 - **trm-gap-brief-unresolved-contradictions-cesor-cic** (`wiki/research/trm-gap-brief-unresolved-contradictions-cesor-cic.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-62-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-62-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
   > --- title: RFC: GAP-62--cic-daily-research - **CIC - Daily Research open-contradictions - The Resolution & Standing category: research topic: rfc-gap-62-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-62--cic-daily-research status: draf
 

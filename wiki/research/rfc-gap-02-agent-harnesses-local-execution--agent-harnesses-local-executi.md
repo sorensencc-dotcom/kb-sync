@@ -20,11 +20,11 @@ for topics (such as AI/ML, application development, databases) and content types
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-01-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-07-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [vector_only]:
   > --- title: "RFC: GAP-07--agent-harnesses-local-execution - **Agent Harnesses & Local Execution Graft, SAM, Herdr dynamic-gap-a2cd5672 - SAM**" category: "research" topic: "rfc-gap-07-agent-harnesses-local-execution--agent-harnesses-local-executi" gap
 - **rfc-gap-02-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-02-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ In Ford’s lexicon, a "kit" did not refer to loose parts packed into crates wit
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-dyn** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-dyn.md`) [lexical_only]:
-  > 
+  >
 - **2026-08-02-intake-triage-manifest-design** (`product:trm/2026-08-02-intake-triage-manifest-design.md`) [vector_only]:
   > # Intake Triage Manifest — Design  Date: 2026-08-02 Status: Approved brainstorming; implementation plan refined the vision-classifier section below — see `docs/superpowers/plans/2026-08-02-intake-triage-manifest.md`. Refinement: instead of a new `/ap
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

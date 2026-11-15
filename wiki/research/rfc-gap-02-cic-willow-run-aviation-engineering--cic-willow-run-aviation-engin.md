@@ -20,11 +20,11 @@ Secondary historical accounts and museum exhibits trace Willow Run's transition 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-30-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-30-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: RFC: GAP-30--cic-daily-research - **CIC - Daily Research adjacent-topics - Airport Logistics Milestone category: research topic: rfc-gap-30-cic-daily-research--cic-daily-research-adjacent-t gap_id: GAP-30--cic-daily-research status: draft
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

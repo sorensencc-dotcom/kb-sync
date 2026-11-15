@@ -20,11 +20,11 @@ citations: ["product:icf/Home.md","wiki/research/rfc-gap-06-cic-kb--cic-kb-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **home** (`product:icf/Home.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover** (`wiki/research/rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-kb - **CIC-KB follow-up - Source Coverage Audit**" category: "research" topic: "rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover" gap_id: "GAP-06--cic-kb" status: "draft" created_at: "2026-10-16T12:05:24.701Z" expansion_m
 - **architecture** (`product:icf/Architecture.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

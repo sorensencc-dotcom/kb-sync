@@ -61,7 +61,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-10. Gro
 
 ## Technical discoveries & entity linkages
 - **Q:** Any pending proposals
-  **Finding:** There are currently **no pending system proposals** in `/workspace/brain/out/proposals/` [1]. 
+  **Finding:** There are currently **no pending system proposals** in `/workspace/brain/out/proposals/` [1].
 
 Here is the current status of your staged deliverables:
 
@@ -74,7 +74,7 @@ Here is the current status of your staged deliverables:
 ## Unresolved questions & open contradictions
 - see how we have out bots setup in my ai folder: Your bot architecture and workspace environment are structured across three interconnected layers: **Drive & Payload Staging (`G:\My Drive\AI\`)**, **Second Brain Filesystem (`/workspace/brain/`)**, a...
 - Inspect the current state of attention.md: In your Second Brain architecture, **`attention.md`** operates as the dynamic priority filter that ranks your morning briefs, triaged issues, and proposed agent tasks against the 5 projects you are ac...
-- Any pending proposals: There are currently **no pending system proposals** in `/workspace/brain/out/proposals/` [1]. 
+- Any pending proposals: There are currently **no pending system proposals** in `/workspace/brain/out/proposals/` [1].
 
 Here is the current status of your staged deliverables:
 

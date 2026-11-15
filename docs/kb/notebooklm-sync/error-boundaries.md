@@ -24,7 +24,7 @@ This document defines handling rules and troubleshooting guides for potential fa
 ### 3. CLI Binary Not Found
 - **Symptom**: Script logs `Skipping programmatic purge/upload: CLI tool 'notebooklm-mcp' not installed.`
 - **Reason**: The MCP CLI binary is not present in the current user's shell `PATH`.
-- **Handling**: 
+- **Handling**:
   - Install the CLI tool.
   - Or manually upload the compiled `.nlm_pack/repo_knowledge_pack.txt` file directly using the NotebookLM Web UI.
 

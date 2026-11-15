@@ -20,11 +20,11 @@ The contribution guidelines and coding rules governing determinism, state isolat
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-kb--cic-kb-dyn-src-35fbdb4c-cic-i** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-dyn-src-35fbdb4c-cic-i.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [vector_only]:
   > --- title: "RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment" category: "research" topic: "rfc-gap-04-dodge-brothers-vs-henry-ford-g" gap_id: "GAP-04" status: "draft" created_at: "2026-08-23T01:58:16.715Z" citations: "doc
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

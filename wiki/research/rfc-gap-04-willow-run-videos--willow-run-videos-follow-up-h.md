@@ -20,11 +20,11 @@ citations: ["wiki/research/cic-ford-executive-dynamics-undersourced-assertions.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-27** (`wiki/research/rfc-gap-27.md`) [vector_only]:
   > # RFC: GAP-27   ## Candidate Evidence: Remote Agent Finding 2026-10-19T02:55:26.407Z <!-- finding_id: 84f4505a66564501341340e93609ed779d5e0c5fe5b1b841355fa425d89fe93d --> - **Agent Origin**: `grok` - **Verdict**: `PARTIAL` - **Verification Status**:
 - **rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-i** (`wiki/research/rfc-gap-23-willow-run-videos--willow-run-videos-follow-up-i.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

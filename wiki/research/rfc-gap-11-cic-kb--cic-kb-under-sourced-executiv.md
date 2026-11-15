@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-47-cic-kb--cic-kb-open-contradictions-1.md","
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-47-cic-kb--cic-kb-open-contradictions-1** (`wiki/research/rfc-gap-47-cic-kb--cic-kb-open-contradictions-1.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-10-cic-reddit--cic-reddit-follow-up-4-digita** (`wiki/research/rfc-gap-10-cic-reddit--cic-reddit-follow-up-4-digita.md`) [vector_only]:
   > --- title: RFC: GAP-10--cic-reddit - **CIC-Reddit follow-up - 4. Digital Archaeology of the `savethebomberplant.org` Domain Hijacking** category: research topic: rfc-gap-10-cic-reddit--cic-reddit-follow-up-4-digita gap_id: GAP-10--cic-reddit status:
 - **rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-21-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

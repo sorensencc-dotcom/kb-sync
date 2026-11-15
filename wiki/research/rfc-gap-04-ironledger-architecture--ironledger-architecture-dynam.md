@@ -20,11 +20,11 @@ If you prefer to gather external information instead, let me know and I can cond
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-ironledger-architecture--ironledger-architecture-open** (`wiki/research/rfc-gap-04-ironledger-architecture--ironledger-architecture-open.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-85-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-85-cic-daily-research--cic-daily-research-under-sour.md`) [vector_only]:
   > --- title: RFC: GAP-85--cic-daily-research - **CIC - Daily Research under-sourced - The Refutation category: research topic: rfc-gap-85-cic-daily-research--cic-daily-research-under-sour gap_id: GAP-85--cic-daily-research status: draft created_at: 202
 - **rfc-gap-03-ironledger-architecture--ironledger-architecture-under** (`wiki/research/rfc-gap-03-ironledger-architecture--ironledger-architecture-under.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

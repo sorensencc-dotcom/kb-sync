@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-38-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-38-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-64-cic-kb--cic-kb-open-contradictions-ed** (`wiki/research/rfc-gap-64-cic-kb--cic-kb-open-contradictions-ed.md`) [vector_only]:
   > --- title: RFC: GAP-64--cic-kb - **CIC-KB open-contradictions - Edsel Ford vs. Charles Sorensen Relationship Dynamics GAP-18** category: research topic: rfc-gap-64-cic-kb--cic-kb-open-contradictions-ed gap_id: GAP-64--cic-kb status: draft created_at:
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

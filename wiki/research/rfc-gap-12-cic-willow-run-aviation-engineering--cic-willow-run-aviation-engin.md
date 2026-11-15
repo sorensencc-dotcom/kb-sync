@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-12-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-12-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-12-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-nara-rg** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-nara-rg.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-04-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-04--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering follow-up - Archival Target category: research topic: rfc-gap-04-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin gap_id: GAP-04
 

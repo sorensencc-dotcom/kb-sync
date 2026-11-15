@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-48-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-48-castironcharlie-facebook--castironcharlie-facebook-open.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-51-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
   > --- title: "RFC: GAP-08--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - Charles Sorensen’s Personal Papers" category: "research" topic: "rfc-gap-08-castironcharlie-facebook--castironcharlie-facebook-adja" gap_id: "GAP-08--cas
 

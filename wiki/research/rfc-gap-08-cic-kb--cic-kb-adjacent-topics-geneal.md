@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-07-cic-kb--cic-kb-adjacent-topics-geneal.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-cic-kb--cic-kb-adjacent-topics-geneal** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-adjacent-topics-geneal.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08-cic-kb--cic-kb-adjacent-topics-ancest** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-adjacent-topics-ancest.md`) [hybrid]:
-  > 
+  >
 - **research_worker_deployment** (`product:trm/RESEARCH_WORKER_DEPLOYMENT.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-open-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-13-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-13-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-90-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-90-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-99-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-99-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-99--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - 1. Primary Archival Gaps & Unlocated Records** category: research topic: rfc-gap-99-cic-willow-run-aviation-engineering--cic
 

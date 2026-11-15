@@ -38,7 +38,7 @@ Here is what your sources state regarding domain partitioning and how resear...
 
 ## Technical discoveries & entity linkages
 - **Q:** Resolve open research gap in KB - Superpowers: "Cast Iron Charlie - Research Logs (dynamic-gap-7518ec83 - Authoritarian Work Environment: )". Ground specific inquiry: Workers described pre-union Ford operations as a "tough place to work," with older employees comparing the factory floor to a "reform school" in its strictness [5]. Management enfo
-  **Finding:** The sources in **KB - Superpowers** do not contain research logs or details concerning **"Cast Iron Charlie" (Charles Sorensen)**, pre-union Ford factory labor conditions, or the gap ID `dynamic-gap-7518ec83` [1-4]. 
+  **Finding:** The sources in **KB - Superpowers** do not contain research logs or details concerning **"Cast Iron Charlie" (Charles Sorensen)**, pre-union Ford factory labor conditions, or the gap ID `dynamic-gap-7518ec83` [1-4].
 
 Here is what your sources state regarding this workspace's scope and where histori...
 - **Q:** Resolve open research gap in KB - Superpowers: "Rewrite Labs SSG/Redesign Platform (dyn-src-467ddacd - Model Benchmarking & Code Refactoring)". Ground specific inquiry: Operational directives detail benchmarking frontier coding models, such as Gemini 4 Argon, across Rewrite Labs' codebase for repository maintenance and multi-file TypeScript refact

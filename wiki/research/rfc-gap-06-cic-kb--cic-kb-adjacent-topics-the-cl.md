@@ -20,11 +20,11 @@ The `claude-skills` catalog references regulatory and quality management modules
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **kb** (`wiki/concepts/2026-09-25/deterministic-fs-sync-patterns-nodejs.md`) [lexical_only]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
   > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
 - **_sidebar** (`product:trm/_Sidebar.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

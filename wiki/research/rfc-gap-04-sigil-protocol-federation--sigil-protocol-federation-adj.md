@@ -20,11 +20,11 @@ Implementations leveraging the Service Worker Background Synchronization API and
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **mobile-websocket-heartbeats** (`wiki/research/mobile-websocket-heartbeats.md`) [lexical_only]:
-  > 
+  >
 - **home** (`product:helix/Home.md`) [vector_only]:
   > <!-- title: "Helix" status: active owner: chris last-reviewed: 2026-09-27 brand: helix -->  # Helix  ## What Helix is  Helix is a local Windows personal-assistant foundation for governed engineering work. It combines an authenticated local daemon, du
 - **raw_research_conformance** (`_kb-sync-staging/trm/current/raw_research_conformance.json`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal.md`) [lexical_only]:
-  > 
+  >
 - **raw-source-staging** (`wiki/concepts/raw-source-staging.md`) [vector_only]:
   > --- title: Raw Source Staging category: concepts status: active sourceRepository: kb-sync lastUpdated: 2026-08-30 ---  # Raw Source Staging  **Raw Source Staging** is the initial data capture phase where unformatted external documents, declassified l
 - **multimodal-ingestion---media-pipeline** (`product:trm/Multimodal-Ingestion-&-Media-Pipeline.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

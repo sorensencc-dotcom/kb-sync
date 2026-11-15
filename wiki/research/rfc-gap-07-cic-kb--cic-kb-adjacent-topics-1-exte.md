@@ -20,11 +20,11 @@ citations: ["wiki/research/the-henry-ford-sorensen-photographic-accessions.md","
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-70-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-70-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: RFC: GAP-70--willow-run-videos - **Willow Run Videos open-contradictions - October 1, 1942 category: research topic: rfc-gap-70-willow-run-videos--willow-run-videos-open-contra gap_id: GAP-70--willow-run-videos status: draft created_at: 20
 - **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

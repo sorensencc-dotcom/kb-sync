@@ -20,11 +20,11 @@ Industrial Giants at Willow Run (under-sourced - Stamping Tooling and Aluminum F
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

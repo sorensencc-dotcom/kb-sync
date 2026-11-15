@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-nara-rg** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-nara-rg.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-03--cic-daily-research - **CIC - Daily Research follow-up - Foreign Claims Settlement Commission FCSC & NARA Record Groups**" category: "research" topic: "rfc-gap-03-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-
 

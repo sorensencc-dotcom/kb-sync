@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-07-cic-research-deltas-living-matrix--cic-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-07-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-01-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-05-cic-reddit--cic-reddit-follow-up-unverifi** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-unverifi.md`) [vector_only]:
   > --- title: "RFC: GAP-05--cic-reddit - **CIC-Reddit follow-up - Unverified Claims**" category: "research" topic: "rfc-gap-05-cic-reddit--cic-reddit-follow-up-unverifi" gap_id: "GAP-05--cic-reddit" status: "draft" created_at: "2026-10-19T11:05:27.348Z"
 

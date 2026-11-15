@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-cic-kb--cic-kb-non-obvious-connection.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-kb--cic-kb-non-obvious-connection** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-non-obvious-connection.md`) [lexical_only]:
-  > 
+  >
 - **2026-08-07-pdf-ocr-fallback-design** (`product:trm/2026-08-07-pdf-ocr-fallback-design.md`) [vector_only]:
   > # Scanned-PDF OCR Fallback — Design  ## Problem  `src/ingestion/fileConvert.ts` extracts PDF text via `pdf-parse`. That works for PDFs with a real text layer, but fails on scanned PDFs image-only pages, no embedded text — `pdf-parse` returns empty te
 - **rfc-gap-57-cic-kb--cic-kb-open-contradictions-si** (`wiki/research/rfc-gap-57-cic-kb--cic-kb-open-contradictions-si.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

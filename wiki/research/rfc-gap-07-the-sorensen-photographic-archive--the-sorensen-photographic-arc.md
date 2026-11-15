@@ -20,11 +20,11 @@ Industrial Giants at Willow Run (adjacent-topics - Consolidated's Blueprint Defi
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-06-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-25-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,9 +20,9 @@ Establishes that this diagnostic verification took place on **2026-08-30 at 20:2
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-09-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-10-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-10-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-04-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [vector_only]:
   > --- title: "RFC: GAP-04--open-dev-issues - **Open Dev Issues CI/CD Triage Buffer adjacent-topics - CI/CD debugging tooling**" category: "research" topic: "rfc-gap-04-open-dev-issues--open-dev-issues-ci-cd-triage" gap_id: "GAP-04--open-dev-issues" sta
 

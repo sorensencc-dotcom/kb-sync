@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-08.md","wiki/research/rfc-gap-63-cic-kb--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo** (`wiki/research/rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo.md`) [vector_only]:
   > --- title: RFC: GAP-63--cic-kb - **CIC-KB open-contradictions - Moving Assembly Line Multi-Vocal Attribution GAP-17** category: research topic: rfc-gap-63-cic-kb--cic-kb-open-contradictions-mo gap_id: GAP-63--cic-kb status: draft created_at: 2026-09-
 - **rfc-gap-76-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-76-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

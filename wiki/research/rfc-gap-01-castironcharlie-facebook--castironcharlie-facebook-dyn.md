@@ -20,9 +20,9 @@ The Facebook posts identify the 27-ton Ingersoll milling machine on its 18-inch 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-34-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-dyn** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-dyn.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-32-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-32-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: RFC: GAP-32--cic-daily-research - **CIC - Daily Research adjacent-topics - Bringing Tooling to the Wing category: research topic: rfc-gap-32-cic-daily-research--cic-daily-research-adjacent-t gap_id: GAP-32--cic-daily-research status: draft
 

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01-cic-post-war--cic-post-war-dyn-src-8565270
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-post-war--cic-post-war-dyn-src-85652703** (`wiki/research/rfc-gap-01-cic-post-war--cic-post-war-dyn-src-85652703.md`) [hybrid]:
-  > 
+  >
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-13-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-13-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -24,7 +24,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-26. Gro
 
 ## Key decisions & verified timeline facts
 - **Q:** yes
-  **Outcome:** I have generated and published the **Puhl Station-Flow Diagram** (`puhl-station-flow-diagram.png`) to your Studio panel. 
+  **Outcome:** I have generated and published the **Puhl Station-Flow Diagram** (`puhl-station-flow-diagram.png`) to your Studio panel.
 
 ### **Diagram Overview**
 * **Verified Assembly Sequence:** Maps the physical subassembly flow from initial component mating (Stations 1–10) and major structural integration (Sta...
@@ -48,7 +48,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-26. Gro
 - **Q:** How did Sorensen's 1906 molding machine trip resolve the casting crisis?
   **Finding:** In early 1906, as Ford prepared the four-cylinder **Model N** for mass production, the company faced a severe casting bottleneck at its supplier, the East Grand Boulevard Foundry [1]. Engine cylinder blocks were individually hand-molded using mahogany and brass-reinforced wooden patterns [1]. This t...
 - **Q:** yes
-  **Finding:** When developing the **1932 Ford V-8**, Charles Sorensen scaled up the continuous-molding principles he had experimented with during the Model N era to create the industry's first **mass-produced single-piece V-8 engine block** [1-3]. 
+  **Finding:** When developing the **1932 Ford V-8**, Charles Sorensen scaled up the continuous-molding principles he had experimented with during the Model N era to create the industry's first **mass-produced single-piece V-8 engine block** [1-3].
 
 Prior V-8 engines—such as D. McCall White's Cadillac V-8—were ex...
 - **Q:** How did the B-24 program adapt these foundry techniques?
@@ -81,7 +81,7 @@ While the physical existence ...
 * **The Ploesti Oil Raid:** On August 1, 1943, several hundred B-2...
 
 ## Unresolved questions & open contradictions
-- yes: I have generated and published the **Puhl Station-Flow Diagram** (`puhl-station-flow-diagram.png`) to your Studio panel. 
+- yes: I have generated and published the **Puhl Station-Flow Diagram** (`puhl-station-flow-diagram.png`) to your Studio panel.
 
 ### **Diagram Overview**
 * **Verified Assembly Sequence:** Maps the physical ...

@@ -20,11 +20,11 @@ citations: ["product:icf/Home.md","wiki/research/rfc-frontier-lab-verification-s
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **home** (`product:icf/Home.md`) [lexical_only]:
-  > 
+  >
 - **rfc-frontier-lab-verification-standards-dissent** (`wiki/research/rfc-frontier-lab-verification-standards-dissent.md`) [vector_only]:
   > --- title: "RFC: Frontier Lab Verification Standards & Dissenting Methodologies" category: "research" topic: "rfc-frontier-lab-verification-standards-dissent" gap_id: "act-04-frontier-lab-verification-standards-dissent" status: "draft" created_at: "2
 - **architecture** (`product:icf/Architecture.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

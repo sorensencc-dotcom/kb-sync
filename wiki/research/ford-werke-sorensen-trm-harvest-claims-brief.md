@@ -165,7 +165,6 @@ Schneider Box 1032 and Lawler remain **catalog-level / secondary** until exhibit
 
 **Staging complete** for this TRM pass: `claims.json`, `brief.md`, and `sources/` are written under `/workspace/_kb-sync-staging/trm/current/ford-werke-sorensen/`. Parent may Sigil-notify. Further primary pulls (NARA Box 1032, AR-65-1500, FCSC payment) are follow-on gaps, not blockers to notify that staging landed.
 
-
 ## claims.json
 
 ```json

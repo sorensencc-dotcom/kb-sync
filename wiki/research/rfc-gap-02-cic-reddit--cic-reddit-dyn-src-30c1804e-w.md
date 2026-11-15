@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-02-cic-reddit--cic-reddit-dyn-src-30c1804e-a.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-reddit--cic-reddit-dyn-src-30c1804e-a** (`wiki/research/rfc-gap-02-cic-reddit--cic-reddit-dyn-src-30c1804e-a.md`) [hybrid]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-41-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-41-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

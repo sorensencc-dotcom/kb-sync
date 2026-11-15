@@ -32,11 +32,11 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-29. Gro
 - **Q:** How did the edited book handle Sorensen's actual salary?
   **Finding:** In translating Charles Sorensen’s raw oral history interviews (BFRC Accession 65 / 64.167.65) into the 1956 commercial memoir (*My Forty Years with Ford*), co-author and editor Samuel T. Williamson handled Sorensen’s actual compensation through **systematic omission, generalization, and sanitization...
 - **Q:** review all the new images they are from my visit to the benson ford research library
-  **Finding:** Your research photographs from the Benson Ford Research Center (BFRC) capture a rich primary record spanning archival boxes, private executive correspondence, raw oral history dictation notes, wartime defense cables, and draft manuscript chapters [1-5]. 
+  **Finding:** Your research photographs from the Benson Ford Research Center (BFRC) capture a rich primary record spanning archival boxes, private executive correspondence, raw oral history dictation notes, wartime defense cables, and draft manuscript chapters [1-5].
 
 Here is an analysis of the primary findings ...
 - **Q:** given these are from the BFRC archive I think you need to do a deep dive forensics research effort to see if we already have some of the answers here instead of adding more work to the BFRC Archival Search Strategy & Research Plan
-  **Finding:** A forensic audit across your uploaded Benson Ford Research Center (BFRC) transcripts, photographs, and research dossiers reveals that **almost every major historical gap and open question previously identified is ALREADY RESOLVED by the primary materials in your notebook [1-5].** 
+  **Finding:** A forensic audit across your uploaded Benson Ford Research Center (BFRC) transcripts, photographs, and research dossiers reveals that **almost every major historical gap and open question previously identified is ALREADY RESOLVED by the primary materials in your notebook [1-5].**
 
 Rather than treat...
 - **Q:** Rewrite the BFRC research plan

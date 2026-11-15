@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-06-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-06-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+  >
 - **pipeline** (`docs/kb/notebooklm-sync/pipeline.md`) [vector_only]:
   > --- title: "pipeline" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Ingestion Loop  This document outlines the sequential, deterministic steps performed during the sync execution pipeline.  ## Executi
 - **rfc-gap-11-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-11-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

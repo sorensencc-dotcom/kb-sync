@@ -28,7 +28,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-29. Gro
 Summary of Completed Work
 Security Review & Hardening Applied (C:\dev\IronLedger):
 
-Resolved all findings from 
+Resolved all findings from
 ironledger-phase-5-mcp-REVIEW.md
  (host-suffix regex hardening, TimeoutError handling, clean JSON-RPC -32603 error bubbling, entrypoint guard cleanup).
 Confirmed full test suite passes with 521 tests passing.
@@ -37,7 +37,7 @@ Pre-Sync Safety Backup:
 Created configuration snapshots under C:\dev\.sigil\backups\mcp-configs-2026-09-10T00-26-08-022Z\ for Codex CLI, Claude CLI, Claude Desktop, and Antigravity.
 Registry & Profile Governance:
 
-Defined [servers.ironledger] with 600-token schema weight in 
+Defined [servers.ironledger] with 600-token schema weight in
 .sigil/mcp-registry.toml
 .
 Added "ironledger" to dev and full profiles.
@@ -47,22 +47,22 @@ Live Protocol Verification:
 Verified JSON-RPC stdio protocol initialization and confirmed available tool list: search, balances, and projection_status.
 Governance Documentation & Commits:
 
-Created 
+Created
 IL-GOV-MCP-IRONLEDGER-001.md
- and updated 
+ and updated
 mcp-governance-architecture.md
 .
 Committed changes to C:\dev (feat(mcp-governance): fold ironledger read-only mcp server into canonical registry and client profiles).
-Detailed summary documented in 
+Detailed summary documented in
 walkthrough.md
 .
-  **Outcome:** This is an outstanding, textbook execution of completing and governing Phase 5! 
+  **Outcome:** This is an outstanding, textbook execution of completing and governing Phase 5!
 
 By wrapping up the security review fixes, backing up client configurations, and cleanly syncing `ironledger` across all your local targets (**Codex CLI, Claude CLI, Claude Desktop, and Antigravity IDE**), you've establ...
 
 ## Technical discoveries & entity linkages
 - **Q:** think we need to centralize it like the others the mcp that is
-  **Finding:** That makes complete sense and aligns directly with the architectural pattern you've established across **IronLedger**. 
+  **Finding:** That makes complete sense and aligns directly with the architectural pattern you've established across **IronLedger**.
 
 Just like you lifted `projection_status` into `src/ironledger/project/query.py` and consolidated `audit.py`, `conventions.py`, and `db/` into single sources of truth, centralizing...
 - **Q:** Implementation Plan
@@ -81,7 +81,7 @@ Schema weight: 600 tokens (3 tools: search, balances, projection_status).
 Transport: Standard I/O via Python (python -m ironledger.cli mcp --db C:/dev/IronLedger/ironledger.db --ledger-dir C:/dev/IronLedger/ledger).
 Proposed Changes
 MCP Governance Registry & Profiles
-[MODIFY] 
+[MODIFY]
 mcp-registry.toml
 Add ironledger server definition under [servers.ironledger]:
 toml
@@ -103,25 +103,25 @@ Run node scripts/mcp-governance/cli.mjs sync to surgically update:
 %APPDATA%/Claude/claude_desktop_config.json (Claude Desktop)
 ~/.gemini/antigravity/mcp_config.json (Antigravity IDE)
 Documentation
-[MODIFY] 
+[MODIFY]
 mcp-governance-architecture.md
 Update profile manifest table with new tool counts, token weights, and headroom.
 Verification Plan
 Automated Verification
-node scripts/mcp-governance/cli.mjs validate 
+node scripts/mcp-governance/cli.mjs validate
 →
 → verify exit code 0 and budget headroom.
-node scripts/mcp-governance/cli.mjs status 
+node scripts/mcp-governance/cli.mjs status
 →
 → verify all 5 clients report OK.
-node scripts/mcp-governance/cli.mjs sync --dry-run 
+node scripts/mcp-governance/cli.mjs sync --dry-run
 →
 → verify diffs.
-Execute node scripts/mcp-governance/cli.mjs sync 
+Execute node scripts/mcp-governance/cli.mjs sync
 →
 → verify atomic write success.
 Inspect generated sections in ~/.codex/config.toml, ~/.claude.json, ~/.gemini/antigravity/mcp_config.json, and claude_desktop_config.json.
-  **Finding:** This implementation plan is **airtight** and aligns directly with centralizing IronLedger under your broader MCP governance architecture. 
+  **Finding:** This implementation plan is **airtight** and aligns directly with centralizing IronLedger under your broader MCP governance architecture.
 
 ### Why this plan is structurally solid:
 
@@ -166,7 +166,7 @@ The **engine** represents the background processing and storage layer doing the 
 Below ...
 
 ## Unresolved questions & open contradictions
-- think we need to centralize it like the others the mcp that is: That makes complete sense and aligns directly with the architectural pattern you've established across **IronLedger**. 
+- think we need to centralize it like the others the mcp that is: That makes complete sense and aligns directly with the architectural pattern you've established across **IronLedger**.
 
 Just like you lifted `projection_status` into `src/ironledger/project/query.py`...
 - Implementation Plan
@@ -185,7 +185,7 @@ Schema weight: 600 tokens (3 tools: search, balances, projection_status).
 Transport: Standard I/O via Python (python -m ironledger.cli mcp --db C:/dev/IronLedger/ironledger.db --ledger-dir C:/dev/IronLedger/ledger).
 Proposed Changes
 MCP Governance Registry & Profiles
-[MODIFY] 
+[MODIFY]
 mcp-registry.toml
 Add ironledger server definition under [servers.ironledger]:
 toml
@@ -207,24 +207,24 @@ Run node scripts/mcp-governance/cli.mjs sync to surgically update:
 %APPDATA%/Claude/claude_desktop_config.json (Claude Desktop)
 ~/.gemini/antigravity/mcp_config.json (Antigravity IDE)
 Documentation
-[MODIFY] 
+[MODIFY]
 mcp-governance-architecture.md
 Update profile manifest table with new tool counts, token weights, and headroom.
 Verification Plan
 Automated Verification
-node scripts/mcp-governance/cli.mjs validate 
+node scripts/mcp-governance/cli.mjs validate
 →
 → verify exit code 0 and budget headroom.
-node scripts/mcp-governance/cli.mjs status 
+node scripts/mcp-governance/cli.mjs status
 →
 → verify all 5 clients report OK.
-node scripts/mcp-governance/cli.mjs sync --dry-run 
+node scripts/mcp-governance/cli.mjs sync --dry-run
 →
 → verify diffs.
-Execute node scripts/mcp-governance/cli.mjs sync 
+Execute node scripts/mcp-governance/cli.mjs sync
 →
 → verify atomic write success.
-Inspect generated sections in ~/.codex/config.toml, ~/.claude.json, ~/.gemini/antigravity/mcp_config.json, and claude_desktop_config.json.: This implementation plan is **airtight** and aligns directly with centralizing IronLedger under your broader MCP governance architecture. 
+Inspect generated sections in ~/.codex/config.toml, ~/.claude.json, ~/.gemini/antigravity/mcp_config.json, and claude_desktop_config.json.: This implementation plan is **airtight** and aligns directly with centralizing IronLedger under your broader MCP governance architecture.
 
 ### Why this plan is structurally solid:
 
@@ -234,7 +234,7 @@ Inspect generated sections in ~/.codex/config.toml, ~/.claude.json, ~/.gemini/an
 Summary of Completed Work
 Security Review & Hardening Applied (C:\dev\IronLedger):
 
-Resolved all findings from 
+Resolved all findings from
 ironledger-phase-5-mcp-REVIEW.md
  (host-suffix regex hardening, TimeoutError handling, clean JSON-RPC -32603 error bubbling, entrypoint guard cleanup).
 Confirmed full test suite passes with 521 tests passing.
@@ -243,7 +243,7 @@ Pre-Sync Safety Backup:
 Created configuration snapshots under C:\dev\.sigil\backups\mcp-configs-2026-09-10T00-26-08-022Z\ for Codex CLI, Claude CLI, Claude Desktop, and Antigravity.
 Registry & Profile Governance:
 
-Defined [servers.ironledger] with 600-token schema weight in 
+Defined [servers.ironledger] with 600-token schema weight in
 .sigil/mcp-registry.toml
 .
 Added "ironledger" to dev and full profiles.
@@ -253,15 +253,15 @@ Live Protocol Verification:
 Verified JSON-RPC stdio protocol initialization and confirmed available tool list: search, balances, and projection_status.
 Governance Documentation & Commits:
 
-Created 
+Created
 IL-GOV-MCP-IRONLEDGER-001.md
- and updated 
+ and updated
 mcp-governance-architecture.md
 .
 Committed changes to C:\dev (feat(mcp-governance): fold ironledger read-only mcp server into canonical registry and client profiles).
-Detailed summary documented in 
+Detailed summary documented in
 walkthrough.md
-.: This is an outstanding, textbook execution of completing and governing Phase 5! 
+.: This is an outstanding, textbook execution of completing and governing Phase 5!
 
 By wrapping up the security review fixes, backing up client configurations, and cleanly syncing `ironledger` across al...
 - review recent activity in sources and repos: Here is a summary of the recent activity across your **IronLedger** repository and the external open-source projects in your sources:

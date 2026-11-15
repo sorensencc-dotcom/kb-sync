@@ -112,4 +112,3 @@ powershell.exe -ExecutionPolicy Bypass -File scripts/register-nlm-pack-count-tas
 ### 2. Master Pipeline Integration (`Stage 3B`)
 
 Embedded into `scripts/schedule-task-wrapper-KB-Sync-Master.ps1` as **Stage 3B: NotebookLM Pack-Count Invariant Verification** immediately following Stage 3 NotebookLM pack ingestion, providing immediate post-upload verification and updating `_status-feed/nlm_pack_counts.json`.
-

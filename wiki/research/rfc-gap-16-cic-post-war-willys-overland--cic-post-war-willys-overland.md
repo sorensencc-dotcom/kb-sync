@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-16-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-16-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-28-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-28-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
   > --- title: RFC: GAP-35--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - General Arnold's "Block Concept" category: research topic: rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-adja gap_id: GAP-35--castironchar
 

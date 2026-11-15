@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-59-cic-reddit--cic-reddit-open-contradiction.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-59-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-59-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-68-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-68-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-1-2** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-1-2.md`) [vector_only]:
   > --- title: RFC: GAP-40--cic-reddit - **CIC-Reddit under-sourced - \$1.2 Million Saved the Plant category: research topic: rfc-gap-40-cic-reddit--cic-reddit-under-sourced-1-2 gap_id: GAP-40--cic-reddit status: draft created_at: 2026-09-26T13:36:51.208
 

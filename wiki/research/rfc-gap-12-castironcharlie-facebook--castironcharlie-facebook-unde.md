@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: RFC: GAP-02 - **CIC - Ford Executive Dynamics & Politics adjacent-topics** category: research topic: rfc-gap-02--cic-ford-executive-dynamics-p gap_id: GAP-02 status: draft created_at: 2026-09-05T03:17:44.749Z expansion_method: heuristic re
 - **rfc-gap-09-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-09-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

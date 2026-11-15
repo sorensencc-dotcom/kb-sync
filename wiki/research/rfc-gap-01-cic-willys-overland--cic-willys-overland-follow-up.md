@@ -20,9 +20,9 @@ Whether former Ford executive Charles Sorensen directly recruited Michigan engin
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06** (`wiki/research/rfc-gap-06.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-74--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-74--cic-post-war-willys-ov
 

@@ -20,11 +20,11 @@ Industrial Giants at Willow Run (under-sourced - Rivet Volume and Fastening Meth
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-126-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-126-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-106-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-106-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

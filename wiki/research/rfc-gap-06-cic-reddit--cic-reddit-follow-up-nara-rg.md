@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-examine.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-t** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-t.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en.md`) [vector_only]:
   > --- title: RFC: GAP-08--cic-kb - **CIC-KB follow-up - Precision Engineering Bottlenecks Sperry M-7 Director / GAP-13** category: research topic: rfc-gap-08-cic-kb--cic-kb-follow-up-precision-en gap_id: GAP-08--cic-kb status: draft created_at: 2026-09
 

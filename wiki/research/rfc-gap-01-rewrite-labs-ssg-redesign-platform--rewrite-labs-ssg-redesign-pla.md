@@ -20,9 +20,9 @@ js or Astro to guarantee crawlable semantic HTML and fast performance [5-7].
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-10-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-07-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-02-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [vector_only]:
   > --- title: "RFC: GAP-02--rewrite-labs-ssg-redesign-platform - **Rewrite Labs SSG/Redesign Platform follow-up - Bounded Decision Model Architectural Evaluation `ACT-02`, Oct 1**" category: "research" topic: "rfc-gap-02-rewrite-labs-ssg-redesign-platfo
 

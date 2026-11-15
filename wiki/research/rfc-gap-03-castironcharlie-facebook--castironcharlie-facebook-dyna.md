@@ -20,11 +20,11 @@ Sorensen operated on the traditional Ford ethos developed at Highland Park, beli
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-dyna** (`wiki/research/rfc-gap-07-castironcharlie-facebook--castironcharlie-facebook-dyna.md`) [hybrid]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-dyna** (`wiki/research/rfc-gap-04-castironcharlie-facebook--castironcharlie-facebook-dyna.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

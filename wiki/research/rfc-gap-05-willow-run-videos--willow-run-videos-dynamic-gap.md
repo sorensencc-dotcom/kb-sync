@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-08.md","wiki/research/rfc-gap-07-willow-run-v
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-willow-run-videos--willow-run-videos-dynamic-gap** (`wiki/research/rfc-gap-07-willow-run-videos--willow-run-videos-dynamic-gap.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01-willow-run-videos--willow-run-videos-dyn-src-1fa** (`wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-dyn-src-1fa.md`) [vector_only]:
   > --- title: "RFC: GAP-01--willow-run-videos - **Willow Run Videos dyn-src-1fa3530d - The Origin of the Name" category: "research" topic: "rfc-gap-01-willow-run-videos--willow-run-videos-dyn-src-1fa" gap_id: "GAP-01--willow-run-videos" status: "draft"
 

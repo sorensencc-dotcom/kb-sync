@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-02-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: RFC: GAP-26--cic-daily-research - **CIC - Daily Research adjacent-topics - The Floating Sawmill category: research topic: rfc-gap-26-cic-daily-research--cic-daily-research-adjacent-t gap_id: GAP-26--cic-daily-research status: draft created
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

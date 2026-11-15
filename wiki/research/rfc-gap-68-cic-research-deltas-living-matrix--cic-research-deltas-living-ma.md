@@ -20,11 +20,11 @@ citations: ["wiki/research/2026-09-25/rfc-gap-01.md","wiki/research/rfc-gap-44-c
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **trm** (`wiki/research/2026-09-25/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-44-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-44-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
   > --- title: RFC: GAP-44--cic-daily-research - **CIC - Daily Research open-contradictions - The Contradiction category: research topic: rfc-gap-44-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-44--cic-daily-research status: draft create
 - **trm** (`wiki/research/2026-09-25/closed-loop-pipeline-adversarial.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

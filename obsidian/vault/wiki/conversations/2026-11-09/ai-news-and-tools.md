@@ -42,15 +42,15 @@ Avoid anything any source treats as a primary topic. The whole point is to find 
 * **Sources & Quotes**:
   1...
 - **Q:** What are the security implications of context compaction hijacking?
-  **Outcome:** Context compaction hijacking occurs when malicious instructions or misaligned behaviors are injected into the condensed summary that an AI harness generates to free up context space [1, 2]. 
+  **Outcome:** Context compaction hijacking occurs when malicious instructions or misaligned behaviors are injected into the condensed summary that an AI harness generates to free up context space [1, 2].
 
 Because compaction permanently discards raw conversation turns from the active context window and replaces t...
 - **Q:** In ai-news-radar, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
-  **Outcome:** As established in our previous review, **no primary documentary sources, technical specifications, or code repositories titled `ai-news-radar` exist in your notebook** [1-4]. 
+  **Outcome:** As established in our previous review, **no primary documentary sources, technical specifications, or code repositories titled `ai-news-radar` exist in your notebook** [1-4].
 
 However, examining the primary documentary sources for your actual documented news pipeline—the **`daily-ai-news-summary` i...
 - **Q:** In ai-news-radar, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
-  **Outcome:** While the exact string `ai-news-radar` does not exist as a standalone document title, the primary sources in your notebook document the architecture, contracts, and execution logs for your daily **"AI Daily Intelligence Radar" / `daily-ai-news-summary` pipeline** [1-3]. 
+  **Outcome:** While the exact string `ai-news-radar` does not exist as a standalone document title, the primary sources in your notebook document the architecture, contracts, and execution logs for your daily **"AI Daily Intelligence Radar" / `daily-ai-news-summary` pipeline** [1-3].
 
 Analyzing the primary speci...
 - **Q:** In ai-news-radar, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.
@@ -101,11 +101,11 @@ Avoid anything any source treats as a primary topic. The whole point is to find 
 ---
 
 ...
-- What are the security implications of context compaction hijacking?: Context compaction hijacking occurs when malicious instructions or misaligned behaviors are injected into the condensed summary that an AI harness generates to free up context space [1, 2]. 
+- What are the security implications of context compaction hijacking?: Context compaction hijacking occurs when malicious instructions or misaligned behaviors are injected into the condensed summary that an AI harness generates to free up context space [1, 2].
 
 Because ...
 - Analyze primary documentary sources for ai-news-radar: identify open contradictions, unresolved technical discrepancies, or diverging historical evidence regarding ai-news-radar.: **No primary documentary sources, technical specifications, or historical records specifically titled `ai-news-radar` exist in the notebook.** Consequently, there are no documented contradictions, unr...
-- In ai-news-radar, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.: As established in our previous review, **no primary documentary sources, technical specifications, or code repositories titled `ai-news-radar` exist in your notebook** [1-4]. 
+- In ai-news-radar, examine critical assertions, technical milestones, or architectural decisions that remain single-sourced without independent corroboration. Specify verifiable provenance records required to ground these claims.: As established in our previous review, **no primary documentary sources, technical specifications, or code repositories titled `ai-news-radar` exist in your notebook** [1-4].
 
 However, examining the ...
 - Analyze primary documentary sources for ai-news-radar: identify open contradictions, unresolved technical discrepancies, or diverging historical evidence regarding ai-news-radar.: **No primary documentary sources, code repositories, or technical specifications specifically titled `ai-news-radar` exist in the notebook passages.** Consequently, there are no documented contradicti...

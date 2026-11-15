@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-54-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-54-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th** (`wiki/research/rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th.md`) [vector_only]:
   > --- title: RFC: GAP-43--cic-reddit - **CIC-Reddit under-sourced - 1. The Wayne County \$2 Delivery Tax & "Frame 141" Tax Turn** category: research topic: rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th gap_id: GAP-43--cic-reddit status: draft cr
 

@@ -20,11 +20,11 @@ citations: ["product:icf/Architecture.md","wiki/research/rfc-gap-01-cic-kb--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **architecture** (`product:icf/Architecture.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01-cic-kb--cic-kb-follow-up-1-software-a** (`wiki/research/rfc-gap-01-cic-kb--cic-kb-follow-up-1-software-a.md`) [vector_only]:
   > --- title: RFC: GAP-01--cic-kb - **CIC-KB follow-up - 1. Software Architecture, Autonomous Agents & Infrastructure** category: research topic: rfc-gap-01-cic-kb--cic-kb-follow-up-1-software-a gap_id: GAP-01--cic-kb status: draft created_at: 2026-09-1
 - **home** (`product:trm/Home.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

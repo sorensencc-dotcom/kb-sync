@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-65-willow-run-videos--willow-run-videos-under
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-65-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-65-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-85-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-85-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-32--willow-run-videos - **Willow Run Videos under-sourced - John Dodge's Office Slap category: research topic: rfc-gap-32-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-32--willow-run-videos status: draft created_at:
 

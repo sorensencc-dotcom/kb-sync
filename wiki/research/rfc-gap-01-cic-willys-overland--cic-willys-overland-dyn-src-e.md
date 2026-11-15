@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-10-cic-willys-overland--cic-willys-overland-d
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e** (`wiki/research/rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-09-cic-willys-overland--cic-willys-overland-dyn-src-e** (`wiki/research/rfc-gap-09-cic-willys-overland--cic-willys-overland-dyn-src-e.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [vector_only]:
   > --- title: rfc-gap-04 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-04  ## Candidate Evidence: Remote Agent Finding 2026-09-22T19:11:44.937Z <!-- finding_id: 309bea4286a89bdbec80baf93c51a80483ae0e2cb6e90711b202613f6804fbea
 

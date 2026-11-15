@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-03-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e** (`wiki/research/rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e.md`) [vector_only]:
   > --- title: "RFC: GAP-10--cic-willys-overland - **CIC - Willys-Overland dyn-src-eada176a - Executive Hiring & Management Conflict**" category: "research" topic: "rfc-gap-10-cic-willys-overland--cic-willys-overland-dyn-src-e" gap_id: "GAP-10--cic-willy
 - **rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-01-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

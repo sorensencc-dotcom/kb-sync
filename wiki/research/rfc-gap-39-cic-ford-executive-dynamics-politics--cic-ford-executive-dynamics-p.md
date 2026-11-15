@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-39-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-39-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05** (`wiki/research/rfc-gap-05.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
   > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 

@@ -20,11 +20,11 @@ Throughout the planning and high-pressure construction of Willow Run, Sorensen r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06** (`wiki/research/rfc-gap-06.md`) [vector_only]:
   > --- title: rfc-gap-06 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-06  ## Candidate Evidence: Remote Agent Finding 2026-09-23T07:08:44.590Z <!-- finding_id: ce9ef3095363541af637a8a4efdabd1958bc49d48e15b43ba63e4eb900dc3cfd
 - **rfc-gap-02-cic-post-war--cic-post-war-dyn-src-85652703** (`wiki/research/rfc-gap-02-cic-post-war--cic-post-war-dyn-src-85652703.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

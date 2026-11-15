@@ -20,11 +20,11 @@ Concurrency is governed by optimistic validation against the latest accepted hea
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-sigil-protocol-federation--sigil-protocol-federation-fol** (`wiki/research/rfc-gap-01-sigil-protocol-federation--sigil-protocol-federation-fol.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-48-cic-kb--cic-kb-open-contradictions-hi** (`wiki/research/rfc-gap-48-cic-kb--cic-kb-open-contradictions-hi.md`) [vector_only]:
   > --- title: RFC: GAP-48--cic-kb - **CIC-KB open-contradictions - Historical Revocation Authority Split** category: research topic: rfc-gap-48-cic-kb--cic-kb-open-contradictions-hi gap_id: GAP-48--cic-kb status: draft created_at: 2026-09-19T20:28:05.66
 - **readme** (`product:helix/README.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

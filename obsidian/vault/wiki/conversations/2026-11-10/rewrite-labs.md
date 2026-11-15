@@ -41,7 +41,7 @@ Ea...
 
 ## Technical discoveries & entity linkages
 - **Q:** Yes
-  **Finding:** Integrating **`Extruct`** and **`Crawl4AI`** into our `reimagine-it` target discovery scanner provides a powerful, dual-layer upgrade for **Rewrite Labs**. 
+  **Finding:** Integrating **`Extruct`** and **`Crawl4AI`** into our `reimagine-it` target discovery scanner provides a powerful, dual-layer upgrade for **Rewrite Labs**.
 
 By pairing **`Crawl4AI`** (for RAG-optimized DOM distillation) [1, 2] with **`Extruct`** (for microdata and JSON-LD schema extraction) [1, 2],...
 - **Q:** Ok
@@ -74,7 +74,7 @@ Under the **Knowledge P...
 Under the **Knowledge Plane Partitioning Prot...
 
 ## Unresolved questions & open contradictions
-- Yes: Integrating **`Extruct`** and **`Crawl4AI`** into our `reimagine-it` target discovery scanner provides a powerful, dual-layer upgrade for **Rewrite Labs**. 
+- Yes: Integrating **`Extruct`** and **`Crawl4AI`** into our `reimagine-it` target discovery scanner provides a powerful, dual-layer upgrade for **Rewrite Labs**.
 
 By pairing **`Crawl4AI`** (for RAG-optimiz...
 - Ok: I have built and published the **`discovery_scanner.py`** proof-of-concept pipeline and generated the sample **`discovery_signals.json`** payload in your Studio panel.

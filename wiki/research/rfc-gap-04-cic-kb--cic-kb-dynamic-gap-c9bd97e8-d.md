@@ -20,11 +20,11 @@ Specifications and architecture documentation spanning Phase 1, Phase 2, Sandbox
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-kb--cic-kb-dynamic-gap-50faea74-d** (`wiki/research/rfc-gap-05-cic-kb--cic-kb-dynamic-gap-50faea74-d.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-dodge-brothers-vs-henry-ford-g** (`wiki/research/rfc-gap-04-dodge-brothers-vs-henry-ford-g.md`) [vector_only]:
   > --- title: "RFC: GAP-04 - Dodge brothers vs Henry Ford governance and profit reinvestment" category: "research" topic: "rfc-gap-04-dodge-brothers-vs-henry-ford-g" gap_id: "GAP-04" status: "draft" created_at: "2026-08-23T01:58:16.715Z" citations: "doc
 - **raw-source-staging** (`wiki/concepts/raw-source-staging.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

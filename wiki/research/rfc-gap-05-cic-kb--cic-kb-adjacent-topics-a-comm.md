@@ -20,11 +20,11 @@ A commit log in `charlie-deep-research` explicitly cites Foreign Claims Settleme
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **trm-drive-transport-adapter-spec** (`wiki/research/trm-drive-transport-adapter-spec.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-21-cic-reddit--cic-reddit-adjacent-topics-hu** (`wiki/research/rfc-gap-21-cic-reddit--cic-reddit-adjacent-topics-hu.md`) [vector_only]:
   > --- title: RFC: GAP-21--cic-reddit - **CIC-Reddit adjacent-topics - Hungarian Team category: research topic: rfc-gap-21-cic-reddit--cic-reddit-adjacent-topics-hu gap_id: GAP-21--cic-reddit status: draft created_at: 2026-09-22T14:08:17.853Z expansion_
 - **rfc-gap-98-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-98-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

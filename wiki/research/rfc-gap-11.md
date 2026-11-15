@@ -1,6 +1,5 @@
 # RFC: GAP-11
 
-
 ## Candidate Evidence: Remote Agent Finding (2026-09-28T02:51:13.678Z)
 <!-- finding_id: 925d9ce14fa090e64c7bdf573da49ee07d37b8556f5af2c896a4e05cfd123383 -->
 - **Agent Origin**: `grok`

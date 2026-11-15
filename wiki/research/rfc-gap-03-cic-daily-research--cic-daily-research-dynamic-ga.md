@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-04-cic-daily-research--cic-daily-research-dyn
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-cic-daily-research--cic-daily-research-dynamic-ga** (`wiki/research/rfc-gap-04-cic-daily-research--cic-daily-research-dynamic-ga.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-02-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: RFC: GAP-02--cic-daily-research - **CIC - Daily Research follow-up - The Objective category: research topic: rfc-gap-02-cic-daily-research--cic-daily-research-follow-up gap_id: GAP-02--cic-daily-research status: draft created_at: 2026-09-2
 - **rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-22-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

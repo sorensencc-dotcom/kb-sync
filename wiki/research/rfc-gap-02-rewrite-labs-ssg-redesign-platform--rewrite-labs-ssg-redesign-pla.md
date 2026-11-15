@@ -20,9 +20,9 @@ Strategic roadmaps incorporated **P1 anti-template aesthetic constraints** to by
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-10-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-07-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [lexical_only]:
-  > 
+  >
 - **rfc-act-03-evaluate-muse-wonder-active-focus-evaluate-meta-muse-wonder-api** (`wiki/research/rfc-act-03-evaluate-muse-wonder-active-focus.md`) [vector_only]:
   > --- title: "RFC: act-03-evaluate-muse-wonder-active-focus - Evaluate Meta Muse Wonder API Latency and Active Focus Guardrails for Client Workflows" category: "research" topic: "rfc-act-03-evaluate-muse-wonder-active-focus-evaluate-meta-muse-wonder-ap
 

@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
   > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 - **rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-42-cic-reddit--cic-reddit-under-sourced-the.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

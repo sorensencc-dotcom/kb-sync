@@ -20,11 +20,11 @@ citations: ["wiki/research/2026-09-25/rfc-gap-01.md","wiki/research/rfc-gap-03--
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **trm** (`wiki/research/2026-09-25/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-03--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-03 - **Willow Run Videos under-sourced** category: research topic: rfc-gap-03--willow-run-videos-under-sourc gap_id: GAP-03 status: draft created_at: 2026-09-05T03:18:15.023Z expansion_method: heuristic retrieval_mode: hybrid-rrf
 - **trm-drive-transport-adapter-spec** (`wiki/research/trm-drive-transport-adapter-spec.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-04.md","wiki/research/
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-87-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

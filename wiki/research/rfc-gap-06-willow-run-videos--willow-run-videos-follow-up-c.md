@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-05-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the.md`) [vector_only]:
   > --- title: RFC: GAP-52--cic-reddit - **CIC-Reddit under-sourced - The Grounded Reality category: research topic: rfc-gap-52-cic-reddit--cic-reddit-under-sourced-the gap_id: GAP-52--cic-reddit status: draft created_at: 2026-09-19T21:26:27.885Z expansi
 

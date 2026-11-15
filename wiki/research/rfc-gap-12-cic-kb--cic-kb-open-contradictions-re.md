@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-10-cic-kb--cic-kb-open-contradictions-1** (`wiki/research/rfc-gap-10-cic-kb--cic-kb-open-contradictions-1.md`) [vector_only]:
   > --- title: "RFC: GAP-10--cic-kb - **CIC-KB open-contradictions - 1.**" category: "research" topic: "rfc-gap-10-cic-kb--cic-kb-open-contradictions-1" gap_id: "GAP-10--cic-kb" status: "draft" created_at: "2026-10-15T12:46:02.306Z" expansion_method: "he
 

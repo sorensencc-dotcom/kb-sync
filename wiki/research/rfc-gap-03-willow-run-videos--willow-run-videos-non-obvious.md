@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-dynam
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-willow-run-videos--willow-run-videos-dynamic-gap** (`wiki/research/rfc-gap-11-willow-run-videos--willow-run-videos-dynamic-gap.md`) [lexical_only]:
-  > 
+  >
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Under-Sourced Assertions" category: research topic: cic-ford-executive-dynamics-undersourced-assertions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Acces
 - **rfc-gap-03-willow-run-videos--willow-run-videos-non-obvious** (`wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-non-obvious.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

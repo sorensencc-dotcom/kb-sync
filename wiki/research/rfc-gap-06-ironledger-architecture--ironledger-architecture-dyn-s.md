@@ -20,9 +20,9 @@ citations: ["wiki/concepts/local-context-cache.md","docs/kb/notebooklm-sync/arch
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **local-context-cache** (`wiki/concepts/local-context-cache.md`) [hybrid]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [lexical_only]:
-  > 
+  >
 - **readme** (`product:helix/README.md`) [vector_only]:
   > <!-- title: "Helix" status: active owner: chris last-reviewed: 2026-09-27 brand: helix -->  # Helix  Helix is a local Windows personal-assistant foundation for governed engineering work. It provides a durable local daemon, operator-facing CLI/browser
 

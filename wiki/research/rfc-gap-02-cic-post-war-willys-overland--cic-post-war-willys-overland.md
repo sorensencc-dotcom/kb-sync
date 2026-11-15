@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-02-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-04-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-17-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-17-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: RFC: GAP-17--cic-daily-research - **CIC - Daily Research follow-up - The Target category: research topic: rfc-gap-17-cic-daily-research--cic-daily-research-follow-up gap_id: GAP-17--cic-daily-research status: draft created_at: 2026-09-19T2
 

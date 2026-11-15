@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-05-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-05-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-50-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **kb** (`wiki/concepts/2026-09-25/deterministic-fs-sync-patterns-nodejs.md`) [vector_only]:
   > --- source: copilot skill: drive-it topic: kb title: Deterministic File System Sync Patterns in Node.js created: 2026-09-25T20:06:50Z folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g status: drop category: wiki sourceRepository: kb-sync ---  ## Findings
 

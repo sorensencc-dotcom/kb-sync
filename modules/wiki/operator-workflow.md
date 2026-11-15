@@ -697,4 +697,3 @@ Fix: Re-read pack, reconcile descriptions, add Implementation Note explaining di
 
 ### Issue: "Circular dependency A ↔ B"
 Fix: Add note to each page explaining circularity, or restructure to break cycle (only if design allows).
-

@@ -20,11 +20,11 @@ Industrial Giants at Willow Run (follow-up - The Fitment Problem:)**: **The Fitm
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [vector_only]:
   > --- title: rfc-gap-01 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-01  ## Candidate Evidence: Remote Agent Finding 2026-09-22T19:00:11.404Z <!-- finding_id: 45df4587190c857a4e344d58521ceef32ab233445b593d0316bf8c6e94510aa9
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

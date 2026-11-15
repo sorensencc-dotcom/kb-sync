@@ -20,11 +20,11 @@ citations: ["wiki/concepts/fail-soft-orchestration.md","docs/kb/notebooklm-sync/
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **fail-soft-orchestration** (`wiki/concepts/fail-soft-orchestration.md`) [lexical_only]:
-  > 
+  >
 - **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
   > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
 - **2026-08-02-intake-triage-manifest** (`product:trm/2026-08-02-intake-triage-manifest.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -69,7 +69,7 @@ This inquiry resolves the cadastral, architectural, and spatial assembly profile
 
 ### **1. Cadastral Identification & Tax F...
 - **Q:** Resolve open research gap in CIC - Miami Estate & Florida Retirement: "CIC - Miami Estate & Florida Retirement (follow-up - The 1952–1954 Ford Archives Oral History Dictaphone Belts and Transcripts)". Ground specific inquiry: Between October 1952 and October 1954, Sorensen recorded approximately 200 Dictaphone belts at his winter residence at **5185 North Bay Road, Miami Beach, Florida** (and Detroit),
-  **Finding:** The open research gap regarding **"The 1952–1954 Ford Archives Oral History Dictaphone Belts and Transcripts"** is resolved by the archival record preserved in *The Reminiscences of Charles E. Sorensen* (Accession 64.167.65) within the Ford Motor Company Archives Oral History Section [1, 2]. 
+  **Finding:** The open research gap regarding **"The 1952–1954 Ford Archives Oral History Dictaphone Belts and Transcripts"** is resolved by the archival record preserved in *The Reminiscences of Charles E. Sorensen* (Accession 64.167.65) within the Ford Motor Company Archives Oral History Section [1, 2].
 
 ---
 

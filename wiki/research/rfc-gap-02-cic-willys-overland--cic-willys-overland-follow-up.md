@@ -20,9 +20,9 @@ How Jabez Love successfully patented his 3-point hitch for the CJ-2A without pro
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-74-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-74-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-26-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-26-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-05-harry-bennett-service-departme** (`wiki/research/rfc-gap-05-harry-bennett-service-departme.md`) [vector_only]:
   > --- title: "RFC: GAP-05 - Harry Bennett Service Department authority and plant oversight" category: "research" topic: "rfc-gap-05-harry-bennett-service-departme" gap_id: "GAP-05" status: "draft" created_at: "2026-08-23T01:58:16.717Z" citations: "docs
 

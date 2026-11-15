@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-24-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-12-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-12-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-53-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-53-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-53--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland adjacent-topics - 6.** category: research topic: rfc-gap-53-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-53--cic-post-war-willys-overl
 

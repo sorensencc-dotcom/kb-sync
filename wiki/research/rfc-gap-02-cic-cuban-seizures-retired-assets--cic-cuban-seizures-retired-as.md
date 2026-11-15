@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-01-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Unresolved Contradictions" category: research topic: cic-ford-executive-dynamics-unresolved-contradictions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Ac
 

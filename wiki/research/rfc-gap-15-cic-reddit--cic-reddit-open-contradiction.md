@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-52-cic-reddit--cic-reddit-open-contradiction.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-52-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-52-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-94-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-94-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: RFC: GAP-94--willow-run-videos - **Willow Run Videos open-contradictions - The Architectural Record category: research topic: rfc-gap-94-willow-run-videos--willow-run-videos-open-contra gap_id: GAP-94--willow-run-videos status: draft creat
 - **rfc-gap-39-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-39-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

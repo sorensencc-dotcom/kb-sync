@@ -20,9 +20,9 @@ Love’s patent was engineered and granted specifically as an **add-on conversio
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-willys-overland--cic-willys-overland-under-sou** (`wiki/research/rfc-gap-06-cic-willys-overland--cic-willys-overland-under-sou.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-cic-willys-overland--cic-willys-overland-follow-up** (`wiki/research/rfc-gap-02-cic-willys-overland--cic-willys-overland-follow-up.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-77-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-77-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-77--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-77-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-77--cic-post-war-willys-ov
 

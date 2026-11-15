@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-34-cic-reddit--cic-reddit-adjacent-topics-ca.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-34-cic-reddit--cic-reddit-adjacent-topics-ca** (`wiki/research/rfc-gap-34-cic-reddit--cic-reddit-adjacent-topics-ca.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-ca** (`wiki/research/rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-ca.md`) [vector_only]:
   > --- title: RFC: GAP-14--cic-reddit - **CIC-Reddit adjacent-topics - Cargo Aircraft Assembly category: research topic: rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-ca gap_id: GAP-14--cic-reddit status: draft created_at: 2026-09-20T11:05:32.603Z e
 - **rfc-gap-26-cic-reddit--cic-reddit-adjacent-topics-ca** (`wiki/research/rfc-gap-26-cic-reddit--cic-reddit-adjacent-topics-ca.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

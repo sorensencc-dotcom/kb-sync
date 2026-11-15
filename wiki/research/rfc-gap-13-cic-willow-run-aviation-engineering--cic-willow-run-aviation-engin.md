@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-13-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-13-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-57--willow-run-videos - **Willow Run Videos under-sourced - The Claim category: research topic: rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-57--willow-run-videos status: draft created_at: 2026-09-19T20:
 

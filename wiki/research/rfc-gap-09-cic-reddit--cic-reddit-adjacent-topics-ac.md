@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01.md","wiki/research/the-henry-ford-sorensen
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [hybrid]:
-  > 
+  >
 - **the-henry-ford-sorensen-photographic-accessions** (`wiki/research/the-henry-ford-sorensen-photographic-accessions.md`) [vector_only]:
   > --- title: The Henry Ford: Charles E. Sorensen Archival & Photographic Accessions category: research topic: the-henry-ford-sorensen-photographic-accessions status: verified created_at: 2026-09-22 citations:  - "https: //www.thehenryford.org/collectio
 - **rfc-gap-07** (`wiki/research/rfc-gap-07.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

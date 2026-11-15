@@ -20,11 +20,11 @@ A local service backed by PostgreSQL using operating-system permissions, local H
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-ironledger-architecture--ironledger-architecture-dyn-s** (`wiki/research/rfc-gap-05-ironledger-architecture--ironledger-architecture-dyn-s.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-ironledger-architecture--ironledger-architecture-dyn-s** (`wiki/research/rfc-gap-06-ironledger-architecture--ironledger-architecture-dyn-s.md`) [hybrid]:
-  > 
+  >
 - **architecture** (`product:icf/Architecture.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

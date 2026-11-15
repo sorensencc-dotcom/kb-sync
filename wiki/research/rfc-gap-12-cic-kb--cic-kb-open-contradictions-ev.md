@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-12-cic-kb--cic-kb-open-contradictions-re.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-12-cic-kb--cic-kb-open-contradictions-re** (`wiki/research/rfc-gap-12-cic-kb--cic-kb-open-contradictions-re.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-kb--cic-kb-open-contradictions-ar** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-ar.md`) [vector_only]:
   > --- title: "RFC: GAP-13--cic-kb - **CIC-KB open-contradictions - Archival Evidence Rejection in Git History**" category: "research" topic: "rfc-gap-13-cic-kb--cic-kb-open-contradictions-ar" gap_id: "GAP-13--cic-kb" status: "draft" created_at: "2026-1
 

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-08.md","wiki/research/rfc-gap-27.md","wiki/re
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-27** (`wiki/research/rfc-gap-27.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-04--cic-ford-executive-dynamics-p.md`) [vector_only]:
   > --- title: RFC: GAP-04 - **CIC - Ford Executive Dynamics & Politics open-contradictions** category: research topic: rfc-gap-04--cic-ford-executive-dynamics-p gap_id: GAP-04 status: draft created_at: 2026-09-05T03:17:44.780Z expansion_method: heuristi
 

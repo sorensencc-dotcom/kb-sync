@@ -20,11 +20,11 @@ Preserved by the **Local History and Genealogy Department of the Toledo Lucas Co
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07** (`wiki/research/rfc-gap-07.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-31-cic-kb--cic-kb-adjacent-topics-the-al** (`wiki/research/rfc-gap-31-cic-kb--cic-kb-adjacent-topics-the-al.md`) [vector_only]:
   > --- title: RFC: GAP-31--cic-kb - **CIC-KB adjacent-topics - The Al-Toy "Jeep Day" Banquet July 1945** category: research topic: rfc-gap-31-cic-kb--cic-kb-adjacent-topics-the-al gap_id: GAP-31--cic-kb status: draft created_at: 2026-09-19T20:27:43.847Z
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

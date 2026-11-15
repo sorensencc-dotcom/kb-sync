@@ -20,9 +20,9 @@ citations: ["product:trm/Architecture-&-Data-Model.md","product:trm/_Sidebar.md"
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [hybrid]:
-  > 
+  >
 - **_sidebar** (`product:trm/_Sidebar.md`) [lexical_only]:
-  > 
+  >
 - **cli-reference---commands** (`product:trm/CLI-Reference-&-Commands.md`) [vector_only]:
   > <!-- title: "CLI Reference & Commands" status: active owner: chris last-reviewed: 2026-09-26 brand: cic -->  # CLI Reference & Commands  The `trm` command-line interface provides tools for creating topic trees, ingesting raw and structured media, run
 

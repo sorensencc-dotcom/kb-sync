@@ -20,11 +20,11 @@ Corroborates that Willys-Overland was frozen out of primary component and sheet 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **trm** (`wiki/research/2026-10-12/fifo-week-qa.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-74--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-74--cic-post-war-willys-ov
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

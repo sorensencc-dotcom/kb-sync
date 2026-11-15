@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-05-cic-reddit--cic-reddit-adjacent-topics-1.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-reddit--cic-reddit-adjacent-topics-1** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-adjacent-topics-1.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-cic-reddit--cic-reddit-adjacent-topics-na** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-adjacent-topics-na.md`) [lexical_only]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
   > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
 

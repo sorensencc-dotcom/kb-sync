@@ -27,7 +27,7 @@ Consolidated 8 discussion turn(s) across 1 active session(s) on 2026-09-27. Grou
 
 ## Technical discoveries & entity linkages
 - **Q:** How does the KB - Operations domain manage system health?
-  **Finding:** The **KB - Operations** domain manages system health by serving as the operational nerve center for infrastructure, local daemon runtimes, system health telemetry, devops runbooks, and console monitoring interfaces [1]. 
+  **Finding:** The **KB - Operations** domain manages system health by serving as the operational nerve center for infrastructure, local daemon runtimes, system health telemetry, devops runbooks, and console monitoring interfaces [1].
 
 It maintains system health through several core mechanisms:
 
@@ -45,7 +45,7 @@ It maintains system health through several core mechanisms:
 
 * **Core Software Architecture (Domain 2)**: It is a core software component focusing on the **Phase 15 inbox attach & PDF wedge** as well as the **workbench HUD v0.15.0** [1]. Its software codebase assets ar...
 - **Q:** https://share.gemini.google/Vk4gOoxLnOhm
-  **Finding:** I have added the shared link (**Gemini - direct access to Google AI**) to your notebook sources. 
+  **Finding:** I have added the shared link (**Gemini - direct access to Google AI**) to your notebook sources.
 
 💡 Would you like a summary of its key takeaways or insights from this newly added source?...
 - **Q:** Summarize the shared source's insights
@@ -73,7 +73,7 @@ It maintains system health through several core mechanisms:
 - Explore IronLedger role: **IronLedger** serves a dual role across core software architecture and system operations:
 
 * **Core Software Architecture (Domain 2)**: It is a core software component focusing on the **Phase 15 inbo...
-- https://share.gemini.google/Vk4gOoxLnOhm: I have added the shared link (**Gemini - direct access to Google AI**) to your notebook sources. 
+- https://share.gemini.google/Vk4gOoxLnOhm: I have added the shared link (**Gemini - direct access to Google AI**) to your notebook sources.
 
 💡 Would you like a summary of its key takeaways or insights from this newly added source?...
 - Summarize the shared source's insights: The newly added shared link source (**Gemini - direct access to Google AI**) is currently unselected in your Sources panel, so its specific text content was not included in the active query context fo...

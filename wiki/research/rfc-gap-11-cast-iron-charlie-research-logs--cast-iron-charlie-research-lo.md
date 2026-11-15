@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-118-cic-ford-executive-dynamics-politics--cic
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-118-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-118-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-07-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: "RFC: GAP-07--willow-run-videos - **Willow Run Videos open-contradictions - The Location of Sorensen’s Overnight Sketch" category: "research" topic: "rfc-gap-07-willow-run-videos--willow-run-videos-open-contra" gap_id: "GAP-07--willow-run-
 

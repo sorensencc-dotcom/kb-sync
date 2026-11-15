@@ -20,11 +20,11 @@ citations: ["wiki/entities/profile-gate-baselines.ps1.md","wiki/research/rfc-gap
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **profile-gate-baselines-ps1** (`wiki/entities/profile-gate-baselines.ps1.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-05-cic-kb--cic-kb-under-sourced-2-histor** (`wiki/research/rfc-gap-05-cic-kb--cic-kb-under-sourced-2-histor.md`) [vector_only]:
   > --- title: RFC: GAP-05--cic-kb - **CIC-KB under-sourced - 2. Historical, Industrial & Archival Claims** category: research topic: rfc-gap-05-cic-kb--cic-kb-under-sourced-2-histor gap_id: GAP-05--cic-kb status: draft created_at: 2026-09-20T10:41:00.53
 - **performance-benchmark-ts** (`wiki/entities/performance-benchmark.ts.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

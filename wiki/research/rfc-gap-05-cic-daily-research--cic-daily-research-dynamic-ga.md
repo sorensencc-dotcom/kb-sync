@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-04-cic-post-war--cic-post-war-dynamic-gap-b81
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-cic-post-war--cic-post-war-dynamic-gap-b81d** (`wiki/research/rfc-gap-04-cic-post-war--cic-post-war-dynamic-gap-b81d.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-cic-daily-research--cic-daily-research-dynamic-ga** (`wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-dynamic-ga.md`) [lexical_only]:
-  > 
+  >
 - **fifo-week-qa-2026-11-02-to-2026-11-09** (`wiki/research/fifo-week-qa-2026-11-02-to-2026-11-09.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

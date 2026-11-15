@@ -20,11 +20,11 @@ The active source contains no records or information regarding household managem
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-personal-os--personal-os-household-utiliti** (`wiki/research/rfc-gap-01-personal-os--personal-os-household-utiliti.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-06-personal-os--personal-os-household-utiliti** (`wiki/research/rfc-gap-06-personal-os--personal-os-household-utiliti.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

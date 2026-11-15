@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-inspect.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-cic-reddit--cic-reddit-follow-up-inspect** (`wiki/research/rfc-gap-04-cic-reddit--cic-reddit-follow-up-inspect.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-3** (`wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-3.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [vector_only]:
   > --- title: RFC: GAP-02--cic-cuban-seizures-retired-assets - **CIC - Cuban Seizures & Retired Assets follow-up - Benson Ford Research Center BFRC category: research topic: rfc-gap-02-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as gap
 

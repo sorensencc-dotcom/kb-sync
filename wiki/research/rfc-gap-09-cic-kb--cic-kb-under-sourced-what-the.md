@@ -20,11 +20,11 @@ What the Selected Sources Do Cover
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-14-cic-kb--cic-kb-open-contradictions-wh** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-open-contradictions-wh.md`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

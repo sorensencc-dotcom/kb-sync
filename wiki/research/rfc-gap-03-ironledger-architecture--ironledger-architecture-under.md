@@ -20,11 +20,11 @@ The currently selected source ("GitHub - vult-ai/vult · GitHub") does not conta
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **home** (`product:trm/Home.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm** (`wiki/research/rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm.md`) [vector_only]:
   > --- title: RFC: GAP-36--cic-kb - **CIC-KB under-sourced - 0.8B VLM OCR Accuracy Benchmark** category: research topic: rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm gap_id: GAP-36--cic-kb status: draft created_at: 2026-09-19T20:27:51.233Z expansion
 - **readme** (`product:helix/README.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

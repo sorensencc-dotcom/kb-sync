@@ -20,11 +20,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-77-cic-reddit--cic-red
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-77-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-77-cic-reddit--cic-reddit-open-contradiction.md`) [vector_only]:
   > --- title: RFC: GAP-77--cic-reddit - **CIC-Reddit open-contradictions - Steven Puhl records **6,792 completed B-24s bui...** category: research topic: rfc-gap-77-cic-reddit--cic-reddit-open-contradiction gap_id: GAP-77--cic-reddit status: draft creat
 - **rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-05-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

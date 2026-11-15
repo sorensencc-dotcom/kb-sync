@@ -20,9 +20,9 @@ Jabez (J. ) Love worked as a **consultant to Willys-Overland during World War II
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-willys-overland--cic-willys-overland-under-sou** (`wiki/research/rfc-gap-06-cic-willys-overland--cic-willys-overland-under-sou.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-willys-overland--cic-willys-overland-follow-up** (`wiki/research/rfc-gap-01-cic-willys-overland--cic-willys-overland-follow-up.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-74--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - The Claim category: research topic: rfc-gap-74-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-74--cic-post-war-willys-ov
 

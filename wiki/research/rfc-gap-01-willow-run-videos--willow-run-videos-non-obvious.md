@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c** (`wiki/research/rfc-gap-06-willow-run-videos--willow-run-videos-follow-up-c.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-08-willow-run-videos--willow-run-videos-adjacent-to.md`) [lexical_only]:
-  > 
+  >
 - **types-ts** (`product:trm/entities/types.ts.md`) [vector_only]:
   > --- title: types.ts category: utilities status: active sourceRepository: trm sourceFile: src/scoring/types.ts sha256: de36b969268406c231ec765ac8fb50b9b26dd9195e707840122294dcede59a1b lastCommit: 2026-07-28T18:01:36-04:00 ---  # types.ts  ## Overview
 

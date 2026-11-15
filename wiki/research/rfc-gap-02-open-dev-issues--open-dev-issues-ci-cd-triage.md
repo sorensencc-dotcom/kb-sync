@@ -20,11 +20,11 @@ Anchors the relevant inbox notification timeline to **August 27, 2026**, verifyi
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-10-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [lexical_only]:
-  > 
+  >
 - **authentication** (`docs/kb/notebooklm-sync/authentication.md`) [vector_only]:
   > --- title: "authentication" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Authentication  This document details the configuration and security guidelines for authenticating the sync pipeline with Goog
 - **rfc-gap-09-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-09-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

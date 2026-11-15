@@ -20,11 +20,11 @@ citations: ["wiki/research/2026-09-25/rfc-gap-01.md","wiki/research/rfc-gap-13-c
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **trm** (`wiki/research/2026-09-25/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-13-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: RFC: GAP-13--cic-daily-research - **CIC - Daily Research follow-up - 5.** category: research topic: rfc-gap-13-cic-daily-research--cic-daily-research-follow-up gap_id: GAP-13--cic-daily-research status: draft created_at: 2026-09-19T20:32:4
 - **rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-92-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

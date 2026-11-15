@@ -20,11 +20,11 @@ citations: ["wiki/entities/targets.mjs.md","wiki/research/rfc-gap-54-castironcha
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-54-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-54-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [vector_only]:
   > --- title: RFC: GAP-54--castironcharlie-facebook - **CastIronCharlie-Facebook under-sourced - The Claim category: research topic: rfc-gap-54-castironcharlie-facebook--castironcharlie-facebook-unde gap_id: GAP-54--castironcharlie-facebook status: draf
 - **2026-08-02-intake-triage-manifest** (`product:trm/2026-08-02-intake-triage-manifest.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

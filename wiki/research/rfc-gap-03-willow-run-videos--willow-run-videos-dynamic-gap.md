@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-dynam
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-willow-run-videos--willow-run-videos-dynamic-gap** (`wiki/research/rfc-gap-03-willow-run-videos--willow-run-videos-dynamic-gap.md`) [lexical_only]:
-  > 
+  >
 - **cast-iron-charlie-weekly-scan-2026-11-09** (`wiki/research/cast-iron-charlie-weekly-scan-2026-11-09.md`) [vector_only]:
   > --- title: "Cast Iron Charlie weekly scan — Nov 9, 2026: five new finds" category: "biography" topic: "cast-iron-charlie-weekly-scan-2026-11-09" status: "ingested" source_action_id: "act-1794227599286" created: "2026-11-09" --- # Cast Iron Charlie we
 - **rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

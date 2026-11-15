@@ -96,7 +96,7 @@ Viewed .performance-baselines.json:1-25
   }
 }
 ```
-  **Finding:** The recalibration executed cleanly and generated the Schema Version 2 baseline artifact ([`.performance-baselines.json`](file:///c:/dev/.performance-baselines.json)). 
+  **Finding:** The recalibration executed cleanly and generated the Schema Version 2 baseline artifact ([`.performance-baselines.json`](file:///c:/dev/.performance-baselines.json)).
 
 ### **Baseline Profile Highlights**
 * **Runtime Environment**: Node.js `v24.18.0` running on AMD Ryzen 7 260 (16 cores).
@@ -108,12 +108,11 @@ Here is specifically what happens when you run it:
 
 1. **Executes Mult...
 - **Q:** proceed to drafting the `libp2p` P2P transport driver spec for Sigil
-  **Finding:** The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2]. 
+  **Finding:** The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2].
 
 This specification establishes a zero-config, self-healing peer-to-peer data plane—borrowing architec...
 - **Q:** What open questions or unresolved contradictions exist across these sources?
   **Finding:** Across the engineering specifications, protocol designs, pipeline run logs, and historical research dossiers in your knowledge base, several **open questions, unresolved contradictions, and technical edge cases** exist:
-
 
 category: "wiki"---
 
@@ -153,7 +152,7 @@ All changes for the `/why` skill and TRM synthesis integration are committed to 
 - `d4e46cd5` — `docs: add /why skill design spec`
 
 ---
-  **Finding:** All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**. 
+  **Finding:** All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**.
 
 Here is a summary of the 12-commit progression delivered across this branch:
 
@@ -277,7 +276,7 @@ Viewed .performance-baselines.json:1-25
 
 ### **Baseline Profile Highligh...
 - what does that do: Running `node scripts/run-benchmark.mjs --recalibrate` measures your machine's real-world execution speed and updates your local performance baseline ([`.performance-baselines.json`](file:///c:/dev/.p...
-- proceed to drafting the `libp2p` P2P transport driver spec for Sigil: The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2]. 
+- proceed to drafting the `libp2p` P2P transport driver spec for Sigil: The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2].
 
 T...
 - What open questions or unresolved contradictions exist across these sources?: Across the engineering specifications, protocol designs, pipeline run logs, and historical research dossiers in your knowledge base, several **open questions, unresolved contradictions, and technical ...
@@ -303,7 +302,7 @@ All changes for the `/why` skill and TRM synthesis integration are committed to 
 - `66babab6` — `docs: address second-opinion review findings in /why spec`
 - `d4e46cd5` — `docs: add /why skill design spec`
 
----: All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**. 
+---: All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**.
 
 Here is a summary of the 12-commit progression deliver...
 - Ran command: `gh pr checks 41`

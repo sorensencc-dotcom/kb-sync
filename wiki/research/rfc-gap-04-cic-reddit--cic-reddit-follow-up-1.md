@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-national.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-reddit--cic-reddit-follow-up-national** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-national.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th** (`wiki/research/rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th.md`) [vector_only]:
   > --- title: RFC: GAP-43--cic-reddit - **CIC-Reddit under-sourced - 1. The Wayne County \$2 Delivery Tax & "Frame 141" Tax Turn** category: research topic: rfc-gap-43-cic-reddit--cic-reddit-under-sourced-1-th gap_id: GAP-43--cic-reddit status: draft cr
 - **rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-de** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-de.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ Perplexity reports that in production workflows, fewer than 2% of submissions ar
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-sigil-protocol-federation--sigil-protocol-federation-fol** (`wiki/research/rfc-gap-01-sigil-protocol-federation--sigil-protocol-federation-fol.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-17-sigil-protocol-federation--sigil-protocol-federation-sys** (`wiki/research/rfc-gap-17-sigil-protocol-federation--sigil-protocol-federation-sys.md`) [vector_only]:
   > --- title: "RFC: GAP-17--sigil-protocol-federation - **Sigil Protocol & Federation system-improvements - Operational insight result.**" category: "research" topic: "rfc-gap-17-sigil-protocol-federation--sigil-protocol-federation-sys" gap_id: "GAP-17-
 - **rfc-gap-04-cic-kb--cic-kb-dynamic-gap-fdb3fecc-s** (`wiki/research/rfc-gap-04-cic-kb--cic-kb-dynamic-gap-fdb3fecc-s.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

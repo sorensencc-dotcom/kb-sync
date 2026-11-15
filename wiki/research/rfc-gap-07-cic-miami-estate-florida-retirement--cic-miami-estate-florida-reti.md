@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-03.md","wiki/research/rfc-gap-04-cic-miami-es
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03** (`wiki/research/rfc-gap-03.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-04-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
   > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 

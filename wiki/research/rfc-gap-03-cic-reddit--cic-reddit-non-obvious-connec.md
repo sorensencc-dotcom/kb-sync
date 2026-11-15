@@ -20,11 +20,11 @@ Construction chief Harry Hanson ordered the turn at **Station 20** to keep final
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-11-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-66-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-66-cic-reddit--cic-reddit-open-contradiction.md`) [vector_only]:
   > --- title: RFC: GAP-66--cic-reddit - **CIC-Reddit open-contradictions - The \$2 Delivery Tax Legend category: research topic: rfc-gap-66-cic-reddit--cic-reddit-open-contradiction gap_id: GAP-66--cic-reddit status: draft created_at: 2026-09-25T10:46:0
 - **rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-40-cic-reddit--cic-reddit-under-sourced-the.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

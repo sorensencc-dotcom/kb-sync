@@ -20,11 +20,11 @@ What Is Missing in the Currently Selected Sources The full primary archival doss
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 - **error-boundaries** (`docs/kb/notebooklm-sync/error-boundaries.md`) [vector_only]:
   > --- title: "error boundaries" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Error Boundaries  This document defines handling rules and troubleshooting guides for potential failures in the synchronizat
 - **rfc-gap-23-cic-kb--cic-kb-open-contradictions-5** (`wiki/research/rfc-gap-23-cic-kb--cic-kb-open-contradictions-5.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

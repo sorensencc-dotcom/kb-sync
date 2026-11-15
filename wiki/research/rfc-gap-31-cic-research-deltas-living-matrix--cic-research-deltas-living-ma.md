@@ -20,9 +20,9 @@ citations: ["trm-research-gaps.md","wiki/research/2026-09-25/rfc-gap-01.md","wik
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **trm** (`wiki/research/2026-09-25/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-40-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-40-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: RFC: GAP-40--cic-daily-research - **CIC - Daily Research adjacent-topics - 6.** category: research topic: rfc-gap-40-cic-daily-research--cic-daily-research-adjacent-t gap_id: GAP-40--cic-daily-research status: draft created_at: 2026-09-19T
 

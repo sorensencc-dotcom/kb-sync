@@ -20,11 +20,11 @@ citations: ["product:trm/2026-08-08-video-time-range-keyword-filter.md","wiki/re
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **2026-08-08-video-time-range-keyword-filter** (`product:trm/2026-08-08-video-time-range-keyword-filter.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-48-cic-kb--cic-kb-open-contradictions-hi** (`wiki/research/rfc-gap-48-cic-kb--cic-kb-open-contradictions-hi.md`) [vector_only]:
   > --- title: RFC: GAP-48--cic-kb - **CIC-KB open-contradictions - Historical Revocation Authority Split** category: research topic: rfc-gap-48-cic-kb--cic-kb-open-contradictions-hi gap_id: GAP-48--cic-kb status: draft created_at: 2026-09-19T20:28:05.66
 - **2026-08-08-video-time-range-keyword-filter** (`product:trm/superpowers/plans/2026-08-08-video-time-range-keyword-filter.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

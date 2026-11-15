@@ -28,7 +28,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-10. Gro
 - **Q:** How should we handle signed decision logs in multi-agent rooms?
   **Outcome:** To handle signed decision logs effectively in multi-agent rooms, the system must address the core operational challenge identified in collaborative agent platforms: tracking **"who learned what, what humans approved, and what state the next agent inherits"** [1]. In active rooms, raw conversational ...
 - **Q:** Resolve open research gap in Sigil Protocol & Federation: "Sigil Protocol & Federation (follow-up - Unverified Claims & Secondary Source Reliance)". Ground specific inquiry: The **Shared multi-agent rooms brief** explicitly flags several unconfirmed feature details as `(unverified)` [1]. (Drafted: RFC
-  **Outcome:** The **Shared multi-agent rooms brief** explicitly flags five key technical features and platform claims as **`(unverified)`** due to secondary source reliance, HTTP access blocks, or unconfirmed vendor behaviors [1-5]. 
+  **Outcome:** The **Shared multi-agent rooms brief** explicitly flags five key technical features and platform claims as **`(unverified)`** due to secondary source reliance, HTTP access blocks, or unconfirmed vendor behaviors [1-5].
 
 Below is the structured resolution breakdown for **RFC-GAP-01**, analyzing each...
 - **Q:** Resolve open research gap in Sigil Protocol & Federation: "Sigil Protocol & Federation (follow-up - Missing Primary Documents)". Ground specific inquiry: In cases like **Perplexity Projects**, details remained unverified because access to the primary source blog returned a **403 error**, forcing reliance on secondary primer summarie
@@ -54,7 +54,7 @@ This inquiry addresses the open contradiction between **bare local identifier ro
 - **Q:** Resolve open research gap in Sigil Protocol & Federation: "Sigil Protocol & Federation (follow-up - Zenzap Tool Approvals)". Ground specific inquiry: The claim that Zenzap supports per-tool "require approval" settings was derived solely from search summaries [1]. Reviewing **Zenzap's primary developer documentation or administra
   **Finding:** ### Root Cause & Unverified Claim Analysis
 
-The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1]. 
+The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1].
 
 * **Documented Behavior**: Primary Zenzap documentation confirms that workspace administrators select who can connect agents, and the use...
 - **Q:** Resolve open research gap in Sigil Protocol & Federation: "CIC-KB (open-contradictions - Identity & Routing)". Ground specific inquiry: **Identity & Routing**: Domain-qualified federated addressing in Sigil relays to prevent silent delivery failures [3]. (Drafted: RFC
@@ -72,7 +72,7 @@ This gap resolves the open contradiction surrounding **Identity & Routing** in f
 The research gap surrounding **Perplexity Projects** stems directly from an unverified primary document source during i...
 - Resolve open research gap in Sigil Protocol & Federation: "Sigil Protocol & Federation (follow-up - Zenzap Tool Approvals)". Ground specific inquiry: The claim that Zenzap supports per-tool "require approval" settings was derived solely from search summaries [1]. Reviewing **Zenzap's primary developer documentation or administra: ### Root Cause & Unverified Claim Analysis
 
-The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1]. 
+The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1].
 
 * **Documented Behavior**: Primary Ze...
 - Resolve open research gap in Sigil Protocol & Federation: "CIC-KB (under-sourced - Repository Architecture & Protocol Specifications)". Ground specific inquiry: **Repository Architecture & Protocol Specifications**: Technical specifications detailing **Sigil's** domain-qualified federated addressing decisions and routing boundaries [1, 2],: ### Resolution of Research Gap: CIC-KB Repository Architecture & Protocol Specifications (`RFC-GAP-04`)

@@ -223,4 +223,3 @@ Log.md is append-only. Never edit or delete past entries.
 - [ ] Log.md was appended (not edited or overwritten)
 - [ ] Commit message references pack hash and change counts
 - [ ] No uncommitted changes outside `wiki/` directory (unless intentional)
-

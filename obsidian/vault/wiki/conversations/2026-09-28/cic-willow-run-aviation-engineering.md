@@ -47,7 +47,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-28. Gro
 - **Q:** What claims are asserted but single-sourced or under-corroborated?
   **Finding:** Across the historical sources in your notebook, several major claims regarding executive intrigue, corporate purges, underworld concessions, and shop-floor technical records remain **single-sourced, disputed, or lacking primary archival corroboration**:
 
-
 category: "wiki"---
 
 ### **1. Executive Espionage & The "Secr...

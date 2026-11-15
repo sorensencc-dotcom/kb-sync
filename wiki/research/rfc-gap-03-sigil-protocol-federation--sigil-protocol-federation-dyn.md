@@ -20,11 +20,11 @@ Unmanaged agent-to-agent communication in free-response Discord channels resulte
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **trm-drive-transport-adapter-spec** (`wiki/research/trm-drive-transport-adapter-spec.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03-sigil-protocol-federation--sigil-protocol-federation-adj** (`wiki/research/rfc-gap-03-sigil-protocol-federation--sigil-protocol-federation-adj.md`) [vector_only]:
   > --- title: "RFC: GAP-03--sigil-protocol-federation - **Sigil Protocol & Federation adjacent-topics - Communication protocols and orchestration**" category: "research" topic: "rfc-gap-03-sigil-protocol-federation--sigil-protocol-federation-adj" gap_id
 - **2026-08-05-triage-intake-pdf-docx-epub-design** (`product:trm/2026-08-05-triage-intake-pdf-docx-epub-design.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

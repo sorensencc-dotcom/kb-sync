@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-under
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-34-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-48-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-48-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-87-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-87-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-87--willow-run-videos - **Willow Run Videos under-sourced - Henry Ford’s "College Wagon" Lesson category: research topic: rfc-gap-87-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-87--willow-run-videos status: draft
 

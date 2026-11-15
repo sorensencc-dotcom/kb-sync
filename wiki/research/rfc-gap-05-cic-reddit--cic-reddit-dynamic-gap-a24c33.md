@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-01-cic-reddit--cic-reddit-dyn-src-30c1804e-i.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-reddit--cic-reddit-dyn-src-30c1804e-i** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-dyn-src-30c1804e-i.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-50-cic-reddit--cic-reddit-under-sourced-4-ca** (`wiki/research/rfc-gap-50-cic-reddit--cic-reddit-under-sourced-4-ca.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont** (`wiki/research/rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cic-willys-overland - **CIC - Willys-Overland open-contradictions - Abrupt Firing vs. Complex Resignation/Departure**" category: "research" topic: "rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont" gap_id: "GAP-0
 

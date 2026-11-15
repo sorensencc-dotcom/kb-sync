@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-28.md","wiki/research/rfc-gap-04.md","wiki/re
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [lexical_only]:
-  > 
+  >
 - **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Unresolved Contradictions" category: research topic: cic-ford-executive-dynamics-unresolved-contradictions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Ac
 

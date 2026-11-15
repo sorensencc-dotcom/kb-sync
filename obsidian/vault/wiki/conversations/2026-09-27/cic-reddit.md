@@ -33,12 +33,11 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 
 ## Technical discoveries & entity linkages
 - **Q:** yes
-  **Finding:** When developing the **1932 Ford V-8**, Charles Sorensen scaled up the continuous-molding principles he had experimented with during the Model N era to create the industry's first **mass-produced single-piece V-8 engine block** [1-3]. 
+  **Finding:** When developing the **1932 Ford V-8**, Charles Sorensen scaled up the continuous-molding principles he had experimented with during the Model N era to create the industry's first **mass-produced single-piece V-8 engine block** [1-3].
 
 Prior V-8 engines—such as D. McCall White's Cadillac V-8—were ex...
 - **Q:** How did the B-24 program adapt these foundry techniques?
   **Finding:** Ford adapted its automobile foundry, stamping, and tooling methods to transform the B-24 Liberator from a handcrafted airplane into a standardized, mass-produced package [1, 2]:
-
 
 category: "wiki"---
 

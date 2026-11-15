@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-12-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-12-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-12-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07** (`wiki/research/rfc-gap-07.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-81-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-81-cic-daily-research--cic-daily-research-under-sour.md`) [vector_only]:
   > --- title: RFC: GAP-81--cic-daily-research - **CIC - Daily Research under-sourced - Father's Trade category: research topic: rfc-gap-81-cic-daily-research--cic-daily-research-under-sour gap_id: GAP-81--cic-daily-research status: draft created_at: 202
 

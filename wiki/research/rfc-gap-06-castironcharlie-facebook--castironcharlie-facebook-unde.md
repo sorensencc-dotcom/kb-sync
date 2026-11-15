@@ -20,9 +20,9 @@ citations: ["wiki/research/cic-ford-executive-dynamics-unresolved-contradictions
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-12-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [lexical_only]:
-  > 
+  >
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Under-Sourced Assertions" category: research topic: cic-ford-executive-dynamics-undersourced-assertions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Acces
 

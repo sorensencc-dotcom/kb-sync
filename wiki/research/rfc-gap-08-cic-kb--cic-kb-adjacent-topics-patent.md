@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-11-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cic-reddit--cic-reddit-adjacent-topics-be** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-adjacent-topics-be.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cic-reddit - **CIC-Reddit adjacent-topics - Benson Ford Research Center BFRC / The Henry Ford Archives**" category: "research" topic: "rfc-gap-08-cic-reddit--cic-reddit-adjacent-topics-be" gap_id: "GAP-08--cic-reddit" status:
 - **rfc-gap-27** (`wiki/research/rfc-gap-27.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ Terminal multiplexer and interactive process control plane [1, 2].
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-03-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-06-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-agent-harnesses-local-execution--agent-harnesses-local-executi** (`wiki/research/rfc-gap-05-agent-harnesses-local-execution--agent-harnesses-local-executi.md`) [hybrid]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

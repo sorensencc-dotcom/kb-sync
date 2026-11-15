@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-11-cic-kb--cic-kb-under-sourced-stateles.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-kb--cic-kb-under-sourced-stateles** (`wiki/research/rfc-gap-11-cic-kb--cic-kb-under-sourced-stateles.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-07-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm** (`wiki/research/rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm.md`) [vector_only]:
   > --- title: RFC: GAP-36--cic-kb - **CIC-KB under-sourced - 0.8B VLM OCR Accuracy Benchmark** category: research topic: rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm gap_id: GAP-36--cic-kb status: draft created_at: 2026-09-19T20:27:51.233Z expansion
 

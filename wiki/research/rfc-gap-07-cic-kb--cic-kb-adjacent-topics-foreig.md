@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-fc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-cic-kb--cic-kb-follow-up-fcsc-claims** (`wiki/research/rfc-gap-04-cic-kb--cic-kb-follow-up-fcsc-claims.md`) [vector_only]:
   > --- title: "RFC: GAP-04--cic-kb - **CIC-KB follow-up - FCSC Claims Adjustment**" category: "research" topic: "rfc-gap-04-cic-kb--cic-kb-follow-up-fcsc-claims" gap_id: "GAP-04--cic-kb" status: "draft" created_at: "2026-10-20T10:06:43.098Z" expansion_m
 

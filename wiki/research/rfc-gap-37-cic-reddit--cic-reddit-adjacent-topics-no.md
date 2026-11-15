@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-42-cic-reddit--cic-reddit-adjacent-topics-no.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-42-cic-reddit--cic-reddit-adjacent-topics-no** (`wiki/research/rfc-gap-42-cic-reddit--cic-reddit-adjacent-topics-no.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-23-cic-reddit--cic-reddit-adjacent-topics-no** (`wiki/research/rfc-gap-23-cic-reddit--cic-reddit-adjacent-topics-no.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-30-cic-reddit--cic-reddit-adjacent-topics-no** (`wiki/research/rfc-gap-30-cic-reddit--cic-reddit-adjacent-topics-no.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

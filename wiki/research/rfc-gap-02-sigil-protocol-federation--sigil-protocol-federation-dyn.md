@@ -20,9 +20,9 @@ It outlines a multi-agent orchestration framework covering planning and policy, 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-07-sigil-protocol-federation--sigil-protocol-federation-dyn** (`wiki/research/rfc-gap-07-sigil-protocol-federation--sigil-protocol-federation-dyn.md`) [hybrid]:
-  > 
+  >
 - **research_worker_deployment** (`product:trm/RESEARCH_WORKER_DEPLOYMENT.md`) [hybrid]:
-  > 
+  >
 - **readme** (`product:helix/README.md`) [vector_only]:
   > <!-- title: "Helix" status: active owner: chris last-reviewed: 2026-09-27 brand: helix -->  # Helix  Helix is a local Windows personal-assistant foundation for governed engineering work. It provides a durable local daemon, operator-facing CLI/browser
 

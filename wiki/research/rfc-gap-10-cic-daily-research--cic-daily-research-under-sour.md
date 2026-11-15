@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-59-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-59-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-13-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-13-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: "RFC: GAP-13--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland adjacent-topics - The Hotel del Coronado Floor Plan Sketch" category: "research" topic: "rfc-gap-13-cic-post-war-willys-overland--cic-post-war-willys-overland"
 - **rfc-gap-63-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-63-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

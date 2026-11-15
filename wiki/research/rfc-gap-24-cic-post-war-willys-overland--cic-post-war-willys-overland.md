@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-26-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-26-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-75--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland under-sourced - Status category: research topic: rfc-gap-75-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-75--cic-post-war-willys-overl
 

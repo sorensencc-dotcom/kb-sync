@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-10-cic-reddit--cic-reddit-open-contradiction.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-10-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-14-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-14-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi** (`wiki/research/rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi.md`) [hybrid]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

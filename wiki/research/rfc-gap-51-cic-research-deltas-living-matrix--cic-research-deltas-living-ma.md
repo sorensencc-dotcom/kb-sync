@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-61-cic-daily-research--cic-daily-research-ope
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-61-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-61-cic-daily-research--cic-daily-research-open-contr.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-78-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-78-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-74-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-74-cic-daily-research--cic-daily-research-under-sour.md`) [vector_only]:
   > --- title: RFC: GAP-74--cic-daily-research - **CIC - Daily Research under-sourced - The Litigated Claim category: research topic: rfc-gap-74-cic-daily-research--cic-daily-research-under-sour gap_id: GAP-74--cic-daily-research status: draft created_at
 

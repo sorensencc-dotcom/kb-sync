@@ -20,11 +20,11 @@ While the pack is metadata-titled **"Personal OS (Household, Utilities, Florida 
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 - **rfc-trm-ingest-action-type-fallback** (`wiki/research/rfc-trm-ingest-action-type-fallback.md`) [vector_only]:
   > --- title: "RFC: TRM Ingestion Action Type Inferencing and Resilient Schema Fallback" category: "research" topic: "rfc-trm-ingest-action-type-fallback" gap_id: "act-trm-ingest-action-type-fallback" status: "active" created_at: "2026-11-06T17:30:00.00
 - **rfc-gap-11** (`wiki/research/rfc-gap-11.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

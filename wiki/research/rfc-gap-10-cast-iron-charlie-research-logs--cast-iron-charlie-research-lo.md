@@ -20,11 +20,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-14-cic-kb--cic-kb-open
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-14-cic-kb--cic-kb-open-contradictions-au** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-open-contradictions-au.md`) [vector_only]:
   > --- title: "RFC: GAP-14--cic-kb - **CIC-KB open-contradictions - Automated Drift & Anomaly Audits**" category: "research" topic: "rfc-gap-14-cic-kb--cic-kb-open-contradictions-au" gap_id: "GAP-14--cic-kb" status: "draft" created_at: "2026-10-16T12:06
 - **2026-07-25-trm-raw-source-json-envelope-design** (`product:trm/2026-07-25-trm-raw-source-json-envelope-design.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

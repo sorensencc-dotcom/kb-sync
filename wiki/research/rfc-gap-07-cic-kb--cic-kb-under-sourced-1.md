@@ -20,11 +20,11 @@ citations: ["product:trm/2026-08-08-video-time-range-keyword-filter-design.md","
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **2026-08-08-video-time-range-keyword-filter-design** (`product:trm/2026-08-08-video-time-range-keyword-filter-design.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan** (`wiki/research/rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan.md`) [vector_only]:
   > --- title: "RFC: GAP-44--cic-reddit - **CIC-Reddit under-sourced - Plant-Wide 1/1,000-Inch Precision Tolerance" category: "research" topic: "rfc-gap-44-cic-reddit--cic-reddit-under-sourced-plan" gap_id: "GAP-44--cic-reddit" status: "draft" created_at
 - **2026-08-08-video-time-range-keyword-filter-design** (`product:trm/superpowers/specs/2026-08-08-video-time-range-keyword-filter-design.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

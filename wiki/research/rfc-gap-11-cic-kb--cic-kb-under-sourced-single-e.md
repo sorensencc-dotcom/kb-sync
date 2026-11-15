@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm** (`wiki/research/rfc-gap-36-cic-kb--cic-kb-under-sourced-0-8b-vlm.md`) [hybrid]:
-  > 
+  >
 - **architecture** (`docs/kb/notebooklm-sync/architecture.md`) [vector_only]:
   > --- title: "architecture" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Architecture  This document describes the architectural layout and component flow for the deterministic synchronization loop bet
 - **multimodal-ingestion---media-pipeline** (`product:trm/Multimodal-Ingestion-&-Media-Pipeline.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

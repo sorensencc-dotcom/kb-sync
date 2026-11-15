@@ -20,11 +20,11 @@ Assembling the cars was relatively straightforward, but material handling was ch
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
   > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 - **rfc-gap-01-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse** (`wiki/research/rfc-gap-01-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

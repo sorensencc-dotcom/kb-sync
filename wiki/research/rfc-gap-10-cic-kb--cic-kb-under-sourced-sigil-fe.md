@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-11-cic-kb--cic-kb-under-sourced-executiv.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-11-cic-kb--cic-kb-under-sourced-executiv** (`wiki/research/rfc-gap-11-cic-kb--cic-kb-under-sourced-executiv.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-10-cic-kb--cic-kb-under-sourced-1** (`wiki/research/rfc-gap-10-cic-kb--cic-kb-under-sourced-1.md`) [vector_only]:
   > --- title: "RFC: GAP-10--cic-kb - **CIC-KB under-sourced - 1.**" category: "research" topic: "rfc-gap-10-cic-kb--cic-kb-under-sourced-1" gap_id: "GAP-10--cic-kb" status: "draft" created_at: "2026-10-16T12:05:45.214Z" expansion_method: "heuristic" ret
 - **rfc-gap-12-cic-kb--cic-kb-under-sourced-single-s** (`wiki/research/rfc-gap-12-cic-kb--cic-kb-under-sourced-single-s.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

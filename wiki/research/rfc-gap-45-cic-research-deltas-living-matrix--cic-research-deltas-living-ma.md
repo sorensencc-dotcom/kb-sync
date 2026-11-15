@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-45-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-45-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
   > --- title: RFC: GAP-45--cic-daily-research - **CIC - Daily Research open-contradictions - The Resolution in Dictation category: research topic: rfc-gap-45-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-45--cic-daily-research status: dr
 - **rfc-gap-83-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-83-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

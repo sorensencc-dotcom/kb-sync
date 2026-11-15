@@ -34,7 +34,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 - **Q:** What open questions or unresolved contradictions exist across these sources?
   **Outcome:** An analysis of the Foreign Claims Settlement Commission (FCSC) adjudications, corporate dockets, and source audit records reveals several core legal contradictions, valuation discrepancies, and evidentiary gaps across the sources:
 
-
 category: "wiki"---
 
 ### 1. Valuation Methodology Divergence

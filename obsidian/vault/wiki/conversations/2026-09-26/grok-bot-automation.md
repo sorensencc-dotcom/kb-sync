@@ -72,7 +72,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-26. Gro
 - **Q:** How do I build a verify-ironledger skill?
   **Finding:** Building a **`verify-ironledger`** skill follows the **`pstack` / `lauren-poteto-rules`** framework for project-local verification (`verify-<app>`) [1-3]. Rather than relying on self-reported confidence or superficial build passes, a verification skill pairs a **Domain Feature Map** with a **Scripte...
 - **Q:** Tell me about the 10-step Grok Agents blueprint
-  **Finding:** The **10-step Grok Agents blueprint** (featured by creators like CyrilXBT, 0xRafy, and Morlex) provides a structured methodology for taking a manual daily task ("I do this every day") and transforming it into a fully automated, scheduled, and human-reviewed multi-agent workflow [1, 2]. 
+  **Finding:** The **10-step Grok Agents blueprint** (featured by creators like CyrilXBT, 0xRafy, and Morlex) provides a structured methodology for taking a manual daily task ("I do this every day") and transforming it into a fully automated, scheduled, and human-reviewed multi-agent workflow [1, 2].
 
 Rather than...
 

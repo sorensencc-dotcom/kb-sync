@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-en.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-en** (`wiki/research/rfc-gap-33-cic-reddit--cic-reddit-adjacent-topics-en.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-30-cic-reddit--cic-reddit-adjacent-topics-fu** (`wiki/research/rfc-gap-30-cic-reddit--cic-reddit-adjacent-topics-fu.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-23-cic-reddit--cic-reddit-adjacent-topics-fu** (`wiki/research/rfc-gap-23-cic-reddit--cic-reddit-adjacent-topics-fu.md`) [vector_only]:
   > --- title: RFC: GAP-23--cic-reddit - **CIC-Reddit adjacent-topics - Fuel Economy Systems category: research topic: rfc-gap-23-cic-reddit--cic-reddit-adjacent-topics-fu gap_id: GAP-23--cic-reddit status: draft created_at: 2026-09-23T12:35:49.021Z expa
 

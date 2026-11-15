@@ -20,9 +20,9 @@ The paper focuses on formalizing the **Model Context Protocol (MCP)** for extern
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-sigil-protocol-federation--sigil-protocol-federation-adj** (`wiki/research/rfc-gap-03-sigil-protocol-federation--sigil-protocol-federation-adj.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-sigil-protocol-federation--sigil-protocol-federation-dyn** (`wiki/research/rfc-gap-07-sigil-protocol-federation--sigil-protocol-federation-dyn.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-06-sigil-protocol-federation--sigil-protocol-federation-ope** (`wiki/research/rfc-gap-06-sigil-protocol-federation--sigil-protocol-federation-ope.md`) [vector_only]:
   > --- title: "RFC: GAP-06--sigil-protocol-federation - **Sigil Protocol & Federation open-contradictions - The Specification Conflict**" category: "research" topic: "rfc-gap-06-sigil-protocol-federation--sigil-protocol-federation-ope" gap_id: "GAP-06--
 

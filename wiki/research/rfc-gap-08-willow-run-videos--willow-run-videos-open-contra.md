@@ -20,11 +20,11 @@ The vast majority of transcripts, ...)**: *Consensus*: The vast majority of tran
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-37-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-37-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-49-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-open-contra.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

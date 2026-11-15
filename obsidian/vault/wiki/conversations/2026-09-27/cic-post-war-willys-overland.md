@@ -45,7 +45,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 - **Q:** What claims are asserted but single-sourced or under-corroborated?
   **Finding:** An analysis of your notebook sources reveals **six key claims** regarding Charles E. Sorensen’s industrial leadership, corporate management, and post-war career that remain **single-sourced**, **under-corroborated**, or **contradicted** across the historical record:
 
-
 category: "wiki"---
 
 ### 1. The Geographic Locat...

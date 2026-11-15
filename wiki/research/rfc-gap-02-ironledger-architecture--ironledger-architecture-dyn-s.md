@@ -20,11 +20,11 @@ An MCP connection interface (`vult mcp`) where agents propose balanced journal e
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-ironledger-architecture--ironledger-architecture-dyn-s** (`wiki/research/rfc-gap-06-ironledger-architecture--ironledger-architecture-dyn-s.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-ironledger-architecture--ironledger-architecture-dyn-s** (`wiki/research/rfc-gap-05-ironledger-architecture--ironledger-architecture-dyn-s.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-ironledger-architecture--ironledger-architecture-under** (`wiki/research/rfc-gap-03-ironledger-architecture--ironledger-architecture-under.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-16-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-16-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-16-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-ca** (`wiki/research/rfc-gap-14-cic-reddit--cic-reddit-adjacent-topics-ca.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-28-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-28-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-28--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering adjacent-topics - The Inkster Secession Attempt 1943 category: research topic: rfc-gap-28-cic-willow-run-aviation-engineering--cic-willow-run-avia
 

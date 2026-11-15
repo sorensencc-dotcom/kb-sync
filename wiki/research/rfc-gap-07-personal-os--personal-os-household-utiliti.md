@@ -20,11 +20,11 @@ The term "utilities" in this source does not refer to municipal or residential s
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-ford-5-day-wage-increase-impac** (`wiki/research/rfc-gap-07-ford-5-day-wage-increase-impac.md`) [vector_only]:
   > --- title: "RFC: GAP-07 - Ford $5 day wage increase impact on worker turnover and output" category: "research" topic: "rfc-gap-07-ford-5-day-wage-increase-impac" gap_id: "GAP-07" status: "draft" created_at: "2026-08-23T01:58:16.723Z" citations: "docs
 - **kb** (`wiki/concepts/2026-09-25/deterministic-fs-sync-patterns-nodejs.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

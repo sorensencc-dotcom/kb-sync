@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-16-cic-reddit--cic-reddit-follow-up-audit-wh.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-16-cic-reddit--cic-reddit-follow-up-audit-wh** (`wiki/research/rfc-gap-16-cic-reddit--cic-reddit-follow-up-audit-wh.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-69-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-69-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont.md`) [vector_only]:
   > --- title: RFC: GAP-08--cic-reddit - **CIC-Reddit follow-up - The Context category: research topic: rfc-gap-08-cic-reddit--cic-reddit-follow-up-the-cont gap_id: GAP-08--cic-reddit status: draft created_at: 2026-09-23T12:35:39.370Z expansion_method: h
 

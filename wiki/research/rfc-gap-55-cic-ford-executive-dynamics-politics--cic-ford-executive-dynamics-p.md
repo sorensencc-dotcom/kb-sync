@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-57-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-57-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-57-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-10** (`wiki/research/rfc-gap-10.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo** (`wiki/research/rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo.md`) [vector_only]:
   > --- title: RFC: GAP-44--cic-kb - **CIC-KB under-sourced - Clara Ford's 1944 Succession Ultimatum & The Gillespie Gambit** category: research topic: rfc-gap-44-cic-kb--cic-kb-under-sourced-clara-fo gap_id: GAP-44--cic-kb status: draft created_at: 2026
 

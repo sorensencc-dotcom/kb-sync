@@ -215,4 +215,3 @@ To inspect and promote findings locally:
 | **Every 4 Hours** | `\Ironbots\TRM-Drive-Sync` | Transport ingest & archive loop | Ingests from `03_grok_completed/` to RFCs & `mobile-inbox/` to `conversations/` |
 | **On Demand** | Mobile Research Drops | Unscheduled `drive-it` drops | `mobile-inbox/` ➔ `conversations/YYYY-MM-DD/` |
 | **On Demand** | Human Reviewer | Manual candidate promotion | `scripts/trm-review-queue.mjs` |
-

@@ -20,11 +20,11 @@ Commit logs explicitly record a triage resolution to **drop FCSC Claim CU-3440 a
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-107-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-53-cic-kb--cic-kb-open-contradictions-pi** (`wiki/research/rfc-gap-53-cic-kb--cic-kb-open-contradictions-pi.md`) [vector_only]:
   > --- title: RFC: GAP-53--cic-kb - **CIC-KB open-contradictions - Pinned TypeScript Guard Failure** category: research topic: rfc-gap-53-cic-kb--cic-kb-open-contradictions-pi gap_id: GAP-53--cic-kb status: draft created_at: 2026-09-19T20:28:15.209Z exp
 - **rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-87-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

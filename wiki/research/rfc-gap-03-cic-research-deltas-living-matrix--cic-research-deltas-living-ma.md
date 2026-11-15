@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-43-cic-research-deltas-living-matrix--cic-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-43-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-43-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-55-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-55-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [lexical_only]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [vector_only]:
   > --- source_title: "Mined Research Gaps and Topics Registry" repository: "CIC Research Protocols - Accession 101, Box 4" document_date: "2026-09-19" verification_status: "verified" category: daily notebook_id: 1b4861a3-931f-4632-8fc1-343a8dd37df8 stat
 

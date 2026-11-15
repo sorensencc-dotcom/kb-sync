@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-37-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Under-Sourced Assertions" category: research topic: cic-ford-executive-dynamics-undersourced-assertions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Acces
 - **rfc-gap-51-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-51-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

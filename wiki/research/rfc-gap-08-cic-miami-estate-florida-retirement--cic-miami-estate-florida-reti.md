@@ -20,11 +20,11 @@ In his dictated reminiscences for the Ford Archives, Charles Sorensen explicitly
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-45-cic-daily-research--cic-daily-research-open-contr** (`wiki/research/rfc-gap-45-cic-daily-research--cic-daily-research-open-contr.md`) [vector_only]:
   > --- title: RFC: GAP-45--cic-daily-research - **CIC - Daily Research open-contradictions - The Resolution in Dictation category: research topic: rfc-gap-45-cic-daily-research--cic-daily-research-open-contr gap_id: GAP-45--cic-daily-research status: dr
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

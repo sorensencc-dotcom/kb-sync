@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-53-cic-reddit--cic-reddit-open-contradiction.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-53-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-53-cic-reddit--cic-reddit-open-contradiction.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-46-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-46-cic-reddit--cic-reddit-open-contradiction.md`) [vector_only]:
   > --- title: RFC: GAP-46--cic-reddit - **CIC-Reddit open-contradictions - Land Easement & Property Boundary Disputes category: research topic: rfc-gap-46-cic-reddit--cic-reddit-open-contradiction gap_id: GAP-46--cic-reddit status: draft created_at: 202
 - **rfc-gap-32-cic-reddit--cic-reddit-open-contradiction** (`wiki/research/rfc-gap-32-cic-reddit--cic-reddit-open-contradiction.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

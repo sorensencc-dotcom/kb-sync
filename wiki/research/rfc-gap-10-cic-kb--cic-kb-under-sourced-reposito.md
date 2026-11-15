@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-10-cic-kb--cic-kb-under-sourced-sigil-fe.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-10-cic-kb--cic-kb-under-sourced-sigil-fe** (`wiki/research/rfc-gap-10-cic-kb--cic-kb-under-sourced-sigil-fe.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-47-cic-kb--cic-kb-open-contradictions-1** (`wiki/research/rfc-gap-47-cic-kb--cic-kb-open-contradictions-1.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-11-cic-kb--cic-kb-under-sourced-executiv** (`wiki/research/rfc-gap-11-cic-kb--cic-kb-under-sourced-executiv.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -66,7 +66,7 @@ This inquiry resolves the contradiction surrounding **Identity & Routing** withi
 - **Q:** Resolve open research gap in Sigil Protocol & Federation: "Sigil Protocol & Federation (follow-up - Zenzap Tool Approvals)". Ground specific inquiry: The claim that Zenzap supports per-tool "require approval" settings was derived solely from search summaries [1]. Reviewing **Zenzap's primary developer documentation or administra
   **Finding:** ### Root Cause & Unverified Claim Analysis
 
-The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1]. 
+The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1].
 
 * **Documented Behavior**: Primary Zenzap documentation confirms that workspace administrators select who can connect agents, and the use...
 - **Q:** Resolve open research gap in Sigil Protocol & Federation: "CIC-KB (open-contradictions - Identity & Routing)". Ground specific inquiry: **Identity & Routing**: Domain-qualified federated addressing in Sigil relays to prevent silent delivery failures [3]. (Drafted: RFC
@@ -80,7 +80,7 @@ This gap resolves the open contradiction surrounding **Identity & Routing** in f
 The research gap surrounding **Perplexity Projects** stems directly from an unverified primary document source during i...
 - Resolve open research gap in Sigil Protocol & Federation: "Sigil Protocol & Federation (follow-up - Zenzap Tool Approvals)". Ground specific inquiry: The claim that Zenzap supports per-tool "require approval" settings was derived solely from search summaries [1]. Reviewing **Zenzap's primary developer documentation or administra: ### Root Cause & Unverified Claim Analysis
 
-The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1]. 
+The industry tracking brief explicitly marks Zenzap's per-tool "require approval" setting as **`(unverified)`** [1].
 
 * **Documented Behavior**: Primary Ze...
 - Resolve open research gap in Sigil Protocol & Federation: "CIC-KB (under-sourced - Repository Architecture & Protocol Specifications)". Ground specific inquiry: **Repository Architecture & Protocol Specifications**: Technical specifications detailing **Sigil's** domain-qualified federated addressing decisions and routing boundaries [1, 2],: ### Resolution of Research Gap: CIC-KB Repository Architecture & Protocol Specifications (`RFC-GAP-04`)

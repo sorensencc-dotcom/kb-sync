@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-05-cic-kb--cic-kb-follow-up-three-tier-c.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-kb--cic-kb-follow-up-three-tier-c** (`wiki/research/rfc-gap-05-cic-kb--cic-kb-follow-up-three-tier-c.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal.md`) [hybrid]:
-  > 
+  >
 - **_sidebar** (`product:trm/_Sidebar.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

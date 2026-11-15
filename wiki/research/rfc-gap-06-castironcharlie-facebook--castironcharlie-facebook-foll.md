@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-foll** (`wiki/research/rfc-gap-35-castironcharlie-facebook--castironcharlie-facebook-foll.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-reddit - **CIC-Reddit follow-up - Primary Documents & Audits Required**" category: "research" topic: "rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary" gap_id: "GAP-06--cic-reddit" status: "draft" created_at: "2026-10-
 - **rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-open** (`wiki/research/rfc-gap-13-castironcharlie-facebook--castironcharlie-facebook-open.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

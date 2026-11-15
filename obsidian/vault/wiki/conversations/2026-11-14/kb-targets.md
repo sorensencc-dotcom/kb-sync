@@ -30,11 +30,11 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-11-14. Gro
 - **Q:** Investigate recently modified entity "kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332" in KB - Targets: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/obsidian/synthesize-wiki.ts in kb-sync (1051 lines). Exports: RecoveryManifest, validateProposalSchema, Lesso
   **Outcome:** The entity **`kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332`**, its 1051-line metadata inventory, and its exported symbols (`RecoveryManifest`, `validateProposalSchema`, etc.) are **not documented in the notebook's sources**. In accordance with the canonical domain purpose of **KB - Targets...
 - **Q:** Investigate recently modified entity "kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332" in KB - Targets: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/obsidian/synthesize-wiki.ts in kb-sync (1051 lines). Exports: RecoveryManifest, validateProposalSchema, Lesso
-  **Outcome:** The specific entity **`kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332`**, its 1051-line metadata inventory, and exported symbols (`RecoveryManifest`, `validateProposalSchema`, etc.) are **not present in your uploaded sources** [1, 2]. 
+  **Outcome:** The specific entity **`kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332`**, its 1051-line metadata inventory, and exported symbols (`RecoveryManifest`, `validateProposalSchema`, etc.) are **not present in your uploaded sources** [1, 2].
 
 This aligns directly with the architectural rules of **...
 - **Q:** Investigate recently modified entity "kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332" in KB - Targets: resolve open technical questions and verify empirical citations against primary records: Metadata inventory for modules/obsidian/synthesize-wiki.ts in kb-sync (1051 lines). Exports: RecoveryManifest, validateProposalSchema, Lesso
-  **Outcome:** The specific entity **`kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332`**, its 1051-line metadata inventory, and exported symbols (`RecoveryManifest`, `validateProposalSchema`, etc.) are **not documented in the notebook's sources** [1, 2, 9]. 
+  **Outcome:** The specific entity **`kb-sync--modules-obsidian-synthesize-wiki.ts--90e04332`**, its 1051-line metadata inventory, and exported symbols (`RecoveryManifest`, `validateProposalSchema`, etc.) are **not documented in the notebook's sources** [1, 2, 9].
 
 This directly adheres to the architectural desig...
 

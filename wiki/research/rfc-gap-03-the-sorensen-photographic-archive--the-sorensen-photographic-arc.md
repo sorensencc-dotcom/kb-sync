@@ -20,11 +20,11 @@ Industrial Giants at Willow Run (dynamic-gap-9cfbf8ba - Machining Problem)**: Be
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-03-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 - **kb** (`wiki/concepts/2026-09-25/deterministic-fs-sync-patterns-nodejs.md`) [vector_only]:
   > --- source: copilot skill: drive-it topic: kb title: Deterministic File System Sync Patterns in Node.js created: 2026-09-25T20:06:50Z folder_id: 1Faya0q0j3S62NGq_U-nxrefwbwfGQq0g status: drop category: wiki sourceRepository: kb-sync ---  ## Findings
 - **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

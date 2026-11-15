@@ -20,11 +20,11 @@ The strategic decision to abandon reliance on foreground page events (`visibilit
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **raw_research_conformance** (`_kb-sync-staging/trm/current/raw_research_conformance.json`) [lexical_only]:
-  > 
+  >
 - **operator-rules** (`docs/kb/notebooklm-sync/operator-rules.md`) [vector_only]:
   > --- title: "operator rules" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Operator Rules  This document defines the rules, triggers, and prerequisites for operators managing the NotebookLM synchroniza
 - **rfc-gap-01-fail-soft-recovery-during-conc** (`wiki/research/rfc-gap-01-fail-soft-recovery-during-conc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

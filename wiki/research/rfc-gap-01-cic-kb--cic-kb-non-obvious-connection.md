@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-02-cic-kb--cic-kb-non-obvious-connection.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-kb--cic-kb-non-obvious-connection** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-non-obvious-connection.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-willow-run-videos--willow-run-videos-non-obvious** (`wiki/research/rfc-gap-02-willow-run-videos--willow-run-videos-non-obvious.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt** (`wiki/research/rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt.md`) [vector_only]:
   > --- title: RFC: GAP-11--cic-kb - **CIC-KB adjacent-topics - 1. Virtual Filesystem Tiering `viking category: research topic: rfc-gap-11-cic-kb--cic-kb-adjacent-topics-1-virt gap_id: GAP-11--cic-kb status: draft created_at: 2026-09-19T20:27:11.859Z exp
 

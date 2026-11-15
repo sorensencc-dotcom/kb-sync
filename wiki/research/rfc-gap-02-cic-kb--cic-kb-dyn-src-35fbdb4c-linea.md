@@ -20,9 +20,9 @@ The Topic Research Module (TRM) CLI used for hierarchical research trees, source
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-kb--cic-kb-dyn-src-35fbdb4c-topic** (`wiki/research/rfc-gap-01-cic-kb--cic-kb-dyn-src-35fbdb4c-topic.md`) [hybrid]:
-  > 
+  >
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal.md`) [vector_only]:
   > --- title: "RFC: GAP-09--cic-kb - **CIC-KB under-sourced - Temporal and Source Auditing Infrastructure**" category: "research" topic: "rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal" gap_id: "GAP-09--cic-kb" status: "draft" created_at: "2026-10-15T
 

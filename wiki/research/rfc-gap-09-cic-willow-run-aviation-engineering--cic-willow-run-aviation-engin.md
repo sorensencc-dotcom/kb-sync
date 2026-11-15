@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-09-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-09-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-28-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-28-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
   > --- title: RFC: GAP-52--willow-run-videos - **Willow Run Videos adjacent-topics - The June 1943 Packard Strike category: research topic: rfc-gap-52-willow-run-videos--willow-run-videos-adjacent-to gap_id: GAP-52--willow-run-videos status: draft creat
 

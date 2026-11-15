@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-dyn-s
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-willow-run-videos--willow-run-videos-dyn-src-1fa** (`wiki/research/rfc-gap-01-willow-run-videos--willow-run-videos-dyn-src-1fa.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-07-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-07-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc** (`wiki/research/rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc.md`) [vector_only]:
   > --- title: "RFC: GAP-02--the-sorensen-photographic-archive - **The Sorensen Photographic Archive" category: "research" topic: "rfc-gap-02-the-sorensen-photographic-archive--the-sorensen-photographic-arc" gap_id: "GAP-02--the-sorensen-photographic-arc
 

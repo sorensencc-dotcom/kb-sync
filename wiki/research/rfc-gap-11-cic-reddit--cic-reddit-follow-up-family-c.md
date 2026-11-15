@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-13-cic-reddit--cic-reddit-follow-up-review-1.
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-13-cic-reddit--cic-reddit-follow-up-review-1** (`wiki/research/rfc-gap-13-cic-reddit--cic-reddit-follow-up-review-1.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-103-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-103--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - Arnold–Edsel Ford Strategic Correspondence category: research topic: rfc-gap-103-cic-willow-run-aviation-engineering--cic-w
 

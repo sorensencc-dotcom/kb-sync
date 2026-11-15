@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-02-cic-kb--cic-kb-non-obvious-connection.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-kb--cic-kb-non-obvious-connection** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-non-obvious-connection.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-14-cic-kb--cic-kb-open-contradictions-th** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-open-contradictions-th.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-13-cic-kb--cic-kb-open-contradictions-1** (`wiki/research/rfc-gap-13-cic-kb--cic-kb-open-contradictions-1.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["product:trm/NotebookLM-&-Mining-Pipeline.md","wiki/research/rfc-gap
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **notebooklm---mining-pipeline** (`product:trm/NotebookLM-&-Mining-Pipeline.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-49-cic-reddit--cic-reddit-under-sourced-dodg** (`wiki/research/rfc-gap-49-cic-reddit--cic-reddit-under-sourced-dodg.md`) [vector_only]:
   > --- title: RFC: GAP-49--cic-reddit - **CIC-Reddit under-sourced - Dodge Brothers Drivetrain Engineering category: research topic: rfc-gap-49-cic-reddit--cic-reddit-under-sourced-dodg gap_id: GAP-49--cic-reddit status: draft created_at: 2026-09-24T12:
 - **readme** (`product:helix/README.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

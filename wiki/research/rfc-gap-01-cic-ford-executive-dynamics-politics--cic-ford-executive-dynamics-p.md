@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-02-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [hybrid]:
-  > 
+  >
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Under-Sourced Assertions" category: research topic: cic-ford-executive-dynamics-undersourced-assertions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Acces
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

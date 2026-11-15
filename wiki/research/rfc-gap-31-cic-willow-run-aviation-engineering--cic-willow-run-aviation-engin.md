@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-31-cic-willow-run-aviation-engineering--cic-w
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-31-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-03-cic-daily-research--cic-daily-research-adjacent-t.md`) [lexical_only]:
-  > 
+  >
 - **pipeline** (`docs/kb/notebooklm-sync/pipeline.md`) [vector_only]:
   > --- title: "pipeline" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Ingestion Loop  This document outlines the sequential, deterministic steps performed during the sync execution pipeline.  ## Executi
 
@@ -41,7 +41,6 @@ sh · function · scripts/run-closed-loop-research-v2.mjs:L71-L74
   calls ← loadModelSelection (scripts/run-closed-loop-research-v2.mjs:L85-L112) [depth 1]
   calls ← run (scripts/run-closed-loop-research-v2.mj
 ```
-
 
 ## 4. Proposed Resolution & Protocol Decision
 - Specify clear interface contracts and execution requirements addressing this gap.

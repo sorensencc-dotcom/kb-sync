@@ -20,11 +20,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-57-cic-willow-run-avia
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-57-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-57--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - What Was the Real Nature of Henry Ford’s Treatment of Edsel?** category: research topic: rfc-gap-57-cic-willow-run-aviation-
 - **rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p** (`wiki/research/rfc-gap-06-cic-ford-executive-dynamics-politics--cic-ford-executive-dynamics-p.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

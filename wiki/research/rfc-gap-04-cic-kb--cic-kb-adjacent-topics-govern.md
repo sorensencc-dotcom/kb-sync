@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-19-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-19-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-19-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 - **immutable-staging** (`wiki/concepts/immutable-staging.md`) [vector_only]:
   > --- title: Immutable Staging category: concepts status: active sourceRepository: kb-sync lastUpdated: 2026-08-30 ---  # Immutable Staging  **Immutable Staging** is the filesystem isolation contract used by KB-Sync to separate active code trees from s
 - **rfc-gap-77-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-77-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

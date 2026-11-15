@@ -20,11 +20,11 @@ citations: ["product:trm/Multimodal-Ingestion-&-Media-Pipeline.md","wiki/researc
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **multimodal-ingestion---media-pipeline** (`product:trm/Multimodal-Ingestion-&-Media-Pipeline.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cic-kb--cic-kb-under-sourced-1** (`wiki/research/rfc-gap-07-cic-kb--cic-kb-under-sourced-1.md`) [vector_only]:
   > --- title: "RFC: GAP-07--cic-kb - **CIC-KB under-sourced - 1.**" category: "research" topic: "rfc-gap-07-cic-kb--cic-kb-under-sourced-1" gap_id: "GAP-07--cic-kb" status: "draft" created_at: "2026-10-15T12:45:48.526Z" expansion_method: "heuristic" ret
 - **rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

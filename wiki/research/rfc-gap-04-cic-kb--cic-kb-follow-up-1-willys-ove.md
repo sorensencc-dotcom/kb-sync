@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-05-cic-research-deltas-living-matrix--cic-res
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-05-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-05-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-88-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-88-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [vector_only]:
   > --- title: RFC: GAP-88--cic-post-war-willys-overland - **CIC - Post-War & Willys-Overland open-contradictions - 3.** category: research topic: rfc-gap-88-cic-post-war-willys-overland--cic-post-war-willys-overland gap_id: GAP-88--cic-post-war-willys-o
 - **rfc-gap-11-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-11-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

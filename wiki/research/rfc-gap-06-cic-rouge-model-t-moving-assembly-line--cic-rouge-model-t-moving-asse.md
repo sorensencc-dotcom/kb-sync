@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-cic-rouge-model-t-moving-assembly-line--ci
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse** (`wiki/research/rfc-gap-03-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse** (`wiki/research/rfc-gap-01-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

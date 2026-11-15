@@ -155,7 +155,7 @@ Viewed .performance-baselines.json:1-25
   }
 }
 ```
-  **Finding:** The recalibration executed cleanly and generated the Schema Version 2 baseline artifact ([`.performance-baselines.json`](file:///c:/dev/.performance-baselines.json)). 
+  **Finding:** The recalibration executed cleanly and generated the Schema Version 2 baseline artifact ([`.performance-baselines.json`](file:///c:/dev/.performance-baselines.json)).
 
 ### **Baseline Profile Highlights**
 * **Runtime Environment**: Node.js `v24.18.0` running on AMD Ryzen 7 260 (16 cores).
@@ -167,7 +167,7 @@ Here is specifically what happens when you run it:
 
 1. **Executes Mult...
 - **Q:** proceed to drafting the `libp2p` P2P transport driver spec for Sigil
-  **Finding:** The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2]. 
+  **Finding:** The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2].
 
 This specification establishes a zero-config, self-healing peer-to-peer data plane—borrowing architec...
 
@@ -269,7 +269,7 @@ Viewed .performance-baselines.json:1-25
 
 ### **Baseline Profile Highligh...
 - what does that do: Running `node scripts/run-benchmark.mjs --recalibrate` measures your machine's real-world execution speed and updates your local performance baseline ([`.performance-baselines.json`](file:///c:/dev/.p...
-- proceed to drafting the `libp2p` P2P transport driver spec for Sigil: The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2]. 
+- proceed to drafting the `libp2p` P2P transport driver spec for Sigil: The **Sigil `libp2p` P2P Transport Driver Specification** ([`sigil-p2p-transport-spec.md`](file:///workspace/artifacts/sigil-p2p-transport-spec.md)) has been published to your Studio panel [1, 2].
 
 T...
 

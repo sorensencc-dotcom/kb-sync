@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-06-open-dev-issues--open-dev-issues-ci-cd-tri
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-06-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-05-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03-open-dev-issues--open-dev-issues-ci-cd-triage** (`wiki/research/rfc-gap-03-open-dev-issues--open-dev-issues-ci-cd-triage.md`) [vector_only]:
   > --- title: "RFC: GAP-03--open-dev-issues - **Open Dev Issues CI/CD Triage Buffer adjacent-topics - GitHub Actions workflow diagnostics**" category: "research" topic: "rfc-gap-03-open-dev-issues--open-dev-issues-ci-cd-triage" gap_id: "GAP-03--open-dev
 

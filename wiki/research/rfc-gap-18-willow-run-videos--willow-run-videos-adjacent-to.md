@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjac
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-17-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-18-willow-run-videos--willow-run-videos-adjacent-to.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

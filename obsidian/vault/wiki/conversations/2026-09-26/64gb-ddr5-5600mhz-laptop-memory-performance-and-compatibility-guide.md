@@ -36,7 +36,7 @@ Here is a breakdown of the specific prices reported across your sources:
 Machine Model: ASUS Vivobook 18 (M1807HA)
 Processor: AMD Ryzen 7 (with Radeon 780M Graphics)
 Total Slots: 2 Physical SO-DIMM Slots (both currently populated)
-Installed RAM: 32 GB (2 
+Installed RAM: 32 GB (2
 ×
 × 16 GB Micron DDR5-5600 SODIMM sticks, Part #MTC8C1084S1SC56BD1)
   **Finding:** Based on your current configuration (**ASUS Vivobook 18 M1807HA** with an **AMD Ryzen 7** processor and integrated **Radeon 780M** graphics) [1], here is how your setup impacts a 64GB DDR5 memory upgrade:
@@ -61,7 +61,7 @@ TeamGroup Elite 64GB	TED564G5600C46DC-S01	$155 – $175	Amazon / Newegg. Frequen
 Machine Model: ASUS Vivobook 18 (M1807HA)
 Processor: AMD Ryzen 7 (with Radeon 780M Graphics)
 Total Slots: 2 Physical SO-DIMM Slots (both currently populated)
-Installed RAM: 32 GB (2 
+Installed RAM: 32 GB (2
 ×
 × 16 GB Micron DDR5-5600 SODIMM sticks, Part #MTC8C1084S1SC56BD1): Based on your current configuration (**ASUS Vivobook 18 M1807HA** with an **AMD Ryzen 7** processor and integrated **Radeon 780M** graphics) [1], here is how your setup impacts a 64GB DDR5 memory upgr...
 - Compare Kingston vs. OWC price: When comparing 64GB (2x32GB) DDR5-5600 SODIMM kits between **Kingston** and **OWC**, your sources show a dramatic difference in both price and specs:

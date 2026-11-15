@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi** (`wiki/research/rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-47-cic-reddit--cic-reddit-under-sourced-4-th** (`wiki/research/rfc-gap-47-cic-reddit--cic-reddit-under-sourced-4-th.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-15-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-open-contra.md`) [vector_only]:
   > --- title: "RFC: GAP-15--willow-run-videos - **Willow Run Videos open-contradictions - The "L-Shaped" Factory Wayne County Union-Dodging vs. Airfield Boundary**" category: "research" topic: "rfc-gap-15-willow-run-videos--willow-run-videos-open-contra
 

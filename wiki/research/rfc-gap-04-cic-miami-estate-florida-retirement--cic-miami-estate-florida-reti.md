@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-03-cic-miami-estate-florida-retirement--cic-m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-03-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-03-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-daily-research--cic-daily-research-adjacent-t** (`wiki/research/rfc-gap-06-cic-daily-research--cic-daily-research-adjacent-t.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-daily-research - **CIC - Daily Research adjacent-topics - Benson Ford Research Center / The Henry Ford Archives Dearborn, MI" category: "research" topic: "rfc-gap-06-cic-daily-research--cic-daily-research-adjacent-t" gap_
 - **rfc-gap-04-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-04-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

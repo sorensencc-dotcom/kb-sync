@@ -20,11 +20,11 @@ citations: ["product:trm/2026-08-05-route-intake-topic-classification-design.md"
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **2026-08-05-route-intake-topic-classification-design** (`product:trm/2026-08-05-route-intake-topic-classification-design.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-57--willow-run-videos - **Willow Run Videos under-sourced - The Claim category: research topic: rfc-gap-57-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-57--willow-run-videos status: draft created_at: 2026-09-19T20:
 - **2026-08-05-route-intake-topic-classification-design** (`product:trm/superpowers/specs/2026-08-05-route-intake-topic-classification-design.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

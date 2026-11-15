@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-28.md","wiki/research/rfc-gap-08.md","wiki/re
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-28** (`wiki/research/rfc-gap-28.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [vector_only]:
   > --- title: rfc-gap-08 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-08  ## Candidate Evidence: Remote Agent Finding 2026-09-25T04:00:21.331Z <!-- finding_id: 534b28df4fea1b4baadce6778423f43c2e8a98efd970cb21175b4bc54eba639a
 - **rfc-gap-05-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse** (`wiki/research/rfc-gap-05-cic-rouge-model-t-moving-assembly-line--cic-rouge-model-t-moving-asse.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

@@ -20,11 +20,11 @@ citations: ["product:trm/Architecture-&-Data-Model.md","product:trm/_Sidebar.md"
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **architecture---data-model** (`product:trm/Architecture-&-Data-Model.md`) [hybrid]:
-  > 
+  >
 - **_sidebar** (`product:trm/_Sidebar.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal** (`wiki/research/rfc-gap-09-cic-kb--cic-kb-under-sourced-temporal.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

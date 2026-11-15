@@ -33,7 +33,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-28. Gro
 - **Q:** What follow-up research would most strengthen current findings?
   **Outcome:** To transform current findings into an authoritative historical record, follow-up investigation should target **five primary archival modules** outlined in your source audit [1]:
 
-
 category: "wiki"---
 
 ### **1. Module 1: Station 20 L-Plan Turn & Local Taxability**

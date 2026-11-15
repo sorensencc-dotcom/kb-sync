@@ -20,11 +20,11 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-08-cic-willys-overland
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont** (`wiki/research/rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont.md`) [vector_only]:
   > --- title: "RFC: GAP-08--cic-willys-overland - **CIC - Willys-Overland open-contradictions - Abrupt Firing vs. Complex Resignation/Departure**" category: "research" topic: "rfc-gap-08-cic-willys-overland--cic-willys-overland-open-cont" gap_id: "GAP-0
 - **cic-ford-executive-dynamics-undersourced-assertions** (`wiki/research/cic-ford-executive-dynamics-undersourced-assertions.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

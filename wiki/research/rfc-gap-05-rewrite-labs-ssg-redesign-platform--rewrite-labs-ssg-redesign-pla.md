@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-01-rewrite-labs-ssg-redesign-platform--rewrit
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-01-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-02-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-02-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla** (`wiki/research/rfc-gap-06-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-redesign-pla.md`) [vector_only]:
   > --- title: "RFC: GAP-06--rewrite-labs-ssg-redesign-platform - **Rewrite Labs SSG/Redesign Platform under-sourced - Co-Founding & Business Model Mandate" category: "research" topic: "rfc-gap-06-rewrite-labs-ssg-redesign-platform--rewrite-labs-ssg-rede
 

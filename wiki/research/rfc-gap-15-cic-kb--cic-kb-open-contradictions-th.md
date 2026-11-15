@@ -20,11 +20,11 @@ The **Albert Kahn Willow Run L-Bend layout** (War Department glide-slope obstacl
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi** (`wiki/research/rfc-gap-62-cic-kb--cic-kb-open-contradictions-wi.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-3** (`wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-follow-up-3.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-15-willow-run-videos--willow-run-videos-open-contra** (`wiki/research/rfc-gap-15-willow-run-videos--willow-run-videos-open-contra.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

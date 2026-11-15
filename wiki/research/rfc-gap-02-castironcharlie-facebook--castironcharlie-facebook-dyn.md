@@ -20,9 +20,9 @@ The Facebook posts emphasize that Ford approached aircraft through automotive-st
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-dyn** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-dyn.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-30-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-27-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-27-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [vector_only]:
   > --- title: RFC: GAP-27--castironcharlie-facebook - **CastIronCharlie-Facebook adjacent-topics - Hard Steel Dies vs. Soft Kirksite** category: research topic: rfc-gap-27-castironcharlie-facebook--castironcharlie-facebook-adja gap_id: GAP-27--castironc
 

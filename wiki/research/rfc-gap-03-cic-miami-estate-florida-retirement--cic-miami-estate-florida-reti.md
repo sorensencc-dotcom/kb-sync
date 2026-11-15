@@ -20,11 +20,11 @@ Sorensen recorded nearly 200 Dictaphone belts of his memoirs and historical reco
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-01-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-01-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-03-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-04-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti** (`wiki/research/rfc-gap-04-cic-miami-estate-florida-retirement--cic-miami-estate-florida-reti.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

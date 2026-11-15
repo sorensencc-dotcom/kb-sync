@@ -33,7 +33,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-28. Gro
 - **Q:** What claims are asserted but single-sourced or under-corroborated?
   **Outcome:** Across your software engineering specifications, AI benchmark evaluations, and historical research dossiers, several core claims are asserted as facts but remain **single-sourced, unverified, or under-corroborated**:
 
-
 category: "wiki"---
 
 ### **1. Software Engineering & AI Benchmark Claims**
@@ -76,7 +75,7 @@ All changes for the `/why` skill and TRM synthesis integration are committed to 
 - `d4e46cd5` — `docs: add /why skill design spec`
 
 ---
-  **Finding:** All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**. 
+  **Finding:** All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**.
 
 Here is a summary of the 12-commit progression delivered across this branch:
 
@@ -177,7 +176,7 @@ All changes for the `/why` skill and TRM synthesis integration are committed to 
 - `66babab6` — `docs: address second-opinion review findings in /why spec`
 - `d4e46cd5` — `docs: add /why skill design spec`
 
----: All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**. 
+---: All changes for the **/why global skill** and the **`why-verifier` TRM synthesis integration** are committed to branch **`parkd821-20260908`**.
 
 Here is a summary of the 12-commit progression deliver...
 - Ran command: `gh pr checks 41`

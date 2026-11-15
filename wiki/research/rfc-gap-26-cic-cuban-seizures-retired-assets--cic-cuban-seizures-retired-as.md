@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-74-cic-daily-research--cic-daily-research-und
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-74-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-74-cic-daily-research--cic-daily-research-under-sour.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
   > --- title: RFC: GAP-34--willow-run-videos - **Willow Run Videos adjacent-topics - The Train Wreck Hoaxes category: research topic: rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to gap_id: GAP-34--willow-run-videos status: draft created_at:
 - **rfc-gap-32-cic-daily-research--cic-daily-research-under-sour** (`wiki/research/rfc-gap-32-cic-daily-research--cic-daily-research-under-sour.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

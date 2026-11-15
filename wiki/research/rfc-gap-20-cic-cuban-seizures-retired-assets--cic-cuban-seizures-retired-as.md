@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-20-cic-cuban-seizures-retired-assets--cic-cub
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-20-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-20-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [hybrid]:
-  > 
+  >
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-unde** (`wiki/research/rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-unde.md`) [vector_only]:
   > --- title: RFC: GAP-33--castironcharlie-facebook - **CastIronCharlie-Facebook under-sourced - The Claim category: research topic: rfc-gap-33-castironcharlie-facebook--castironcharlie-facebook-unde gap_id: GAP-33--castironcharlie-facebook status: draf
 

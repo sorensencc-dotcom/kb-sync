@@ -20,11 +20,11 @@ citations: ["product:trm/2026-08-02-intake-triage-manifest.md","docs/kb/notebook
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **2026-08-02-intake-triage-manifest** (`product:trm/2026-08-02-intake-triage-manifest.md`) [lexical_only]:
-  > 
+  >
 - **pipeline** (`docs/kb/notebooklm-sync/pipeline.md`) [vector_only]:
   > --- title: "pipeline" category: "master-kb" tags: "notebooklm-sync" status: "active" ---  # NotebookLM Sync Pipeline: Ingestion Loop  This document outlines the sequential, deterministic steps performed during the sync execution pipeline.  ## Executi
 - **2026-08-02-intake-triage-manifest** (`product:trm/superpowers/plans/2026-08-02-intake-triage-manifest.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

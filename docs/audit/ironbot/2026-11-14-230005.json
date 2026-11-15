@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {
+      "exitCode": 1,
+      "task": "KB-Sync-Master-Pipeline"
+    },
+    {
+      "exitCode": 267009,
+      "task": "KB-Sync-Research"
+    },
+    {
+      "exitCode": 1,
+      "task": "TRM-Notebooklm-Mine"
+    }
+  ],
+  "replayedCount": 0,
+  "healedCount": 0,
+  "timestamp": "2026-11-14T23:00:05.2476166-05:00",
+  "dryRun": false
+}

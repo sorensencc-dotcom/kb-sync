@@ -29,7 +29,7 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 ### 1. Multi-Agent Hierarchy & Chief of Staff Router
 * **Chief of Staff Router Pattern**: Position a central **Chief of Staff** (such as *First Mate*) at the top of your age...
 - **Q:** How do I use TRM with pstack?
-  **Outcome:** Using **TRM (Topic Research Mining)** with **`pstack`** bridges closed-loop knowledge discovery with disciplined software engineering [1, 2]. 
+  **Outcome:** Using **TRM (Topic Research Mining)** with **`pstack`** bridges closed-loop knowledge discovery with disciplined software engineering [1, 2].
 
 TRM acts as your **evidence-gathering engine** in the daily research buffer (`domain:daily` / `1b4861a3-931f-4632-8fc1-343a8dd37df8`), while `pstack` provid...
 - **Q:** how can chief of staff complement the ironbots
@@ -44,14 +44,13 @@ TRM acts as your **evidence-gathering engine** in the daily research buffer (`do
 - **Q:** You are just regurgitating the same shit what about pstack and pirate rules and how we can use it with trm sigil toolforge and the iron bots
   **Finding:** To move past general agent patterns and dive directly into your specific technical stack, here is how **`pstack`**, **Lauren Poteto Rules**, **TRM**, **Sigil Protocol**, **Toolforge**, and **Iron Bots** integrate into your ecosystem architecture:
 
-
 category: "wiki"---
 
 ### 1. What `pstack` & "Pirate Rules" (Lauren P...
 - **Q:** How do I build a verify-ironledger skill?
   **Finding:** Building a **`verify-ironledger`** skill follows the **`pstack` / `lauren-poteto-rules`** framework for project-local verification (`verify-<app>`) [1-3]. Rather than relying on self-reported confidence or superficial build passes, a verification skill pairs a **Domain Feature Map** with a **Scripte...
 - **Q:** Tell me about the 10-step Grok Agents blueprint
-  **Finding:** The **10-step Grok Agents blueprint** (featured by creators like CyrilXBT, 0xRafy, and Morlex) provides a structured methodology for taking a manual daily task ("I do this every day") and transforming it into a fully automated, scheduled, and human-reviewed multi-agent workflow [1, 2]. 
+  **Finding:** The **10-step Grok Agents blueprint** (featured by creators like CyrilXBT, 0xRafy, and Morlex) provides a structured methodology for taking a manual daily task ("I do this every day") and transforming it into a fully automated, scheduled, and human-reviewed multi-agent workflow [1, 2].
 
 Rather than...
 - **Q:** Edited verify-ledger.mjs
@@ -64,7 +63,7 @@ Ran command: `node scripts/verify-ledger.mjs --tax-lots # Form 8949 orphan lot c
 
 ### Root Cause & Fix
 
-1. **Why the Error Occurred**: 
+1. **Why the Error Occurred**:
    In Windows shells (specifically `cmd.exe`), `#` is treated as a literal character rather than a comment indicator. The shell passed `'#'`, `'Double-entry'`, `'exact-cent'`, and `'balance'` as raw positional arguments to `node scripts/verify-ledger.mjs`. Because `util.parseArgs` had `allowPositionals: false`, it threw `ERR_PARSE_ARGS_UNEXPECTED_POSITIONAL`.
 
 2. **The Fix Applied**:
@@ -111,7 +110,7 @@ c:\dev> node --test tests/verify-ledger.test.mjs
 
 Catching that Windows `cmd.exe` positional argument edge case (`#` treated as literal text rather than a comment) and locking it down with a specific seam test (`Seam C`) ensur...
 - **Q:** Register the skill in Toolforge
-  **Finding:** The **`verify-ironledger`** skill has been staged and registered in the **Toolforge Marketplace** catalog under `domain:skills` (`3ac216cc-3379-4c9f-8393-ab28a248cecc`) [1-3]. 
+  **Finding:** The **`verify-ironledger`** skill has been staged and registered in the **Toolforge Marketplace** catalog under `domain:skills` (`3ac216cc-3379-4c9f-8393-ab28a248cecc`) [1-3].
 
 The skill passed through the `nlm-pack-replace-gate.mjs` deduplication gate, setting active status (`status: 2`), applying...
 - **Q:** Establish a git pre-commit hook
@@ -224,7 +223,7 @@ The skill passed throu...
 ```bash
 #!/bin/sh
 # Git...
-- How do I use TRM with pstack?: Using **TRM (Topic Research Mining)** with **`pstack`** bridges closed-loop knowledge discovery with disciplined software engineering [1, 2]. 
+- How do I use TRM with pstack?: Using **TRM (Topic Research Mining)** with **`pstack`** bridges closed-loop knowledge discovery with disciplined software engineering [1, 2].
 
 TRM acts as your **evidence-gathering engine** in the da...
 - Two issues with this hook before we install it:

@@ -20,11 +20,11 @@ Standard document OCR relies on a multi-stage pipeline: a layout detector identi
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-14-cic-kb--cic-kb-open-contradictions-th** (`wiki/research/rfc-gap-14-cic-kb--cic-kb-open-contradictions-th.md`) [lexical_only]:
-  > 
+  >
 - **2026-08-02-intake-triage-manifest** (`product:trm/2026-08-02-intake-triage-manifest.md`) [vector_only]:
   > # Intake Triage Manifest Implementation Plan  > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development recommended or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox `-  ` syntax f
 - **rfc-gap-02-cic-kb--cic-kb-non-obvious-connection** (`wiki/research/rfc-gap-02-cic-kb--cic-kb-non-obvious-connection.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

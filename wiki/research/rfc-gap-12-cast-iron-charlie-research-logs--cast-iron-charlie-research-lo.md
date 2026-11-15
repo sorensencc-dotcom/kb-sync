@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-08.md","wiki/research/cic-ford-executive-dyna
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08** (`wiki/research/rfc-gap-08.md`) [hybrid]:
-  > 
+  >
 - **cic-ford-executive-dynamics-unresolved-contradictions** (`wiki/research/cic-ford-executive-dynamics-unresolved-contradictions.md`) [vector_only]:
   > --- title: "CIC - Ford Executive Dynamics & Politics: Unresolved Contradictions" category: research topic: cic-ford-executive-dynamics-unresolved-contradictions status: verified created_at: 2026-10-18 sourceRepository: kb-sync citations:   - "BFRC Ac
 - **rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo** (`wiki/research/rfc-gap-50-cast-iron-charlie-research-logs--cast-iron-charlie-research-lo.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

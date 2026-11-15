@@ -20,11 +20,11 @@ Charles "Cast-iron Charlie" Sorensen embodied the legacy Ford belief that comple
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non** (`wiki/research/rfc-gap-02-castironcharlie-facebook--castironcharlie-facebook-non.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04** (`wiki/research/rfc-gap-04.md`) [vector_only]:
   > --- title: rfc-gap-04 category: research status: draft sourceRepository: kb-sync --- # RFC: GAP-04  ## Candidate Evidence: Remote Agent Finding 2026-09-22T19:11:44.937Z <!-- finding_id: 309bea4286a89bdbec80baf93c51a80483ae0e2cb6e90711b202613f6804fbea
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

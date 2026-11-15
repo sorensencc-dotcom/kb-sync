@@ -20,11 +20,11 @@ citations: ["wiki/entities/targets.mjs.md","wiki/research/rfc-gap-04-cic-daily-r
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **targets-mjs** (`wiki/entities/targets.mjs.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-04-cic-daily-research--cic-daily-research-follow-up** (`wiki/research/rfc-gap-04-cic-daily-research--cic-daily-research-follow-up.md`) [vector_only]:
   > --- title: "RFC: GAP-04--cic-daily-research - **CIC - Daily Research follow-up - Unverified / Contradicted Claim" category: "research" topic: "rfc-gap-04-cic-daily-research--cic-daily-research-follow-up" gap_id: "GAP-04--cic-daily-research" status: "
 - **trm** (`wiki/research/2026-09-25/closed-loop-pipeline-adversarial.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

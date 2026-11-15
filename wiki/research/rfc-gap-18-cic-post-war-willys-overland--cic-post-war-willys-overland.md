@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-20-cic-post-war-willys-overland--cic-post-war
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-20-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-66-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-66-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-57-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [hybrid]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

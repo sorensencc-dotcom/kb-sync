@@ -20,9 +20,9 @@ citations: ["trm-research-gaps.md","wiki/research/rfc-gap-01-cic-post-war-willys
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland** (`wiki/research/rfc-gap-01-cic-post-war-willys-overland--cic-post-war-willys-overland.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-45-cic-research-deltas-living-matrix--cic-research-deltas-living-ma** (`wiki/research/rfc-gap-45-cic-research-deltas-living-matrix--cic-research-deltas-living-ma.md`) [vector_only]:
   > --- title: "RFC: GAP-45--cic-research-deltas-living-matrix - **CIC - Research Deltas & Living Matrix under-sourced - The Claim" category: "research" topic: "rfc-gap-45-cic-research-deltas-living-matrix--cic-research-deltas-living-ma" gap_id: "GAP-45-
 

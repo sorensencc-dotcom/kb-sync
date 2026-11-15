@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary** (`wiki/research/rfc-gap-06-cic-reddit--cic-reddit-follow-up-primary.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-de** (`wiki/research/rfc-gap-05-cic-reddit--cic-reddit-follow-up-audit-de.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-03-cic-kb--cic-kb-follow-up-1** (`wiki/research/rfc-gap-03-cic-kb--cic-kb-follow-up-1.md`) [vector_only]:
   > --- title: "RFC: GAP-03--cic-kb - **CIC-KB follow-up - 1.**" category: "research" topic: "rfc-gap-03-cic-kb--cic-kb-follow-up-1" gap_id: "GAP-03--cic-kb" status: "draft" created_at: "2026-10-20T10:06:41.792Z" expansion_method: "heuristic" retrieval_m
 

@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-39-cic-reddit--cic-reddit-under-sourced-the.m
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-39-cic-reddit--cic-reddit-under-sourced-the** (`wiki/research/rfc-gap-39-cic-reddit--cic-reddit-under-sourced-the.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-09-cic-reddit--cic-reddit-under-sourced-fram** (`wiki/research/rfc-gap-09-cic-reddit--cic-reddit-under-sourced-fram.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont** (`wiki/research/rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont.md`) [vector_only]:
   > --- title: RFC: GAP-01--cic-reddit - **CIC-Reddit follow-up - The Context category: research topic: rfc-gap-01-cic-reddit--cic-reddit-follow-up-the-cont gap_id: GAP-01--cic-reddit status: draft created_at: 2026-09-23T12:35:03.820Z expansion_method: h
 

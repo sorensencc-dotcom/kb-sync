@@ -137,4 +137,3 @@ Example:
 - See [[Entity1]] for the primary implementation
 - See [[Workflow1]] for this concept's role in practice
 - See the [[Log.md]] for historical decisions about this concept
-

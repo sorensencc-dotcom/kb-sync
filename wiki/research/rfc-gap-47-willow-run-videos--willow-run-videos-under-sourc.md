@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-under
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-49-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-49-willow-run-videos--willow-run-videos-under-sourc.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-35-willow-run-videos--willow-run-videos-under-sourc.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-78-willow-run-videos--willow-run-videos-under-sourc** (`wiki/research/rfc-gap-78-willow-run-videos--willow-run-videos-under-sourc.md`) [vector_only]:
   > --- title: RFC: GAP-78--willow-run-videos - **Willow Run Videos under-sourced - Historical Reality category: research topic: rfc-gap-78-willow-run-videos--willow-run-videos-under-sourc gap_id: GAP-78--willow-run-videos status: draft created_at: 2026-
 

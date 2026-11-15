@@ -20,11 +20,11 @@ The corporate registry searches included in the notebook are restricted to the *
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **1b4861a3-931f-4632-8fc1-343a8dd37df8** (`trm-research-gaps.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-03-cic-reddit--cic-reddit-follow-up-research** (`wiki/research/rfc-gap-03-cic-reddit--cic-reddit-follow-up-research.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-99-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as** (`wiki/research/rfc-gap-99-cic-cuban-seizures-retired-assets--cic-cuban-seizures-retired-as.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

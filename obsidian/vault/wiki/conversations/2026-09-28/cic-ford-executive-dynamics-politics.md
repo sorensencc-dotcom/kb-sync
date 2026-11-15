@@ -35,7 +35,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-28. Gro
 - **Q:** What follow-up research would most strengthen current findings?
   **Finding:** To resolve uncorroborated claims, archival censorship, and historical gaps across your sources, follow-up research should be organized around **seven canonical archival tracks** targeting specific repositories, accessions, and document collections:
 
-
 category: "wiki"---
 
 ### **1. Textual Collation of Charles Sorense...

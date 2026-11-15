@@ -4,7 +4,7 @@ category: research
 topic: the-henry-ford-sorensen-photographic-accessions
 status: verified
 created_at: 2026-09-22
-citations: 
+citations:
 - "https: //www.thehenryford.org/collections/explore/artifact/62490
 sourceRepository: kb-sync
 ---

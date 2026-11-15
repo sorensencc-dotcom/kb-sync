@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-06.md","wiki/research/rfc-gap-122-cic-willow-
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-06** (`wiki/research/rfc-gap-06.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-122-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin** (`wiki/research/rfc-gap-122-cic-willow-run-aviation-engineering--cic-willow-run-aviation-engin.md`) [vector_only]:
   > --- title: RFC: GAP-122--cic-willow-run-aviation-engineering - **CIC - Willow Run & Aviation Engineering open-contradictions - Sorensen vs. Bennett Memoir Discrepancies category: research topic: rfc-gap-122-cic-willow-run-aviation-engineering--cic-wi
 - **rfc-gap-01** (`wiki/research/rfc-gap-01.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

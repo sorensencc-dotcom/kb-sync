@@ -20,9 +20,9 @@ citations: ["wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follo
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-w** (`wiki/research/rfc-gap-04-willow-run-videos--willow-run-videos-follow-up-w.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o** (`wiki/research/rfc-gap-10-willow-run-videos--willow-run-videos-follow-up-o.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to** (`wiki/research/rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to.md`) [vector_only]:
   > --- title: RFC: GAP-34--willow-run-videos - **Willow Run Videos adjacent-topics - The Train Wreck Hoaxes category: research topic: rfc-gap-34-willow-run-videos--willow-run-videos-adjacent-to gap_id: GAP-34--willow-run-videos status: draft created_at:
 

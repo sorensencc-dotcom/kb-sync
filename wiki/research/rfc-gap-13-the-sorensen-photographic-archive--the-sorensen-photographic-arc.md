@@ -20,11 +20,11 @@ Industrial Giants at Willow Run (open-contradictions - Soft Metal vs. Hard Steel
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-37-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-62-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 - **rfc-gap-27-castironcharlie-facebook--castironcharlie-facebook-adja** (`wiki/research/rfc-gap-27-castironcharlie-facebook--castironcharlie-facebook-adja.md`) [hybrid]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

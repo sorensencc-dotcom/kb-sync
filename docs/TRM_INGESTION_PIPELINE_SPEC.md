@@ -1048,5 +1048,3 @@ Synthesis providers are bound by strict prompt invariants:
 
 - **UNRESOLVED:** 0 decisions unresolved across all reviews
 - **VERDICT:** DESIGN + ENG CLEARED — Ready for implementation
-
-

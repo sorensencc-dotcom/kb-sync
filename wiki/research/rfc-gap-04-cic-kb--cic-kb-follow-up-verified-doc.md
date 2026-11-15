@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-08-cic-kb--cic-kb-under-sourced-rejectio.md",
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-08-cic-kb--cic-kb-under-sourced-rejectio** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-under-sourced-rejectio.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover** (`wiki/research/rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover.md`) [vector_only]:
   > --- title: "RFC: GAP-06--cic-kb - **CIC-KB follow-up - Source Coverage Audit**" category: "research" topic: "rfc-gap-06-cic-kb--cic-kb-follow-up-source-cover" gap_id: "GAP-06--cic-kb" status: "draft" created_at: "2026-10-16T12:05:24.701Z" expansion_m
 - **rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig** (`wiki/research/rfc-gap-08-cic-kb--cic-kb-adjacent-topics-foreig.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

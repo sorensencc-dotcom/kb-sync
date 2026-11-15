@@ -34,7 +34,6 @@ Consolidated 10 discussion turn(s) across 1 active session(s) on 2026-09-27. Gro
 - **Q:** What claims are asserted but single-sourced or under-corroborated?
   **Outcome:** Across the primary oral history dictations (**Benson Ford Research Center Accession 65**), corporate accessions, legal filings, and secondary publications in your notebook, several key claims are asserted but remain **single-sourced, under-corroborated, or directly refuted by period records**:
 
-
 category: "wiki"---
 ...
 - **Q:** What adjacent topics do these sources point to that aren't covered yet?

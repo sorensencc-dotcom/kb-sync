@@ -20,11 +20,11 @@ The work provides a broad architectural blueprint for enterprise multi-agent sys
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **research_worker_deployment** (`product:trm/RESEARCH_WORKER_DEPLOYMENT.md`) [lexical_only]:
-  > 
+  >
 - **readme** (`product:helix/README.md`) [vector_only]:
   > <!-- title: "Helix" status: active owner: chris last-reviewed: 2026-09-27 brand: helix -->  # Helix  Helix is a local Windows personal-assistant foundation for governed engineering work. It provides a durable local daemon, operator-facing CLI/browser
 - **architecture** (`product:icf/Architecture.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*

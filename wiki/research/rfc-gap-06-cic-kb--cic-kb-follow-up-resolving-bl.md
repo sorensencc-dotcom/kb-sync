@@ -20,11 +20,11 @@ citations: ["wiki/research/rfc-gap-09.md","wiki/research/rfc-gap-07-cic-reddit--
 The following related context nodes were retrieved from the local knowledge base via hybrid-rrf search:
 
 - **rfc-gap-09** (`wiki/research/rfc-gap-09.md`) [lexical_only]:
-  > 
+  >
 - **rfc-gap-07-cic-reddit--cic-reddit-follow-up-plant-re** (`wiki/research/rfc-gap-07-cic-reddit--cic-reddit-follow-up-plant-re.md`) [vector_only]:
   > --- title: "RFC: GAP-07--cic-reddit - **CIC-Reddit follow-up - Plant Records" category: "research" topic: "rfc-gap-07-cic-reddit--cic-reddit-follow-up-plant-re" gap_id: "GAP-07--cic-reddit" status: "draft" created_at: "2026-09-27T12:09:16.360Z" expan
 - **rfc-gap-11** (`wiki/research/rfc-gap-11.md`) [lexical_only]:
-  > 
+  >
 
 ### 3. AST Call-Graph & Blast Radius Analysis
 *No static call-graph symbols detected in target codebase for this item.*
