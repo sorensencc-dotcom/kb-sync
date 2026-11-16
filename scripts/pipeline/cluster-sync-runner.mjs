@@ -301,19 +301,31 @@ export function resolveExpectedPartCount(notebook = {}, packFiles = []) {
 
 export const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export function defaultQueryNotebook(notebookId, questionText, timeoutMs = 90000) {
-  const res = spawnSync('nlm', ['notebook', 'query', notebookId, questionText, '--json'], {
-    encoding: 'utf8',
-    timeout: timeoutMs,
-    maxBuffer: 10 * 1024 * 1024,
-    windowsHide: true,
-  });
-  return {
-    ok: res.status === 0 && !res.error,
-    status: res.status,
-    stdout: res.stdout || '',
-    stderr: res.stderr || (res.error ? res.error.message : ''),
-  };
+export function defaultQueryNotebook(notebookId, questionText, timeoutMs = 90000, options = {}) {
+  const { maxAttempts = 2, spawnFn = spawnSync } = options;
+  let lastResult = { ok: false, status: null, stdout: '', stderr: '' };
+
+  for (let attempt = 1; attempt <= Math.max(1, maxAttempts); attempt++) {
+    const res = spawnFn('nlm', ['notebook', 'query', notebookId, questionText, '--json'], {
+      encoding: 'utf8',
+      timeout: timeoutMs,
+      maxBuffer: 10 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      windowsHide: true,
+    });
+    const stderr = res.stderr || (res.error ? res.error.message : '');
+    lastResult = {
+      ok: res.status === 0 && !res.error,
+      status: res.status,
+      stdout: res.stdout || '',
+      stderr,
+    };
+    const isTimeout = res.error?.code === 'ETIMEDOUT' || /\bETIMEDOUT\b/i.test(stderr);
+    if (lastResult.ok || !isTimeout) {
+      return lastResult;
+    }
+  }
+  return lastResult;
 }
 
 export async function runNotebookSweep(notebook, options = {}) {
@@ -422,10 +434,10 @@ export async function runNotebookSweep(notebook, options = {}) {
     }
 
     // Clear quarantine if previous run had quarantined this notebook,
-    // but only on live runs where pack replacement completed or was intentionally bypassed.
+    // but only on live runs where the sweep succeeded and pack replacement completed or was intentionally bypassed.
     if (!isDryRun) {
       const packSkipped = (notebook.has_pack !== false && !isMasterWriter) && findStagedPackFiles(notebook, candidateDirs).length === 0;
-      if (!packSkipped) {
+      if (!packSkipped && summary.status === 'SUCCESS') {
         clearQuarantine(notebook.uuid);
       }
     }

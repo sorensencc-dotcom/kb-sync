@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # KB Sync Nightly Orchestrator — Native Windows (PowerShell)
 # Stage 1: Sync CIC/Rewrite docs to NotebookLM knowledge base
 # Stage 2: Generate interactive artifact report with impact scoring
@@ -123,13 +123,13 @@ function Resolve-NlmRuntime {
 }
 
 function Invoke-NlmCli {
-    param([string[]]$Args)
+    param([string[]]$CliArgs)
     $rt = Resolve-NlmRuntime
     if ($rt.Mode -eq "none") {
         Write-LogError "No NotebookLM CLI runtime available."
         return 1
     }
-    $fullArgs = @($rt.PrefixArgs) + @($Args)
+    $fullArgs = @($rt.PrefixArgs) + @($CliArgs)
     & $rt.Cmd @fullArgs
     return $LASTEXITCODE
 }
