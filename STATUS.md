@@ -1,5 +1,10 @@
 # Session status
 
+## Contract failure diagnostics, 2026-11-16
+
+- `defaultValidateContract` captured validator output and persisted only the exit code. Failed contract runs now keep stdout, stderr, and spawn errors on the `content_validated` failure.
+- Regression `pipeline contract failures persist validator stdout and stderr` failed first on `exited 1` alone, then passed after the change. No commit or push.
+
 ## Staging validation repair, 2026-11-14
 
 - Reproduced the Nov 13 snapshot errors: 496 missing Cuban overview links and 7 links to a nonexistent Danish telemetry RFC. The registry rows concern Danish royal honors.

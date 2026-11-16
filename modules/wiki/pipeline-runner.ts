@@ -147,7 +147,12 @@ function defaultValidateContract(repoRoot: string) {
   const pkg = readJson<any>(path.join(repoRoot, 'package.json'));
   if (!pkg?.scripts?.['wiki:validate-contract']) return { ok: true, detail: 'no wiki:validate-contract script in repo (external contract validation skipped)' };
   const r = spawnSync(IS_WIN ? 'npm.cmd' : 'npm', ['run', 'wiki:validate-contract'], { cwd: repoRoot, encoding: 'utf8', shell: IS_WIN });
-  return { ok: r.status === 0, detail: `npm run wiki:validate-contract exited ${r.status}` };
+  const detail = `npm run wiki:validate-contract exited ${r.status}`;
+  if (r.status === 0) return { ok: true, detail };
+  return {
+    ok: false,
+    detail: [detail, r.error && `spawn error: ${r.error.message}`, r.stdout?.trim() && `stdout:\n${r.stdout.trim()}`, r.stderr?.trim() && `stderr:\n${r.stderr.trim()}`].filter(Boolean).join('\n'),
+  };
 }
 
 function defaultRunSemantic(repoRoot: string, provider: string) {
