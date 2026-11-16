@@ -1,0 +1,22 @@
+.trail/learnings/2026-11-16-contract-validator-failures-now-show-their-chris.md
+  s_73a1d37fdf5332::t_b79a51b6a2bee4 2
+  s_73a1d37fdf5332::t_210901afdde871 1
+  s_73a1d37fdf5332::t_2699e532209f5c 3-5
+  s_73a1d37fdf5332::t_9a07e4566e0590 6-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6f6f692ff14328a44d5c8768294d8aa340789112",
+  "prompts": {},
+  "sessions": {
+    "s_73a1d37fdf5332": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "47aace31-15d5-462b-b457-db1201f9fe8e",
+        "model": "claude-haiku-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
