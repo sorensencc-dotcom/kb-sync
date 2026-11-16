@@ -178,7 +178,7 @@ export function clearQuarantine(notebookId, quarantineFile = resolveQuarantineFi
 export function persistClusterTelemetry(payload, statusFile = SYNC_STATUS_FILE) {
   updateJsonLocked(statusFile, (status) => {
     Object.assign(status, payload);
-    if ((payload.failed || 0) > 0) status.status = 'FAILED';
+    status.status = (payload.failed || 0) > 0 ? 'FAILED' : 'SUCCESS';
     return status;
   });
 }
