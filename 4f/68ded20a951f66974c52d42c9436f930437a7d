@@ -1,0 +1,44 @@
+"modules/wiki/Iron Command Forge - DS Compliant.dc.html"
+  h_5c172e9b435f5a 441
+modules/wiki/autoheal-engine.mjs
+  h_5c172e9b435f5a 1-5,8-9,15-16,27,34-39,47-51,99,105,108,111,113-117,120,129-130,132,139,164-165,167,176,193,206-210,230-231,235-276,279-280,282,284,286-288,290,293-294,298,301,305,311,315-316,318-319,326,330,334-336,339-340,372-378,386,388-389,391-401,407-410,413,415-416,421,423,427-459,463,470-478,488-490,492-498,500-525,527-532,541-542,547,550-552,555-562,564-565,568,571-572,577,586-589,591,596-609,613-614,618-620,623,628-644
+modules/wiki/dashboard.html
+  h_5c172e9b435f5a 1140
+modules/wiki/frontmatter.mjs
+  h_5c172e9b435f5a 10-16,21,24-39,44
+modules/wiki/gated-climb-repair.mjs
+  h_5c172e9b435f5a 10
+modules/wiki/schedule-task-wrapper-Autoheal.ps1
+  h_5c172e9b435f5a 20
+modules/wiki/validate-staging-docs.mjs
+  h_5c172e9b435f5a 15
+scripts/fix-wiki-frontmatter.mjs
+  h_5c172e9b435f5a 2
+scripts/fix-wiki-links.mjs
+  h_5c172e9b435f5a 1
+scripts/trm-trigger-research.sh
+  h_5c172e9b435f5a 45-47
+tests/modules/wiki/autoheal-engine.test.mjs
+  h_5c172e9b435f5a 1-75
+tests/modules/wiki/autoheal-sweeper.test.mjs
+  h_5c172e9b435f5a 2,50,53
+tests/modules/wiki/validation-gate-autoheal.test.mjs
+  h_5c172e9b435f5a 4
+tests/modules/wiki/viking-vfs-mount-v4.test.mjs
+  h_5c172e9b435f5a 7
+tests/wiki-dashboard-cli.test.mjs
+  h_5c172e9b435f5a 24,40,46,52
+tests/wiki-metadata-root-causes.test.mjs
+  h_5c172e9b435f5a 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4f68ded20a951f66974c52d42c9436f930437a7d",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
