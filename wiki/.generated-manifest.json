@@ -5,7 +5,7 @@
   "generationKind": "metadata-inventory",
   "semanticRegeneration": false,
   "sourcesHash": "85a83c63de860b64002e451be1b239441396012e4912c946d75fac2773f04de3",
-  "outputsHash": "3d4a600e44e61a00bd42e176d96821fe6732145f3db61b4c1b0ff0b919d5fb3f",
+  "outputsHash": "a6d0a2e02248117cbb21e471e0592ab94cc5314abf8f0dfa9373a22d994b9e06",
   "files": {
     "entities/2026-09-17.json.md": {
       "sha256": "1c2b64071d2c44e731cf739f46b9f4ebe6ec5405765e91e74bc759f710651e7f",
@@ -1730,11 +1730,11 @@
       "inputHash": "a312a31b90330edd2f730bec936699d0adaf74fc33507c3ef63b4538bbe855e6"
     },
     "entities/kb-sync--modules-wiki-pipeline-runner.ts--16aade8e.md": {
-      "sha256": "7c496c8c1d8938a9eb41faeee9a726a6ed82bf7971bcb5c8694125741224a952",
+      "sha256": "b9a8819f28e49f8e7003c35e187819fe442930d94647ef92bf7ee73af2d63631",
       "kind": "entity",
       "sourceFile": "modules/wiki/pipeline-runner.ts",
-      "sourceSha256": "9e6d82591a8ca02b5d2d1d41a1b151af8de3e41032fb5d662db788ee5c5f6c3d",
-      "inputHash": "47bb9a5e9fcabd9f65bba114809ff29d5b14315b7cd0351e1ac24da5594ab9af"
+      "sourceSha256": "390823e329a0c8bc9cfadf68f0c7ff33eabb7ced0340efd9b974b80f7f4fc190",
+      "inputHash": "e4ed5457b60a82cdcd521a5dce487f83b3bda1dbea5bddb9506fb1c534ee6dc2"
     },
     "entities/kb-sync--modules-wiki-repair-provider.mjs--2950c184.md": {
       "sha256": "5223696b8743070ad9a7868e201b2fb645709e7968f49da898d7aff0c0308cdd",
@@ -3214,11 +3214,11 @@
       "inputHash": "a6939c4e838ab81ba6b1af561fff900eca2d0acacebef7d574555e65954df55f"
     },
     "entities/kb-sync--tests-pipeline-freshness.test.ts--716166f2.md": {
-      "sha256": "15246bfe4e028e0b3b7010c3dcd94b345ea230c54ee0334f32c76fdd282265d8",
+      "sha256": "fed0ab8e8f34bd29aaa24b83eb23924c349909b86caeae6763c556427b99f965",
       "kind": "entity",
       "sourceFile": "tests/pipeline-freshness.test.ts",
-      "sourceSha256": "7f379b26c7f7433e49bc405bf5e1a9bbaf0a64377c2344e6511b2b89312f2d84",
-      "inputHash": "76330f95b1c1df9750db4d79a47f0ed18244c5b71f0ef728628f4f2a83cc54cc"
+      "sourceSha256": "6f72e3065d51b310c915499c8c14b8f260903469a0065eb2bb8c1bc88c8a14ab",
+      "inputHash": "b571d3ccba26d4155731e757ec6f158e1552ec310948a051c5022bfc6e203503"
     },
     "entities/kb-sync--tests-process-unenriched-lessons.test.ts--1b7a7641.md": {
       "sha256": "889e506516f67bdb5f591121e210346b1dfc26d60921685c09e8047c92ed21c5",

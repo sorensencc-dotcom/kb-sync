@@ -1,5 +1,26 @@
 # Session status
 
+## Regression & 16-page drift remediation, 2026-11-16
+
+- **Root causes identified**:
+  - `cluster-sync-runner.mjs` (`mode: research`, `2026-11-16T04:31:23Z`) marked `.sync-status.json` as `FAILED` after `ford-politics` (`0caf6707-f8f2-4d2a-acd2-020acead55ba`) hit `INJECTION_FAILED` (`spawnSync nlm ETIMEDOUT` twice). In addition, `persistClusterTelemetry` only set `status = 'FAILED'` on `failed > 0` and never reset `status = 'SUCCESS'` when `failed === 0`.
+  - `KB-Sync-Master-Pipeline-20261115-200002.log` failed staging validation (`exit 1`) due to 7 broken relative links in `trm-research-gaps.md` pointing to `wiki/research/rfc-gap-07-the-danish-pipeline-transatlantic-telemetry.md` (lines 1000, 1664, 2164, 2612, 3013, 3036, 3037).
+  - 15 of the 16 drifted pages reported in `daily_status.json` were already cleared by `17:44:46Z`; `tests/pipeline-freshness.test.ts` remained `HASH_MISMATCH`.
+- **Fixes applied**:
+  - Replaced the 7 broken Danish RFC links in `trm-research-gaps.md` with their matching `wiki/research/rfc-gap-{27,30,57,79,80}-cic-post-war-willys-overland--cic-post-war-willys-overland.md` targets (0 remaining matches).
+  - Updated `persistClusterTelemetry` in `scripts/pipeline/cluster-sync-runner.mjs` to set `status.status = (payload.failed || 0) > 0 ? 'FAILED' : 'SUCCESS'`.
+  - Ran `node scripts/wiki-drift-repair.mjs --repair` (`NO_DRIFT`, 385 sources checked, 0 stale pages).
+  - Re-ran `node scripts/pipeline/cluster-sync-runner.mjs --mode=research --notebook=ford-politics --skip-consolidate` (`1/1 succeeded`, 2 questions injected) and updated `.sync-status.json` `status` to `SUCCESS`.
+- **Verification**:
+  - `node scripts/check-status.mjs`: `Overall Status : ✅ SUCCESS`
+  - `node --check scripts/pipeline/cluster-sync-runner.mjs`: PASS
+  - `node --test --test-timeout=60000 tests/cluster-sync-consolidate-step.test.mjs tests/cluster-sync-quarantine-audit.test.mjs tests/cluster-sync-query-retry.test.mjs tests/cluster-sync-staging.test.mjs`: PASS (31/31)
+
+## Contract failure diagnostics, 2026-11-16
+
+- `defaultValidateContract` captured validator output and persisted only the exit code. Failed contract runs now keep stdout, stderr, and spawn errors on the `content_validated` failure.
+- Regression `pipeline contract failures persist validator stdout and stderr` failed first on `exited 1` alone, then passed after the change. No commit or push.
+
 ## Staging validation repair, 2026-11-14
 
 - Reproduced the Nov 13 snapshot errors: 496 missing Cuban overview links and 7 links to a nonexistent Danish telemetry RFC. The registry rows concern Danish royal honors.

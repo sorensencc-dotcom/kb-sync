@@ -8,10 +8,10 @@ entityId: kb-sync--tests-pipeline-freshness.test.ts--716166f2
 generator: entity-synthesizer@2
 generationKind: metadata-inventory
 semanticContent: false
-inputHash: 76330f95b1c1df9750db4d79a47f0ed18244c5b71f0ef728628f4f2a83cc54cc
-sha256: 7f379b26c7f7433e49bc405bf5e1a9bbaf0a64377c2344e6511b2b89312f2d84
-lastCommit: 2026-11-08T13:58:45-05:00
-summary: Metadata inventory for tests/pipeline-freshness.test.ts in kb-sync (890 lines). Exports: login, charge, x, logout, extra, a, b, d, logoutEverywhere.
+inputHash: b571d3ccba26d4155731e757ec6f158e1552ec310948a051c5022bfc6e203503
+sha256: 6f72e3065d51b310c915499c8c14b8f260903469a0065eb2bb8c1bc88c8a14ab
+lastCommit: 2026-11-16T13:02:13-05:00
+summary: Metadata inventory for tests/pipeline-freshness.test.ts in kb-sync (909 lines). Exports: login, charge, x, logout, extra, a, b, d, logoutEverywhere.
 ---
 
 # pipeline-freshness.test.ts
@@ -25,9 +25,9 @@ summary: Metadata inventory for tests/pipeline-freshness.test.ts in kb-sync (890
 Metadata inventory for `tests/pipeline-freshness.test.ts` in **kb-sync**.
 
 - **File Path:** `tests/pipeline-freshness.test.ts`
-- **Lines of Code:** 890
-- **Last Modified:** `2026-11-08T13:58:45-05:00`
-- **SHA-256:** `7f379b26c7f7433e49bc405bf5e1a9bbaf0a64377c2344e6511b2b89312f2d84`
+- **Lines of Code:** 909
+- **Last Modified:** `2026-11-16T13:02:13-05:00`
+- **SHA-256:** `6f72e3065d51b310c915499c8c14b8f260903469a0065eb2bb8c1bc88c8a14ab`
 
 ## Exported Symbols & API
 - `login`

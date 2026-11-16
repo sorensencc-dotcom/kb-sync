@@ -345,6 +345,25 @@ test('4c. pipeline: required stage failure => FAILED, downstream not run, never 
   assert.equal(v.stages.indexing_complete.status, 'not_run');
 });
 
+test('pipeline contract failures persist validator stdout and stderr', async () => {
+  const repo = mkRepo({ 'src/auth/index.ts': AUTH });
+  write(repo, 'package.json', JSON.stringify({
+    scripts: { 'wiki:validate-contract': 'node -e "console.log(\'contract stdout diagnostic\'); console.error(\'contract stderr diagnostic\'); process.exit(1)"' },
+  }));
+  const state = await runPipeline({
+    repoRoot: repo,
+    repoName: 'demo',
+    dbPath: path.join(tmp('db'), 'contract-diagnostics.db'),
+    detectDrift: stubs.detectDrift,
+  });
+
+  assert.equal(state.stages.content_validated.status, 'failed');
+  assert.match(state.stages.content_validated.error ?? '', /exited 1/);
+  assert.match(state.stages.content_validated.error ?? '', /contract stdout diagnostic/);
+  assert.match(state.stages.content_validated.error ?? '', /contract stderr diagnostic/);
+  assert.equal(state.overall, 'FAILED');
+});
+
 test('4d. an interrupted run is reported, not treated as healthy', () => {
   const repo = mkRepo({ 'src/a.ts': 'export const a = 1;\n' });
   write(repo, '.pipeline-state.json', JSON.stringify({ version: 1, repository: 'demo', overall: 'IN_PROGRESS', started_at: new Date().toISOString(), mode: { publish: false, semantic: null }, sources_hash: 'x', stages: {} }));
