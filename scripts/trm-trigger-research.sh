@@ -42,9 +42,9 @@ if [[ -f "modules/wiki/trm-source-resolver.mjs" ]]; then
   node modules/wiki/trm-source-resolver.mjs --input-dir "${STAGING_DIR}" || true
 fi
 
-if [[ -f "modules/wiki/autoheal-sweeper.mjs" ]]; then
-  echo "[+] Running autoheal sweeper..."
-  node modules/wiki/autoheal-sweeper.mjs --target "wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md" || true
+if [[ -f "modules/wiki/autoheal-engine.mjs" ]]; then
+  echo "[+] Running autoheal engine..."
+  node modules/wiki/autoheal-engine.mjs --target "wiki/research/rfc-gap-03--cast-iron-charlie-research-lo.md" || true
 fi
 
 if [[ -f "modules/wiki/validate-trm-semantics.mjs" ]]; then

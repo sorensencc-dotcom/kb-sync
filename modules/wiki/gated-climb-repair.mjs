@@ -7,7 +7,7 @@ import { validateAllowedDiff } from './normalized-diff-guard.mjs';
 import { validateLessonSchema } from './validate-contract.mjs';
 import jsYaml from 'js-yaml';
 import { resolveVaultPaths } from './config-loader.mjs';
-import { sweepStagingVault } from './autoheal-sweeper.mjs';
+import { sweepStagingVault } from './autoheal-engine.mjs';
 import { resolveBashExecutable } from '../notebooklm/lib/bash-resolver.mjs';
 
 /**

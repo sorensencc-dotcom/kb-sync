@@ -17,7 +17,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$scriptPath = Join-Path $RepositoryPath 'autoheal-sweeper.mjs'
+$scriptPath = Join-Path $RepositoryPath 'autoheal-engine.mjs'
 $stdoutLog = Join-Path $LogDirectory 'autoheal.stdout.log'
 $stderrLog = Join-Path $LogDirectory 'autoheal.stderr.log'
 

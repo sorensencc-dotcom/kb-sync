@@ -438,7 +438,7 @@ class Component extends DCLogic {
     }));
 
     const breakdownCards = [
-      { title: 'Graph Frontiers (Emerging Links)', count: 8, accent: RUST, desc: 'Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents active knowledge graph growth in the Karpathy LLM-wiki workflow.', btnLabel: 'Scaffold Concept Stubs', onClick: () => this.copyCmd('node modules/wiki/autoheal-sweeper.mjs --fix --allow-dirty --target-dir wiki') },
+      { title: 'Graph Frontiers (Emerging Links)', count: 8, accent: RUST, desc: 'Forward-looking double-bracket links pointing to conceptual topics and entities not yet created on disk. This represents active knowledge graph growth in the Karpathy LLM-wiki workflow.', btnLabel: 'Scaffold Concept Stubs', onClick: () => this.copyCmd('node modules/wiki/autoheal-engine.mjs --fix --allow-dirty --target-dir wiki') },
       { title: 'Structural Violations', count: 27, accent: BRASS, desc: 'Missing top-level # Title headings, heading level jumps (e.g. H1 to H3), or missing frontmatter properties that affect automated indexers and AST parsing.', btnLabel: 'Standardize Headers', onClick: () => this.copyCmd('node scripts/fix-wiki-frontmatter.mjs wiki --allow-dirty') },
       { title: 'Markdown Hygiene', count: 23, accent: ASH, desc: 'Consecutive blank lines and trailing whitespace at the ends of lines. Completely safe to auto-format without semantic risk.', btnLabel: 'Run Auto-Fixer', onClick: () => this.copyCmd('node modules/wiki/validate-staging-docs.mjs --fix --json=./.validation-report.json wiki') }
     ];

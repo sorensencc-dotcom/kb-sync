@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { sweepStagingVault } from '../../../modules/wiki/autoheal-sweeper.mjs';
+import { sweepStagingVault } from '../../../modules/wiki/autoheal-engine.mjs';
 
 describe('Validation gate autohealing pre-pass', () => {
   it('heals dirty files in a mock staging directory before validation', async () => {

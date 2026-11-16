@@ -9,7 +9,7 @@ import yaml from 'js-yaml';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const parse = content => yaml.load(content.match(/^---\r?\n([\s\S]*?)\r?\n---/)[1]);
 const note = extra => `---\ntitle: "Topic: detail"\ncategory: wiki\nstatus: active\nsourceRepository: kb-sync\n${extra}\n---\nBody.   \n`;
-for (const version of ['autoheal-sweeper.mjs', 'autoheal-sweeper-v2.mjs']) {
+for (const version of ['autoheal-engine.mjs']) {
   const { autohealMetadata, sweepStagingVault } = await import(`../modules/wiki/${version}`);
   test(`${version}: real YAML roundtrip preserves colon title, arrays, version string, dates, and unknown fields`, async () => {
     for (const tags of ['tags:\n  - failure-pattern\n  - remediation', 'tags: [failure-pattern, remediation]']) {

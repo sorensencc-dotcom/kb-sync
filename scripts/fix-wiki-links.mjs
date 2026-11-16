@@ -1,4 +1,4 @@
-import { sweepStagingVault } from '../modules/wiki/autoheal-sweeper.mjs';
+import { sweepStagingVault } from '../modules/wiki/autoheal-engine.mjs';
 import { resolveVaultPaths } from '../modules/wiki/config-loader.mjs';
 
 async function main() {

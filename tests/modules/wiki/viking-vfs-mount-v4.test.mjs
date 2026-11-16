@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { VikingVFSMount, provisionSampleFixtures } from '../../../modules/wiki/viking-vfs-mount-v4.mjs';
-import { sweepStagingVault } from '../../../modules/wiki/autoheal-sweeper-v2.mjs';
+import { sweepStagingVault } from '../../../modules/wiki/autoheal-engine.mjs';
 
 test('Viking VFS Mount v4 Production Suite', async (t) => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'viking-vfs-test-'));

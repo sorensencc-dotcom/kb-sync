@@ -21,7 +21,7 @@ test('autoheal-sweeper --fix writes files (dryRun off)', () => {
   const file = path.join(dir, 'note.md');
   fs.writeFileSync(file, '# Title\nbody  \n');
   const result = runCli([
-    'modules/wiki/autoheal-sweeper.mjs',
+    'modules/wiki/autoheal-engine.mjs',
     '--fix',
     '--allow-dirty',
     '--target-dir',
@@ -37,19 +37,19 @@ test('dashboard copies scoped wiki commands, not validate-batch --fix', () => {
   const html = fs.readFileSync(path.join(repoRoot, 'modules/wiki/dashboard.html'), 'utf8');
   assert.match(html, /validate-staging-docs\.mjs --json=\.\/\.validation-report\.json \./);
   assert.match(html, /validate-staging-docs\.mjs --fix --json=\.\/\.validation-report\.json wiki/);
-  assert.match(html, /autoheal-sweeper\.mjs --fix --allow-dirty --target-dir wiki/);
+  assert.match(html, /autoheal-engine\.mjs --fix --allow-dirty --target-dir wiki/);
   assert.doesNotMatch(html, /wiki:validate-batch -- --fix/);
   assert.match(html, /Reload report JSON/);
 });
 
 test('autoheal prefers concepts/ path instead of comma-joining registry hits', async () => {
-  const { autohealMetadata } = await import('../modules/wiki/autoheal-sweeper.mjs');
+  const { autohealMetadata } = await import('../modules/wiki/autoheal-engine.mjs');
   const index = new Map([
     ['immutable-staging', ['kb-sync/wiki/ImmutableStaging.md', 'concepts/immutable-staging.md']]
   ]);
   const result = await autohealMetadata(
     'concepts/deterministic-sync-pipeline.md',
-    '---\ntitle: X\ncategory: concepts\nstatus: active\n---\n\n# X\n\n[[immutable-staging]]\n',
+    '---\ntitle: X\ncategory: wiki\nstatus: active\n---\n\n# X\n\n[[immutable-staging]]\n',
     { index }
   );
   assert.doesNotMatch(result.content, /ImmutableStaging\.md,concepts/);

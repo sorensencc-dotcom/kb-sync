@@ -12,7 +12,7 @@ import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import https from 'node:https';
 import { resolveVaultPaths } from './config-loader.mjs';
-import { sweepStagingVault } from './autoheal-sweeper.mjs';
+import { sweepStagingVault } from './autoheal-engine.mjs';
 
 const COLOR = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', reset: '\x1b[0m' };
 const logInfo = (msg) => console.error(`${COLOR.green}[VALIDATE-STAGING] [INFO]${COLOR.reset} ${msg}`);

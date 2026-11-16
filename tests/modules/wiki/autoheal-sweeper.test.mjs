@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { autohealMetadata, sweepStagingVault } from '../../../modules/wiki/autoheal-sweeper.mjs';
+import { autohealMetadata, sweepStagingVault } from '../../../modules/wiki/autoheal-engine.mjs';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -47,10 +47,10 @@ describe('autohealMetadata', () => {
   });
 
   it('normalizes category spaces and casing', async () => {
-    const content = '---\ncategory: Some Category\n---\nText.';
+    const content = '---\ncategory: Sync Tools\n---\nText.';
     const result = await autohealMetadata('test.md', content, { repoName: 'kb-sync' });
     
-    expect(result.content).toContain('category: some-category');
+    expect(result.content).toContain('category: sync-tools');
     expect(result.repairs).toContain('normalized_category');
   });
 
