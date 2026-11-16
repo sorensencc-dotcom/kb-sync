@@ -1,0 +1,23 @@
+STATUS.md
+  s_382e57738ae506::t_122db5c8223acd 3-7
+modules/wiki/pipeline-runner.ts
+  s_382e57738ae506::t_76d5d860daa738 150-155
+tests/pipeline-freshness.test.ts
+  s_382e57738ae506::t_9847e0cdfb304e 348-366
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bab3819db6a389e4fd343ea00cbb12e9f92966ce",
+  "prompts": {},
+  "sessions": {
+    "s_382e57738ae506": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_382e57738ae506",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
