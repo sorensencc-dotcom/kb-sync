@@ -1,0 +1,18 @@
+wiki/.generated-manifest.json
+  h_5c172e9b435f5a 8,1733,1736-1737,3217,3220-3221
+wiki/entities/kb-sync--modules-wiki-pipeline-runner.ts--16aade8e.md
+  h_5c172e9b435f5a 11-14,28-30
+wiki/entities/kb-sync--tests-pipeline-freshness.test.ts--716166f2.md
+  h_5c172e9b435f5a 11-14,28-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b3ae4ff9611e175da64e8def7f5fec882d1ca820",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
