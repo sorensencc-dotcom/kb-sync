@@ -1,0 +1,16 @@
+scripts/consolidate-pack.mjs
+  h_5c172e9b435f5a 110-138,427,429-431,435-440,442-446
+tests/consolidate-pack-filename-buckets.test.mjs
+  h_5c172e9b435f5a 6,79-120
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bb4bec68e35654f9054603f0495a9484639218fc",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
