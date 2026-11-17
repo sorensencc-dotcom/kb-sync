@@ -1,11 +1,11 @@
 ---
-title: The Henry Ford: Charles E. Sorensen Archival & Photographic Accessions
+title: "The Henry Ford: Charles E. Sorensen Archival & Photographic Accessions"
 category: research
 topic: the-henry-ford-sorensen-photographic-accessions
-status: verified
+status: active
 created_at: 2026-09-22
 citations:
-- "https: //www.thehenryford.org/collections/explore/artifact/62490
+- "https://www.thehenryford.org/collections/explore/artifact/62490"
 sourceRepository: kb-sync
 ---
 

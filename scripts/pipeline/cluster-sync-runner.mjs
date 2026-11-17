@@ -301,8 +301,8 @@ export function resolveExpectedPartCount(notebook = {}, packFiles = []) {
 
 export const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export function defaultQueryNotebook(notebookId, questionText, timeoutMs = 90000, options = {}) {
-  const { maxAttempts = 2, spawnFn = spawnSync } = options;
+export function defaultQueryNotebook(notebookId, questionText, timeoutMs = 150000, options = {}) {
+  const { maxAttempts = 3, spawnFn = spawnSync } = options;
   let lastResult = { ok: false, status: null, stdout: '', stderr: '' };
 
   for (let attempt = 1; attempt <= Math.max(1, maxAttempts); attempt++) {
