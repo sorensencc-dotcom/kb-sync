@@ -1,0 +1,19 @@
+scripts/pipeline/cluster-sync-runner.mjs
+  s_fb958deaa181e9::t_9df377c3f2eaa2 304-305
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3d649f2b98ff8895778ecbc6575784b6938b6c09",
+  "prompts": {},
+  "sessions": {
+    "s_fb958deaa181e9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "87d4d2aa-9a13-46d4-be6a-1ebfaa3cbe41",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
