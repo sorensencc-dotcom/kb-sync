@@ -299,6 +299,27 @@ fi
 # Fallback to positional ACTIONS
 case "$ACTION" in
   validate)
+    # Drift gate: detect-drift.ts always exits 0, so read its JSON report.
+    # Opt out with KB_DRIFT_GATE=0. Override command/report for tests.
+    if [ "${KB_DRIFT_GATE:-1}" != "0" ]; then
+      DRIFT_CMD="${KB_DRIFT_CMD:-npx tsx $REPO_ROOT/modules/wiki/detect-drift.ts}"
+      DRIFT_REPORT="${KB_DRIFT_REPORT:-$REPO_ROOT/.drift-report.json}"
+      log_info "Running drift detection..."
+      if ! eval "$DRIFT_CMD" >&2; then
+        log_error "Drift detection failed to run."
+        exit 3
+      fi
+      if [ ! -f "$DRIFT_REPORT" ]; then
+        log_error "Drift report missing: $DRIFT_REPORT"
+        exit 3
+      fi
+      DRIFT_STATUS=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')).status))" "$DRIFT_REPORT" 2>/dev/null || echo "UNREADABLE")
+      if [ "$DRIFT_STATUS" != "NO_DRIFT" ]; then
+        log_error "Drift gate failed: status=$DRIFT_STATUS (report: $DRIFT_REPORT). Run: npm run wiki:drift-repair"
+        exit 3
+      fi
+      log_info "Drift gate passed: NO_DRIFT."
+    fi
     log_info "Validation complete. Staging ready for wiki ingest."
     exit 0
     ;;

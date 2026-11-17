@@ -52,7 +52,9 @@ function repoRoot() {
 
 // Get changed files relative to HEAD (for --diff mode)
 function getChangedFiles(targetDir) {
-  for (const cmd of ['git.exe diff --name-only HEAD', 'git diff --name-only HEAD']) {
+  // --relative: emit paths relative to targetDir (not the repo root) so they
+  // match path.relative(targetDir, f) in the caller when targetDir is a subdir.
+  for (const cmd of ['git.exe diff --name-only --relative HEAD', 'git diff --name-only --relative HEAD']) {
     try {
       const output = execSync(cmd, { cwd: targetDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
       return new Set(output.split('\n').filter(f => f.trim()).map(f => f.replace(/\\/g, '/')));

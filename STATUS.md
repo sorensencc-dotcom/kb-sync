@@ -1,5 +1,13 @@
 # Session status
 
+## Validator `--diff` subdir fix, 2026-11-17
+
+- Bug: `validate-staging-docs.mjs --diff` on a subdirectory target validated 0 files. `git diff --name-only HEAD` emits repo-root-relative paths; caller compared against target-relative paths.
+- Fix: added `--relative` to both git diff commands in `getChangedFiles` (`modules/wiki/validate-staging-docs.mjs`).
+- Test: `tests/validate-staging-diff-subdir.test.mjs`. Failed first with `validating 0 changed file(s)`, passes after (1/1). `tests/validate-staging-v12-features.ts` and `npm run test:path` (5 tests) pass.
+- Drift gate: `modules/obsidian/ingest-wiki.sh validate` now runs `detect-drift.ts` and exits 3 unless `.drift-report.json` status is `NO_DRIFT` (opt out `KB_DRIFT_GATE=0`). Test `tests/ingest-wiki-drift-gate.test.mjs` failed `0 !== 3` first, passes 3/3. Synthesis paths skip the gate. Scheduled task command line not checked.
+- Path normalizer: `npm run test:path` passes; no bug reproduced.
+
 ## Regression & 16-page drift remediation, 2026-11-16
 
 - **Root causes identified**:
