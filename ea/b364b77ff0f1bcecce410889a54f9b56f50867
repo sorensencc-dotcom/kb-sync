@@ -1,0 +1,16 @@
+scripts/consolidate-pack.mjs
+  h_5c172e9b435f5a 86-91,422-423
+tests/consolidate-pack-personal-os.test.mjs
+  h_5c172e9b435f5a 1-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eab364b77ff0f1bcecce410889a54f9b56f50867",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
