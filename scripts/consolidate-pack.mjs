@@ -83,6 +83,12 @@ export const THEMATIC_PACK_MAP = [
     filename: 'pack_master_kb.txt',
     notebookId: NOTEBOOK_TARGETS['master-kb'],
     title: 'CIC-KB (Master Knowledge Base)'
+  },
+  {
+    category: 'personal-os',
+    filename: 'pack_personal_os.txt',
+    notebookId: NOTEBOOK_TARGETS['personal-os'],
+    title: 'Personal OS (Household, Utilities, Florida Logistics)'
   }
 ];
 
@@ -413,7 +419,8 @@ export function consolidatePacks(options = {}) {
     'miami-estate': [],
     'assembly-line': [],
     'daily': [],
-    'master-kb': []
+    'master-kb': [],
+    'personal-os': []
   };
 
   for (const filePath of candidateFiles) {
