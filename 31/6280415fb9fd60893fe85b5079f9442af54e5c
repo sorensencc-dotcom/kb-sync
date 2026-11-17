@@ -1,0 +1,28 @@
+modules/wiki/validate-staging-docs.mjs
+  s_77c5bfa04dedc5::t_556892a5242d0a 55-57
+STATUS.md
+  s_77c5bfa04dedc5::t_77f2e2e432b0ed 3-10,27-31,237,257-291
+  s_77c5bfa04dedc5::t_88c91c7ebd19ae 292
+modules/obsidian/ingest-wiki.sh
+  s_77c5bfa04dedc5::t_417a650b8d0a4d 302-322
+tests/ingest-wiki-drift-gate.test.mjs
+  s_77c5bfa04dedc5::t_896f8ad2bfacac 1-49
+tests/validate-staging-diff-subdir.test.mjs
+  s_77c5bfa04dedc5::t_e63ff1eb42289b 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "316280415fb9fd60893fe85b5079f9442af54e5c",
+  "prompts": {},
+  "sessions": {
+    "s_77c5bfa04dedc5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "38e40757-b862-436f-8785-4461fd7e02b9",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
