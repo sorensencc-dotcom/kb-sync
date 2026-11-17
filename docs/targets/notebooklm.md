@@ -1,6 +1,6 @@
 ---
 title: "notebooklm"
-category: "targets"
+category: wiki
 status: "active"
 ---
 

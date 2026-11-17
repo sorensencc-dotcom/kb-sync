@@ -1,6 +1,6 @@
 ---
 title: Pack-Based Knowledge Management
-category: concepts
+category: wiki
 status: active
 sourceRepository: kb-sync
 ---

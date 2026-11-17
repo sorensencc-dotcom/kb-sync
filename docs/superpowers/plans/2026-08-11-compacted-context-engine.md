@@ -1,6 +1,6 @@
 ---
 title: "2026 08 11 compacted context engine"
-category: "superpowers"
+category: wiki
 tags: ["plan"]
 status: "active"
 ---

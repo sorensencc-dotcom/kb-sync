@@ -1,5 +1,5 @@
 ---
-category: "operations"
+category: wiki
 tags: ["pipeline", "freshness"]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "Cast Iron Charlie weekly scan — Nov 9, 2026: five new finds"
-category: "biography"
+category: research
 topic: "cast-iron-charlie-weekly-scan-2026-11-09"
-status: "ingested"
+status: active
 source_action_id: "act-1794227599286"
 created: "2026-11-09"
 ---

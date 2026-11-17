@@ -1,6 +1,6 @@
 ---
 title: "kb sync nightly audit"
-category: "operations"
+category: wiki
 status: "active"
 ---
 

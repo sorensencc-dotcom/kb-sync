@@ -1,8 +1,8 @@
 ---
 title: "Helene Reno crew follow-up (2026-10-28)"
-category: "biography"
+category: research
 topic: "helene-reno-crew-follow-up-2026-10-28"
-status: "ingested"
+status: active
 source_action_id: "act-1793199534166"
 created: "2026-10-28"
 ---

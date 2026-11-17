@@ -4,7 +4,7 @@ source_title: Mobile Browser WebSocket Heartbeats Specification & Analysis
 repository: CIC Architecture & Research Archive - Accession 65, Box 69
 document_date: 2026-09-19
 verification_status: verified
-category: willow-run
+category: research
 topic: mobile-websocket-heartbeats
 status: active
 last_updated: 2026-09-19T19:33:01.718Z

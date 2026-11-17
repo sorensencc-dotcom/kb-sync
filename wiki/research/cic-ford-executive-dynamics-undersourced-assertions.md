@@ -2,7 +2,7 @@
 title: "CIC - Ford Executive Dynamics & Politics: Under-Sourced Assertions"
 category: research
 topic: cic-ford-executive-dynamics-undersourced-assertions
-status: verified
+status: active
 created_at: 2026-10-18
 sourceRepository: kb-sync
 citations:

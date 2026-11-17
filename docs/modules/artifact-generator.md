@@ -1,6 +1,6 @@
 ---
 title: "artifact generator"
-category: "modules"
+category: wiki
 status: "active"
 ---
 

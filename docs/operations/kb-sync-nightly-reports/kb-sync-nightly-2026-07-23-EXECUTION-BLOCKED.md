@@ -1,7 +1,7 @@
 ---
 title: "kb sync nightly 2026 07 23 EXECUTION BLOCKED"
-category: "operations"
-status: "blocked"
+category: wiki
+status: draft
 ---
 
 # KB Sync Nightly Execution Report — BLOCKED

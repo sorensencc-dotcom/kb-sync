@@ -1,6 +1,6 @@
 ---
 title: "IMPLEMENTATION RECORD KB SYNC TIMEOUT POLICY 2026 07 22"
-category: "governance"
+category: wiki
 status: "active"
 ---
 

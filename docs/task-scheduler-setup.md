@@ -1,6 +1,6 @@
 ---
 title: "task scheduler setup"
-category: "operations"
+category: wiki
 status: "active"
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "archive cleanup"
-category: "operations"
+category: wiki
 status: "active"
 ---
 

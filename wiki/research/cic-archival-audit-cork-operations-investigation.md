@@ -1,8 +1,8 @@
 ---
 title: "CIC Archival Audit and Cork Operations Investigation"
-category: "biography"
+category: research
 topic: "cic-archival-audit-cork-operations-investigation"
-status: "ingested"
+status: active
 source_action_id: "act-1793530497972"
 source_issue: "https://github.com/sorensencc-dotcom/kb-sync/issues/126"
 created: "2026-11-01"

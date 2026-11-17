@@ -1,8 +1,8 @@
 ---
 title: "TRM Gap Brief — Unresolved Contradictions & Under-Sourced Assertions (CESOR / CIC)"
-category: "biography"
+category: research
 topic: "trm-gap-brief-unresolved-contradictions-cesor-cic"
-status: "ingested"
+status: active
 source_action_id: "act-1792968941730"
 created: "2026-10-25"
 ---

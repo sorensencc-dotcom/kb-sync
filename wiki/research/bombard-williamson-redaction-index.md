@@ -1,6 +1,6 @@
 ---
 title: "Bombard-Williamson Redaction Index"
-category: "biography"
+category: research
 topic: "bombard-williamson-redaction-index"
 gap_id: "GAP-20"
 status: "draft"

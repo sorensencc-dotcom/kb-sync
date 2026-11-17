@@ -1,8 +1,8 @@
 ---
 title: "Primary Evidence Reconciliation: Maryland Vital Records Death Certificate Retrieval for Charles E. Sorensen (GAP-01 & GAP-64)"
-category: "biography"
+category: research
 topic: "maryland-vital-records-sorensen-death-certificate"
-status: "ingested"
+status: active
 source_action_id: "act-trm-maryland-vital-records-sorensen-death-certificate"
 created: "2026-11-10"
 ---

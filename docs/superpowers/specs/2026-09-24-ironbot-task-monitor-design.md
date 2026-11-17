@@ -1,5 +1,5 @@
 ---
-category: "superpowers"
+category: wiki
 tags: ["spec"]
 ---
 

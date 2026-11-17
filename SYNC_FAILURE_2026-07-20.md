@@ -1,7 +1,7 @@
 ---
 title: "KB-Sync Pipeline Failure Report - 2026-07-20"
-category: "incident"
-status: "resolved"
+category: wiki
+status: archived
 date: "2026-07-20"
 ---
 

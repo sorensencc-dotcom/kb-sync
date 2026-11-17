@@ -4,7 +4,7 @@ source_title: Historical Revocation Verification & Key Epoch Lifecycle
 repository: Sigil Trust Engine Protocols - Accession 42, Box 12
 document_date: 2026-09-19
 verification_status: verified
-category: ford-politics
+category: research
 topic: historical-revocation-verification
 status: active
 last_updated: 2026-09-19T19:33:01.718Z

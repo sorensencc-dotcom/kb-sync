@@ -1,8 +1,8 @@
 ---
 title: "Helene (Defoe 1927) — Michigan Exposures blog + crew comments"
-category: "biography"
+category: research
 topic: "helene-defoe-1927-michigan-exposures-blog"
-status: "ingested"
+status: active
 source_action_id: "act-1792969051116"
 created: "2026-10-25"
 ---

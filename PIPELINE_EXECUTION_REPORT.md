@@ -1,6 +1,6 @@
 ---
 title: "KB-Sync Obsidian Pipeline - Execution Report"
-category: "report"
+category: wiki
 status: "active"
 date: "2026-07-16"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Changelog"
-category: "changelog"
+category: wiki
 status: "active"
 ---
 

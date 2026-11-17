@@ -1,6 +1,6 @@
 ---
 title: "architecture"
-category: "master-kb"
+category: wiki
 tags: ["notebooklm-sync"]
 status: "active"
 ---

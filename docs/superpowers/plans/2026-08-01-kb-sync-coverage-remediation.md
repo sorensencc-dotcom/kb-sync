@@ -1,6 +1,6 @@
 ---
 title: "2026 08 01 kb sync coverage remediation"
-category: "superpowers"
+category: wiki
 tags: ["plan"]
 status: "active"
 ---

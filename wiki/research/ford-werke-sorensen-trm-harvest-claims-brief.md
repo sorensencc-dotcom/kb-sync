@@ -1,8 +1,8 @@
 ---
 title: "Ford-Werke / Sorensen TRM Harvest"
-category: "biography"
+category: research
 topic: "ford-werke-sorensen-trm-harvest-claims-brief"
-status: "ingested"
+status: active
 source_action_id: "act-1793084182574"
 created: "2026-10-27"
 ---

@@ -1,8 +1,8 @@
 ---
 title: "B-24 Ditching Research — Expanded NACA Reports, Survival Rates, and Open Archival Gaps"
-category: "biography"
+category: research
 topic: "b24-ditching-naca-survival-rates"
-status: "ingested"
+status: active
 source_action_id: "act-1794386000179"
 created: "2026-11-11"
 ---

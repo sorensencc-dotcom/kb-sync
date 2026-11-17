@@ -1,8 +1,8 @@
 ---
 title: "Helene Reno Crew Email — 27 Oct 2026"
-category: "biography"
+category: research
 topic: "helene-reno-crew-email-2026-10-27"
-status: "ingested"
+status: active
 source_action_id: "act-1793112899265"
 created: "2026-10-27"
 ---

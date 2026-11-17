@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Guidelines"
-category: "guidelines"
+category: wiki
 status: "active"
 ---
 

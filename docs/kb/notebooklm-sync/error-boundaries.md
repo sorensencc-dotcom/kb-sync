@@ -1,6 +1,6 @@
 ---
 title: "error boundaries"
-category: "master-kb"
+category: wiki
 tags: ["notebooklm-sync"]
 status: "active"
 ---

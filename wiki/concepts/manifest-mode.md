@@ -1,6 +1,6 @@
 ---
 title: Manifest Mode
-category: concepts
+category: wiki
 status: active
 sourceRepository: kb-sync
 lastUpdated: 2026-08-30

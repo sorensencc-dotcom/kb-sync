@@ -1,8 +1,8 @@
 ---
 title: "FamilySearch LV7Q-DGW Memories and Records — Charles Emil Sorensen"
-category: "biography"
+category: research
 topic: "familysearch-lv7q-dgw-charles-emil-sorensen"
-status: "ingested"
+status: active
 source_action_id: "act-1793084154526"
 created: "2026-10-27"
 ---

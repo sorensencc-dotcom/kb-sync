@@ -1,8 +1,8 @@
 ---
 title: "Ford-Werke Research Findings — Cumulative Log (Sections 1–13, Appendices A–I, Independent Assessment)"
-category: "biography"
+category: research
 topic: "ford-werke-research-findings-full-log"
-status: "ingested"
+status: active
 source_action_id: "act-1793084173511"
 created: "2026-10-27"
 ---

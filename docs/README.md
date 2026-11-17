@@ -1,6 +1,6 @@
 ---
 title: "README"
-category: "meta"
+category: wiki
 status: "active"
 ---
 

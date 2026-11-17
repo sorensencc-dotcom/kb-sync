@@ -1,6 +1,6 @@
 ---
 title: "Obsidian KB-Sync Nightly Run Report - 2026-07-19"
-category: "report"
+category: wiki
 status: "archived"
 date: "2026-07-19"
 ---

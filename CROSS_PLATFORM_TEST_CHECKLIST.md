@@ -1,6 +1,6 @@
 ---
 title: "Cross-Platform Testing Checklist"
-category: "testing"
+category: wiki
 status: "active"
 date: "2026-07-12"
 ---

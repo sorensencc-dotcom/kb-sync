@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan Review - Process Automation Enhancements"
-category: "review"
+category: wiki
 status: "active"
 author: "ijfw-review"
 date: "2026-07-21"

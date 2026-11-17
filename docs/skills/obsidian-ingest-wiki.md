@@ -1,6 +1,6 @@
 ---
 title: "obsidian ingest wiki"
-category: "skills"
+category: wiki
 status: "active"
 ---
 

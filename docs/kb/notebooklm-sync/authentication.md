@@ -1,6 +1,6 @@
 ---
 title: "authentication"
-category: "master-kb"
+category: wiki
 tags: ["notebooklm-sync"]
 status: "active"
 ---

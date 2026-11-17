@@ -1,6 +1,6 @@
 ---
 title: "2026 08 10 lessons learned sub namespace design"
-category: "superpowers"
+category: wiki
 tags: ["spec"]
 status: "active"
 ---
