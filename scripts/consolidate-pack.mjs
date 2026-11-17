@@ -107,6 +107,35 @@ const EXPLICIT_BUCKETS = new Set([
   'assembly-line'
 ]);
 
+const SOFTWARE_REPOSITORIES = new Set([
+  'kb-sync',
+  'toolforge',
+  'sigil',
+  'rewrite-mcp',
+  'ironledger'
+]);
+const SOFTWARE_ENTITY_RE = /\b(?:kb-sync|toolforge|sigil|rewrite-mcp|ironledger)--[a-z0-9._-]+/i;
+const SOFTWARE_SCRIPT_PATH_RE = /\b(?:kb-sync\/)?(?:scripts|modules|core|sync-tools)\/[a-z0-9._/-]+\.(?:mjs|cjs|js|ts|ps1|sh|py)\b/i;
+const SOFTWARE_ENTITY_DOC_RE = /\bwiki\/entities\/[a-z0-9._/-]+\.md\b/i;
+
+/**
+ * Detects whether a markdown item belongs to or leaks software repository
+ * entities, scripts, or entity inventory paths that must never enter
+ * historical CIC or CIC - Daily Research packs.
+ */
+export function isSoftwareEntityLeak(relPath, content, frontmatter = {}) {
+  const sourceRepo = String(frontmatter.sourceRepository || '').trim().toLowerCase();
+  if (SOFTWARE_REPOSITORIES.has(sourceRepo)) return true;
+  const normPath = String(relPath || '').replace(/\\/g, '/').toLowerCase();
+  if (normPath.startsWith('wiki/entities/')) return true;
+  if (typeof content !== 'string') return false;
+  return (
+    SOFTWARE_ENTITY_RE.test(content) ||
+    SOFTWARE_SCRIPT_PATH_RE.test(content) ||
+    SOFTWARE_ENTITY_DOC_RE.test(content)
+  );
+}
+
 /**
  * Returns the filename-matched buckets for a note that has no explicit
  * thematic frontmatter category. A note matching several patterns lands in each.
@@ -395,21 +424,26 @@ export function consolidatePacks(options = {}) {
       const cat = resolveCategoryKey(fm.category || '');
 
       const item = { relPath, filePath, content, frontmatter: fm };
+      const softwareLeak = isSoftwareEntityLeak(relPath, content, fm);
 
-      if (cat !== 'master-kb' && categorized[cat]) {
+      if (softwareLeak && (cat === 'daily' || EXPLICIT_BUCKETS.has(cat))) {
+        logWarn(`[PARTITION-GUARD] Blocked software/kb-sync entity '${relPath}' from '${cat}' pack.`);
+      } else if (cat !== 'master-kb' && categorized[cat]) {
         categorized[cat].push(item);
       }
 
-      // Additive: notes tagged with a catch-all category still reach the
-      // post-war and Willys-Overland packs when their filename names the topic.
-      for (const bucket of resolveFilenameBuckets(cat, relPath, NON_HISTORICAL_CATEGORIES)) {
-        categorized[bucket].push(item);
-      }
+      if (!softwareLeak) {
+        // Additive: notes tagged with a catch-all category still reach the
+        // post-war and Willys-Overland packs when their filename names the topic.
+        for (const bucket of resolveFilenameBuckets(cat, relPath, NON_HISTORICAL_CATEGORIES)) {
+          categorized[bucket].push(item);
+        }
 
-      // Master KB includes all historical notes, excluding software and
-      // personal-os categories to preserve domain isolation.
-      if (!NON_HISTORICAL_CATEGORIES.has(cat)) {
-        categorized['master-kb'].push(item);
+        // Master KB includes all historical notes, excluding software and
+        // personal-os categories to preserve domain isolation.
+        if (!NON_HISTORICAL_CATEGORIES.has(cat)) {
+          categorized['master-kb'].push(item);
+        }
       }
     } catch (err) {
       logWarn(`Could not read ${filePath}: ${err.message}`);

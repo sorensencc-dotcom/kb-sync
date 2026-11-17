@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { consolidatePacks, resolveFilenameBuckets } from '../scripts/consolidate-pack.mjs';
+import { consolidatePacks, isSoftwareEntityLeak, resolveFilenameBuckets } from '../scripts/consolidate-pack.mjs';
 import { buildPacks } from '../scripts/build-packs.mjs';
 
 test('resolveFilenameBuckets matches post-war and willys by basename', () => {
@@ -75,4 +75,46 @@ test('buildPacks fills cuba-claims, miami-estate, and assembly-line packs into o
   assert.match(fs.readFileSync(path.join(outDir, 'pack_cuba_claims.txt'), 'utf8'), /Cuba body/);
   assert.match(fs.readFileSync(path.join(outDir, 'pack_miami_estate.txt'), 'utf8'), /Miami body/);
   assert.match(fs.readFileSync(path.join(outDir, 'pack_assembly_line.txt'), 'utf8'), /Assembly body/);
+});
+
+test('consolidatePacks blocks kb-sync script and entity leaks from pack_daily and pack_master_kb', () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-leak-guard-'));
+  const researchDir = path.join(rootDir, 'wiki', 'research');
+  const entitiesDir = path.join(rootDir, 'wiki', 'entities');
+  fs.mkdirSync(researchDir, { recursive: true });
+  fs.mkdirSync(entitiesDir, { recursive: true });
+
+  fs.writeFileSync(
+    path.join(researchDir, 'clean-cic-research.md'),
+    '---\ncategory: research\n---\n1908 Piquette Moving Line Trials archival note.\n',
+    'utf8'
+  );
+  fs.writeFileSync(
+    path.join(researchDir, 'leaked-kbsync-rfc.md'),
+    '---\ncategory: research\nsourceRepository: kb-sync\n---\nast_grounded_symbols: ["scripts/notebooklm/ingest-notebooklm.sh"]\nscripts/run-closed-loop-research-v2.mjs\n',
+    'utf8'
+  );
+  fs.writeFileSync(
+    path.join(entitiesDir, 'targets.mjs.md'),
+    '---\ncategory: research\n---\nEntity doc for targets.mjs\n',
+    'utf8'
+  );
+
+  const outDir = path.join(rootDir, '.nlm_pack');
+  consolidatePacks({ rootDir, outDir });
+
+  const dailyPack = fs.readFileSync(path.join(outDir, 'pack_daily.txt'), 'utf8');
+  const masterPack = fs.readFileSync(path.join(outDir, 'pack_master_kb.txt'), 'utf8');
+
+  assert.match(dailyPack, /1908 Piquette Moving Line Trials/);
+  assert.doesNotMatch(dailyPack, /run-closed-loop-research-v2\.mjs/);
+  assert.doesNotMatch(dailyPack, /ingest-notebooklm\.sh/);
+  assert.doesNotMatch(dailyPack, /targets\.mjs\.md/);
+
+  assert.match(masterPack, /1908 Piquette Moving Line Trials/);
+  assert.doesNotMatch(masterPack, /run-closed-loop-research-v2\.mjs/);
+
+  assert.equal(isSoftwareEntityLeak('wiki/entities/targets.mjs.md', 'body', {}), true);
+  assert.equal(isSoftwareEntityLeak('wiki/research/ok.md', '1908 Piquette', { sourceRepository: 'kb-sync' }), true);
+  assert.equal(isSoftwareEntityLeak('wiki/research/ok.md', '1908 Piquette', {}), false);
 });
