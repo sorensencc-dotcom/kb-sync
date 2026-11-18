@@ -906,3 +906,30 @@ test('18. the telemetry artifact uploads its hidden files on purpose, after a cr
   assert.equal(String(guard.if), 'always()');
   for (const p of paths) assert.ok(String(guard.run).includes(p), `credential check covers ${p}`);
 });
+
+test('19. pipeline contract failures redact secrets, strip ANSI controls, and truncate long output', async () => {
+  const repo = mkRepo({ 'src/auth/index.ts': AUTH });
+  const fakePat = ['ghp', '_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789'].join('');
+  const fixtureCredToken = ['fixture', 'UrlToken', '12345'].join('');
+  const fixtureCredUrl = ['https://user:', fixtureCredToken, '@example.com/repo.git'].join('');
+  const longPad = 'x'.repeat(600);
+  write(repo, 'package.json', JSON.stringify({
+    scripts: {
+      'wiki:validate-contract': `node -e "console.log('\\x1b[31msecret=${fakePat}\\x1b[0m ' + '${longPad}'); console.error('${fixtureCredUrl}'); process.exit(1)"`,
+    },
+  }));
+  const state = await runPipeline({
+    repoRoot: repo,
+    repoName: 'demo',
+    dbPath: path.join(tmp('db'), 'contract-sanitized.db'),
+    detectDrift: stubs.detectDrift,
+  });
+
+  const errText = state.stages.content_validated.error ?? '';
+  assert.equal(state.stages.content_validated.status, 'failed');
+  assert.ok(!errText.includes(fakePat), 'secret token must be redacted');
+  assert.ok(!errText.includes(fixtureCredToken), 'URL password must be redacted');
+  assert.ok(!errText.includes('\x1b'), 'ANSI escape sequences must be stripped');
+  assert.match(errText, /\[REDACTED_SECRET:/);
+  assert.match(errText, /\.\.\. \(truncated\)/);
+});

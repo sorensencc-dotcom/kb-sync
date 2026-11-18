@@ -30,6 +30,7 @@ import { GENERATED_MANIFEST_NAME, readOwnershipManifest, sha256Text, toPosix, wr
 import { DEFAULT_RECEIPT_MAX_AGE_MS, evaluateReceiptFreshness } from './cross-repo-drift-scanner.ts';
 import { publishWiki, deriveWikiSshUrl } from '../../scripts/sync-github-wiki.mjs';
 import { redactCredentialsInText } from './credential-redaction.mjs';
+import { scanAndSanitizeText } from '../compactor/secret-pii-sanitizer.mjs';
 import { syncKnowledgeCache } from '../cache/sync-cache.mjs';
 import { getDatabase } from '../cache/db-schema.mjs';
 import { generateWikiIndex } from '../../scripts/generate-wiki-index.mjs';
@@ -143,15 +144,34 @@ function defaultDetectDrift(repoRoot: string) {
   return { status: String(report.status), stale_pages_count: Number(report.summary?.stale_pages_count ?? 0) };
 }
 
+const MAX_VALIDATOR_OUTPUT_CHARS = 500;
+const ANSI_CSI_OSC_PATTERN = /\x1b(?:\[[0-9;?]*[ -/]*[@-~]|\][^\x07\x1b]*(?:\x07|\x1b\\)|[@-Z\\-_])/g;
+const UNSAFE_CONTROL_CHARS = /[\x00-\x08\x0b-\x1f\x7f-\x9f]/g;
+
+function sanitizeValidatorOutput(raw: unknown): string {
+  const text = String(raw ?? '').trim();
+  if (!text) return '';
+  const stripped = text
+    .replace(ANSI_CSI_OSC_PATTERN, '')
+    .replace(UNSAFE_CONTROL_CHARS, '');
+  const redacted = scanAndSanitizeText(redactCredentialsInText(stripped)).sanitizedText.trim();
+  if (redacted.length <= MAX_VALIDATOR_OUTPUT_CHARS) return redacted;
+  return `${redacted.slice(0, MAX_VALIDATOR_OUTPUT_CHARS)}... (truncated)`;
+}
+
 function defaultValidateContract(repoRoot: string) {
   const pkg = readJson<any>(path.join(repoRoot, 'package.json'));
   if (!pkg?.scripts?.['wiki:validate-contract']) return { ok: true, detail: 'no wiki:validate-contract script in repo (external contract validation skipped)' };
   const r = spawnSync(IS_WIN ? 'npm.cmd' : 'npm', ['run', 'wiki:validate-contract'], { cwd: repoRoot, encoding: 'utf8', shell: IS_WIN });
-  const detail = `npm run wiki:validate-contract exited ${r.status}`;
+  const statusDesc = r.signal ? `signal ${r.signal}` : `exited ${r.status}`;
+  const detail = `npm run wiki:validate-contract ${statusDesc}`;
   if (r.status === 0) return { ok: true, detail };
+  const spawnErr = r.error ? `spawn error: ${sanitizeValidatorOutput(r.error.message)}` : '';
+  const stdoutExcerpt = sanitizeValidatorOutput(r.stdout);
+  const stderrExcerpt = sanitizeValidatorOutput(r.stderr);
   return {
     ok: false,
-    detail: [detail, r.error && `spawn error: ${r.error.message}`, r.stdout?.trim() && `stdout:\n${r.stdout.trim()}`, r.stderr?.trim() && `stderr:\n${r.stderr.trim()}`].filter(Boolean).join('\n'),
+    detail: [detail, spawnErr, stdoutExcerpt && `stdout:\n${stdoutExcerpt}`, stderrExcerpt && `stderr:\n${stderrExcerpt}`].filter(Boolean).join('\n'),
   };
 }
 
