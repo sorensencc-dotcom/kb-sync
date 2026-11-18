@@ -87,38 +87,64 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
   const prompt = resolveGroundingPrompt(notebookId, timestamp);
 
   const bashExe = resolveBashExecutable();
-  const result = spawnSync(bashExe, [BRIDGE_SCRIPT, notebookId, prompt], {
-    encoding: 'utf8',
-    timeout: Number(process.env.TIMEOUT_MS) || 90000,
-  });
+  const maxAttempts = Number(process.env.GROUNDING_MAX_ATTEMPTS) || 3;
+  const retryDelayMs = Number(process.env.GROUNDING_RETRY_DELAY_MS) || 3000;
 
-  if (result.error) {
-    fail(`Could not invoke CLI bridge (${BRIDGE_SCRIPT}): ${result.error.message}`, 1);
+  let lastFailMessage = 'Zero structured citations returned.';
+  let lastFailCode = 2;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const attemptPrompt = attempt === 1
+      ? prompt
+      : resolveGroundingPrompt(notebookId, new Date().toISOString());
+
+    const result = spawnSync(bashExe, [BRIDGE_SCRIPT, notebookId, attemptPrompt], {
+      encoding: 'utf8',
+      timeout: Number(process.env.TIMEOUT_MS) || 90000,
+    });
+
+    if (result.error) {
+      fail(`Could not invoke CLI bridge (${BRIDGE_SCRIPT}): ${result.error.message}`, 1);
+    }
+    if (result.status !== 0) {
+      fail(`CLI bridge exited ${result.status}. stderr: ${(result.stderr || '').trim()}`, 1);
+    }
+
+    let data;
+    try {
+      data = JSON.parse(result.stdout);
+    } catch (err) {
+      fail(`CLI response was not valid JSON: ${err.message}`, 1);
+    }
+
+    if (data.query?.status === 'error') {
+      lastFailMessage = `NotebookLM query error: ${data.query.error || 'unknown error'}`;
+      lastFailCode = 1;
+    } else {
+      const citations = resolveCitations(data.query, data.sources);
+      if (citations.length === 0) {
+        lastFailMessage = 'Zero structured citations returned.';
+        lastFailCode = 2;
+      } else {
+        const hasValidAttribution = isSandbox
+          ? citations.length > 0 && citations.every(c => c.source_id === KB_TESTING_FIXTURE_SOURCE_ID && c.source_name)
+          : hasPackGrounding(data.query, data.sources, VALID_ATTRIBUTION_PREFIXES);
+
+        if (hasValidAttribution) {
+          console.log(`[GROUNDING-GATE] PASSED: Grounding validated against ${isSandbox ? 'pinned sandbox fixture' : 'active pack'} (attempt ${attempt}/${maxAttempts}).`);
+          process.exit(0);
+        }
+
+        lastFailMessage = 'Citations do not reference active pack sources.';
+        lastFailCode = 2;
+      }
+    }
+
+    if (attempt < maxAttempts) {
+      console.warn(`[GROUNDING-GATE] Attempt ${attempt}/${maxAttempts} failed (${lastFailMessage}); retrying in ${retryDelayMs}ms...`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, retryDelayMs);
+    }
   }
-  if (result.status !== 0) {
-    fail(`CLI bridge exited ${result.status}. stderr: ${(result.stderr || '').trim()}`, 1);
-  }
 
-  let data;
-  try {
-    data = JSON.parse(result.stdout);
-  } catch (err) {
-    fail(`CLI response was not valid JSON: ${err.message}`, 1);
-  }
-
-  const citations = resolveCitations(data.query, data.sources);
-  if (citations.length === 0) {
-    fail('Zero structured citations returned.');
-  }
-
-  const hasValidAttribution = isSandbox
-    ? citations.length > 0 && citations.every(c => c.source_id === KB_TESTING_FIXTURE_SOURCE_ID && c.source_name)
-    : hasPackGrounding(data.query, data.sources, VALID_ATTRIBUTION_PREFIXES);
-
-  if (!hasValidAttribution) {
-    fail('Citations do not reference active pack sources.');
-  }
-
-  console.log(`[GROUNDING-GATE] PASSED: Grounding validated against ${isSandbox ? 'pinned sandbox fixture' : 'active pack'}.`);
-  process.exit(0);
+  fail(lastFailMessage, lastFailCode);
 }
