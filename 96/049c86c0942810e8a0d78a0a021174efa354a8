@@ -1,0 +1,14 @@
+scripts/notebooklm/verify-grounding-gate.mjs
+  h_5c172e9b435f5a 90-91,93-94,96-99,101-104,106-111,113-146,149
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "96049c86c0942810e8a0d78a0a021174efa354a8",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
