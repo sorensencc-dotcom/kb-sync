@@ -1,0 +1,14 @@
+scripts/pipeline/cluster-sync-runner.mjs
+  h_5c172e9b435f5a 493-509,563,568,580
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "64f7ffe12c33be7d97b171d7b70ad1de448622e8",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
