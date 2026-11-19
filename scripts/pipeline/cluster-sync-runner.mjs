@@ -490,6 +490,23 @@ export async function executeClusterSync(options = {}) {
     return { mode, targetCount: 0, succeeded: 0, failed: 0, results: [] };
   }
 
+  if (!isDryRun && !options.skipDriveSync) {
+    const driveSyncPath = path.resolve(REPO_ROOT, '..', 'scripts', 'sync-drive-architecture-guide.mjs');
+    if (fs.existsSync(driveSyncPath)) {
+      try {
+        const { pathToFileURL } = await import('node:url');
+        const { exportDriveArchitectureGuide } = await import(pathToFileURL(driveSyncPath).href);
+        const guideRes = await exportDriveArchitectureGuide({ dryRun: isDryRun });
+        logInfo(`[DRIVE-GUIDE-SYNC] ${guideRes.updated ? 'Updated' : 'Verified'} local architecture guide (${guideRes.bytes} bytes via ${guideRes.method}).`);
+      } catch (driveErr) {
+        if (!options.allowStaleDriveGuide) {
+          throw new Error(`DRIVE_GUIDE_SYNC_FAILED: ${driveErr.message}`);
+        }
+        logWarn(`[DRIVE-GUIDE-SYNC] Failed to refresh local architecture guide before pack: ${driveErr.message}`);
+      }
+    }
+  }
+
   const prep = prepareStagedPacks({ isDryRun, skipConsolidate: Boolean(options.skipConsolidate) });
   logInfo(prep.consolidated
     ? `[CONSOLIDATE] Rebuilt ${prep.packCount} staged pack file(s) before sweep.`
@@ -543,10 +560,12 @@ if (mainFile === thisFile) {
   let notebook = null;
   let checkQuarantine = false;
   let skipConsolidate = false;
+  let allowStaleDriveGuide = false;
 
   for (const a of args) {
     if (a === '--check-quarantine') checkQuarantine = true;
     else if (a === '--skip-consolidate') skipConsolidate = true;
+    else if (a === '--allow-stale-drive-guide') allowStaleDriveGuide = true;
     else if (a.startsWith('--mode=')) mode = a.split('=')[1];
     else if (a === '--dry-run') dryRun = true;
     else if (a.startsWith('--notebook=')) notebook = a.split('=')[1];
@@ -558,7 +577,7 @@ if (mainFile === thisFile) {
     process.exit(checkResult.ok ? 0 : 1);
   }
 
-  executeClusterSync({ mode, dryRun, notebook, skipConsolidate })
+  executeClusterSync({ mode, dryRun, notebook, skipConsolidate, allowStaleDriveGuide })
     .then((out) => {
       process.exit(clusterSyncExitCode(out));
     })
