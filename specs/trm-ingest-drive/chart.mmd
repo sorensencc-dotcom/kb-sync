@@ -7,35 +7,44 @@ stateDiagram-v2
     lg1: write_critical
     lg2: success
     lg3: filtered
+    lg4: healed
   }
   class lg0 blue
   class lg1 orange
   class lg2 teal
   class lg3 purple
+  class lg4 yellow
   s0: BUFFERED
   s1: DEBOUNCING
-  s2: VALIDATING
-  s3: INGESTING
+  s2: NORMALIZING
+  s3: VALIDATING
   s4: REJECTED
-  s5: SKIPPED_DUPLICATE
-  s6: ARCHIVING
-  s7: COMPLETED
+  s5: INGESTING
+  s6: SKIPPED_DUPLICATE
+  s7: HEALED_AND_STAGED
+  s8: ARCHIVING
+  s9: COMPLETED
   [*] --> s0
   s0 --> s1: 1. File arrives in buffer
   s1 --> s2: 2. Debounce window expires
-  s2 --> s3: 3c. Valid new finding -> Acquire lock
-  s2 --> s4: 3a. Validation error -> Reject
-  s2 --> s5: 3b. Finding ID exists -> Skip
-  s3 --> s6: 4. Append to RFC -> Archive
+  s2 --> s3: 3. Normalize tokens #38; headings
+  s3 --> s4: 4a. Validation error -> Reject
+  s3 --> s5: 4c. Valid new finding -> Acquire lock
+  s3 --> s6: 4b. Finding ID exists -> Skip
   s4 --> s0: Archive rejected -> Reset
-  s5 --> s0: Archive duplicate -> Reset
-  s6 --> s7: 5. Release lease -> Completed
-  s7 --> s0: Cycle complete -> Wait for next
+  s4 --> s7: 5. Outbox repair heals card -> Stage
+  s5 --> s8: 7. Append to RFC -> Archive
+  s6 --> s0: Archive duplicate -> Reset
+  s7 --> s3: 6. Re-ingest healed card
+  s8 --> s9: 8. Release lease -> Completed
+  s9 --> s0: Cycle complete -> Wait for next
   class s0 blue
   class s1 blue
   class s2 blue
-  class s3 orange
+  class s3 blue
   class s4 purple
-  class s5 purple
-  class s6 orange
-  class s7 teal
+  class s5 orange
+  class s6 purple
+  class s7 yellow
+  class s8 orange
+  class s9 teal
