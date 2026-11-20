@@ -93,8 +93,10 @@ export const THEMATIC_PACK_MAP = [
 ];
 
 // Filename patterns for packs whose notes are rarely tagged with their own
-// frontmatter category (post-war and Willys-Overland notes ship as `research`).
+// frontmatter category. Those notes ship as `research`, which resolves to daily.
 const FILENAME_BUCKET_PATTERNS = [
+  { bucket: 'willow-run', pattern: /\bwillow[-_ ]?run/i },
+  { bucket: 'ford-politics', pattern: /\bford[-_ ]?(?:executive|politics)/i },
   { bucket: 'post-war', pattern: /post[-_ ]?war/i },
   { bucket: 'willys-overland', pattern: /willys/i },
   { bucket: 'cuba-claims', pattern: /cuba(?:n[-_ ]?seizures|[-_ ]?claims)?/i },
@@ -113,25 +115,16 @@ const EXPLICIT_BUCKETS = new Set([
   'assembly-line'
 ]);
 
-const SOFTWARE_REPOSITORIES = new Set([
-  'kb-sync',
-  'toolforge',
-  'sigil',
-  'rewrite-mcp',
-  'ironledger'
-]);
 const SOFTWARE_ENTITY_RE = /\b(?:kb-sync|toolforge|sigil|rewrite-mcp|ironledger)--[a-z0-9._-]+/i;
 const SOFTWARE_SCRIPT_PATH_RE = /\b(?:kb-sync\/)?(?:scripts|modules|core|sync-tools)\/[a-z0-9._/-]+\.(?:mjs|cjs|js|ts|ps1|sh|py)\b/i;
 const SOFTWARE_ENTITY_DOC_RE = /\bwiki\/entities\/[a-z0-9._/-]+\.md\b/i;
 
 /**
- * Detects whether a markdown item belongs to or leaks software repository
- * entities, scripts, or entity inventory paths that must never enter
- * historical CIC or CIC - Daily Research packs.
+ * Detects software script paths and entity-inventory notes that must never
+ * enter historical CIC or CIC - Daily Research packs.
+ * `sourceRepository` is the wiki's home-repo stamp, so it is not a leak.
  */
-export function isSoftwareEntityLeak(relPath, content, frontmatter = {}) {
-  const sourceRepo = String(frontmatter.sourceRepository || '').trim().toLowerCase();
-  if (SOFTWARE_REPOSITORIES.has(sourceRepo)) return true;
+export function isSoftwareEntityLeak(relPath, content, _frontmatter = {}) {
   const normPath = String(relPath || '').replace(/\\/g, '/').toLowerCase();
   if (normPath.startsWith('wiki/entities/')) return true;
   if (typeof content !== 'string') return false;
@@ -423,6 +416,8 @@ export function consolidatePacks(options = {}) {
     'personal-os': []
   };
 
+  let partitionBlocks = 0;
+
   for (const filePath of candidateFiles) {
     try {
       const relPath = path.relative(rootDir, filePath).replace(/\\/g, '/');
@@ -434,7 +429,7 @@ export function consolidatePacks(options = {}) {
       const softwareLeak = isSoftwareEntityLeak(relPath, content, fm);
 
       if (softwareLeak && (cat === 'daily' || EXPLICIT_BUCKETS.has(cat))) {
-        logWarn(`[PARTITION-GUARD] Blocked software/kb-sync entity '${relPath}' from '${cat}' pack.`);
+        partitionBlocks += 1;
       } else if (cat !== 'master-kb' && categorized[cat]) {
         categorized[cat].push(item);
       }
@@ -455,6 +450,10 @@ export function consolidatePacks(options = {}) {
     } catch (err) {
       logWarn(`Could not read ${filePath}: ${err.message}`);
     }
+  }
+
+  if (partitionBlocks > 0) {
+    logWarn(`[PARTITION-GUARD] Blocked ${partitionBlocks} software script or entity note(s) from historical packs.`);
   }
 
   const generatedPacks = [];
