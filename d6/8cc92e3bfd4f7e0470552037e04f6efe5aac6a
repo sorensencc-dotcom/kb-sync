@@ -1,0 +1,50 @@
+tests/implicit-sm-races.test.mjs
+  s_78333859c94d95::t_b9820dde1c2daf 10,19,42-50,229,249,335-338,341-343,347-352,359-360,384
+  s_78333859c94d95::t_62f5ca24736206 228,339-340,353-358,361-362
+  s_78333859c94d95::t_54224288840809 344-346
+  s_78333859c94d95::t_f0d9448811b887 182,190-192,196-214,240,363,395
+  s_78333859c94d95::t_40a5fdefcbf311 215-217,225-227
+  s_78333859c94d95::t_1ce509e97a3381 230-232,237-239
+  s_78333859c94d95::t_abbacab4745355 241-243,246-248
+  s_78333859c94d95::t_269dc3ea5c7e87 364-366,381-383
+  s_78333859c94d95::t_7a727c5d9819cb 385-387,392-394
+  s_78333859c94d95::t_4d55523708c919 396-398
+scripts/reconciler/stale-lock-sweeper.mjs
+  s_78333859c94d95::t_b6ef24c960371f 28,38
+  s_78333859c94d95::t_7951ce38fcc8a0 25
+  s_78333859c94d95::t_89fa7ff25a59b4 36-37
+  s_78333859c94d95::t_9620983efe92c1 39-40
+tests/graph-sync-queue.test.mjs
+  s_78333859c94d95::t_d8217917b7ff24 12,116-172
+  s_78333859c94d95::t_38f21d766cf2b1 173-174
+modules/graph-sync/queue.mjs
+  s_78333859c94d95::t_85cb26e967afab 387,447-449
+  s_78333859c94d95::t_b6ef24c960371f 410,430-432
+  s_78333859c94d95::t_f5f1dd50e6bf1c 388
+  s_78333859c94d95::t_7672f23f6fd885 433
+  s_78333859c94d95::t_9660cb6dfe4bef 450-452
+tests/stale-lock-sweeper.test.mjs
+  s_78333859c94d95::t_b9820dde1c2daf 88,97-101,113,115
+  s_78333859c94d95::t_84963a28a93eef 112
+  s_78333859c94d95::t_d28d54d4a633ec 102-104
+  s_78333859c94d95::t_67705806fde9da 114
+  s_78333859c94d95::t_bbb2d0f9b97cab 116-118
+tests/ingest-nlm-runner.test.mjs
+  s_78333859c94d95::t_b9820dde1c2daf 225,244
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d68cc92e3bfd4f7e0470552037e04f6efe5aac6a",
+  "prompts": {},
+  "sessions": {
+    "s_78333859c94d95": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ff4f-b637-70b3-8582-2d53ffc22446",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
