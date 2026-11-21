@@ -1,0 +1,29 @@
+STATUS.md
+  s_076de1bb3b85f5::t_fa964f78d060f9 19-25
+  s_076de1bb3b85f5::t_8008508b31f6c5 16-18
+  s_77c5bfa04dedc5::t_56aeeb81a62d47 3-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ad9906ead9e85fc73aa397c42da6586bfbe016a3",
+  "prompts": {},
+  "sessions": {
+    "s_076de1bb3b85f5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1fbfc-f0d9-75b3-904c-c2c3e8690b12",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    },
+    "s_77c5bfa04dedc5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "38e40757-b862-436f-8785-4461fd7e02b9",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
