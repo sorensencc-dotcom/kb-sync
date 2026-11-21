@@ -34,6 +34,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { ownProcessStartToken, removeDeadLockFile } from '../../core/pid-lock.mjs';
 import { assertLiveSandbox, findActiveUploadedSource } from './sandbox-contract.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -45,53 +46,36 @@ const DEAD_LETTER_DIR_NAME = '.dead-letter';
 const LOCK_FILE_NAME = '.nlm-sync.lock';
 
 export function acquireIngestLock(lockPath, { now = Date.now, staleMs = 30 * 60 * 1000 } = {}) {
-  const payload = JSON.stringify({ pid: process.pid, createdAt: new Date(now()).toISOString() });
+  const payload = JSON.stringify({
+    pid: process.pid,
+    createdAt: new Date(now()).toISOString(),
+    ownerStartedAt: ownProcessStartToken(),
+  });
   const tryWx = () => {
     fs.writeFileSync(lockPath, payload, { flag: 'wx' });
     return { ok: true, lockPath };
   };
-  try {
-    return tryWx();
-  } catch (err) {
-    if (err.code !== 'EEXIST') throw err;
-    let lockData = {};
+  for (let attempt = 0; attempt < 8; attempt++) {
     try {
-      lockData = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
-    } catch {
-      try { fs.unlinkSync(lockPath); } catch {}
-      try {
-        return tryWx();
-      } catch (err2) {
-        if (err2.code === 'EEXIST') {
-          return { ok: false, error: 'CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID unknown' };
+      return tryWx();
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+      const claim = removeDeadLockFile(lockPath);
+      if (claim.state === 'missing' || claim.state === 'removed') {
+        try {
+          return tryWx();
+        } catch (err2) {
+          if (err2.code === 'EEXIST') continue;
+          throw err2;
         }
-        throw err2;
       }
+      const createdAt = new Date(claim.createdAt).getTime();
+      const ageMs = Number.isFinite(createdAt) ? now() - createdAt : staleMs + 1;
+      const staleNote = ageMs > staleMs ? ` (age ${ageMs}ms exceeds stale threshold, but PID is alive)` : '';
+      return { ok: false, error: `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${claim.pid}${staleNote}` };
     }
-    const createdAt = new Date(lockData.createdAt).getTime();
-    const ageMs = Number.isFinite(createdAt) ? now() - createdAt : staleMs + 1;
-    let pidAlive = false;
-    try {
-      if (lockData.pid) process.kill(lockData.pid, 0);
-      pidAlive = Boolean(lockData.pid);
-    } catch {
-      pidAlive = false;
-    }
-    if (!pidAlive || ageMs > staleMs) {
-      try { fs.unlinkSync(lockPath); } catch {}
-      try {
-        return tryWx();
-      } catch (err2) {
-        if (err2.code === 'EEXIST') {
-          let held = 'unknown';
-          try { held = JSON.parse(fs.readFileSync(lockPath, 'utf8')).pid; } catch {}
-          return { ok: false, error: `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${held}` };
-        }
-        throw err2;
-      }
-    }
-    return { ok: false, error: `CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID ${lockData.pid}` };
   }
+  return { ok: false, error: 'CONCURRENT_RUN_IN_PROGRESS: Lock held by live PID unknown' };
 }
 
 const invokedDirectly = path.resolve(process.argv[1] || '') === __filename;
