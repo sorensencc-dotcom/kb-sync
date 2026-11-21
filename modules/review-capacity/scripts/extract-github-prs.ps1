@@ -127,15 +127,25 @@ if ($null -ne $FixturePrs) {
     Process-PullRequests -PrList $FixturePrs -RepoName "owner/repo"
 } else {
     $jsonFields = "number,author,createdAt,mergedAt,closedAt,title,body,additions,deletions,files,reviews,comments,commits"
+    $savedErrorAction = $ErrorActionPreference
     foreach ($r in $Repo) {
         $fullRepo = if ($r -contains '/' -or $r.Contains('/')) { $r } else { "$DefaultOwner/$r" }
         try {
-            $rawPrs = gh pr list --repo $fullRepo --state all --limit 30 --json $jsonFields | ConvertFrom-Json
-            if ($rawPrs) {
-                Process-PullRequests -PrList @($rawPrs) -RepoName $fullRepo
+            $ErrorActionPreference = 'Continue'
+            $rawOutput = & gh pr list --repo $fullRepo --state all --limit 30 --json $jsonFields 2>$null
+            if ($LASTEXITCODE -eq 0 -and $rawOutput) {
+                $rawPrs = $rawOutput | ConvertFrom-Json
+                if ($rawPrs) {
+                    Process-PullRequests -PrList @($rawPrs) -RepoName $fullRepo
+                }
+            } else {
+                Write-Warning "Repository '$fullRepo' was not accessible via gh pr list (exit code: $LASTEXITCODE); continuing."
             }
         } catch {
             Write-Warning "Failed to fetch PRs for repository '$fullRepo': $_"
+        } finally {
+            $global:LASTEXITCODE = 0
+            $ErrorActionPreference = $savedErrorAction
         }
     }
 }
