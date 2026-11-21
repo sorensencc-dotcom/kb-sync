@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { promisify } from 'node:util';
+import { isSameOwner, ownProcessStartToken } from '../../core/pid-lock.mjs';
 import { updateJsonLocked } from '../trm/storage/transaction-manager.mjs';
 
 const execFileAsync = promisify(execFile);
@@ -383,6 +384,8 @@ export class GraphSyncQueue {
         createdAt: now,
         updatedAt: now,
         preflightToken: null,
+        preflightOwnerPid: null,
+        preflightOwnerStartedAt: null,
         quarantine: null,
         lastError: null,
         mergeResult: null,
@@ -404,7 +407,7 @@ export class GraphSyncQueue {
         result = clone(item);
         return state;
       }
-      const next = { ...item, status: 'queued', preflightToken: null, lastError: null, updatedAt: currentTime(this.clock) };
+      const next = { ...item, status: 'queued', preflightToken: null, preflightOwnerPid: null, preflightOwnerStartedAt: null, lastError: null, updatedAt: currentTime(this.clock) };
       items[index] = next;
       result = clone(next);
       return { version: 1, items };
@@ -414,6 +417,7 @@ export class GraphSyncQueue {
 
   async preflight(id) {
     let pending;
+    let shouldInspect = false;
     this._update((state) => {
       const items = stateItems(state);
       const index = items.findIndex((item) => item.id === id);
@@ -423,20 +427,29 @@ export class GraphSyncQueue {
         pending = clone(item);
         return state;
       }
+      if (item.status === 'preflighting' && isSameOwner(item.preflightOwnerPid, item.preflightOwnerStartedAt)) {
+        pending = clone(item);
+        return state;
+      }
       if (!this.preflightAdapter?.inspect) throw new GraphSyncError('PREFLIGHT_ADAPTER_MISSING', 'Preflight adapter is required');
-      pending = { ...item, status: 'preflighting', attempts: item.attempts + 1, updatedAt: currentTime(this.clock) };
+      pending = { ...item, status: 'preflighting', preflightOwnerPid: process.pid, preflightOwnerStartedAt: ownProcessStartToken(), attempts: item.attempts + 1, updatedAt: currentTime(this.clock) };
       items[index] = pending;
+      shouldInspect = true;
       return { version: 1, items };
     });
-    if (pending.status !== 'preflighting') return pending;
+    if (!shouldInspect) return pending;
     const finish = (next) => {
       let result;
       this._update((state) => {
         const items = stateItems(state);
         const index = items.findIndex((item) => item.id === id);
         if (index === -1) throw new GraphSyncError('NOT_FOUND', `Queue item not found: ${id}`);
-        items[index] = next;
-        result = clone(next);
+        if (items[index].status !== 'preflighting' || items[index].preflightOwnerPid !== pending.preflightOwnerPid || items[index].preflightOwnerStartedAt !== pending.preflightOwnerStartedAt) {
+          result = clone(items[index]);
+          return state;
+        }
+        items[index] = { ...next, preflightOwnerPid: null, preflightOwnerStartedAt: null };
+        result = clone(items[index]);
         return { version: 1, items };
       });
       return result;

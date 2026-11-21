@@ -7,6 +7,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadQuarantine } from '../scripts/pipeline/cluster-sync-runner.mjs';
 import { replacePackFamilyAtomic } from '../scripts/nlm-pack-replace-gate.mjs';
+import { GraphSyncQueue, createGraphSnapshot, createJsonFilePersistence } from '../modules/graph-sync/queue.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -15,6 +16,7 @@ const TX = pathToFileURL(path.join(REPO_ROOT, 'modules/trm/storage/transaction-m
 const INGEST = pathToFileURL(path.join(REPO_ROOT, 'scripts/notebooklm/ingest-nlm-runner.mjs')).href;
 const ARTIFACT = pathToFileURL(path.join(REPO_ROOT, 'scripts/notebooklm/generate-kb-sync-artifact.mjs')).href;
 const QUEUE = pathToFileURL(path.join(REPO_ROOT, 'modules/graph-sync/queue.mjs')).href;
+const PID_LOCK = pathToFileURL(path.join(REPO_ROOT, 'core/pid-lock.mjs')).href;
 
 function spawnNode(scriptPath, env) {
   return new Promise((resolve, reject) => {
@@ -35,6 +37,15 @@ function writeWorker(dir, name, source) {
   const file = path.join(dir, name);
   fs.writeFileSync(file, source);
   return file;
+}
+
+async function waitForFile(file, timeoutMs = 5000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    if (fs.existsSync(file)) return;
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+  throw new Error(`Timed out waiting for ${file}`);
 }
 
 test('two processes recording different quarantine ids keep every entry', async () => {
@@ -168,6 +179,7 @@ test('two processes cannot both hold the ingest lock', async () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-ingest-lock-'));
   const lockPath = path.join(tmp, '.nlm-sync.lock');
   const gate = path.join(tmp, 'go');
+  const release = path.join(tmp, 'release');
   const worker = writeWorker(tmp, 'lock-worker.mjs', `
     import fs from 'node:fs';
     import { acquireIngestLock } from ${JSON.stringify(INGEST)};
@@ -175,24 +187,66 @@ test('two processes cannot both hold the ingest lock', async () => {
     while (!fs.existsSync(gate)) {}
     const result = acquireIngestLock(process.env.LOCK);
     fs.writeFileSync(process.env.OUT, JSON.stringify(result));
+    while (result.ok && !fs.existsSync(process.env.RELEASE)) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
   `);
   const outA = path.join(tmp, 'a.json');
   const outB = path.join(tmp, 'b.json');
-  const pA = spawnNode(worker, { GATE: gate, LOCK: lockPath, OUT: outA });
-  const pB = spawnNode(worker, { GATE: gate, LOCK: lockPath, OUT: outB });
-  await new Promise((r) => setTimeout(r, 80));
-  fs.writeFileSync(gate, 'go');
-  const [a, b] = await Promise.all([pA, pB]);
-  assert.equal(a.code, 0, a.stderr);
-  assert.equal(b.code, 0, b.stderr);
-  const ra = JSON.parse(fs.readFileSync(outA, 'utf8'));
-  const rb = JSON.parse(fs.readFileSync(outB, 'utf8'));
-  const holders = [ra, rb].filter((r) => r.ok);
-  const blocked = [ra, rb].filter((r) => !r.ok);
-  assert.equal(holders.length, 1);
-  assert.equal(blocked.length, 1);
-  assert.match(blocked[0].error, /CONCURRENT_RUN_IN_PROGRESS/);
-  fs.rmSync(tmp, { recursive: true, force: true });
+  const pA = spawnNode(worker, { GATE: gate, LOCK: lockPath, OUT: outA, RELEASE: release });
+  const pB = spawnNode(worker, { GATE: gate, LOCK: lockPath, OUT: outB, RELEASE: release });
+  try {
+    fs.writeFileSync(gate, 'go');
+    await Promise.all([waitForFile(outA), waitForFile(outB)]);
+    const ra = JSON.parse(fs.readFileSync(outA, 'utf8'));
+    const rb = JSON.parse(fs.readFileSync(outB, 'utf8'));
+    const holders = [ra, rb].filter((r) => r.ok);
+    const blocked = [ra, rb].filter((r) => !r.ok);
+    assert.equal(holders.length, 1);
+    assert.equal(blocked.length, 1);
+    assert.match(blocked[0].error, /CONCURRENT_RUN_IN_PROGRESS/);
+  } finally {
+    fs.writeFileSync(release, 'go');
+    const [a, b] = await Promise.all([pA, pB]);
+    assert.equal(a.code, 0, a.stderr);
+    assert.equal(b.code, 0, b.stderr);
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
+test('two processes reclaim one dead ingest lock', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-dead-ingest-lock-'));
+  const lockPath = path.join(tmp, '.nlm-sync.lock');
+  fs.writeFileSync(lockPath, JSON.stringify({ pid: 9999999, ownerStartedAt: '0', createdAt: new Date().toISOString() }));
+  const gate = path.join(tmp, 'go');
+  const release = path.join(tmp, 'release');
+  const worker = writeWorker(tmp, 'dead-lock-worker.mjs', `
+    import fs from 'node:fs';
+    import { acquireIngestLock } from ${JSON.stringify(INGEST)};
+    while (!fs.existsSync(process.env.GATE)) {}
+    const result = acquireIngestLock(process.env.LOCK);
+    fs.writeFileSync(process.env.OUT, JSON.stringify({ ...result, pid: process.pid }));
+    while (result.ok && !fs.existsSync(process.env.RELEASE)) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
+  `);
+  const outA = path.join(tmp, 'a.json');
+  const outB = path.join(tmp, 'b.json');
+  const pA = spawnNode(worker, { GATE: gate, LOCK: lockPath, OUT: outA, RELEASE: release });
+  const pB = spawnNode(worker, { GATE: gate, LOCK: lockPath, OUT: outB, RELEASE: release });
+  try {
+    fs.writeFileSync(gate, 'go');
+    await Promise.all([waitForFile(outA), waitForFile(outB)]);
+    const holders = [outA, outB].map((file) => JSON.parse(fs.readFileSync(file, 'utf8'))).filter((result) => result.ok);
+    assert.equal(holders.length, 1);
+    assert.equal(JSON.parse(fs.readFileSync(lockPath, 'utf8')).pid, holders[0].pid);
+  } finally {
+    fs.writeFileSync(release, 'go');
+    const [a, b] = await Promise.all([pA, pB]);
+    assert.equal(a.code, 0, a.stderr);
+    assert.equal(b.code, 0, b.stderr);
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
 });
 
 test('updateJsonLocked concurrent key writes keep both keys', async () => {
@@ -276,6 +330,75 @@ test('two processes enqueueing graph-sync items keep every item', async () => {
   const data = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
   assert.equal(data.items.length, 40, `lost update dropped ${40 - data.items.length} queue items`);
   fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('two processes do not inspect the same graph-sync item concurrently', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-graph-preflight-'));
+  const stateFile = path.join(tmp, 'state.json');
+  const releaseA = path.join(tmp, 'release-a');
+  const startedA = path.join(tmp, 'started-a');
+  const startedB = path.join(tmp, 'started-b');
+  const resultA = path.join(tmp, 'result-a.json');
+  const resultB = path.join(tmp, 'result-b.json');
+  const snapshot = createGraphSnapshot({
+    sourceVersion: 'source',
+    targetVersion: 'target',
+    nodes: [{ id: 'doc', kind: 'doc', path: 'doc.md', hash: 'hash' }],
+    edges: [],
+  });
+  const seed = new GraphSyncQueue({ persistence: createJsonFilePersistence(stateFile) });
+  const item = seed.enqueue({ sourceVersion: 'source', targetVersion: 'target', snapshot });
+  const worker = writeWorker(tmp, 'preflight-worker.mjs', `
+    import fs from 'node:fs';
+    import { GraphSyncQueue, createJsonFilePersistence } from ${JSON.stringify(QUEUE)};
+    import { ownProcessStartToken } from ${JSON.stringify(PID_LOCK)};
+    const queue = new GraphSyncQueue({
+      persistence: createJsonFilePersistence(process.env.FILE),
+      preflightAdapter: {
+        async inspect(item) {
+          fs.writeFileSync(process.env.STARTED, JSON.stringify({ pid: process.pid, ownerStartedAt: ownProcessStartToken() }));
+          if (process.env.WAIT === '1') {
+            const deadline = Date.now() + 10000;
+            while (!fs.existsSync(process.env.RELEASE) && Date.now() < deadline) {
+              await new Promise((resolve) => setTimeout(resolve, 5));
+            }
+            if (!fs.existsSync(process.env.RELEASE)) throw new Error('test release timed out');
+          }
+          return { observedSnapshot: item.snapshot };
+        },
+      },
+    });
+    const result = await queue.preflight(process.env.ID);
+    fs.writeFileSync(process.env.RESULT, JSON.stringify(result));
+  `);
+  const env = { FILE: stateFile, ID: item.id };
+  let a;
+  let resultAData;
+  let finalQueueState;
+  try {
+    a = spawnNode(worker, { ...env, STARTED: startedA, RELEASE: releaseA, RESULT: resultA, WAIT: '1' });
+    await waitForFile(startedA);
+    const inFlight = JSON.parse(fs.readFileSync(stateFile, 'utf8')).items[0];
+    const started = JSON.parse(fs.readFileSync(startedA, 'utf8'));
+    assert.equal(inFlight.preflightOwnerPid, started.pid);
+    assert.equal(inFlight.preflightOwnerStartedAt, started.ownerStartedAt);
+    assert.equal(inFlight.status, 'preflighting');
+    const b = await spawnNode(worker, { ...env, STARTED: startedB, RELEASE: releaseA, RESULT: resultB, WAIT: '0' });
+    assert.equal(b.code, 0, b.stderr);
+    assert.equal(JSON.parse(fs.readFileSync(resultB, 'utf8')).status, 'preflighting');
+    assert.equal(fs.existsSync(startedB), false, 'second process must not call the preflight adapter');
+  } finally {
+    fs.writeFileSync(releaseA, 'go');
+    if (a) {
+      const completedA = await a;
+      assert.equal(completedA.code, 0, completedA.stderr);
+      resultAData = JSON.parse(fs.readFileSync(resultA, 'utf8'));
+      finalQueueState = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    }
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+  assert.equal(resultAData.status, 'ready');
+  assert.equal(finalQueueState.items[0].status, 'ready');
 });
 
 test('two processes updating different watchlist targets keep both baselines', async () => {

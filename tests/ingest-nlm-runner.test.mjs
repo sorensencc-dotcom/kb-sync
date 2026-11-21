@@ -15,6 +15,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import os from 'node:os';
+import { ownProcessStartToken } from '../core/pid-lock.mjs';
+import { acquireIngestLock } from '../scripts/notebooklm/ingest-nlm-runner.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -219,7 +222,7 @@ test('ingest-nlm-runner: rejects concurrent run when lock is held by live PID', 
   const testDir = setupTestDir('lock_contention');
   try {
     const lockPath = path.join(testDir, '.nlm-sync.lock');
-    fs.writeFileSync(lockPath, JSON.stringify({ pid: process.pid, createdAt: new Date().toISOString() }), 'utf8');
+    fs.writeFileSync(lockPath, JSON.stringify({ pid: process.pid, createdAt: new Date(Date.now() - 60 * 60 * 1000).toISOString() }), 'utf8');
 
     const res = spawnSync('node', [RUNNER_SCRIPT, 'test-uuid-lock', '--staging-dir', testDir], {
       encoding: 'utf8',
@@ -238,8 +241,24 @@ test('ingest-nlm-runner: rejects concurrent run when lock is held by live PID', 
     const report = JSON.parse(res.stderr || res.stdout);
     assert.equal(report.ok, false);
     assert.match(report.error, /CONCURRENT_RUN_IN_PROGRESS/);
+    assert.equal(JSON.parse(fs.readFileSync(lockPath, 'utf8')).pid, process.pid);
   } finally {
     cleanupTestDir(testDir);
+  }
+});
+
+test('acquireIngestLock takes over a live pid whose start token belongs to an older owner', () => {
+  const testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ingest-recycled-lock-'));
+  try {
+    const lockPath = path.join(testDir, '.nlm-sync.lock');
+    fs.writeFileSync(lockPath, JSON.stringify({ pid: process.pid, ownerStartedAt: '0', createdAt: new Date().toISOString() }), 'utf8');
+    const result = acquireIngestLock(lockPath);
+    assert.equal(result.ok, true);
+    const held = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+    assert.equal(held.pid, process.pid);
+    assert.equal(held.ownerStartedAt, ownProcessStartToken());
+  } finally {
+    fs.rmSync(testDir, { recursive: true, force: true });
   }
 });
 

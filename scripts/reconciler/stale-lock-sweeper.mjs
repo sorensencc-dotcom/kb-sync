@@ -1,29 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isPidAlive, removeDeadLockFile } from '../../core/pid-lock.mjs';
 import { toPosixPath } from '../../core/path-normalizer.mjs';
+
+export { isPidAlive };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const KB_SYNC_ROOT = path.resolve(__dirname, '..', '..');
 
 export const DEFAULT_LOCK_MAX_AGE_MS = 15 * 60 * 1000; // 15 minutes
-
-/**
- * Checks whether a process ID is currently running.
- * @param {number|string} pid 
- * @returns {boolean}
- */
-export function isPidAlive(pid) {
-  if (!pid) return false;
-  const numPid = Number(pid);
-  if (isNaN(numPid) || numPid <= 0) return false;
-  try {
-    process.kill(numPid, 0);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 /**
  * Normalizes Windows drive letters and paths to standard forward slashes for cross-platform and bash execution.
@@ -36,10 +22,10 @@ export function normalizeWindowsPath(inputPath) {
 }
 
 /**
- * Reaps an individual lockfile if it is stale (> maxAgeMs or dead PID).
+ * Reaps an individual lockfile when its recorded owner is not the process that has that pid.
  * @param {string} lockPath 
  * @param {number} maxAgeMs 
- * @returns {{ reaped: boolean, reason?: string, ageMs?: number, pidAlive?: boolean, error?: string }}
+ * @returns {{ reaped: boolean, reason?: string, ageMs?: number, pidAlive?: boolean, stale?: boolean, error?: string }}
  */
 export function reapStaleLock(lockPath, maxAgeMs = DEFAULT_LOCK_MAX_AGE_MS) {
   if (!lockPath || !fs.existsSync(lockPath)) {
@@ -47,25 +33,14 @@ export function reapStaleLock(lockPath, maxAgeMs = DEFAULT_LOCK_MAX_AGE_MS) {
   }
 
   try {
-    const stats = fs.statSync(lockPath);
-    const ageMs = Date.now() - stats.mtimeMs;
-    let pid = null;
-
-    try {
-      const raw = fs.readFileSync(lockPath, 'utf8');
-      const parsed = JSON.parse(raw);
-      pid = parsed.pid;
-    } catch {}
-
-    const pidAlive = isPidAlive(pid);
-
-    if (!pidAlive || ageMs > maxAgeMs) {
-      console.warn(`[WARN] Reaping orphaned lockfile: ${lockPath} (age: ${Math.round(ageMs / 1000)}s, pid: ${pid || 'N/A'}, pidAlive: ${pidAlive})`);
-      fs.unlinkSync(lockPath);
-      return { reaped: true, lockPath, ageMs, pidAlive };
+    const ageMs = Date.now() - fs.statSync(lockPath).mtimeMs;
+    const claim = removeDeadLockFile(lockPath);
+    if (claim.state === 'missing') return { reaped: false, reason: 'NOT_FOUND' };
+    if (claim.state === 'live') {
+      return { reaped: false, reason: 'ACTIVE_LOCK', pid: claim.pid, ageMs, pidAlive: true, stale: ageMs > maxAgeMs };
     }
-
-    return { reaped: false, reason: 'ACTIVE_LOCK', pid };
+    console.warn(`[WARN] Reaping orphaned lockfile: ${lockPath} (age: ${Math.round(ageMs / 1000)}s, pid: ${claim.pid || 'N/A'}, pidAlive: ${claim.pidAlive}, sameOwner: false)`);
+    return { reaped: true, lockPath, ageMs, pidAlive: claim.pidAlive };
   } catch (err) {
     console.error(`[ERROR] Failed to check/reap lockfile ${lockPath}:`, err.message);
     return { reaped: false, error: err.message };

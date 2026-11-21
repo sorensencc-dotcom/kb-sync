@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { ownProcessStartToken } from '../core/pid-lock.mjs';
 import staleLockSweeper, {
   isPidAlive,
   normalizeWindowsPath,
@@ -84,7 +85,7 @@ test('reapStaleLock preserves active lock held by live process under max age', (
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
 
-test('reapStaleLock reaps lock held by dead PID or older than maxAgeMs', () => {
+test('reapStaleLock reaps lock held by dead PID', () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'lock-test-'));
   const lockFile = path.join(tmpDir, 'dead.lock');
   fs.writeFileSync(lockFile, JSON.stringify({ pid: 9999999, createdAt: new Date().toISOString() }), 'utf8');
@@ -93,16 +94,39 @@ test('reapStaleLock reaps lock held by dead PID or older than maxAgeMs', () => {
   assert.equal(res.reaped, true);
   assert.equal(fs.existsSync(lockFile), false);
 
-  // Expired mtime test: live process PID but ageMs > maxAgeMs
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
+test('reapStaleLock preserves an old lock held by a live process', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'lock-test-'));
+  const token = ownProcessStartToken();
+  assert.equal(typeof token, 'string');
+  assert.ok(token.length > 0);
   const expiredLock = path.join(tmpDir, 'expired.lock');
-  fs.writeFileSync(expiredLock, JSON.stringify({ pid: process.pid, createdAt: new Date(Date.now() - 3600000).toISOString() }), 'utf8');
+  fs.writeFileSync(expiredLock, JSON.stringify({ pid: process.pid, ownerStartedAt: token, createdAt: new Date(Date.now() - 3600000).toISOString() }), 'utf8');
   // Backdate mtime to 1 hour ago
   const pastTime = (Date.now() - 3600000) / 1000;
   fs.utimesSync(expiredLock, pastTime, pastTime);
 
   const expRes = reapStaleLock(expiredLock, 60000);
-  assert.equal(expRes.reaped, true);
-  assert.equal(fs.existsSync(expiredLock), false);
+  assert.equal(expRes.reaped, false);
+  assert.equal(expRes.reason, 'ACTIVE_LOCK');
+  assert.equal(expRes.pidAlive, true);
+  assert.equal(expRes.stale, true);
+  assert.equal(fs.existsSync(expiredLock), true);
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
+test('reapStaleLock reaps a live pid whose start token belongs to an older owner', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'lock-test-'));
+  const recycledLock = path.join(tmpDir, 'recycled.lock');
+  fs.writeFileSync(recycledLock, JSON.stringify({ pid: process.pid, ownerStartedAt: '0', createdAt: new Date().toISOString() }), 'utf8');
+
+  const res = reapStaleLock(recycledLock, 60000);
+  assert.equal(res.reaped, true);
+  assert.equal(res.pidAlive, true);
+  assert.equal(fs.existsSync(recycledLock), false);
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
