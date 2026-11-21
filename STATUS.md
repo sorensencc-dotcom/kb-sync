@@ -1,5 +1,28 @@
 # Session status
 
+## Drive-to-NotebookLM rolling ledger sync pass, 2026-11-21
+
+- **Goal**: Implement automatic sync for 7 scheduled Gemini/TRM rolling ledgers falling back to Google Drive markdown into their target NotebookLM sources via in-place atomic refresh.
+- **Implementation**:
+  - Added `scripts/pipeline/sync-rolling-ledgers.mjs`:
+    - Configured 7 target source mappings across `research-gaps` (`1g3UQc2LM7YcXgr6f0G9H0NByns66cZ7q`), `AI/AI_News` (`1y0h4HEkg_mBVKfCbQIZ0_cag_3QyXvEy`), and root.
+    - Idempotency: tracks Drive `modifiedTime` and SHA-256 `contentHash` in `state/rolling-ledgers-state.json`. Skips unchanged ledgers.
+    - Stage-before-drop invariant: uploads new copy, polls until status 2 ACTIVE, applies 3.5s (`3500ms`) indexing propagation delay, and deletes prior generation matching source with scoped deletion lease.
+    - Rollback protection: cleans up staged orphan source if activation verification fails, leaving prior source untouched.
+  - Wired into `scripts/pipeline/cluster-sync-runner.mjs`:
+    - Automatically executes rolling ledger sync pass before pack sweeps unless `--skip-rolling-sync` is passed.
+    - Added `--skip-rolling-sync` and `--force-rolling-sync` CLI flags.
+  - Added npm scripts to `package.json`: `sync:rolling-ledgers` and `test:rolling-ledgers`.
+- **Tests**: Added `tests/sync-rolling-ledgers.test.mjs` (10/10 PASS). Existing cluster sync test suite passes (31/31 PASS).
+- **Next**: Verify in production scheduled run and monitor `state/rolling-ledgers-state.json` updates.
+
+## kb-context-cache connector startup, 2026-11-21
+
+- **Observed:** Codex points `kb-context-cache` to `http://127.0.0.1:4411/mcp/memory`. The `SigilMeshDaemon` scheduled task is disabled. Its last run on 2026-11-10 returned exit code 1. The reason it was disabled is unknown.
+- **Recovery:** Restarted only the Sigil connector on port 4411 on 2026-11-20. MCP initialize, tool listing, and a `query_context_cache` request succeeded. The connector is currently running as a manually started process.
+- **Persistence:** Creating a dedicated startup task under `\\KB-SYNC\\` returned `Access is denied`. The legacy full-mesh task remains disabled to avoid starting its relay, inbox, and bot processes alongside the current Sigil services. The manual connector will not survive logoff or reboot.
+- **Next:** With elevated task registration, add a connector-only startup task or integrate the connector with the active Sigil service. Investigate why `SigilMeshDaemon` was disabled.
+
 ## Validator `--diff` subdir fix, 2026-11-17
 
 - Bug: `validate-staging-docs.mjs --diff` on a subdirectory target validated 0 files. `git diff --name-only HEAD` emits repo-root-relative paths; caller compared against target-relative paths.

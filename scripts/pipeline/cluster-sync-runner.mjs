@@ -507,6 +507,23 @@ export async function executeClusterSync(options = {}) {
     }
   }
 
+  if (!isDryRun && !options.skipRollingLedgerSync) {
+    try {
+      const { syncRollingLedgers } = await import('./sync-rolling-ledgers.mjs');
+      const rollingRes = await syncRollingLedgers({
+        dryRun: isDryRun,
+        cli: options.cli || 'nlm',
+        force: Boolean(options.forceRollingLedgerSync),
+      });
+      logInfo(`[ROLLING-LEDGER-SYNC] Processed ${rollingRes.total} ledgers: ${rollingRes.synced} synced, ${rollingRes.skipped} skipped, ${rollingRes.failed} failed.`);
+    } catch (rollingErr) {
+      if (options.failOnRollingLedgerSync) {
+        throw new Error(`ROLLING_LEDGER_SYNC_FAILED: ${rollingErr.message}`);
+      }
+      logWarn(`[ROLLING-LEDGER-SYNC] Rolling ledger sync pass failed: ${rollingErr.message}`);
+    }
+  }
+
   const prep = prepareStagedPacks({ isDryRun, skipConsolidate: Boolean(options.skipConsolidate) });
   logInfo(prep.consolidated
     ? `[CONSOLIDATE] Rebuilt ${prep.packCount} staged pack file(s) before sweep.`
@@ -561,11 +578,15 @@ if (mainFile === thisFile) {
   let checkQuarantine = false;
   let skipConsolidate = false;
   let allowStaleDriveGuide = false;
+  let skipRollingLedgerSync = false;
+  let forceRollingLedgerSync = false;
 
   for (const a of args) {
     if (a === '--check-quarantine') checkQuarantine = true;
     else if (a === '--skip-consolidate') skipConsolidate = true;
     else if (a === '--allow-stale-drive-guide') allowStaleDriveGuide = true;
+    else if (a === '--skip-rolling-sync') skipRollingLedgerSync = true;
+    else if (a === '--force-rolling-sync') forceRollingLedgerSync = true;
     else if (a.startsWith('--mode=')) mode = a.split('=')[1];
     else if (a === '--dry-run') dryRun = true;
     else if (a.startsWith('--notebook=')) notebook = a.split('=')[1];
@@ -577,7 +598,15 @@ if (mainFile === thisFile) {
     process.exit(checkResult.ok ? 0 : 1);
   }
 
-  executeClusterSync({ mode, dryRun, notebook, skipConsolidate, allowStaleDriveGuide })
+  executeClusterSync({
+    mode,
+    dryRun,
+    notebook,
+    skipConsolidate,
+    allowStaleDriveGuide,
+    skipRollingLedgerSync,
+    forceRollingLedgerSync,
+  })
     .then((out) => {
       process.exit(clusterSyncExitCode(out));
     })
