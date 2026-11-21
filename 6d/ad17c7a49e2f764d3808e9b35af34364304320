@@ -1,0 +1,14 @@
+tests/trm-act-kbsync-nlm-chat-injection-staleness-entropy-audit.test.mjs
+  h_5c172e9b435f5a 1-86
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6dad17c7a49e2f764d3808e9b35af34364304320",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
