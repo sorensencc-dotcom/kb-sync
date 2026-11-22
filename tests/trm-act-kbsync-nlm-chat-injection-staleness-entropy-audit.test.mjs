@@ -61,7 +61,6 @@ test('Chat Injection Runner: synthesizeDynamicQuestions never produces identical
   assert.ok(turn1.length >= 2);
   assert.ok(turn2.length >= 2);
 
-  // Entropy of the questions themselves must be >= 3.0
   const e1 = calculateQuestionEntropy(turn1);
   const e2 = calculateQuestionEntropy(turn2);
   assert.ok(e1 >= 3.0, `Turn 1 entropy (${e1}) must be >= 3.0`);
