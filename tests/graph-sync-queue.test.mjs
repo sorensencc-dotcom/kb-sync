@@ -9,6 +9,7 @@ import {
   compareSnapshots,
   createFilePreflightAdapter,
   createGraphSnapshot,
+  createJsonFilePersistence,
   createMemoryPersistence,
   parseGraphSnapshot,
 } from '../modules/graph-sync/queue.mjs';
@@ -110,6 +111,65 @@ test('missing or malformed base is explicit retryable quarantine', async () => {
   assert.equal(result.status, 'quarantined');
   assert.equal(result.quarantine.reason, 'BASE_MISSING');
   assert.equal(result.quarantine.retryable, true);
+});
+
+test('preflight reclaims an in-flight reservation after its owner exits', async () => {
+  const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-sync-stale-preflight-'));
+  const persistence = createJsonFilePersistence(path.join(stateDir, 'queue.json'));
+  let inspectCalls = 0;
+  try {
+    const queue = new GraphSyncQueue({
+      persistence,
+      preflightAdapter: {
+        inspect: (item) => {
+          inspectCalls += 1;
+          return { observedSnapshot: item.snapshot };
+        },
+      },
+      idGenerator: () => 'q-stale-preflight',
+    });
+    const item = queue.enqueue({ sourceVersion: 'source-1', targetVersion: 'target-1', snapshot: snapshot() });
+    const state = persistence.load();
+    state.items[0] = { ...state.items[0], status: 'preflighting', preflightOwnerPid: Number.MAX_SAFE_INTEGER };
+    persistence.save(state);
+
+    const result = await queue.preflight(item.id);
+    assert.equal(result.status, 'ready');
+    assert.equal(result.preflightOwnerPid, null);
+    assert.equal(result.preflightOwnerStartedAt, null);
+    assert.equal(inspectCalls, 1);
+  } finally {
+    fs.rmSync(stateDir, { recursive: true, force: true });
+  }
+});
+
+test('preflight reclaims a reservation whose start token belongs to an older owner', async () => {
+  const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-sync-recycled-preflight-'));
+  const persistence = createJsonFilePersistence(path.join(stateDir, 'queue.json'));
+  let inspectCalls = 0;
+  try {
+    const queue = new GraphSyncQueue({
+      persistence,
+      preflightAdapter: {
+        inspect: (item) => {
+          inspectCalls += 1;
+          return { observedSnapshot: item.snapshot };
+        },
+      },
+      idGenerator: () => 'q-recycled-preflight',
+    });
+    const item = queue.enqueue({ sourceVersion: 'source-1', targetVersion: 'target-1', snapshot: snapshot() });
+    const state = persistence.load();
+    state.items[0] = { ...state.items[0], status: 'preflighting', preflightOwnerPid: process.pid, preflightOwnerStartedAt: '0' };
+    persistence.save(state);
+
+    const result = await queue.preflight(item.id);
+    assert.equal(result.status, 'ready');
+    assert.equal(result.preflightOwnerStartedAt, null);
+    assert.equal(inspectCalls, 1);
+  } finally {
+    fs.rmSync(stateDir, { recursive: true, force: true });
+  }
 });
 
 test('file adapter reads deterministic UTF-8 snapshot and rejects malformed input', () => {
