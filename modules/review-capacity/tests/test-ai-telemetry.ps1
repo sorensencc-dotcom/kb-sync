@@ -631,6 +631,31 @@ try {
 }
 
 # ------------------------------------------------------------------------------
+# Test 17: Missing repository must not fail the weekly telemetry step
+# ------------------------------------------------------------------------------
+Write-Host "`n[TEST 17] Inaccessible repository leaves a zero process exit code..." -ForegroundColor Yellow
+$missingRepoCsv = Join-Path $env:TEMP "test_telemetry_missing_repo_$([guid]::NewGuid().ToString('N')).csv"
+$fakeGhDir = Join-Path $env:TEMP "fake-gh-$([guid]::NewGuid().ToString('N'))"
+try {
+    New-Item -ItemType Directory -Path $fakeGhDir -Force | Out-Null
+    Set-Content -LiteralPath (Join-Path $fakeGhDir 'gh.cmd') -Value "@echo off`r`necho GraphQL: Could not resolve to a Repository with the name 'missing/nope'. (repository) 1>&2`r`nexit /b 1`r`n" -Encoding ascii
+    $nested = @"
+`$ErrorActionPreference = 'Stop'
+`$env:PATH = '$fakeGhDir' + [IO.Path]::PathSeparator + `$env:PATH
+& '$ExtractGithubPrsScript' -Repo @('missing/nope') -OutputPath '$missingRepoCsv'
+exit `$LASTEXITCODE
+"@
+    $nestedPath = Join-Path $fakeGhDir 'run.ps1'
+    Set-Content -LiteralPath $nestedPath -Value $nested -Encoding utf8
+    & pwsh -NoProfile -File $nestedPath
+    Assert-Equal -Actual $LASTEXITCODE -Expected 0 -Message "extract-github-prs.ps1 exits 0 when gh cannot see the repository"
+    Assert-True -Condition (Test-Path -LiteralPath $missingRepoCsv) -Message "Baseline CSV is still published after a missing repository"
+} finally {
+    if (Test-Path -LiteralPath $missingRepoCsv) { Remove-Item -LiteralPath $missingRepoCsv -Force }
+    if (Test-Path -LiteralPath $fakeGhDir) { Remove-Item -LiteralPath $fakeGhDir -Recurse -Force }
+}
+
+# ------------------------------------------------------------------------------
 # Summary Report
 # ------------------------------------------------------------------------------
 Write-Host "`n================================================================================" -ForegroundColor Cyan
