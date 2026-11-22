@@ -1,0 +1,24 @@
+.github/workflows/test-suite.yml
+  h_5c172e9b435f5a 47-56
+package.json
+  h_5c172e9b435f5a 16
+specs/pack-replace-gate/run-tlc.mjs
+  h_5c172e9b435f5a 9,13-21
+specs/run-formal-verification.mjs
+  h_5c172e9b435f5a 1-44
+specs/trm-ingest-drive/run-tlc.mjs
+  h_5c172e9b435f5a 1-63
+specs/wiki-log/run-tlc.mjs
+  h_5c172e9b435f5a 6,10-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7722f2ba52d59642e1632086fc7333354866c8f4",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
