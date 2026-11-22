@@ -44,3 +44,13 @@ jobs:
 
       - name: Enforce NotebookLM deletion policy
         run: npm run test:nlm-deletion-policy
+
+      - name: Setup TLA+ Tools
+        run: |
+          mkdir -p ~/.tla
+          if [ ! -f ~/.tla/tla2tools.jar ]; then
+            curl -fsSL -o ~/.tla/tla2tools.jar https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+          fi
+
+      - name: Run formal state machine verification
+        run: npm run test:formal

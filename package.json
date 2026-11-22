@@ -13,6 +13,7 @@
     "test:atomic-pack-guardrail": "node --test --test-timeout=10000 tests/trm-act-kbsync-atomic-pack-replacement-guardrail.test.mjs",
     "test:mcp-health": "node --test --test-timeout=10000 tests/mcp-memory-daemon-health.test.mjs",
     "test:mcp-watchdog": "node --test --test-timeout=10000 tests/mcp-loopback-watchdog.test.mjs",
+    "test:formal": "node specs/run-formal-verification.mjs",
     "ironbot:register": "powershell.exe -ExecutionPolicy Bypass -File scripts/ironbot/register-ironbot-task.ps1",
     "ironbot:monitor": "powershell.exe -ExecutionPolicy Bypass -File scripts/ironbot/ironbot-task-monitor.ps1 -DryRun",
     "gov:validate": "node ../CIC-GOVERNANCE/scripts/validate-governance-contract.mjs",
