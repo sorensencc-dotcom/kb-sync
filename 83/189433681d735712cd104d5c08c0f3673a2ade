@@ -1,0 +1,19 @@
+modules/review-capacity/tests/test-ai-telemetry.ps1
+  s_ef6e4ff07e9ea9::t_64b820df93cc49 1-672
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "83189433681d735712cd104d5c08c0f3673a2ade",
+  "prompts": {},
+  "sessions": {
+    "s_ef6e4ff07e9ea9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a203e6-b451-7a00-a4bf-245de48caeb8",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
