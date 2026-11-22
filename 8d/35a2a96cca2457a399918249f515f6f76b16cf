@@ -1,0 +1,26 @@
+obsidian/vault/wiki/research/rfc-act-trm-cic-source-conflict-log-resolutions-nov-2026.md
+  h_5c172e9b435f5a 1-84
+modules/review-capacity/tests/test-ai-telemetry.ps1
+  s_ef6e4ff07e9ea9::t_64b820df93cc49 1-672
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8d35a2a96cca2457a399918249f515f6f76b16cf",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_ef6e4ff07e9ea9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a203e6-b451-7a00-a4bf-245de48caeb8",
+        "model": "unknown"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
