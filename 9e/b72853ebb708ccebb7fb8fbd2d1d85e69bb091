@@ -1,0 +1,22 @@
+modules/obsidian/synthesize-wiki.ts
+  h_5c172e9b435f5a 219-220,768-769
+scripts/nlm-pack-replace-gate.mjs
+  h_5c172e9b435f5a 400-402,638-649,771-772
+tests/modules/obsidian/synthesize-wiki.test.ts
+  h_5c172e9b435f5a 9-20,112-126
+tests/nlm-pack-replace-gate.test.mjs
+  h_5c172e9b435f5a 22,1145-1186
+tests/validate-proposal-schema.test.ts
+  h_5c172e9b435f5a 65-72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9eb72853ebb708ccebb7fb8fbd2d1d85e69bb091",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
