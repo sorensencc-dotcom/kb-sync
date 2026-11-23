@@ -213,10 +213,11 @@ function buildSourceListArgs(runner, notebookUuid) {
 function runNlm(runner, nlmArgs, timeoutMs = 120000) {
   const fullArgs = [...runner.prefix, ...nlmArgs];
   const isBatch = process.platform === 'win32' && /\.(cmd|bat)$/i.test(runner.cmd);
-  const res = spawnSync(runner.cmd, fullArgs, {
+  const cmd = isBatch ? (process.env.ComSpec || 'cmd.exe') : runner.cmd;
+  const args = isBatch ? ['/d', '/c', runner.cmd, ...fullArgs] : fullArgs;
+  const res = spawnSync(cmd, args, {
     encoding: 'utf8',
     timeout: timeoutMs,
-    shell: isBatch,
     windowsHide: true,
     stdio: ['ignore', 'pipe', 'pipe']
   });

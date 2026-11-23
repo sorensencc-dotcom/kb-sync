@@ -136,7 +136,9 @@ function defaultDetectDrift(repoRoot: string) {
   const script = path.join(repoRoot, 'modules', 'wiki', 'detect-drift.ts');
   if (!fs.existsSync(script)) return null;
   const startedAt = Date.now();
-  const r = spawnSync(IS_WIN ? 'npx.cmd' : 'npx', ['tsx', 'modules/wiki/detect-drift.ts'], { cwd: repoRoot, encoding: 'utf8', shell: IS_WIN });
+  const cmd = IS_WIN ? (process.env.ComSpec || 'cmd.exe') : 'npx';
+  const args = IS_WIN ? ['/d', '/c', 'npx.cmd', 'tsx', 'modules/wiki/detect-drift.ts'] : ['tsx', 'modules/wiki/detect-drift.ts'];
+  const r = spawnSync(cmd, args, { cwd: repoRoot, encoding: 'utf8', windowsHide: true });
   if (r.status !== 0) throw new Error(`drift detection exited ${r.status}`);
   const report = readJson<any>(path.join(repoRoot, '.drift-report.json'));
   const ts = Date.parse(report?.timestamp);
@@ -162,7 +164,9 @@ function sanitizeValidatorOutput(raw: unknown): string {
 function defaultValidateContract(repoRoot: string) {
   const pkg = readJson<any>(path.join(repoRoot, 'package.json'));
   if (!pkg?.scripts?.['wiki:validate-contract']) return { ok: true, detail: 'no wiki:validate-contract script in repo (external contract validation skipped)' };
-  const r = spawnSync(IS_WIN ? 'npm.cmd' : 'npm', ['run', 'wiki:validate-contract'], { cwd: repoRoot, encoding: 'utf8', shell: IS_WIN });
+  const cmd = IS_WIN ? (process.env.ComSpec || 'cmd.exe') : 'npm';
+  const args = IS_WIN ? ['/d', '/c', 'npm.cmd', 'run', 'wiki:validate-contract'] : ['run', 'wiki:validate-contract'];
+  const r = spawnSync(cmd, args, { cwd: repoRoot, encoding: 'utf8', windowsHide: true });
   const statusDesc = r.signal ? `signal ${r.signal}` : `exited ${r.status}`;
   const detail = `npm run wiki:validate-contract ${statusDesc}`;
   if (r.status === 0) return { ok: true, detail };

@@ -19,8 +19,11 @@ async function runCommand(command, stagingPath, timeoutMs = 300000) {
     publish: ['npm.cmd', ['run', 'wiki:publish']]
   };
   const [file, args] = commands[name];
+  const isWinBatch = process.platform === 'win32' && /\.(cmd|bat)$/i.test(file);
+  const execCmd = isWinBatch ? (process.env.ComSpec || 'cmd.exe') : file;
+  const execArgs = isWinBatch ? ['/d', '/c', file, ...args] : args;
   try {
-    const result = await execFileAsync(file, args, { cwd: repoRoot, timeout: timeoutMs, maxBuffer: 10 * 1024 * 1024, shell: true });
+    const result = await execFileAsync(execCmd, execArgs, { cwd: repoRoot, timeout: timeoutMs, maxBuffer: 10 * 1024 * 1024, windowsHide: true });
     const stdout = name === 'detect' ? await fs.readFile(path.join(repoRoot, '.drift-report.json'), 'utf8') : `${result.stdout || ''}${result.stderr || ''}`;
     return { code: 0, stdout };
   } catch (error) { return { code: error.code ?? 1, stdout: `${error.stdout || ''}${error.stderr || ''}`, error }; }
