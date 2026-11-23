@@ -1,0 +1,33 @@
+modules/wiki/pipeline-runner.ts
+  s_a8b1940dd60de5::t_257e5343c0489f 139-141,167-169
+package.json
+  s_a8b1940dd60de5::t_d44d4056ba742a 170-171
+scripts/lint-invariants.mjs
+  s_a8b1940dd60de5::t_7333d29027dc86 1-174
+scripts/notebooklm/ingest-nlm-runner.mjs
+  s_a8b1940dd60de5::t_90e6e4bc602f0b 216-218
+scripts/notebooklm/replace-pack-family-cli.mjs
+  s_a8b1940dd60de5::t_c08b28dbb05f14 34-37,39
+scripts/trm-audio-drop.mjs
+  s_a8b1940dd60de5::t_0c8544bed3dd0b 26-34,36
+scripts/wiki-drift-repair.mjs
+  s_a8b1940dd60de5::t_bd3d8760e309b7 22-24,26
+tests/lint-invariants.test.mjs
+  s_a8b1940dd60de5::t_adab1fefe411a8 1-60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "17d93cb5309571b8b212f16eb1413ccc4a79db00",
+  "prompts": {},
+  "sessions": {
+    "s_a8b1940dd60de5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a205bc-d09e-78d3-b665-1ad053ace4fa",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
