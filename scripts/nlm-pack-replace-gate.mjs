@@ -132,7 +132,6 @@ export function isPackFamilyTitle(title, incomingPackBaseName) {
     const base = path.basename(incomingPackBaseName).toLowerCase();
     const baseNoExt = base.replace(/\.bak\.txt$/i, '').replace(/\.[^.]+$/, '');
     if (t === base || t === baseNoExt) return true;
-    // Treat pack_agent_harness and repo_knowledge_pack as the same pack family
     const isAgentHarnessFamily = (s) =>
       /^(repo[_-]?knowledge[_-]?pack|pack_agent_harness)/i.test(s);
     if (isAgentHarnessFamily(base) && isAgentHarnessFamily(t)) return true;
@@ -470,7 +469,6 @@ export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeo
         continue;
       }
 
-      // 1. Explicit Error / Fail-Closed Check (Status 3, ERROR, FAILED)
       if (
         src.status === 3 ||
         src.status === '3' ||
@@ -479,7 +477,6 @@ export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeo
         throw new Error(`Source ${id} entered invalid/error status: ${src.status}`);
       }
 
-      // 2. Explicit Active Check
       if (
         src.status === 2 ||
         src.status === '2' ||
@@ -488,7 +485,6 @@ export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeo
         continue;
       }
 
-      // 3. Transient In-Flight Check (Wait)
       if (
         src.status === 1 ||
         src.status === '1' ||
@@ -501,7 +497,6 @@ export async function pollFamilyUntilActive(notebookId, expectedSourceIds, timeo
         continue;
       }
 
-      // 4. Missing Status Field Fallback Probe
       if (src.status === undefined || src.status === null) {
         const hasSize = (src.characterCount > 0) || (src.sizeBytes > 0) || (src.wordCount > 0) ||
                         (src.char_count > 0) || (src.size > 0);
@@ -711,7 +706,6 @@ async function replacePackFamilyAtomicLocked({
   timeoutMs,
   waitMs,
 }) {
-  // 1. has_pack: false: check and purge any orphan pack sources
   if (!hasPack) {
     const listFn = runList || ((nbId) => listNotebookSources(cli, nbId));
     let liveSources = [];
@@ -747,7 +741,6 @@ async function replacePackFamilyAtomicLocked({
     return { bypassed: true, reason: 'HAS_PACK_FALSE_PURGED', notebookId, purgedOldSourceIds: purgedIds };
   }
 
-  // 2. Multipart Pack Family Atomicity: Expected part count N must match staged part count N
   if (typeof expectedPartCount === 'number' && packFiles.length !== expectedPartCount) {
     const msg = `MULTIPART_COUNT_MISMATCH: Expected ${expectedPartCount} parts, got ${packFiles.length}`;
     if (quarantineHandler) {
@@ -798,7 +791,6 @@ async function replacePackFamilyAtomicLocked({
     return out;
   });
 
-  // Query live sources
   const liveSources = await listFn(notebookId);
   const oldSourceIdSet = new Set();
   for (const pf of packFiles) {
@@ -816,7 +808,6 @@ async function replacePackFamilyAtomicLocked({
   try {
     for (const file of packFiles) {
       const fileName = path.basename(file);
-      // Existence probe: Idempotent pre-flight (reuse only when allowReuse is explicitly enabled)
       const probe = probeExistingPackSource(liveSources, fileName);
       if (allowReuse && probe.exists && probe.status === 'EXISTS_ACTIVE' && probe.sourceId) {
         logInfo(`[EXISTS_ACTIVE] Reusing existing source for ${fileName} (${probe.sourceId})`);
@@ -885,14 +876,11 @@ async function replacePackFamilyAtomicLocked({
       newlyUploadedSourceIds.push(uploadedId);
     }
 
-    // Stage-All-Before-Drop-Any: wait for every single part of new generation to reach status 2
     logInfo(`[POLL] Polling ${newGenerationSourceIds.length} source(s) until ACTIVE...`);
     await pollFamilyUntilActive(notebookId, newGenerationSourceIds, timeoutMs, listFn);
 
-    // Terminal ACTIVE verified! Apply calibrated indexing propagation delay
     await new Promise(resolve => setTimeout(resolve, waitMs));
 
-    // Cutovers: purge old generation pack parts (excluding any in new generation)
     const oldSourceIds = Array.from(oldSourceIdSet);
     const newGenSet = new Set(newGenerationSourceIds);
     const toDelete = oldSourceIds.filter(id => !newGenSet.has(id));

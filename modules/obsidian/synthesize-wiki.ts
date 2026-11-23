@@ -6,7 +6,6 @@ import jsYaml from "js-yaml";
 import { validateLessonSchema, ALLOWED_CATEGORIES, ALLOWED_STATUSES } from "../wiki/validate-contract.mjs";
 import { createProvider, SynthesisProvider, SynthesisInput, SynthesisProposal, ProviderError } from "./providers/index.js";
 
-// --- LOG HELPERS ---
 function logInfo(msg: string) {
   console.error(`\x1b[32m[WIKI-SYNTHESIZE] [INFO] ${msg}\x1b[0m`);
 }
@@ -19,7 +18,6 @@ function logError(msg: string) {
   console.error(`\x1b[31m[WIKI-SYNTHESIZE] [ERROR] ${msg}\x1b[0m`);
 }
 
-// --- CANONICAL PATH CONTAINMENT ---
 function normalizePath(p: string): string {
   let normalized = p.replace(/\\/g, "/").replace(/\/+$/, "");
   const driveMatch = normalized.match(/^([A-Za-z]):/);
@@ -40,7 +38,6 @@ function getCanonicalPath(targetPath: string): string {
       return normalizePath(path.join(canonicalParent, path.basename(targetPath)));
     }
   } catch (err) {
-    // Fall back to normalized path
   }
   return normalizePath(path.resolve(targetPath));
 }
@@ -70,7 +67,6 @@ function assertPathContainment(canonicalWikiRoot: string, targetPath: string): v
   }
 }
 
-// --- RECOVERY MANIFEST INTERFACE ---
 export interface RecoveryManifest {
   sessionId: string;
   timestamp: string;
@@ -80,7 +76,6 @@ export interface RecoveryManifest {
   manifestHash: string;
 }
 
-// --- STARTUP CRASH RECOVERY & EXTERNAL QUARANTINE ---
 function executeStartupRecovery(vaultRoot: string, wikiDir: string, canonicalWikiRoot: string): void {
   if (!fs.existsSync(wikiDir)) return;
 
@@ -106,13 +101,11 @@ function executeStartupRecovery(vaultRoot: string, wikiDir: string, canonicalWik
       continue;
     }
 
-    // Verify backup path containment
     let isValidBackup = false;
     if (recoveryManifest && recoveryManifest.state === "COMMITTING_PROMOTION") {
       try {
         assertPathContainment(canonicalWikiRoot, backupPath);
 
-        // Validate transactionPath parent containment without calling realpath on missing file
         const tPath = recoveryManifest.transactionPath;
         const tParent = path.dirname(tPath);
         if (fs.existsSync(tParent)) {
@@ -149,7 +142,6 @@ function executeStartupRecovery(vaultRoot: string, wikiDir: string, canonicalWik
         logError(`Failed during crash recovery of '${backupDirName}': ${err instanceof Error ? err.message : String(err)}`);
       }
     } else {
-      // Quarantine unmarked or invalid backup outside wiki root: $OBSIDIAN_VAULT_ROOT/.quarantine/
       const quarantineRoot = path.join(vaultRoot, ".quarantine");
       if (!fs.existsSync(quarantineRoot)) {
         fs.mkdirSync(quarantineRoot, { recursive: true });
@@ -169,7 +161,6 @@ function executeStartupRecovery(vaultRoot: string, wikiDir: string, canonicalWik
     }
   }
 
-  // Purge stale transaction workspaces
   const transactDirs = entries.filter((e) => e.startsWith(".transact-"));
   for (const tDir of transactDirs) {
     const tPath = path.join(wikiDir, tDir);
@@ -178,7 +169,6 @@ function executeStartupRecovery(vaultRoot: string, wikiDir: string, canonicalWik
   }
 }
 
-// --- CONTENT-AWARE IDEMPOTENCY HASH ---
 function computeManifestContentHash(stagingPath: string, manifestLines: string[]): string {
   const hasher = crypto.createHash("sha256");
   const sortedLines = [...manifestLines].sort();
@@ -195,7 +185,6 @@ function computeManifestContentHash(stagingPath: string, manifestLines: string[]
   return hasher.digest("hex").slice(0, 16);
 }
 
-// --- PROPOSAL SCHEMA VALIDATION ---
 export function validateProposalSchema(proposal: SynthesisProposal, stagedManifestSet: Set<string>): string[] {
   const errors: string[] = [];
 
@@ -240,7 +229,6 @@ export function validateProposalSchema(proposal: SynthesisProposal, stagedManife
   return errors;
 }
 
-// --- CLI ARGUMENT PARSING ---
 interface CLIConfig {
   providerName: string;
   stagingPath?: string;
@@ -326,12 +314,10 @@ function parseCLIArgs(): CLIConfig {
   };
 }
 
-// --- MAIN SYNTHESIS ENGINE ---
 async function main() {
   logInfo("Starting Headless Wiki Synthesis Engine...");
   const cli = parseCLIArgs();
 
-  // 1. Resolve Vault & Config
   const repoRoot = normalizePath(path.resolve(process.cwd()));
   const envPath = path.resolve(repoRoot, ".env");
   if (fs.existsSync(envPath)) {
@@ -372,10 +358,8 @@ async function main() {
   logInfo(`Resolved Vault Root: ${vaultRoot}`);
   logInfo(`Resolved Wiki Directory: ${wikiDir}`);
 
-  // 2. Startup Crash Recovery
   executeStartupRecovery(vaultRoot, wikiDir, canonicalWikiRoot);
 
-  // 3. Resolve Staging Path
   let stagingPath = cli.stagingPath;
   if (!stagingPath) {
     const repoName = path.basename(repoRoot);
@@ -409,7 +393,6 @@ async function main() {
   stagingPath = normalizePath(path.resolve(stagingPath));
   logInfo(`Staging Path: ${stagingPath}`);
 
-  // 4. Validate Manifest
   const manifestFile = path.join(stagingPath, "FILES.manifest.txt");
   if (!fs.existsSync(manifestFile)) {
     logError(`FILES.manifest.txt not found in staging path: ${manifestFile}`);
@@ -424,7 +407,6 @@ async function main() {
 
   logInfo(`Manifest file validated: ${manifestLines.length} files listed.`);
 
-  // 5. Idempotency Hash Check
   const manifestHash = computeManifestContentHash(stagingPath, manifestLines);
   logInfo(`Manifest Content Hash (SHA-256): ${manifestHash}`);
 
@@ -442,7 +424,6 @@ async function main() {
     logWarn(`--force specified: Re-running synthesis for manifest hash ${manifestHash}.`);
   }
 
-  // 6. Read Staged Files & Existing Wiki Pages
   const stagedFilePromises = manifestLines.map(async (relFile) => {
     const fullPath = path.join(stagingPath, relFile);
     try {
@@ -486,7 +467,6 @@ async function main() {
     readWikiRecursive(wikiDir);
   }
 
-  // 7. Instantiate Provider & Synthesize Proposals
   logInfo(`Initializing provider: '${cli.providerName}'...`);
   const provider: SynthesisProvider = await createProvider(cli.providerName, {
     model: cli.model,
@@ -509,7 +489,6 @@ async function main() {
   const providerOutput = await provider.synthesize(input);
   logInfo(`Received ${providerOutput.proposals.length} raw proposals from provider.`);
 
-  // 8. Citation & Schema Validation
   const stagedManifestSet = new Set(manifestLines);
   const acceptedProposals: SynthesisProposal[] = [];
   const rejectedProposals: SynthesisProposal[] = [];
@@ -531,7 +510,6 @@ async function main() {
 
   logInfo(`Schema & Citation Verification: ${acceptedProposals.length} proposals accepted, ${rejectedProposals.length} proposals rejected.`);
 
-  // 9. Transaction Workspace Setup
   const sessionId = `${Date.now()}-${manifestHash}`;
   const transactDir = path.join(wikiDir, `.transact-${sessionId}`);
   const transactWikiRoot = path.join(transactDir, "wiki");
@@ -545,7 +523,6 @@ async function main() {
 
   fs.mkdirSync(transactWikiRoot, { recursive: true });
 
-  // Copy existing wiki pages to transaction workspace
   if (fs.existsSync(wikiDir)) {
     const copyWikiToTransact = (src: string, dest: string) => {
       const items = fs.readdirSync(src);
@@ -564,7 +541,6 @@ async function main() {
     copyWikiToTransact(wikiDir, transactWikiRoot);
   }
 
-  // 10. Write Accepted Proposals into Transaction Workspace
   const createdOrModifiedPaths: string[] = [];
 
   for (const prop of acceptedProposals) {
@@ -598,7 +574,6 @@ ${(prop.citations || []).map((c) => `- Staged: \`${c}\``).join("\n")}
     createdOrModifiedPaths.push(relTarget);
   }
 
-  // 10b. Process any unenriched lessons in the transaction workspace if --enrich-lessons flag is set
   if (cli.enrichLessons) {
     const enrichedLessons = await processUnenrichedLessons(transactWikiRoot, provider, lessonsDirName);
     if (enrichedLessons.length > 0) {
@@ -607,7 +582,6 @@ ${(prop.citations || []).map((c) => `- Staged: \`${c}\``).join("\n")}
     }
   }
 
-  // Deterministically generate Index.md and Log.md with contract frontmatter in Transaction Workspace
   const indexFilePath = path.join(transactWikiRoot, "Index.md");
   const indexContent = `---
 title: "Wiki Index"
@@ -644,7 +618,6 @@ status: "active"
     fs.writeFileSync(transactLogPath, initialLogHeader, "utf-8");
   }
 
-  // 10c. Safeguard: Pre-Flight Frontmatter Self-Healing on Transaction Workspace
   logInfo("Running pre-flight frontmatter sanitization and schema self-healing on transaction workspace...");
   const sanitizeTransactionWorkspaceFrontmatter = (dir: string) => {
     if (!fs.existsSync(dir)) return;
@@ -694,7 +667,6 @@ status: "active"
   };
   sanitizeTransactionWorkspaceFrontmatter(transactWikiRoot);
 
-  // 11. Phase 5 Contract Validator Integration
   logInfo("Executing Phase 5 Contract Validator (validate-contract.mjs) on transaction workspace...");
   const validatorScript = path.join(repoRoot, "modules", "wiki", "validate-contract.mjs");
 
@@ -714,7 +686,6 @@ status: "active"
 
   logInfo("✓ Phase 5 Contract Validator PASSED (100%).");
 
-  // 12. Dry Run Mode Check
   if (cli.dryRun) {
     logInfo("========================================================================");
     logInfo("DRY-RUN COMPLETE: Planned Changes Validated (Vault Untouched)");
@@ -727,10 +698,8 @@ status: "active"
     process.exit(0);
   }
 
-  // 13. Journaled Recoverable Promotion
   logInfo("Initiating Journaled Recoverable Promotion...");
 
-  // Snapshot Backup
   assertPathContainment(canonicalWikiRoot, backupDir);
   if (fs.existsSync(wikiDir)) {
     fs.mkdirSync(backupDir, { recursive: true });
@@ -747,7 +716,6 @@ status: "active"
     }
   }
 
-  // Write explicit Recovery Manifest
   const recoveryManifest: RecoveryManifest = {
     sessionId,
     timestamp: new Date().toISOString(),
@@ -761,7 +729,6 @@ status: "active"
   fs.writeFileSync(backupManifestPath, JSON.stringify(recoveryManifest, null, 2), "utf-8");
 
   try {
-    // Copy synthesized files from transaction workspace to live wiki
     const copyTransactToWiki = (src: string, dest: string) => {
       const items = fs.readdirSync(src);
       for (const item of items) {
@@ -779,7 +746,6 @@ status: "active"
     };
     copyTransactToWiki(transactWikiRoot, wikiDir);
 
-    // Append to Log.md
     const dateStr = new Date().toISOString().replace("T", " ").slice(0, 16);
     const forceFlag = cli.force ? " (forced re-run)" : "";
     const logEntry = `
@@ -795,7 +761,6 @@ ${createdOrModifiedPaths.map((p) => `  - \`wiki/${p}\``).join("\n")}
 
     fs.appendFileSync(logFilePath, logEntry, "utf-8");
 
-    // Update manifest to COMPLETED and clean up
     recoveryManifest.state = "COMPLETED";
     fs.writeFileSync(backupManifestPath, JSON.stringify(recoveryManifest, null, 2), "utf-8");
 
@@ -824,7 +789,6 @@ ${createdOrModifiedPaths.map((p) => `  - \`wiki/${p}\``).join("\n")}
     process.exit(1);
   }
 
-  // 14. Deterministic PR Reviewer Report
   console.log("");
   console.log("========================================================================");
   console.log("PR REVIEWER SUMMARY REPORT (Autonomous Synthesis Complete)");
@@ -851,7 +815,6 @@ ${createdOrModifiedPaths.map((p) => `  - \`wiki/${p}\``).join("\n")}
   process.exit(0);
 }
 
-// --- LESSON ENRICHMENT ENGINE ---
 export interface LessonAnalysisPayload {
   rootCause: string;
   prevention: string;
