@@ -31,9 +31,12 @@ if (!notebookId || files.some(file => typeof file !== 'string' || !file)) {
 
 const runCli = commandArgs => {
   const invocation = resolveCliInvocation(cli, commandArgs);
-  const result = spawnSync(invocation.cmd, invocation.args, {
+  const isWinBatch = process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd);
+  const cmd = isWinBatch ? (process.env.ComSpec || 'cmd.exe') : invocation.cmd;
+  const args = isWinBatch ? ['/d', '/c', invocation.cmd, ...invocation.args] : invocation.args;
+  const result = spawnSync(cmd, args, {
     encoding: 'utf8',
-    shell: process.platform === 'win32' && /\.(cmd|bat)$/i.test(invocation.cmd),
+    windowsHide: true,
     timeout: 120000,
   });
   if (result.stderr) process.stderr.write(result.stderr);

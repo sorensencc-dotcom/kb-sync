@@ -23,17 +23,19 @@ export async function whisperTranscribe(audioPath, env = process.env) {
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-whisper-'));
   const cmd = env.WHISPER_CLI_PATH || 'whisper';
   const model = env.WHISPER_MODEL || 'small';
-  const isWin = process.platform === 'win32';
+  const isWinBatch = process.platform === 'win32' && /\.(cmd|bat)$/i.test(cmd);
+  const execCmd = isWinBatch ? (process.env.ComSpec || 'cmd.exe') : cmd;
+  const whisperArgs = [
+    audioPath,
+    '--model', model,
+    '--output_format', 'txt',
+    '--output_dir', outDir,
+  ];
+  const execArgs = isWinBatch ? ['/d', '/c', cmd, ...whisperArgs] : whisperArgs;
   try {
-    await execFileAsync(cmd, [
-      audioPath,
-      '--model', model,
-      '--output_format', 'txt',
-      '--output_dir', outDir,
-    ], {
+    await execFileAsync(execCmd, execArgs, {
       timeout: 10 * 60 * 1000,
       maxBuffer: 64 * 1024 * 1024,
-      shell: isWin,
       windowsHide: true,
     });
     const txtName = `${path.parse(audioPath).name}.txt`;
