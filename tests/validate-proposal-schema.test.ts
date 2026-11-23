@@ -62,6 +62,14 @@ describe("validateProposalSchema", () => {
         assert.ok(errors.some(e => e.includes("Log.md is append-only")));
     });
 
+    it("should reject lowercase or nested log.md proposal targets", () => {
+        const lowerErrors = validateProposalSchema({ title: "Log", category: "wiki", status: "active", vaultPath: "log.md", citations: [] } as any, new Set());
+        assert.ok(lowerErrors.some(e => e.includes("Log.md is append-only")));
+
+        const nestedErrors = validateProposalSchema({ title: "Log", category: "wiki", status: "active", vaultPath: "kb-sync/Log.md", citations: [] } as any, new Set());
+        assert.ok(nestedErrors.some(e => e.includes("Log.md is append-only")));
+    });
+
     it("should accept valid special vaultPath Index.md", () => {
         const errors = validateProposalSchema({ title: "Index", category: "wiki", status: "active", vaultPath: "Index.md", citations: [] } as any, new Set());
         assert.deepEqual(errors, []);

@@ -19,6 +19,7 @@ import {
   replacePackFamilyAtomic,
   resolveCliInvocation,
   readPackFileCount,
+  isPackEmpty,
 } from '../scripts/nlm-pack-replace-gate.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -1136,6 +1137,48 @@ test('readPackFileCount reads the header count and ignores packs without one', (
     assert.equal(readPackFileCount(counted), 21);
     assert.equal(readPackFileCount(legacy), null);
     assert.equal(readPackFileCount(path.join(dir, 'missing.txt')), null);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('isPackEmpty detects zero-byte and zero-file packs', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-is-empty-'));
+  try {
+    const zeroByte = path.join(dir, 'empty.txt');
+    fs.writeFileSync(zeroByte, '');
+    const zeroCount = path.join(dir, 'zero.txt');
+    fs.writeFileSync(zeroCount, 'CATEGORY: test\nFILE COUNT: 0\n');
+    const validPack = path.join(dir, 'valid.txt');
+    fs.writeFileSync(validPack, 'CATEGORY: test\nFILE COUNT: 5\ncontent');
+    assert.equal(isPackEmpty(zeroByte), true);
+    assert.equal(isPackEmpty(zeroCount), true);
+    assert.equal(isPackEmpty(validPack), false);
+    assert.equal(isPackEmpty(path.join(dir, 'nonexistent.txt')), false);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('replacePackFamilyAtomic and uploadAndReplacePack handle 0-byte pack safely without crashing', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kb-sync-zero-byte-'));
+  const packFile = path.join(dir, 'pack_willow_run.txt');
+  fs.writeFileSync(packFile, '');
+  try {
+    const res = await replacePackFamilyAtomic({
+      notebookId: '6fd7c40b-df90-444b-9c7a-a64682925856',
+      packFiles: [packFile],
+      logWarn: () => {},
+    });
+    assert.deepEqual(res, { skipped: true, reason: 'EMPTY_PACK_CONTENT', notebookId: '6fd7c40b-df90-444b-9c7a-a64682925856' });
+
+    const uploadRes = await uploadAndReplacePack({
+      cli: 'nlm',
+      notebookId: '6fd7c40b-df90-444b-9c7a-a64682925856',
+      packFile,
+      logWarn: () => {},
+    });
+    assert.deepEqual(uploadRes, { skipped: true, reason: 'EMPTY_PACK_CONTENT', notebookId: '6fd7c40b-df90-444b-9c7a-a64682925856' });
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
