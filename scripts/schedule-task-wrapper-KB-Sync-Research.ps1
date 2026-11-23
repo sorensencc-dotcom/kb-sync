@@ -40,6 +40,7 @@ Write-LogInfo "Repo Root: $RepoRoot"
 
 $RunnerScript = Join-Path $RepoRoot "scripts\pipeline\cluster-sync-runner.mjs"
 $ArgsList = @("$RunnerScript", "--mode=research")
+$ArgsList += "--allow-stale-drive-guide"
 if ($DryRun) {
     $ArgsList += "--dry-run"
 }

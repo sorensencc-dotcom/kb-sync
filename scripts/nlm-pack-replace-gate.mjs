@@ -397,6 +397,9 @@ export async function uploadAndReplacePack({
     logInfo,
     logWarn,
   });
+  if (result.skipped) {
+    return { skipped: true, reason: result.reason, notebookId };
+  }
   return { uploadedId: result.newSourceIds[0], oldSourceIds: result.purgedOldSourceIds };
 }
 
@@ -632,6 +635,18 @@ export function readPackFileCount(packFile) {
   return m ? Number(m[1]) : null;
 }
 
+export function isPackEmpty(packFile) {
+  try {
+    if (!fs.existsSync(packFile)) return false;
+    const st = fs.statSync(packFile);
+    if (st.size === 0) return true;
+    const count = readPackFileCount(packFile);
+    return count === 0;
+  } catch {
+    return false;
+  }
+}
+
 export async function replacePackFamilyAtomic({
   cli = 'nlm',
   notebookId,
@@ -753,10 +768,8 @@ async function replacePackFamilyAtomicLocked({
     assertAllowedPackNotebook(notebookId, f);
   }
 
-  // A pack built from zero source files carries only a header. Replacing with it
-  // would delete the notebook's real sources, so leave the notebook untouched.
-  if (packFiles.every((f) => readPackFileCount(f) === 0)) {
-    logWarn(`[REPLACE-GATE] Notebook ${notebookId}: every staged pack reports FILE COUNT: 0; skipping replace to keep existing sources.`);
+  if (packFiles.length === 0 || packFiles.every(isPackEmpty)) {
+    logWarn(`[REPLACE-GATE] Notebook ${notebookId}: every staged pack reports FILE COUNT: 0 or is empty; skipping replace to keep existing sources.`);
     return { skipped: true, reason: 'EMPTY_PACK_CONTENT', notebookId };
   }
 

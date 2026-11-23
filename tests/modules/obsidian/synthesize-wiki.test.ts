@@ -6,18 +6,19 @@ import { fileURLToPath } from 'node:url';
 import { validateProposalSchema } from '../../../modules/obsidian/synthesize-wiki.js';
 import { SynthesisProposal } from '../../../modules/obsidian/providers/index.js';
 
-test('validateProposalSchema', async (t) => {
-  const stagedManifestSet = new Set(['docs/source.md', 'modules/obsidian/ingest-wiki.sh']);
+const stagedManifestSet = new Set(['docs/source.md', 'modules/obsidian/ingest-wiki.sh']);
 
-  const createBaseProposal = (): SynthesisProposal => ({
-    title: 'Valid Proposal',
-    category: 'wiki',
-    status: 'active',
-    summary: 'A valid proposal',
-    citations: ['docs/source.md'],
-    body: 'Some content',
-    vaultPath: 'wiki/concepts/Test.md',
-  });
+const createBaseProposal = (): SynthesisProposal => ({
+  title: 'Valid Proposal',
+  category: 'wiki',
+  status: 'active',
+  summary: 'A valid proposal',
+  citations: ['docs/source.md'],
+  body: 'Some content',
+  vaultPath: 'wiki/concepts/Test.md',
+});
+
+test('validateProposalSchema', async (t) => {
 
   await t.test('accepts a valid proposal', () => {
     const proposal = createBaseProposal();
@@ -108,9 +109,19 @@ test('validateProposalSchema', async (t) => {
   });
 });
 
-test('synthesize-wiki.ts keeps both Log.md guards', () => {
-  const srcPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../../modules/obsidian/synthesize-wiki.ts');
-  const src = fs.readFileSync(srcPath, 'utf8');
-  assert.match(src, /proposal\.vaultPath === ["']Log\.md["']/);
-  assert.match(src, /item === ["']Log\.md["'] && fs\.existsSync/);
+test('synthesize-wiki preserves live Log.md append-only behavior', () => {
+  const proposal = createBaseProposal();
+  proposal.vaultPath = 'Log.md';
+  const errors = validateProposalSchema(proposal, stagedManifestSet);
+  assert.ok(errors.some((e) => e.includes('Log.md is append-only')));
+
+  const lowerProposal = createBaseProposal();
+  lowerProposal.vaultPath = 'log.md';
+  const lowerErrors = validateProposalSchema(lowerProposal, stagedManifestSet);
+  assert.ok(lowerErrors.some((e) => e.includes('Log.md is append-only')));
+
+  const nestedProposal = createBaseProposal();
+  nestedProposal.vaultPath = 'kb-sync/Log.md';
+  const nestedErrors = validateProposalSchema(nestedProposal, stagedManifestSet);
+  assert.ok(nestedErrors.some((e) => e.includes('Log.md is append-only')));
 });
