@@ -1,0 +1,18 @@
+scripts/schedule-task-wrapper-KB-Sync-Ops.ps1
+  h_5c172e9b435f5a 43
+scripts/schedule-task-wrapper-KB-Sync-Research.ps1
+  h_5c172e9b435f5a 43
+tests/scheduled-cluster-sync-stale-guide.test.mjs
+  h_5c172e9b435f5a 1-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1f06f9e54f9fd927b67c73317619d7ac1bc37c61",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
