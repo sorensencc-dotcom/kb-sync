@@ -3,12 +3,19 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const defaultJava = 'C:\\Users\\soren\\.tla\\jdk\\bin\\java.exe';
-const defaultJar = 'C:\\Users\\soren\\.tla\\tla2tools.jar';
-const java = process.env.JAVA || (fs.existsSync(defaultJava) ? defaultJava : 'java');
+const homeJar = path.join(os.homedir(), '.tla', 'tla2tools.jar');
+const defaultJavaWin = 'C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.13.9-hotspot\\bin\\java.exe';
+const fallbackJavaWin = 'C:\\Users\\soren\\.tla\\jdk\\bin\\java.exe';
+const defaultJar = fs.existsSync(homeJar) ? homeJar : 'C:\\Users\\soren\\.tla\\tla2tools.jar';
+const java = process.env.JAVA || (
+  process.platform === 'win32'
+    ? (fs.existsSync(defaultJavaWin) ? defaultJavaWin : (fs.existsSync(fallbackJavaWin) ? fallbackJavaWin : 'java'))
+    : 'java'
+);
 const jar = process.env.TLA2TOOLS || defaultJar;
 
 if (!fs.existsSync(jar)) {
