@@ -1,0 +1,19 @@
+tests/scheduled-cluster-sync-stale-guide.test.mjs
+  s_d72c35bddd733d::t_5fbdab9227be3c 9,19-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "db9f962cdc50407d8e88f985848fa810d3274668",
+  "prompts": {},
+  "sessions": {
+    "s_d72c35bddd733d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2060f-78be-77f0-88fd-7fd63b7fea29",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
