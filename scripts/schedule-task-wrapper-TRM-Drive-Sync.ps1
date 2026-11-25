@@ -17,6 +17,11 @@ $ErrorActionPreference = "Continue"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $RepoRoot = (Resolve-Path "$ScriptDir\..").Path
 
+$GeminiBinDir = Join-Path $env:USERPROFILE ".gemini\antigravity\bin"
+if ((Test-Path $GeminiBinDir) -and ($env:PATH -notlike "*$GeminiBinDir*")) {
+    $env:PATH = "$GeminiBinDir;$env:PATH"
+}
+
 $LogDir = Join-Path $RepoRoot "logs"
 
 if (-not (Test-Path $LogDir)) {

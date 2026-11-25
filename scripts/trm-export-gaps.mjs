@@ -144,10 +144,11 @@ export async function exportGapsToDrive(options = {}) {
   const completedDir = path.join(driveRoot, '03_grok_completed');
   const locksDir = path.join(driveRoot, '_locks');
 
-  fs.mkdirSync(gapsDir, { recursive: true });
-  fs.mkdirSync(contextDir, { recursive: true });
-  fs.mkdirSync(completedDir, { recursive: true });
-  fs.mkdirSync(locksDir, { recursive: true });
+  for (const dir of [gapsDir, contextDir, completedDir, locksDir]) {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  }
 
   // Pre-research gate: sweep existing cards in 01_actionable_gaps to quarantine corrupted/contaminated inputs
   if (fs.existsSync(gapsDir)) {

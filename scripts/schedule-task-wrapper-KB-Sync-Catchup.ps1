@@ -12,6 +12,11 @@ $ErrorActionPreference = "Continue"
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $RepoRoot = (Resolve-Path "$ScriptDir\..").Path
+
+$GeminiBinDir = Join-Path $env:USERPROFILE ".gemini\antigravity\bin"
+if ((Test-Path $GeminiBinDir) -and ($env:PATH -notlike "*$GeminiBinDir*")) {
+    $env:PATH = "$GeminiBinDir;$env:PATH"
+}
 Set-Location $RepoRoot
 $LogDir = Join-Path $RepoRoot "logs"
 
@@ -40,6 +45,7 @@ Write-LogInfo "Repo Root: $RepoRoot"
 
 $RunnerScript = Join-Path $RepoRoot "scripts\pipeline\cluster-sync-runner.mjs"
 $ArgsList = @("$RunnerScript", "--mode=catchup")
+$ArgsList += "--allow-stale-drive-guide"
 if ($DryRun) {
     $ArgsList += "--dry-run"
 }

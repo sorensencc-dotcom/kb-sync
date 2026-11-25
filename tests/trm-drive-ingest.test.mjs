@@ -45,3 +45,48 @@ test('ingestDriveFindings appends candidate evidence and archives without defaul
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
+
+test('ingestDriveFindings handles inaccessible Google Drive root without EPERM mkdir failure', async () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'trm-gdrive-guard-test-'));
+  const oneDriveInbox = path.join(tmpDir, 'onedrive-inbox');
+  const oneDriveArchive = path.join(tmpDir, 'onedrive-archive');
+  const targetDir = path.join(tmpDir, 'wiki', 'concepts', '2026-11-25');
+  const logFile = path.join(tmpDir, 'Log.md');
+  fs.mkdirSync(oneDriveInbox, { recursive: true });
+  fs.writeFileSync(logFile, '# Log\n');
+
+  const dropContent = `---
+source: copilot
+skill: drive-it
+topic: kb
+title: Guarded Drive Test
+created: 2026-11-25T00:00:00Z
+folder_id: onedrive-copilot
+status: drop
+---
+
+# Guarded Drive Test
+Verified local inbox ingestion when Google Drive mount is unavailable.
+`;
+  fs.writeFileSync(path.join(oneDriveInbox, '2026-11-25T000000Z__kb__guarded-drive-test.md'), dropContent);
+
+  const res = await ingestDriveFindings({
+    driveRoot: 'G:/My Drive/TRM-Research',
+    completedDir: path.join(tmpDir, 'nonexistent-completed'),
+    archiveCompletedDir: 'G:/My Drive/TRM-Research/04_archive/completed',
+    archiveMobileInboxDir: 'G:/My Drive/TRM-Research/04_archive/mobile-inbox',
+    archiveRejectedDir: 'G:/My Drive/TRM-Research/04_archive/rejected',
+    locksDir: 'G:/My Drive/TRM-Research/_locks',
+    inboxSources: [
+      { inboxDir: oneDriveInbox, archiveDir: oneDriveArchive, name: 'onedrive-copilot-inbox' }
+    ],
+    topicTargets: { kb: targetDir },
+    logPath: logFile,
+    debounceMs: 10,
+    commit: false
+  });
+
+  assert.equal(res.mobileIngestedCount, 1);
+  assert.ok(fs.existsSync(path.join(targetDir, 'guarded-drive-test.md')));
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
