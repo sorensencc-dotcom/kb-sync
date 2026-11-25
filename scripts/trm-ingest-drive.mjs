@@ -148,6 +148,33 @@ export function updateRegistryRow(registryPath, gapId) {
   fs.writeFileSync(registryPath, updated.join('\n'), 'utf8');
 }
 
+function isGoogleDrivePath(targetPath) {
+  const normalized = String(targetPath || '').replace(/\\/g, '/');
+  return /^[a-zA-Z]:\/My Drive(\/|$)/i.test(normalized);
+}
+
+function ensureDir(dir) {
+  if (!dir || fs.existsSync(dir)) return true;
+  if (isGoogleDrivePath(dir)) {
+    const driveMount = dir.replace(/\\/g, '/').match(/^([a-zA-Z]:\/My Drive)/i)?.[1];
+    if (!driveMount || !fs.existsSync(driveMount)) {
+      return false;
+    }
+    try {
+      fs.mkdirSync(dir, { recursive: true });
+      return true;
+    } catch (err) {
+      if (err.code === 'EPERM' || err.code === 'EACCES' || err.code === 'ENOENT') {
+        console.warn(`[trm-ingest-drive] Skipping mkdir on Google Drive path (${err.code}): ${dir}`);
+        return false;
+      }
+      throw err;
+    }
+  }
+  fs.mkdirSync(dir, { recursive: true });
+  return true;
+}
+
 export async function ingestDriveFindings(options = {}) {
   const config = loadDriveConfig();
   const driveRoot = options.driveRoot || config.drive_buffer_root;
@@ -168,11 +195,11 @@ export async function ingestDriveFindings(options = {}) {
   const archiveRejectedDir = options.archiveRejectedDir || path.join(driveRoot, '04_archive', 'rejected');
   const locksDir = options.locksDir || path.join(driveRoot, '_locks');
 
-  fs.mkdirSync(archiveCompletedDir, { recursive: true });
-  fs.mkdirSync(archiveMobileInboxDir, { recursive: true });
-  fs.mkdirSync(archiveGapsDir, { recursive: true });
-  fs.mkdirSync(archiveRejectedDir, { recursive: true });
-  fs.mkdirSync(locksDir, { recursive: true });
+  ensureDir(archiveCompletedDir);
+  ensureDir(archiveMobileInboxDir);
+  ensureDir(archiveGapsDir);
+  ensureDir(archiveRejectedDir);
+  ensureDir(locksDir);
 
   let ingestedCount = 0;
   let mobileIngestedCount = 0;
@@ -306,7 +333,7 @@ export async function ingestDriveFindings(options = {}) {
 
   for (const source of inboxSources) {
     if (!fs.existsSync(source.inboxDir)) continue;
-    fs.mkdirSync(source.archiveDir, { recursive: true });
+    ensureDir(source.archiveDir);
 
     const allMobileFiles = fs.readdirSync(source.inboxDir).map(f => path.join(source.inboxDir, f)).filter(f => fs.statSync(f).isFile());
     const candidateMobileFiles = allMobileFiles.filter(f => !f.endsWith('.ready'));
@@ -384,7 +411,7 @@ export async function ingestDriveFindings(options = {}) {
         conversationsDir,
         customTargets: options.topicTargets || {}
       });
-      fs.mkdirSync(targetDir, { recursive: true });
+      ensureDir(targetDir);
 
       let targetFile = path.join(targetDir, `${slug}.md`);
 
