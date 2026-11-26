@@ -166,11 +166,13 @@ export function normalizePackFamilyKey(rawTitle, notebook) {
   base = base.replace(/\.bak\.txt$/i, '');
   base = base.replace(/\.(txt|md|pdf|json|yaml|yml|docx|doc|html|csv)$/i, '');
 
-  const partMatch = base.match(/^(.*?)[_-]part(?:[_-]([a-z0-9]+)|(\d+))$/i);
+  const partMatch =
+    base.match(/^(.*?)[_-]part(?:[_-]([a-z0-9]+)|(\d+))$/i) ||
+    base.match(/^(.*?)\s*\(\s*part\s+(\d+)(?:\s+of\s+\d+)?\s*\)$/i);
   let partLabel = null;
   let coreName = base;
   if (partMatch) {
-    coreName = partMatch[1];
+    coreName = partMatch[1].trim();
     partLabel = (partMatch[2] || partMatch[3]).toLowerCase();
   }
 

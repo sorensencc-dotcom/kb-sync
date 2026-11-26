@@ -639,4 +639,21 @@ test('titles containing "partner" are not normalized as a part or merged with an
   assert.equal(classified.findings.some((f) => f.code === 'MULTI_FAMILY' && f.severity === 'red'), true);
 });
 
+test('parenthesized "(Part N of M)" sharded titles normalize to one family', () => {
+  const nb = {
+    id: '679b8bab-2d87-42cb-a726-6dc54c83acc2',
+    alias: 'master-kb',
+    has_pack: true,
+    pack_family: 'pack_master_kb',
+    multipart: true,
+  };
+  const classified = classifyNotebook(nb, [
+    { id: '1', title: 'CIC-KB (Master Historical Pack Only) Pack (Part 1 of 2)', status: 2 },
+    { id: '2', title: 'CIC-KB (Master Historical Pack Only) Pack (Part 2 of 2)', status: 2 },
+  ]);
+  assert.equal(classified.counts.families, 1);
+  assert.equal(classified.counts.parts, 2);
+  assert.equal(classified.findings.length, 0);
+});
+
 
