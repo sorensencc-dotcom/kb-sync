@@ -1,0 +1,18 @@
+scripts/nlm-pack-count-check.mjs
+  h_5c172e9b435f5a 169-171,175
+scripts/trm-ingest-drive.mjs
+  h_5c172e9b435f5a 163,166,172-173,176-177,198-202,336,414
+tests/nlm-pack-count-check.test.mjs
+  h_5c172e9b435f5a 642-658
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a9a0b5bdae2fd188c8492c712919ee63cd8a8437",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
