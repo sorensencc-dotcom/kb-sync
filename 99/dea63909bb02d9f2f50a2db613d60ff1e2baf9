@@ -1,0 +1,14 @@
+trm-research-gaps.md
+  h_5c172e9b435f5a 6,25-229,1005,2248,3577,3858
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "99dea63909bb02d9f2f50a2db613d60ff1e2baf9",
+  "prompts": {},
+  "humans": {
+    "h_5c172e9b435f5a": {
+      "author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
