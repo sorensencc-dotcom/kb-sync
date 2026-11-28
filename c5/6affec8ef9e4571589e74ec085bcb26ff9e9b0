@@ -1,0 +1,30 @@
+scripts/pipeline/cluster-sync-runner.mjs
+  s_0d330794fc06c2::t_433d1ff2e77c33 27-31,346,421-422,431
+tests/cluster-sync-staging.test.mjs
+  s_0d330794fc06c2::t_f77553b89963be 335,346,371-406
+  s_0d330794fc06c2::t_87ae6aaaa998cc 407-408
+scripts/mining/mining-question-manifest.mjs
+  s_0d330794fc06c2::t_433d1ff2e77c33 1-21,23-37,44,49-52
+  s_0d330794fc06c2::t_dc84b242347e2b 22,45-48
+  s_0d330794fc06c2::t_f77553b89963be 38-43
+tests/dynamic-question-battery.test.mjs
+  s_0d330794fc06c2::t_b8fa192b008e18 87-92
+scripts/mining/dynamic-question-battery.mjs
+  s_0d330794fc06c2::t_433d1ff2e77c33 295
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c56affec8ef9e4571589e74ec085bcb26ff9e9b0",
+  "prompts": {},
+  "sessions": {
+    "s_0d330794fc06c2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21fad-a651-7c20-8619-3a5480ff8baf",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
