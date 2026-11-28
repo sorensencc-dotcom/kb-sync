@@ -84,6 +84,12 @@ test('queryRecentlyModifiedEntities selects active entity pages and honors alias
   );
 
   assert.deepEqual(results.map((row) => row.id), ['active-aviation', 'active-b24']);
+
+  const battery = generateDynamicQuestionBattery('willow-run', {
+    dbPath,
+    gapsPath: path.join(tempDir, 'missing-gaps.md'),
+  });
+  assert.deepEqual(battery.questions.map((question) => question.entityId), ['active-aviation', 'active-b24']);
 });
 
 test('open-gap loading accepts pending and in-progress gaps for aliases', () => {

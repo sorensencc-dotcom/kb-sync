@@ -24,6 +24,11 @@ import {
 } from '../nlm-pack-replace-gate.mjs';
 import { consolidatePacks } from '../consolidate-pack.mjs';
 import { updateJsonLocked } from '../../modules/trm/storage/transaction-manager.mjs';
+import {
+  DEFAULT_MINING_QUESTION_MANIFEST_PATH,
+  filterUnminedQuestions,
+  recordMinedQuestion,
+} from '../mining/mining-question-manifest.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -338,6 +343,7 @@ export async function runNotebookSweep(notebook, options = {}) {
     generateQuestionBattery = null,
     queryNotebookFn = null,
     maxQuestionsToInject = 2,
+    questionManifestPath = DEFAULT_MINING_QUESTION_MANIFEST_PATH,
   } = options;
   logStep(`=== Running sync for [${notebook.key}] (${notebook.uuid}) ===`);
 
@@ -412,7 +418,8 @@ export async function runNotebookSweep(notebook, options = {}) {
     const shouldInjectLive = !isDryRun && !isMockedUnitRun && (typeof queryNotebookFn === 'function' || UUID_RE.test(String(notebook.uuid || '')));
     if (shouldInjectLive && questionsList.length > 0) {
       const activeQueryFn = queryNotebookFn || defaultQueryNotebook;
-      const toInject = questionsList.slice(0, Math.max(1, maxQuestionsToInject));
+      const toInject = filterUnminedQuestions(notebook.uuid, questionsList, questionManifestPath)
+        .slice(0, Math.max(1, maxQuestionsToInject));
       let attempted = 0;
       for (const qItem of toInject) {
         const qText = typeof qItem === 'string' ? qItem : qItem.text;
@@ -421,6 +428,7 @@ export async function runNotebookSweep(notebook, options = {}) {
         const qRes = await activeQueryFn(notebook.uuid, qText);
         if (qRes && qRes.ok) {
           summary.questionsInjected++;
+          recordMinedQuestion(notebook.uuid, qItem, questionManifestPath);
           logInfo(`  ✓ Injected dynamic question into ${notebook.key}: "${qText.slice(0, 80)}..."`);
         } else {
           logWarn(`  ⚠ Failed to inject question into ${notebook.key}: ${qRes?.stderr || 'non-zero exit'}`);
