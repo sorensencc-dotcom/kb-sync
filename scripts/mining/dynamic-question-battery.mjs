@@ -292,6 +292,7 @@ export function generateDynamicQuestionBattery(target, options = {}) {
       const snippet = (ent.abstract || ent.excerpt || '').replace(/\r?\n/g, ' ').slice(0, 140);
       return {
         id: `ast-entity-${idx + 1}-${crypto.createHash('md5').update(topicName).digest('hex').slice(0, 6)}`,
+        entityId: ent.id,
         text: `Investigate recently modified entity "${topicName}" in ${notebookMeta.title}: resolve open technical questions and verify empirical citations against primary records: ${snippet}`,
       };
     });

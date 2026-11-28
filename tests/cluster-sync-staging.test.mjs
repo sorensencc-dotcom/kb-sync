@@ -332,6 +332,7 @@ test('runNotebookSweep bypasses pack upload when pack_writer is master', async (
 
 test('runNotebookSweep injects dynamic question battery via queryNotebookFn during live sweep', async () => {
   const injectedCalls = [];
+  const questionManifestPath = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'question-manifest-')), 'manifest.json');
   const summary = await runNotebookSweep(
     {
       key: 'dev_triage',
@@ -342,6 +343,7 @@ test('runNotebookSweep injects dynamic question battery via queryNotebookFn duri
     {
       isDryRun: false,
       maxQuestionsToInject: 2,
+      questionManifestPath,
       generateQuestionBattery: () => ({
         entropy: 4.312,
         source: 'ast_entities',
@@ -364,6 +366,44 @@ test('runNotebookSweep injects dynamic question battery via queryNotebookFn duri
   assert.equal(injectedCalls.length, 2);
   assert.equal(injectedCalls[0].notebookId, 'cb0498ce-1ea5-4668-9f65-ac368753404e');
   assert.equal(injectedCalls[0].qText, 'Investigate recent CI triage failure in Open Dev Issues.');
+});
+
+test('runNotebookSweep deduplicates repeated entity questions within and across runs', async () => {
+  const questionManifestPath = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'question-manifest-')), 'manifest.json');
+  const injectedCalls = [];
+  const notebook = {
+    key: 'dev_triage',
+    uuid: 'cb0498ce-1ea5-4668-9f65-ac368753404e',
+    pack_family: 'pack_dev_triage',
+    has_pack: false,
+  };
+  const options = {
+    isDryRun: false,
+    maxQuestionsToInject: 3,
+    questionManifestPath,
+    generateQuestionBattery: () => ({
+      entropy: 4.312,
+      source: 'ast_entities',
+      questions: [
+        { id: 'q1', entityId: 'entity-1', text: 'Investigate the same entity.' },
+        { id: 'q2', entityId: 'entity-1', text: '  Investigate   the same entity. ' },
+        { id: 'q3', entityId: 'entity-2', text: 'Investigate the same entity.' },
+      ],
+    }),
+    queryNotebookFn: async (notebookId, qText) => {
+      injectedCalls.push({ notebookId, qText });
+      return { ok: true };
+    },
+  };
+
+  const first = await runNotebookSweep(notebook, options);
+  const second = await runNotebookSweep(notebook, options);
+
+  assert.equal(first.questionsInjected, 2, 'same entity and normalized question should dispatch once');
+  assert.equal(second.questionsInjected, 0, 'successfully answered keys should be skipped on the next run');
+  assert.equal(injectedCalls.length, 2, 'different entity IDs remain distinct manifest keys');
+  const manifest = JSON.parse(fs.readFileSync(questionManifestPath, 'utf8'));
+  assert.equal(manifest.last_mined_answer_keys.length, 2);
 });
 
 test('runNotebookSweep reports INJECTION_FAILED when every question injection fails', async () => {
