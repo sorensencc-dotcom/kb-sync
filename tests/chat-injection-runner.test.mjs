@@ -185,6 +185,30 @@ describe('Chat Injection Runner & Cluster Parity Audit Suite', () => {
       assert.equal(audit[0].status, 'STALE');
       assert.equal(audit[0].lastLogTime, null);
     });
+
+    it('ignores recent unrelated Markdown and does not refresh an old synthesis log from its folder or mtime', () => {
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const testDir = path.join(REPO_ROOT, 'wiki', 'conversations', todayStr);
+      fs.mkdirSync(testDir, { recursive: true });
+      const slug = `audit-stale-${Date.now()}`;
+      const uuid = 'abcdef01-2345-6789-abcd-ef0123456789';
+      const filePath = path.join(testDir, `${slug}.md`);
+      const registry = [{ slug, uuid, title: 'Audit Stale Test', section: 'historical', isCanonical: true }];
+
+      try {
+        fs.writeFileSync(filePath, `# Unrelated report\nNotebook UUID: ${uuid}\n`, 'utf8');
+        const unrelatedAudit = auditClusterLatency(registry);
+        assert.equal(unrelatedAudit[0].status, 'STALE');
+        assert.equal(unrelatedAudit[0].lastLogTime, null);
+
+        fs.writeFileSync(filePath, `# Daily Synthesis Log: Audit Stale Test — 2000-01-01\nNotebook UUID: ${uuid}\n`, 'utf8');
+        const copiedAudit = auditClusterLatency(registry);
+        assert.equal(copiedAudit[0].status, 'STALE');
+        assert.equal(copiedAudit[0].lastLogTime, '2000-01-02T00:00:00.000Z');
+      } finally {
+        if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+      }
+    });
   });
 
   describe('ensureSyncDirectories()', () => {
