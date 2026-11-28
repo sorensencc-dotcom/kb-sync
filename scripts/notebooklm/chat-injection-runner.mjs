@@ -604,16 +604,21 @@ export function auditClusterLatency(registry) {
         const dirPath = path.join(root, d);
         try {
           const dirFiles = fs.readdirSync(dirPath);
-          const dirDateMs = /^\d{4}-\d{2}-\d{2}$/.test(d) ? Date.parse(`${d}T00:00:00Z`) : NaN;
 
           for (const f of dirFiles) {
             if (!f.endsWith('.md')) continue;
             const filePath = path.join(dirPath, f);
             try {
               const stat = fs.statSync(filePath);
-              const effectiveTime = (!isNaN(dirDateMs) && dirDateMs > 0)
-                ? Math.max(stat.mtimeMs, dirDateMs)
-                : stat.mtimeMs;
+              const fd = fs.openSync(filePath, 'r');
+              const buf = Buffer.alloc(1024);
+              const bytesRead = fs.readSync(fd, buf, 0, 1024, 0);
+              fs.closeSync(fd);
+              const head = buf.toString('utf8', 0, bytesRead);
+              const logDate = head.match(/^# Daily Synthesis Log:.*[—-]\s*(\d{4}-\d{2}-\d{2})\s*$/m)?.[1];
+              const logDateMs = logDate ? Date.parse(`${logDate}T00:00:00Z`) : NaN;
+              if (!Number.isFinite(logDateMs)) continue;
+              const effectiveTime = Math.min(stat.mtimeMs, logDateMs + ONE_DAY_MS);
 
               const entry = { filePath, effectiveTime, mtimeMs: stat.mtimeMs, filename: f.toLowerCase() };
               allIndexedFiles.push(entry);
@@ -621,13 +626,6 @@ export function auditClusterLatency(registry) {
               const fLower = f.toLowerCase();
               if (!filesByName.has(fLower)) filesByName.set(fLower, []);
               filesByName.get(fLower).push(entry);
-
-              // Read head for UUID
-              const fd = fs.openSync(filePath, 'r');
-              const buf = Buffer.alloc(1024);
-              const bytesRead = fs.readSync(fd, buf, 0, 1024, 0);
-              fs.closeSync(fd);
-              const head = buf.toString('utf8', 0, bytesRead);
 
               const uuidMatch = head.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
               if (uuidMatch) {
@@ -651,12 +649,19 @@ export function auditClusterLatency(registry) {
       const driveDir = path.join(DRIVE_ROOT, nb.slug);
       if (fs.existsSync(driveDir)) {
         try {
-          const files = fs.readdirSync(driveDir).filter((f) => f.endsWith('.md'));
+          const files = fs.readdirSync(driveDir).filter((f) => /^Daily Synthesis Log - (\d{4}-\d{2}-\d{2})\.md$/i.test(f));
           for (const file of files) {
-            const stat = fs.statSync(path.join(driveDir, file));
-            if (!lastLogTime || stat.mtimeMs > lastLogTime) {
-              lastLogTime = stat.mtimeMs;
-              lastLogPath = path.join(driveDir, file);
+            const date = file.match(/(\d{4}-\d{2}-\d{2})\.md$/i)?.[1];
+            const logDateMs = date ? Date.parse(`${date}T00:00:00Z`) : NaN;
+            if (!Number.isFinite(logDateMs)) continue;
+            const filePath = path.join(driveDir, file);
+            const head = fs.readFileSync(filePath, 'utf8').slice(0, 256);
+            if (!head.startsWith('# Daily Synthesis Log:') || !head.includes(date)) continue;
+            const stat = fs.statSync(filePath);
+            const effectiveTime = Math.min(stat.mtimeMs, logDateMs + ONE_DAY_MS);
+            if (!lastLogTime || effectiveTime > lastLogTime) {
+              lastLogTime = effectiveTime;
+              lastLogPath = filePath;
             }
           }
         } catch {}
