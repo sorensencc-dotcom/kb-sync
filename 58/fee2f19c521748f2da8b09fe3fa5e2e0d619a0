@@ -1,0 +1,21 @@
+scripts/notebooklm/chat-injection-runner.mjs
+  s_0d330794fc06c2::t_aac2dda57223af 613-621,652,654-664
+tests/chat-injection-runner.test.mjs
+  s_0d330794fc06c2::t_aac2dda57223af 188-211
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "58fee2f19c521748f2da8b09fe3fa5e2e0d619a0",
+  "prompts": {},
+  "sessions": {
+    "s_0d330794fc06c2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21fad-a651-7c20-8619-3a5480ff8baf",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Chris Sorensen <sorensencc@gmail.com>"
+    }
+  }
+}
